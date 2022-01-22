@@ -1,0 +1,3 @@
+.husky/commit-msg linguist-documentation
+.husky/pre-commit linguist-documentation
+_docs/* linguist-documentation

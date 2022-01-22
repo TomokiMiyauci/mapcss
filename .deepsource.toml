@@ -1,0 +1,13 @@
+version = 1
+
+test_patterns = ["*.ts"]
+
+exclude_patterns = [
+  "_docs/**",
+  "**/*_test.ts",
+  "_examples/**"
+]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
