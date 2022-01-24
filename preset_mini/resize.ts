@@ -1,20 +1,22 @@
 import { BOTH, NONE } from "../constants.ts";
+import type { Rule } from "../core/types.ts";
 
-export const resize = [
+const RESIZE = "resize";
+export const resizes: Rule[] = [
   [
     "resize-x",
-    "horizontal",
+    { [RESIZE]: "horizontal" },
   ],
   [
     "resize-z",
-    "vertical",
+    { [RESIZE]: "vertical" },
   ],
   [
     "resize",
-    BOTH,
+    { [RESIZE]: BOTH },
   ],
   [
     "resize-none",
-    NONE,
+    { [RESIZE]: NONE },
   ],
 ];

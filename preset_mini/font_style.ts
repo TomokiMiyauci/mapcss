@@ -1,5 +1,7 @@
-import { SAME_AS_KEY } from "../constants.ts";
-export const fontStyle = [
-  ["italic", SAME_AS_KEY],
-  ["not-italic", "normal"],
+import type { Rule } from "../core/types.ts";
+
+const FONT_STYLE = "font-style";
+export const fontStyles: Rule[] = [
+  ["italic", { [FONT_STYLE]: "italic" }],
+  ["not-italic", { [FONT_STYLE]: "normal" }],
 ];

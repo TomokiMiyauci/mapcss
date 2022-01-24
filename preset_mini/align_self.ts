@@ -9,11 +9,13 @@ import {
 } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const alignSelf: Rule[] = [
-  ["self-auto", AUTO],
-  ["self-start", `${FLEX}-${START}`],
-  ["self-end", `${FLEX}-${END}`],
-  ["self-center", CENTER],
-  ["self-stretch", STRETCH],
-  ["self-baseline", BASELINE],
+const ALIGN_SELF = "align-self";
+
+export const alignSelfs: Rule[] = [
+  ["self-auto", { [ALIGN_SELF]: AUTO }],
+  ["self-start", { [ALIGN_SELF]: `${FLEX}-${START}` }],
+  ["self-end", { [ALIGN_SELF]: `${FLEX}-${END}` }],
+  ["self-center", { [ALIGN_SELF]: CENTER }],
+  ["self-stretch", { [ALIGN_SELF]: STRETCH }],
+  ["self-baseline", { [ALIGN_SELF]: BASELINE }],
 ];

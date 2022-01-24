@@ -1,5 +1,7 @@
-import { SAME_AS_KEY } from "../constants.ts";
-export const visibility = [
-  ["visible", SAME_AS_KEY],
-  ["invisible", "hidden"],
+import type { Rule } from "../core/types.ts";
+
+const VISIBILITY = "visibility";
+export const visibilities: Rule[] = [
+  ["visible", { [VISIBILITY]: "visible" }],
+  ["invisible", { [VISIBILITY]: "hidden" }],
 ];

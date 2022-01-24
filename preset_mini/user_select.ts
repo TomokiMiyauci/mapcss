@@ -1,10 +1,13 @@
 import { AUTO, NONE } from "../constants.ts";
-export const userSelect = [
-  ["select-auto", AUTO],
-  ["select-all", "all"],
+import type { Rule } from "../core/types.ts";
+
+const USER_SELECT = "user-select";
+export const userSelects: Rule[] = [
+  ["select-auto", { [USER_SELECT]: AUTO }],
+  ["select-all", { [USER_SELECT]: "all" }],
   [
     "select-text",
-    "text",
+    { [USER_SELECT]: "text" },
   ],
-  ["select-none", NONE],
+  ["select-none", { [USER_SELECT]: NONE }],
 ];

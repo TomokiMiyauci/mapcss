@@ -10,11 +10,13 @@ import {
 } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const alignContent: Rule[] = [
-  ["content-center", CENTER],
-  ["content-start", `${FLEX}-${START}`],
-  ["content-end", `${FLEX}-${END}`],
-  ["content-between", `${SPACE}-${BETWEEN}`],
-  ["content-around", `${SPACE}-${AROUND}`],
-  ["content-evenly", `${SPACE}-${EVENLY}`],
+const alignContent = "align-content";
+
+export const alignContents: Rule[] = [
+  ["content-center", { [alignContent]: CENTER }],
+  ["content-start", { [alignContent]: `${FLEX}-${START}` }],
+  ["content-end", { [alignContent]: `${FLEX}-${END}` }],
+  ["content-between", { [alignContent]: `${SPACE}-${BETWEEN}` }],
+  ["content-around", { [alignContent]: `${SPACE}-${AROUND}` }],
+  ["content-evenly", { [alignContent]: `${SPACE}-${EVENLY}` }],
 ];

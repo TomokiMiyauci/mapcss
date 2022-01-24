@@ -10,12 +10,14 @@ import {
 } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const placeContent: Rule[] = [
-  ["place-content-center", CENTER],
-  ["place-content-start", START],
-  ["place-content-end", END],
-  ["place-content-between", `${SPACE}-${BETWEEN}`],
-  ["place-content-around", `${SPACE}-${AROUND}`],
-  ["place-content-evenly", `${SPACE}-${EVENLY}`],
-  ["place-content-stretch", STRETCH],
+const PLACE_CONTENT = "place-content";
+
+export const placeContents: Rule[] = [
+  ["place-content-center", { [PLACE_CONTENT]: CENTER }],
+  ["place-content-start", { [PLACE_CONTENT]: START }],
+  ["place-content-end", { [PLACE_CONTENT]: END }],
+  ["place-content-between", { [PLACE_CONTENT]: `${SPACE}-${BETWEEN}` }],
+  ["place-content-around", { [PLACE_CONTENT]: `${SPACE}-${AROUND}` }],
+  ["place-content-evenly", { [PLACE_CONTENT]: `${SPACE}-${EVENLY}` }],
+  ["place-content-stretch", { [PLACE_CONTENT]: STRETCH }],
 ];

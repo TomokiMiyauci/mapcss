@@ -1,8 +1,10 @@
 import { AUTO } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const aspectRatio: Rule[] = [
-  ["aspect-auto", AUTO],
-  ["aspect-square", "1 / 1"],
-  ["aspect-video", "16 / 9"],
+const ASPECT_RATIO = "aspect-ratio";
+
+export const aspectRatios: Rule[] = [
+  ["aspect-auto", { [ASPECT_RATIO]: AUTO }],
+  ["aspect-square", { [ASPECT_RATIO]: "1 / 1" }],
+  ["aspect-video", { [ASPECT_RATIO]: "16 / 9" }],
 ];

@@ -1,6 +1,9 @@
 import { LEFT, NONE, RIGHT } from "../constants.ts";
-export const float = [
-  ["float-right", RIGHT],
-  ["float-left", LEFT],
-  ["float-none", NONE],
+import type { Rule } from "../core/types.ts";
+
+const FLOAT = "float";
+export const floats: Rule[] = [
+  ["float-right", { [FLOAT]: RIGHT }],
+  ["float-left", { [FLOAT]: LEFT }],
+  ["float-none", { [FLOAT]: NONE }],
 ];

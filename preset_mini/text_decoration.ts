@@ -1,7 +1,8 @@
 import type { Rule } from "../core/types.ts";
 import { NONE } from "../constants.ts";
 
-export const textDecoration: Rule[] = [
-  ["no-underline", NONE],
-  ["decoration-none", NONE],
+const TEXT_DECORATION = "text-decoration";
+export const textDecorations: Rule[] = [
+  ["no-underline", { [TEXT_DECORATION]: NONE }],
+  ["decoration-none", { [TEXT_DECORATION]: NONE }],
 ];

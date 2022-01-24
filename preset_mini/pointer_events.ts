@@ -1,5 +1,9 @@
 import { AUTO, NONE } from "../constants.ts";
-export const pointerEvents = [
-  ["pointer-events-auto", AUTO],
-  ["pointer-events-none", NONE],
+import type { Rule } from "../core/types.ts";
+
+const POINTER_EVENTS = "pointer-events";
+
+export const pointerEvents: Rule[] = [
+  ["pointer-events-auto", { [POINTER_EVENTS]: AUTO }],
+  ["pointer-events-none", { [POINTER_EVENTS]: NONE }],
 ];

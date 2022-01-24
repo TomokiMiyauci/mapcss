@@ -1,18 +1,20 @@
-import { SAME_AS_KEY } from "../constants.ts";
+import { NONE } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const display: Rule[] = [
-  ["block", SAME_AS_KEY],
-  ["inline-block", SAME_AS_KEY],
-  ["inline", SAME_AS_KEY],
-  ["flex", SAME_AS_KEY],
-  ["inline-flex", SAME_AS_KEY],
-  ["table", SAME_AS_KEY],
-  ["inline-table", SAME_AS_KEY],
-  ["table-caption", SAME_AS_KEY],
-  ["contents", SAME_AS_KEY],
-  ["grid", SAME_AS_KEY],
-  ["flow-root", SAME_AS_KEY],
-  ["list-item", SAME_AS_KEY],
-  ["hidden", "none"],
+const DISPLAY = "display";
+
+export const displays: Rule[] = [
+  ["block", { [DISPLAY]: "block" }],
+  ["inline-block", { [DISPLAY]: "inline-block" }],
+  ["inline", { [DISPLAY]: "inline" }],
+  ["flex", { [DISPLAY]: "flex" }],
+  ["inline-flex", { [DISPLAY]: "inline-flex" }],
+  ["table", { [DISPLAY]: "table" }],
+  ["inline-table", { [DISPLAY]: "inline-table" }],
+  ["table-caption", { [DISPLAY]: "table-caption" }],
+  ["contents", { [DISPLAY]: "contents" }],
+  ["grid", { [DISPLAY]: "grid" }],
+  ["flow-root", { [DISPLAY]: "flow-root" }],
+  ["list-item", { [DISPLAY]: "list-item" }],
+  ["hidden", { [DISPLAY]: NONE }],
 ];

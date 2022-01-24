@@ -1,10 +1,10 @@
-import { SAME_AS_KEY } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const textDecorationLine: Rule[] = [
-  ["underline", SAME_AS_KEY],
-  ["overline", SAME_AS_KEY],
-  ["line-through", SAME_AS_KEY],
-  ["decoration-underline", "underline"],
-  ["decoration-line-through", "line-through"],
+const TEXT_DECORATION_LINE = "text-decoration-line";
+export const textDecorationLines: Rule[] = [
+  ["underline", { [TEXT_DECORATION_LINE]: "underline" }],
+  ["overline", { [TEXT_DECORATION_LINE]: "overline" }],
+  ["line-through", { [TEXT_DECORATION_LINE]: "through" }],
+  ["decoration-underline", { [TEXT_DECORATION_LINE]: "underline" }],
+  ["decoration-line-through", { [TEXT_DECORATION_LINE]: "line-through" }],
 ];

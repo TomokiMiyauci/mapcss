@@ -1,7 +1,8 @@
 import { HIDDEN } from "../constants.ts";
 import type { Rule } from "../core/types.ts";
 
-export const backfaceVisibility: Rule[] = [
-  ["backface-visible", "visible"],
-  ["backface-hidden", HIDDEN],
+const BACKFACE_VISIBILITY = "backface-visibility";
+export const backfaceVisibilities: Rule[] = [
+  ["backface-visible", { [BACKFACE_VISIBILITY]: "visible" }],
+  ["backface-hidden", { [BACKFACE_VISIBILITY]: HIDDEN }],
 ];

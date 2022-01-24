@@ -16,4 +16,3 @@ export const AROUND = "around";
 export const EVENLY = "evenly";
 export const BASELINE = "baseline";
 export const STRETCH = "stretch";
-export const SAME_AS_KEY = Symbol.for("SAK");
