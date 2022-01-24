@@ -1,5 +1,5 @@
-import { BOTH, LEFT, NONE, RIGHT } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { BOTH, LEFT, NONE, RIGHT } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const CLEAR = "clear";
 

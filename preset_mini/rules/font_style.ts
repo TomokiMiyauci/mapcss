@@ -1,4 +1,4 @@
-import type { Rule } from "../core/types.ts";
+import type { Rule } from "../../core/types.ts";
 
 const FONT_STYLE = "font-style";
 export const fontStyles: Rule[] = [

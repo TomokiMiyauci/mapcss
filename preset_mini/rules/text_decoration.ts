@@ -1,5 +1,5 @@
-import type { Rule } from "../core/types.ts";
-import { NONE } from "../constants.ts";
+import type { Rule } from "../../core/types.ts";
+import { NONE } from "../../constants.ts";
 
 const TEXT_DECORATION = "text-decoration";
 export const textDecorations: Rule[] = [

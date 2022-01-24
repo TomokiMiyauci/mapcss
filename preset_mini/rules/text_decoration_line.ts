@@ -1,4 +1,4 @@
-import type { Rule } from "../core/types.ts";
+import type { Rule } from "../../core/types.ts";
 
 const TEXT_DECORATION_LINE = "text-decoration-line";
 export const textDecorationLines: Rule[] = [

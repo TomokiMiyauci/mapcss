@@ -1,5 +1,5 @@
-import { BOTH, NONE } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { BOTH, NONE } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const RESIZE = "resize";
 export const resizes: Rule[] = [

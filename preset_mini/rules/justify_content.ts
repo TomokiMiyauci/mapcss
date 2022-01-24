@@ -6,8 +6,8 @@ import {
   EVENLY,
   SPACE,
   START,
-} from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+} from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const JUSTIFY_CONTENT = "justify-content";
 

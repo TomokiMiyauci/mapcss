@@ -1,5 +1,5 @@
-import { AUTO } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { AUTO } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const ASPECT_RATIO = "aspect-ratio";
 

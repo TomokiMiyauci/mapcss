@@ -1,5 +1,5 @@
-import { AUTO, NONE } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { AUTO, NONE } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const POINTER_EVENTS = "pointer-events";
 

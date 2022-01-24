@@ -1,5 +1,5 @@
-import { AUTO, NONE } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { AUTO, NONE } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const USER_SELECT = "user-select";
 export const userSelects: Rule[] = [

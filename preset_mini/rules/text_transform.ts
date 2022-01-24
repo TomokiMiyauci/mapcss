@@ -1,5 +1,5 @@
-import { NONE } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { NONE } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const TEXT_TRANSFORM = "text-transform";
 export const textTransforms: Rule[] = [

@@ -1,5 +1,5 @@
-import { CENTER, END, FLEX, START } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { CENTER, END, FLEX, START } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const ALIGN_ITEMS = "align-items";
 

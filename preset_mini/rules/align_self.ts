@@ -6,8 +6,8 @@ import {
   FLEX,
   START,
   STRETCH,
-} from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+} from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const ALIGN_SELF = "align-self";
 

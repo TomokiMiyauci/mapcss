@@ -1,5 +1,5 @@
-import { AUTO, CENTER, END, START, STRETCH } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { AUTO, CENTER, END, START, STRETCH } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const JUSTIFY_SELF = "justify-self";
 

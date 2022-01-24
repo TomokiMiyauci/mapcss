@@ -1,5 +1,5 @@
-import { LEFT, NONE, RIGHT } from "../constants.ts";
-import type { Rule } from "../core/types.ts";
+import { LEFT, NONE, RIGHT } from "../../constants.ts";
+import type { Rule } from "../../core/types.ts";
 
 const FLOAT = "float";
 export const floats: Rule[] = [
