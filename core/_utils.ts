@@ -32,7 +32,7 @@ export function cssDeclarationBlock(cssObject: CSSObject): string {
 export function cssDeclaration(
   { property, value }: {
     property: string;
-    value: string;
+    value: string | number;
   },
   { middleSeparator = ":", endSeparator = ";" }: Partial<{
     middleSeparator: string;

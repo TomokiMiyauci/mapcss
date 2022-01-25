@@ -29,6 +29,7 @@ import { zIndexes } from "./z_index.ts";
 import { colors } from "./color.ts";
 import { backgroundColors } from "./background_color.ts";
 import { fontSizes } from "./font_size.ts";
+import { fontWeights } from "./font_weight.ts";
 
 export const nestedRules = [
   alignContents,
@@ -62,6 +63,7 @@ export const nestedRules = [
   zIndexes,
   backgroundColors,
   fontSizes,
+  fontWeights,
 ];
 
 export {
@@ -79,6 +81,7 @@ export {
   floats,
   fontSizes,
   fontStyles,
+  fontWeights,
   justifyContents,
   justifyItems,
   justifySelfs,

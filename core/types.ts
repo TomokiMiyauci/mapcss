@@ -1,4 +1,4 @@
-export type CSSObject = Record<string, string>;
+export type CSSObject = Record<string, string | number>;
 
 export type StaticRule = [
   string,
@@ -30,4 +30,6 @@ export type Theme = {
 
   /** font size theme. [fontSize, lineHight] */
   fontSize: Record<string, [string, string]>;
+
+  fontWeight: Record<string, number>;
 };
