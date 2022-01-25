@@ -23,7 +23,7 @@ export function constructCSS(rules: StaticRule[]): string {
 export function cssDeclarationBlock(cssObject: CSSObject): string {
   const content = Object.entries(cssObject).reduce((acc, [property, value]) => {
     const declaration = cssDeclaration({ property, value });
-    return acc.length ? `${acc}\n${declaration}` : declaration;
+    return `${acc}${declaration}`;
   }, "");
 
   return `{${content}}`;
@@ -34,13 +34,10 @@ export function cssDeclaration(
     property: string;
     value: string;
   },
-  { middleSeparator, endSeparator }: {
+  { middleSeparator = ":", endSeparator = ";" }: Partial<{
     middleSeparator: string;
     endSeparator: string;
-  } = {
-    middleSeparator: ":",
-    endSeparator: ";",
-  },
+  }> = {},
 ): string {
   return `${property}${middleSeparator}${value}${endSeparator}`;
 }
