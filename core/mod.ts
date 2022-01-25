@@ -36,7 +36,7 @@ export function generate(
       if (!regExpExecArray) return;
       const dynamicResult = fn(
         regExpExecArray,
-        _theme as Theme & Record<string, unknown>,
+        { theme: _theme },
       );
       if (dynamicResult) {
         return [
