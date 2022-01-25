@@ -27,6 +27,8 @@ import { visibilities } from "./visibility.ts";
 import { wordBreaks } from "./word_break.ts";
 import { zIndexes } from "./z_index.ts";
 import { colors } from "./color.ts";
+import { backgroundColors } from "./background_color.ts";
+import { fontSizes } from "./font_size.ts";
 
 export const nestedRules = [
   alignContents,
@@ -58,6 +60,8 @@ export const nestedRules = [
   visibilities,
   wordBreaks,
   zIndexes,
+  backgroundColors,
+  fontSizes,
 ];
 
 export {
@@ -66,12 +70,14 @@ export {
   alignSelfs,
   aspectRatios,
   backfaceVisibilities,
+  backgroundColors,
   clears,
   colors,
   contents,
   displays,
   flexes,
   floats,
+  fontSizes,
   fontStyles,
   justifyContents,
   justifyItems,
