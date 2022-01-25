@@ -32,4 +32,6 @@ export type Theme = {
   fontSize: Record<string, [string, string]>;
 
   fontWeight: Record<string, number>;
+
+  letterSpacing: Record<PropertyKey, string>;
 };

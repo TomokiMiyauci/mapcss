@@ -30,6 +30,7 @@ import { colors } from "./color.ts";
 import { backgroundColors } from "./background_color.ts";
 import { fontSizes } from "./font_size.ts";
 import { fontWeights } from "./font_weight.ts";
+import { letterSpacings } from "./letter_spacing.ts";
 
 export const nestedRules = [
   alignContents,
@@ -64,6 +65,7 @@ export const nestedRules = [
   backgroundColors,
   fontSizes,
   fontWeights,
+  letterSpacings,
 ];
 
 export {
@@ -85,6 +87,7 @@ export {
   justifyContents,
   justifyItems,
   justifySelfs,
+  letterSpacings,
   overflowWraps,
   placeContents,
   pointerEvents,
