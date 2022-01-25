@@ -5,6 +5,16 @@ export type StaticRule = [
   CSSObject,
 ];
 
+export type ModifierHandler = (
+  match: string,
+  context: ModifierContext,
+) => ModifierResult | void;
+
+export type StaticModifier = [
+  string,
+  ModifierHandler,
+];
+
 export type DynamicRule = [
   RegExp,
   (
@@ -19,11 +29,30 @@ export interface RuleContext {
 
 export type Rule = StaticRule | DynamicRule;
 
+export type Modifier = StaticModifier;
+
 export type Preset = {
   name: string;
   rules: Rule[];
   theme: Theme;
+  modifiers: Modifier[];
 };
+
+export interface ModifierContext {
+  theme: Theme & Record<string, unknown>;
+}
+
+export interface ModifierResult {
+  identifier: string;
+
+  rule: string;
+
+  selector?: (selector: string) => string;
+  /**
+   * Variant ordering.
+   */
+  order?: number;
+}
 
 export type Theme = {
   color: Record<string, string | Record<string, string>>;
@@ -34,4 +63,6 @@ export type Theme = {
   fontWeight: Record<string, number>;
 
   letterSpacing: Record<PropertyKey, string>;
+
+  screen: Record<PropertyKey, string>;
 };

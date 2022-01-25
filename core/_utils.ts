@@ -12,12 +12,48 @@ export function isStaticRule(rule: Rule): rule is StaticRule {
   return !isRegExp(rule[0]);
 }
 
-export function constructCSS(rules: StaticRule[]): string {
-  return rules.reduce((acc, [selector, cssObject]) => {
-    const block = cssDeclarationBlock(cssObject);
-    const cssDeclaration = `.${selector}${block}`;
-    return acc.concat(cssDeclaration);
-  }, [] as string[]).join("\n");
+export function isAtRule(
+  cssStatement: AtRule | RuleSet,
+): cssStatement is AtRule {
+  return "identifier" in cssStatement;
+}
+
+export function isRuleSet(
+  cssStatement: AtRule | RuleSet,
+): cssStatement is RuleSet {
+  return "declarationBlock" in cssStatement;
+}
+
+export type RuleSet = {
+  selector: string;
+  declarationBlock: CSSObject;
+};
+
+export type AtRule = {
+  identifier: string;
+  rule: string;
+  selector?: (selector: RuleSet["selector"]) => RuleSet["selector"];
+  children: RuleSet;
+};
+
+type CSSStatement = RuleSet | AtRule;
+
+export function constructCSS(
+  cssStatement: CSSStatement,
+): string {
+  if (isRuleSet(cssStatement)) {
+    const { selector, declarationBlock } = cssStatement;
+
+    return `.${selector}${cssDeclarationBlock(declarationBlock)}`;
+  }
+
+  const { children: { selector, declarationBlock }, identifier, rule } =
+    cssStatement;
+  const _selector = cssStatement.selector?.(selector) ?? selector;
+  const declaration = cssDeclarationBlock(declarationBlock);
+
+  const children = `${_selector}${declaration}`;
+  return constructAtRule({ identifier, rule, children });
 }
 
 export function cssDeclarationBlock(cssObject: CSSObject): string {
@@ -26,7 +62,23 @@ export function cssDeclarationBlock(cssObject: CSSObject): string {
     return `${acc}${declaration}`;
   }, "");
 
-  return `{${content}}`;
+  return bracket(content);
+}
+
+export function bracket<T extends string>(value: T): `{${T}}` {
+  return `{${value}}`;
+}
+
+export function constructAtRule(
+  { identifier, rule, children }: {
+    identifier: string;
+    rule: string;
+    children: string;
+  },
+): string {
+  return `@${identifier} ${rule}{
+${children}
+}`;
 }
 
 export function cssDeclaration(
