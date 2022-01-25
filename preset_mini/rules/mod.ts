@@ -26,6 +26,7 @@ import { userSelects } from "./user_select.ts";
 import { visibilities } from "./visibility.ts";
 import { wordBreaks } from "./word_break.ts";
 import { zIndexes } from "./z_index.ts";
+import { colors } from "./color.ts";
 
 export const nestedRules = [
   alignContents,
@@ -33,6 +34,7 @@ export const nestedRules = [
   alignSelfs,
   aspectRatios,
   backfaceVisibilities,
+  colors,
   clears,
   contents,
   displays,
@@ -65,6 +67,7 @@ export {
   aspectRatios,
   backfaceVisibilities,
   clears,
+  colors,
   contents,
   displays,
   flexes,
