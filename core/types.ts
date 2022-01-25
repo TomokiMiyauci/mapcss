@@ -58,6 +58,10 @@ export type Theme = {
 
   fontWeight: Record<string, number>;
 
+  fontFamily:
+    | Record<"sans" | "serif" | "mono", string>
+    | Record<string, unknown>;
+
   letterSpacing: Record<PropertyKey, string>;
 
   screen: Record<PropertyKey, string>;
