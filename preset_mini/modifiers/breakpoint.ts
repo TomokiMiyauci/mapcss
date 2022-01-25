@@ -1,5 +1,5 @@
-import { Modifier, ModifierHandler } from "./../../core/types.ts";
 import { isString, prop } from "../../deps.ts";
+import type { Modifier, ModifierHandler } from "./../../core/types.ts";
 
 const breakpointHandler: ModifierHandler = (match, { theme }) => {
   const screen = prop(match, theme.screen);

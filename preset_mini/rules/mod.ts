@@ -31,6 +31,7 @@ import { backgroundColors } from "./background_color.ts";
 import { fontSizes } from "./font_size.ts";
 import { fontWeights } from "./font_weight.ts";
 import { letterSpacings } from "./letter_spacing.ts";
+import { fontFamilies } from "./font_family.ts";
 
 export const nestedRules = [
   alignContents,
@@ -66,6 +67,7 @@ export const nestedRules = [
   fontSizes,
   fontWeights,
   letterSpacings,
+  fontFamilies,
 ];
 
 export {
@@ -81,6 +83,7 @@ export {
   displays,
   flexes,
   floats,
+  fontFamilies,
   fontSizes,
   fontStyles,
   fontWeights,
