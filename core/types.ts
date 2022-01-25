@@ -65,4 +65,6 @@ export type Theme = {
   letterSpacing: Record<PropertyKey, string>;
 
   screen: Record<PropertyKey, string>;
+
+  maxWidth: Record<PropertyKey, string>;
 };
