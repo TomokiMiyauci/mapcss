@@ -8,7 +8,7 @@ export type StaticRule = [
 export type ModifierHandler = (
   match: string,
   context: ModifierContext,
-) => ModifierResult | void;
+) => Partial<ModifierResult> | void;
 
 export type StaticModifier = [
   string,
@@ -47,11 +47,7 @@ export interface ModifierResult {
 
   rule: string;
 
-  selector?: (selector: string) => string;
-  /**
-   * Variant ordering.
-   */
-  order?: number;
+  selector: (selector: string) => string;
 }
 
 export type Theme = {

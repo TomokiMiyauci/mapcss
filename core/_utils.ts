@@ -1,4 +1,11 @@
-import type { CSSObject, DynamicRule, Rule, StaticRule } from "./types.ts";
+import { isString } from "../deps.ts";
+import type {
+  CSSObject,
+  DynamicRule,
+  ModifierResult,
+  Rule,
+  StaticRule,
+} from "./types.ts";
 
 export function isRegExp(value: unknown): value is RegExp {
   return value instanceof RegExp;
@@ -29,10 +36,7 @@ export type RuleSet = {
   declarationBlock: CSSObject;
 };
 
-export type AtRule = {
-  identifier: string;
-  rule: string;
-  selector?: (selector: RuleSet["selector"]) => RuleSet["selector"];
+export type AtRule = Partial<ModifierResult> & {
   children: RuleSet;
 };
 
@@ -70,15 +74,16 @@ export function bracket<T extends string>(value: T): `{${T}}` {
 }
 
 export function constructAtRule(
-  { identifier, rule, children }: {
-    identifier: string;
-    rule: string;
+  { identifier, rule, children }: Pick<AtRule, "identifier" | "rule"> & {
     children: string;
   },
 ): string {
-  return `@${identifier} ${rule}{
+  if (isString(identifier) && isString(rule)) {
+    return `@${identifier} ${rule}{
 ${children}
 }`;
+  }
+  return children;
 }
 
 export function cssDeclaration(
