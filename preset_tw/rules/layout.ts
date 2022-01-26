@@ -17,3 +17,13 @@ export const breakInsides: Rule[] = [
     [BREAK_INSIDE]: `${AVOID}-column`,
   }],
 ];
+
+const BOX_DECORATION_BREAK = "box-decoration-break";
+export const boxDecorations: Rule[] = [
+  ["box-decoration-clone", {
+    [BOX_DECORATION_BREAK]: "clone",
+  }],
+  ["box-decoration-slice", {
+    [BOX_DECORATION_BREAK]: "slice",
+  }],
+];
