@@ -29,7 +29,6 @@ import { fontWeights } from "./font_weight.ts";
 import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
 import { maxWidths } from "./max_width.ts";
-import { margins } from "./margin.ts";
 import { outlineStyles } from "./outline_style.ts";
 import { lineHeights } from "./line_height.ts";
 import { breakBefore } from "./break_before.ts";
@@ -44,6 +43,7 @@ import {
   displays,
   floats,
 } from "./layout.ts";
+import { margins } from "./spacing.ts";
 
 export const nestedRules = [
   alignContents,
