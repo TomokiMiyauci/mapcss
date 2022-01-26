@@ -6,6 +6,7 @@ import { screen } from "./screen.ts";
 import { fontFamily } from "./font_family.ts";
 import { maxWidth } from "./max_width.ts";
 import { margin } from "./margin.ts";
+import { lineHeight } from "./line_height.ts";
 
 export const theme = {
   color,
@@ -16,6 +17,17 @@ export const theme = {
   fontFamily,
   maxWidth,
   margin,
+  lineHeight,
 };
 
-export { color, fontFamily, fontSize, fontWeight, letterSpacing, maxWidth };
+export {
+  color,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  letterSpacing,
+  lineHeight,
+  margin,
+  maxWidth,
+  screen,
+};

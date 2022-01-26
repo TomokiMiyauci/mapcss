@@ -69,4 +69,6 @@ export type Theme = {
   maxWidth: Record<PropertyKey, string>;
 
   margin: Record<PropertyKey, string>;
+
+  lineHeight: Record<PropertyKey, string | number>;
 };
