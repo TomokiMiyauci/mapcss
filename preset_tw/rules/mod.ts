@@ -45,6 +45,7 @@ import {
   isolations,
   objectFits,
   objectPositions,
+  overflows,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
 
@@ -97,6 +98,7 @@ export const nestedRules = [
   isolations,
   objectFits,
   objectPositions,
+  overflows,
 ];
 
 export {
@@ -133,6 +135,7 @@ export {
   objectFits,
   objectPositions,
   outlineStyles,
+  overflows,
   overflowWraps,
   paddings,
   placeContents,

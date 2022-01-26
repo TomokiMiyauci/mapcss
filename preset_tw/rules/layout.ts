@@ -1,4 +1,14 @@
-import { AUTO, AVOID, BOTH, LEFT, NONE, RIGHT } from "../../constants.ts";
+import {
+  AUTO,
+  AVOID,
+  BOTH,
+  HIDDEN,
+  LEFT,
+  NONE,
+  RIGHT,
+  X,
+  Y,
+} from "../../constants.ts";
 import { isString, isUndefined, prop } from "../../deps.ts";
 import type { Rule } from "../../core/types.ts";
 
@@ -127,4 +137,24 @@ export const objectPositions: Rule[] = [
       };
     }
   }],
+];
+
+const OVERFLOW = "overflow";
+
+export const overflows: Rule[] = [
+  ["overflow-auto", { [OVERFLOW]: AUTO }],
+  ["overflow-hidden", { [OVERFLOW]: HIDDEN }],
+  ["overflow-clip", { [OVERFLOW]: "clip" }],
+  ["overflow-visible", { [OVERFLOW]: "visible" }],
+  ["overflow-scroll", { [OVERFLOW]: "scroll" }],
+  ["overflow-x-auto", { [`${OVERFLOW}-${X}`]: AUTO }],
+  ["overflow-y-auto", { [`${OVERFLOW}-${Y}`]: AUTO }],
+  ["overflow-x-hidden", { [`${OVERFLOW}-${X}`]: HIDDEN }],
+  ["overflow-y-hidden", { [`${OVERFLOW}-${Y}`]: HIDDEN }],
+  ["overflow-x-clip", { [`${OVERFLOW}-${X}`]: "clip" }],
+  ["overflow-y-clip", { [`${OVERFLOW}-${Y}`]: "clip" }],
+  ["overflow-x-visible", { [`${OVERFLOW}-${X}`]: "visible" }],
+  ["overflow-y-visible", { [`${OVERFLOW}-${Y}`]: "visible" }],
+  ["overflow-x-scroll", { [`${OVERFLOW}-${X}`]: "scroll" }],
+  ["overflow-y-scroll", { [`${OVERFLOW}-${Y}`]: "scroll" }],
 ];
