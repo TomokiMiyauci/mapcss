@@ -39,7 +39,7 @@ import { lineHeights } from "./line_height.ts";
 import { columns } from "./columns.ts";
 import { breakBefore } from "./break_before.ts";
 import { breakAfter } from "./break_after.ts";
-import { boxDecorations, breakInsides } from "./layout.ts";
+import { boxDecorations, boxSizings, breakInsides } from "./layout.ts";
 
 export const nestedRules = [
   alignContents,
@@ -85,6 +85,7 @@ export const nestedRules = [
   breakAfter,
   breakInsides,
   boxDecorations,
+  boxSizings,
 ];
 
 export {
@@ -95,6 +96,7 @@ export {
   backfaceVisibilities,
   backgroundColors,
   boxDecorations,
+  boxSizings,
   breakAfter,
   breakBefore,
   breakInsides,

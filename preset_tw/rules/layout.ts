@@ -27,3 +27,10 @@ export const boxDecorations: Rule[] = [
     [BOX_DECORATION_BREAK]: "slice",
   }],
 ];
+
+const BOX_SIZING = "box-sizing";
+
+export const boxSizings: Rule[] = [
+  ["box-border", { [BOX_SIZING]: "border-box" }],
+  ["box-content", { [BOX_SIZING]: "content-box" }],
+];
