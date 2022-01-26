@@ -37,6 +37,7 @@ import { margins } from "./margin.ts";
 import { outlineStyles } from "./outline_style.ts";
 import { lineHeights } from "./line_height.ts";
 import { columns } from "./columns.ts";
+import { breakBefore } from "./break_before.ts";
 
 export const nestedRules = [
   alignContents,
@@ -78,6 +79,7 @@ export const nestedRules = [
   outlineStyles,
   lineHeights,
   columns,
+  breakBefore,
 ];
 
 export {
@@ -87,8 +89,10 @@ export {
   aspectRatios,
   backfaceVisibilities,
   backgroundColors,
+  breakBefore,
   clears,
   colors,
+  columns,
   contents,
   displays,
   flexes,
