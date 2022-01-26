@@ -188,3 +188,10 @@ export const visibilities: Rule[] = [
   ["visible", { [VISIBILITY]: "visible" }],
   ["invisible", { [VISIBILITY]: "hidden" }],
 ];
+
+const Z_INDEX = "z-index";
+
+export const zIndexes: Rule[] = [
+  ["z-auto", { [Z_INDEX]: AUTO }],
+  [/^z-(\d+)$/, ([, v]) => ({ [Z_INDEX]: v })],
+];
