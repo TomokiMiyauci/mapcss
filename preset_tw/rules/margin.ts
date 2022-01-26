@@ -2,7 +2,7 @@ import { isString, prop } from "../../deps.ts";
 import type { Rule } from "../../core/types.ts";
 
 export const margins: Rule[] = [
-  [/mx-(.+)/, ([, body], { theme }) => {
+  [/^mx-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
@@ -11,7 +11,7 @@ export const margins: Rule[] = [
       };
     }
   }],
-  [/my-(.+)/, ([, body], { theme }) => {
+  [/^my-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
@@ -20,7 +20,7 @@ export const margins: Rule[] = [
       };
     }
   }],
-  [/mt-(.+)/, ([, body], { theme }) => {
+  [/^mt-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
@@ -28,7 +28,7 @@ export const margins: Rule[] = [
       };
     }
   }],
-  [/mb-(.+)/, ([, body], { theme }) => {
+  [/^mb-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
@@ -36,7 +36,7 @@ export const margins: Rule[] = [
       };
     }
   }],
-  [/mr-(.+)/, ([, body], { theme }) => {
+  [/^mr-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
@@ -44,7 +44,7 @@ export const margins: Rule[] = [
       };
     }
   }],
-  [/ml-(.+)/, ([, body], { theme }) => {
+  [/^ml-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
@@ -52,7 +52,7 @@ export const margins: Rule[] = [
       };
     }
   }],
-  [/m-(.+)/, ([, body], { theme }) => {
+  [/^m-(.+)$/, ([, body], { theme }) => {
     const margin = prop(body, theme.margin);
     if (isString(margin)) {
       return {
