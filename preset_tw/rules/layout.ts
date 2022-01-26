@@ -107,3 +107,13 @@ export const isolations: Rule[] = [
   ["isolate", { [ISOLATION]: "isolate" }],
   ["isolation-auto", { [ISOLATION]: AUTO }],
 ];
+
+const OBJECT_FIT = "object-fit";
+
+export const objectFits: Rule[] = [
+  ["object-contain", { [OBJECT_FIT]: "contain" }],
+  ["object-cover", { [OBJECT_FIT]: "cover" }],
+  ["object-fill", { [OBJECT_FIT]: "fill" }],
+  ["object-none", { [OBJECT_FIT]: NONE }],
+  ["object-scale-down", { [OBJECT_FIT]: "scale-down" }],
+];
