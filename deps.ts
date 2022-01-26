@@ -19,8 +19,14 @@ function has(
 }
 
 /** safe get accessor */
-function prop(key: PropertyKey, object: object): unknown {
-  return (object as never)[key];
+export function prop<
+  T extends PropertyKey,
+  U extends Record<PropertyKey, any>,
+>(
+  key: T,
+  object: U,
+): U[T] extends U[T] ? U[T] | undefined : unknown {
+  return (object)[key];
 }
 
 /** take elements except head */
@@ -29,7 +35,10 @@ function tail<T extends unknown>(val: readonly T[]): T[] {
 }
 
 /** safe get accessor deeply */
-export function propPath(path: PropertyKey[], object: object): unknown {
+export function propPath(
+  path: PropertyKey[],
+  object: Record<PropertyKey, any>,
+): unknown {
   const key = path[0];
   if (isUndefined(key)) return undefined;
   const rest = tail(path);
