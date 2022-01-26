@@ -5,7 +5,6 @@ import { aspectRatios } from "./aspect_ratio.ts";
 import { backfaceVisibilities } from "./backface_visibility.ts";
 import { clears } from "./clear.ts";
 import { contents } from "./content.ts";
-import { displays } from "./display.ts";
 import { flexes } from "./flex.ts";
 import { floats } from "./float.ts";
 import { fontStyles } from "./font_style.ts";
@@ -39,7 +38,12 @@ import { lineHeights } from "./line_height.ts";
 import { columns } from "./columns.ts";
 import { breakBefore } from "./break_before.ts";
 import { breakAfter } from "./break_after.ts";
-import { boxDecorations, boxSizings, breakInsides } from "./layout.ts";
+import {
+  boxDecorations,
+  boxSizings,
+  breakInsides,
+  displays,
+} from "./layout.ts";
 
 export const nestedRules = [
   alignContents,
