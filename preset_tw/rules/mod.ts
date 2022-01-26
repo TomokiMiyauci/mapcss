@@ -32,7 +32,6 @@ import { maxWidths } from "./max_width.ts";
 import { margins } from "./margin.ts";
 import { outlineStyles } from "./outline_style.ts";
 import { lineHeights } from "./line_height.ts";
-import { columns } from "./columns.ts";
 import { breakBefore } from "./break_before.ts";
 import {
   aspectRatios,
@@ -41,6 +40,7 @@ import {
   breakAfter,
   breakInsides,
   clears,
+  columns,
   displays,
   floats,
 } from "./layout.ts";

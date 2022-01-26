@@ -1,4 +1,5 @@
 import { AUTO, AVOID, BOTH, LEFT, NONE, RIGHT } from "../../constants.ts";
+import { isUndefined, prop } from "../../deps.ts";
 import type { Rule } from "../../core/types.ts";
 
 const ASPECT_RATIO = "aspect-ratio";
@@ -54,6 +55,16 @@ const BOX_SIZING = "box-sizing";
 export const boxSizings: Rule[] = [
   ["box-border", { [BOX_SIZING]: "border-box" }],
   ["box-content", { [BOX_SIZING]: "content-box" }],
+];
+
+export const columns: Rule[] = [
+  [/^columns-(.+)$/, ([, body], { theme }) => {
+    const column = prop(body, theme.column);
+    if (isUndefined(column)) return;
+    return {
+      columns: column,
+    };
+  }],
 ];
 
 const DISPLAY = "display";
