@@ -11,7 +11,6 @@ import { justifySelfs } from "./justify_self.ts";
 import { overflowWraps } from "./overflow_wrap.ts";
 import { placeContents } from "./place_content.ts";
 import { pointerEvents } from "./pointer_events.ts";
-import { positions } from "./position.ts";
 import { resizes } from "./resize.ts";
 import { textAligns } from "./text_align.ts";
 import { textDecorations } from "./text_decoration.ts";
@@ -47,6 +46,7 @@ import {
   objectPositions,
   overflows,
   overscrollBehaviors,
+  positions,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
 

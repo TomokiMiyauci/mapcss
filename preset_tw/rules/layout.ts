@@ -172,3 +172,13 @@ export const overscrollBehaviors: Rule[] = [
   ["overscroll-x-contain", { [`${OVERSCROLL_BEHAVIOR}-${X}`]: "contain" }],
   ["overscroll-x-none", { [`${OVERSCROLL_BEHAVIOR}-${X}`]: NONE }],
 ];
+
+const POSITION = "position";
+
+export const positions: Rule[] = [
+  ["relative", { [POSITION]: "relative" }],
+  ["absolute", { [POSITION]: "absolute" }],
+  ["fixed", { [POSITION]: "fixed" }],
+  ["sticky", { [POSITION]: "sticky" }],
+  ["static", { [POSITION]: "static" }],
+];
