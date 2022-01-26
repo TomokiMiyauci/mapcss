@@ -8,6 +8,7 @@ import { maxWidth } from "./max_width.ts";
 import { margin } from "./margin.ts";
 import { lineHeight } from "./line_height.ts";
 import { column } from "./column.ts";
+import { objectPosition } from "./object_position.ts";
 
 export const theme = {
   color,
@@ -21,6 +22,7 @@ export const theme = {
   padding: margin,
   lineHeight,
   column,
+  objectPosition,
 };
 
 export {
@@ -33,5 +35,6 @@ export {
   lineHeight,
   margin,
   maxWidth,
+  objectPosition,
   screen,
 };
