@@ -75,4 +75,6 @@ export type Theme = {
   lineHeight: Record<PropertyKey, string | number>;
 
   column: Record<PropertyKey, string | number>;
+
+  objectPosition: Record<PropertyKey, string>;
 };

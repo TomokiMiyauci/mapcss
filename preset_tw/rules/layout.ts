@@ -1,5 +1,5 @@
 import { AUTO, AVOID, BOTH, LEFT, NONE, RIGHT } from "../../constants.ts";
-import { isUndefined, prop } from "../../deps.ts";
+import { isString, isUndefined, prop } from "../../deps.ts";
 import type { Rule } from "../../core/types.ts";
 
 const ASPECT_RATIO = "aspect-ratio";
@@ -116,4 +116,15 @@ export const objectFits: Rule[] = [
   ["object-fill", { [OBJECT_FIT]: "fill" }],
   ["object-none", { [OBJECT_FIT]: NONE }],
   ["object-scale-down", { [OBJECT_FIT]: "scale-down" }],
+];
+
+export const objectPositions: Rule[] = [
+  [/^object-(.+)$/, ([, body], { theme }) => {
+    const objectPosition = prop(body, theme.objectPosition);
+    if (isString(objectPosition)) {
+      return {
+        "object-position": objectPosition,
+      };
+    }
+  }],
 ];
