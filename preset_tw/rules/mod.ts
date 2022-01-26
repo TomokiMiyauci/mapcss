@@ -3,7 +3,6 @@ import { alignItems } from "./align_items.ts";
 import { alignSelfs } from "./align_self.ts";
 import { aspectRatios } from "./aspect_ratio.ts";
 import { backfaceVisibilities } from "./backface_visibility.ts";
-import { clears } from "./clear.ts";
 import { contents } from "./content.ts";
 import { flexes } from "./flex.ts";
 import { fontStyles } from "./font_style.ts";
@@ -41,6 +40,7 @@ import {
   boxDecorations,
   boxSizings,
   breakInsides,
+  clears,
   displays,
   floats,
 } from "./layout.ts";
