@@ -61,3 +61,64 @@ export const margins: Rule[] = [
     }
   }],
 ];
+
+export const paddings: Rule[] = [
+  [/^px-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding-left": padding,
+        "padding-right": padding,
+      };
+    }
+  }],
+  [/^py-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding-top": padding,
+        "padding-bottom": padding,
+      };
+    }
+  }],
+  [/^pt-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding-top": padding,
+      };
+    }
+  }],
+  [/^pb-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding-bottom": padding,
+      };
+    }
+  }],
+  [/^pr-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding-right": padding,
+      };
+    }
+  }],
+  [/^pl-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding-left": padding,
+      };
+    }
+  }],
+  [/^p-(.+)$/, ([, body], { theme }) => {
+    const padding = prop(body, theme.padding);
+    if (isString(padding)) {
+      return {
+        "padding": padding,
+      };
+    }
+  }],
+];

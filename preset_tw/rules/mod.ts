@@ -43,7 +43,7 @@ import {
   displays,
   floats,
 } from "./layout.ts";
-import { margins } from "./spacing.ts";
+import { margins, paddings } from "./spacing.ts";
 
 export const nestedRules = [
   alignContents,
@@ -90,6 +90,7 @@ export const nestedRules = [
   breakInsides,
   boxDecorations,
   boxSizings,
+  paddings,
 ];
 
 export {
@@ -124,6 +125,7 @@ export {
   maxWidths,
   outlineStyles,
   overflowWraps,
+  paddings,
   placeContents,
   pointerEvents,
   positions,

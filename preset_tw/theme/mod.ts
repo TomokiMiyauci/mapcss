@@ -18,6 +18,7 @@ export const theme = {
   fontFamily,
   maxWidth,
   margin,
+  padding: margin,
   lineHeight,
   column,
 };
