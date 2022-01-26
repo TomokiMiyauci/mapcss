@@ -1,7 +1,6 @@
 import { alignContents } from "./align_content.ts";
 import { alignItems } from "./align_items.ts";
 import { alignSelfs } from "./align_self.ts";
-import { aspectRatios } from "./aspect_ratio.ts";
 import { backfaceVisibilities } from "./backface_visibility.ts";
 import { contents } from "./content.ts";
 import { flexes } from "./flex.ts";
@@ -36,6 +35,7 @@ import { lineHeights } from "./line_height.ts";
 import { columns } from "./columns.ts";
 import { breakBefore } from "./break_before.ts";
 import {
+  aspectRatios,
   boxDecorations,
   boxSizings,
   breakAfter,
