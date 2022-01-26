@@ -46,6 +46,7 @@ import {
   objectFits,
   objectPositions,
   overflows,
+  overscrollBehaviors,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
 
@@ -99,6 +100,7 @@ export const nestedRules = [
   objectFits,
   objectPositions,
   overflows,
+  overscrollBehaviors,
 ];
 
 export {
@@ -137,6 +139,7 @@ export {
   outlineStyles,
   overflows,
   overflowWraps,
+  overscrollBehaviors,
   paddings,
   placeContents,
   pointerEvents,

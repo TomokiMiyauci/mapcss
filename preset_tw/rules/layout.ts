@@ -158,3 +158,17 @@ export const overflows: Rule[] = [
   ["overflow-x-scroll", { [`${OVERFLOW}-${X}`]: "scroll" }],
   ["overflow-y-scroll", { [`${OVERFLOW}-${Y}`]: "scroll" }],
 ];
+
+const OVERSCROLL_BEHAVIOR = "overscroll-behavior";
+
+export const overscrollBehaviors: Rule[] = [
+  ["overscroll-auto", { [OVERSCROLL_BEHAVIOR]: AUTO }],
+  ["overscroll-contain", { [OVERSCROLL_BEHAVIOR]: "contain" }],
+  ["overscroll-none", { [OVERSCROLL_BEHAVIOR]: NONE }],
+  ["overscroll-y-auto", { [`${OVERSCROLL_BEHAVIOR}-${Y}`]: AUTO }],
+  ["overscroll-y-contain", { [`${OVERSCROLL_BEHAVIOR}-${Y}`]: "contain" }],
+  ["overscroll-y-none", { [`${OVERSCROLL_BEHAVIOR}-${Y}`]: NONE }],
+  ["overscroll-x-auto", { [`${OVERSCROLL_BEHAVIOR}-${X}`]: AUTO }],
+  ["overscroll-x-contain", { [`${OVERSCROLL_BEHAVIOR}-${X}`]: "contain" }],
+  ["overscroll-x-none", { [`${OVERSCROLL_BEHAVIOR}-${X}`]: NONE }],
+];
