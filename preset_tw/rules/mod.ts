@@ -42,6 +42,7 @@ import {
   columns,
   displays,
   floats,
+  isolations,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
 
@@ -91,6 +92,7 @@ export const nestedRules = [
   boxDecorations,
   boxSizings,
   paddings,
+  isolations,
 ];
 
 export {
@@ -116,6 +118,7 @@ export {
   fontSizes,
   fontStyles,
   fontWeights,
+  isolations,
   justifyContents,
   justifyItems,
   justifySelfs,

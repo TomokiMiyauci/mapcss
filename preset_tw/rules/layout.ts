@@ -100,3 +100,10 @@ export const clears: Rule[] = [
   ["clear-both", { [CLEAR]: BOTH }],
   ["clear-none", { [CLEAR]: NONE }],
 ];
+
+const ISOLATION = "isolation";
+
+export const isolations: Rule[] = [
+  ["isolate", { [ISOLATION]: "isolate" }],
+  ["isolation-auto", { [ISOLATION]: AUTO }],
+];
