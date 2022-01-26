@@ -32,6 +32,7 @@ import { fontSizes } from "./font_size.ts";
 import { fontWeights } from "./font_weight.ts";
 import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
+import { maxWidths } from "./max_width.ts";
 
 export const nestedRules = [
   alignContents,
@@ -68,6 +69,7 @@ export const nestedRules = [
   fontWeights,
   letterSpacings,
   fontFamilies,
+  maxWidths,
 ];
 
 export {
@@ -91,6 +93,7 @@ export {
   justifyItems,
   justifySelfs,
   letterSpacings,
+  maxWidths,
   overflowWraps,
   placeContents,
   pointerEvents,
