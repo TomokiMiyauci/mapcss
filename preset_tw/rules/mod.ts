@@ -36,6 +36,7 @@ import { maxWidths } from "./max_width.ts";
 import { margins } from "./margin.ts";
 import { outlineStyles } from "./outline_style.ts";
 import { lineHeights } from "./line_height.ts";
+import { columns } from "./columns.ts";
 
 export const nestedRules = [
   alignContents,
@@ -76,6 +77,7 @@ export const nestedRules = [
   margins,
   outlineStyles,
   lineHeights,
+  columns,
 ];
 
 export {
