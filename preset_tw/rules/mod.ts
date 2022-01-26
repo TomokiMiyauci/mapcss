@@ -35,10 +35,10 @@ import { outlineStyles } from "./outline_style.ts";
 import { lineHeights } from "./line_height.ts";
 import { columns } from "./columns.ts";
 import { breakBefore } from "./break_before.ts";
-import { breakAfter } from "./break_after.ts";
 import {
   boxDecorations,
   boxSizings,
+  breakAfter,
   breakInsides,
   clears,
   displays,

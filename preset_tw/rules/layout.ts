@@ -18,6 +18,19 @@ export const breakInsides: Rule[] = [
   }],
 ];
 
+const BREAK_AFTER = "break-after";
+
+export const breakAfter: Rule[] = [
+  ["break-after-auto", { [BREAK_AFTER]: AUTO }],
+  ["break-after-avoid", { [BREAK_AFTER]: "avoid" }],
+  ["break-after-all", { [BREAK_AFTER]: "all" }],
+  ["break-after-avoid-page", { [BREAK_AFTER]: "avoid-page" }],
+  ["break-after-page", { [BREAK_AFTER]: "page" }],
+  ["break-after-left", { [BREAK_AFTER]: LEFT }],
+  ["break-after-right", { [BREAK_AFTER]: RIGHT }],
+  ["break-after-column", { [BREAK_AFTER]: "column" }],
+];
+
 const BOX_DECORATION_BREAK = "box-decoration-break";
 export const boxDecorations: Rule[] = [
   ["box-decoration-clone", {
