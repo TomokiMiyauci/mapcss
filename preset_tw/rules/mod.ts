@@ -18,7 +18,6 @@ import { textDecorationLines } from "./text_decoration_line.ts";
 import { textOverflows } from "./text_overflow.ts";
 import { textTransforms } from "./text_transform.ts";
 import { userSelects } from "./user_select.ts";
-import { visibilities } from "./visibility.ts";
 import { wordBreaks } from "./word_break.ts";
 import { zIndexes } from "./z_index.ts";
 import { colors } from "./color.ts";
@@ -47,6 +46,7 @@ import {
   overflows,
   overscrollBehaviors,
   positions,
+  visibilities,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
 

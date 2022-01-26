@@ -182,3 +182,9 @@ export const positions: Rule[] = [
   ["sticky", { [POSITION]: "sticky" }],
   ["static", { [POSITION]: "static" }],
 ];
+
+const VISIBILITY = "visibility";
+export const visibilities: Rule[] = [
+  ["visible", { [VISIBILITY]: "visible" }],
+  ["invisible", { [VISIBILITY]: "hidden" }],
+];
