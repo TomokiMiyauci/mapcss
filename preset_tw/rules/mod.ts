@@ -6,7 +6,6 @@ import { backfaceVisibilities } from "./backface_visibility.ts";
 import { clears } from "./clear.ts";
 import { contents } from "./content.ts";
 import { flexes } from "./flex.ts";
-import { floats } from "./float.ts";
 import { fontStyles } from "./font_style.ts";
 import { justifyContents } from "./justify_content.ts";
 import { justifyItems } from "./justify_items.ts";
@@ -43,6 +42,7 @@ import {
   boxSizings,
   breakInsides,
   displays,
+  floats,
 } from "./layout.ts";
 
 export const nestedRules = [

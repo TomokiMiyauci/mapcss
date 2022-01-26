@@ -1,4 +1,4 @@
-import { AUTO, AVOID, NONE } from "../../constants.ts";
+import { AUTO, AVOID, LEFT, NONE, RIGHT } from "../../constants.ts";
 import type { Rule } from "../../core/types.ts";
 
 const BREAK_INSIDE = "break-inside";
@@ -51,4 +51,11 @@ export const displays: Rule[] = [
   ["flow-root", { [DISPLAY]: "flow-root" }],
   ["list-item", { [DISPLAY]: "list-item" }],
   ["hidden", { [DISPLAY]: NONE }],
+];
+
+const FLOAT = "float";
+export const floats: Rule[] = [
+  ["float-right", { [FLOAT]: RIGHT }],
+  ["float-left", { [FLOAT]: LEFT }],
+  ["float-none", { [FLOAT]: NONE }],
 ];
