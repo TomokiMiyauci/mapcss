@@ -71,4 +71,6 @@ export type Theme = {
   margin: Record<PropertyKey, string>;
 
   lineHeight: Record<PropertyKey, string | number>;
+
+  column: Record<PropertyKey, string | number>;
 };

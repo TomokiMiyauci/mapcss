@@ -7,6 +7,7 @@ import { fontFamily } from "./font_family.ts";
 import { maxWidth } from "./max_width.ts";
 import { margin } from "./margin.ts";
 import { lineHeight } from "./line_height.ts";
+import { column } from "./column.ts";
 
 export const theme = {
   color,
@@ -18,10 +19,12 @@ export const theme = {
   maxWidth,
   margin,
   lineHeight,
+  column,
 };
 
 export {
   color,
+  column,
   fontFamily,
   fontSize,
   fontWeight,
