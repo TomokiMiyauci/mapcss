@@ -5,6 +5,7 @@ import { letterSpacing } from "./letter_spacing.ts";
 import { screen } from "./screen.ts";
 import { fontFamily } from "./font_family.ts";
 import { maxWidth } from "./max_width.ts";
+import { margin } from "./margin.ts";
 
 export const theme = {
   color,
@@ -14,6 +15,7 @@ export const theme = {
   screen,
   fontFamily,
   maxWidth,
+  margin,
 };
 
 export { color, fontFamily, fontSize, fontWeight, letterSpacing, maxWidth };

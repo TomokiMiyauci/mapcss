@@ -20,7 +20,7 @@ export type DynamicRule = [
   (
     match: RegExpMatchArray,
     context: RuleContext,
-  ) => CSSObject | undefined,
+  ) => CSSObject | void,
 ];
 
 export interface RuleContext {
@@ -67,4 +67,6 @@ export type Theme = {
   screen: Record<PropertyKey, string>;
 
   maxWidth: Record<PropertyKey, string>;
+
+  margin: Record<PropertyKey, string>;
 };
