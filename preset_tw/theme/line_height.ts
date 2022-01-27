@@ -1,6 +1,6 @@
-import type { Theme } from "../../core/types.ts";
+import type { PresetTwTheme } from "./types.ts";
 
-export const lineHeight: Theme["lineHeight"] = {
+export const lineHeight: PresetTwTheme["lineHeight"] = {
   3: ".75rem",
   4: "1rem",
   5: "1.25rem",

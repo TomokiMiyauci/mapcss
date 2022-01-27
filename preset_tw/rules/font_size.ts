@@ -1,9 +1,13 @@
-import { prop } from "../../deps.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
+import type { PresetTwTheme } from "../theme/types.ts";
 import type { Rule } from "../../core/types.ts";
 
 export const fontSizes: Rule[] = [
-  [/^text-(.+)$/, ([, body], { theme }) => {
-    const fontSizes = prop(body, theme.fontSize);
+  [/^text-(.+)$/, ([, path], { theme }) => {
+    const fontSizes = resolveTheme(theme as PresetTwTheme, {
+      scope: "fontSize",
+      path,
+    });
 
     if (fontSizes) {
       return {

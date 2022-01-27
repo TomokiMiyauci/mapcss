@@ -9,7 +9,8 @@ import {
   X,
   Y,
 } from "../../constants.ts";
-import { isString, isUndefined, prop } from "../../deps.ts";
+import { isNumber, isString, prop } from "../../deps.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
 import type { Rule } from "../../core/types.ts";
 
 const ASPECT_RATIO = "aspect-ratio";
@@ -68,12 +69,14 @@ export const boxSizings: Rule[] = [
 ];
 
 export const columns: Rule[] = [
-  [/^columns-(.+)$/, ([, body], { theme }) => {
-    const column = prop(body, theme.column);
-    if (isUndefined(column)) return;
-    return {
-      columns: column,
-    };
+  [/^columns-(.+)$/, ([, path], { theme }) => {
+    const column = resolveTheme(theme, { scope: "column", path });
+
+    if (isString(column) || isNumber(column)) {
+      return {
+        columns: column,
+      };
+    }
   }],
 ];
 

@@ -1,12 +1,13 @@
 import { resolveTheme } from "../../core/utils/resolver.ts";
 import { isNumber, isString } from "../../deps.ts";
+import type { PresetTwTheme } from "../theme/types.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 
-const resolveWidthString: RuleHandler = ([, body], { theme }) => {
-  const prop = resolveTheme(body, theme, { scopes: ["width"] });
-  if (isString(prop) || isNumber(prop)) {
+const resolveWidthString: RuleHandler = ([, path], { theme }) => {
+  const width = resolveTheme(theme as PresetTwTheme, { scope: "width", path });
+  if (isString(width) || isNumber(width)) {
     return {
-      width: prop,
+      width,
     };
   }
 };

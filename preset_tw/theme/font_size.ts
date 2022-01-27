@@ -1,6 +1,6 @@
-import type { Theme } from "../../core/types.ts";
+import type { PresetTwTheme } from "./types.ts";
 
-export const fontSize: Theme["fontSize"] = {
+export const fontSize: PresetTwTheme["fontSize"] = {
   xs: ["0.75rem", "1rem"],
   sm: ["0.875rem", "1.25rem"],
   base: ["1rem", "1.5rem"],
