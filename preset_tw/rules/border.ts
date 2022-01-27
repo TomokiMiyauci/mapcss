@@ -1,10 +1,12 @@
 import { BOTTOM, LEFT, RIGHT, TOP } from "../../constants.ts";
-import { isString, isUndefined, prop } from "../../deps.ts";
+import { isString, isStringOrNumber, isUndefined, prop } from "../../deps.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
 
 const BORDER_WIDTH = "border-width";
+
+type Dir = "x" | "y" | "t" | "r" | "b" | "l";
 
 function parseNumeric(value: string): number | undefined {
   const number = Number(value);
@@ -21,12 +23,16 @@ const directionMap = {
   l: [LEFT],
 };
 
+function resolveDirection(key: Dir): string[] {
+  return directionMap[key];
+}
+
 const handleBorderWidthDirection: RuleHandler = (
   [, direction, num],
   { theme },
 ) => {
   const directions = prop(
-    direction as "x" | "y" | "t" | "r" | "b" | "l",
+    direction as Dir,
     directionMap,
   );
 
@@ -73,6 +79,28 @@ export const borderWidths: Rule[] = [
   }],
   [/^border-([\d.]+)$/, handleBorderWidthNumber],
   [/^border-([xytrbl])(?:-([\d.]+))?$/, handleBorderWidthDirection],
+];
+
+const handleBorderColor: RuleHandler = ([, dir, path], { theme }) => {
+  const _dir = dir as Dir | undefined;
+  const c = path.split("-");
+  const color = resolveTheme(theme as PresetTwTheme, {
+    scope: "color",
+    path: c,
+  }) as unknown;
+
+  if (!isStringOrNumber(color)) return;
+
+  const directions = isUndefined(_dir) ? [""] : resolveDirection(_dir);
+  const borderColors = directions.map((dir) =>
+    ["border", dir, "color"].filter(Boolean).join("-")
+  );
+
+  return borderColors.reduce((acc, cur) => ({ ...acc, [cur]: color }), {});
+};
+
+export const borderColors: Rule[] = [
+  [/^border(?:-([xytrbl]))?-(.+)$/, handleBorderColor],
 ];
 
 export { handleBorderWidthDirection, handleBorderWidthNumber };

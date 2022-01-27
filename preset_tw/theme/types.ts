@@ -16,4 +16,6 @@ export interface PresetTwTheme extends Theme {
     DEFAULT: string;
     [k: PropertyKey]: string | number;
   };
+
+  color: Record<string, string | Record<string, string>>;
 }
