@@ -11,4 +11,9 @@ export interface PresetTwTheme extends Theme {
   maxWidth: Record<PropertyKey, string | number>;
 
   height: Record<PropertyKey, string | number>;
+
+  borderWidth: {
+    DEFAULT: string;
+    [k: PropertyKey]: string | number;
+  };
 }
