@@ -1,5 +1,5 @@
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { isNumber, isString } from "../../deps.ts";
+import { isNumber, isString, isStringOrNumber } from "../../deps.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 
@@ -55,4 +55,19 @@ export const minWidths: Rule[] = [
   [/^min-w-(.+)$/, handleMinWidth],
 ];
 
-export { handleMinWidth, resolveWidthString };
+const handleMaxWidth: RuleHandler = ([, path], { theme }) => {
+  const maxWidth = resolveTheme(theme as PresetTwTheme, {
+    scope: "maxWidth",
+    path,
+  });
+
+  if (isStringOrNumber(maxWidth)) {
+    return { "max-width": maxWidth };
+  }
+};
+
+export const maxWidths: Rule[] = [
+  [/^max-w-(.+)$/, handleMaxWidth],
+];
+
+export { handleMaxWidth, handleMinWidth, resolveWidthString };

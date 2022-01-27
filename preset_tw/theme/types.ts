@@ -7,4 +7,6 @@ export interface PresetTwTheme extends Theme {
   lineHeight: Record<PropertyKey, string | number>;
 
   minWidth: Record<PropertyKey, string>;
+
+  maxWidth: Record<PropertyKey, string | number>;
 }

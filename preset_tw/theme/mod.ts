@@ -4,13 +4,13 @@ import { fontWeight } from "./font_weight.ts";
 import { letterSpacing } from "./letter_spacing.ts";
 import { screen } from "./screen.ts";
 import { fontFamily } from "./font_family.ts";
-import { maxWidth } from "./max_width.ts";
 import { margin } from "./margin.ts";
 import { lineHeight } from "./line_height.ts";
 import { column } from "./column.ts";
 import { objectPosition } from "./object_position.ts";
 import { width } from "./width.ts";
 import { minWidth } from "./min_width.ts";
+import { maxWidth } from "./sizing.ts";
 
 export const theme = {
   color,
