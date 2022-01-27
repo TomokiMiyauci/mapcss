@@ -53,6 +53,5 @@ export interface ModifierResult {
 }
 
 export interface Theme {
-  default: Record<PropertyKey, unknown>;
   [k: PropertyKey]: Record<PropertyKey, unknown>;
 }
