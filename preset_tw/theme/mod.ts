@@ -10,7 +10,7 @@ import { column } from "./column.ts";
 import { objectPosition } from "./object_position.ts";
 import { width } from "./width.ts";
 import { minWidth } from "./min_width.ts";
-import { maxWidth } from "./sizing.ts";
+import { height, maxWidth } from "./sizing.ts";
 
 export const theme = {
   color,
@@ -24,6 +24,7 @@ export const theme = {
   padding: margin,
   lineHeight,
   column,
+  height,
   objectPosition,
   width,
   minWidth,
@@ -35,6 +36,7 @@ export {
   fontFamily,
   fontSize,
   fontWeight,
+  height,
   letterSpacing,
   lineHeight,
   margin,

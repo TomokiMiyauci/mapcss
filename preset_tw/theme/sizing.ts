@@ -1,4 +1,4 @@
-import { NONE } from "../../constants.ts";
+import { AUTO, NONE } from "../../constants.ts";
 import { FIT_CONTENT, FULL, MAX_CONTENT, MIN_CONTENT } from "./constants.ts";
 import type { PresetTwTheme } from "./types.ts";
 
@@ -26,4 +26,14 @@ export const maxWidth: PresetTwTheme["maxWidth"] = {
   "screen-lg": "1024px",
   "screen-xl": "1280px",
   "screen-2xl": "1536px",
+};
+
+export const height: PresetTwTheme["height"] = {
+  px: "1px",
+  [AUTO]: AUTO,
+  full: FULL,
+  screen: "100vh",
+  min: MIN_CONTENT,
+  max: MAX_CONTENT,
+  fit: FIT_CONTENT,
 };

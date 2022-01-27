@@ -1,5 +1,8 @@
 import { expect, test } from "../../dev_deps.ts";
 import {
+  handleHeight,
+  handleHeightFraction,
+  handleHeightNumber,
   handleMaxWidth,
   handleMinWidth,
   resolveWidthString,
@@ -125,5 +128,57 @@ test("handleMaxWidth", () => {
   });
   expect(handleMaxWidth(["", "screen-2xl"], { theme })).toEqual({
     "max-width": "1536px",
+  });
+});
+
+test("handleHeightNumber", () => {
+  expect(handleHeightNumber(["", "0"], { theme })).toEqual({ height: "0px" });
+  expect(handleHeightNumber(["", "1"], { theme })).toEqual({
+    height: "0.25rem",
+  });
+  expect(handleHeightNumber(["", "1.0"], { theme })).toEqual({
+    height: "0.25rem",
+  });
+  expect(handleHeightNumber(["", ".5"], { theme })).toEqual({
+    height: "0.125rem",
+  });
+  expect(handleHeightNumber(["", "000"], { theme })).toEqual({
+    height: "0px",
+  });
+});
+
+test("handleHeightFraction", () => {
+  expect(handleHeightFraction(["", "1", "2"], { theme })).toEqual({
+    height: "50%",
+  });
+  expect(handleHeightFraction(["", "0", "1"], { theme })).toEqual({
+    height: "0%",
+  });
+  expect(handleHeightFraction(["", "2", "3"], { theme })).toEqual({
+    height: "66.66666666666666%",
+  });
+});
+
+test("handleHeight", () => {
+  expect(handleHeight(["", "auto"], { theme })).toEqual({
+    height: "auto",
+  });
+  expect(handleHeight(["", "px"], { theme })).toEqual({
+    height: "1px",
+  });
+  expect(handleHeight(["", "full"], { theme })).toEqual({
+    height: "100%",
+  });
+  expect(handleHeight(["", "screen"], { theme })).toEqual({
+    height: "100vh",
+  });
+  expect(handleHeight(["", "min"], { theme })).toEqual({
+    height: "min-content",
+  });
+  expect(handleHeight(["", "max"], { theme })).toEqual({
+    height: "max-content",
+  });
+  expect(handleHeight(["", "fit"], { theme })).toEqual({
+    height: "fit-content",
   });
 });

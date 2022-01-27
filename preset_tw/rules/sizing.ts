@@ -70,4 +70,54 @@ export const maxWidths: Rule[] = [
   [/^max-w-(.+)$/, handleMaxWidth],
 ];
 
-export { handleMaxWidth, handleMinWidth, resolveWidthString };
+const handleHeightNumber: RuleHandler = ([, path]) => {
+  const number = Number(path);
+  if (Number.isNaN(number)) return;
+  if (!number) {
+    return {
+      height: "0px",
+    };
+  }
+
+  return {
+    height: `${number / 4}rem`,
+  };
+};
+
+const handleHeightFraction: RuleHandler = ([, numerator, denominator]) => {
+  const _numerator = Number(numerator);
+  const _denominator = Number(denominator);
+
+  const number = _numerator / _denominator;
+  if (!Number.isFinite(number)) return;
+  return {
+    height: `${(number * 100)}%`,
+  };
+};
+
+const handleHeight: RuleHandler = ([, path], { theme }) => {
+  const height = resolveTheme(theme as PresetTwTheme, {
+    scope: "height",
+    path,
+  });
+  if (isStringOrNumber(height)) {
+    return {
+      height,
+    };
+  }
+};
+
+export const heights: Rule[] = [
+  [/^h-([\d.]+)$/, handleHeightNumber],
+  [/^h-(\d+)\/(\d+)$/, handleHeightFraction],
+  [/^h-(.+)$/, handleHeight],
+];
+
+export {
+  handleHeight,
+  handleHeightFraction,
+  handleHeightNumber,
+  handleMaxWidth,
+  handleMinWidth,
+  resolveWidthString,
+};

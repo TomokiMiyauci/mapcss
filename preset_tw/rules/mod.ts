@@ -49,7 +49,7 @@ import {
   zIndexes,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
-import { minWidths, Widths } from "./sizing.ts";
+import { heights, minWidths, Widths } from "./sizing.ts";
 
 export const nestedRules = [
   alignContents,
@@ -104,6 +104,7 @@ export const nestedRules = [
   overscrollBehaviors,
   Widths,
   minWidths,
+  heights,
 ];
 
 export {
@@ -129,6 +130,7 @@ export {
   fontSizes,
   fontStyles,
   fontWeights,
+  heights,
   isolations,
   justifyContents,
   justifyItems,
