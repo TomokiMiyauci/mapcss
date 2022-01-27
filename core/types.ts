@@ -15,16 +15,18 @@ export type StaticModifier = [
   ModifierHandler,
 ];
 
+export type RuleHandler = (
+  match: RegExpMatchArray,
+  context: RuleContext,
+) => CSSObject | void;
+
 export type DynamicRule = [
   RegExp,
-  (
-    match: RegExpMatchArray,
-    context: RuleContext,
-  ) => CSSObject | void,
+  RuleHandler,
 ];
 
 export interface RuleContext {
-  theme: Theme & Record<string, unknown>;
+  theme: Theme;
 }
 
 export type Rule = StaticRule | DynamicRule;
@@ -39,7 +41,7 @@ export type Preset = {
 };
 
 export interface ModifierContext {
-  theme: Theme & Record<string, unknown>;
+  theme: Theme;
 }
 
 export interface ModifierResult {
@@ -50,31 +52,7 @@ export interface ModifierResult {
   selector: (selector: string) => string;
 }
 
-export type Theme = {
-  color: Record<string, string | Record<string, string>>;
-
-  /** font size theme. [fontSize, lineHight] */
-  fontSize: Record<string, [string, string]>;
-
-  fontWeight: Record<string, number>;
-
-  fontFamily:
-    | Record<"sans" | "serif" | "mono", string>
-    | Record<string, unknown>;
-
-  letterSpacing: Record<PropertyKey, string>;
-
-  screen: Record<PropertyKey, string>;
-
-  maxWidth: Record<PropertyKey, string>;
-
-  margin: Record<PropertyKey, string>;
-
-  padding: Record<PropertyKey, string>;
-
-  lineHeight: Record<PropertyKey, string | number>;
-
-  column: Record<PropertyKey, string | number>;
-
-  objectPosition: Record<PropertyKey, string>;
-};
+export interface Theme {
+  default: Record<PropertyKey, unknown>;
+  [k: PropertyKey]: Record<PropertyKey, unknown>;
+}
