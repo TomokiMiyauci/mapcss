@@ -17,22 +17,22 @@ import type {
 
 export interface Config {
   rules: Rule[];
-  theme: Partial<Theme>;
+  theme: Theme;
   presets: Preset[];
 }
 
 /** Generate CSS Sheet as string */
 export function generate(
-  { rules = [], presets = [], theme = { color: {} } }: Partial<Config>,
+  { rules = [], presets = [], theme = {} }: Partial<Config>,
   input: Set<string>,
 ): string {
   const presetsRules = presets.map(({ rules }) => rules);
   const presetsModifiers = presets.map(({ modifiers }) => modifiers);
   const presetsTheme = presets.map(({ theme }) => theme).reduce((acc, cur) => {
-    return deepMerge(acc, cur);
+    return deepMerge(acc, cur) as Theme;
   }, {} as Theme);
   const _rules = presetsRules.flat(1).concat(rules);
-  const _theme = deepMerge(presetsTheme, theme);
+  const _theme = deepMerge(presetsTheme, theme) as Theme;
   const _modifiers = presetsModifiers.flat(1);
   const staticRules = _rules.filter(isStaticRule);
   const dynamicRules = _rules.filter(isDynamicRule);

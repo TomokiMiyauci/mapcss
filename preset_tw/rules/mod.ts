@@ -27,7 +27,7 @@ import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
 import { maxWidths } from "./max_width.ts";
 import { outlineStyles } from "./outline_style.ts";
-import { lineHeights } from "./line_height.ts";
+import { lineHeights } from "./typography.ts";
 import { breakBefore } from "./break_before.ts";
 import {
   aspectRatios,
@@ -49,7 +49,7 @@ import {
   zIndexes,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
-import { Widths } from "./sizing.ts";
+import { minWidths, Widths } from "./sizing.ts";
 
 export const nestedRules = [
   alignContents,
@@ -103,6 +103,7 @@ export const nestedRules = [
   overflows,
   overscrollBehaviors,
   Widths,
+  minWidths,
 ];
 
 export {
@@ -136,6 +137,7 @@ export {
   lineHeights,
   margins,
   maxWidths,
+  minWidths,
   objectFits,
   objectPositions,
   outlineStyles,

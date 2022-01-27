@@ -1,11 +1,11 @@
-import { Config, generate, presetMini } from "../../mod.ts";
+import { type Config, generate, presetTw } from "../../mod.ts";
 import type { Plugin } from "aleph/types";
 
 export const mapcssPlugin: Plugin = {
   name: "mapcss-loader",
   setup: (aleph) => {
     const config: Partial<Config> = {
-      presets: [presetMini()],
+      presets: [presetTw()],
     };
 
     aleph.onTransform(/\.(j|t)sx$/i, async ({ module, code, bundleMode }) => {

@@ -1,4 +1,5 @@
 import { isString } from "../deps.ts";
+import { escapeRegExp } from "./utils/escape.ts";
 import type {
   CSSObject,
   DynamicRule,
@@ -47,16 +48,18 @@ export function constructCSS(
 ): string {
   if (isRuleSet(cssStatement)) {
     const { selector, declarationBlock } = cssStatement;
+    const escapedSelector = escapeRegExp(selector);
 
-    return `.${selector}${cssDeclarationBlock(declarationBlock)}`;
+    return `.${escapedSelector}${cssDeclarationBlock(declarationBlock)}`;
   }
 
   const { children: { selector, declarationBlock }, identifier, rule } =
     cssStatement;
   const _selector = cssStatement.selector?.(selector) ?? selector;
+  const escapedSelector = escapeRegExp(_selector);
   const declaration = cssDeclarationBlock(declarationBlock);
 
-  const children = `${_selector}${declaration}`;
+  const children = `${escapedSelector}${declaration}`;
   return constructAtRule({ identifier, rule, children });
 }
 
