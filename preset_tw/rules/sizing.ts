@@ -39,4 +39,20 @@ export const Widths: Rule[] = [
   [/^w-(.+)$/, resolveWidthString],
 ];
 
-export { resolveWidthString };
+const handleMinWidth: RuleHandler = ([, path], { theme }) => {
+  const minWidth = resolveTheme(theme as PresetTwTheme, {
+    scope: "minWidth",
+    path,
+  });
+  if (isString(minWidth)) {
+    return {
+      "min-width": minWidth,
+    };
+  }
+};
+
+export const minWidths: Rule[] = [
+  [/^min-w-(.+)$/, handleMinWidth],
+];
+
+export { handleMinWidth, resolveWidthString };
