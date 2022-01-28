@@ -146,4 +146,12 @@ export const borderRadiuses: Rule[] = [
   }],
 ];
 
+export const borderStyles: Rule[] = [
+  [/^border-(solid|dashed|dotted|double|hidden|none)$/, ([, style]) => {
+    return {
+      "border-style": style,
+    };
+  }],
+];
+
 export { handleBorderWidthDirection, handleBorderWidthNumber };
