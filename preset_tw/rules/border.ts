@@ -1,7 +1,12 @@
 import { isString, isStringOrNumber, isUndefined } from "../../deps.ts";
-import { resolveDirection, resolveTheme } from "../../core/utils/resolver.ts";
+import {
+  resolveCorner,
+  resolveDirection,
+  resolveTheme,
+} from "../../core/utils/resolver.ts";
+import { reduceValue } from "../../core/_utils.ts";
 import { parseNumeric } from "../../core/utils/parse.ts";
-import type { Dir } from "../../core/utils/types.ts";
+import type { Corner, Dir } from "../../core/utils/types.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
 
@@ -30,9 +35,7 @@ const handleBorderWidthDirection: RuleHandler = (
     `border-${direction}-width`
   );
 
-  return borderWidths.reduce((acc, cur) => {
-    return { ...acc, [cur]: number };
-  }, {});
+  return borderWidths.reduce(reduceValue(number), {});
 };
 
 const handleBorderWidthNumber: RuleHandler = ([, length]) => {
@@ -73,11 +76,74 @@ const handleBorderColor: RuleHandler = ([, dir, path], { theme }) => {
     ["border", dir, "color"].filter(Boolean).join("-")
   );
 
-  return borderColors.reduce((acc, cur) => ({ ...acc, [cur]: color }), {});
+  return borderColors.reduce(reduceValue(color), {});
 };
 
 export const borderColors: Rule[] = [
   [/^border(?:-([xytrbl]))?-(.+)$/, handleBorderColor],
+];
+
+const borderRadiusThemeOptions = {
+  scope: "borderRadius",
+  path: "DEFAULT",
+} as const;
+
+const handleBorderRadiusCorner: RuleHandler = ([, corner], { theme }) => {
+  const borderRadius = resolveTheme(
+    theme as PresetTwTheme,
+    borderRadiusThemeOptions,
+  );
+  if (isUndefined(borderRadius)) return;
+  const corners = resolveCorner(corner as Corner);
+  const borderRadiusStyles = corners.map((
+    corder,
+  ) => ["border", corder, "radius"]).filter(Boolean).map((styles) =>
+    styles.join("-")
+  );
+
+  return borderRadiusStyles.reduce(reduceValue(borderRadius), {});
+};
+
+export const borderRadiuses: Rule[] = [
+  [/^rounded$/, (_, { theme }) => {
+    const borderRadius = resolveTheme(
+      theme as PresetTwTheme,
+      borderRadiusThemeOptions,
+    );
+    if (isStringOrNumber(borderRadius)) {
+      return {
+        "border-radius": borderRadius,
+      };
+    }
+  }],
+  [/^rounded-(t|r|b|l|tl|tr|br|bl)$/, handleBorderRadiusCorner],
+  [/^rounded-(.+)/, ([, path], { theme }) => {
+    const borderRadius = resolveTheme(theme as PresetTwTheme, {
+      scope: "borderRadius",
+      path,
+    });
+    if (isUndefined(borderRadius)) return;
+
+    return {
+      "border-radius": borderRadius,
+    };
+  }],
+  [/^rounded-(t|r|b|l|tl|tr|br|bl)-(.+)$/, ([, corner, path], { theme }) => {
+    const borderRadius = resolveTheme(theme as PresetTwTheme, {
+      scope: "borderRadius",
+      path,
+    });
+    if (isUndefined(borderRadius)) return;
+    const corners = resolveCorner(corner as Corner);
+
+    const borderRadiusStyles = corners.map((
+      corder,
+    ) => ["border", corder, "radius"]).filter(Boolean).map((styles) =>
+      styles.join("-")
+    );
+
+    return borderRadiusStyles.reduce(reduceValue(borderRadius), {});
+  }],
 ];
 
 export { handleBorderWidthDirection, handleBorderWidthNumber };

@@ -50,7 +50,7 @@ import {
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
 import { heights, minWidths, Widths } from "./sizing.ts";
-import { borderColors, borderWidths } from "./border.ts";
+import { borderColors, borderRadiuses, borderWidths } from "./border.ts";
 
 export const nestedRules = [
   alignContents,
@@ -108,6 +108,7 @@ export const nestedRules = [
   heights,
   borderWidths,
   borderColors,
+  borderRadiuses,
 ];
 
 export {
@@ -118,6 +119,7 @@ export {
   backfaceVisibilities,
   backgroundColors,
   borderColors,
+  borderRadiuses,
   borderWidths,
   boxDecorations,
   boxSizings,

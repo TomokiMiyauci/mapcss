@@ -18,4 +18,9 @@ export interface PresetTwTheme extends Theme {
   };
 
   color: Record<string, string | Record<string, string>>;
+
+  borderRadius: {
+    DEFAULT: string | number;
+    [k: PropertyKey]: string | number;
+  };
 }

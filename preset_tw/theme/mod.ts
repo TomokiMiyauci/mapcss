@@ -11,7 +11,7 @@ import { objectPosition } from "./object_position.ts";
 import { width } from "./width.ts";
 import { minWidth } from "./min_width.ts";
 import { height, maxWidth } from "./sizing.ts";
-import { borderWidth } from "./border.ts";
+import { borderRadius, borderWidth } from "./border.ts";
 
 export const theme = {
   color,
@@ -30,9 +30,11 @@ export const theme = {
   width,
   minWidth,
   borderWidth,
+  borderRadius,
 };
 
 export {
+  borderRadius,
   borderWidth,
   color,
   column,

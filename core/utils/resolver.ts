@@ -1,6 +1,6 @@
 import { isUndefined, propPath } from "../../deps.ts";
-import { directionMap } from "./mapping.ts";
-import type { Dir } from "./types.ts";
+import { axisMap, cornerMap, direction4Map } from "./mapping.ts";
+import type { Axis, Corner, Dir } from "./types.ts";
 import type { Theme } from "../types.ts";
 
 type ResolveTheme<
@@ -34,8 +34,19 @@ export function resolveTheme<
 type PropPath<T extends Record<any, any>, P extends unknown[] | unknown> =
   P extends unknown[]
     ? P extends [infer X, ...infer Rest] ? PropPath<T[X], Rest> : T
-    : T[P];
+    : T[P] | undefined;
 
-export function resolveDirection(key: Dir): string[] | undefined {
-  return directionMap[key];
+export function resolveDirection(key: Dir | Axis): string[] | undefined {
+  const _direction4Map = Object.entries(direction4Map).reduce(
+    (acc, [key, value]) => {
+      return { ...acc, [key]: [value] };
+    },
+    {} as Record<Dir, string[]>,
+  );
+  const dirAxisMap = { ...axisMap, ..._direction4Map };
+  return dirAxisMap[key];
+}
+
+export function resolveCorner(key: Corner): string[] {
+  return cornerMap[key];
 }

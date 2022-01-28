@@ -101,3 +101,8 @@ export function cssDeclaration(
 ): string {
   return `${property}${middleSeparator}${value}${endSeparator}`;
 }
+
+export function reduceValue(value: string | number) {
+  const reducer = (acc: {}, cur: string) => ({ ...acc, [cur]: value });
+  return reducer;
+}
