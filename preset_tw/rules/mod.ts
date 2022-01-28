@@ -55,6 +55,7 @@ import {
   borderRadiuses,
   borderStyles,
   borderWidths,
+  outlineWidths,
 } from "./border.ts";
 
 export const nestedRules = [
@@ -115,6 +116,7 @@ export const nestedRules = [
   borderColors,
   borderRadiuses,
   borderStyles,
+  outlineWidths,
 ];
 
 export {
@@ -157,6 +159,7 @@ export {
   objectFits,
   objectPositions,
   outlineStyles,
+  outlineWidths,
   overflows,
   overflowWraps,
   overscrollBehaviors,

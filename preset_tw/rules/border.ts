@@ -154,4 +154,14 @@ export const borderStyles: Rule[] = [
   }],
 ];
 
+export const outlineWidths: Rule[] = [
+  [/^outline-([\d.]+)$/, ([, width]) => {
+    const outlineWidth = parseNumeric(width);
+    if (isUndefined(outlineWidth)) return;
+    return {
+      "outline-width": `${outlineWidth}px`,
+    };
+  }],
+];
+
 export { handleBorderWidthDirection, handleBorderWidthNumber };
