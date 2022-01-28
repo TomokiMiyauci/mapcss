@@ -76,6 +76,10 @@ export function bracket<T extends string>(value: T): `{${T}}` {
   return `{${value}}`;
 }
 
+export function paren<T extends string>(value: T): `(${T})` {
+  return `(${value})`;
+}
+
 export function constructAtRule(
   { identifier, rule, children }: Pick<AtRule, "identifier" | "rule"> & {
     children: string;
@@ -105,4 +109,8 @@ export function cssDeclaration(
 export function reduceValue(value: string | number) {
   const reducer = (acc: {}, cur: string) => ({ ...acc, [cur]: value });
   return reducer;
+}
+
+export function constructVar(value: string, prefix = ""): string {
+  return `--${prefix}${value}`;
 }
