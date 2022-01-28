@@ -19,7 +19,6 @@ import { textOverflows } from "./text_overflow.ts";
 import { textTransforms } from "./text_transform.ts";
 import { userSelects } from "./user_select.ts";
 import { wordBreaks } from "./word_break.ts";
-import { backgroundColors } from "./background_color.ts";
 import { fontSizes } from "./font_size.ts";
 import { fontWeights } from "./font_weight.ts";
 import { letterSpacings } from "./letter_spacing.ts";
@@ -58,6 +57,7 @@ import {
   outlineStyles,
   outlineWidths,
 } from "./border.ts";
+import { backgroundColors } from "./background.ts";
 
 export const nestedRules = [
   alignContents,
