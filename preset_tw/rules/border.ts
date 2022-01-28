@@ -6,6 +6,7 @@ import {
 } from "../../core/utils/resolver.ts";
 import { reduceValue } from "../../core/_utils.ts";
 import { parseNumeric } from "../../core/utils/parse.ts";
+import { px } from "../../core/utils/unit.ts";
 import type { Corner, Dir } from "../../core/utils/types.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
@@ -160,6 +161,16 @@ export const outlineWidths: Rule[] = [
     if (isUndefined(outlineWidth)) return;
     return {
       "outline-width": `${outlineWidth}px`,
+    };
+  }],
+];
+
+export const outlineOffsets: Rule[] = [
+  [/^outline-offset-([\d.]+)$/, ([, offset]) => {
+    const outlineOffset = parseNumeric(offset);
+    if (isUndefined(outlineOffset)) return;
+    return {
+      "outline-offset": px(outlineOffset),
     };
   }],
 ];
