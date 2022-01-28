@@ -54,6 +54,7 @@ import {
   borderRadiuses,
   borderStyles,
   borderWidths,
+  outlineColors,
   outlineOffsets,
   outlineStyles,
   outlineWidths,
@@ -119,6 +120,7 @@ export const nestedRules = [
   borderStyles,
   outlineWidths,
   outlineOffsets,
+  outlineColors,
 ];
 
 export {
@@ -160,6 +162,7 @@ export {
   minWidths,
   objectFits,
   objectPositions,
+  outlineColors,
   outlineOffsets,
   outlineStyles,
   outlineWidths,

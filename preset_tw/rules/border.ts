@@ -188,4 +188,20 @@ export const outlineStyles: Rule[] = [
   }],
 ];
 
+export const outlineColors: Rule[] = [
+  [/^outline-(.+)$/, ([, prop], { theme }) => {
+    const colors = prop.split("-");
+    const color = resolveTheme(theme as PresetTwTheme, {
+      scope: "color",
+      path: colors,
+    }) as unknown;
+
+    if (isStringOrNumber(color)) {
+      return {
+        "outline-color": color,
+      };
+    }
+  }],
+];
+
 export { handleBorderWidthDirection, handleBorderWidthNumber };
