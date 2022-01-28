@@ -175,4 +175,17 @@ export const outlineOffsets: Rule[] = [
   }],
 ];
 
+export const outlineStyles: Rule[] = [
+  ["outline", { "outline-style": "solid" }],
+  ["outline-none", {
+    outline: "2px solid transparent",
+    "outline-offset": "2px",
+  }],
+  [/^outline-(dashed|dotted|double|hidden)$/, ([, style]) => {
+    return {
+      "outline-style": style,
+    };
+  }],
+];
+
 export { handleBorderWidthDirection, handleBorderWidthNumber };
