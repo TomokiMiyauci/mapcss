@@ -1,18 +1,13 @@
-import { colorResolver } from "../theme/_utils.ts";
-import { SEPARATOR } from "../_utils.ts";
-import { isString } from "../../deps.ts";
-
+import { colorByProp, colorOpacityByProp } from "./_utils.ts";
 import type { Rule } from "../../core/types.ts";
 
-export const backgroundColors: Rule[] = [
-  [/^bg-(.+)$/, ([, body], { theme }) => {
-    const colors = body.split(SEPARATOR);
-    const color = colorResolver(theme, colors);
+const BACKGROUND_COLOR = "background-color";
 
-    if (isString(color)) {
-      return {
-        "background-color": color,
-      };
-    }
+export const backgroundColors: Rule[] = [
+  [/^bg-(.+)\/(\d+)$/, ([, prop, opacity], { theme }) => {
+    return colorOpacityByProp(BACKGROUND_COLOR, { theme, prop, opacity });
+  }],
+  [/^bg-(.+)$/, ([, prop], { theme }) => {
+    return colorByProp(BACKGROUND_COLOR, { theme, prop });
   }],
 ];
