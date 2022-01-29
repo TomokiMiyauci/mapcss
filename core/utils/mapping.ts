@@ -1,11 +1,18 @@
 import { BOTTOM, LEFT, RIGHT, TOP } from "../../constants.ts";
-import type { Axis, Corner, Dir } from "./types.ts";
+import type { Axis, Corner, Dir, Direction } from "./types.ts";
 
 export const direction4Map: Record<Dir, string> = {
   t: TOP,
   r: RIGHT,
   b: BOTTOM,
   l: LEFT,
+};
+
+export const longDirection4Map: Record<Direction, string> = {
+  top: TOP,
+  right: RIGHT,
+  bottom: BOTTOM,
+  left: LEFT,
 };
 
 export const axisMap: Record<Axis, string[]> = {

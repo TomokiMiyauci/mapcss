@@ -51,3 +51,13 @@ export function hex2RGBA(str: string): RGBA | undefined {
     }
   }
 }
+
+export function parseFraction(
+  numerator: string,
+  denominator: string,
+): number | undefined {
+  const result = Number(numerator) / Number(denominator);
+
+  if (!Number.isFinite(result)) return;
+  return result;
+}
