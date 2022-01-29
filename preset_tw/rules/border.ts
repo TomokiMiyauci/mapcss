@@ -1,12 +1,19 @@
-import { isString, isStringOrNumber, isUndefined } from "../../deps.ts";
+import {
+  isNumber,
+  isString,
+  isStringOrNumber,
+  isUndefined,
+} from "../../deps.ts";
 import {
   resolveCorner,
   resolveDirection,
   resolveTheme,
 } from "../../core/utils/resolver.ts";
-import { reduceValue } from "../../core/_utils.ts";
-import { parseNumeric } from "../../core/utils/parse.ts";
+import { constructVar, reduceValue } from "../../core/_utils.ts";
+import { hex2RGBA, parseNumeric } from "../../core/utils/parse.ts";
+import { stringifyRGBA, stringifyVar } from "../../core/utils/color.ts";
 import { px } from "../../core/utils/unit.ts";
+import { VARIABLE_PREFIX } from "../_utils.ts";
 import type { Corner, Dir } from "../../core/utils/types.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
@@ -65,22 +72,38 @@ export const borderWidths: Rule[] = [
 const handleBorderColor: RuleHandler = ([, dir, path], { theme }) => {
   const _dir = dir as Dir | undefined;
   const c = path.split("-");
-  const color = resolveTheme(theme as PresetTwTheme, {
+  const rawColor = resolveTheme(theme as PresetTwTheme, {
     scope: "color",
     path: c,
   }) as unknown;
 
-  if (!isStringOrNumber(color)) return;
+  if (!isString(rawColor)) return;
 
   const directions = isUndefined(_dir) ? [""] : resolveDirection(_dir) ?? [];
+  const maybeRGBA = hex2RGBA(rawColor);
   const borderColors = directions.map((dir) =>
     ["border", dir, "color"].filter(Boolean).join("-")
   );
 
-  return borderColors.reduce(reduceValue(color), {});
+  if (maybeRGBA) {
+    const { r, g, b, a } = maybeRGBA;
+    const opacity = constructVar("border-opacity", VARIABLE_PREFIX);
+    const opacityMap = isNumber(a) ? { [opacity]: a } : {};
+
+    const rgba = stringifyRGBA({
+      r,
+      g,
+      b,
+      a: isNumber(a) ? stringifyVar(opacity) : 1,
+    });
+    return { ...opacityMap, ...borderColors.reduce(reduceValue(rgba), {}) };
+  }
+
+  return borderColors.reduce(reduceValue(rawColor), {});
 };
 
 export const borderColors: Rule[] = [
+  [/^border(?:-([xytrbl]))?-(.+)\/(\d+)$/, handleBorderColor],
   [/^border(?:-([xytrbl]))?-(.+)$/, handleBorderColor],
 ];
 
