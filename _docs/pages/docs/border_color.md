@@ -1,5 +1,5 @@
 ---
 title: Border Color
-description: UUtilities for controlling the color of an element's borders.
+description: Utilities for controlling the color of an element's borders.
 category: Border
 ---

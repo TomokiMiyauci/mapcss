@@ -9,8 +9,12 @@ import {
   X,
   Y,
 } from "../../constants.ts";
-import { isNumber, isString, prop } from "../../deps.ts";
+import { isNumber, isString, isUndefined, prop } from "../../deps.ts";
+import { longDirection4Map } from "../../core/utils/mapping.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
+import { parseFraction, parseNumeric } from "../../core/utils/parse.ts";
+import { reduceValue } from "../../core/_utils.ts";
+import { rem } from "../../core/utils/unit.ts";
 import type { Rule } from "../../core/types.ts";
 
 const ASPECT_RATIO = "aspect-ratio";
@@ -190,6 +194,75 @@ const VISIBILITY = "visibility";
 export const visibilities: Rule[] = [
   ["visible", { [VISIBILITY]: "visible" }],
   ["invisible", { [VISIBILITY]: "hidden" }],
+];
+
+function resolveInset(value: string): string[] | undefined {
+  const { top, right, bottom, left } = longDirection4Map;
+  const insetMap: Record<string, string[]> = {
+    top: [top],
+    right: [right],
+    bottom: [bottom],
+    left: [left],
+    inset: [top, right, bottom, left],
+    "inset-x": [left, right],
+    "inset-y": [top, bottom],
+  };
+  return insetMap[value];
+}
+
+export const insets: Rule[] = [
+  [
+    /^(top|right|bottom|left|inset|inset-x|inset-y)-(\d+)\/(\d+)$/,
+    ([, key, numerator, denominator]) => {
+      const insets = resolveInset(key);
+      if (!insets) return;
+      const fraction = parseFraction(numerator, denominator);
+      if (isUndefined(fraction)) return;
+      return insets.reduce(reduceValue(`${fraction}%`), {});
+    },
+  ],
+  [
+    /^(top|right|bottom|left|inset|inset-x|inset-y)-(0|px)$/,
+    ([, key, prop]) => {
+      const m: Record<PropertyKey, string> = { 0: "0px", px: "1px" };
+      const value = m[prop] as string | undefined;
+      const insets = resolveInset(key);
+      if (!insets || isUndefined(value)) return;
+      return insets.reduce(reduceValue(value), {});
+    },
+  ],
+  [
+    /^(top|right|bottom|left|inset|inset-x|inset-y)-([\d.]+)$/,
+    ([, key, num]) => {
+      const insets = resolveInset(key);
+      if (!insets) return;
+      const number = parseNumeric(num);
+      if (isUndefined(number)) return;
+      return insets.reduce(reduceValue(rem(number / 4)), {});
+    },
+  ],
+  [
+    /^(top|right|bottom|left|inset|inset-x|inset-y)-\[(.+)\]$/,
+    ([, key, attr]) => {
+      const insets = resolveInset(key);
+      if (!insets) return;
+      return insets.reduce(reduceValue(attr), {});
+    },
+  ],
+  [
+    /^(top|right|bottom|left|inset|inset-x|inset-y)-(.+)$/,
+    ([, key, prop]) => {
+      const insets = resolveInset(key);
+      if (!insets) return;
+      const m: Record<PropertyKey, string> = {
+        full: "100%",
+        auto: "auto",
+      };
+      const value = m[prop] as string | undefined;
+      if (isUndefined(value)) return;
+      return insets.reduce(reduceValue(value), {});
+    },
+  ],
 ];
 
 const Z_INDEX = "z-index";
