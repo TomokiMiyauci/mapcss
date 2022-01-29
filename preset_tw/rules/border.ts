@@ -69,6 +69,42 @@ export const borderWidths: Rule[] = [
   [/^border-([xytrbl])(?:-([\d.]+))?$/, handleBorderWidthDirection],
 ];
 
+const handleBorderColorOpacity: RuleHandler = (
+  [, dir, path, op],
+  { theme },
+) => {
+  const _dir = dir as Dir | undefined;
+  const c = path.split("-");
+  const rawColor = resolveTheme(theme as PresetTwTheme, {
+    scope: "color",
+    path: c,
+  }) as unknown;
+
+  const number = parseNumeric(op);
+
+  if (!isString(rawColor) || isUndefined(number)) return;
+
+  const directions = isUndefined(_dir) ? [""] : resolveDirection(_dir) ?? [];
+  const maybeRGBA = hex2RGBA(rawColor);
+  const borderColors = directions.map((dir) =>
+    ["border", dir, "color"].filter(Boolean).join("-")
+  );
+
+  if (maybeRGBA) {
+    const { r, g, b } = maybeRGBA;
+    const opacity = constructVar("border-opacity", VARIABLE_PREFIX);
+    const opacityMap = { [opacity]: number / 100 };
+
+    const rgba = stringifyRGBA({
+      r,
+      g,
+      b,
+      a: stringifyVar(opacity),
+    });
+    return { ...opacityMap, ...borderColors.reduce(reduceValue(rgba), {}) };
+  }
+};
+
 const handleBorderColor: RuleHandler = ([, dir, path], { theme }) => {
   const _dir = dir as Dir | undefined;
   const c = path.split("-");
@@ -103,7 +139,7 @@ const handleBorderColor: RuleHandler = ([, dir, path], { theme }) => {
 };
 
 export const borderColors: Rule[] = [
-  [/^border(?:-([xytrbl]))?-(.+)\/(\d+)$/, handleBorderColor],
+  [/^border(?:-([xytrbl]))?-(.+)\/(\d+)$/, handleBorderColorOpacity],
   [/^border(?:-([xytrbl]))?-(.+)$/, handleBorderColor],
 ];
 
