@@ -55,11 +55,12 @@ export function constructCSS(
 
   const { children: { selector, declarationBlock }, identifier, rule } =
     cssStatement;
-  const _selector = cssStatement.selector?.(selector) ?? selector;
-  const escapedSelector = escapeRegExp(_selector);
+
+  const escapedSelector = escapeRegExp(selector);
+  const _selector = cssStatement.selector?.(escapedSelector) ?? escapedSelector;
   const declaration = cssDeclarationBlock(declarationBlock);
 
-  const children = `${escapedSelector}${declaration}`;
+  const children = `${_selector}${declaration}`;
   return constructAtRule({ identifier, rule, children });
 }
 

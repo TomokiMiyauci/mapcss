@@ -21,11 +21,17 @@ export interface Config {
   presets: Preset[];
 }
 
+export interface GenerateResult {
+  css: string;
+  matched: Set<string>;
+  unmatched: Set<string>;
+}
+
 /** Generate CSS Sheet as string */
 export function generate(
   { rules = [], presets = [], theme = {} }: Partial<Config>,
   input: Set<string>,
-): string {
+): GenerateResult {
   const presetsRules = presets.map(({ rules }) => rules);
   const presetsModifiers = presets.map(({ modifiers }) => modifiers);
   const presetsTheme = presets.map(({ theme }) => theme).reduce((acc, cur) => {
@@ -37,10 +43,14 @@ export function generate(
   const staticRules = _rules.filter(isStaticRule);
   const dynamicRules = _rules.filter(isDynamicRule);
   const context = { theme: _theme };
+  const matched = new Set<string>();
+  const unmatched = new Set<string>();
 
-  const cssCache = Array.from(input).map((token) => {
+  const tokenMapper = (token: string) => {
     const result = /^(?:(.+):)?(.+)$/.exec(token);
-    if (!result) return;
+    if (!result) {
+      return;
+    }
     const [, modifier, matcher] = result as unknown as [
       string,
       string | undefined,
@@ -52,14 +62,21 @@ export function generate(
       staticRules,
       dynamicRules,
     }, context);
-    if (!ruleSet) return;
-    if (!modifier) return ruleSet;
-
+    if (!ruleSet) {
+      return;
+    }
+    if (!modifier) {
+      return ruleSet;
+    }
     const atRules = _modifiers.map(([id, handler]) => {
-      if (modifier !== id) return;
+      if (modifier !== id) {
+        return;
+      }
 
       const result = handler(modifier, context);
-      if (!result) return;
+      if (!result) {
+        return;
+      }
 
       const { identifier, rule, selector } = result;
 
@@ -74,9 +91,21 @@ export function generate(
     }).filter(Boolean) as AtRule[];
 
     return atRules[0];
-  }).filter(Boolean) as (AtRule | RuleSet)[];
+  };
+  const cssCache = Array.from(input).map((token) => {
+    const result = tokenMapper(token);
 
-  return cssCache.map(constructCSS).join("\n");
+    if (!result) {
+      unmatched.add(token);
+    } else {
+      matched.add(token);
+    }
+    return result;
+  }).filter(
+    Boolean,
+  ) as (AtRule | RuleSet)[];
+
+  return { css: cssCache.map(constructCSS).join("\n"), matched, unmatched };
 }
 
 function findRuleSet(
