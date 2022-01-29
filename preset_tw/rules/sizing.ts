@@ -37,6 +37,11 @@ export const Widths: Rule[] = [
   }],
 
   [/^w-(.+)$/, resolveWidthString],
+  [/^w-\[(.+)\]$/, ([, value]) => {
+    return {
+      width: value,
+    };
+  }],
 ];
 
 const handleMinWidth: RuleHandler = ([, path], { theme }) => {
