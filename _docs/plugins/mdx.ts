@@ -39,6 +39,17 @@ const fronts = entries.filter(({ isFile }) => isFile).map(({ path, name }) => {
     category,
     href: join("/docs", name.replace(".mdx", "").replaceAll("_", "-")),
   };
+}).sort((a, b) => {
+  const _a = a.title.toUpperCase();
+  const _b = b.title.toUpperCase();
+  if (_a < _b) {
+    return -1;
+  }
+  if (_b > _a) {
+    return 1;
+  }
+
+  return 0;
 });
 
 const layout = {
@@ -103,12 +114,12 @@ export function mdxPlugin(): Plugin {
           util.trimPrefix(specifier, "/pages"),
           ".mdx",
         ).replaceAll("_", "-");
-        return { asPage: { path }, data: { hoge: "huga" } };
+        return { asPage: { path }, acceptHMR: true };
       });
 
-      aleph.onLoad(pattern, async ({ specifier, data }) => {
-        console.log(data);
+      aleph.onLoad(pattern, async ({ specifier }) => {
         const { content } = await aleph.fetchModule(specifier);
+        const { framework } = aleph.config;
         const source = new TextDecoder().decode(content);
         const { __content, ...meta } = safeLoadFront(
           source,
@@ -120,6 +131,12 @@ export function mdxPlugin(): Plugin {
             remarkMdxFrontmatter,
           ],
         });
+
+        if (framework !== "react") {
+          throw new Error(
+            `mdx-loader: don't support framework '${framework}'`,
+          );
+        }
 
         return {
           code: [
