@@ -55,6 +55,19 @@ export const breakAfter: Rule[] = [
   ["break-after-column", { [BREAK_AFTER]: "column" }],
 ];
 
+const BREAK_BEFORE = "break-before";
+
+export const breakBefore: Rule[] = [
+  ["break-before-auto", { [BREAK_BEFORE]: AUTO }],
+  ["break-before-avoid", { [BREAK_BEFORE]: "avoid" }],
+  ["break-before-all", { [BREAK_BEFORE]: "all" }],
+  ["break-before-avoid-page", { [BREAK_BEFORE]: "avoid-page" }],
+  ["break-before-page", { [BREAK_BEFORE]: "page" }],
+  ["break-before-left", { [BREAK_BEFORE]: LEFT }],
+  ["break-before-right", { [BREAK_BEFORE]: RIGHT }],
+  ["break-before-column", { [BREAK_BEFORE]: "column" }],
+];
+
 const BOX_DECORATION_BREAK = "box-decoration-break";
 export const boxDecorations: Rule[] = [
   ["box-decoration-clone", {

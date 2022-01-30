@@ -25,12 +25,12 @@ import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
 import { maxWidths } from "./max_width.ts";
 import { colors, lineHeights } from "./typography.ts";
-import { breakBefore } from "./break_before.ts";
 import {
   aspectRatios,
   boxDecorations,
   boxSizings,
   breakAfter,
+  breakBefore,
   breakInsides,
   clears,
   columns,
@@ -47,7 +47,7 @@ import {
   zIndexes,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
-import { heights, minWidths, Widths } from "./sizing.ts";
+import { heights, minWidths, widths } from "./sizing.ts";
 import {
   borderColors,
   borderRadiuses,
@@ -112,7 +112,7 @@ export const nestedRules = [
   objectPositions,
   overflows,
   overscrollBehaviors,
-  Widths,
+  widths,
   minWidths,
   heights,
   borderWidths,
@@ -183,7 +183,7 @@ export {
   textTransforms,
   userSelects,
   visibilities,
-  Widths,
+  widths,
   wordBreaks,
   zIndexes,
 };

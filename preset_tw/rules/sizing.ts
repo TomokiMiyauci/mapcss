@@ -12,7 +12,7 @@ const resolveWidthString: RuleHandler = ([, path], { theme }) => {
   }
 };
 
-export const Widths: Rule[] = [
+export const widths: Rule[] = [
   [/^w-([\d.]+)$/, ([, body]) => {
     const number = Number(body);
 
