@@ -1,5 +1,6 @@
 import { resolveTheme } from "../../core/utils/resolver.ts";
 import { isNumber, isString, isStringOrNumber } from "../../deps.ts";
+import { remByProp } from "./_utils.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
 import type { Rule, RuleHandler } from "../../core/types.ts";
 
@@ -116,6 +117,33 @@ export const heights: Rule[] = [
   [/^h-([\d.]+)$/, handleHeightNumber],
   [/^h-(\d+)\/(\d+)$/, handleHeightFraction],
   [/^h-(.+)$/, handleHeight],
+];
+
+const MAX_HEIGHT = "max-height";
+
+export const maxHeights: Rule[] = [
+  ["max-h-0", {
+    [MAX_HEIGHT]: "0px",
+  }],
+  ["max-h-px", {
+    [MAX_HEIGHT]: "1px",
+  }],
+  ["max-h-full", {
+    [MAX_HEIGHT]: "100%",
+  }],
+  ["max-h-screen", {
+    [MAX_HEIGHT]: "100vh",
+  }],
+  ["max-h-min", {
+    [MAX_HEIGHT]: "min-content",
+  }],
+  ["max-h-max", {
+    [MAX_HEIGHT]: "max-content",
+  }],
+  ["max-h-fit", {
+    [MAX_HEIGHT]: "fit-content",
+  }],
+  [/^max-h-([\d.]+)$/, ([, num]) => remByProp(MAX_HEIGHT, num)],
 ];
 
 export {

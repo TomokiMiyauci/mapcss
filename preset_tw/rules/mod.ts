@@ -52,7 +52,7 @@ import {
   zIndexes,
 } from "./layout.ts";
 import { margins, paddings } from "./spacing.ts";
-import { heights, minWidths, widths } from "./sizing.ts";
+import { heights, maxHeights, minWidths, widths } from "./sizing.ts";
 import {
   borderColors,
   borderRadiuses,
@@ -103,6 +103,7 @@ export const nestedRules = [
   fontFamilies,
   maxWidths,
   margins,
+  maxHeights,
   outlineStyles,
   lineHeights,
   columns,
@@ -171,6 +172,7 @@ export {
   letterSpacings,
   lineHeights,
   margins,
+  maxHeights,
   maxWidths,
   minWidths,
   objectFits,

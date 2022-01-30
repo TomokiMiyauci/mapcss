@@ -1,5 +1,6 @@
-import { isNumber, isString } from "../../deps.ts";
+import { isNumber, isString, isUndefined } from "../../deps.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
+import { rem } from "../../core/utils/unit.ts";
 import { SEPARATOR } from "../_utils.ts";
 import { hex2RGBA, parseNumeric } from "../../core/utils/parse.ts";
 import { stringifyRGBA, stringifyVar } from "../../core/utils/color.ts";
@@ -63,5 +64,15 @@ export function colorOpacityByProp(
 
   return {
     [property]: stringifyRGBA({ r, g, b, a: _opacity / 100 }),
+  };
+}
+
+export function remByProp(property: string, value: string): {
+  [x: string]: string;
+} | undefined {
+  const number = parseNumeric(value);
+  if (isUndefined(number)) return;
+  return {
+    [property]: rem(number / 4),
   };
 }
