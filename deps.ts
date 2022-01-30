@@ -5,10 +5,17 @@ export {
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
 import {
   isLength0,
+  isNumber,
   isObject,
+  isString,
   isUndefined,
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
 export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
+export { isUndefined };
+
+export function isStringOrNumber(value: unknown): value is string | number {
+  return isString(value) || isNumber(value);
+}
 
 /** check field is exist or not */
 function has(

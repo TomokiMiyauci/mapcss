@@ -16,3 +16,6 @@ export const AROUND = "around";
 export const EVENLY = "evenly";
 export const BASELINE = "baseline";
 export const STRETCH = "stretch";
+export const AVOID = "avoid";
+export const X = "x";
+export const Y = "y";
