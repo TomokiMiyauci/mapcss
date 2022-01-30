@@ -1,3 +1,15 @@
+# [1.0.0-beta.2](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-30)
+
+
+### Bug Fixes
+
+* **preset_tw:** remove break_before file, move to layout ([14d36be](https://github.com/TomokiMiyauci/mapcss/commit/14d36beb046daa4963ee61a5470a8cdc5bfc1a65))
+
+
+### Features
+
+* **preset_tw:** export sample for layout classes ([85e8940](https://github.com/TomokiMiyauci/mapcss/commit/85e89406dba4d61f0a0543052ebf692662394332))
+
 # 1.0.0-beta.1 (2022-01-30)
 
 
