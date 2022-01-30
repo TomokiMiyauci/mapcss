@@ -5,3 +5,9 @@ export const whiteSpaces = [
   "whitespace-pre-line",
   "whitespace-pre-wrap",
 ];
+
+export const wordBreaks = [
+  "break-normal",
+  "break-words",
+  "break-all",
+];

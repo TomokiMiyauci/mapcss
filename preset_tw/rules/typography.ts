@@ -46,3 +46,9 @@ export const whiteSpaces: Rule[] = [
     [WHITE_SPACE]: "pre-wrap",
   }],
 ];
+
+export const wordBreaks: Rule[] = [
+  ["break-normal", { "word-break": "normal", "overflow-wrap": "normal" }],
+  ["break-words", { "overflow-wrap": "break-word" }],
+  ["break-all", { "word-break": "break-all" }],
+];
