@@ -7,7 +7,6 @@ import { fontStyles } from "./font_style.ts";
 import { justifyContents } from "./justify_content.ts";
 import { justifyItems } from "./justify_items.ts";
 import { justifySelfs } from "./justify_self.ts";
-import { overflowWraps } from "./overflow_wrap.ts";
 import { placeContents } from "./place_content.ts";
 import { pointerEvents } from "./pointer_events.ts";
 import { resizes } from "./resize.ts";
@@ -82,7 +81,6 @@ export const nestedRules = [
   justifyContents,
   justifyItems,
   justifySelfs,
-  overflowWraps,
   placeContents,
   pointerEvents,
   positions,
@@ -179,7 +177,6 @@ export {
   outlineStyles,
   outlineWidths,
   overflows,
-  overflowWraps,
   overscrollBehaviors,
   paddings,
   placeContents,
