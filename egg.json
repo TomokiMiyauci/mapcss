@@ -1,0 +1,17 @@
+{
+  "$schema": "https://x.nest.land/eggs@0.3.10/src/schema.json",
+  "name": "mapcss",
+  "entry": "./mod.ts",
+  "description": "Tiny, composable atomic CSS engine",
+  "homepage": "https://github.com/TomokiMiyauci/mapcss",
+  "files": ["./**/*.ts", "./**/*.md"],
+  "version": "v1.0.0-beta.0",
+  "ignore": [
+    ".git",
+    "./_docs/**/*",
+    "./node_modules/**/*",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
+  "check": false
+}
