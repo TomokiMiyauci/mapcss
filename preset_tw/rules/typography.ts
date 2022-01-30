@@ -5,6 +5,17 @@ import { colorByProp, colorOpacityByProp } from "./_utils.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
 import type { Rule } from "../../core/types.ts";
 
+const LETTER_SPACING = "letter-spacing";
+
+export const letterSpacings: Rule[] = [
+  ["tracking-tighter", { [LETTER_SPACING]: "-0.05em" }],
+  ["tracking-tight", { [LETTER_SPACING]: "-0.025em" }],
+  ["tracking-normal", { [LETTER_SPACING]: "0em" }],
+  ["tracking-wide", { [LETTER_SPACING]: "0.025em" }],
+  ["tracking-wider", { [LETTER_SPACING]: "0.05em" }],
+  ["tracking-widest", { [LETTER_SPACING]: "0.1em" }],
+];
+
 const TEXT_ALIGN = "text-align";
 export const textAligns: Rule[] = [
   ["text-center", { [TEXT_ALIGN]: CENTER }],

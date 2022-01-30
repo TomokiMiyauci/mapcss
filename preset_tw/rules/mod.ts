@@ -17,13 +17,13 @@ import { textTransforms } from "./text_transform.ts";
 import { userSelects } from "./user_select.ts";
 import { fontSizes } from "./font_size.ts";
 import { fontWeights } from "./font_weight.ts";
-import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
 import { maxWidths } from "./max_width.ts";
 import {
   colors,
   contents,
   fontSmoothings,
+  letterSpacings,
   lineHeights,
   textAligns,
   verticalAligns,
