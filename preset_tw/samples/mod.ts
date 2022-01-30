@@ -1,2 +1,3 @@
 export * from "./layout.ts";
 export * from "./typography.ts";
+export * from "./table.ts";

@@ -64,6 +64,7 @@ import {
   outlineWidths,
 } from "./border.ts";
 import { backgroundColors } from "./background.ts";
+import { borderCollapses } from "./table.ts";
 
 export const nestedRules = [
   alignContents,
@@ -129,6 +130,7 @@ export const nestedRules = [
   whiteSpaces,
   verticalAligns,
   fontSmoothings,
+  borderCollapses,
 ];
 
 export {
@@ -138,6 +140,7 @@ export {
   aspectRatios,
   backfaceVisibilities,
   backgroundColors,
+  borderCollapses,
   borderColors,
   borderRadiuses,
   borderStyles,
