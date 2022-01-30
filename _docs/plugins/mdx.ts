@@ -52,46 +52,56 @@ const fronts = entries.filter(({ isFile }) => isFile).map(({ path, name }) => {
   return 0;
 });
 
+function pickField({ title, href }: {
+  title: string;
+  category: string;
+  href: string;
+}) {
+  return {
+    title,
+    href,
+  };
+}
+
 const layout = {
   name: "Layout",
-  items: fronts.filter(({ category }) => category === "Layout").map((
-    { title, href },
-  ) => ({ title, href })),
+  items: fronts.filter(({ category }) => category === "Layout").map(pickField),
 };
 
 const spacing: NavMenu = {
   name: "Spacing",
-  items: fronts.filter(({ category }) => category === "Spacing").map((
-    { title, href },
-  ) => ({ title, href })),
+  items: fronts.filter(({ category }) => category === "Spacing").map(pickField),
 };
 
 const sizing: NavMenu = {
   name: "Sizing",
-  items: fronts.filter(({ category }) => category === "Sizing").map((
-    { title, href },
-  ) => ({ title, href })),
+  items: fronts.filter(({ category }) => category === "Sizing").map(pickField),
 };
 
 const border: NavMenu = {
   name: "Border",
-  items: fronts.filter(({ category }) => category === "Border").map((
-    { title, href },
-  ) => ({ title, href })),
+  items: fronts.filter(({ category }) => category === "Border").map(pickField),
 };
 
 const typography: NavMenu = {
   name: "Typography",
-  items: fronts.filter(({ category }) => category === "Typography").map((
-    { title, href },
-  ) => ({ title, href })),
+  items: fronts.filter(({ category }) => category === "Typography").map(
+    pickField,
+  ),
 };
 
 const background: NavMenu = {
   name: "Background",
-  items: fronts.filter(({ category }) => category === "Background").map((
-    { title, href },
-  ) => ({ title, href })),
+  items: fronts.filter(({ category }) => category === "Background").map(
+    pickField,
+  ),
+};
+
+const table: NavMenu = {
+  name: "Table",
+  items: fronts.filter(({ category }) => category === "Table").map(
+    pickField,
+  ),
 };
 
 const navMenu: NavMenu[] = [
@@ -101,6 +111,7 @@ const navMenu: NavMenu[] = [
   typography,
   background,
   border,
+  table,
 ];
 
 const pattern = /\.mdx$/i;
