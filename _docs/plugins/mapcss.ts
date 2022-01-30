@@ -12,10 +12,13 @@ export const mapcssPlugin: Plugin = {
       const { specifier, jsxStaticClassNames } = module;
       if (!jsxStaticClassNames) return;
       const url = specifier.replace(/\.(j|t)sx$/i, "") + ".map.css";
-      const css = generate(
+      const { css, unmatched } = generate(
         config,
         new Set((jsxStaticClassNames ?? []).join(" ").split(" ")),
       );
+      if (unmatched.size) {
+        unmatched.forEach((token) => console.log(token));
+      }
       const cssModule = await aleph.addModule(`${url}`, css, true);
       return {
         code: `import "${
