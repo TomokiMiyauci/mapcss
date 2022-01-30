@@ -27,6 +27,19 @@ export const colors: Rule[] = [
   }],
 ];
 
+const VERTICAL_ALIGN = "vertical-align";
+
+export const verticalAligns: Rule[] = [
+  ["align-baseline", { [VERTICAL_ALIGN]: "baseline" }],
+  ["align-top", { [VERTICAL_ALIGN]: "top" }],
+  ["align-middle", { [VERTICAL_ALIGN]: "middle" }],
+  ["align-bottom", { [VERTICAL_ALIGN]: "bottom" }],
+  ["align-text-top", { [VERTICAL_ALIGN]: "text-top" }],
+  ["align-text-bottom", { [VERTICAL_ALIGN]: "text-bottom" }],
+  ["align-sub", { [VERTICAL_ALIGN]: "sub" }],
+  ["align-super", { [VERTICAL_ALIGN]: "super" }],
+];
+
 const WHITE_SPACE = "white-space";
 
 export const whiteSpaces: Rule[] = [

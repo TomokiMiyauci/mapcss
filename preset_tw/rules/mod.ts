@@ -26,6 +26,7 @@ import {
   colors,
   contents,
   lineHeights,
+  verticalAligns,
   whiteSpaces,
   wordBreaks,
 } from "./typography.ts";
@@ -127,6 +128,7 @@ export const nestedRules = [
   outlineOffsets,
   outlineColors,
   whiteSpaces,
+  verticalAligns,
 ];
 
 export {
@@ -187,6 +189,7 @@ export {
   textOverflows,
   textTransforms,
   userSelects,
+  verticalAligns,
   visibilities,
   whiteSpaces,
   widths,

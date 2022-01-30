@@ -1,3 +1,14 @@
+export const verticalAligns = [
+  "align-baseline",
+  "align-top",
+  "align-middle",
+  "align-bottom",
+  "align-text-top",
+  "align-text-bottom",
+  "align-sub",
+  "align-super",
+];
+
 export const whiteSpaces = [
   "whitespace-normal",
   "whitespace-nowrap",
