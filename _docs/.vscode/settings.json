@@ -19,6 +19,7 @@
   "deno.codeLens.references": true,
   "deno.suggest.autoImports": true,
   "deno.suggest.names": true,
+  "deno.importMap": "./import_map.json",
   "deno.suggest.imports.autoDiscover": true,
   "deno.suggest.paths": true,
   "deno.codeLens.test": true,
