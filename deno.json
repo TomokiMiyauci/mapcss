@@ -4,12 +4,12 @@
       "exclude": ["ban-types", "no-explicit-any"]
     },
     "files": {
-      "exclude": ["node_modules", "_docs"]
+      "exclude": ["node_modules", "_docs", "CHANGELOG.md"]
     }
   },
   "fmt": {
     "files": {
-      "exclude": ["node_modules", "_docs"]
+      "exclude": ["node_modules", "_docs", "CHANGELOG.md"]
     }
   }
 }
