@@ -10,7 +10,6 @@ import { justifySelfs } from "./justify_self.ts";
 import { placeContents } from "./place_content.ts";
 import { pointerEvents } from "./pointer_events.ts";
 import { resizes } from "./resize.ts";
-import { textAligns } from "./text_align.ts";
 import { textDecorations } from "./text_decoration.ts";
 import { textDecorationLines } from "./text_decoration_line.ts";
 import { textOverflows } from "./text_overflow.ts";
@@ -26,6 +25,7 @@ import {
   contents,
   fontSmoothings,
   lineHeights,
+  textAligns,
   verticalAligns,
   whiteSpaces,
   wordBreaks,

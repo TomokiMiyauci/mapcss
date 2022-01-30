@@ -1,3 +1,10 @@
+export const textAligns = [
+  "text-left",
+  "text-center",
+  "text-right",
+  "text-justify",
+];
+
 export const fontSmoothings = [
   "antialiased",
   "subpixel-antialiased",
