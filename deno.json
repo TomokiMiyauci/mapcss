@@ -6,5 +6,10 @@
     "files": {
       "exclude": ["node_modules", "_docs"]
     }
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["node_modules", "_docs"]
+    }
   }
 }
