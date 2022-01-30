@@ -4,8 +4,11 @@
   "entry": "./mod.ts",
   "description": "Tiny, composable atomic CSS engine",
   "homepage": "https://github.com/TomokiMiyauci/mapcss",
-  "files": ["./**/*.ts", "./**/*.md"],
-  "version": "v1.0.0-beta.0",
+  "files": [
+    "./**/*.ts",
+    "./**/*.md"
+  ],
+  "version": "v1.0.0-beta.1",
   "ignore": [
     ".git",
     "./_docs/**/*",
@@ -13,5 +16,7 @@
     "package.json",
     "pnpm-lock.yaml"
   ],
-  "check": false
+  "check": false,
+  "yes": true,
+  "unlisted": false
 }
