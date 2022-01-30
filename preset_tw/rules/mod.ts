@@ -24,7 +24,7 @@ import { fontWeights } from "./font_weight.ts";
 import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
 import { maxWidths } from "./max_width.ts";
-import { colors, lineHeights } from "./typography.ts";
+import { colors, lineHeights, whiteSpaces } from "./typography.ts";
 import {
   aspectRatios,
   boxDecorations,
@@ -122,6 +122,7 @@ export const nestedRules = [
   outlineWidths,
   outlineOffsets,
   outlineColors,
+  whiteSpaces,
 ];
 
 export {
@@ -183,6 +184,7 @@ export {
   textTransforms,
   userSelects,
   visibilities,
+  whiteSpaces,
   widths,
   wordBreaks,
   zIndexes,

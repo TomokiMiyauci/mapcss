@@ -26,3 +26,23 @@ export const colors: Rule[] = [
     return colorByProp("color", { theme, prop });
   }],
 ];
+
+const WHITE_SPACE = "white-space";
+
+export const whiteSpaces: Rule[] = [
+  ["whitespace-normal", {
+    [WHITE_SPACE]: "normal",
+  }],
+  ["whitespace-nowrap", {
+    [WHITE_SPACE]: "nowrap",
+  }],
+  ["whitespace-pre", {
+    [WHITE_SPACE]: "pre",
+  }],
+  ["whitespace-pre-line", {
+    [WHITE_SPACE]: "pre-line",
+  }],
+  ["whitespace-pre-wrap", {
+    [WHITE_SPACE]: "pre-wrap",
+  }],
+];
