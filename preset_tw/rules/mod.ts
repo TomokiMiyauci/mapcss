@@ -25,6 +25,7 @@ import { maxWidths } from "./max_width.ts";
 import {
   colors,
   contents,
+  fontSmoothings,
   lineHeights,
   verticalAligns,
   whiteSpaces,
@@ -129,6 +130,7 @@ export const nestedRules = [
   outlineColors,
   whiteSpaces,
   verticalAligns,
+  fontSmoothings,
 ];
 
 export {
@@ -156,6 +158,7 @@ export {
   floats,
   fontFamilies,
   fontSizes,
+  fontSmoothings,
   fontStyles,
   fontWeights,
   heights,

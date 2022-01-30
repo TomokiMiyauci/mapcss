@@ -1,3 +1,8 @@
+export const fontSmoothings = [
+  "antialiased",
+  "subpixel-antialiased",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",

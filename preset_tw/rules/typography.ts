@@ -4,6 +4,17 @@ import { colorByProp, colorOpacityByProp } from "./_utils.ts";
 import type { PresetTwTheme } from "../theme/types.ts";
 import type { Rule } from "../../core/types.ts";
 
+export const fontSmoothings: Rule[] = [
+  ["antialiased", {
+    "-webkit-font-smoothing": "antialiased",
+    "-moz-osx-font-smoothing": "grayscale",
+  }],
+  ["subpixel-antialiased", {
+    "-webkit-font-smoothing": "auto",
+    "-moz-osx-font-smoothing": "auto",
+  }],
+];
+
 export const lineHeights: Rule[] = [
   [/^leading-(.+)$/, ([, path], { theme }) => {
     const lineHeight = resolveTheme(theme as PresetTwTheme, {
