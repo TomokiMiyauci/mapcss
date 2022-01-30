@@ -52,3 +52,7 @@ export const wordBreaks: Rule[] = [
   ["break-words", { "overflow-wrap": "break-word" }],
   ["break-all", { "word-break": "break-all" }],
 ];
+
+export const contents: Rule[] = [
+  ["content-none", { "content": "none" }],
+];

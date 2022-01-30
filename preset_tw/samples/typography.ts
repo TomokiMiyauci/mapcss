@@ -11,3 +11,7 @@ export const wordBreaks = [
   "break-words",
   "break-all",
 ];
+
+export const contents = [
+  "content-none",
+];

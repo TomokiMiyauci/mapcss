@@ -2,7 +2,6 @@ import { alignContents } from "./align_content.ts";
 import { alignItems } from "./align_items.ts";
 import { alignSelfs } from "./align_self.ts";
 import { backfaceVisibilities } from "./backface_visibility.ts";
-import { contents } from "./content.ts";
 import { flexes } from "./flex.ts";
 import { fontStyles } from "./font_style.ts";
 import { justifyContents } from "./justify_content.ts";
@@ -23,7 +22,13 @@ import { fontWeights } from "./font_weight.ts";
 import { letterSpacings } from "./letter_spacing.ts";
 import { fontFamilies } from "./font_family.ts";
 import { maxWidths } from "./max_width.ts";
-import { colors, lineHeights, whiteSpaces, wordBreaks } from "./typography.ts";
+import {
+  colors,
+  contents,
+  lineHeights,
+  whiteSpaces,
+  wordBreaks,
+} from "./typography.ts";
 import {
   aspectRatios,
   boxDecorations,
