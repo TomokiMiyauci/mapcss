@@ -13,3 +13,12 @@ export const alignContents = [
   "content-around",
   "content-evenly",
 ];
+
+export const alignItems = [
+  "content-center",
+  "content-start",
+  "content-end",
+  "content-between",
+  "content-around",
+  "content-evenly",
+];

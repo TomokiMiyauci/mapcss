@@ -1,4 +1,3 @@
-import { alignItems } from "./align_items.ts";
 import { alignSelfs } from "./align_self.ts";
 import { backfaceVisibilities } from "./backface_visibility.ts";
 import { fontStyles } from "./font_style.ts";
@@ -63,7 +62,7 @@ import {
 } from "./border.ts";
 import { backgroundColors } from "./background.ts";
 import { borderCollapses } from "./table.ts";
-import { alignContents, flexes } from "./flex_grid.ts";
+import { alignContents, alignItems, flexes } from "./flex_grid.ts";
 
 export const nestedRules = [
   alignContents,
