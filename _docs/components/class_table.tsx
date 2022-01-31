@@ -70,17 +70,7 @@ function ClassTable({ rules, samples = [] }: ClassTableProps) {
           })}
           {mixed.map((m) => {
             if (Array.isArray(m)) {
-              const style = stringifyCSSObject(m[1]);
-              return (
-                <tr key={m[0] + style}>
-                  <td className="py-2 pr-2 font-mono font-medium text-xs leading-6 text-sky-500 whitespace-nowrap dark:text-sky-400">
-                    {m[0]}
-                  </td>
-                  <td className="py-2 pl-2 whitespace-pre font-mono text-xs leading-6 text-indigo-600 whitespace-pre dark:text-indigo-300 sm:table-cell sm:pr-2">
-                    {style}
-                  </td>
-                </tr>
-              );
+              return <></>;
             } else {
               return (
                 <tr key={m.toString()}>

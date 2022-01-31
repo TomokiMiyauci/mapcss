@@ -63,9 +63,23 @@ function pickField({ title, href }: {
   };
 }
 
+const gettingStarted = {
+  name: "Getting Started",
+  items: fronts.filter(({ category }) => category === "Getting Started").map(
+    pickField,
+  ),
+};
+
 const layout = {
   name: "Layout",
   items: fronts.filter(({ category }) => category === "Layout").map(pickField),
+};
+
+const flexGrid = {
+  name: "Flexbox & Grid",
+  items: fronts.filter(({ category }) => category === "Flexbox & Grid").map(
+    pickField,
+  ),
 };
 
 const spacing: NavMenu = {
@@ -105,7 +119,9 @@ const table: NavMenu = {
 };
 
 const navMenu: NavMenu[] = [
+  gettingStarted,
   layout,
+  flexGrid,
   spacing,
   sizing,
   typography,
