@@ -1,3 +1,19 @@
+# [1.0.0-beta.3](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-31)
+
+
+### Bug Fixes
+
+* **preset_tw:** fix wrong css value ([15f57a6](https://github.com/TomokiMiyauci/mapcss/commit/15f57a602659aca8f4fd36b1f7f99cb402945e59))
+
+
+### Features
+
+* **preset_tw:** add rule of `border-collapse` ([30563ef](https://github.com/TomokiMiyauci/mapcss/commit/30563ef7d4b7b50c888bec469fac6a892375e6c5))
+* **preset_tw:** add rule of `max-height` ([4b06f9e](https://github.com/TomokiMiyauci/mapcss/commit/4b06f9eae9d6697a19910436d50de7889f500f92))
+* **preset_tw:** add rule of `vertical-align` ([f6cbd2c](https://github.com/TomokiMiyauci/mapcss/commit/f6cbd2c74d63798d66f1f6b9bb9258c441494486))
+* **preset_tw:** add rule of `white-space` ([7ec64f6](https://github.com/TomokiMiyauci/mapcss/commit/7ec64f65dcacc08a301861604cf03d09ae429803))
+* **preset_tw:** add rule of fontSmoothing ([a4b9cae](https://github.com/TomokiMiyauci/mapcss/commit/a4b9caed7ec859f06a8500f1cd6f63e4cd6e531e))
+
 # [1.0.0-beta.2](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-30)
 
 
