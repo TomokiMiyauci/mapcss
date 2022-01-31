@@ -1,0 +1,100 @@
+# [1.0.0-beta.3](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-31)
+
+
+### Bug Fixes
+
+* **preset_tw:** fix wrong css value ([15f57a6](https://github.com/TomokiMiyauci/mapcss/commit/15f57a602659aca8f4fd36b1f7f99cb402945e59))
+
+
+### Features
+
+* **preset_tw:** add rule of `border-collapse` ([30563ef](https://github.com/TomokiMiyauci/mapcss/commit/30563ef7d4b7b50c888bec469fac6a892375e6c5))
+* **preset_tw:** add rule of `max-height` ([4b06f9e](https://github.com/TomokiMiyauci/mapcss/commit/4b06f9eae9d6697a19910436d50de7889f500f92))
+* **preset_tw:** add rule of `vertical-align` ([f6cbd2c](https://github.com/TomokiMiyauci/mapcss/commit/f6cbd2c74d63798d66f1f6b9bb9258c441494486))
+* **preset_tw:** add rule of `white-space` ([7ec64f6](https://github.com/TomokiMiyauci/mapcss/commit/7ec64f65dcacc08a301861604cf03d09ae429803))
+* **preset_tw:** add rule of fontSmoothing ([a4b9cae](https://github.com/TomokiMiyauci/mapcss/commit/a4b9caed7ec859f06a8500f1cd6f63e4cd6e531e))
+
+# [1.0.0-beta.2](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2022-01-30)
+
+
+### Bug Fixes
+
+* **preset_tw:** remove break_before file, move to layout ([14d36be](https://github.com/TomokiMiyauci/mapcss/commit/14d36beb046daa4963ee61a5470a8cdc5bfc1a65))
+
+
+### Features
+
+* **preset_tw:** export sample for layout classes ([85e8940](https://github.com/TomokiMiyauci/mapcss/commit/85e89406dba4d61f0a0543052ebf692662394332))
+
+# 1.0.0-beta.1 (2022-01-30)
+
+
+### Bug Fixes
+
+* **core:** change rule context interface ([84fbed2](https://github.com/TomokiMiyauci/mapcss/commit/84fbed2cbedbe7c8f7ff3f153ed7ff89d745427b))
+* **core:** fix escape selector logic ([d1ac27d](https://github.com/TomokiMiyauci/mapcss/commit/d1ac27d1b9b091ba9d1eaebeabda04dedb518815))
+* **core:** fix format of raw css and add test case ([7327d80](https://github.com/TomokiMiyauci/mapcss/commit/7327d80d965a529de60424ccbaf7df0079ac5407))
+* **core:** remove defualt theme ([65d9dc8](https://github.com/TomokiMiyauci/mapcss/commit/65d9dc85fe2e0ea07d1e3f5b78747e0fe4b6cdca))
+* **preset_mini:** change interface of rules what should have property name ([e577c14](https://github.com/TomokiMiyauci/mapcss/commit/e577c14881491c9627e389bf9f11d50fb24e346d))
+* **preset_tw:** add `PresetTwTheme` interface ([f2ba583](https://github.com/TomokiMiyauci/mapcss/commit/f2ba5830a67f4b32a1f14d12462654a81234805e))
+* **preset_tw:** add css variable to `color` ([014f5f6](https://github.com/TomokiMiyauci/mapcss/commit/014f5f6052526b69ee0ebfdfd50b8558c8e4e9df))
+* **preset_tw:** convert hex to rgba `border-color` rule ([f99428a](https://github.com/TomokiMiyauci/mapcss/commit/f99428a1f78e14eaf6615ead3a0c222752342507))
+* **preset_tw:** fix regex rule ([1442caa](https://github.com/TomokiMiyauci/mapcss/commit/1442caa89c73077cc2926556a840d84ac00c93cf))
+* **preset_tw:** fix types of theme ([b75d9a5](https://github.com/TomokiMiyauci/mapcss/commit/b75d9a565fe4f22a0dd2e3dc75a49890e4adb662))
+
+
+### Features
+
+* **core:** add `generate` function that returns raw CSS ([a5148df](https://github.com/TomokiMiyauci/mapcss/commit/a5148df0818ed68f72c9c8ab5ca3561d6ca207a0))
+* **core:** add feature of `modifier` and add breakpoint theme ([dc49c83](https://github.com/TomokiMiyauci/mapcss/commit/dc49c835f52763b9cad121588972d53d6d7905d6))
+* **core:** add theme interface and pass theme object when rule is dynamic ([8ad0108](https://github.com/TomokiMiyauci/mapcss/commit/8ad010873dcc5f278a3fa2bcf9c040ceb702a007))
+* **core:** change theme interface and add default prop of theme ([23beb53](https://github.com/TomokiMiyauci/mapcss/commit/23beb533075bb64f77dfcd656c8b15808ae578ef))
+* **preset_mini:** add modifier of `dark` color scheme ([31464cf](https://github.com/TomokiMiyauci/mapcss/commit/31464cf34acbaf8e90f9875e9bd55c4e1bafaa59))
+* **preset_mini:** add modifier of `focus` ([19b9a0e](https://github.com/TomokiMiyauci/mapcss/commit/19b9a0e1609311247260a2bc60c5c5ba259dd0cf))
+* **preset_mini:** add modifier of `hover` ([698a4e8](https://github.com/TomokiMiyauci/mapcss/commit/698a4e8194fa2c176709a6c8e4a8660817fad20a))
+* **preset_mini:** add preset for minimum properties ([e695112](https://github.com/TomokiMiyauci/mapcss/commit/e695112ffde66b540b34377d4a34d74838ebe83e))
+* **preset_mini:** add rule of `background-color` ([0d63d1c](https://github.com/TomokiMiyauci/mapcss/commit/0d63d1c80fe797388fc39e4c65d1364e381d9fd7))
+* **preset_mini:** add rule of `font-family` ([0475ac6](https://github.com/TomokiMiyauci/mapcss/commit/0475ac6ea88f91a1a10f332f1e1d49db16049e8c))
+* **preset_mini:** add rule of `margin` ([11f67b4](https://github.com/TomokiMiyauci/mapcss/commit/11f67b4fd3c616a752a2571df9f515b987c16f08))
+* **preset_mini:** add rule of `max-width` ([8c9dc93](https://github.com/TomokiMiyauci/mapcss/commit/8c9dc93edbc3bbb8fe669a2f90e7c8a6800de564))
+* **preset_mini:** add rule of `outline-style` ([6611012](https://github.com/TomokiMiyauci/mapcss/commit/661101231088f920fa11eb657d8afe29bb38e5cb))
+* **preset_mini:** add theme of `fontFamily` ([6c55615](https://github.com/TomokiMiyauci/mapcss/commit/6c55615377552d8ab3c255bde7c414ba6caa53a7))
+* **preset_mini:** add theme of `fontSize` and add rule of `font-size` ([0057801](https://github.com/TomokiMiyauci/mapcss/commit/005780154186d21dfb5a13cb234f114e4a9616ed))
+* **preset_mini:** add theme of `fontWeight` and rule of `font-weight` ([d5d152e](https://github.com/TomokiMiyauci/mapcss/commit/d5d152ef62b1e9c4a38966e74bd308955b75c30c))
+* **preset_mini:** add theme of `letterSpacing` and add rule of `letter-spacing` ([23ad5a6](https://github.com/TomokiMiyauci/mapcss/commit/23ad5a6a473379d6f29cc659cbfa60731374420b))
+* **preset_mini:** add theme of `margin` ([cc77c2c](https://github.com/TomokiMiyauci/mapcss/commit/cc77c2c689ac02ce7512aa086a73a51d06ef1b67))
+* **preset_mini:** add theme of `maxWidth` ([5455a03](https://github.com/TomokiMiyauci/mapcss/commit/5455a035df3f2b824dc4156ffdf2f571ca0504cc))
+* **preset_tw:** add attribute rule to `width` ([e06be29](https://github.com/TomokiMiyauci/mapcss/commit/e06be29111e11897ba980f5772d420d972a409e7))
+* **preset_tw:** add background opacity to `background-color` rule ([ce2b119](https://github.com/TomokiMiyauci/mapcss/commit/ce2b11947cfe79a7a4c284cdee821b470589cc63))
+* **preset_tw:** add opacity attribute to `border-color` ([1e6e6ce](https://github.com/TomokiMiyauci/mapcss/commit/1e6e6ce89472f2d7f34eecfc78d373d78c78a065))
+* **preset_tw:** add opacity expression to `color` rule ([32208a0](https://github.com/TomokiMiyauci/mapcss/commit/32208a034e3214b47978451f7a805d5f27126a12))
+* **preset_tw:** add rule of `border-color` ([1c5f9d3](https://github.com/TomokiMiyauci/mapcss/commit/1c5f9d30428c1f543d732ba319f564aa56de2ecb))
+* **preset_tw:** add rule of `border-color` ([432ed94](https://github.com/TomokiMiyauci/mapcss/commit/432ed941fd646b5f9f7cd73b868dd33819e90bdb))
+* **preset_tw:** add rule of `border-style` ([c8e4967](https://github.com/TomokiMiyauci/mapcss/commit/c8e49673b3abe875631c0dc5a8e041abf833d57e))
+* **preset_tw:** add rule of `box-decoration-break` ([7a12e01](https://github.com/TomokiMiyauci/mapcss/commit/7a12e0105d380a83cc1482b44722861879a49658))
+* **preset_tw:** add rule of `box-sizing` ([c4b00f1](https://github.com/TomokiMiyauci/mapcss/commit/c4b00f154d69f8a9e32d9c7f7bd6eb7429ecdf11))
+* **preset_tw:** add rule of `break-after` ([e6cf09b](https://github.com/TomokiMiyauci/mapcss/commit/e6cf09be41755e392edab5e97b030f98f7532f7c))
+* **preset_tw:** add rule of `break-before` ([83ad21a](https://github.com/TomokiMiyauci/mapcss/commit/83ad21a65f4d820b1733f595f306d57ba21a0a63))
+* **preset_tw:** add rule of `break-inside` ([6a1cb04](https://github.com/TomokiMiyauci/mapcss/commit/6a1cb04d637878a8134e83d59e828bfc7072a8bf))
+* **preset_tw:** add rule of `columns` ([b27ba6c](https://github.com/TomokiMiyauci/mapcss/commit/b27ba6cb0c065c4523f68fda6a782bbe50c44c53))
+* **preset_tw:** add rule of `isolation` ([84f9a32](https://github.com/TomokiMiyauci/mapcss/commit/84f9a32d3d7f6ffd03ab52d753ed54a2e58f585d))
+* **preset_tw:** add rule of `object-fit` ([070b301](https://github.com/TomokiMiyauci/mapcss/commit/070b30101aaf86cd3307502fa9c99e3a97fa7235))
+* **preset_tw:** add rule of `object-position` ([3f6dfca](https://github.com/TomokiMiyauci/mapcss/commit/3f6dfca5be7c1f209aab97ea624e34d484362fdb))
+* **preset_tw:** add rule of `outline-color` ([c86ef5a](https://github.com/TomokiMiyauci/mapcss/commit/c86ef5a44366c5683ea79b4a5b7be0de9f740e22))
+* **preset_tw:** add rule of `outline-offset` ([e39644c](https://github.com/TomokiMiyauci/mapcss/commit/e39644c345c833503b27c358fc68ff0d2ad99f4e))
+* **preset_tw:** add rule of `outline-width` ([3bf5353](https://github.com/TomokiMiyauci/mapcss/commit/3bf5353f308bbb6208ff45834b613d4aa77b75c0))
+* **preset_tw:** add rule of `overflow` ([b40c6b0](https://github.com/TomokiMiyauci/mapcss/commit/b40c6b0b866173830777e8025d27b0428857a3d6))
+* **preset_tw:** add rule of `overscroll-behavior` ([9114a4c](https://github.com/TomokiMiyauci/mapcss/commit/9114a4cb83816dca2cde106925506ded86f19d84))
+* **preset_tw:** add rule of `width` ([efe9ca2](https://github.com/TomokiMiyauci/mapcss/commit/efe9ca2710c255b4ff7275bff064381cf49a0749))
+* **preset_tw:** add theme of `borderRadius` and rule of `border-radius` ([810954b](https://github.com/TomokiMiyauci/mapcss/commit/810954b862b04c4640bc60f2f112f4b27c2802cc))
+* **preset_tw:** add theme of `borderWidth` and add rule of `border-width` ([6476798](https://github.com/TomokiMiyauci/mapcss/commit/6476798226f0719601277a8442dbe89470bc5a91))
+* **preset_tw:** add theme of `column` ([6e5bddb](https://github.com/TomokiMiyauci/mapcss/commit/6e5bddba08eefb36f5e5106685dc6dbc56feb904))
+* **preset_tw:** add theme of `height` and add rule of `height` ([3d5490a](https://github.com/TomokiMiyauci/mapcss/commit/3d5490a1168c1287260d9f6f564d8f85a48193ea))
+* **preset_tw:** add theme of `lineHeight` and add rule of `line-height` ([501b2ea](https://github.com/TomokiMiyauci/mapcss/commit/501b2ea7c0e4129cab58c78692dbae45b167c9dc))
+* **preset_tw:** add theme of `maxWidth` and rule of `max-width` ([7026073](https://github.com/TomokiMiyauci/mapcss/commit/702607380f11727be05792d7fb19a326d270a405))
+* **preset_tw:** add theme of `minWidth` and rule of `min-width` ([276d21e](https://github.com/TomokiMiyauci/mapcss/commit/276d21e63b9fce4b18f1d477d55a3abdb7592eb3))
+* **preset_tw:** add theme of `objectPosition` ([08128f3](https://github.com/TomokiMiyauci/mapcss/commit/08128f34e45b55fa089217f3ceea86a2d4113e84))
+* **preset_tw:** add theme of `padding` and add rule of `padding` ([b4b3ea3](https://github.com/TomokiMiyauci/mapcss/commit/b4b3ea30b56290bfedf9d02e06569250efb54c29))
+* **preset_tw:** add theme of `width` ([42eded6](https://github.com/TomokiMiyauci/mapcss/commit/42eded6b57727f3735365b82727e1b4b83accac7))
+* **preset_tw:** change style of `color` hex-color to RBBA ([dcbbd50](https://github.com/TomokiMiyauci/mapcss/commit/dcbbd5083b760902d55ae2131d967d65366eb8f2))
+* **reset:** add tailwind reset css ([96fe50c](https://github.com/TomokiMiyauci/mapcss/commit/96fe50c29edf5683c27921ef46f0d989e35a2378))

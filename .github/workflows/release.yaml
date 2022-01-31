@@ -1,0 +1,95 @@
+name: release
+
+on:
+  push:
+    branches:
+      - beta
+    paths-ignore:
+      - '_docs/**'
+
+jobs:
+  lint:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        deno: [v1.x, canary]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Lint
+        run: |
+          deno fmt --check
+          deno lint
+
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        deno: [v1.x, canary]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Test
+        run: deno test --ignore=node_modules,_docs,_examples --import-map=test_import_map.json --doc --coverage=coverage
+
+      - name: Generate coverage
+        if: ${{ matrix.deno == 'v1.x' }}
+        run: deno coverage coverage --lcov > cov_profile.lcov
+
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.deno == 'v1.x' }}
+        with:
+          files: cov_profile.lcov
+
+  release:
+    needs: [lint, test]
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.23.6
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --prefer-offline, --ignore-scripts]
+
+      - name: Release
+        run: pnpm release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

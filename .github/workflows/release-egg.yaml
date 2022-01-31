@@ -1,0 +1,28 @@
+name: release-eggs
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        deno: [v1.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Publish module
+        run: |
+          deno install -A --unstable https://x.nest.land/eggs@0.3.10/eggs.ts
+          eggs link ${{ secrets.NESTAPIKEY }}
+          eggs publish --version $(git describe --tags $(git rev-list --tags --max-count=1)) --yes --no-check

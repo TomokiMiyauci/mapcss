@@ -1,10 +1,15 @@
 {
   "lint": {
     "rules": {
-      "exclude": ["ban-types"]
+      "exclude": ["ban-types", "no-explicit-any"]
     },
     "files": {
-      "exclude": ["node_modules"]
+      "exclude": ["node_modules", "_docs", "CHANGELOG.md"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["node_modules", "_docs", "CHANGELOG.md"]
     }
   }
 }
