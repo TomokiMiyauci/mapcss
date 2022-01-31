@@ -1,8 +1,8 @@
 import type { Theme } from "../../core/types.ts";
 
 export const fontWeight: Theme["fontWeight"] = {
-  hairline: 100,
-  thin: 200,
+  thin: 100,
+  extralight: 200,
   light: 300,
   normal: 400,
   medium: 500,
