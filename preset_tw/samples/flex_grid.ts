@@ -23,6 +23,14 @@ export const justifyItems = [
   "justify-evenly",
 ];
 
+export const justifySelfs = [
+  "justify-self-auto",
+  "justify-self-start",
+  "justify-self-end",
+  "justify-self-center",
+  "justify-self-stretch",
+];
+
 export const alignContents = [
   "content-center",
   "content-start",

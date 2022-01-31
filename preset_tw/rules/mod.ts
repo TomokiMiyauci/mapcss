@@ -1,6 +1,5 @@
 import { backfaceVisibilities } from "./backface_visibility.ts";
 import { fontStyles } from "./font_style.ts";
-import { justifySelfs } from "./justify_self.ts";
 import { placeContents } from "./place_content.ts";
 import { pointerEvents } from "./pointer_events.ts";
 import { resizes } from "./resize.ts";
@@ -66,6 +65,7 @@ import {
   flexes,
   justifyContents,
   justifyItems,
+  justifySelfs,
 } from "./flex_grid.ts";
 
 export const nestedRules = [
