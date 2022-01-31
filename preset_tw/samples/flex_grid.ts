@@ -5,6 +5,15 @@ export const flexes = [
   "flex-none",
 ];
 
+export const justifyContents = [
+  "justify-start",
+  "justify-end",
+  "justify-center",
+  "justify-between",
+  "justify-around	",
+  "justify-evenly",
+];
+
 export const alignContents = [
   "content-center",
   "content-start",

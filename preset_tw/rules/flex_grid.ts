@@ -22,6 +22,17 @@ export const flexes: Rule[] = [
   ["flex-none", { [FLEX]: NONE }],
 ];
 
+const JUSTIFY_CONTENT = "justify-content";
+
+export const justifyContents: Rule[] = [
+  ["justify-start", { [JUSTIFY_CONTENT]: `${FLEX}-${START}` }],
+  ["justify-end", { [JUSTIFY_CONTENT]: `${FLEX}-${END}` }],
+  ["justify-center", { [JUSTIFY_CONTENT]: CENTER }],
+  ["justify-between", { [JUSTIFY_CONTENT]: `${SPACE}-${BETWEEN}` }],
+  ["justify-around", { [JUSTIFY_CONTENT]: `${SPACE}-${AROUND}` }],
+  ["justify-evenly", { [JUSTIFY_CONTENT]: `${SPACE}-${EVENLY}` }],
+];
+
 const alignContent = "align-content";
 
 export const alignContents: Rule[] = [

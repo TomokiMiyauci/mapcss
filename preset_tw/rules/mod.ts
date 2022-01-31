@@ -1,6 +1,5 @@
 import { backfaceVisibilities } from "./backface_visibility.ts";
 import { fontStyles } from "./font_style.ts";
-import { justifyContents } from "./justify_content.ts";
 import { justifyItems } from "./justify_items.ts";
 import { justifySelfs } from "./justify_self.ts";
 import { placeContents } from "./place_content.ts";
@@ -61,7 +60,13 @@ import {
 } from "./border.ts";
 import { backgroundColors } from "./background.ts";
 import { borderCollapses } from "./table.ts";
-import { alignContents, alignItems, alignSelfs, flexes } from "./flex_grid.ts";
+import {
+  alignContents,
+  alignItems,
+  alignSelfs,
+  flexes,
+  justifyContents,
+} from "./flex_grid.ts";
 
 export const nestedRules = [
   alignContents,
