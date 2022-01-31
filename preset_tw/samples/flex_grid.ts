@@ -22,3 +22,11 @@ export const alignItems = [
   "content-around",
   "content-evenly",
 ];
+
+export const alignSelfs = [
+  "items-start",
+  "items-end",
+  "items-center",
+  "items-baseline",
+  "items-stretch",
+];
