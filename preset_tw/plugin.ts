@@ -1,4 +1,4 @@
-import { mapperMap } from "./rules/mod.ts";
+import { mapperMap } from "./mapper/mod.ts";
 import { theme } from "./theme/mod.ts";
 import { nestedModifiers } from "./modifiers/mod.ts";
 import type { Preset } from "../core/types.ts";

@@ -74,7 +74,7 @@ export function colorOpacityByProp(
 ) {
   const colors = prop.split(SEPARATOR);
 
-  const color = resolveTheme(theme as PresetTwTheme, {
+  const color = resolveTheme(theme, {
     scope: "color",
     path: colors,
   }) as unknown;
