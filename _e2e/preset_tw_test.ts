@@ -1,5 +1,5 @@
 import { expect, test } from "../dev_deps.ts";
-import { generate, presetTw } from "../mod.ts";
+import { generate, mapperMap, theme } from "../mod.ts";
 
 const expects: [string, string][] = [
   ["aspect-auto", ".aspect-auto{aspect-ratio:auto;}"],
@@ -375,7 +375,7 @@ const expects: [string, string][] = [
   ["tracking-wide", ".tracking-wide{letter-spacing:0.025em;}"],
   ["tracking-wider", ".tracking-wider{letter-spacing:0.05em;}"],
   ["tracking-widest", ".tracking-widest{letter-spacing:0.1em;}"],
-  ["leading-3", ".leading-3{line-height:.75rem;}"],
+  ["leading-3", ".leading-3{line-height:0.75rem;}"],
   ["leading-4", ".leading-4{line-height:1rem;}"],
   ["leading-5", ".leading-5{line-height:1.25rem;}"],
   ["leading-6", ".leading-6{line-height:1.5rem;}"],
@@ -668,7 +668,7 @@ const expects: [string, string][] = [
   ["border-separate", ".border-separate{border-collapse:separate;}"],
 ];
 
-const config = { presets: [presetTw()] };
+const config = { theme, mapperMap };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {

@@ -1,5 +1,8 @@
 export {
+  isFunction,
+  isLength0,
   isNumber,
+  isObject,
   isString,
   isSymbol,
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
@@ -11,10 +14,15 @@ import {
   isUndefined,
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
 export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
+export { associateWith } from "https://deno.land/std@0.123.0/collections/associate_with.ts";
 export { isUndefined };
 
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
+}
+
+export function isRegExp(value: unknown): value is RegExp {
+  return value instanceof RegExp;
 }
 
 /** check field is exist or not */
@@ -37,7 +45,7 @@ export function prop<
 }
 
 /** take elements except head */
-function tail<T extends unknown>(val: readonly T[]): T[] {
+export function tail<T extends unknown>(val: readonly T[]): T[] {
   return val.slice(1, Infinity);
 }
 
@@ -59,4 +67,33 @@ export function propPath(
     return propPath(rest, nested);
   }
   return undefined;
+}
+
+/** Alias for `Tuple` */
+type IsTuple<T extends readonly unknown[]> = number extends T["length"] ? false
+  : true;
+
+type ArrayOfLength<N extends number, C extends any[] = []> = C["length"] extends
+  N ? C : ArrayOfLength<N, [...C, any]>;
+
+type Minus<N extends number> = ArrayOfLength<N> extends [any, ...infer Rest]
+  ? Rest["length"]
+  : never;
+
+/** take last element of `array` */
+export function last<T extends readonly unknown[]>(
+  value: T,
+): IsTuple<T> extends true ? T[Minus<T["length"]>] : T[number] | undefined {
+  return value.slice(-1)[0] as never;
+}
+
+export function init<T>(value: readonly T[]): T[] {
+  return value.slice(0, -1);
+}
+
+/** safe accessor for first element */
+export function head<T extends readonly unknown[]>(
+  value: T,
+): IsTuple<T> extends true ? T[0] : T[0] | undefined {
+  return value[0];
 }
