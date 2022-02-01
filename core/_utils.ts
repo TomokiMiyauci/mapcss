@@ -1,47 +1,9 @@
 import { isString } from "../deps.ts";
 import { escapeRegExp } from "./utils/escape.ts";
-import type {
-  CSSObject,
-  DynamicRule,
-  ModifierResult,
-  Rule,
-  StaticRule,
-} from "./types.ts";
-
-export function isRegExp(value: unknown): value is RegExp {
-  return value instanceof RegExp;
-}
-
-export function isDynamicRule(rule: Rule): rule is DynamicRule {
-  return isRegExp(rule[0]);
-}
-
-export function isStaticRule(rule: Rule): rule is StaticRule {
-  return !isRegExp(rule[0]);
-}
-
-export function isAtRule(
-  cssStatement: AtRule | RuleSet,
-): cssStatement is AtRule {
-  return "identifier" in cssStatement;
-}
-
-export function isRuleSet(
-  cssStatement: AtRule | RuleSet,
-): cssStatement is RuleSet {
-  return "declarationBlock" in cssStatement;
-}
-
-export type RuleSet = {
-  selector: string;
-  declarationBlock: CSSObject;
-};
-
-export type AtRule = Partial<ModifierResult> & {
-  children: RuleSet;
-};
-
-type CSSStatement = RuleSet | AtRule;
+import { isRuleSet } from "./utils/assert.ts";
+import { bracket } from "./utils/unit.ts";
+import type { AtRule, CSSStatement } from "./types.ts";
+import type { CSSObject } from "./types.ts";
 
 export function constructCSS(
   cssStatement: CSSStatement,
@@ -71,14 +33,6 @@ export function cssDeclarationBlock(cssObject: CSSObject): string {
   }, "");
 
   return bracket(content);
-}
-
-export function bracket<T extends string>(value: T): `{${T}}` {
-  return `{${value}}`;
-}
-
-export function paren<T extends string>(value: T): `(${T})` {
-  return `(${value})`;
 }
 
 export function constructAtRule(

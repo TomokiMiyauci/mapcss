@@ -1,4 +1,4 @@
-import { paren } from "../_utils.ts";
+import { paren } from "./unit.ts";
 import type { RGBA } from "./parse.ts";
 export function stringifyRGBA(
   { r, g, b, a }: Record<keyof RGBA, string | number>,
