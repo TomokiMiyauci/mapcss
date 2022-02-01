@@ -1,4 +1,5 @@
-export const color = {
+import type { Theme } from "../../core/types.ts";
+export const color: Theme = {
   inherit: "inherit",
   current: "currentColor",
   transparent: "transparent",
