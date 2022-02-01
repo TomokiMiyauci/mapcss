@@ -1,12 +1,19 @@
-import type { Rule } from "../../core/types.ts";
+import type { RecordMapper } from "../../core/types.ts";
 
-const BORDER_COLLAPSE = "border-collapse";
-
-export const borderCollapses: Rule[] = [
-  ["border-collapse", {
-    [BORDER_COLLAPSE]: "collapse",
-  }],
-  ["border-separate", {
-    [BORDER_COLLAPSE]: "separate",
-  }],
-];
+export const table: RecordMapper = {
+  DEFAULT: { display: "table" },
+  caption: { display: "table-caption" },
+  cell: { display: "table-cell" },
+  column: {
+    DEFAULT: { display: "table-column" },
+    group: { display: "table-column-group" },
+  },
+  header: { group: { display: "table-header-group" } },
+  footer: { group: { display: "table-footer-group" } },
+  row: {
+    DEFAULT: { display: "table-row" },
+    group: { display: "table-row-group" },
+  },
+  auto: { "table-layout": "auto" },
+  fixed: { "table-layout": "fixed" },
+};

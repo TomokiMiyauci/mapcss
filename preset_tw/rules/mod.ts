@@ -1,205 +1,119 @@
-import { backfaceVisibilities } from "./backface_visibility.ts";
-import { fontStyles } from "./font_style.ts";
-import { placeContents } from "./place_content.ts";
-import { pointerEvents } from "./pointer_events.ts";
-import { resizes } from "./resize.ts";
-import { textDecorations } from "./text_decoration.ts";
-import { textDecorationLines } from "./text_decoration_line.ts";
-import { textOverflows } from "./text_overflow.ts";
-import { textTransforms } from "./text_transform.ts";
-import { userSelects } from "./user_select.ts";
-import { fontSizes } from "./font_size.ts";
-import { fontWeights } from "./font_weight.ts";
-import { fontFamilies } from "./font_family.ts";
-import { maxWidths } from "./max_width.ts";
+import { backface } from "./backface_visibility.ts";
 import {
-  colors,
+  $static,
+  absolute,
+  antialiased,
+  block,
   contents,
-  fontSmoothings,
-  letterSpacings,
-  lineHeights,
-  textAligns,
-  verticalAligns,
-  whiteSpaces,
-  wordBreaks,
-} from "./typography.ts";
-import {
-  aspectRatios,
-  boxDecorations,
-  boxSizings,
-  breakAfter,
-  breakBefore,
-  breakInsides,
-  clears,
-  columns,
-  displays,
-  floats,
-  insets,
-  isolations,
-  objectFits,
-  objectPositions,
-  overflows,
-  overscrollBehaviors,
-  positions,
-  visibilities,
-  zIndexes,
-} from "./layout.ts";
-import { margins, paddings } from "./spacing.ts";
-import { heights, maxHeights, minWidths, widths } from "./sizing.ts";
-import {
-  borderColors,
-  borderRadiuses,
-  borderStyles,
-  borderWidths,
-  outlineColors,
-  outlineOffsets,
-  outlineStyles,
-  outlineWidths,
-} from "./border.ts";
-import { backgroundColors } from "./background.ts";
-import { borderCollapses } from "./table.ts";
-import {
-  alignContents,
-  alignItems,
-  alignSelfs,
-  flexes,
-  justifyContents,
-  justifyItems,
-  justifySelfs,
-} from "./flex_grid.ts";
+  fixed,
+  hidden,
+  invisible,
+  isolate,
+  isolation,
+  italic,
+  line,
+  no,
+  overline,
+  relative,
+  sticky,
+  subpixel,
+  visible,
+} from "./single.ts";
+import { align } from "./align.ts";
+import { table } from "./table.ts";
+import { columns } from "./columns.ts";
+import { $break } from "./break.ts";
+import { box } from "./box.ts";
+import { float } from "./float.ts";
+import { clear } from "./clear.ts";
+import { object } from "./object.ts";
+import { overflow } from "./overflow.ts";
+import { overscroll } from "./overscroll.ts";
+import { inset } from "./inset.ts";
+import { z } from "./z.ts";
+import { w } from "./w.ts";
+import { min } from "./min.ts";
+import { max } from "./max.ts";
+import { h } from "./h.ts";
+import { text } from "./text.ts";
+import { not } from "./not.ts";
+import { font } from "./font.ts";
+import { tracking } from "./tracking.ts";
+import { leading } from "./leading.ts";
+import { whitespace } from "./whitespace.ts";
+import { bg } from "./bg.ts";
+import { rounded } from "./rounded.ts";
+import { border } from "./border.ts";
+import { outline } from "./outline.ts";
+import { aspect } from "./aspect.ts";
+import { inline } from "./inline.ts";
+import { grid } from "./grid.ts";
+import { list } from "./list.ts";
+import { left } from "./left.ts";
+import { justify } from "./justify.ts";
+import { content } from "./content.ts";
+import { items } from "./items.ts";
+import { m } from "./m.ts";
+import { ml } from "./ml.ts";
+import { flex } from "./flex.ts";
+import { underline } from "./underline.ts";
 
-export const nestedRules = [
-  alignContents,
-  alignItems,
-  alignSelfs,
-  aspectRatios,
-  backfaceVisibilities,
-  colors,
-  clears,
+export const mapperMap = {
+  flex,
+  align,
+  no,
+  line,
+  overline,
+  underline,
+  ml,
+  items,
+  m,
+  justify,
+  left,
+  list,
+  hidden,
   contents,
-  displays,
-  flexes,
-  floats,
-  fontStyles,
-  justifyContents,
-  justifyItems,
-  justifySelfs,
-  placeContents,
-  pointerEvents,
-  positions,
-  resizes,
-  insets,
-  textAligns,
-  textDecorations,
-  textDecorationLines,
-  textOverflows,
-  textTransforms,
-  userSelects,
-  visibilities,
-  wordBreaks,
-  zIndexes,
-  backgroundColors,
-  fontSizes,
-  fontWeights,
-  letterSpacings,
-  fontFamilies,
-  maxWidths,
-  margins,
-  maxHeights,
-  outlineStyles,
-  lineHeights,
+  grid,
+  inline,
+  aspect,
+  outline,
+  rounded,
+  backface,
   columns,
-  breakBefore,
-  breakAfter,
-  breakInsides,
-  boxDecorations,
-  boxSizings,
-  paddings,
-  isolations,
-  objectFits,
-  objectPositions,
-  overflows,
-  overscrollBehaviors,
-  widths,
-  minWidths,
-  heights,
-  borderWidths,
-  borderColors,
-  borderRadiuses,
-  borderStyles,
-  outlineWidths,
-  outlineOffsets,
-  outlineColors,
-  whiteSpaces,
-  verticalAligns,
-  fontSmoothings,
-  borderCollapses,
-];
-
-export {
-  alignContents,
-  alignItems,
-  alignSelfs,
-  aspectRatios,
-  backfaceVisibilities,
-  backgroundColors,
-  borderCollapses,
-  borderColors,
-  borderRadiuses,
-  borderStyles,
-  borderWidths,
-  boxDecorations,
-  boxSizings,
-  breakAfter,
-  breakBefore,
-  breakInsides,
-  clears,
-  colors,
-  columns,
-  contents,
-  displays,
-  flexes,
-  floats,
-  fontFamilies,
-  fontSizes,
-  fontSmoothings,
-  fontStyles,
-  fontWeights,
-  heights,
-  insets,
-  isolations,
-  justifyContents,
-  justifyItems,
-  justifySelfs,
-  letterSpacings,
-  lineHeights,
-  margins,
-  maxHeights,
-  maxWidths,
-  minWidths,
-  objectFits,
-  objectPositions,
-  outlineColors,
-  outlineOffsets,
-  outlineStyles,
-  outlineWidths,
-  overflows,
-  overscrollBehaviors,
-  paddings,
-  placeContents,
-  pointerEvents,
-  positions,
-  resizes,
-  textAligns,
-  textDecorationLines,
-  textDecorations,
-  textOverflows,
-  textTransforms,
-  userSelects,
-  verticalAligns,
-  visibilities,
-  whiteSpaces,
-  widths,
-  wordBreaks,
-  zIndexes,
+  block,
+  break: $break,
+  box,
+  float,
+  clear,
+  table,
+  border,
+  isolation,
+  inset,
+  isolate,
+  object,
+  overflow,
+  overscroll,
+  static: $static,
+  fixed,
+  absolute,
+  relative,
+  tracking,
+  sticky,
+  visible,
+  invisible,
+  z,
+  w,
+  min,
+  h,
+  max,
+  text,
+  antialiased,
+  subpixel,
+  bg,
+  italic,
+  not,
+  font,
+  leading,
+  content,
+  whitespace,
 };
