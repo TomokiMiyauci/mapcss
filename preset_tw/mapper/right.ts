@@ -1,5 +1,5 @@
 import { associatePercent, associateRem } from "./_utils.ts";
-import { reFraction, reNumeric } from "../../core/utils/regexp.ts";
+import { reBracket$, reFraction, reNumeric } from "../../core/utils/regexp.ts";
 import type { EntriesMapper } from "../../core/types.ts";
 
 export const right: EntriesMapper = [
@@ -14,4 +14,8 @@ export const right: EntriesMapper = [
       associatePercent(["right"], numerator, denominator),
   ],
   [reNumeric, ([, numeric]) => associateRem(["right"], numeric)],
+  [
+    reBracket$,
+    ([, attr]) => ({ right: attr }),
+  ],
 ];
