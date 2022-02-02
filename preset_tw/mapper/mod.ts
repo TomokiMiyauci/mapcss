@@ -57,8 +57,14 @@ import { m } from "./m.ts";
 import { ml } from "./ml.ts";
 import { flex } from "./flex.ts";
 import { underline } from "./underline.ts";
+import { top } from "./top.ts";
+import { right } from "./right.ts";
+import { bottom } from "./bottom.ts";
 
 export const mapperMap = {
+  top,
+  right,
+  bottom,
   flex,
   align,
   no,
