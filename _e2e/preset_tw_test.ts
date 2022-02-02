@@ -1242,6 +1242,18 @@ const expects: [string, string][] = [
   ["font-bold", ".font-bold{font-weight:700;}"],
   ["font-extrabold", ".font-extrabold{font-weight:800;}"],
   ["font-black", ".font-black{font-weight:900;}"],
+  [
+    "font-sans",
+    `.font-sans{font-family:ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";}`,
+  ],
+  [
+    "font-serif",
+    `.font-serif{font-family:ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;}`,
+  ],
+  [
+    "font-mono",
+    `.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}`,
+  ],
   ["tracking-tighter", ".tracking-tighter{letter-spacing:-0.05em;}"],
   ["tracking-tight", ".tracking-tight{letter-spacing:-0.025em;}"],
   ["tracking-normal", ".tracking-normal{letter-spacing:0em;}"],
