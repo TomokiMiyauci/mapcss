@@ -54,6 +54,11 @@ import { justify } from "./justify.ts";
 import { content } from "./content.ts";
 import { items } from "./items.ts";
 import { m } from "./m.ts";
+import { mx } from "./mx.ts";
+import { my } from "./my.ts";
+import { mt } from "./mt.ts";
+import { mr } from "./mr.ts";
+import { mb } from "./mb.ts";
 import { ml } from "./ml.ts";
 import { flex } from "./flex.ts";
 import { underline } from "./underline.ts";
@@ -62,6 +67,11 @@ import { right } from "./right.ts";
 import { bottom } from "./bottom.ts";
 
 export const mapperMap = {
+  mt,
+  mr,
+  mb,
+  my,
+  mx,
   top,
   right,
   bottom,
