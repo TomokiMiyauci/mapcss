@@ -617,6 +617,7 @@ const expects: [string, string][] = [
   ["w-9/12", ".w-9\\/12{width:75%;}"],
   ["w-10/12", ".w-10\\/12{width:83.33333333333334%;}"],
   ["w-11/12", ".w-11\\/12{width:91.66666666666666%;}"],
+  ["w-[1rem]", ".w-\\[1rem\\]{width:1rem;}"],
   ["min-w-0", ".min-w-0{min-width:0px;}"],
   ["min-w-full", ".min-w-full{min-width:100%;}"],
   ["min-w-min", ".min-w-min{min-width:min-content;}"],

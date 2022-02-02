@@ -1,4 +1,4 @@
-import { reFraction, reNumeric } from "../../core/utils/regexp.ts";
+import { reBracket$, reFraction, reNumeric } from "../../core/utils/regexp.ts";
 import { fractionBy, remBy } from "./_utils.ts";
 import type { Mapper } from "../../core/types.ts";
 
@@ -21,4 +21,5 @@ export const w: Mapper = [
       width: percent,
     }));
   }],
+  [reBracket$, ([, arbitrary]) => ({ width: arbitrary })],
 ];
