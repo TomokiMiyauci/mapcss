@@ -60,6 +60,13 @@ import { mt } from "./mt.ts";
 import { mr } from "./mr.ts";
 import { mb } from "./mb.ts";
 import { ml } from "./ml.ts";
+import { p } from "./p.ts";
+import { px } from "./px.ts";
+import { py } from "./py.ts";
+import { pt } from "./pt.ts";
+import { pr } from "./pr.ts";
+import { pb } from "./pb.ts";
+import { pl } from "./pl.ts";
 import { flex } from "./flex.ts";
 import { underline } from "./underline.ts";
 import { top } from "./top.ts";
@@ -67,6 +74,13 @@ import { right } from "./right.ts";
 import { bottom } from "./bottom.ts";
 
 export const mapperMap = {
+  p,
+  px,
+  py,
+  pt,
+  pr,
+  pb,
+  pl,
   mt,
   mr,
   mb,
