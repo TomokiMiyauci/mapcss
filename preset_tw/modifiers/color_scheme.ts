@@ -1,5 +1,8 @@
-import type { ModifierHandler } from "./../../core/types.ts";
+import type { GlobalModifier } from "./../../core/types.ts";
 
-export const dark: ModifierHandler = ({ selector }, { modifier }) => ({
-  selector: `.${modifier} ${selector}`,
-});
+export const dark: GlobalModifier = {
+  type: "global",
+  fn: ({ selector }, { modifier }) => ({
+    selector: `.${modifier} ${selector}`,
+  }),
+};
