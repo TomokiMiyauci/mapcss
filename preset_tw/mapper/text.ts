@@ -1,4 +1,4 @@
-import { resolveXTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
 import { colorByRGBA, fillRGBA, numericBy } from "./_utils.ts";
 import { isUndefined } from "../../deps.ts";
 import { stringifyRGBA } from "../../core/utils/color.ts";
@@ -71,7 +71,7 @@ export const text: Mapper = [
     "text-align": "justify",
   }],
   [reSlashNumber, ([, body, numeric], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return numericBy(numeric, (number) =>
@@ -82,7 +82,7 @@ export const text: Mapper = [
   [
     reAll,
     ([body], context) => {
-      const color = resolveXTheme(body, "color", context);
+      const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
       return colorByRGBA(color, (rgba) => ({

@@ -1,5 +1,5 @@
 import { isUndefined } from "../../deps.ts";
-import { resolveXTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
 import { reAll, reNumeric, reSlashNumber } from "../../core/utils/regexp.ts";
 import { associatePx, associateRGBA, pxBy } from "./_utils.ts";
 import type { Mapper } from "../../core/types.ts";
@@ -24,7 +24,7 @@ export const border: Mapper = [
     ([, numeric]) =>
       associatePx(numeric, ["border-left-width", "border-right-width"]),
   ], [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(
@@ -33,7 +33,7 @@ export const border: Mapper = [
       alpha,
     );
   }], [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-left-color", "border-right-color"]);
   }]]],
@@ -41,7 +41,7 @@ export const border: Mapper = [
     "border-top-width": "1px",
     "border-bottom-width": "1px",
   }], [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(
@@ -54,14 +54,14 @@ export const border: Mapper = [
     ([, numeric]) =>
       associatePx(numeric, ["border-top-width", "border-bottom-width"]),
   ], [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-top-color", "border-bottom-color"]);
   }]]],
   ["t", [["DEFAULT", { "border-top-width": "1px" }], [
     reSlashNumber,
     ([, body, alpha], context) => {
-      const color = resolveXTheme(body, "color", context);
+      const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
       return associateRGBA(
@@ -74,7 +74,7 @@ export const border: Mapper = [
     reNumeric,
     ([, numeric]) => associatePx(numeric, ["border-top-width"]),
   ], [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-top-color"]);
   }]]],
@@ -82,7 +82,7 @@ export const border: Mapper = [
     reNumeric,
     ([, numeric]) => associatePx(numeric, ["border-right-width"]),
   ], [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(
@@ -91,7 +91,7 @@ export const border: Mapper = [
       alpha,
     );
   }], [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-right-color"]);
   }]]],
@@ -99,7 +99,7 @@ export const border: Mapper = [
     reNumeric,
     ([, numeric]) => associatePx(numeric, ["border-bottom-width"]),
   ], [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(
@@ -108,7 +108,7 @@ export const border: Mapper = [
       alpha,
     );
   }], [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-bottom-color"]);
   }]]],
@@ -116,7 +116,7 @@ export const border: Mapper = [
     reNumeric,
     ([, numeric]) => associatePx(numeric, ["border-left-width"]),
   ], [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(
@@ -125,7 +125,7 @@ export const border: Mapper = [
       alpha,
     );
   }], [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-left-color"]);
   }]]],
@@ -134,13 +134,13 @@ export const border: Mapper = [
     ([, numeric]) => pxBy(numeric, (number) => ({ [BORDER_WIDTH]: number })),
   ],
   [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(color, ["border-color"], alpha);
   }],
   [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["border-color"]);
   }],

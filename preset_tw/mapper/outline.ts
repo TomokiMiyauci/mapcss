@@ -1,7 +1,7 @@
 import { reAll, reNumeric, reSlashNumber } from "../../core/utils/regexp.ts";
 import { associatePx, associateRGBA } from "./_utils.ts";
 import { isUndefined } from "../../deps.ts";
-import { resolveXTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
 import type { Mapper } from "../../core/types.ts";
 
 export const outline: Mapper = [
@@ -18,13 +18,13 @@ export const outline: Mapper = [
 
   [reNumeric, ([, numeric]) => associatePx(numeric, ["outline-width"])],
   [reSlashNumber, ([, body, alpha], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return associateRGBA(color, ["outline-color"], alpha);
   }],
 
   [reAll, ([body], context) => {
-    const color = resolveXTheme(body, "color", context);
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
     return associateRGBA(color, ["outline-color"]);
