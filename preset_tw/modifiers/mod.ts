@@ -1,6 +1,8 @@
 import { $2xl, lg, md, sm, xl } from "./breakpoint.ts";
 import { dark } from "./color_scheme.ts";
 import { pseudo } from "./pseudo.ts";
+import { $important } from "./important.ts";
+import { $minus } from "./minus.ts";
 
 export const modifierMap = {
   sm,
@@ -11,6 +13,6 @@ export const modifierMap = {
   dark,
   hover: pseudo,
   focus: pseudo,
+  "!": $important,
+  "-": $minus,
 };
-
-export { sm };

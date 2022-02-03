@@ -7312,6 +7312,7 @@ const expects: [string, string][] = [
   ["hover:block", ".hover\\:block:hover{display:block;}"],
   ["focus:block", ".focus\\:block:focus{display:block;}"],
   ["!w-1", ".\\!w-1{width:0.25rem !important;}"],
+  ["-w-1", ".-w-1{width:-0.25rem;}"],
 ];
 
 const config = { theme, mapperMap, modifierMap, syntaxes: [twBasicSyntax] };
