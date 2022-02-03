@@ -1,6 +1,6 @@
 import { $2xl, lg, md, sm, xl } from "./breakpoint.ts";
 import { dark } from "./color_scheme.ts";
-import { pseudo, scrollbar } from "./pseudo.ts";
+import { pseudo, scrollbar, scrollbarTrack } from "./pseudo.ts";
 import { $important } from "./important.ts";
 import { $minus } from "./minus.ts";
 
@@ -16,4 +16,5 @@ export const modifierMap = {
   "!": $important,
   "-": $minus,
   scrollbar,
+  "scrollbar-track": scrollbarTrack,
 };
