@@ -1,5 +1,8 @@
-import type { ModifierHandler } from "./../../core/types.ts";
+import type { GlobalModifier } from "./../../core/types.ts";
 
-export const pseudo: ModifierHandler = ({ selector }, { modifier }) => ({
-  selector: `${selector}:${modifier}`,
-});
+export const pseudo: GlobalModifier = {
+  type: "global",
+  fn: ({ selector }, { modifier }) => ({
+    selector: `${selector}:${modifier}`,
+  }),
+};
