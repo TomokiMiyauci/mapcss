@@ -1,21 +1,21 @@
-import { isString, prop } from "../../deps.ts";
-import type { Modifier, ModifierHandler } from "./../../core/types.ts";
+import type { ModifierHandler } from "./../../core/types.ts";
 
-const breakpointHandler: ModifierHandler = (match, { theme }) => {
-  const screen = prop(match, theme.screen);
-  if (isString(screen)) {
-    return {
-      identifier: "media",
-      rule: `(min-width: ${screen})`,
-      selector: (selector) => `.${match}\\:${selector}`,
-    };
-  }
-};
+export const sm: ModifierHandler = () => ({
+  ruleSet: (ruleset) => `@media (min-width: 640px) {\n${ruleset}\n}`,
+});
 
-export const breakpoints: Modifier[] = [
-  ["sm", breakpointHandler],
-  ["md", breakpointHandler],
-  ["lg", breakpointHandler],
-  ["xl", breakpointHandler],
-  ["2xl", breakpointHandler],
-];
+export const md: ModifierHandler = () => ({
+  ruleSet: (ruleset) => `@media (min-width: 768px) {\n${ruleset}\n}`,
+});
+
+export const lg: ModifierHandler = () => ({
+  ruleSet: (ruleset) => `@media (min-width: 1024px) {\n${ruleset}\n}`,
+});
+
+export const xl: ModifierHandler = () => ({
+  ruleSet: (ruleset) => `@media (min-width: 1280px) {\n${ruleset}\n}`,
+});
+
+export const $2xl: ModifierHandler = () => ({
+  ruleSet: (ruleset) => `@media (min-width: 1536px) {\n${ruleset}\n}`,
+});
