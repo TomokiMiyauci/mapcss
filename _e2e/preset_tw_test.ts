@@ -7313,6 +7313,11 @@ const expects: [string, string][] = [
   ["focus:block", ".focus\\:block:focus{display:block;}"],
   ["!w-1", ".\\!w-1{width:0.25rem !important;}"],
   ["-w-1", ".-w-1{width:-0.25rem;}"],
+  ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem;}"],
+  [
+    "scrollbar:!w-1",
+    ".scrollbar\\:\\!w-1::-webkit-scrollbar{width:0.25rem !important;}",
+  ],
 ];
 
 const config = { theme, mapperMap, modifierMap, syntaxes: [twBasicSyntax] };

@@ -6,3 +6,10 @@ export const pseudo: GlobalModifier = {
     selector: `${selector}:${modifier}`,
   }),
 };
+
+export const scrollbar: GlobalModifier = {
+  type: "global",
+  fn: ({ selector }) => ({
+    selector: `${selector}::-webkit-scrollbar`,
+  }),
+};
