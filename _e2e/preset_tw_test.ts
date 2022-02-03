@@ -1,5 +1,11 @@
 import { expect, test } from "../dev_deps.ts";
-import { generate, mapperMap, modifierMap, theme } from "../mod.ts";
+import {
+  generate,
+  mapperMap,
+  modifierMap,
+  theme,
+  twBasicSyntax,
+} from "../mod.ts";
 
 const expects: [string, string][] = [
   ["aspect-auto", ".aspect-auto{aspect-ratio:auto;}"],
@@ -7305,9 +7311,10 @@ const expects: [string, string][] = [
   ["dark:block", ".dark .dark\\:block{display:block;}"],
   ["hover:block", ".hover\\:block:hover{display:block;}"],
   ["focus:block", ".focus\\:block:focus{display:block;}"],
+  ["!w-1", ".\\!w-1{width:0.25rem !important;}"],
 ];
 
-const config = { theme, mapperMap, modifierMap };
+const config = { theme, mapperMap, modifierMap, syntaxes: [twBasicSyntax] };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
