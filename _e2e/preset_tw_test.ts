@@ -1567,6 +1567,8 @@ const expects: [string, string][] = [
   ["opacity-95", ".opacity-95{opacity:0.95;}"],
   ["opacity-100", ".opacity-100{opacity:1;}"],
   ["dark:block", ".dark .dark\\:block{display:block;}"],
+  ["hover:block", ".hover\\:block:hover{display:block;}"],
+  ["focus:block", ".focus\\:block:focus{display:block;}"],
 ];
 
 const config = { theme, mapperMap, modifierMap };
