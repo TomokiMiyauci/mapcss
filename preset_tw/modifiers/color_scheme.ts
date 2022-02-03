@@ -1,9 +1,5 @@
-import type { Modifier } from "./../../core/types.ts";
+import type { ModifierHandler } from "./../../core/types.ts";
 
-export const colorSchemes: Modifier[] = [
-  ["dark", (match) => {
-    return {
-      selector: (selector) => `.${match} .${match}\\:${selector}`,
-    };
-  }],
-];
+export const dark: ModifierHandler = ({ selector }, { modifier }) => ({
+  selector: `.${modifier} ${selector}`,
+});

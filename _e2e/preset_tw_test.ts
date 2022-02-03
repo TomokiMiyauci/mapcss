@@ -1,5 +1,5 @@
 import { expect, test } from "../dev_deps.ts";
-import { generate, mapperMap, theme } from "../mod.ts";
+import { generate, mapperMap, modifierMap, theme } from "../mod.ts";
 
 const expects: [string, string][] = [
   ["aspect-auto", ".aspect-auto{aspect-ratio:auto;}"],
@@ -1566,9 +1566,10 @@ const expects: [string, string][] = [
   ["opacity-90", ".opacity-90{opacity:0.9;}"],
   ["opacity-95", ".opacity-95{opacity:0.95;}"],
   ["opacity-100", ".opacity-100{opacity:1;}"],
+  ["dark:block", ".dark .dark\\:block{display:block;}"],
 ];
 
-const config = { theme, mapperMap };
+const config = { theme, mapperMap, modifierMap };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
