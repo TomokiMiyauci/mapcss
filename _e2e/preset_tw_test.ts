@@ -7294,6 +7294,14 @@ const expects: [string, string][] = [
   ["opacity-90", ".opacity-90{opacity:0.9;}"],
   ["opacity-95", ".opacity-95{opacity:0.95;}"],
   ["opacity-100", ".opacity-100{opacity:1;}"],
+  [
+    "sr-only",
+    ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
+  ],
+  [
+    "not-sr-only",
+    ".not-sr-only{clip:auto;height:auto;margin:0;overflow:visible;padding:0;position:static;white-space:normal;width:auto;}",
+  ],
   ["dark:block", ".dark .dark\\:block{display:block;}"],
   ["hover:block", ".hover\\:block:hover{display:block;}"],
   ["focus:block", ".focus\\:block:focus{display:block;}"],
