@@ -1,51 +1,13 @@
 import { associateWith, isNumber, isString, isUndefined } from "../../deps.ts";
-import { resolveTheme } from "../../core/utils/resolver.ts";
 import { percent, px, rem } from "../../core/utils/unit.ts";
-import { SEPARATOR } from "../_utils.ts";
 import {
   hex2RGBA,
   parseFraction,
   parseNumeric,
   RGBA,
 } from "../../core/utils/parse.ts";
-import { stringifyRGBA, stringifyVar } from "../../core/utils/color.ts";
-import { constructVar } from "../../core/_utils.ts";
-import type { CSSObject, Theme } from "../../core/types.ts";
-
-const variablePrefix = "map-";
-
-export function colorByProp(
-  property: string,
-  { theme, prop }: { theme: Theme; prop: string },
-) {
-  const colors = prop.split(SEPARATOR);
-
-  const color = resolveTheme(theme, {
-    scope: "color",
-    path: colors,
-  }) as unknown;
-  if (!isString(color)) return;
-
-  const maybeRGBA = hex2RGBA(color);
-  if (!maybeRGBA) {
-    return {
-      [property]: color,
-    };
-  }
-  const { r, g, b, a } = maybeRGBA;
-  const opacity = constructVar("text-opacity", variablePrefix);
-
-  if (isNumber(a)) {
-    return {
-      [property]: stringifyRGBA({ r, g, b, a: a / 100 }),
-    };
-  }
-
-  return {
-    [opacity]: 1,
-    [property]: stringifyRGBA({ r, g, b, a: stringifyVar(opacity) }),
-  };
-}
+import { stringifyRGBA } from "../../core/utils/color.ts";
+import type { CSSObject } from "../../core/types.ts";
 
 export function fillRGBA(
   { a, ...rest }: RGBA,
@@ -67,29 +29,6 @@ export function colorByRGBA(
     return onError?.(value);
   }
   return onValid(maybeRGBA);
-}
-export function colorOpacityByProp(
-  property: string,
-  { theme, prop, opacity }: { theme: Theme; prop: string; opacity: string },
-) {
-  const colors = prop.split(SEPARATOR);
-
-  const color = resolveTheme(theme, {
-    scope: "color",
-    path: colors,
-  }) as unknown;
-  if (!isString(color)) return;
-
-  const maybeRGBA = hex2RGBA(color);
-  const _opacity = parseNumeric(opacity);
-
-  if (!maybeRGBA || !isNumber(_opacity)) return;
-
-  const { r, g, b } = maybeRGBA;
-
-  return {
-    [property]: stringifyRGBA({ r, g, b, a: _opacity / 100 }),
-  };
 }
 
 export function remByProp(property: string, value: string): {
@@ -168,5 +107,34 @@ export function associatePx(
   return pxBy(
     value,
     (px) => associateWith(array, () => px),
+  );
+}
+
+export function associateRem(
+  array: string[],
+  numeric: string,
+): CSSObject | undefined {
+  return remBy(numeric, (rem) => associateWith(array, () => rem));
+}
+
+export function associatePercent(
+  array: string[],
+  numerator: string,
+  denominator: string,
+): CSSObject | undefined {
+  return fractionBy(
+    numerator,
+    denominator,
+    (percent) => associateWith(array, () => percent),
+  );
+}
+
+export function associatePer100(
+  array: string[],
+  numeric: string,
+): CSSObject | undefined {
+  return numericBy(
+    numeric,
+    (number) => associateWith(array, () => number / 100),
   );
 }

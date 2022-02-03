@@ -84,12 +84,12 @@ export type LocalModifierHandler = (
 
 export type GlobalModifier = {
   type: "global";
-  handler: GlobalModifierHandler;
+  fn: GlobalModifierHandler;
 };
 
 export type LocalModifier = {
   type: "local";
-  handler: LocalModifierHandler;
+  fn: LocalModifierHandler;
 };
 
 export type ModifierMap = Record<
