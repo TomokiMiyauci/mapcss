@@ -7322,6 +7322,10 @@ const expects: [string, string][] = [
     "scrollbar-track:rounded",
     ".scrollbar-track\\:rounded::-webkit-scrollbar-track{border-radius:0.25rem;}",
   ],
+  [
+    "scrollbar-thumb:rounded",
+    ".scrollbar-thumb\\:rounded::-webkit-scrollbar-thumb{border-radius:0.25rem;}",
+  ],
 ];
 
 const config = { theme, mapperMap, modifierMap, syntaxes: [twBasicSyntax] };

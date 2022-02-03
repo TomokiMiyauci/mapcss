@@ -20,3 +20,10 @@ export const scrollbarTrack: GlobalModifier = {
     selector: `${selector}::-webkit-scrollbar-track`,
   }),
 };
+
+export const scrollbarThumb: GlobalModifier = {
+  type: "global",
+  fn: ({ selector }) => ({
+    selector: `${selector}::-webkit-scrollbar-thumb`,
+  }),
+};
