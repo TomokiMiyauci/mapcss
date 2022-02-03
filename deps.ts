@@ -15,6 +15,8 @@ import {
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
 export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
 export { associateWith } from "https://deno.land/std@0.123.0/collections/associate_with.ts";
+export { mapEntries } from "https://deno.land/std@0.123.0/collections/map_entries.ts";
+export { filterValues } from "https://deno.land/std@0.123.0/collections/filter_values.ts";
 export { isUndefined };
 
 export function isStringOrNumber(value: unknown): value is string | number {
@@ -26,7 +28,7 @@ export function isRegExp(value: unknown): value is RegExp {
 }
 
 /** check field is exist or not */
-function has(
+export function has(
   key: PropertyKey,
   object: object,
 ): boolean {
@@ -97,3 +99,10 @@ export function head<T extends readonly unknown[]>(
 ): IsTuple<T> extends true ? T[0] : T[0] | undefined {
   return value[0];
 }
+
+export type PropPath<
+  T extends Record<any, any>,
+  P extends unknown[] | unknown,
+> = P extends unknown[]
+  ? P extends [infer X, ...infer Rest] ? PropPath<T[X], Rest> : T
+  : T[P] | undefined;
