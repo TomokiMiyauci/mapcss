@@ -72,8 +72,10 @@ import { underline } from "./underline.ts";
 import { top } from "./top.ts";
 import { right } from "./right.ts";
 import { bottom } from "./bottom.ts";
+import { opacity } from "./opacity.ts";
 
 export const mapperMap = {
+  opacity,
   p,
   px,
   py,
