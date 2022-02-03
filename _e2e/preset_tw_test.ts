@@ -7255,6 +7255,30 @@ const expects: [string, string][] = [
     "border-red-100/10",
     ".border-red-100\\/10{border-color:rgba(254,226,226,0.1);}",
   ],
+  [
+    "border-t-red-100/10",
+    ".border-t-red-100\\/10{border-top-color:rgba(254,226,226,0.1);}",
+  ],
+  [
+    "border-l-red-100/10",
+    ".border-l-red-100\\/10{border-left-color:rgba(254,226,226,0.1);}",
+  ],
+  [
+    "border-b-red-100/10",
+    ".border-b-red-100\\/10{border-bottom-color:rgba(254,226,226,0.1);}",
+  ],
+  [
+    "border-r-red-100/10",
+    ".border-r-red-100\\/10{border-right-color:rgba(254,226,226,0.1);}",
+  ],
+  [
+    "border-x-red-100/10",
+    ".border-x-red-100\\/10{border-left-color:rgba(254,226,226,0.1);border-right-color:rgba(254,226,226,0.1);}",
+  ],
+  [
+    "border-y-red-100/10",
+    ".border-y-red-100\\/10{border-bottom-color:rgba(254,226,226,0.1);border-top-color:rgba(254,226,226,0.1);}",
+  ],
   ["opacity-0", ".opacity-0{opacity:0;}"],
   ["opacity-5", ".opacity-5{opacity:0.05;}"],
   ["opacity-10", ".opacity-10{opacity:0.1;}"],

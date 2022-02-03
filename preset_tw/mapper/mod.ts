@@ -15,6 +15,7 @@ import {
   no,
   overline,
   relative,
+  sr,
   sticky,
   subpixel,
   visible,
@@ -75,6 +76,7 @@ import { bottom } from "./bottom.ts";
 import { opacity } from "./opacity.ts";
 
 export const mapperMap = {
+  sr,
   opacity,
   p,
   px,
