@@ -1,32 +1,42 @@
-import { type Config, generate, presetTw } from "../../mod.ts";
+import { type Config as MapCSSConfig, generate } from "../../mod.ts";
 import type { Plugin } from "aleph/types";
 
-export const mapcssPlugin: Plugin = {
-  name: "mapcss-loader",
-  setup: (aleph) => {
-    const config: Partial<Config> = {
-      presets: [presetTw()],
-    };
-
-    aleph.onTransform(/\.(j|t)sx$/i, async ({ module, code, bundleMode }) => {
-      const { specifier, jsxStaticClassNames } = module;
-      if (!jsxStaticClassNames) return;
-      const url = specifier.replace(/\.(j|t)sx$/i, "") + ".map.css";
-      const { css, unmatched } = generate(
-        config,
-        new Set((jsxStaticClassNames ?? []).join(" ").split(" ")),
-      );
-      if (unmatched.size) {
-        unmatched.forEach((token) => console.log(token));
-      }
-      const cssModule = await aleph.addModule(`${url}`, css, true);
-      return {
-        code: `import "${
-          aleph.resolveImport(cssModule, specifier, bundleMode, true)
-        }";\n${code}`,
-        // support SSR
-        extraDeps: [{ specifier: url, virtual: true }],
-      };
-    });
-  },
+export type Config = Partial<MapCSSConfig> & {
+  /** watch file type
+   * @default ['tsx', 'jsx']
+   */
+  ext?: string[];
 };
+
+export default function mapcssPlugin(
+  { ext = ["tsx", "jsx"], ...rest }: Config,
+): Plugin {
+  return {
+    name: "mapcss-loader",
+    setup(aleph) {
+      const pattern = RegExp(`\.(${ext.join("|")})$`, "i");
+      aleph.onTransform(
+        pattern,
+        async ({ module: { specifier }, code, bundleMode }) => {
+          const url = specifier.replace(pattern, "") + ".map.css";
+          const { css } = generate(
+            rest,
+            code,
+          );
+          if (!css.length) return;
+          const cssModule = await aleph.addModule(url, css, true);
+          const importPath = aleph.resolveImport(
+            cssModule,
+            specifier,
+            bundleMode,
+          );
+          return {
+            code: `import "${importPath}";\n${code}`,
+            // support SSR
+            extraDeps: [{ specifier: url, virtual: true }],
+          };
+        },
+      );
+    },
+  };
+}
