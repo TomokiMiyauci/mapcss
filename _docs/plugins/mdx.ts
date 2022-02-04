@@ -2,12 +2,12 @@ import type {
   Plugin,
 } from "https://deno.land/x/aleph@v0.3.0-beta.19/types.d.ts";
 import util from "https://deno.land/x/aleph@v0.3.0-beta.19/shared/util.ts";
-import remarkFrontmatter from "https://cdn.skypack.dev/remark-frontmatter";
-import { remarkMdxFrontmatter } from "https://esm.sh/remark-mdx-frontmatter";
 import { safeLoadFront } from "https://esm.sh/yaml-front-matter@4.1.1";
 import { walkSync } from "https://deno.land/std@0.122.0/fs/mod.ts";
 import { join } from "https://deno.land/std@0.122.0/path/mod.ts";
-import { compileSync } from "https://esm.sh/xdm@1.6.0";
+import { compile } from "https://esm.sh/xdm@1.6.0";
+
+export type CompileOptions = Parameters<typeof compile>[1];
 
 type Nav = {
   title: string;
@@ -132,7 +132,7 @@ const navMenu: NavMenu[] = [
 
 const pattern = /\.mdx$/i;
 
-export function mdxPlugin(): Plugin {
+export function mdxPlugin(options: CompileOptions): Plugin {
   return {
     name: "mdx-loader",
     setup: (aleph) => {
@@ -152,12 +152,7 @@ export function mdxPlugin(): Plugin {
           source,
         );
 
-        const { contents } = compileSync(source, {
-          remarkPlugins: [
-            remarkFrontmatter,
-            remarkMdxFrontmatter,
-          ],
-        });
+        const { contents } = await compile(source, options);
 
         if (framework !== "react") {
           throw new Error(
