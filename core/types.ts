@@ -1,32 +1,32 @@
 export type CSSObject = Record<string, string | number>;
 
-export interface MapperContext {
+export interface SpecifierContext {
   theme: Theme;
   separator: string;
 }
 
-export type Mapper = RecordMapper | EntriesMapper;
+export type Specifier = RecordSpecifier | EntriesSpecifier;
 
-export type RecordMapper = {
-  [k: string]: CSSObject | Mapper;
+export type RecordSpecifier = {
+  [k: string]: CSSObject | Specifier;
 };
 
-export type RegExpMapperHandler = (
+export type RegExpSpecifierHandler = (
   arr: RegExpExecArray,
-  context: MapperContext,
+  context: SpecifierContext,
 ) => CSSObject | undefined;
 
-export type EntriesMapper = (StringMapperSet | RegExpMapperSet)[];
-export type RegExpMapperSet = [
+export type EntriesSpecifier = (StringSpecifierSet | RegExpSpecifierSet)[];
+export type RegExpSpecifierSet = [
   RegExp,
-  | Mapper
-  | RegExpMapperHandler,
+  | Specifier
+  | RegExpSpecifierHandler,
 ];
-export type StringMapperSet = [string | number, CSSObject | Mapper];
+export type StringSpecifierSet = [string | number, CSSObject | Specifier];
 
 export type Preset = {
   name: string;
-  mapperMap: MapperMap;
+  specifierMap: SpecifierMap;
   theme: Theme;
   modifierMap: ModifierMap;
 };
@@ -44,14 +44,14 @@ export interface ModifierResult {
   selector: (selector: string) => string;
 }
 
-export type MapperMap = Record<string | number, Mapper | CSSObject>;
+export type SpecifierMap = Record<string | number, Specifier | CSSObject>;
 
 export interface Theme {
   [k: string | number]: string | Theme;
 }
 
 export interface Config {
-  mapperMap: MapperMap;
+  specifierMap: SpecifierMap;
   modifierMap: ModifierMap;
   theme: Theme;
   presets: Preset[];
@@ -101,7 +101,7 @@ type SyntaxContext = {
   token: string;
   globalModifierNames: string[];
   localModifierNames: string[];
-  mapperRootNames: string[];
+  specifierRoots: string[];
 };
 type ParseResult = {
   specifier: string;

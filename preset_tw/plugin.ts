@@ -1,4 +1,4 @@
-import { mapperMap } from "./mapper/mod.ts";
+import { specifierMap } from "./specifier/mod.ts";
 import { theme } from "./theme/mod.ts";
 import { modifierMap } from "./modifiers/mod.ts";
 import type { Preset } from "../core/types.ts";
@@ -10,7 +10,7 @@ export interface PresetMiniOptions {
 export function presetTw(_: PresetMiniOptions = {}): Preset {
   return {
     name: "mapcss/preset_tw",
-    mapperMap,
+    specifierMap,
     theme,
     modifierMap,
   };

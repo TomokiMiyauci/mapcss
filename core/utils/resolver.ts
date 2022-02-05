@@ -12,15 +12,19 @@ import {
   tail,
 } from "../../deps.ts";
 import { cornerMap } from "./mapping.ts";
-import { isCSSObject, isRecordMapper, isRegExpMapperSet } from "./assert.ts";
+import {
+  isCSSObject,
+  isRecordSpecifier,
+  isRegExpSpecifierSet,
+} from "./assert.ts";
 import type { Corner } from "./types.ts";
 import type {
   CSSObject,
-  EntriesMapper,
-  Mapper,
-  MapperContext,
-  MapperMap,
-  RegExpMapperHandler,
+  EntriesSpecifier,
+  RegExpSpecifierHandler,
+  Specifier,
+  SpecifierContext,
+  SpecifierMap,
   Theme,
 } from "../types.ts";
 
@@ -28,7 +32,7 @@ import type {
 export function resolveTheme(
   identifier: string,
   themeRoot: string,
-  { separator, theme }: MapperContext,
+  { separator, theme }: SpecifierContext,
 ): string | undefined {
   const paths = leftSplit(identifier, separator);
   for (const path of paths) {
@@ -67,24 +71,24 @@ function leftSplit(value: string[] | string, separator: string): string[][] {
   return [_value, ...leftSplit([...init(_value), ...result], separator)];
 }
 
-function resolveMapper(
+function resolveSpecifier(
   paths: string[],
-  mapper: Mapper,
-  context: MapperContext,
+  specifier: Specifier,
+  context: SpecifierContext,
 ): CSSObject | undefined {
   const first = head(paths);
 
   const FALLBACK = "DEFAULT";
 
-  if (isRecordMapper(mapper)) {
+  if (isRecordSpecifier(specifier)) {
     if (isUndefined(first)) {
-      const maybeCSSObject = prop(FALLBACK, mapper);
+      const maybeCSSObject = prop(FALLBACK, specifier);
       if (isCSSObject(maybeCSSObject)) {
         return maybeCSSObject;
       }
       return;
     }
-    const result = prop(first, mapper);
+    const result = prop(first, specifier);
     if (isCSSObject(result)) {
       return result;
     }
@@ -92,12 +96,12 @@ function resolveMapper(
       return;
     }
 
-    return resolveMapper(tail(paths), result, context);
+    return resolveSpecifier(tail(paths), result, context);
   } else {
     const map = new Map<
       string | RegExp,
-      Mapper | CSSObject | RegExpMapperHandler
-    >(mapper.map(([identifier, handler]) => {
+      Specifier | CSSObject | RegExpSpecifierHandler
+    >(specifier.map(([identifier, handler]) => {
       const _identifier = isRegExp(identifier)
         ? identifier
         : String(identifier);
@@ -105,17 +109,17 @@ function resolveMapper(
     }));
     const _first = first ?? FALLBACK;
     if (map.has(_first)) {
-      const mapperOrCSSObject = map.get(_first)! as Mapper | CSSObject;
-      if (isCSSObject(mapperOrCSSObject)) {
-        return mapperOrCSSObject;
+      const specifierOrCSSObject = map.get(_first)! as Specifier | CSSObject;
+      if (isCSSObject(specifierOrCSSObject)) {
+        return specifierOrCSSObject;
       }
-      return resolveMapper(tail(paths), mapperOrCSSObject, context);
+      return resolveSpecifier(tail(paths), specifierOrCSSObject, context);
     }
 
-    const regExpMapperSets = (Array.from(map) as EntriesMapper).filter(
-      isRegExpMapperSet,
+    const regExpSpecifierSets = (Array.from(map) as EntriesSpecifier).filter(
+      isRegExpSpecifierSet,
     );
-    for (const [regExp, handler] of regExpMapperSets) {
+    for (const [regExp, handler] of regExpSpecifierSets) {
       const regExpExecArray = regExp.exec(_first);
       if (regExpExecArray) {
         if (isFunction(handler)) {
@@ -125,7 +129,7 @@ function resolveMapper(
           }
           return result;
         }
-        return resolveMapper(tail(paths), handler, context);
+        return resolveSpecifier(tail(paths), handler, context);
       }
     }
   }
@@ -133,35 +137,35 @@ function resolveMapper(
 
 export function resolveDeep(
   paths: string[],
-  mapperMap: Record<string, Mapper | CSSObject>,
-  context: MapperContext,
+  specifierMap: Record<string, Specifier | CSSObject>,
+  context: SpecifierContext,
 ): undefined | CSSObject {
   const [first, ...rest] = paths;
 
-  const maybeMapper = prop(first, mapperMap);
-  if (isUndefined(maybeMapper)) return;
-  if (isCSSObject(maybeMapper)) {
+  const maybeSpecifier = prop(first, specifierMap);
+  if (isUndefined(maybeSpecifier)) return;
+  if (isCSSObject(maybeSpecifier)) {
     if (isLength0(rest)) {
-      return maybeMapper;
+      return maybeSpecifier;
     }
     return;
   }
 
-  return resolveMapper(rest, maybeMapper, context);
+  return resolveSpecifier(rest, maybeSpecifier, context);
 }
 
 export function resolveMap(
   value: string,
-  { separator, mapperMap, theme }: {
+  { separator, specifierMap, theme }: {
     separator: string;
-    mapperMap: MapperMap;
+    specifierMap: SpecifierMap;
     theme: Theme;
   },
 ) {
   const paths = leftSplit(value, separator);
 
   for (const path of paths) {
-    const maybeCSSObject = resolveDeep(path, mapperMap, {
+    const maybeCSSObject = resolveDeep(path, specifierMap, {
       theme,
       separator,
     });

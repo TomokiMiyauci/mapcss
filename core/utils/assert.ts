@@ -1,12 +1,12 @@
 import type {
   AtRule,
   CSSObject,
-  EntriesMapper,
-  Mapper,
-  RecordMapper,
-  RegExpMapperSet,
+  EntriesSpecifier,
+  RecordSpecifier,
+  RegExpSpecifierSet,
   RuleSet,
-  StringMapperSet,
+  Specifier,
+  StringSpecifierSet,
 } from "./../types.ts";
 import { isObject, isRegExp, isString } from "../../deps.ts";
 
@@ -16,23 +16,27 @@ export function isCSSObject(value: unknown): value is CSSObject {
   return Object.values(value).every((v) => !isObject(v));
 }
 
-export function isEntriesMapper(mapper: Mapper): mapper is EntriesMapper {
-  return Array.isArray(mapper);
+export function isEntriesSpecifier(
+  specifier: Specifier,
+): specifier is EntriesSpecifier {
+  return Array.isArray(specifier);
 }
 
-export function isRecordMapper(mapper: Mapper): mapper is RecordMapper {
-  return !Array.isArray(mapper);
+export function isRecordSpecifier(
+  specifier: Specifier,
+): specifier is RecordSpecifier {
+  return !Array.isArray(specifier);
 }
 
-export function isRegExpMapperSet(
-  set: StringMapperSet | RegExpMapperSet,
-): set is RegExpMapperSet {
+export function isRegExpSpecifierSet(
+  set: StringSpecifierSet | RegExpSpecifierSet,
+): set is RegExpSpecifierSet {
   return isRegExp(set[0]);
 }
 
-export function isStringMapperSet(
-  set: StringMapperSet | RegExpMapperSet,
-): set is StringMapperSet {
+export function isStringSpecifierSet(
+  set: StringSpecifierSet | RegExpSpecifierSet,
+): set is StringSpecifierSet {
   return isString(set[0]);
 }
 

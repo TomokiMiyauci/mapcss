@@ -10,7 +10,7 @@ import type {
   GlobalModifierHandler,
   LocalModifier,
   LocalModifierHandler,
-  MapperMap,
+  SpecifierMap,
   Theme,
 } from "./types.ts";
 export * from "./types.ts";
@@ -36,9 +36,16 @@ function execute(
     globalModifiers: string[];
     localModifiers: string[];
   },
-  { theme, mapperMap, separator, token, globalModifierMap, localModifierMap }: {
+  {
+    theme,
+    specifierMap,
+    separator,
+    token,
+    globalModifierMap,
+    localModifierMap,
+  }: {
     theme: Theme;
-    mapperMap: MapperMap;
+    specifierMap: SpecifierMap;
     globalModifierMap: Record<string, GlobalModifier>;
     localModifierMap: Record<string, LocalModifier>;
     separator: string;
@@ -54,7 +61,7 @@ function execute(
   if (!hasDefinedGlobalModifiers || !hasDefinedLocalModifiers) return;
   const maybeCSSObject = resolveMap(specifier, {
     theme,
-    mapperMap,
+    specifierMap,
     separator,
   });
 
@@ -86,7 +93,7 @@ function execute(
 /** Generate CSS Sheet as string */
 export function generate(
   {
-    mapperMap = {},
+    specifierMap = {},
     theme = {},
     separator = "-",
     modifierMap = {},
@@ -115,7 +122,7 @@ export function generate(
         token,
         globalModifierNames: Object.keys(globalModifierMap),
         localModifierNames: Object.keys(localModifierMap),
-        mapperRootNames: Object.keys(mapperMap),
+        specifierRoots: Object.keys(specifierMap),
       });
       if (!parseResult) return;
       const { specifier, globalModifiers = [], localModifiers = [] } =
@@ -125,7 +132,7 @@ export function generate(
         { specifier, globalModifiers, localModifiers },
         {
           theme,
-          mapperMap,
+          specifierMap,
           globalModifierMap,
           localModifierMap,
           separator,

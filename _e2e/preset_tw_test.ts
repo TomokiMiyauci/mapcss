@@ -1,8 +1,8 @@
 import { expect, test } from "../dev_deps.ts";
 import {
   generate,
-  mapperMap,
   modifierMap,
+  specifierMap,
   theme,
   twBasicSyntax,
 } from "../mod.ts";
@@ -7328,7 +7328,7 @@ const expects: [string, string][] = [
   ],
 ];
 
-const config = { theme, mapperMap, modifierMap, syntaxes: [twBasicSyntax] };
+const config = { theme, specifierMap, modifierMap, syntaxes: [twBasicSyntax] };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
