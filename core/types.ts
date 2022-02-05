@@ -29,6 +29,7 @@ export type Preset = {
   specifierMap: SpecifierMap;
   theme: Theme;
   modifierMap: ModifierMap;
+  syntaxes: Syntax[];
 };
 
 export interface ModifierContext {
@@ -109,4 +110,7 @@ type ParseResult = {
   localModifiers?: string[];
 };
 
-export type Syntax = (context: SyntaxContext) => ParseResult | undefined;
+export type Syntax = {
+  name: string;
+  fn: (context: SyntaxContext) => ParseResult | undefined;
+};

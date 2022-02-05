@@ -1,6 +1,7 @@
 import { specifierMap } from "./specifier/mod.ts";
 import { theme } from "./theme/mod.ts";
 import { modifierMap } from "./modifiers/mod.ts";
+import { twBasicSyntax } from "./syntax.ts";
 import type { Preset } from "../core/types.ts";
 
 export interface PresetMiniOptions {
@@ -13,5 +14,6 @@ export function presetTw(_: PresetMiniOptions = {}): Preset {
     specifierMap,
     theme,
     modifierMap,
+    syntaxes: [twBasicSyntax],
   };
 }
