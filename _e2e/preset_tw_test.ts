@@ -7365,6 +7365,9 @@ const expects: [string, string][] = [
   ["flex-col", ".flex-col{flex-direction:column;}"],
   ["flex-row-reverse", ".flex-row-reverse{flex-direction:row-reverse;}"],
   ["flex-col-reverse", ".flex-col-reverse{flex-direction:column-reverse;}"],
+  ["flex-wrap", ".flex-wrap{flex-wrap:wrap;}"],
+  ["flex-nowrap", ".flex-nowrap{flex-wrap:nowrap;}"],
+  ["flex-wrap-reverse", ".flex-wrap-reverse{flex-wrap:wrap-reverse;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

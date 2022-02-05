@@ -72,6 +72,12 @@ export const flexDirections = [
   "flex-col-reverse",
 ];
 
+export const flexWraps = [
+  "flex-wrap",
+  "flex-nowrap",
+  "flex-wrap-reverse",
+];
+
 export const flexes = [
   "flex-1",
   "flex-auto",

@@ -14,4 +14,9 @@ export const flex: Specifier = [
     "DEFAULT": { "flex-direction": "column" },
     reverse: { "flex-direction": "column-reverse" },
   }],
+  ["wrap", {
+    "DEFAULT": { "flex-wrap": "wrap" },
+    "reverse": { "flex-wrap": "wrap-reverse" },
+  }],
+  ["nowrap", { "flex-wrap": "nowrap" }],
 ];
