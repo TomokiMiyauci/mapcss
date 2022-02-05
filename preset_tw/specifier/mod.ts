@@ -81,8 +81,10 @@ import { order } from "./order.ts";
 import { col } from "./col.ts";
 import { gap } from "./gap.ts";
 import { auto } from "./auto.ts";
+import { row } from "./row.ts";
 
 export const specifierMap = {
+  row,
   auto,
   gap,
   col,
