@@ -1,5 +1,5 @@
 import mapcssPlugin from "./plugins/mapcss.ts";
-import { specifierMap, modifierMap, theme, twBasicSyntax } from "../mod.ts";
+import { presetTw } from "../mod.ts";
 import { mdxPlugin } from "./plugins/mdx.ts";
 import remarkFrontmatter from "https://cdn.skypack.dev/remark-frontmatter";
 import { remarkMdxFrontmatter } from "https://esm.sh/remark-mdx-frontmatter";
@@ -10,10 +10,7 @@ import type { Config } from "aleph/types";
 export default <Config> {
   plugins: [
     mapcssPlugin({
-      specifierMap,
-      theme,
-      modifierMap,
-      syntaxes: [twBasicSyntax],
+      presets: [presetTw()],
       ext: ["tsx", "mdx"],
     }),
     mdxPlugin({
