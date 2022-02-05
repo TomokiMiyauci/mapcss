@@ -6,4 +6,12 @@ export const flex: Specifier = [
   ["auto", { flex: "1 1 auto" }],
   ["initial", { flex: "0 1 auto" }],
   ["none", { flex: "none" }],
+  ["row", {
+    "DEFAULT": { "flex-direction": "row" },
+    reverse: { "flex-direction": "row-reverse" },
+  }],
+  ["col", {
+    "DEFAULT": { "flex-direction": "column" },
+    reverse: { "flex-direction": "column-reverse" },
+  }],
 ];

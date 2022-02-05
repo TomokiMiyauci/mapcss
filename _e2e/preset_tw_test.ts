@@ -7361,6 +7361,10 @@ const expects: [string, string][] = [
     "basis-[14.2857143%]",
     ".basis-\\[14\\.2857143\\%\\]{flex-basis:14.2857143%;}",
   ],
+  ["flex-row", ".flex-row{flex-direction:row;}"],
+  ["flex-col", ".flex-col{flex-direction:column;}"],
+  ["flex-row-reverse", ".flex-row-reverse{flex-direction:row-reverse;}"],
+  ["flex-col-reverse", ".flex-col-reverse{flex-direction:column-reverse;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

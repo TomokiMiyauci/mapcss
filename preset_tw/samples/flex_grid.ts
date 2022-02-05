@@ -65,6 +65,13 @@ export const flexBasises = [
   "basis-[14.2857143%]",
 ];
 
+export const flexDirections = [
+  "flex-row",
+  "flex-col",
+  "flex-row-reverse",
+  "flex-col-reverse",
+];
+
 export const flexes = [
   "flex-1",
   "flex-auto",
