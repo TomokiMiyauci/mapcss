@@ -131,6 +131,16 @@ export const gridTemplateColumns = [
   "grid-cols-none",
 ];
 
+export const gridTemplateRows = [
+  "grid-rows-1",
+  "grid-rows-2",
+  "grid-rows-3",
+  "grid-rows-4",
+  "grid-rows-5",
+  "grid-rows-6",
+  "grid-rows-none",
+];
+
 export const justifyContents = [
   "justify-start",
   "justify-end",

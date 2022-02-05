@@ -7439,6 +7439,31 @@ const expects: [string, string][] = [
   ],
   ["grid-cols-none", ".grid-cols-none{grid-template-columns:none;}"],
   [
+    "grid-rows-1",
+    ".grid-rows-1{grid-template-rows:repeat(1, minmax(0, 1fr));}",
+  ],
+  [
+    "grid-rows-2",
+    ".grid-rows-2{grid-template-rows:repeat(2, minmax(0, 1fr));}",
+  ],
+  [
+    "grid-rows-3",
+    ".grid-rows-3{grid-template-rows:repeat(3, minmax(0, 1fr));}",
+  ],
+  [
+    "grid-rows-4",
+    ".grid-rows-4{grid-template-rows:repeat(4, minmax(0, 1fr));}",
+  ],
+  [
+    "grid-rows-5",
+    ".grid-rows-5{grid-template-rows:repeat(5, minmax(0, 1fr));}",
+  ],
+  [
+    "grid-rows-6",
+    ".grid-rows-6{grid-template-rows:repeat(6, minmax(0, 1fr));}",
+  ],
+  ["grid-rows-none", ".grid-rows-none{grid-template-rows:none;}"],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
