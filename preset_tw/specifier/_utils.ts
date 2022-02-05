@@ -1,4 +1,10 @@
-import { associateWith, isNumber, isString, isUndefined } from "../../deps.ts";
+import {
+  associateWith,
+  isNumber,
+  isString,
+  isUndefined,
+  roundTo,
+} from "../../deps.ts";
 import { percent, px, rem } from "../../core/utils/unit.ts";
 import {
   hex2RGBA,
@@ -59,7 +65,7 @@ export function fractionBy(
   const fraction = parseFraction(numerator, denominator);
   if (isUndefined(fraction)) return;
 
-  return onValid(percent(fraction * 100));
+  return onValid(percent(roundTo(fraction * 100, 6)));
 }
 
 export function pxBy(

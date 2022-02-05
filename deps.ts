@@ -108,3 +108,8 @@ export type PropPath<
 > = P extends unknown[]
   ? P extends [infer X, ...infer Rest] ? PropPath<T[X], Rest> : T
   : T[P] | undefined;
+
+/** High precision round */
+export function roundTo(num: number, digit: number): number {
+  return +(Math.round(Number(num + `e+${digit}`)) + `e-${digit}`);
+}
