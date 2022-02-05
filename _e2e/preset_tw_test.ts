@@ -7614,6 +7614,10 @@ const expects: [string, string][] = [
   ["grid-flow-col", ".grid-flow-col{grid-auto-flow:column;}"],
   ["grid-flow-row-dense", ".grid-flow-row-dense{grid-auto-flow:row dense;}"],
   ["grid-flow-col-dense", ".grid-flow-col-dense{grid-auto-flow:column dense;}"],
+  ["auto-cols-auto", ".auto-cols-auto{grid-auto-columns:auto;}"],
+  ["auto-cols-min", ".auto-cols-min{grid-auto-columns:min-content;}"],
+  ["auto-cols-max", ".auto-cols-max{grid-auto-columns:max-content;}"],
+  ["auto-cols-fr", ".auto-cols-fr{grid-auto-columns:minmax(0, 1fr);}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

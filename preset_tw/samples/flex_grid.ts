@@ -301,6 +301,13 @@ export const gridAutoFlows = [
   "grid-flow-col-dense",
 ];
 
+export const gridAutoColumns = [
+  "auto-cols-auto",
+  "auto-cols-min",
+  "auto-cols-max",
+  "auto-cols-fr",
+];
+
 export const justifyContents = [
   "justify-start",
   "justify-end",

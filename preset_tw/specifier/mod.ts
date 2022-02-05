@@ -80,8 +80,10 @@ import { shrink } from "./shrink.ts";
 import { order } from "./order.ts";
 import { col } from "./col.ts";
 import { gap } from "./gap.ts";
+import { auto } from "./auto.ts";
 
 export const specifierMap = {
+  auto,
   gap,
   col,
   order,
