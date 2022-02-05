@@ -79,8 +79,10 @@ import { grow } from "./grow.ts";
 import { shrink } from "./shrink.ts";
 import { order } from "./order.ts";
 import { col } from "./col.ts";
+import { gap } from "./gap.ts";
 
 export const specifierMap = {
+  gap,
   col,
   order,
   shrink,
