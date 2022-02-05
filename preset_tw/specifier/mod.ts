@@ -1,4 +1,4 @@
-import { backface } from "./backface_visibility.ts";
+import { backface } from "./backface.ts";
 import {
   $static,
   absolute,
