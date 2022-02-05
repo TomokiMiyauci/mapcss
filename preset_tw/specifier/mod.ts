@@ -75,8 +75,10 @@ import { right } from "./right.ts";
 import { bottom } from "./bottom.ts";
 import { opacity } from "./opacity.ts";
 import { basis } from "./basis.ts";
+import { grow } from "./grow.ts";
 
 export const specifierMap = {
+  grow,
   basis,
   sr,
   opacity,

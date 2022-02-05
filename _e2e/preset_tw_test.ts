@@ -7368,6 +7368,9 @@ const expects: [string, string][] = [
   ["flex-wrap", ".flex-wrap{flex-wrap:wrap;}"],
   ["flex-nowrap", ".flex-nowrap{flex-wrap:nowrap;}"],
   ["flex-wrap-reverse", ".flex-wrap-reverse{flex-wrap:wrap-reverse;}"],
+  ["grow", ".grow{flex-grow:1;}"],
+  ["grow-0", ".grow-0{flex-grow:0;}"],
+  ["grow-2", ".grow-2{flex-grow:2;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

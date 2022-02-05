@@ -85,6 +85,12 @@ export const flexes = [
   "flex-none",
 ];
 
+export const flexGrows = [
+  "grow",
+  "grow-0",
+  "grow-2",
+];
+
 export const justifyContents = [
   "justify-start",
   "justify-end",

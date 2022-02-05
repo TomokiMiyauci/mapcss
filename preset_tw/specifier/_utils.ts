@@ -144,3 +144,10 @@ export function associatePer100(
     (number) => associateWith(array, () => number / 100),
   );
 }
+
+export function associateNumeric(
+  array: string[],
+  numeric: string,
+): CSSObject | undefined {
+  return numericBy(numeric, (number) => associateWith(array, () => number));
+}
