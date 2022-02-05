@@ -1,7 +1,8 @@
 import { cssDeclarationBlock } from "./_utils.ts";
-import { filterValues, has, head, isLength0 } from "../deps.ts";
+import { filterValues, has, head, isLength0, isString } from "../deps.ts";
 import { resolveMap } from "./utils/resolver.ts";
 import { escapeRegExp } from "./utils/escape.ts";
+import { extractSplit } from "./extractor.ts";
 import type {
   Config,
   CSSObject,
@@ -60,13 +61,13 @@ function execute(
   if (!maybeCSSObject) return;
 
   const globalModifierHandlers = globalModifiers.map((modifier) =>
-    [modifier, globalModifierMap[modifier].handler] as [
+    [modifier, globalModifierMap[modifier].fn] as [
       string,
       GlobalModifierHandler,
     ]
   );
   const localModifierHandlers = localModifiers.map((modifier) =>
-    [modifier, localModifierMap[modifier].handler] as [
+    [modifier, localModifierMap[modifier].fn] as [
       string,
       LocalModifierHandler,
     ]
@@ -93,8 +94,9 @@ export function generate(
   }: Partial<
     Config
   >,
-  input: Set<string>,
+  input: Set<string> | string,
 ): GenerateResult {
+  const tokens = isString(input) ? extractSplit(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
@@ -107,7 +109,7 @@ export function generate(
     ({ type }) => type === "local",
   ) as Record<string, LocalModifier>;
 
-  const results = Array.from(input).map((token) => {
+  const results = Array.from(tokens).map((token) => {
     const executeResults = syntaxes.map((syntax) => {
       const parseResult = syntax({
         token,

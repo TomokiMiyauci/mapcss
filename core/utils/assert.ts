@@ -47,3 +47,8 @@ export function isRuleSet(
 ): cssStatement is RuleSet {
   return "declarationBlock" in cssStatement;
 }
+
+const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
+export function isValidSelector(selector: string): selector is string {
+  return reValidSelector.test(selector);
+}
