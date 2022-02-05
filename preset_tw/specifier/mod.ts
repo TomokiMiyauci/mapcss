@@ -78,8 +78,10 @@ import { basis } from "./basis.ts";
 import { grow } from "./grow.ts";
 import { shrink } from "./shrink.ts";
 import { order } from "./order.ts";
+import { col } from "./col.ts";
 
 export const specifierMap = {
+  col,
   order,
   shrink,
   grow,
