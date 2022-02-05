@@ -77,8 +77,10 @@ import { opacity } from "./opacity.ts";
 import { basis } from "./basis.ts";
 import { grow } from "./grow.ts";
 import { shrink } from "./shrink.ts";
+import { order } from "./order.ts";
 
 export const specifierMap = {
+  order,
   shrink,
   grow,
   basis,
