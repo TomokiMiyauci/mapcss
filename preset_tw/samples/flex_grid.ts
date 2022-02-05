@@ -91,6 +91,12 @@ export const flexGrows = [
   "grow-2",
 ];
 
+export const flexShrinks = [
+  "shrink",
+  "shrink-0",
+  "shrink-2",
+];
+
 export const justifyContents = [
   "justify-start",
   "justify-end",

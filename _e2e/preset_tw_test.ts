@@ -7371,6 +7371,9 @@ const expects: [string, string][] = [
   ["grow", ".grow{flex-grow:1;}"],
   ["grow-0", ".grow-0{flex-grow:0;}"],
   ["grow-2", ".grow-2{flex-grow:2;}"],
+  ["shrink", ".shrink{flex-shrink:1;}"],
+  ["shrink-0", ".shrink-0{flex-shrink:0;}"],
+  ["shrink-2", ".shrink-2{flex-shrink:2;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
