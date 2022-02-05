@@ -17,6 +17,8 @@ export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.
 export { associateWith } from "https://deno.land/std@0.123.0/collections/associate_with.ts";
 export { mapEntries } from "https://deno.land/std@0.123.0/collections/map_entries.ts";
 export { filterValues } from "https://deno.land/std@0.123.0/collections/filter_values.ts";
+export { distinctBy } from "https://deno.land/std@0.125.0/collections/distinct_by.ts";
+export { union } from "https://deno.land/std@0.125.0/collections/union.ts";
 export { isUndefined };
 
 export function isStringOrNumber(value: unknown): value is string | number {

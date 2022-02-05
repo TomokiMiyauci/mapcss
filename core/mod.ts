@@ -13,6 +13,7 @@ import type {
   SpecifierMap,
   Theme,
 } from "./types.ts";
+import { resolveConfig } from "./config.ts";
 export * from "./types.ts";
 
 export interface GenerateResult {
@@ -93,16 +94,14 @@ function execute(
 /** Generate CSS Sheet as string */
 export function generate(
   {
-    specifierMap = {},
-    theme = {},
     separator = "-",
-    modifierMap = {},
-    syntaxes = [],
+    ...config
   }: Partial<
     Config
   >,
   input: Set<string> | string,
 ): GenerateResult {
+  const { syntaxes, modifierMap, theme, specifierMap } = resolveConfig(config);
   const tokens = isString(input) ? extractSplit(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();
@@ -117,8 +116,8 @@ export function generate(
   ) as Record<string, LocalModifier>;
 
   const results = Array.from(tokens).map((token) => {
-    const executeResults = syntaxes.map((syntax) => {
-      const parseResult = syntax({
+    const executeResults = syntaxes.map(({ fn }) => {
+      const parseResult = fn({
         token,
         globalModifierNames: Object.keys(globalModifierMap),
         localModifierNames: Object.keys(localModifierMap),

@@ -1,11 +1,5 @@
 import { expect, test } from "../dev_deps.ts";
-import {
-  generate,
-  modifierMap,
-  specifierMap,
-  theme,
-  twBasicSyntax,
-} from "../mod.ts";
+import { generate, presetTw } from "../mod.ts";
 
 const expects: [string, string][] = [
   ["aspect-auto", ".aspect-auto{aspect-ratio:auto;}"],
@@ -7328,7 +7322,7 @@ const expects: [string, string][] = [
   ],
 ];
 
-const config = { theme, specifierMap, modifierMap, syntaxes: [twBasicSyntax] };
+const config = { presets: [presetTw()] };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
