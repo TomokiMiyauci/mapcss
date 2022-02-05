@@ -7610,7 +7610,10 @@ const expects: [string, string][] = [
   ["gap-y-80", ".gap-y-80{row-gap:20rem;}"],
   ["gap-x-96", ".gap-x-96{column-gap:24rem;}"],
   ["gap-y-96", ".gap-y-96{row-gap:24rem;}"],
-
+  ["grid-flow-row", ".grid-flow-row{grid-auto-flow:row;}"],
+  ["grid-flow-col", ".grid-flow-col{grid-auto-flow:column;}"],
+  ["grid-flow-row-dense", ".grid-flow-row-dense{grid-auto-flow:row dense;}"],
+  ["grid-flow-col-dense", ".grid-flow-col-dense{grid-auto-flow:column dense;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
