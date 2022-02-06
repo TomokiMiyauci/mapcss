@@ -53,8 +53,8 @@ export function remByProp(property: string, value: string): {
 
 export function remBy(
   value: string,
-  onValid: (rem: string) => CSSObject,
-): CSSObject | undefined {
+  onValid: (rem: string) => CSSObject | CSSObjectSet,
+): CSSObject | CSSObjectSet | undefined {
   const number = parseNumeric(value);
   if (isUndefined(number)) return;
 
@@ -132,7 +132,7 @@ export function associatePx(
 export function associateRem(
   array: string[],
   numeric: string,
-): CSSObject | undefined {
+): CSSObject | CSSObjectSet | undefined {
   return remBy(numeric, (rem) => associateWith(array, () => rem));
 }
 
