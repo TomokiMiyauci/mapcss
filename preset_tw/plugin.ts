@@ -5,6 +5,9 @@ import { twBasicSyntax } from "./syntax.ts";
 import type { Preset } from "../core/types.ts";
 
 export interface PresetMiniOptions {
+  /**
+   * @default 'map-'
+   */
   variablePrefix?: string;
 }
 

@@ -1,6 +1,6 @@
 import { cssDeclarationBlock } from "./_utils.ts";
 import { filterValues, has, head, isLength0, isString } from "../deps.ts";
-import { resolveMap } from "./utils/resolver.ts";
+import { resolveSpecifierMap } from "./utils/resolver.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { extractSplit } from "./extractor.ts";
 import type {
@@ -45,6 +45,7 @@ function execute(
     token,
     globalModifierMap,
     localModifierMap,
+    variablePrefix,
   }: {
     theme: Theme;
     specifierMap: SpecifierMap;
@@ -52,6 +53,7 @@ function execute(
     localModifierMap: Record<string, LocalModifier>;
     separator: string;
     token: string;
+    variablePrefix: string;
   },
 ): ExecuteResult | undefined {
   const hasDefinedGlobalModifiers = globalModifiers.every((modifier) =>
@@ -61,10 +63,10 @@ function execute(
     has(modifier, localModifierMap)
   );
   if (!hasDefinedGlobalModifiers || !hasDefinedLocalModifiers) return;
-  const maybeCSSObject = resolveMap(specifier, {
+  const maybeCSSObject = resolveSpecifierMap(specifier, specifierMap, {
     theme,
-    specifierMap,
     separator,
+    variablePrefix,
   });
 
   if (!maybeCSSObject) return;
@@ -98,6 +100,7 @@ function execute(
 export function generate(
   {
     separator = "-",
+    variablePrefix = "map-",
     ...config
   }: Partial<
     Config
@@ -139,6 +142,7 @@ export function generate(
           localModifierMap,
           separator,
           token,
+          variablePrefix,
         },
       );
 
