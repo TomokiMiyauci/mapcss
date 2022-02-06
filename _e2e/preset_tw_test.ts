@@ -7667,6 +7667,30 @@ const expects: [string, string][] = [
     ".divide-none>:not([hidden])~:not([hidden]){border-style:none;}",
   ],
   [
+    "divide-x",
+    ".divide-x>:not([hidden])~:not([hidden]){--map-divide-x-reverse:0;border-left-width:calc(1px * calc(1 - var(--map-divide-x-reverse)));border-right-width:calc(1px * var(--map-divide-x-reverse));}",
+  ],
+  [
+    "divide-x-0",
+    ".divide-x-0>:not([hidden])~:not([hidden]){--map-divide-x-reverse:0;border-left-width:calc(0px * calc(1 - var(--map-divide-x-reverse)));border-right-width:calc(0px * var(--map-divide-x-reverse));}",
+  ],
+  [
+    "divide-x-2",
+    ".divide-x-2>:not([hidden])~:not([hidden]){--map-divide-x-reverse:0;border-left-width:calc(2px * calc(1 - var(--map-divide-x-reverse)));border-right-width:calc(2px * var(--map-divide-x-reverse));}",
+  ],
+  [
+    "divide-x-4",
+    ".divide-x-4>:not([hidden])~:not([hidden]){--map-divide-x-reverse:0;border-left-width:calc(4px * calc(1 - var(--map-divide-x-reverse)));border-right-width:calc(4px * var(--map-divide-x-reverse));}",
+  ],
+  [
+    "divide-x-8",
+    ".divide-x-8>:not([hidden])~:not([hidden]){--map-divide-x-reverse:0;border-left-width:calc(8px * calc(1 - var(--map-divide-x-reverse)));border-right-width:calc(8px * var(--map-divide-x-reverse));}",
+  ],
+  [
+    "divide-x-reverse",
+    ".divide-x-reverse>:not([hidden])~:not([hidden]){--map-divide-x-reverse:1;}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
