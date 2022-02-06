@@ -7715,6 +7715,14 @@ const expects: [string, string][] = [
     ".divide-y-reverse>:not([hidden])~:not([hidden]){--map-divide-y-reverse:1;}",
   ],
   [
+    "divide-inherit",
+    ".divide-inherit>:not([hidden])~:not([hidden]){border-color:inherit;}",
+  ],
+  [
+    "divide-red-50",
+    ".divide-red-50>:not([hidden])~:not([hidden]){border-color:rgba(254,242,242,1);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

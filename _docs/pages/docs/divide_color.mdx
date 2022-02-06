@@ -1,0 +1,57 @@
+---
+title: Divide Color
+description: Utilities for controlling the border color between elements.
+category: Border
+---
+
+import classNameNameTable from '~/components/classNameName_table.tsx'
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the divide color
+
+Control the border color between elements using the `divide-{color}` utilities.
+
+<Example p="none">
+  <div className="grid grid-cols-1 divide-y divide-blue-200 font-mono text-white text-sm text-center font-bold leading-6 shadow-lg overflow-hidden max-w-sm mx-auto">
+    <div className="p-4 text-blue-500 bg-white">01</div>
+    <div className="p-4 text-blue-500 bg-white">02</div>
+    <div className="p-4 text-blue-500 bg-white">03</div>
+  </div>
+</Example>
+
+
+```html
+<div className="**divide-y divide-blue-200**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+### Changing the opacity
+
+Control the opacity of the divide color using the color opacity modifier.
+
+<Example p="none">
+  <div className="grid grid-cols-1 divide-y-4 divide-slate-400/25 font-mono text-white text-sm text-center font-bold leading-6 shadow-lg overflow-hidden max-w-sm mx-auto">
+    <div className="p-4 text-slate-400 bg-white">01</div>
+    <div className="p-4 text-slate-400 bg-white">02</div>
+    <div className="p-4 text-slate-400 bg-white">03</div>
+  </div>
+</Example>
+
+```html
+<div className="divide-y-4 divide-slate-400**/25** ...">
+  <!-- ... -->
+</div>
+```
+
+You can use any value defined in your [opacity scale](/docs/opacity), or use arbitrary values if you need to deviate from your design tokens.
+
+```html
+<div className="divide-y-4 divide-slate-400**/[.24]** ...">
+  <!-- ... -->
+</div>
+```

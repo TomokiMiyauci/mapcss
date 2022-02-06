@@ -12,9 +12,9 @@ import {
   parseNumeric,
   RGBA,
 } from "../../core/utils/parse.ts";
-import { stringifyRGBA } from "../../core/utils/color.ts";
 import {
   stringifyCustomProperty,
+  stringifyRGBA,
   stringifyVarFunction,
 } from "../../core/utils/stringify.ts";
 import type { CSSObject, CSSObjectSet } from "../../core/types.ts";
@@ -31,9 +31,9 @@ export function fillRGBA(
 
 export function colorByRGBA(
   value: string,
-  onValid: (rgba: RGBA) => CSSObject | undefined,
-  onError?: (value: string) => CSSObject,
-): CSSObject | undefined {
+  onValid: (rgba: RGBA) => CSSObject | CSSObjectSet | undefined,
+  onError?: (value: string) => CSSObject | CSSObjectSet | undefined,
+): CSSObject | CSSObjectSet | undefined {
   const maybeRGBA = hex2RGBA(value);
   if (isUndefined(maybeRGBA)) {
     return onError?.(value);
@@ -84,8 +84,8 @@ export function pxBy(
 
 export function numericBy(
   value: string,
-  onValid: (number: number) => CSSObject | undefined,
-): CSSObject | undefined {
+  onValid: (number: number) => CSSObject | CSSObjectSet | undefined,
+): CSSObject | CSSObjectSet | undefined {
   const number = parseNumeric(value);
   if (isUndefined(number)) return;
   return onValid(number);
@@ -95,19 +95,28 @@ export function associateRGBA(
   color: string,
   array: string[],
   alpha?: string,
-): CSSObject | undefined {
-  return colorByRGBA(color, (rgba) => {
-    let a: number | undefined;
-    if (isString(alpha)) {
-      const _alpha = parseNumeric(alpha);
-      if (isUndefined(_alpha)) return;
-      a = _alpha / 100;
-    }
+): CSSObject | CSSObjectSet | undefined {
+  const maybeColor = colorByStrRGBA(color, alpha);
+  if (isUndefined(maybeColor)) return associateWith(array, () => color);
 
-    const value = stringifyRGBA(fillRGBA(rgba, a));
+  return associateWith(array, () => maybeColor);
+}
 
-    return associateWith(array, () => value);
-  }, (raw) => associateWith(array, () => raw));
+export function colorByStrRGBA(
+  color: string,
+  alpha?: string,
+): string | undefined {
+  const maybeRGBA = hex2RGBA(color);
+  if (isUndefined(maybeRGBA)) return color;
+
+  let a: number | undefined;
+  if (isString(alpha)) {
+    const _alpha = parseNumeric(alpha);
+    if (isUndefined(_alpha)) return;
+    a = _alpha / 100;
+  }
+
+  return stringifyRGBA(fillRGBA(maybeRGBA, a));
 }
 
 export function associatePx(
@@ -142,7 +151,7 @@ export function associatePercent(
 export function associatePer100(
   array: string[],
   numeric: string,
-): CSSObject | undefined {
+): CSSObject | CSSObjectSet | undefined {
   return numericBy(
     numeric,
     (number) => associateWith(array, () => number / 100),
@@ -152,7 +161,7 @@ export function associatePer100(
 export function associateNumeric(
   array: string[],
   numeric: string,
-): CSSObject | undefined {
+): CSSObject | CSSObjectSet | undefined {
   return numericBy(numeric, (number) => associateWith(array, () => number));
 }
 

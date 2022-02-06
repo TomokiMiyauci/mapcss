@@ -1,6 +1,8 @@
 import { stringifyCustomProperty } from "../../core/utils/stringify.ts";
-import { customPropertySet, pxBy } from "./_utils.ts";
-import { rePositiveNumber } from "../../core/utils/regexp.ts";
+import { colorByStrRGBA, customPropertySet, pxBy } from "./_utils.ts";
+import { reAll, rePositiveNumber } from "../../core/utils/regexp.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
+import { isUndefined } from "../../deps.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
@@ -80,4 +82,12 @@ export const divide: EntriesSpecifier = [
         }),
     ],
   ]],
+  [reAll, ([, body], context) => {
+    const _color = resolveTheme(body, "color", context);
+    if (isUndefined(_color)) return;
+    const color = colorByStrRGBA(_color);
+    if (isUndefined(color)) return;
+
+    return [{ "border-color": color }, combinator];
+  }],
 ];
