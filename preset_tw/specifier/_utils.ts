@@ -13,7 +13,11 @@ import {
   RGBA,
 } from "../../core/utils/parse.ts";
 import { stringifyRGBA } from "../../core/utils/color.ts";
-import type { CSSObject } from "../../core/types.ts";
+import {
+  stringifyCustomProperty,
+  stringifyVarFunction,
+} from "../../core/utils/stringify.ts";
+import type { CSSObject, CSSObjectSet } from "../../core/types.ts";
 
 export function fillRGBA(
   { a, ...rest }: RGBA,
@@ -70,8 +74,8 @@ export function fractionBy(
 
 export function pxBy(
   value: string,
-  onValid: (rem: string) => CSSObject,
-): CSSObject | undefined {
+  onValid: (px: string) => CSSObject | CSSObjectSet,
+): CSSObject | CSSObjectSet | undefined {
   const number = parseNumeric(value);
   if (isUndefined(number)) return;
 
@@ -109,7 +113,7 @@ export function associateRGBA(
 export function associatePx(
   value: string,
   array: string[],
-): CSSObject | undefined {
+): CSSObject | CSSObjectSet | undefined {
   return pxBy(
     value,
     (px) => associateWith(array, () => px),
@@ -150,4 +154,17 @@ export function associateNumeric(
   numeric: string,
 ): CSSObject | undefined {
   return numericBy(numeric, (number) => associateWith(array, () => number));
+}
+
+/** Return [`variable`, `varFunction`] */
+export function customPropertySet(
+  property: string,
+  variablePrefix = "",
+): [string, string] {
+  const variable = stringifyCustomProperty(
+    property,
+    variablePrefix,
+  );
+  const varName = stringifyVarFunction(variable);
+  return [variable, varName];
 }
