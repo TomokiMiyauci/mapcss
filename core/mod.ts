@@ -24,6 +24,7 @@ export interface GenerateResult {
 
 type ExecuteResult = {
   cssObject: CSSObject;
+  combinator: string;
   selector: string;
   globalModifierHandlers: [string, GlobalModifierHandler][];
   localModifierHandlers: [string, LocalModifierHandler][];
@@ -80,9 +81,11 @@ function execute(
       LocalModifierHandler,
     ]
   );
+  const [cssObject, { combinator }] = maybeCSSObject;
 
   return {
-    cssObject: maybeCSSObject,
+    cssObject,
+    combinator,
     selector: specifier,
     globalModifierHandlers,
     localModifierHandlers,
@@ -149,7 +152,15 @@ export function generate(
   }).flat();
 
   const styles = results.map(
-    ({ cssObject, globalModifierHandlers, localModifierHandlers, token }) => {
+    (
+      {
+        cssObject,
+        globalModifierHandlers,
+        localModifierHandlers,
+        token,
+        combinator,
+      },
+    ) => {
       const maybeCSSObject = localModifierHandlers.reduce(
         (acc, [key, handler]) => {
           if (!acc) return;
@@ -165,7 +176,7 @@ export function generate(
 
       const _head = head(globalModifierHandlers);
       if (!_head) {
-        return `${escapedSelector}${declaration}`;
+        return `${escapedSelector}${combinator}${declaration}`;
       }
       const [modifier, handler] = _head;
 
@@ -178,7 +189,7 @@ export function generate(
         declaration,
       }, { theme, modifier });
 
-      const serialized = `${_selector}${_declaration}`;
+      const serialized = `${_selector}${combinator}${_declaration}`;
       return _ruleSet?.(serialized) ?? serialized;
     },
   ).filter(Boolean) as string[];

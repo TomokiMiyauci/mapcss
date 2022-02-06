@@ -14,12 +14,14 @@ import {
 import { cornerMap } from "./mapping.ts";
 import {
   isCSSObject,
+  isCSSObjectSet,
   isRecordSpecifier,
   isRegExpSpecifierSet,
 } from "./assert.ts";
 import type { Corner } from "./types.ts";
 import type {
   CSSObject,
+  CSSObjectSet,
   EntriesSpecifier,
   RegExpSpecifierHandler,
   Specifier,
@@ -71,11 +73,13 @@ function leftSplit(value: string[] | string, separator: string): string[][] {
   return [_value, ...leftSplit([...init(_value), ...result], separator)];
 }
 
+type SpecifierResult = [CSSObject, { combinator: string }];
+
 function resolveSpecifier(
   paths: string[],
   specifier: Specifier,
   context: SpecifierContext,
-): CSSObject | undefined {
+): SpecifierResult | undefined {
   const first = head(paths);
 
   const FALLBACK = "DEFAULT";
@@ -84,13 +88,19 @@ function resolveSpecifier(
     if (isUndefined(first)) {
       const maybeCSSObject = prop(FALLBACK, specifier);
       if (isCSSObject(maybeCSSObject)) {
-        return maybeCSSObject;
+        return [maybeCSSObject, { combinator: "" }];
+      }
+      if (isCSSObjectSet(maybeCSSObject)) {
+        return [maybeCSSObject[0], { combinator: maybeCSSObject[1] }];
       }
       return;
     }
     const result = prop(first, specifier);
     if (isCSSObject(result)) {
-      return result;
+      return [result, { combinator: "" }];
+    }
+    if (isCSSObjectSet(result)) {
+      return [result[0], { combinator: result[1] }];
     }
     if (isUndefined(result)) {
       return;
@@ -100,7 +110,7 @@ function resolveSpecifier(
   } else {
     const map = new Map<
       string | RegExp,
-      Specifier | CSSObject | RegExpSpecifierHandler
+      Specifier | CSSObject | CSSObjectSet | RegExpSpecifierHandler
     >(specifier.map(([identifier, handler]) => {
       const _identifier = isRegExp(identifier)
         ? identifier
@@ -109,9 +119,17 @@ function resolveSpecifier(
     }));
     const _first = first ?? FALLBACK;
     if (map.has(_first)) {
-      const specifierOrCSSObject = map.get(_first)! as Specifier | CSSObject;
+      const specifierOrCSSObject = map.get(_first)! as
+        | Specifier
+        | CSSObject
+        | CSSObjectSet;
       if (isCSSObject(specifierOrCSSObject)) {
-        return specifierOrCSSObject;
+        return [specifierOrCSSObject, { combinator: "" }];
+      }
+      if (isCSSObjectSet(specifierOrCSSObject)) {
+        return [specifierOrCSSObject[0], {
+          combinator: specifierOrCSSObject[1],
+        }];
       }
       return resolveSpecifier(tail(paths), specifierOrCSSObject, context);
     }
@@ -127,7 +145,7 @@ function resolveSpecifier(
           if (isUndefined(result)) {
             continue;
           }
-          return result;
+          return [result, { combinator: "" }];
         }
         return resolveSpecifier(tail(paths), handler, context);
       }
@@ -139,14 +157,14 @@ export function resolveDeep(
   paths: string[],
   specifierMap: Record<string, Specifier | CSSObject>,
   context: SpecifierContext,
-): undefined | CSSObject {
+): SpecifierResult | undefined {
   const [first, ...rest] = paths;
 
   const maybeSpecifier = prop(first, specifierMap);
   if (isUndefined(maybeSpecifier)) return;
   if (isCSSObject(maybeSpecifier)) {
     if (isLength0(rest)) {
-      return maybeSpecifier;
+      return [maybeSpecifier, { combinator: "" }];
     }
     return;
   }

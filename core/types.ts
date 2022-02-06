@@ -1,5 +1,7 @@
 export type CSSObject = Record<string, string | number>;
 
+export type CSSObjectSet = [CSSObject, string];
+
 export interface SpecifierContext {
   theme: Theme;
   separator: string;
@@ -8,7 +10,7 @@ export interface SpecifierContext {
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
 export type RecordSpecifier = {
-  [k: string]: CSSObject | Specifier;
+  [k: string]: CSSObject | CSSObjectSet | Specifier;
 };
 
 export type RegExpSpecifierHandler = (
@@ -22,7 +24,10 @@ export type RegExpSpecifierSet = [
   | Specifier
   | RegExpSpecifierHandler,
 ];
-export type StringSpecifierSet = [string | number, CSSObject | Specifier];
+export type StringSpecifierSet = [
+  string | number,
+  CSSObject | CSSObjectSet | Specifier,
+];
 
 export type Preset = {
   name: string;
