@@ -7647,6 +7647,26 @@ const expects: [string, string][] = [
   ["row-end-7", ".row-end-7{grid-row-end:7;}"],
   ["row-end-auto", ".row-end-auto{grid-row-end:auto;}"],
   [
+    "divide-solid",
+    ".divide-solid>:not([hidden])~:not([hidden]){border-style:solid;}",
+  ],
+  [
+    "divide-dashed",
+    ".divide-dashed>:not([hidden])~:not([hidden]){border-style:dashed;}",
+  ],
+  [
+    "divide-dotted",
+    ".divide-dotted>:not([hidden])~:not([hidden]){border-style:dotted;}",
+  ],
+  [
+    "divide-double",
+    ".divide-double>:not([hidden])~:not([hidden]){border-style:double;}",
+  ],
+  [
+    "divide-none",
+    ".divide-none>:not([hidden])~:not([hidden]){border-style:none;}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

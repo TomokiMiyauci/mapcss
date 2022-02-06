@@ -82,8 +82,10 @@ import { col } from "./col.ts";
 import { gap } from "./gap.ts";
 import { auto } from "./auto.ts";
 import { row } from "./row.ts";
+import { divide } from "./divide.ts";
 
 export const specifierMap = {
+  divide,
   row,
   auto,
   gap,
