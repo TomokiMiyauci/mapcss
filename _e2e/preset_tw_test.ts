@@ -7723,6 +7723,38 @@ const expects: [string, string][] = [
     ".divide-red-50>:not([hidden])~:not([hidden]){border-color:rgba(254,242,242,1);}",
   ],
   [
+    "shadow",
+    ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-sm",
+    ".shadow-sm{--map-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--map-shadow-colored:0 1px 2px 0 var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-md",
+    ".shadow-md{--map-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--map-shadow-colored:0 4px 6px -1px var(--map-shadow-color), 0 2px 4px -2px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-lg",
+    ".shadow-lg{--map-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--map-shadow-colored:0 10px 15px -3px var(--map-shadow-color), 0 4px 6px -4px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-xl",
+    ".shadow-xl{--map-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--map-shadow-colored:0 20px 25px -5px var(--map-shadow-color), 0 8px 10px -6px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-2xl",
+    ".shadow-2xl{--map-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--map-shadow-colored:0 25px 50px -12px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-inner",
+    ".shadow-inner{--map-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--map-shadow-colored:inset 0 2px 4px 0 var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
+    "shadow-none",
+    ".shadow-none{--map-shadow:0 0 #0000;--map-shadow-colored:0 0 #0000;box-shadow:var(--map-ring-offset-shadow , 0 0 #0000), var(--map-ring-shadow , 0 0 #0000), var(--map-shadow);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

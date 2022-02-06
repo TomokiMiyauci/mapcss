@@ -15,3 +15,14 @@ export const opacities = [
   "opacity-95",
   "opacity-100",
 ];
+
+export const boxShadows = [
+  "shadow",
+  "shadow-sm",
+  "shadow-md",
+  "shadow-lg",
+  "shadow-xl",
+  "shadow-2xl",
+  "shadow-inner",
+  "shadow-none",
+];

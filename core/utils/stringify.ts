@@ -13,6 +13,6 @@ export function stringifyCustomProperty(
   return `--${prefix}${property}`;
 }
 
-export function stringifyVarFunction(value: string) {
-  return `var(${value})`;
+export function stringifyVarFunction(...value: string[]) {
+  return `var(${value.join(" ")})`;
 }
