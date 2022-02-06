@@ -2,12 +2,12 @@ import type {
   AtRule,
   CSSObject,
   CSSObjectSet,
+  DynamicSpecifierSet,
   EntriesSpecifier,
   RecordSpecifier,
-  RegExpSpecifierSet,
   RuleSet,
   Specifier,
-  StringSpecifierSet,
+  StaticSpecifierSet,
 } from "./../types.ts";
 import { isObject, isRegExp, isString } from "../../deps.ts";
 
@@ -36,14 +36,14 @@ export function isRecordSpecifier(
 }
 
 export function isRegExpSpecifierSet(
-  set: StringSpecifierSet | RegExpSpecifierSet,
-): set is RegExpSpecifierSet {
+  set: StaticSpecifierSet | DynamicSpecifierSet,
+): set is DynamicSpecifierSet {
   return isRegExp(set[0]);
 }
 
 export function isStringSpecifierSet(
-  set: StringSpecifierSet | RegExpSpecifierSet,
-): set is StringSpecifierSet {
+  set: StaticSpecifierSet | DynamicSpecifierSet,
+): set is StaticSpecifierSet {
   return isString(set[0]);
 }
 

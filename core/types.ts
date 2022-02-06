@@ -5,28 +5,33 @@ export type CSSObjectSet = [CSSObject, string];
 export interface SpecifierContext {
   theme: Theme;
   separator: string;
+  variablePrefix: string;
 }
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
 export type RecordSpecifier = {
-  [k: string]: CSSObject | CSSObjectSet | Specifier;
+  [k: string]:
+    | CSSObject
+    | CSSObjectSet
+    | Specifier;
 };
 
-export type RegExpSpecifierHandler = (
+export type SpecifierHandler = (
   arr: RegExpExecArray,
   context: SpecifierContext,
-) => CSSObject | undefined;
+) => CSSObject | CSSObjectSet | undefined;
 
-export type EntriesSpecifier = (StringSpecifierSet | RegExpSpecifierSet)[];
-export type RegExpSpecifierSet = [
-  RegExp,
-  | Specifier
-  | RegExpSpecifierHandler,
+export type EntriesSpecifier = (StaticSpecifierSet | DynamicSpecifierSet)[];
+export type DynamicSpecifierSet = [
+  RegExp | string | number,
+  SpecifierHandler,
 ];
-export type StringSpecifierSet = [
+export type StaticSpecifierSet = [
   string | number,
-  CSSObject | CSSObjectSet | Specifier,
+  | CSSObject
+  | CSSObjectSet
+  | Specifier,
 ];
 
 export type Preset = {
@@ -63,6 +68,11 @@ export interface Config {
   presets: Preset[];
   separator: string;
   syntaxes: Syntax[];
+
+  /**
+   * @default 'map-'
+   */
+  variablePrefix: string;
 }
 
 export type RuleSet = {

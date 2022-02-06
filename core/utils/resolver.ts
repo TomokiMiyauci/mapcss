@@ -23,11 +23,10 @@ import type {
   CSSObject,
   CSSObjectSet,
   EntriesSpecifier,
-  RegExpSpecifierHandler,
   Specifier,
   SpecifierContext,
+  SpecifierHandler,
   SpecifierMap,
-  Theme,
 } from "../types.ts";
 
 /** resolve theme via propPath safety */
@@ -110,7 +109,7 @@ function resolveSpecifier(
   } else {
     const map = new Map<
       string | RegExp,
-      Specifier | CSSObject | CSSObjectSet | RegExpSpecifierHandler
+      Specifier | CSSObject | CSSObjectSet | SpecifierHandler
     >(specifier.map(([identifier, handler]) => {
       const _identifier = isRegExp(identifier)
         ? identifier
@@ -122,7 +121,8 @@ function resolveSpecifier(
       const specifierOrCSSObject = map.get(_first)! as
         | Specifier
         | CSSObject
-        | CSSObjectSet;
+        | CSSObjectSet
+        | SpecifierHandler;
       if (isCSSObject(specifierOrCSSObject)) {
         return [specifierOrCSSObject, { combinator: "" }];
       }
@@ -131,25 +131,52 @@ function resolveSpecifier(
           combinator: specifierOrCSSObject[1],
         }];
       }
+      if (isFunction(specifierOrCSSObject)) {
+        const result = specifierOrCSSObject(
+          new MockRegExpExecArray(""),
+          context,
+        );
+        if (!isUndefined(result)) {
+          return cssObjectOrSet(result);
+        }
+        return;
+      }
       return resolveSpecifier(tail(paths), specifierOrCSSObject, context);
     }
 
     const regExpSpecifierSets = (Array.from(map) as EntriesSpecifier).filter(
       isRegExpSpecifierSet,
     );
-    for (const [regExp, handler] of regExpSpecifierSets) {
-      const regExpExecArray = regExp.exec(_first);
+    for (const [maybeRegExp, handler] of regExpSpecifierSets) {
+      const regExpExecArray = isRegExp(maybeRegExp)
+        ? (() => maybeRegExp.exec(_first))()
+        : new MockRegExpExecArray("");
       if (regExpExecArray) {
         if (isFunction(handler)) {
           const result = handler(regExpExecArray, context);
           if (isUndefined(result)) {
             continue;
           }
-          return [result, { combinator: "" }];
+          return cssObjectOrSet(result);
         }
         return resolveSpecifier(tail(paths), handler, context);
       }
     }
+  }
+}
+
+function cssObjectOrSet(value: CSSObject | CSSObjectSet): SpecifierResult {
+  if (isCSSObject(value)) {
+    return [value, { combinator: "" }];
+  }
+  return [value[0], { combinator: value[1] }];
+}
+
+class MockRegExpExecArray extends Array<string> {
+  index = 0;
+
+  constructor(public input: string) {
+    super();
   }
 }
 
@@ -172,20 +199,17 @@ export function resolveDeep(
   return resolveSpecifier(rest, maybeSpecifier, context);
 }
 
-export function resolveMap(
+export function resolveSpecifierMap(
   value: string,
-  { separator, specifierMap, theme }: {
-    separator: string;
-    specifierMap: SpecifierMap;
-    theme: Theme;
-  },
+  specifierMap: SpecifierMap,
+  { separator, ...rest }: SpecifierContext,
 ) {
   const paths = leftSplit(value, separator);
 
   for (const path of paths) {
     const maybeCSSObject = resolveDeep(path, specifierMap, {
-      theme,
       separator,
+      ...rest,
     });
 
     if (maybeCSSObject) {
