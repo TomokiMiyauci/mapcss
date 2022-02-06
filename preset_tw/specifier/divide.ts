@@ -11,27 +11,21 @@ export const divide: EntriesSpecifier = [
   ["double", [{ "border-style": "double" }, combinator]],
   ["none", [{ "border-style": "none" }, combinator]],
   ["x", [
-    [
-      "DEFAULT",
-      (_, { variablePrefix }) => {
-        const [variable, varFn] = customPropertySet(
-          "divide-x-reverse",
-          variablePrefix,
-        );
+    ["DEFAULT", (_, { variablePrefix }) => {
+      const [variable, varFn] = customPropertySet(
+        "divide-x-reverse",
+        variablePrefix,
+      );
 
-        return [{
-          [variable]: 0,
-          "border-right-width": `calc(1px * ${varFn})`,
-          "border-left-width": `calc(1px * calc(1 - ${varFn}))`,
-        }, combinator];
-      },
-    ],
+      return [{
+        [variable]: 0,
+        "border-right-width": `calc(1px * ${varFn})`,
+        "border-left-width": `calc(1px * calc(1 - ${varFn}))`,
+      }, combinator];
+    }],
     [
       "reverse",
-      (
-        _,
-        { variablePrefix },
-      ) => [{
+      (_, { variablePrefix }) => [{
         [stringifyCustomProperty("divide-x-reverse", variablePrefix)]: 1,
       }, combinator],
     ],
@@ -47,6 +41,41 @@ export const divide: EntriesSpecifier = [
             [variable]: 0,
             "border-right-width": `calc(${number} * ${varFn})`,
             "border-left-width": `calc(${number} * calc(1 - ${varFn}))`,
+          }, combinator];
+        }),
+    ],
+  ]],
+  ["y", [
+    ["DEFAULT", (_, { variablePrefix }) => {
+      const [variable, varFn] = customPropertySet(
+        "divide-y-reverse",
+        variablePrefix,
+      );
+
+      return [{
+        [variable]: 0,
+        "border-top-width": `calc(1px * calc(1 - ${varFn}))`,
+        "border-bottom-width": `calc(1px * ${varFn})`,
+      }, combinator];
+    }],
+    [
+      "reverse",
+      (_, { variablePrefix }) => [{
+        [stringifyCustomProperty("divide-y-reverse", variablePrefix)]: 1,
+      }, combinator],
+    ],
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        pxBy(pNumber, (px) => {
+          const [variable, varFn] = customPropertySet(
+            "divide-y-reverse",
+            variablePrefix,
+          );
+          return [{
+            [variable]: 0,
+            "border-top-width": `calc(${px} * calc(1 - ${varFn}))`,
+            "border-bottom-width": `calc(${px} * ${varFn})`,
           }, combinator];
         }),
     ],

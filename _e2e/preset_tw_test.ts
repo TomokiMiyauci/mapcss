@@ -7691,6 +7691,30 @@ const expects: [string, string][] = [
     ".divide-x-reverse>:not([hidden])~:not([hidden]){--map-divide-x-reverse:1;}",
   ],
   [
+    "divide-y",
+    ".divide-y>:not([hidden])~:not([hidden]){--map-divide-y-reverse:0;border-bottom-width:calc(1px * var(--map-divide-y-reverse));border-top-width:calc(1px * calc(1 - var(--map-divide-y-reverse)));}",
+  ],
+  [
+    "divide-y-0",
+    ".divide-y-0>:not([hidden])~:not([hidden]){--map-divide-y-reverse:0;border-bottom-width:calc(0px * var(--map-divide-y-reverse));border-top-width:calc(0px * calc(1 - var(--map-divide-y-reverse)));}",
+  ],
+  [
+    "divide-y-2",
+    ".divide-y-2>:not([hidden])~:not([hidden]){--map-divide-y-reverse:0;border-bottom-width:calc(2px * var(--map-divide-y-reverse));border-top-width:calc(2px * calc(1 - var(--map-divide-y-reverse)));}",
+  ],
+  [
+    "divide-y-4",
+    ".divide-y-4>:not([hidden])~:not([hidden]){--map-divide-y-reverse:0;border-bottom-width:calc(4px * var(--map-divide-y-reverse));border-top-width:calc(4px * calc(1 - var(--map-divide-y-reverse)));}",
+  ],
+  [
+    "divide-y-8",
+    ".divide-y-8>:not([hidden])~:not([hidden]){--map-divide-y-reverse:0;border-bottom-width:calc(8px * var(--map-divide-y-reverse));border-top-width:calc(8px * calc(1 - var(--map-divide-y-reverse)));}",
+  ],
+  [
+    "divide-y-reverse",
+    ".divide-y-reverse>:not([hidden])~:not([hidden]){--map-divide-y-reverse:1;}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
