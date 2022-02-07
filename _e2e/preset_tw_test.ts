@@ -8060,6 +8060,16 @@ const expects: [string, string][] = [
   ["decoration-dashed", ".decoration-dashed{text-decoration-style:dashed;}"],
   ["decoration-wavy", ".decoration-wavy{text-decoration-style:wavy;}"],
   [
+    "decoration-from-font",
+    ".decoration-from-font{text-decoration-thickness:from-font;}",
+  ],
+  ["decoration-auto", ".decoration-auto{text-decoration-thickness:auto;}"],
+  ["decoration-0", ".decoration-0{text-decoration-thickness:0px;}"],
+  ["decoration-1", ".decoration-1{text-decoration-thickness:1px;}"],
+  ["decoration-2", ".decoration-2{text-decoration-thickness:2px;}"],
+  ["decoration-4", ".decoration-4{text-decoration-thickness:4px;}"],
+  ["decoration-8", ".decoration-8{text-decoration-thickness:8px;}"],
+  [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",
   ],

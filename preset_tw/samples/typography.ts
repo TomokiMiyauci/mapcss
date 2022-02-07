@@ -50,6 +50,16 @@ export const textDecorationStyles = [
   "decoration-wavy",
 ];
 
+export const textDecorationThicknesses = [
+  "decoration-auto",
+  "decoration-0",
+  "decoration-1",
+  "decoration-2",
+  "decoration-4",
+  "decoration-8",
+  "decoration-from-font",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",
