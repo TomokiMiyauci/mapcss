@@ -100,8 +100,10 @@ import { shadow } from "./shadow.ts";
 import { space } from "./space.ts";
 import { place } from "./place.ts";
 import { decoration } from "./decoration.ts";
+import { indent } from "./indent.ts";
 
 export const specifierMap = {
+  indent,
   truncate,
   capitalize,
   lowercase,
