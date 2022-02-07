@@ -8049,6 +8049,9 @@ const expects: [string, string][] = [
     ".stacked-fractions{font-variant-numeric:stacked-fractions;}",
   ],
   ["ordinal", ".ordinal{font-variant-numeric:ordinal;}"],
+  ["list-none", ".list-none{list-style-type:none;}"],
+  ["list-disc", ".list-disc{list-style-type:disc;}"],
+  ["list-decimal", ".list-decimal{list-style-type:decimal;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

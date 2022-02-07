@@ -31,6 +31,12 @@ export const fontVariantNumerics = [
   "ordinal",
 ];
 
+export const listStyleTypes = [
+  "list-none",
+  "list-disc",
+  "list-decimal",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",

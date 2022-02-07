@@ -1,0 +1,61 @@
+---
+title: List Style Type
+description: Utilities for controlling the bullet/number style of a list.
+category: Typography
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the list style type
+
+To create bulleted or numeric lists, use the `list-disc` and `list-decimal` utilities.
+
+<Example>
+  <div className="flex flex-col gap-8">
+    <div>
+      <span className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">list-disc</span>
+      <ul className="list-disc list-inside text-slate-900 dark:text-slate-200">
+        <li>Now this is a story all about how, my life got flipped turned upside down</li>
+        <li>And I like to take a minute and sit right here</li>
+        <li>I'll tell you how I became the prince of a town called Bel-Air </li>
+      </ul>
+    </div>
+    <div>
+      <span className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">list-decimal</span>
+      <ul className="list-decimal list-inside text-slate-900 dark:text-slate-200">
+        <li>Now this is a story all about how, my life got flipped turned upside down</li>
+        <li>And I like to take a minute and sit right here</li>
+        <li>I'll tell you how I became the prince of a town called Bel-Air </li>
+      </ul>
+    </div>
+    <div>
+      <span className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">list-none</span>
+      <ul className="list-none list-inside text-slate-900 dark:text-slate-200">
+        <li>Now this is a story all about how, my life got flipped turned upside down</li>
+        <li>And I like to take a minute and sit right here</li>
+        <li>I'll tell you how I became the prince of a town called Bel-Air </li>
+      </ul>
+    </div>
+  </div>
+</Example>
+
+```html
+<ul className="**list-disc**">
+  <li>Now this is a story all about how, my life got flipped turned upside down</li>
+  <!-- ... -->
+</ul>
+
+<ol className="**list-decimal**">
+  <li>Now this is a story all about how, my life got flipped turned upside down</li>
+  <!-- ... -->
+</ol>
+
+<ul className="**list-none**">
+  <li>Now this is a story all about how, my life got flipped turned upside down</li>
+  <!-- ... -->
+</ul>
+```
+
+---
