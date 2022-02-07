@@ -73,9 +73,6 @@ export const sr: Specifier = {
     "border-width": 0,
   },
 };
-export const normal: RecordSpecifier = {
-  nums: { "font-variant-numeric": "normal" },
-};
 export const ordinal: CSSObject = { "font-variant-numeric": "ordinal" };
 export const slashed: RecordSpecifier = {
   zero: { "font-variant-numeric": "slashed-zero" },
@@ -98,3 +95,6 @@ export const diagonal: RecordSpecifier = {
 export const stacked: RecordSpecifier = {
   fractions: { "font-variant-numeric": "stacked-fractions" },
 };
+export const uppercase: CSSObject = { "text-transform": "uppercase" };
+export const lowercase: CSSObject = { "text-transform": "lowercase" };
+export const capitalize: CSSObject = { "text-transform": "capitalize" };

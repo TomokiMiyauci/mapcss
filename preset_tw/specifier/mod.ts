@@ -4,6 +4,7 @@ import {
   absolute,
   antialiased,
   block,
+  capitalize,
   contents,
   diagonal,
   fixed,
@@ -14,8 +15,8 @@ import {
   italic,
   line,
   lining,
+  lowercase,
   no,
-  normal,
   oldstyle,
   ordinal,
   overline,
@@ -27,8 +28,10 @@ import {
   sticky,
   subpixel,
   tabular,
+  uppercase,
   visible,
 } from "./single.ts";
+import { normal } from "./normal.ts";
 import { align } from "./align.ts";
 import { table } from "./table.ts";
 import { columns } from "./columns.ts";
@@ -98,6 +101,9 @@ import { place } from "./place.ts";
 import { decoration } from "./decoration.ts";
 
 export const specifierMap = {
+  capitalize,
+  lowercase,
+  uppercase,
   decoration,
   normal,
   ordinal,

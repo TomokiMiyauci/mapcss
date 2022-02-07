@@ -8078,6 +8078,10 @@ const expects: [string, string][] = [
   ["underline-offset-2", ".underline-offset-2{text-underline-offset:2px;}"],
   ["underline-offset-4", ".underline-offset-4{text-underline-offset:4px;}"],
   ["underline-offset-8", ".underline-offset-8{text-underline-offset:8px;}"],
+  ["uppercase", ".uppercase{text-transform:uppercase;}"],
+  ["lowercase", ".lowercase{text-transform:lowercase;}"],
+  ["capitalize", ".capitalize{text-transform:capitalize;}"],
+  ["normal-case", ".normal-case{text-transform:none;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

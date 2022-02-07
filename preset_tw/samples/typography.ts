@@ -69,6 +69,13 @@ export const textUnderlineOffsets = [
   "underline-offset-8",
 ];
 
+export const textTransforms = [
+  "uppercase",
+  "lowercase",
+  "capitalize",
+  "normal-case",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",
