@@ -1,0 +1,43 @@
+---
+title: Text Underline Offset
+description: Utilities for controlling the offset of a text underline.
+category: Typography
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the underline offset
+
+Use the `underline-offset-{width}` utilities to change the offset of a text underline.
+
+<Example>
+  <div className="flex flex-col gap-8 text-slate-900 dark:text-slate-200">
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">underline-offset-1</div>
+      <p className="text-lg font-medium underline underline-offset-1">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">underline-offset-2</div>
+      <p className="text-lg font-medium underline underline-offset-2">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">underline-offset-4</div>
+      <p className="text-lg font-medium underline underline-offset-4">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">underline-offset-8</div>
+      <p className="text-lg font-medium underline underline-offset-8">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="underline **underline-offset-1** ...">The quick brown fox...</p>
+<p className="underline **underline-offset-2** ...">The quick brown fox...</p>
+<p className="underline **underline-offset-4** ...">The quick brown fox...</p>
+<p className="underline **underline-offset-8** ...">The quick brown fox...</p>
+```
+
+---

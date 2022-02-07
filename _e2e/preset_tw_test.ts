@@ -8070,6 +8070,15 @@ const expects: [string, string][] = [
   ["decoration-4", ".decoration-4{text-decoration-thickness:4px;}"],
   ["decoration-8", ".decoration-8{text-decoration-thickness:8px;}"],
   [
+    "underline-offset-auto",
+    ".underline-offset-auto{text-underline-offset:auto;}",
+  ],
+  ["underline-offset-0", ".underline-offset-0{text-underline-offset:0px;}"],
+  ["underline-offset-1", ".underline-offset-1{text-underline-offset:1px;}"],
+  ["underline-offset-2", ".underline-offset-2{text-underline-offset:2px;}"],
+  ["underline-offset-4", ".underline-offset-4{text-underline-offset:4px;}"],
+  ["underline-offset-8", ".underline-offset-8{text-underline-offset:8px;}"],
+  [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",
   ],
