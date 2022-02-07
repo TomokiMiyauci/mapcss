@@ -409,3 +409,11 @@ export const placeItems = [
   "place-items-center",
   "place-items-stretch",
 ];
+
+export const placeSelfs = [
+  "place-self-auto",
+  "place-self-start",
+  "place-self-end",
+  "place-self-center",
+  "place-self-stretch",
+];
