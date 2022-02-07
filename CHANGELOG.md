@@ -1,3 +1,32 @@
+# [1.0.0-beta.5](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2022-02-07)
+
+
+### Features
+
+* **core:** change specifier object to define combinator ([de10ae0](https://github.com/TomokiMiyauci/mapcss/commit/de10ae0e996fdf65c193580385a627188a75897c))
+* **core:** expand specifier interface that accept function ([1c2f4a2](https://github.com/TomokiMiyauci/mapcss/commit/1c2f4a216043989e7c24d19af63511135b004d81))
+* **core:** pass variablePrefix as context ([fbc34d8](https://github.com/TomokiMiyauci/mapcss/commit/fbc34d8b8f54675cdcac9091f3d02ff42003ee00))
+* **preset_tw:** add specifier for `border-color` ([1cd5fb9](https://github.com/TomokiMiyauci/mapcss/commit/1cd5fb9f2c65cc39f4dc3b7a8c791d586ea2c75c))
+* **preset_tw:** add specifier for `border-left/right-width` ([999da1d](https://github.com/TomokiMiyauci/mapcss/commit/999da1d3ffd03f69d7c746330322db1fb5c70239))
+* **preset_tw:** add specifier for `border-style` ([3049f91](https://github.com/TomokiMiyauci/mapcss/commit/3049f91d7dc9db64529574a510147d42901bdd08))
+* **preset_tw:** add specifier for `border-top/bottom-width` ([36f4f64](https://github.com/TomokiMiyauci/mapcss/commit/36f4f6478eed6ad743c05cb092dca356a9e94d0b))
+* **preset_tw:** add specifier for `grid-auto-flow` ([2f94176](https://github.com/TomokiMiyauci/mapcss/commit/2f941763b570eaf8f76b56c3a90a4a71a956ceca))
+* **preset_tw:** add specifier for `grid-auto-rows` ([e6e8d04](https://github.com/TomokiMiyauci/mapcss/commit/e6e8d043164d247f8be25ad55ad4f9a6bf921ebc))
+* **preset_tw:** add specifier for `grid-template-columns` ([9892301](https://github.com/TomokiMiyauci/mapcss/commit/9892301c3b43cffec0d1cdbfcdc05593176c51ae))
+* **preset_tw:** add specifier for `grid-template-rows` ([b6f75dd](https://github.com/TomokiMiyauci/mapcss/commit/b6f75dd74b96acba545df7e81e27dc125dbf821b))
+* **preset_tw:** add specifier for flex-direction ([1cab29a](https://github.com/TomokiMiyauci/mapcss/commit/1cab29a379409c2f205f7831771523490d45efda))
+* **preset_tw:** add specifier for flex-wrap ([94cecd2](https://github.com/TomokiMiyauci/mapcss/commit/94cecd2265d92fb6c1687c45b91f3b94e3f00941))
+* **preset_tw:** add specifier of `auto` ([726fe1f](https://github.com/TomokiMiyauci/mapcss/commit/726fe1f5158b71fff993f824f35c989dde39f741))
+* **preset_tw:** add specifier of `basis` ([684a5b9](https://github.com/TomokiMiyauci/mapcss/commit/684a5b9187c092ce1aaddeed1109113a401101c4))
+* **preset_tw:** add specifier of `col` ([61172e9](https://github.com/TomokiMiyauci/mapcss/commit/61172e958019423390766d80cbafa92d06933fd6))
+* **preset_tw:** add specifier of `gap` ([2e44404](https://github.com/TomokiMiyauci/mapcss/commit/2e444042d7816b62a451e117f88bd466f6ca2c82))
+* **preset_tw:** add specifier of `grow` ([7c25bff](https://github.com/TomokiMiyauci/mapcss/commit/7c25bffb8fe766f3f57d86f9d86784523187794c))
+* **preset_tw:** add specifier of `order` ([f214b68](https://github.com/TomokiMiyauci/mapcss/commit/f214b6856d71af7c897801cf276a1209e527ecfb))
+* **preset_tw:** add specifier of `row` ([5fc16b2](https://github.com/TomokiMiyauci/mapcss/commit/5fc16b2aa56409fd7f98802e01b87bdd307b2e78))
+* **preset_tw:** add specifier of `shadow` ([7363922](https://github.com/TomokiMiyauci/mapcss/commit/7363922d06b50b1d7554f4f3519079eba5dc10a8))
+* **preset_tw:** add specifier of `shrink` ([ccbbf0e](https://github.com/TomokiMiyauci/mapcss/commit/ccbbf0e8d50332f736c4f97ddc1c345e19b385fa))
+* **preset_tw:** add specifier of `space` ([c23faab](https://github.com/TomokiMiyauci/mapcss/commit/c23faabc5c8c186ac8c4f54fa1de49d4fb196d82))
+
 # [1.0.0-beta.4](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2022-02-05)
 
 
