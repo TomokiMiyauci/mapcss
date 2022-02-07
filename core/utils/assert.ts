@@ -9,12 +9,12 @@ import type {
   Specifier,
   StaticSpecifierSet,
 } from "./../types.ts";
-import { isObject, isRegExp, isString } from "../../deps.ts";
+import { isFunction, isObject, isRegExp, isString } from "../../deps.ts";
 
 export function isCSSObject(value: unknown): value is CSSObject {
   if (!isObject(value)) return false;
 
-  return Object.values(value).every((v) => !isObject(v));
+  return Object.values(value).every((v) => !isObject(v) && !isFunction(v));
 }
 
 export function isCSSObjectSet(value: unknown): value is CSSObjectSet {

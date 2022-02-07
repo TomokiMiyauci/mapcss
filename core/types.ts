@@ -14,6 +14,7 @@ export type RecordSpecifier = {
   [k: string]:
     | CSSObject
     | CSSObjectSet
+    | SpecifierHandler
     | Specifier;
 };
 

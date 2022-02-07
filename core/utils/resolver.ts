@@ -104,6 +104,9 @@ function resolveSpecifier(
     if (isUndefined(result)) {
       return;
     }
+    if (isFunction(result)) {
+      return cssObjectOrSet(result(new MockRegExpExecArray(""), context));
+    }
 
     return resolveSpecifier(tail(paths), result, context);
   } else {
@@ -165,7 +168,10 @@ function resolveSpecifier(
   }
 }
 
-function cssObjectOrSet(value: CSSObject | CSSObjectSet): SpecifierResult {
+function cssObjectOrSet(
+  value: CSSObject | CSSObjectSet | undefined,
+): SpecifierResult | undefined {
+  if (isUndefined(value)) return;
   if (isCSSObject(value)) {
     return [value, { combinator: "" }];
   }
