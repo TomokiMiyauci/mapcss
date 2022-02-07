@@ -8142,6 +8142,12 @@ const expects: [string, string][] = [
   ["bg-left-top", ".bg-left-top{background-position:left top;}"],
   ["bg-right-bottom", ".bg-right-bottom{background-position:right bottom;}"],
   ["bg-right-top", ".bg-right-top{background-position:right top;}"],
+  ["bg-repeat", ".bg-repeat{background-repeat:repeat;}"],
+  ["bg-no-repeat", ".bg-no-repeat{background-repeat:no-repeat;}"],
+  ["bg-repeat-x", ".bg-repeat-x{background-repeat:repeat-x;}"],
+  ["bg-repeat-y", ".bg-repeat-y{background-repeat:repeat-y;}"],
+  ["bg-repeat-round", ".bg-repeat-round{background-repeat:round;}"],
+  ["bg-repeat-space", ".bg-repeat-space{background-repeat:space;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

@@ -28,3 +28,12 @@ export const backgroundPosition = [
   "bg-right-bottom",
   "bg-right-top",
 ];
+
+export const backgroundRepeats = [
+  "bg-repeat",
+  "bg-no-repeat",
+  "bg-repeat-x",
+  "bg-repeat-y",
+  "bg-repeat-round",
+  "bg-repeat-space",
+];

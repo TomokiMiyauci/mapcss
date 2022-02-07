@@ -33,6 +33,16 @@ export const bg: Specifier = [
     top: { "background-position": "right top" },
     bottom: { "background-position": "right bottom" },
   }],
+  ["repeat", {
+    DEFAULT: { "background-repeat": "repeat" },
+    x: { "background-repeat": "repeat-x" },
+    y: { "background-repeat": "repeat-y" },
+    round: { "background-repeat": "round" },
+    space: { "background-repeat": "space" },
+  }],
+  ["no", {
+    repeat: { "background-repeat": "no-repeat" },
+  }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
