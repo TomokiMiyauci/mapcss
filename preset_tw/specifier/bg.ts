@@ -43,6 +43,9 @@ export const bg: Specifier = [
   ["no", {
     repeat: { "background-repeat": "no-repeat" },
   }],
+  ["auto", { "background-size": "auto" }],
+  ["cover", { "background-size": "cover" }],
+  ["contain", { "background-size": "contain" }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;

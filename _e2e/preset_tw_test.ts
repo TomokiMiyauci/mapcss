@@ -8148,6 +8148,9 @@ const expects: [string, string][] = [
   ["bg-repeat-y", ".bg-repeat-y{background-repeat:repeat-y;}"],
   ["bg-repeat-round", ".bg-repeat-round{background-repeat:round;}"],
   ["bg-repeat-space", ".bg-repeat-space{background-repeat:space;}"],
+  ["bg-auto", ".bg-auto{background-size:auto;}"],
+  ["bg-cover", ".bg-cover{background-size:cover;}"],
+  ["bg-contain", ".bg-contain{background-size:contain;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

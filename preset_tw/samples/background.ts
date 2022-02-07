@@ -37,3 +37,9 @@ export const backgroundRepeats = [
   "bg-repeat-round",
   "bg-repeat-space",
 ];
+
+export const backgroundSizes = [
+  "bg-auto",
+  "bg-cover",
+  "bg-contain",
+];
