@@ -8130,6 +8130,9 @@ const expects: [string, string][] = [
   ["bg-clip-padding", ".bg-clip-padding{background-clip:padding-box;}"],
   ["bg-clip-content", ".bg-clip-content{background-clip:content-box;}"],
   ["bg-clip-text", ".bg-clip-text{background-clip:text;}"],
+  ["bg-origin-border", ".bg-origin-border{background-origin:border-box;}"],
+  ["bg-origin-padding", ".bg-origin-padding{background-origin:padding-box;}"],
+  ["bg-origin-content", ".bg-origin-content{background-origin:content-box;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

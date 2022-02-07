@@ -10,10 +10,15 @@ export const bg: Specifier = [
   ["local", { "background-attachment": "local" }],
   ["scroll", { "background-attachment": "scroll" }],
   ["clip", {
-    "border": { "background-clip": "border-box" },
-    "padding": { "background-clip": "padding-box" },
-    "content": { "background-clip": "content-box" },
-    "text": { "background-clip": "text" },
+    border: { "background-clip": "border-box" },
+    padding: { "background-clip": "padding-box" },
+    content: { "background-clip": "content-box" },
+    text: { "background-clip": "text" },
+  }],
+  ["origin", {
+    border: { "background-origin": "border-box" },
+    padding: { "background-origin": "padding-box" },
+    content: { "background-origin": "content-box" },
   }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);

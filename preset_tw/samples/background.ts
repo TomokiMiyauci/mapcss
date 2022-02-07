@@ -10,3 +10,9 @@ export const backgroundClips = [
   "bg-clip-content",
   "bg-clip-text",
 ];
+
+export const backgroundOrigins = [
+  "bg-origin-border",
+  "bg-origin-padding",
+  "bg-origin-content",
+];
