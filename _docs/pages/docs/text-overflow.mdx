@@ -1,0 +1,59 @@
+---
+title: Text Overflow
+description: Utilities for controlling text overflow in an element.
+category: Typography
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Truncate
+
+Use `truncate` to truncate overflowing text with an ellipsis (<code>…</code>) if needed.
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="mx-auto max-w-sm bg-white shadow-xl p-8 text-slate-700 text-sm leading-6 sm:text-base sm:leading-7 dark:bg-slate-800 dark:text-slate-400">
+      <p className="truncate">The longest word in any of the major English language dictionaries is <span className="text-slate-900 font-medium">pneumonoultramicroscopicsilicovolcanoconiosis,</span> a word that refers to a lung disease contracted from the inhalation of very fine silica particles, specifically from a volcano; medically, it is the same as silicosis.</p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="**truncate** ...">...</p>
+```
+
+### Ellipsis
+
+Use `text-ellipsis` to truncate overflowing text with an ellipsis (<code>…</code>) if needed.
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="mx-auto max-w-sm bg-white shadow-xl p-8 text-slate-700 text-sm leading-6 sm:text-base sm:leading-7 dark:bg-slate-800 dark:text-slate-400">
+      <p className="text-ellipsis overflow-hidden">The longest word in any of the major English language dictionaries is <span className="text-slate-900 font-medium dark:text-slate-200">pneumonoultramicroscopicsilicovolcanoconiosis,</span> a word that refers to a lung disease contracted from the inhalation of very fine silica particles, specifically from a volcano; medically, it is the same as silicosis.</p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="**text-ellipsis** overflow-hidden ...">...</p>
+```
+
+### Clip
+
+Use `text-clip` to truncate the text at the limit of the content area.
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="mx-auto max-w-sm bg-white shadow-xl p-8 text-slate-700 text-sm leading-6 sm:text-base sm:leading-7 dark:bg-slate-800 dark:text-slate-400">
+      <p className="text-clip overflow-hidden">The longest word in any of the major English language dictionaries is <span className="text-slate-900 font-medium dark:text-slate-200">pneumonoultramicroscopicsilicovolcanoconiosis,</span> a word that refers to a lung disease contracted from the inhalation of very fine silica particles, specifically from a volcano; medically, it is the same as silicosis.</p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="**text-clip** overflow-hidden ...">...</p>
+```
+
+---

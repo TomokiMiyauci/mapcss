@@ -76,6 +76,12 @@ export const textTransforms = [
   "normal-case",
 ];
 
+export const textOverflows = [
+  "truncate",
+  "text-ellipsis",
+  "text-clip",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",

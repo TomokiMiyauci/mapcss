@@ -28,6 +28,7 @@ import {
   sticky,
   subpixel,
   tabular,
+  truncate,
   uppercase,
   visible,
 } from "./single.ts";
@@ -101,6 +102,7 @@ import { place } from "./place.ts";
 import { decoration } from "./decoration.ts";
 
 export const specifierMap = {
+  truncate,
   capitalize,
   lowercase,
   uppercase,

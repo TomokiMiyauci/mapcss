@@ -98,3 +98,8 @@ export const stacked: RecordSpecifier = {
 export const uppercase: CSSObject = { "text-transform": "uppercase" };
 export const lowercase: CSSObject = { "text-transform": "lowercase" };
 export const capitalize: CSSObject = { "text-transform": "capitalize" };
+export const truncate: CSSObject = {
+  overflow: "hidden",
+  "text-overflow": "ellipsis",
+  "white-space": "nowrap",
+};

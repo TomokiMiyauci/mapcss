@@ -70,6 +70,8 @@ export const text: Specifier = [
   ["justify", {
     "text-align": "justify",
   }],
+  ["ellipsis", { "text-overflow": "ellipsis" }],
+  ["clip", { "text-overflow": "clip" }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;

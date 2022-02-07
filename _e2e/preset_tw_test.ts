@@ -8083,6 +8083,12 @@ const expects: [string, string][] = [
   ["capitalize", ".capitalize{text-transform:capitalize;}"],
   ["normal-case", ".normal-case{text-transform:none;}"],
   [
+    "truncate",
+    ".truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}",
+  ],
+  ["text-ellipsis", ".text-ellipsis{text-overflow:ellipsis;}"],
+  ["text-clip", ".text-clip{text-overflow:clip;}"],
+  [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",
   ],
