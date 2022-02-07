@@ -103,8 +103,10 @@ import { decoration } from "./decoration.ts";
 import { indent } from "./indent.ts";
 import { ring } from "./ring.ts";
 import { mix } from "./mix.ts";
+import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  blur,
   mix,
   ring,
   indent,
