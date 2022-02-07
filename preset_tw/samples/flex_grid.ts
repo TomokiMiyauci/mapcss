@@ -394,11 +394,18 @@ export const alignSelfs = [
 ];
 
 export const placeContents = [
-  'place-content-center',
-  'place-content-start',
-  'place-content-end',
-  'place-content-between',
-  'place-content-around',
-  'place-content-evenly',
-  'place-content-stretch',
-]
+  "place-content-center",
+  "place-content-start",
+  "place-content-end",
+  "place-content-between",
+  "place-content-around",
+  "place-content-evenly",
+  "place-content-stretch",
+];
+
+export const placeItems = [
+  "place-items-start",
+  "place-items-end",
+  "place-items-center",
+  "place-items-stretch",
+];

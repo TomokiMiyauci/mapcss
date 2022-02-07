@@ -10,4 +10,10 @@ export const place: EntriesSpecifier = [
     evenly: { ["place-content"]: "space-evenly" },
     stretch: { ["place-content"]: "stretch" },
   }],
+  ["items", {
+    start: { ["place-items"]: "start" },
+    end: { ["place-items"]: "end" },
+    center: { ["place-items"]: "center" },
+    stretch: { ["place-items"]: "stretch" },
+  }],
 ];
