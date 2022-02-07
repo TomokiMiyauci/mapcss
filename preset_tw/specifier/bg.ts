@@ -57,6 +57,30 @@ export const bg: Specifier = [
   ["cover", { "background-size": "cover" }],
   ["contain", { "background-size": "contain" }],
   ["none", { "background-image": "none" }],
+  ["blend", {
+    normal: { "background-blend-mode": "normal" },
+    multiply: { "background-blend-mode": "multiply" },
+    screen: { "background-blend-mode": "screen" },
+    overlay: { "background-blend-mode": "overlay" },
+    darken: { "background-blend-mode": "darken" },
+    lighten: { "background-blend-mode": "lighten" },
+    difference: { "background-blend-mode": "difference" },
+    exclusion: { "background-blend-mode": "exclusion" },
+    hue: { "background-blend-mode": "hue" },
+    saturation: { "background-blend-mode": "saturation" },
+    luminosity: { "background-blend-mode": "luminosity" },
+    color: {
+      DEFAULT: { "background-blend-mode": "color" },
+      dodge: { "background-blend-mode": "color-dodge" },
+      burn: { "background-blend-mode": "color-burn" },
+    },
+    hard: {
+      light: { "background-blend-mode": "hard-light" },
+    },
+    soft: {
+      light: { "background-blend-mode": "soft-light" },
+    },
+  }],
   ["gradient", {
     to: {
       t: (_, { variablePrefix }) => ({

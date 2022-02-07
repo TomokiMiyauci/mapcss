@@ -45,3 +45,22 @@ export const mixBlendModes = [
   "mix-blend-hard-light",
   "mix-blend-soft-light",
 ];
+
+export const backgroundBlendModes = [
+  "bg-blend-normal",
+  "bg-blend-multiply",
+  "bg-blend-screen",
+  "bg-blend-overlay",
+  "bg-blend-darken",
+  "bg-blend-difference",
+  "bg-blend-exclusion",
+  "bg-blend-hue",
+  "bg-blend-saturation",
+  "bg-blend-color",
+  "bg-blend-luminosity",
+  "bg-blend-lighten",
+  "bg-blend-color-dodge",
+  "bg-blend-color-burn",
+  "bg-blend-hard-light",
+  "bg-blend-soft-light",
+];
