@@ -20,6 +20,19 @@ export const bg: Specifier = [
     padding: { "background-origin": "padding-box" },
     content: { "background-origin": "content-box" },
   }],
+  ["top", { "background-position": "top" }],
+  ["bottom", { "background-position": "bottom" }],
+  ["center", { "background-position": "center" }],
+  ["left", {
+    DEFAULT: { "background-position": "left" },
+    top: { "background-position": "left top" },
+    bottom: { "background-position": "left bottom" },
+  }],
+  ["right", {
+    DEFAULT: { "background-position": "right" },
+    top: { "background-position": "right top" },
+    bottom: { "background-position": "right bottom" },
+  }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;

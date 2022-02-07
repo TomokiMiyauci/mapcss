@@ -16,3 +16,15 @@ export const backgroundOrigins = [
   "bg-origin-padding",
   "bg-origin-content",
 ];
+
+export const backgroundPosition = [
+  "bg-bottom",
+  "bg-center",
+  "bg-left",
+  "bg-right",
+  "bg-top",
+  "bg-left-bottom",
+  "bg-left-top",
+  "bg-right-bottom",
+  "bg-right-top",
+];
