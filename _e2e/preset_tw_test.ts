@@ -8123,6 +8123,9 @@ const expects: [string, string][] = [
   ["indent-1.5", ".indent-1\\.5{text-indent:0.375rem;}"],
   ["indent-2.5", ".indent-2\\.5{text-indent:0.625rem;}"],
   ["indent-3.5", ".indent-3\\.5{text-indent:0.875rem;}"],
+  ["bg-fixed", ".bg-fixed{background-attachment:fixed;}"],
+  ["bg-local", ".bg-local{background-attachment:local;}"],
+  ["bg-scroll", ".bg-scroll{background-attachment:scroll;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

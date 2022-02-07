@@ -6,6 +6,9 @@ import { reAll, reSlashNumber } from "../../core/utils/regexp.ts";
 import type { Specifier } from "../../core/types.ts";
 
 export const bg: Specifier = [
+  ["fixed", { "background-attachment": "fixed" }],
+  ["local", { "background-attachment": "local" }],
+  ["scroll", { "background-attachment": "scroll" }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
