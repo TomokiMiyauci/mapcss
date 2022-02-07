@@ -1,0 +1,48 @@
+---
+title: Text Decoration Style
+description: Utilities for controlling the style of text decorations.
+category: Typography
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the text decoration style
+
+Use the `decoration-{style}` utilities to change the style of an element's [text decoration](/docs/text-decoration).
+
+<Example>
+  <div className="flex flex-col gap-8 text-slate-900 dark:text-slate-200">
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-solid</div>
+      <p className="text-lg font-medium underline decoration-solid">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-double</div>
+      <p className="text-lg font-medium underline decoration-double">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-dotted</div>
+      <p className="text-lg font-medium underline decoration-dotted">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-dashed</div>
+      <p className="text-lg font-medium underline decoration-dashed">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-wavy</div>
+      <p className="text-lg font-medium underline decoration-wavy">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="underline **decoration-solid** ...">The quick brown fox...</p>
+<p className="underline **decoration-double** ...">The quick brown fox...</p>
+<p className="underline **decoration-dotted** ...">The quick brown fox...</p>
+<p className="underline **decoration-dashed** ...">The quick brown fox...</p>
+<p className="underline **decoration-wavy** ...">The quick brown fox...</p>
+```
+
+---

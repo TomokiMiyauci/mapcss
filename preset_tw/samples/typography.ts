@@ -42,6 +42,14 @@ export const listStylePositions = [
   "list-outside",
 ];
 
+export const textDecorationStyles = [
+  "decoration-solid",
+  "decoration-double",
+  "decoration-dotted",
+  "decoration-dashed",
+  "decoration-wavy",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",

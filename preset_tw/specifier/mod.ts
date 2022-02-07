@@ -95,8 +95,10 @@ import { divide } from "./divide.ts";
 import { shadow } from "./shadow.ts";
 import { space } from "./space.ts";
 import { place } from "./place.ts";
+import { decoration } from "./decoration.ts";
 
 export const specifierMap = {
+  decoration,
   normal,
   ordinal,
   slashed,
