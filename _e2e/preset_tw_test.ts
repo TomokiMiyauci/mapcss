@@ -8151,6 +8151,39 @@ const expects: [string, string][] = [
   ["bg-auto", ".bg-auto{background-size:auto;}"],
   ["bg-cover", ".bg-cover{background-size:cover;}"],
   ["bg-contain", ".bg-contain{background-size:contain;}"],
+  ["bg-none", ".bg-none{background-image:none;}"],
+  [
+    "bg-gradient-to-t",
+    ".bg-gradient-to-t{background-image:linear-gradient(to top, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-tr",
+    ".bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-r",
+    ".bg-gradient-to-r{background-image:linear-gradient(to right, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-br",
+    ".bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-b",
+    ".bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-bl",
+    ".bg-gradient-to-bl{background-image:linear-gradient(to bottom left, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-l",
+    ".bg-gradient-to-l{background-image:linear-gradient(to left, var(--map-gradient-stops));}",
+  ],
+  [
+    "bg-gradient-to-tl",
+    ".bg-gradient-to-tl{background-image:linear-gradient(to top left, var(--map-gradient-stops));}",
+  ],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

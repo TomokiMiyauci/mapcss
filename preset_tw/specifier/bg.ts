@@ -1,9 +1,19 @@
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { colorByRGBA, fillRGBA, numericBy } from "./_utils.ts";
+import {
+  colorByRGBA,
+  customPropertySet,
+  fillRGBA,
+  numericBy,
+} from "./_utils.ts";
 import { isUndefined } from "../../deps.ts";
 import { stringifyRGBA } from "../../core/utils/color.ts";
 import { reAll, reSlashNumber } from "../../core/utils/regexp.ts";
 import type { Specifier } from "../../core/types.ts";
+
+function varFnGradientStops(variablePrefix: string): string {
+  const [, varFn] = customPropertySet("gradient-stops", variablePrefix);
+  return varFn;
+}
 
 export const bg: Specifier = [
   ["fixed", { "background-attachment": "fixed" }],
@@ -46,6 +56,52 @@ export const bg: Specifier = [
   ["auto", { "background-size": "auto" }],
   ["cover", { "background-size": "cover" }],
   ["contain", { "background-size": "contain" }],
+  ["none", { "background-image": "none" }],
+  ["gradient", {
+    to: {
+      t: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to top, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      tr: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to top right, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      r: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to right, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      br: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to bottom right, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      b: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to bottom, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      bl: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to bottom left, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      l: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to left, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+      tl: (_, { variablePrefix }) => ({
+        "background-image": `linear-gradient(to top left, ${
+          varFnGradientStops(variablePrefix)
+        })`,
+      }),
+    },
+  }],
+
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
