@@ -8031,6 +8031,24 @@ const expects: [string, string][] = [
     "divide-red-50",
     ".divide-red-50>:not([hidden])~:not([hidden]){border-color:rgba(254,242,242,1);}",
   ],
+  ["normal-nums", ".normal-nums{font-variant-numeric:normal;}"],
+  ["slashed-zero", ".slashed-zero{font-variant-numeric:slashed-zero;}"],
+  ["lining-nums", ".lining-nums{font-variant-numeric:lining-nums;}"],
+  ["oldstyle-nums", ".oldstyle-nums{font-variant-numeric:oldstyle-nums;}"],
+  [
+    "proportional-nums",
+    ".proportional-nums{font-variant-numeric:proportional-nums;}",
+  ],
+  ["tabular-nums", ".tabular-nums{font-variant-numeric:tabular-nums;}"],
+  [
+    "diagonal-fractions",
+    ".diagonal-fractions{font-variant-numeric:diagonal-fractions;}",
+  ],
+  [
+    "stacked-fractions",
+    ".stacked-fractions{font-variant-numeric:stacked-fractions;}",
+  ],
+  ["ordinal", ".ordinal{font-variant-numeric:ordinal;}"],
   [
     "shadow",
     ".shadow{--map-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--map-shadow-colored:0 1px 3px 0 var(--map-shadow-color), 0 1px 2px -1px var(--map-shadow-color);box-shadow:var(--map-ring-offset-shadow, 0 0 #0000), var(--map-ring-shadow, 0 0 #0000), var(--map-shadow);}",

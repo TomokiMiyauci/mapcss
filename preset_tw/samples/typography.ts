@@ -19,6 +19,18 @@ export const fontSmoothings = [
   "subpixel-antialiased",
 ];
 
+export const fontVariantNumerics = [
+  "normal-nums",
+  "slashed-zero",
+  "lining-nums",
+  "oldstyle-nums",
+  "proportional-nums",
+  "tabular-nums",
+  "diagonal-fractions",
+  "stacked-fractions",
+  "ordinal",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",
