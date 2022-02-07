@@ -1,3 +1,40 @@
+# [1.0.0-beta.4](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2022-02-05)
+
+
+### Bug Fixes
+
+* **preset_tw:** change syntax interface ([7c34c3e](https://github.com/TomokiMiyauci/mapcss/commit/7c34c3e20d665996672d4d7bd816ecb1927559ed))
+
+
+### Features
+
+* **core:** `generate` function accept string, when give string, extractor will extract tokens ([59c42a2](https://github.com/TomokiMiyauci/mapcss/commit/59c42a29af07ae4d833c9ccc6f2bd05eb5b41517))
+* **core:** add local modifier resolution ([9228815](https://github.com/TomokiMiyauci/mapcss/commit/922881509b0a74c592ca8407dc015a3b201cb4fc))
+* **core:** add resolver of config ([5c1f08c](https://github.com/TomokiMiyauci/mapcss/commit/5c1f08cedf8902a3a8454e715e8d8751f496348a))
+* **preset_tw:** add arbitary rule to `inset` ([05225d2](https://github.com/TomokiMiyauci/mapcss/commit/05225d292e7de4901678315cd4257889bf9d330f))
+* **preset_tw:** add arbitrary rule to `w` ([c6ae493](https://github.com/TomokiMiyauci/mapcss/commit/c6ae4939af0b427b39d440324ef2317ce00cf8ef))
+* **preset_tw:** add generic modifier for pseudo ([335dba6](https://github.com/TomokiMiyauci/mapcss/commit/335dba6258eeabe0e765b3e2fa7b0c824179eab8))
+* **preset_tw:** add global modifier of `webkit-scrollbar-thumb` ([7c06a35](https://github.com/TomokiMiyauci/mapcss/commit/7c06a35fa963094905f6e25c2c7bc1c036224544))
+* **preset_tw:** add global modifier of `webkit-scrollbar-track` ([a46bbcb](https://github.com/TomokiMiyauci/mapcss/commit/a46bbcb72ca39984a2633981830c127239cc1243))
+* **preset_tw:** add global modifier of `webkit-scrollbar` ([bb8bccd](https://github.com/TomokiMiyauci/mapcss/commit/bb8bccdbcd1a9b754eb1b644dc42dce9287bc884))
+* **preset_tw:** add inset mapper ([1ed572e](https://github.com/TomokiMiyauci/mapcss/commit/1ed572ef3cdf88f6f24c23ee1603823f6fecc4ab))
+* **preset_tw:** add local modifier of `-` ([999529b](https://github.com/TomokiMiyauci/mapcss/commit/999529bffc58c4697dc8a57c952a299e8a38a9df))
+* **preset_tw:** add local modifier of important ([2df2527](https://github.com/TomokiMiyauci/mapcss/commit/2df25275072b879a7569c0d90008bd00627a3fc2))
+* **preset_tw:** add mapper for `opacity` ([37c4a64](https://github.com/TomokiMiyauci/mapcss/commit/37c4a6496bb7cee6ce01609678eafa7a2b3601af))
+* **preset_tw:** add mapper for font-family ([275b577](https://github.com/TomokiMiyauci/mapcss/commit/275b57704b1154be9fd8e7eb34df8a3b2a65c480))
+* **preset_tw:** add mapper for screen reader ([018b735](https://github.com/TomokiMiyauci/mapcss/commit/018b7353ad1d895f651f9f5cae0037703d17bf0c))
+* **preset_tw:** add mapper of margin set ([6b3e5d1](https://github.com/TomokiMiyauci/mapcss/commit/6b3e5d1f2b8a72ed809c3fb03a31a97d3de206a6))
+* **preset_tw:** add mapper of padding ([b6d7765](https://github.com/TomokiMiyauci/mapcss/commit/b6d77651f509d56b08a0ab646f0d5841e5bbb71b))
+* **preset_tw:** add modifier for breakpoints ([64fe105](https://github.com/TomokiMiyauci/mapcss/commit/64fe1057adc57cafb0df2859f63096912e7a90b4))
+* **preset_tw:** add modifier for media query ([f6ad68b](https://github.com/TomokiMiyauci/mapcss/commit/f6ad68bc62af85d4842cb9ff211ae25d5e39adb7))
+* **preset_tw:** add modifier of `dark` ([ce74f74](https://github.com/TomokiMiyauci/mapcss/commit/ce74f74167ab9b4695c47dfe749090ea2c75ce77))
+* **preset_tw:** add modifier of color theme `dark` ([c459ef4](https://github.com/TomokiMiyauci/mapcss/commit/c459ef42e74e0c10a58befa255666af4bb203c75))
+* **preset_tw:** add modifier of pseudo of `focus` and `hover` ([2ab83be](https://github.com/TomokiMiyauci/mapcss/commit/2ab83be2b78285c28ba4165e8f3861fff5472774))
+* **preset_tw:** add opacity of `border-color` ([7e052ca](https://github.com/TomokiMiyauci/mapcss/commit/7e052ca4a2b44f1d1d488fc5fe3101023d6c57ef))
+* **preset_tw:** add syntax for tailwind basic ([7f9ffea](https://github.com/TomokiMiyauci/mapcss/commit/7f9ffea528ca41f48c24b699833293cda1c82005))
+* **preset_tw:** change core engine to deep map accessor ([02fc1ef](https://github.com/TomokiMiyauci/mapcss/commit/02fc1efa4c33f77ed0b39c6425aab32ef4d4538e))
+* rename mapper to specifier ([5680a2e](https://github.com/TomokiMiyauci/mapcss/commit/5680a2e75e440597cf47e0f057f24a7efb9354c9))
+
 # [1.0.0-beta.3](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-31)
 
 
