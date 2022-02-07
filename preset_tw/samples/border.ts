@@ -30,3 +30,12 @@ export const ringWidths = [
   "ring-8",
   "ring-inset",
 ];
+
+export const ringOffsetWidths = [
+  "ring-inset",
+  "ring-offset-0",
+  "ring-offset-1",
+  "ring-offset-2",
+  "ring-offset-4",
+  "ring-offset-8",
+];

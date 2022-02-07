@@ -49,6 +49,18 @@ export const ring: EntriesSpecifier = [
       [varRingInset]: "inset",
     };
   }],
+  ["offset", [
+    [reNumeric, ([, numeric], { variablePrefix }) =>
+      pxBy(numeric, (px) => {
+        const [varRingOffsetWidth] = customPropertySet(
+          "ring-offset-width",
+          variablePrefix,
+        );
+        return {
+          [varRingOffsetWidth]: px,
+        };
+      })],
+  ]],
   [
     reNumeric,
     ([, numeric], { variablePrefix }) =>
