@@ -102,8 +102,10 @@ import { place } from "./place.ts";
 import { decoration } from "./decoration.ts";
 import { indent } from "./indent.ts";
 import { ring } from "./ring.ts";
+import { mix } from "./mix.ts";
 
 export const specifierMap = {
+  mix,
   ring,
   indent,
   truncate,
