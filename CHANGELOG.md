@@ -1,3 +1,34 @@
+# [1.0.0-beta.6](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2022-02-07)
+
+
+### Features
+
+* **core:** expand interface of specifier what accept function ([6e65d82](https://github.com/TomokiMiyauci/mapcss/commit/6e65d82a3a06b574c4899e4e18f4fc2e145ca36e))
+* **preset_tw:** add specifier for `background-attachment` ([9707323](https://github.com/TomokiMiyauci/mapcss/commit/9707323eb44d2a8a24fe8f8c9c7fbecb032a0f8d))
+* **preset_tw:** add specifier for `background-blend-mode` ([5537331](https://github.com/TomokiMiyauci/mapcss/commit/5537331ff75f0e395bb4438db0b95cda7273b7b0))
+* **preset_tw:** add specifier for `background-image` ([3ca87ca](https://github.com/TomokiMiyauci/mapcss/commit/3ca87ca8effb085d37073906430c3084b422c069))
+* **preset_tw:** add specifier for `background-origin` ([96e6cd5](https://github.com/TomokiMiyauci/mapcss/commit/96e6cd5d34aac16037a829d1178fc6d0563d6110))
+* **preset_tw:** add specifier for `background-position` ([b184b58](https://github.com/TomokiMiyauci/mapcss/commit/b184b58bd460a1c89b08aa21cdec0a24738691e0))
+* **preset_tw:** add specifier for `background-repeat` ([ad01911](https://github.com/TomokiMiyauci/mapcss/commit/ad019117bcc6052949b6d97d1c32ba23f8ee4e28))
+* **preset_tw:** add specifier for `background-size` ([f82f9ce](https://github.com/TomokiMiyauci/mapcss/commit/f82f9ce2e10f387e4765766dc3e8ecf9db22b449))
+* **preset_tw:** add specifier for `font-variant-numeric` ([3aa2870](https://github.com/TomokiMiyauci/mapcss/commit/3aa2870563673075d7ed6b14d22f2c923b4d355b))
+* **preset_tw:** add specifier for `list-style-position` ([68f5b71](https://github.com/TomokiMiyauci/mapcss/commit/68f5b71229c8ec32f87f45d1bf3373d983b8e713))
+* **preset_tw:** add specifier for `list-style-type` ([cf5ffdc](https://github.com/TomokiMiyauci/mapcss/commit/cf5ffdc55cbedac4af96e584bce81f80673d2d1b))
+* **preset_tw:** add specifier for `place-content` ([b8243db](https://github.com/TomokiMiyauci/mapcss/commit/b8243db2a6097a9fa02724b1a9d9250abc465247))
+* **preset_tw:** add specifier for `place-items` ([c9469e3](https://github.com/TomokiMiyauci/mapcss/commit/c9469e34c7ac266e22a33654823a1e9526502b53))
+* **preset_tw:** add specifier for `place-self` ([59a5d15](https://github.com/TomokiMiyauci/mapcss/commit/59a5d150cf295c1d495839d3e235232e12b8217c))
+* **preset_tw:** add specifier for `text-decoration-style` ([4bad1f0](https://github.com/TomokiMiyauci/mapcss/commit/4bad1f0926b9d05d6bebd11f8638952260136ab4))
+* **preset_tw:** add specifier for `text-decoration-thickness` ([c5467c8](https://github.com/TomokiMiyauci/mapcss/commit/c5467c80d2e1ed1846d3a45597398c3de9d350a6))
+* **preset_tw:** add specifier for `text-overflow` ([363afd4](https://github.com/TomokiMiyauci/mapcss/commit/363afd4f788f734f1b5aa935e9ac9b80431e0cdf))
+* **preset_tw:** add specifier for `text-transform` ([f9ec9b1](https://github.com/TomokiMiyauci/mapcss/commit/f9ec9b16a4b8bc3d0a6448303c128a004fa5ec0c))
+* **preset_tw:** add specifier for `text-underline-offset` ([c1b7a2a](https://github.com/TomokiMiyauci/mapcss/commit/c1b7a2ad5a3dd553727b44c7ca4352ed41a02384))
+* **preset_tw:** add specifier of `background-clip` ([f2df6d1](https://github.com/TomokiMiyauci/mapcss/commit/f2df6d1b67cb911736e5b365deebb280bb0e0c85))
+* **preset_tw:** add specifier of `blur` ([6406eb5](https://github.com/TomokiMiyauci/mapcss/commit/6406eb5cef0cc98eb361706adc92020b5dffab30))
+* **preset_tw:** add specifier of `indent` ([8ff5723](https://github.com/TomokiMiyauci/mapcss/commit/8ff5723d130f911c54dcbb3b045231c4c151c1a1))
+* **preset_tw:** add specifier of `mix` ([ca44680](https://github.com/TomokiMiyauci/mapcss/commit/ca44680ddc2e6339d276552bc1863fa7960bbc0d))
+* **preset_tw:** add specifier of `ring-offset-*` ([5a33a77](https://github.com/TomokiMiyauci/mapcss/commit/5a33a7717a68dfb1546f8266c38a0e1ebbcbfea1))
+* **preset_tw:** add specifier of `ring` ([2bbf5ed](https://github.com/TomokiMiyauci/mapcss/commit/2bbf5ed258412b7d69fc017eb9ddc49df29bf13c))
+
 # [1.0.0-beta.5](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2022-02-07)
 
 
