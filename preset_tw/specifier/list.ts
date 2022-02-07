@@ -5,4 +5,6 @@ export const list: Specifier = [
   ["none", { "list-style-type": "none" }],
   ["disc", { "list-style-type": "disc" }],
   ["decimal", { "list-style-type": "decimal" }],
+  ["inside", { "list-style-position": "inside" }],
+  ["outside", { "list-style-position": "outside" }],
 ];

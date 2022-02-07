@@ -37,6 +37,11 @@ export const listStyleTypes = [
   "list-decimal",
 ];
 
+export const listStylePositions = [
+  "list-inside",
+  "list-outside",
+];
+
 export const verticalAligns = [
   "align-baseline",
   "align-top",
