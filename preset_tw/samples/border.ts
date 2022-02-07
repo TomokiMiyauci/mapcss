@@ -20,3 +20,13 @@ export const divideWidths = [
   "divide-y-8",
   "divide-y-reverse",
 ];
+
+export const ringWidths = [
+  "ring",
+  "ring-0",
+  "ring-1",
+  "ring-2",
+  "ring-4",
+  "ring-8",
+  "ring-inset",
+];

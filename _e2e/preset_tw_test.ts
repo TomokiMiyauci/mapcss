@@ -7588,6 +7588,31 @@ const expects: [string, string][] = [
     "border-y-red-100/10",
     ".border-y-red-100\\/10{border-bottom-color:rgba(254,226,226,0.1);border-top-color:rgba(254,226,226,0.1);}",
   ],
+  [
+    "ring",
+    ".ring{--map-ring-offset-shadow:var(--map-ring-inset) 0 0 0 var(--map-ring-offset-width) var(--map-ring-offset-color);--map-ring-shadow:var(--map-ring-inset) 0 0 0 calc(3px + var(--map-ring-offset-width)) var(--map-ring-color);box-shadow:var(--map-ring-offset-shadow), var(--map-ring-shadow), var(--map-shadow, 0 0 #0000);}",
+  ],
+  [
+    "ring-0",
+    ".ring-0{--map-ring-offset-shadow:var(--map-ring-inset) 0 0 0 var(--map-ring-offset-width) var(--map-ring-offset-color);--map-ring-shadow:var(--map-ring-inset) 0 0 0 calc(0px + var(--map-ring-offset-width)) var(--map-ring-color);box-shadow:var(--map-ring-offset-shadow), var(--map-ring-shadow), var(--map-shadow, 0 0 #0000);}",
+  ],
+  [
+    "ring-1",
+    ".ring-1{--map-ring-offset-shadow:var(--map-ring-inset) 0 0 0 var(--map-ring-offset-width) var(--map-ring-offset-color);--map-ring-shadow:var(--map-ring-inset) 0 0 0 calc(1px + var(--map-ring-offset-width)) var(--map-ring-color);box-shadow:var(--map-ring-offset-shadow), var(--map-ring-shadow), var(--map-shadow, 0 0 #0000);}",
+  ],
+  [
+    "ring-2",
+    ".ring-2{--map-ring-offset-shadow:var(--map-ring-inset) 0 0 0 var(--map-ring-offset-width) var(--map-ring-offset-color);--map-ring-shadow:var(--map-ring-inset) 0 0 0 calc(2px + var(--map-ring-offset-width)) var(--map-ring-color);box-shadow:var(--map-ring-offset-shadow), var(--map-ring-shadow), var(--map-shadow, 0 0 #0000);}",
+  ],
+  [
+    "ring-4",
+    ".ring-4{--map-ring-offset-shadow:var(--map-ring-inset) 0 0 0 var(--map-ring-offset-width) var(--map-ring-offset-color);--map-ring-shadow:var(--map-ring-inset) 0 0 0 calc(4px + var(--map-ring-offset-width)) var(--map-ring-color);box-shadow:var(--map-ring-offset-shadow), var(--map-ring-shadow), var(--map-shadow, 0 0 #0000);}",
+  ],
+  [
+    "ring-8",
+    ".ring-8{--map-ring-offset-shadow:var(--map-ring-inset) 0 0 0 var(--map-ring-offset-width) var(--map-ring-offset-color);--map-ring-shadow:var(--map-ring-inset) 0 0 0 calc(8px + var(--map-ring-offset-width)) var(--map-ring-color);box-shadow:var(--map-ring-offset-shadow), var(--map-ring-shadow), var(--map-shadow, 0 0 #0000);}",
+  ],
+  ["ring-inset", ".ring-inset{--map-ring-inset:inset;}"],
   ["opacity-0", ".opacity-0{opacity:0;}"],
   ["opacity-5", ".opacity-5{opacity:0.05;}"],
   ["opacity-10", ".opacity-10{opacity:0.1;}"],
