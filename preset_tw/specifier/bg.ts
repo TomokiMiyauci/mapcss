@@ -9,6 +9,12 @@ export const bg: Specifier = [
   ["fixed", { "background-attachment": "fixed" }],
   ["local", { "background-attachment": "local" }],
   ["scroll", { "background-attachment": "scroll" }],
+  ["clip", {
+    "border": { "background-clip": "border-box" },
+    "padding": { "background-clip": "padding-box" },
+    "content": { "background-clip": "content-box" },
+    "text": { "background-clip": "text" },
+  }],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
