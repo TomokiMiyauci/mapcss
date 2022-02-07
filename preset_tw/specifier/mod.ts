@@ -85,8 +85,10 @@ import { row } from "./row.ts";
 import { divide } from "./divide.ts";
 import { shadow } from "./shadow.ts";
 import { space } from "./space.ts";
+import { place } from "./place.ts";
 
 export const specifierMap = {
+  place,
   space,
   shadow,
   divide,
