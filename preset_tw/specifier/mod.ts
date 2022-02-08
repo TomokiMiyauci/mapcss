@@ -28,6 +28,7 @@ import {
   overline,
   proportional,
   relative,
+  saturate,
   slashed,
   sr,
   stacked,
@@ -112,6 +113,7 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  saturate,
   invert,
   hue,
   grayscale,

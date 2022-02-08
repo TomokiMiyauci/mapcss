@@ -61,3 +61,11 @@ export const inverts = [
   "invert-0",
   "invert",
 ];
+
+export const saturates = [
+  "saturate-0",
+  "saturate-50",
+  "saturate-100",
+  "saturate-150",
+  "saturate-200",
+];

@@ -231,3 +231,15 @@ export const invert: EntriesSpecifier = [
     (_, { variablePrefix }) => handleSingleFilter("invert", 0, variablePrefix),
   ],
 ];
+
+export const saturate: EntriesSpecifier = [
+  [
+    rePositiveNumber,
+    ([, pNumber], { variablePrefix }) =>
+      parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+        some: (saturate) =>
+          handleSingleFilter("saturate", saturate, variablePrefix),
+        none: undefined,
+      }),
+  ],
+];
