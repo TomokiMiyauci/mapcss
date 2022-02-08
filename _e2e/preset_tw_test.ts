@@ -8446,6 +8446,30 @@ const expects: [string, string][] = [
     ".grayscale-0{--map-grayscale:grayscale(0);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
   ],
   [
+    "hue-rotate-0",
+    ".hue-rotate-0{--map-hue-rotate:hue-rotate(0deg);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "hue-rotate-15",
+    ".hue-rotate-15{--map-hue-rotate:hue-rotate(15deg);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "hue-rotate-30",
+    ".hue-rotate-30{--map-hue-rotate:hue-rotate(30deg);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "hue-rotate-60",
+    ".hue-rotate-60{--map-hue-rotate:hue-rotate(60deg);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "hue-rotate-90",
+    ".hue-rotate-90{--map-hue-rotate:hue-rotate(90deg);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "hue-rotate-180",
+    ".hue-rotate-180{--map-hue-rotate:hue-rotate(180deg);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

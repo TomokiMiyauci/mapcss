@@ -13,6 +13,7 @@ import {
   fixed,
   grayscale,
   hidden,
+  hue,
   invisible,
   isolate,
   isolation,
@@ -110,6 +111,7 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  hue,
   grayscale,
   drop,
   contrast,

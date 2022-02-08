@@ -5,6 +5,7 @@ import {
   customProperty,
   ratio,
   shortDecimal,
+  unit,
 } from "../../core/utils/format.ts";
 import type {
   CSSObject,
@@ -192,3 +193,20 @@ export const grayscale: EntriesSpecifier = [
   ],
   [0, (_, { variablePrefix }) => handleGrayscale(0, variablePrefix)],
 ];
+
+export const hue: RecordSpecifier = {
+  rotate: [
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        parseNumeric(pNumber).map(unit("deg")).match({
+          some: (deg) => ({
+            [customProperty("hue-rotate", variablePrefix)]:
+              `hue-rotate(${deg})`,
+            filter: filterValue(variablePrefix),
+          }),
+          none: undefined,
+        }),
+    ],
+  ],
+};
