@@ -92,6 +92,12 @@ function resolveSpecifier(
       if (isCSSObjectSet(maybeCSSObject)) {
         return [maybeCSSObject[0], { combinator: maybeCSSObject[1] }];
       }
+
+      if (isFunction(maybeCSSObject)) {
+        return cssObjectOrSet(
+          maybeCSSObject(new MockRegExpExecArray(""), context),
+        );
+      }
       return;
     }
     const result = prop(first, specifier);
