@@ -118,10 +118,8 @@ export const brightness: EntriesSpecifier = [
     rePositiveNumber,
     ([, pNumber], { variablePrefix }) =>
       parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
-        some: (v) => ({
-          [customProperty("brightness", variablePrefix)]: `brightness(${v})`,
-          filter: filterValue(variablePrefix),
-        }),
+        some: (value) =>
+          handleSingleFilter("brightness", value, variablePrefix),
         none: undefined,
       }),
   ],
@@ -209,11 +207,7 @@ export const hue: RecordSpecifier = {
       rePositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(unit("deg")).match({
-          some: (deg) => ({
-            [customProperty("hue-rotate", variablePrefix)]:
-              `hue-rotate(${deg})`,
-            filter: filterValue(variablePrefix),
-          }),
+          some: (deg) => handleSingleFilter("hue-rotate", deg, variablePrefix),
           none: undefined,
         }),
     ],
