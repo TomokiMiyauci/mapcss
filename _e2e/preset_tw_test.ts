@@ -8718,6 +8718,14 @@ const expects: [string, string][] = [
     ".backdrop-saturate-200{--map-backdrop-saturate:saturate(2);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
   ],
   [
+    "backdrop-sepia",
+    ".backdrop-sepia{--map-backdrop-sepia:sepia(100%);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
+    "backdrop-sepia-0",
+    ".backdrop-sepia-0{--map-backdrop-sepia:sepia(0);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

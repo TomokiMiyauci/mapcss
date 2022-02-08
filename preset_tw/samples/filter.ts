@@ -154,3 +154,8 @@ export const backdropSaturates = [
   "backdrop-saturate-150",
   "backdrop-saturate-200",
 ];
+
+export const backdropSepias = [
+  "backdrop-sepia-0",
+  "backdrop-sepia",
+];
