@@ -14,6 +14,7 @@ import {
   grayscale,
   hidden,
   hue,
+  invert,
   invisible,
   isolate,
   isolation,
@@ -111,6 +112,7 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  invert,
   hue,
   grayscale,
   drop,

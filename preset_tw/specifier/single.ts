@@ -194,6 +194,17 @@ export const grayscale: EntriesSpecifier = [
   [0, (_, { variablePrefix }) => handleGrayscale(0, variablePrefix)],
 ];
 
+function handleSingleFilter(
+  propertyName: string,
+  value: string | number,
+  varPrefix: string,
+): CSSObject {
+  return {
+    [customProperty(propertyName, varPrefix)]: `${propertyName}(${value})`,
+    filter: filterValue(varPrefix),
+  };
+}
+
 export const hue: RecordSpecifier = {
   rotate: [
     [
@@ -210,3 +221,15 @@ export const hue: RecordSpecifier = {
     ],
   ],
 };
+
+export const invert: EntriesSpecifier = [
+  [
+    "DEFAULT",
+    (_, { variablePrefix }) =>
+      handleSingleFilter("invert", "100%", variablePrefix),
+  ],
+  [
+    0,
+    (_, { variablePrefix }) => handleSingleFilter("invert", 0, variablePrefix),
+  ],
+];

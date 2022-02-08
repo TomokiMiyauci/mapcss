@@ -56,3 +56,8 @@ export const hueRotates = [
   "hue-rotate-90",
   "hue-rotate-180",
 ];
+
+export const inverts = [
+  "invert-0",
+  "invert",
+];
