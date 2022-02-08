@@ -155,4 +155,16 @@ export const backdrop: EntriesSpecifier = [
       ],
     ],
   }],
+  ["invert", [
+    [
+      "DEFAULT",
+      (_, { variablePrefix }) =>
+        handleFilter("backdrop-invert", "invert(100%)", variablePrefix),
+    ],
+    [
+      0,
+      (_, { variablePrefix }) =>
+        handleFilter("backdrop-invert", "invert(0)", variablePrefix),
+    ],
+  ]],
 ];

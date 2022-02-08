@@ -123,3 +123,8 @@ export const backdropHueRotate = [
   "backdrop-hue-rotate-90",
   "backdrop-hue-rotate-180",
 ];
+
+export const backdropInverts = [
+  "backdrop-invert",
+  "backdrop-invert-0",
+];
