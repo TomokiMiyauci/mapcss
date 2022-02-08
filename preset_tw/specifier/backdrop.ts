@@ -1,6 +1,6 @@
 import { customPropertySet } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
-import { ratio, shortDecimal } from "../../core/utils/format.ts";
+import { ratio, shortDecimal, unit } from "../../core/utils/format.ts";
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
 import { customProperty } from "../../core/utils/format.ts";
 import type { CSSObject, EntriesSpecifier } from "../../core/types.ts";
@@ -138,4 +138,21 @@ export const backdrop: EntriesSpecifier = [
         handleFilter("backdrop-grayscale", "grayscale(0)", variablePrefix),
     ],
   ]],
+  ["hue", {
+    rotate: [
+      [
+        rePositiveNumber,
+        ([, pNumber], { variablePrefix }) =>
+          parseNumeric(pNumber).map(unit("deg")).match({
+            some: (deg) =>
+              handleFilter(
+                "backdrop-hue-rotate",
+                `hue-rotate(${deg})`,
+                variablePrefix,
+              ),
+            none: undefined,
+          }),
+      ],
+    ],
+  }],
 ];

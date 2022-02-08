@@ -8618,6 +8618,26 @@ const expects: [string, string][] = [
     ".backdrop-grayscale-0{--map-backdrop-grayscale:grayscale(0);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
   ],
   [
+    "backdrop-hue-rotate-15",
+    ".backdrop-hue-rotate-15{--map-backdrop-hue-rotate:hue-rotate(15deg);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
+    "backdrop-hue-rotate-30",
+    ".backdrop-hue-rotate-30{--map-backdrop-hue-rotate:hue-rotate(30deg);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
+    "backdrop-hue-rotate-60",
+    ".backdrop-hue-rotate-60{--map-backdrop-hue-rotate:hue-rotate(60deg);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
+    "backdrop-hue-rotate-90",
+    ".backdrop-hue-rotate-90{--map-backdrop-hue-rotate:hue-rotate(90deg);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
+    "backdrop-hue-rotate-180",
+    ".backdrop-hue-rotate-180{--map-backdrop-hue-rotate:hue-rotate(180deg);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
