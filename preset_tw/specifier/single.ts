@@ -179,19 +179,17 @@ export const drop: RecordSpecifier = {
   },
 };
 
-function handleGrayscale(value: string | number, varPrefix: string): CSSObject {
-  return {
-    [customProperty("grayscale", varPrefix)]: `grayscale(${value})`,
-    filter: filterValue(varPrefix),
-  };
-}
-
 export const grayscale: EntriesSpecifier = [
   [
     "DEFAULT",
-    (_, { variablePrefix }) => handleGrayscale("100%", variablePrefix),
+    (_, { variablePrefix }) =>
+      handleSingleFilter("grayscale", "100%", variablePrefix),
   ],
-  [0, (_, { variablePrefix }) => handleGrayscale(0, variablePrefix)],
+  [
+    0,
+    (_, { variablePrefix }) =>
+      handleSingleFilter("grayscale", 0, variablePrefix),
+  ],
 ];
 
 function handleSingleFilter(
