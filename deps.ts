@@ -19,6 +19,12 @@ export { mapEntries } from "https://deno.land/std@0.123.0/collections/map_entrie
 export { filterValues } from "https://deno.land/std@0.123.0/collections/filter_values.ts";
 export { distinctBy } from "https://deno.land/std@0.125.0/collections/distinct_by.ts";
 export { union } from "https://deno.land/std@0.125.0/collections/union.ts";
+export { sortBy } from "https://deno.land/std@0.125.0/collections/sort_by.ts";
+export {
+  None,
+  type Option,
+  Some,
+} from "https://deno.land/x/monads@v0.5.10/option/option.ts";
 export { isUndefined };
 
 export function isStringOrNumber(value: unknown): value is string | number {
