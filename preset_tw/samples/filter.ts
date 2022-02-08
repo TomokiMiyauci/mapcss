@@ -146,3 +146,11 @@ export const backdropOpacities = [
   "backdrop-opacity-95",
   "backdrop-opacity-100",
 ];
+
+export const backdropSaturates = [
+  "backdrop-saturate-0",
+  "backdrop-saturate-50",
+  "backdrop-saturate-100",
+  "backdrop-saturate-150",
+  "backdrop-saturate-200",
+];
