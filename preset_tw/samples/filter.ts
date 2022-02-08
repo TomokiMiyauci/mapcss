@@ -85,3 +85,17 @@ export const backdropBlurs = [
   "backdrop-blur-2xl",
   "backdrop-blur-3xl",
 ];
+
+export const backdropBrightnesses = [
+  "backdrop-brightness-0",
+  "backdrop-brightness-50",
+  "backdrop-brightness-75",
+  "backdrop-brightness-90",
+  "backdrop-brightness-95",
+  "backdrop-brightness-100",
+  "backdrop-brightness-105",
+  "backdrop-brightness-110",
+  "backdrop-brightness-125",
+  "backdrop-brightness-150",
+  "backdrop-brightness-200",
+];

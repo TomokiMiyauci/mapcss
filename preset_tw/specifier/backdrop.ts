@@ -1,4 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
+import { ratio, shortDecimal } from "../../core/utils/format.ts";
+import { rePositiveNumber } from "../../core/utils/regexp.ts";
 import { customProperty } from "../../core/utils/format.ts";
 import type { CSSObject, EntriesSpecifier } from "../../core/types.ts";
 
@@ -91,6 +94,21 @@ export const backdrop: EntriesSpecifier = [
       "3xl",
       (_, { variablePrefix }) =>
         handleFilter(BACKDROP_BLUR, "blur(64px)", variablePrefix),
+    ],
+  ]],
+  ["brightness", [
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+          some: (v) =>
+            handleFilter(
+              "backdrop-brightness",
+              `brightness(${v})`,
+              variablePrefix,
+            ),
+          none: undefined,
+        }),
     ],
   ]],
 ];
