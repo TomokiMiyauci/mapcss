@@ -112,8 +112,10 @@ import { indent } from "./indent.ts";
 import { ring } from "./ring.ts";
 import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
+import { backdrop } from "./backdrop.ts";
 
 export const specifierMap = {
+  backdrop,
   sepia,
   saturate,
   invert,

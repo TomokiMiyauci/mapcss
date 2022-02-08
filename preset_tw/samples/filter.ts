@@ -74,3 +74,14 @@ export const sepias = [
   "sepia",
   "sepia-0",
 ];
+
+export const backdropBlurs = [
+  "backdrop-blur-none",
+  "backdrop-blur-sm",
+  "backdrop-blur",
+  "backdrop-blur-md",
+  "backdrop-blur-lg",
+  "backdrop-blur-xl",
+  "backdrop-blur-2xl",
+  "backdrop-blur-3xl",
+];
