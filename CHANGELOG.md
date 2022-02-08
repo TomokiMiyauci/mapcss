@@ -1,3 +1,31 @@
+# [1.0.0-beta.7](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2022-02-08)
+
+
+### Bug Fixes
+
+* **core:** add checking if return value is function or not ([6bbda2e](https://github.com/TomokiMiyauci/mapcss/commit/6bbda2e9856be646f4f3d171e173de0aa2d7a05c))
+
+
+### Features
+
+* **preset_tw:** add sepecifier of `sepia` ([1033ae1](https://github.com/TomokiMiyauci/mapcss/commit/1033ae1c24635036397255d062bb359e29fc3138))
+* **preset_tw:** add specifier for `backdrop-brightness` ([a8b0c23](https://github.com/TomokiMiyauci/mapcss/commit/a8b0c23530ce39c0fee6ef2895435984df9a65ae))
+* **preset_tw:** add specifier for `backdrop-contrast` ([0be6bc4](https://github.com/TomokiMiyauci/mapcss/commit/0be6bc433ad2d3906f10d43243e24c821814a2b7))
+* **preset_tw:** add specifier for `backdrop-filter` ([8c32b7d](https://github.com/TomokiMiyauci/mapcss/commit/8c32b7dc2c2f04efa2da353e8c3ac84e7b185f0b))
+* **preset_tw:** add specifier for `backdrop-grayscale` ([f4df15d](https://github.com/TomokiMiyauci/mapcss/commit/f4df15d3d9ef80aa876481a635060b0c7b79860b))
+* **preset_tw:** add specifier for `backdrop-hue-rotate` ([fdd541f](https://github.com/TomokiMiyauci/mapcss/commit/fdd541fbce58b9b94eb0a2cdc860067a9f97d997))
+* **preset_tw:** add specifier for `backdrop-invert` ([96fa191](https://github.com/TomokiMiyauci/mapcss/commit/96fa191fa2fe7dd4f329e2201d842c7670068dc0))
+* **preset_tw:** add specifier for `backdrop-saturate` ([45b0838](https://github.com/TomokiMiyauci/mapcss/commit/45b0838882ca77846739b1589f90538af1d19ab5))
+* **preset_tw:** add specifier for `backdrop-sepia` ([c6c82fe](https://github.com/TomokiMiyauci/mapcss/commit/c6c82fe19ed057a4949efa958bb40aac2929dba0))
+* **preset_tw:** add specifier of `backdrop-opacity` ([4d7d1c2](https://github.com/TomokiMiyauci/mapcss/commit/4d7d1c234656badb7dc894a7216213f8d4d5a4db))
+* **preset_tw:** add specifier of `brightness` ([19cb875](https://github.com/TomokiMiyauci/mapcss/commit/19cb875d348abfe3457655c18d67ee561c450688))
+* **preset_tw:** add specifier of `contrast` ([59eec4d](https://github.com/TomokiMiyauci/mapcss/commit/59eec4d6d9c0defb27bd403436b813f96f688387))
+* **preset_tw:** add specifier of `drop-shadow` ([7f6a215](https://github.com/TomokiMiyauci/mapcss/commit/7f6a215a77d2ef2a4abc606fac2d6bb6cec0ef2d))
+* **preset_tw:** add specifier of `grayscale` ([9000ebe](https://github.com/TomokiMiyauci/mapcss/commit/9000ebe32e31c6b8eda60e5e1163b9ca54fb7d30))
+* **preset_tw:** add specifier of `hue-rotate` ([a91a017](https://github.com/TomokiMiyauci/mapcss/commit/a91a017829f5e2b66b4b167686bb26aa75c075d2))
+* **preset_tw:** add specifier of `invert` ([2f20103](https://github.com/TomokiMiyauci/mapcss/commit/2f20103572f0479663392a9bf3d8d6acbb923f1b))
+* **preset_tw:** add specifier of `saturate` ([382a1f1](https://github.com/TomokiMiyauci/mapcss/commit/382a1f12a8414eb2233314756e8da0a43d19ef2b))
+
 # [1.0.0-beta.6](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2022-02-07)
 
 
