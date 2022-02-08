@@ -1,5 +1,11 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
-import { handleFilter } from "./_filter_utils.ts";
+import { filterValue, handleFilter } from "./_filter_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
+import {
+  customProperty,
+  ratio,
+  shortDecimal,
+} from "../../core/utils/format.ts";
 import type {
   CSSObject,
   EntriesSpecifier,
@@ -110,7 +116,13 @@ export const brightness: EntriesSpecifier = [
   [
     rePositiveNumber,
     ([, pNumber], { variablePrefix }) =>
-      handleFilter("brightness", pNumber, variablePrefix),
+      parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+        some: (v) => ({
+          [customProperty("brightness", variablePrefix)]: `brightness(${v})`,
+          filter: filterValue(variablePrefix),
+        }),
+        none: undefined,
+      }),
   ],
 ];
 
@@ -121,3 +133,47 @@ export const contrast: EntriesSpecifier = [
       handleFilter("contrast", pNumber, variablePrefix),
   ],
 ];
+
+function handleDrop(value: string, varPrefix: string): CSSObject {
+  return {
+    [customProperty("drop-shadow", varPrefix)]: value,
+    filter: filterValue(varPrefix),
+  };
+}
+
+export const drop: RecordSpecifier = {
+  shadow: {
+    DEFAULT: (_, { variablePrefix }) =>
+      handleDrop(
+        "drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06))",
+        variablePrefix,
+      ),
+    sm: (_, { variablePrefix }) =>
+      handleDrop("drop-shadow(0 1px 1px rgb(0 0 0 / 0.05))", variablePrefix),
+    md: (_, { variablePrefix }) =>
+      handleDrop(
+        "drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06))",
+        variablePrefix,
+      ),
+    lg: (_, { variablePrefix }) =>
+      handleDrop(
+        "drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1))",
+        variablePrefix,
+      ),
+    xl: (_, { variablePrefix }) =>
+      handleDrop(
+        "drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))",
+        variablePrefix,
+      ),
+    "2xl": (_, { variablePrefix }) =>
+      handleDrop(
+        "drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))",
+        variablePrefix,
+      ),
+    none: (_, { variablePrefix }) =>
+      handleDrop(
+        "drop-shadow(0 0 #0000)",
+        variablePrefix,
+      ),
+  },
+};

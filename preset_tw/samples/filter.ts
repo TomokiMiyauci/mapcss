@@ -32,3 +32,13 @@ export const contrast = [
   "contrast-150",
   "contrast-200",
 ];
+
+export const dropShadows = [
+  "drop-shadow-sm",
+  "drop-shadow",
+  "drop-shadow-md",
+  "drop-shadow-lg",
+  "drop-shadow-xl",
+  "drop-shadow-2xl",
+  "drop-shadow-none",
+];

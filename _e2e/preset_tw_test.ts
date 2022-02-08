@@ -8410,6 +8410,34 @@ const expects: [string, string][] = [
     ".contrast-200{--map-contrast:contrast(2);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
   ],
   [
+    "drop-shadow",
+    ".drop-shadow{--map-drop-shadow:drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "drop-shadow-sm",
+    ".drop-shadow-sm{--map-drop-shadow:drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "drop-shadow-md",
+    ".drop-shadow-md{--map-drop-shadow:drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "drop-shadow-lg",
+    ".drop-shadow-lg{--map-drop-shadow:drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "drop-shadow-xl",
+    ".drop-shadow-xl{--map-drop-shadow:drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "drop-shadow-2xl",
+    ".drop-shadow-2xl{--map-drop-shadow:drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "drop-shadow-none",
+    ".drop-shadow-none{--map-drop-shadow:drop-shadow(0 0 #0000);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
