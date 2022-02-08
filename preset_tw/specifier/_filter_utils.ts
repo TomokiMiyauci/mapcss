@@ -1,5 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
-
+import { numericBy } from "./_utils.ts";
+import { shortDecimal } from "../../core/utils/format.ts";
+import type { CSSObject, CSSObjectSet } from "../../core/types.ts";
 export function filterValue(variablePrefix: string): string {
   const [, varFnBlur] = customPropertySet("blur", variablePrefix);
   const [, varFnBrightness] = customPropertySet("brightness", variablePrefix);
@@ -15,4 +17,18 @@ export function filterValue(variablePrefix: string): string {
   );
 
   return `${varFnBlur} ${varFnBrightness} ${varFnContract} ${varFnGrayscale} ${varFnHueRotate} ${varFnInvert} ${varFnSaturate} ${varFnSepia} ${varFnDropShadow}`;
+}
+
+export function handleFilter(
+  propertyName: string,
+  value: string,
+  variablePrefix: string,
+): CSSObject | CSSObjectSet | undefined {
+  return numericBy(value, (number) => {
+    const [varName] = customPropertySet(propertyName, variablePrefix);
+    return {
+      [varName]: `${propertyName}(${shortDecimal(number / 100)})`,
+      filter: filterValue(variablePrefix),
+    };
+  });
 }

@@ -8,3 +8,27 @@ export const blurs = [
   "blur-2xl",
   "blur-3xl",
 ];
+
+export const brightness = [
+  "brightness-0",
+  "brightness-50",
+  "brightness-75",
+  "brightness-90",
+  "brightness-95",
+  "brightness-100",
+  "brightness-105",
+  "brightness-110",
+  "brightness-125",
+  "brightness-150",
+  "brightness-200",
+];
+
+export const contrast = [
+  "contrast-0",
+  "contrast-50",
+  "contrast-75",
+  "contrast-100",
+  "contrast-125",
+  "contrast-150",
+  "contrast-200",
+];

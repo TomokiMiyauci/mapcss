@@ -8382,6 +8382,34 @@ const expects: [string, string][] = [
     ".brightness-200{--map-brightness:brightness(2);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
   ],
   [
+    "contrast-0",
+    ".contrast-0{--map-contrast:contrast(0);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "contrast-50",
+    ".contrast-50{--map-contrast:contrast(.5);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "contrast-75",
+    ".contrast-75{--map-contrast:contrast(.75);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "contrast-100",
+    ".contrast-100{--map-contrast:contrast(1);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "contrast-125",
+    ".contrast-125{--map-contrast:contrast(1.25);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "contrast-150",
+    ".contrast-150{--map-contrast:contrast(1.5);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "contrast-200",
+    ".contrast-200{--map-contrast:contrast(2);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

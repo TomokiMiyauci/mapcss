@@ -1,7 +1,5 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
-import { shortDecimal } from "../../core/utils/format.ts";
-import { customPropertySet, numericBy } from "./_utils.ts";
-import { filterValue } from "./_filter_utils.ts";
+import { handleFilter } from "./_filter_utils.ts";
 import type {
   CSSObject,
   EntriesSpecifier,
@@ -112,12 +110,14 @@ export const brightness: EntriesSpecifier = [
   [
     rePositiveNumber,
     ([, pNumber], { variablePrefix }) =>
-      numericBy(pNumber, (number) => {
-        const [varBrightness] = customPropertySet("brightness", variablePrefix);
-        return {
-          [varBrightness]: `brightness(${shortDecimal(number / 100)})`,
-          filter: filterValue(variablePrefix),
-        };
-      }),
+      handleFilter("brightness", pNumber, variablePrefix),
+  ],
+];
+
+export const contrast: EntriesSpecifier = [
+  [
+    rePositiveNumber,
+    ([, pNumber], { variablePrefix }) =>
+      handleFilter("contrast", pNumber, variablePrefix),
   ],
 ];

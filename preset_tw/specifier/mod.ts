@@ -7,6 +7,7 @@ import {
   brightness,
   capitalize,
   contents,
+  contrast,
   diagonal,
   fixed,
   hidden,
@@ -107,6 +108,7 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  contrast,
   brightness,
   blur,
   mix,
