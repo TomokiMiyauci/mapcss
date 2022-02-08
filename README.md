@@ -28,10 +28,11 @@ mapcss provides several preset.
 ```ts
 import { generate, presetTw } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
-const classes = "relative flex text-red-500/20";
-const tokens = new Set(classes.trim().split(/\s+/g));
-
-const result = generate({ presets: [presetTw()] }, tokens);
+const code = `<div className="relative flex">
+  <p className="text-red-500/20"></p>  
+</div>
+`;
+const result = generate({ presets: [presetTw()] }, code);
 console.log(result.css);
 /*
   .relative{position:relative;}
