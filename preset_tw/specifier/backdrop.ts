@@ -167,4 +167,19 @@ export const backdrop: EntriesSpecifier = [
         handleFilter("backdrop-invert", "invert(0)", variablePrefix),
     ],
   ]],
+  ["opacity", [
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+          some: (v) =>
+            handleFilter(
+              "backdrop-opacity",
+              `opacity(${v})`,
+              variablePrefix,
+            ),
+          none: undefined,
+        }),
+    ],
+  ]],
 ];
