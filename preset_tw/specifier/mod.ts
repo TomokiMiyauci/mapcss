@@ -4,6 +4,7 @@ import {
   absolute,
   antialiased,
   block,
+  brightness,
   capitalize,
   contents,
   diagonal,
@@ -106,6 +107,7 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  brightness,
   blur,
   mix,
   ring,

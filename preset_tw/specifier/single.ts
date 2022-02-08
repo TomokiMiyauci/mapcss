@@ -1,5 +1,10 @@
+import { rePositiveNumber } from "../../core/utils/regexp.ts";
+import { shortDecimal } from "../../core/utils/format.ts";
+import { customPropertySet, numericBy } from "./_utils.ts";
+import { filterValue } from "./_filter_utils.ts";
 import type {
   CSSObject,
+  EntriesSpecifier,
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
@@ -103,3 +108,16 @@ export const truncate: CSSObject = {
   "text-overflow": "ellipsis",
   "white-space": "nowrap",
 };
+export const brightness: EntriesSpecifier = [
+  [
+    rePositiveNumber,
+    ([, pNumber], { variablePrefix }) =>
+      numericBy(pNumber, (number) => {
+        const [varBrightness] = customPropertySet("brightness", variablePrefix);
+        return {
+          [varBrightness]: `brightness(${shortDecimal(number / 100)})`,
+          filter: filterValue(variablePrefix),
+        };
+      }),
+  ],
+];
