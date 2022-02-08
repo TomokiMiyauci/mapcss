@@ -11,6 +11,7 @@ import {
   diagonal,
   drop,
   fixed,
+  grayscale,
   hidden,
   invisible,
   isolate,
@@ -109,6 +110,7 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 
 export const specifierMap = {
+  grayscale,
   drop,
   contrast,
   brightness,

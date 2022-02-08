@@ -42,3 +42,8 @@ export const dropShadows = [
   "drop-shadow-2xl",
   "drop-shadow-none",
 ];
+
+export const grayscales = [
+  "grayscale",
+  "grayscale-0",
+];
