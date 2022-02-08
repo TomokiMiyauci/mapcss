@@ -1,5 +1,12 @@
 import { cssDeclarationBlock } from "./_utils.ts";
-import { filterValues, has, head, isLength0, isString } from "../deps.ts";
+import {
+  filterValues,
+  has,
+  head,
+  isLength0,
+  isString,
+  sortBy,
+} from "../deps.ts";
 import { resolveSpecifierMap } from "./utils/resolver.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { extractSplit } from "./extractor.ts";
@@ -155,7 +162,10 @@ export function generate(
     return executeResults;
   }).flat();
 
-  const styles = results.map(
+  const styles = sortBy(
+    results,
+    ({ globalModifierHandlers }) => globalModifierHandlers.length,
+  ).map(
     (
       {
         cssObject,
