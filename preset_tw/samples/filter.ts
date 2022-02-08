@@ -109,3 +109,8 @@ export const backdropContrasts = [
   "backdrop-contrast-150",
   "backdrop-contrast-200",
 ];
+
+export const bakcdropGrayscales = [
+  "backdrop-grayscale",
+  "backdrop-grayscale-0",
+];

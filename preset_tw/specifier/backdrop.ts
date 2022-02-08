@@ -126,4 +126,16 @@ export const backdrop: EntriesSpecifier = [
         }),
     ],
   ]],
+  ["grayscale", [
+    [
+      "DEFAULT",
+      (_, { variablePrefix }) =>
+        handleFilter("backdrop-grayscale", "grayscale(100%)", variablePrefix),
+    ],
+    [
+      0,
+      (_, { variablePrefix }) =>
+        handleFilter("backdrop-grayscale", "grayscale(0)", variablePrefix),
+    ],
+  ]],
 ];
