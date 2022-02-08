@@ -243,3 +243,15 @@ export const saturate: EntriesSpecifier = [
       }),
   ],
 ];
+
+export const sepia: EntriesSpecifier = [
+  [
+    "DEFAULT",
+    (_, { variablePrefix }) =>
+      handleSingleFilter("sepia", "100%", variablePrefix),
+  ],
+  [
+    0,
+    (_, { variablePrefix }) => handleSingleFilter("sepia", 0, variablePrefix),
+  ],
+];

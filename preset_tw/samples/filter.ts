@@ -69,3 +69,8 @@ export const saturates = [
   "saturate-150",
   "saturate-200",
 ];
+
+export const sepias = [
+  "sepia",
+  "sepia-0",
+];

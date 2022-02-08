@@ -8498,6 +8498,14 @@ const expects: [string, string][] = [
     ".saturate-200{--map-saturate:saturate(2);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
   ],
   [
+    "sepia",
+    ".sepia{--map-sepia:sepia(100%);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
+    "sepia-0",
+    ".sepia-0{--map-sepia:sepia(0);filter:var(--map-blur) var(--map-brightness) var(--map-contrast) var(--map-grayscale) var(--map-hue-rotate) var(--map-invert) var(--map-saturate) var(--map-sepia) var(--map-drop-shadow);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
