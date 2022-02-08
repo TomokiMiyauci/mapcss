@@ -99,3 +99,13 @@ export const backdropBrightnesses = [
   "backdrop-brightness-150",
   "backdrop-brightness-200",
 ];
+
+export const backdropContrasts = [
+  "backdrop-contrast-0",
+  "backdrop-contrast-50",
+  "backdrop-contrast-75",
+  "backdrop-contrast-100",
+  "backdrop-contrast-125",
+  "backdrop-contrast-150",
+  "backdrop-contrast-200",
+];

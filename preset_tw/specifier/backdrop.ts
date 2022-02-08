@@ -111,4 +111,19 @@ export const backdrop: EntriesSpecifier = [
         }),
     ],
   ]],
+  ["contrast", [
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+          some: (v) =>
+            handleFilter(
+              "backdrop-contrast",
+              `contrast(${v})`,
+              variablePrefix,
+            ),
+          none: undefined,
+        }),
+    ],
+  ]],
 ];
