@@ -1,3 +1,18 @@
+# [1.0.0-beta.8](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2022-02-09)
+
+
+### Features
+
+* **preset_tw:** add specifier of `delay` ([d62204d](https://github.com/TomokiMiyauci/mapcss/commit/d62204d7d5f0d3da24ece85102a808af75de920d))
+* **preset_tw:** add specifier of `duration` ([f7716ec](https://github.com/TomokiMiyauci/mapcss/commit/f7716ec718a101892c02f97d5a8e25c1cc554763))
+* **preset_tw:** add specifier of `ease` ([3596a94](https://github.com/TomokiMiyauci/mapcss/commit/3596a9455e1ba2f8974aa707f6d0340e6fd136e1))
+* **preset_tw:** add specifier of `origin` ([ec68b7b](https://github.com/TomokiMiyauci/mapcss/commit/ec68b7b1f8acbd5d6af54549adb9bfa268f04e60))
+* **preset_tw:** add specifier of `rotate` ([1348467](https://github.com/TomokiMiyauci/mapcss/commit/1348467aff8a2033b5771cad1c579f7aec7935c0))
+* **preset_tw:** add specifier of `scale` ([02b5f50](https://github.com/TomokiMiyauci/mapcss/commit/02b5f50f8cabd2d8bd731cde7ea8a5dd3b4903b7))
+* **preset_tw:** add specifier of `skew` ([e78253e](https://github.com/TomokiMiyauci/mapcss/commit/e78253ebf29409811d8aeff75cf9af9835040604))
+* **preset_tw:** add specifier of `transition` ([558bf83](https://github.com/TomokiMiyauci/mapcss/commit/558bf8353b3361e1f6e935056727b4fba5c90a0e))
+* **preset_tw:** add specifier of `translate` ([7b5c347](https://github.com/TomokiMiyauci/mapcss/commit/7b5c3474684e9ffeca39270445447b4e37597c63))
+
 # [1.0.0-beta.7](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2022-02-08)
 
 
