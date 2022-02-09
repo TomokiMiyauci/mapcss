@@ -554,6 +554,13 @@ export const scrollPaddings = [
   "scroll-pl-3.5",
 ];
 
+export const userSelects = [
+  "select-none",
+  "select-text",
+  "select-all",
+  "select-auto",
+];
+
 export const willChanges = [
   "will-change-auto",
   "will-change-scroll",

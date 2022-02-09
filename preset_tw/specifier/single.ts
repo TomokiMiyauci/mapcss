@@ -427,6 +427,12 @@ export const resize: RecordSpecifier = {
   x: { resize: "horizontal" },
   y: { resize: "vertical" },
 };
+export const select: RecordSpecifier = {
+  none: { "user-select": "none" },
+  text: { "user-select": "text" },
+  all: { "user-select": "all" },
+  auto: { "user-select": "auto" },
+};
 export const will: RecordSpecifier = {
   change: {
     auto: { "will-change": "auto" },

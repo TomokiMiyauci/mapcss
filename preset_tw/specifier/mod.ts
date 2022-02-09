@@ -38,6 +38,7 @@ import {
   resize,
   rotate,
   saturate,
+  select,
   sepia,
   skew,
   slashed,
@@ -130,6 +131,7 @@ import { translate } from "./translate.ts";
 import { scroll } from "./scroll.ts";
 
 export const specifierMap = {
+  select,
   will,
   scroll,
   resize,
