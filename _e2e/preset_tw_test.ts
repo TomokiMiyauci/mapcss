@@ -10295,6 +10295,8 @@ const expects: [string, string][] = [
   ["snap-end", ".snap-end{scroll-snap-align:end;}"],
   ["snap-center", ".snap-center{scroll-snap-align:center;}"],
   ["snap-align-none", ".snap-align-none{scroll-snap-align:none;}"],
+  ["snap-normal", ".snap-normal{scroll-snap-stop:normal;}"],
+  ["snap-always", ".snap-always{scroll-snap-stop:always;}"],
   ["touch-auto", ".touch-auto{touch-action:auto;}"],
   ["touch-none", ".touch-none{touch-action:none;}"],
   ["touch-manipulation", ".touch-manipulation{touch-action:manipulation;}"],

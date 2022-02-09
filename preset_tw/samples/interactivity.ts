@@ -559,6 +559,10 @@ export const scrollSnapAlgins = [
   "snap-center",
   "snap-align-none",
 ];
+export const scrollSnapStops = [
+  "snap-normal",
+  "snap-always",
+];
 export const touchActions = [
   "touch-auto",
   "touch-none",

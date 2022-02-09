@@ -7,4 +7,6 @@ export const snap: RecordSpecifier = {
   align: {
     none: { "scroll-snap-align": "none" },
   },
+  normal: { "scroll-snap-stop": "normal" },
+  always: { "scroll-snap-stop": "always" },
 };
