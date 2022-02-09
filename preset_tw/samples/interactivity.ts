@@ -553,6 +553,12 @@ export const scrollPaddings = [
   "scroll-pb-3.5",
   "scroll-pl-3.5",
 ];
+export const scrollSnapAlgins = [
+  "snap-start",
+  "snap-end",
+  "snap-center",
+  "snap-align-none",
+];
 export const touchActions = [
   "touch-auto",
   "touch-none",

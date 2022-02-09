@@ -130,8 +130,10 @@ import { transition } from "./transition.ts";
 import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 import { scroll } from "./scroll.ts";
+import { snap } from "./snap.ts";
 
 export const specifierMap = {
+  snap,
   touch,
   select,
   will,
