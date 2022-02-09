@@ -6,6 +6,7 @@ import {
   roundTo,
 } from "../../deps.ts";
 import { percent, px, rem } from "../../core/utils/unit.ts";
+import { customProperty } from "../../core/utils/format.ts";
 import {
   hex2RGBA,
   parseFraction,
@@ -187,4 +188,18 @@ export function transformValue(varPrefix: string): string {
   const [, varFnScaleX] = customPropertySet("scale-x", varPrefix);
   const [, varFnScaleY] = customPropertySet("scale-y", varPrefix);
   return `translate(${varFnTranslateX}, ${varFnTranslateY}) rotate(${varFnRotate}) skewX(${varFnSkewX}) skewY(${varFnSkewY}) scaleX(${varFnScaleX}) scaleY(${varFnScaleY})`;
+}
+
+export function handleTransform(
+  properties: string[],
+  value: string,
+  varPrefix: string,
+): CSSObject {
+  return {
+    ...associateWith(
+      properties.map((property) => customProperty(property, varPrefix)),
+      () => value,
+    ),
+    transform: transformValue(varPrefix),
+  };
 }

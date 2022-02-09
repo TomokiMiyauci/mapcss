@@ -5,3 +5,12 @@ export function parseNumeric(value: string): Option<number> {
   if (Number.isFinite(number)) return Some(number);
   return None;
 }
+
+export function parseFraction(
+  numerator: string,
+  denominator: string,
+): Option<number> {
+  const result = Number(numerator) / Number(denominator);
+  if (Number.isFinite(result)) return Some(result);
+  return None;
+}

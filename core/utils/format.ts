@@ -15,6 +15,10 @@ export function ratio(value: number): number {
   return value / 100;
 }
 
+export function quoter(value: number): number {
+  return value / 4;
+}
+
 export function customProperty(
   property: string,
   prefix = "",
@@ -22,6 +26,19 @@ export function customProperty(
   return `--${prefix}${property}`;
 }
 
-export function unit(unit: "%" | "deg" | "ms") {
+export function unit(unit: "%" | "deg" | "ms" | "rem") {
   return (value: string | number): string => `${value}${unit}`;
+}
+
+export function multiple(a: number): (b: number) => number {
+  return (b: number): number => a * b;
+}
+
+/** High precision round */
+export function roundTo(number: number, digit: number): number {
+  return Number(number.toFixed(digit));
+}
+
+export function roundN(digit: number): (number: number) => number {
+  return (number: number): number => roundTo(number, digit);
 }

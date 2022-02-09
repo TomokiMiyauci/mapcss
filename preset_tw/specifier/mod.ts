@@ -119,8 +119,10 @@ import { blur } from "./blur.ts";
 import { backdrop } from "./backdrop.ts";
 import { transition } from "./transition.ts";
 import { scale } from "./scale.ts";
+import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  translate,
   rotate,
   scale,
   delay,
