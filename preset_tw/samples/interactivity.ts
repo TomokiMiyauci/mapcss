@@ -563,6 +563,14 @@ export const scrollSnapStops = [
   "snap-normal",
   "snap-always",
 ];
+export const scrollSnapTypes = [
+  "snap-none",
+  "snap-x",
+  "snap-y",
+  "snap-both",
+  "snap-mandatory",
+  "snap-proximity",
+];
 export const touchActions = [
   "touch-auto",
   "touch-none",

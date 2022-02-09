@@ -1,3 +1,4 @@
+import { customProperty, varFn } from "../../core/utils/format.ts";
 import type { RecordSpecifier } from "../../core/types.ts";
 
 export const snap: RecordSpecifier = {
@@ -9,4 +10,26 @@ export const snap: RecordSpecifier = {
   },
   normal: { "scroll-snap-stop": "normal" },
   always: { "scroll-snap-stop": "always" },
+  none: { "scroll-snap-type": "none" },
+  x: (_, { variablePrefix }) => ({
+    "scroll-snap-type": `x ${
+      varFn(customProperty("scroll-snap-strictness", variablePrefix))
+    }`,
+  }),
+  y: (_, { variablePrefix }) => ({
+    "scroll-snap-type": `y ${
+      varFn(customProperty("scroll-snap-strictness", variablePrefix))
+    }`,
+  }),
+  both: (_, { variablePrefix }) => ({
+    "scroll-snap-type": `both ${
+      varFn(customProperty("scroll-snap-strictness", variablePrefix))
+    }`,
+  }),
+  mandatory: (_, { variablePrefix }) => ({
+    [customProperty("scroll-snap-strictness", variablePrefix)]: "mandatory",
+  }),
+  proximity: (_, { variablePrefix }) => ({
+    [customProperty("scroll-snap-strictness", variablePrefix)]: "proximity",
+  }),
 };

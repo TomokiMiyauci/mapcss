@@ -10297,6 +10297,21 @@ const expects: [string, string][] = [
   ["snap-align-none", ".snap-align-none{scroll-snap-align:none;}"],
   ["snap-normal", ".snap-normal{scroll-snap-stop:normal;}"],
   ["snap-always", ".snap-always{scroll-snap-stop:always;}"],
+  ["snap-none", ".snap-none{scroll-snap-type:none;}"],
+  ["snap-x", ".snap-x{scroll-snap-type:x var(--map-scroll-snap-strictness);}"],
+  ["snap-y", ".snap-y{scroll-snap-type:y var(--map-scroll-snap-strictness);}"],
+  [
+    "snap-both",
+    ".snap-both{scroll-snap-type:both var(--map-scroll-snap-strictness);}",
+  ],
+  [
+    "snap-mandatory",
+    ".snap-mandatory{--map-scroll-snap-strictness:mandatory;}",
+  ],
+  [
+    "snap-proximity",
+    ".snap-proximity{--map-scroll-snap-strictness:proximity;}",
+  ],
   ["touch-auto", ".touch-auto{touch-action:auto;}"],
   ["touch-none", ".touch-none{touch-action:none;}"],
   ["touch-manipulation", ".touch-manipulation{touch-action:manipulation;}"],

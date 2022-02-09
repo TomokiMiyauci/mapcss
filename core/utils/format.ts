@@ -26,6 +26,10 @@ export function customProperty(
   return `--${prefix}${property}`;
 }
 
+export function varFn(customPropertyName: string): string {
+  return `var(${customPropertyName})`;
+}
+
 export function unit(unit: "%" | "deg" | "ms" | "rem") {
   return (value: string | number): string => `${value}${unit}`;
 }
