@@ -9336,6 +9336,7 @@ const expects: [string, string][] = [
   ],
   ["origin-bottom-left", ".origin-bottom-left{transform-origin:bottom left;}"],
   ["origin-top-left", ".origin-top-left{transform-origin:top left;}"],
+  ["appearance-none", ".appearance-none{appearance:none;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

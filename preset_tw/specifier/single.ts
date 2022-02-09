@@ -334,3 +334,6 @@ export const origin: RecordSpecifier = {
     left: { "transform-origin": "bottom left" },
   },
 };
+export const appearance: RecordSpecifier = {
+  none: { appearance: "none" },
+};

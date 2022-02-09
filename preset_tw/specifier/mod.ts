@@ -3,6 +3,7 @@ import {
   $static,
   absolute,
   antialiased,
+  appearance,
   block,
   brightness,
   capitalize,
@@ -124,6 +125,7 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  appearance,
   origin,
   skew,
   translate,
