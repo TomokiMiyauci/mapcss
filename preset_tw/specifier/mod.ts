@@ -47,6 +47,7 @@ import {
   sticky,
   subpixel,
   tabular,
+  touch,
   truncate,
   uppercase,
   visible,
@@ -131,6 +132,7 @@ import { translate } from "./translate.ts";
 import { scroll } from "./scroll.ts";
 
 export const specifierMap = {
+  touch,
   select,
   will,
   scroll,

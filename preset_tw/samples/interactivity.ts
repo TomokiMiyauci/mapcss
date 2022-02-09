@@ -553,7 +553,18 @@ export const scrollPaddings = [
   "scroll-pb-3.5",
   "scroll-pl-3.5",
 ];
-
+export const touchActions = [
+  "touch-auto",
+  "touch-none",
+  "touch-manipulation",
+  "touch-pan-x",
+  "touch-pan-left",
+  "touch-pan-right",
+  "touch-pan-y",
+  "touch-pan-up",
+  "touch-pan-down",
+  "touch-pinch-zoom",
+];
 export const userSelects = [
   "select-none",
   "select-text",

@@ -427,6 +427,23 @@ export const resize: RecordSpecifier = {
   x: { resize: "horizontal" },
   y: { resize: "vertical" },
 };
+export const touch: RecordSpecifier = {
+  auto: { "touch-action": "auto" },
+  none: { "touch-action": "none" },
+  manipulation: { "touch-action": "manipulation" },
+  pan: {
+    x: { "touch-action": "pan-x" },
+    y: { "touch-action": "pan-y" },
+    left: { "touch-action": "pan-left" },
+    right: { "touch-action": "pan-right" },
+    up: { "touch-action": "pan-up" },
+    down: { "touch-action": "pan-down" },
+  },
+  pinch: {
+    zoom: { "touch-action": "pinch-zoom" },
+  },
+};
+
 export const select: RecordSpecifier = {
   none: { "user-select": "none" },
   text: { "user-select": "text" },
