@@ -13,6 +13,7 @@ import type {
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
+import { transformValue } from "./_utils.ts";
 
 export const block: CSSObject = { display: "block" };
 export const isolate: CSSObject = { isolation: "isolate" };
@@ -276,6 +277,20 @@ export const delay: EntriesSpecifier = [
     ([, pNumber]) =>
       parseNumeric(pNumber).map(unit("ms")).match({
         some: (ms) => ({ "transition-delay": ms }),
+        none: undefined,
+      }),
+  ],
+];
+
+export const rotate: EntriesSpecifier = [
+  [
+    rePositiveNumber,
+    ([, pNumber], { variablePrefix }) =>
+      parseNumeric(pNumber).map(unit("deg")).match({
+        some: (deg) => ({
+          [customProperty("rotate", variablePrefix)]: deg,
+          transform: transformValue(variablePrefix),
+        }),
         none: undefined,
       }),
   ],

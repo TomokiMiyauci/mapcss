@@ -177,3 +177,14 @@ export function customPropertySet(
   const varName = stringifyVarFunction(variable);
   return [variable, varName];
 }
+
+export function transformValue(varPrefix: string): string {
+  const [, varFnTranslateX] = customPropertySet("translate-x", varPrefix);
+  const [, varFnTranslateY] = customPropertySet("translate-y", varPrefix);
+  const [, varFnRotate] = customPropertySet("rotate", varPrefix);
+  const [, varFnSkewX] = customPropertySet("skew-x", varPrefix);
+  const [, varFnSkewY] = customPropertySet("skew-y", varPrefix);
+  const [, varFnScaleX] = customPropertySet("scale-x", varPrefix);
+  const [, varFnScaleY] = customPropertySet("scale-y", varPrefix);
+  return `translate(${varFnTranslateX}, ${varFnTranslateY}) rotate(${varFnRotate}) skewX(${varFnSkewX}) skewY(${varFnSkewY}) scaleX(${varFnScaleX}) scaleY(${varFnScaleY})`;
+}

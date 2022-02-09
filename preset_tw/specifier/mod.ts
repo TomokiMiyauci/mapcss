@@ -31,6 +31,7 @@ import {
   overline,
   proportional,
   relative,
+  rotate,
   saturate,
   sepia,
   slashed,
@@ -120,6 +121,7 @@ import { transition } from "./transition.ts";
 import { scale } from "./scale.ts";
 
 export const specifierMap = {
+  rotate,
   scale,
   delay,
   ease,

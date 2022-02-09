@@ -8901,6 +8901,39 @@ const expects: [string, string][] = [
     ".scale-y-150{--map-scale-y:1.5;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
   ],
   [
+    "rotate-0",
+    ".rotate-0{--map-rotate:0deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-1",
+    ".rotate-1{--map-rotate:1deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-2",
+    ".rotate-2{--map-rotate:2deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-6",
+    ".rotate-6{--map-rotate:6deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-12",
+    ".rotate-12{--map-rotate:12deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-45",
+    ".rotate-45{--map-rotate:45deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-90",
+    ".rotate-90{--map-rotate:90deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "rotate-180",
+    ".rotate-180{--map-rotate:180deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
