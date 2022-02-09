@@ -9,6 +9,7 @@ import {
   capitalize,
   contents,
   contrast,
+  cursor,
   delay,
   diagonal,
   drop,
@@ -125,6 +126,7 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  cursor,
   appearance,
   origin,
   skew,
