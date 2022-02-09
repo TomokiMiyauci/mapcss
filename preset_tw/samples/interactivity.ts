@@ -553,3 +553,10 @@ export const scrollPaddings = [
   "scroll-pb-3.5",
   "scroll-pl-3.5",
 ];
+
+export const willChanges = [
+  "will-change-auto",
+  "will-change-scroll",
+  "will-change-contents",
+  "will-change-transform",
+];

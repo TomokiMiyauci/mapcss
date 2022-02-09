@@ -427,3 +427,11 @@ export const resize: RecordSpecifier = {
   x: { resize: "horizontal" },
   y: { resize: "vertical" },
 };
+export const will: RecordSpecifier = {
+  change: {
+    auto: { "will-change": "auto" },
+    scroll: { "will-change": "scroll-position" },
+    contents: { "will-change": "contents" },
+    transform: { "will-change": "transform" },
+  },
+};

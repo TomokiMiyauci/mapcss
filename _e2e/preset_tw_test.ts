@@ -10291,6 +10291,10 @@ const expects: [string, string][] = [
   ["scroll-pr-3.5", ".scroll-pr-3\\.5{scroll-padding-right:0.875rem;}"],
   ["scroll-pb-3.5", ".scroll-pb-3\\.5{scroll-padding-bottom:0.875rem;}"],
   ["scroll-pl-3.5", ".scroll-pl-3\\.5{scroll-padding-left:0.875rem;}"],
+  ["will-change-auto", ".will-change-auto{will-change:auto;}"],
+  ["will-change-scroll", ".will-change-scroll{will-change:scroll-position;}"],
+  ["will-change-contents", ".will-change-contents{will-change:contents;}"],
+  ["will-change-transform", ".will-change-transform{will-change:transform;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
