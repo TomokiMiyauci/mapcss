@@ -46,9 +46,14 @@ export const pointerEvents = [
   "pointer-events-auto",
 ];
 
-export const resize = [
+export const resizes = [
   "resize-none",
   "resize-y",
   "resize-x",
   "resize",
+];
+
+export const scrollBehaviors = [
+  "scroll-auto",
+  "scroll-smooth",
 ];

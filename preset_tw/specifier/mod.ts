@@ -126,8 +126,10 @@ import { backdrop } from "./backdrop.ts";
 import { transition } from "./transition.ts";
 import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
+import { scroll } from "./scroll.ts";
 
 export const specifierMap = {
+  scroll,
   resize,
   pointer,
   cursor,
