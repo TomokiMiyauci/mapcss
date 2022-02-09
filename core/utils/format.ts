@@ -22,6 +22,6 @@ export function customProperty(
   return `--${prefix}${property}`;
 }
 
-export function unit(unit: "%" | "deg") {
+export function unit(unit: "%" | "deg" | "ms") {
   return (value: string | number): string => `${value}${unit}`;
 }

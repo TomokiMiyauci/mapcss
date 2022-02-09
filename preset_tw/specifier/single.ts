@@ -260,3 +260,12 @@ export const duration: EntriesSpecifier = [
       }),
   ],
 ];
+
+export const ease: RecordSpecifier = {
+  linear: { "transition-timing-function": "linear" },
+  in: {
+    DEFAULT: { "transition-timing-function": "cubic-bezier(0.4, 0, 1, 1)" },
+    out: { "transition-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)" },
+  },
+  out: { "transition-timing-function": "cubic-bezier(0, 0, 0.2, 1)" },
+};

@@ -18,3 +18,10 @@ export const transitionDurations = [
   "duration-700",
   "duration-1000",
 ];
+
+export const transitionTimingFunctions = [
+  "ease-linear",
+  "ease-in",
+  "ease-out",
+  "ease-in-out",
+];

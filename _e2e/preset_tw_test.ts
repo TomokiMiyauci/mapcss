@@ -8751,6 +8751,27 @@ const expects: [string, string][] = [
     "transition-transform",
     ".transition-transform{transition-duration:150ms;transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
   ],
+  ["duration-75", ".duration-75{transition-duration:75ms;}"],
+  ["duration-100", ".duration-100{transition-duration:100ms;}"],
+  ["duration-150", ".duration-150{transition-duration:150ms;}"],
+  ["duration-200", ".duration-200{transition-duration:200ms;}"],
+  ["duration-300", ".duration-300{transition-duration:300ms;}"],
+  ["duration-500", ".duration-500{transition-duration:500ms;}"],
+  ["duration-700", ".duration-700{transition-duration:700ms;}"],
+  ["duration-1000", ".duration-1000{transition-duration:1000ms;}"],
+  ["ease-linear", ".ease-linear{transition-timing-function:linear;}"],
+  [
+    "ease-in",
+    ".ease-in{transition-timing-function:cubic-bezier(0.4, 0, 1, 1);}",
+  ],
+  [
+    "ease-out",
+    ".ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1);}",
+  ],
+  [
+    "ease-in-out",
+    ".ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
