@@ -10,6 +10,7 @@ import {
   contrast,
   diagonal,
   drop,
+  duration,
   fixed,
   grayscale,
   hidden,
@@ -116,6 +117,7 @@ import { backdrop } from "./backdrop.ts";
 import { transition } from "./transition.ts";
 
 export const specifierMap = {
+  duration,
   transition,
   backdrop,
   sepia,

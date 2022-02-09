@@ -249,3 +249,14 @@ export const sepia: EntriesSpecifier = [
     (_, { variablePrefix }) => handleSingleFilter("sepia", 0, variablePrefix),
   ],
 ];
+
+export const duration: EntriesSpecifier = [
+  [
+    rePositiveNumber,
+    ([, pNumber]) =>
+      parseNumeric(pNumber).map(unit("ms")).match({
+        some: (ms) => ({ "transition-duration": ms }),
+        none: undefined,
+      }),
+  ],
+];
