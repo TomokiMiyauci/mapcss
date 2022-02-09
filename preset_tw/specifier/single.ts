@@ -13,7 +13,7 @@ import type {
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
-import { transformValue } from "./_utils.ts";
+import { handleTransform, transformValue } from "./_utils.ts";
 
 export const block: CSSObject = { display: "block" };
 export const isolate: CSSObject = { isolation: "isolate" };
@@ -295,3 +295,26 @@ export const rotate: EntriesSpecifier = [
       }),
   ],
 ];
+
+export const skew: RecordSpecifier = {
+  x: [
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        parseNumeric(pNumber).map(unit("deg")).match({
+          some: (deg) => handleTransform(["skew-x"], deg, variablePrefix),
+          none: undefined,
+        }),
+    ],
+  ],
+  y: [
+    [
+      rePositiveNumber,
+      ([, pNumber], { variablePrefix }) =>
+        parseNumeric(pNumber).map(unit("deg")).match({
+          some: (deg) => handleTransform(["skew-y"], deg, variablePrefix),
+          none: undefined,
+        }),
+    ],
+  ],
+};

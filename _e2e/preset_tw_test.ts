@@ -9269,6 +9269,62 @@ const expects: [string, string][] = [
     ".translate-y-3\\/4{--map-translate-y:75%;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
   ],
   [
+    "skew-x-0",
+    ".skew-x-0{--map-skew-x:0deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-x-1",
+    ".skew-x-1{--map-skew-x:1deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-x-2",
+    ".skew-x-2{--map-skew-x:2deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-x-3",
+    ".skew-x-3{--map-skew-x:3deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-x-6",
+    ".skew-x-6{--map-skew-x:6deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-x-6",
+    ".skew-x-6{--map-skew-x:6deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-x-12",
+    ".skew-x-12{--map-skew-x:12deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-0",
+    ".skew-y-0{--map-skew-y:0deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-1",
+    ".skew-y-1{--map-skew-y:1deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-2",
+    ".skew-y-2{--map-skew-y:2deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-3",
+    ".skew-y-3{--map-skew-y:3deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-6",
+    ".skew-y-6{--map-skew-y:6deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-6",
+    ".skew-y-6{--map-skew-y:6deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
+    "skew-y-12",
+    ".skew-y-12{--map-skew-y:12deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],

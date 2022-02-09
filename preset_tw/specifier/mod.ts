@@ -34,6 +34,7 @@ import {
   rotate,
   saturate,
   sepia,
+  skew,
   slashed,
   sr,
   stacked,
@@ -122,6 +123,7 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  skew,
   translate,
   rotate,
   scale,
