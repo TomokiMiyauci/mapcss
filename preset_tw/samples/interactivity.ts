@@ -40,3 +40,8 @@ export const cursors = [
   "cursor-zoom-in",
   "cursor-zoom-out",
 ];
+
+export const pointerEvents = [
+  "pointer-events-none",
+  "pointer-events-auto",
+];

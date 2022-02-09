@@ -32,6 +32,7 @@ import {
   ordinal,
   origin,
   overline,
+  pointer,
   proportional,
   relative,
   rotate,
@@ -126,6 +127,7 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  pointer,
   cursor,
   appearance,
   origin,

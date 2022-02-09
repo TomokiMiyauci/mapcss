@@ -415,3 +415,9 @@ export const cursor: RecordSpecifier = {
     allowed: { cursor: "not-allowed" },
   },
 };
+export const pointer: RecordSpecifier = {
+  events: {
+    none: { "pointer-events": "none" },
+    auto: { "pointer-events": "auto" },
+  },
+};
