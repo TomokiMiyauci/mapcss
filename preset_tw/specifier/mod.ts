@@ -117,8 +117,10 @@ import { mix } from "./mix.ts";
 import { blur } from "./blur.ts";
 import { backdrop } from "./backdrop.ts";
 import { transition } from "./transition.ts";
+import { scale } from "./scale.ts";
 
 export const specifierMap = {
+  scale,
   delay,
   ease,
   duration,
