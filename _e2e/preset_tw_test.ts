@@ -8726,6 +8726,32 @@ const expects: [string, string][] = [
     ".backdrop-sepia-0{--map-backdrop-sepia:sepia(0);backdrop-filter:var(--map-backdrop-blur) var(--map-backdrop-brightness) var(--map-backdrop-contrast) var(--map-backdrop-grayscale) var(--map-backdrop-hue-rotate) var(--map-backdrop-invert) var(--map-backdrop-opacity) var(--map-backdrop-saturate) var(--map-backdrop-sepia);}",
   ],
   [
+    "transition",
+    ".transition{transition-duration:150ms;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
+  ["transition-none", ".transition-none{transition-property:none;}"],
+  [
+    "transition-shadow",
+    ".transition-shadow{transition-duration:150ms;transition-property:box-shadow;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
+  [
+    "transition-all",
+    ".transition-all{transition-duration:150ms;transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
+  [
+    "transition-colors",
+    ".transition-colors{transition-duration:150ms;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
+  [
+    "transition-opacity",
+    ".transition-opacity{transition-duration:150ms;transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
+
+  [
+    "transition-transform",
+    ".transition-transform{transition-duration:150ms;transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}",
+  ],
+  [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",
   ],
