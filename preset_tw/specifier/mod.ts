@@ -35,6 +35,7 @@ import {
   pointer,
   proportional,
   relative,
+  resize,
   rotate,
   saturate,
   sepia,
@@ -127,6 +128,7 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  resize,
   pointer,
   cursor,
   appearance,

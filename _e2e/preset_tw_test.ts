@@ -9375,6 +9375,10 @@ const expects: [string, string][] = [
   ["cursor-zoom-out", ".cursor-zoom-out{cursor:zoom-out;}"],
   ["pointer-events-none", ".pointer-events-none{pointer-events:none;}"],
   ["pointer-events-auto", ".pointer-events-auto{pointer-events:auto;}"],
+  ["resize-none", ".resize-none{resize:none;}"],
+  ["resize-y", ".resize-y{resize:vertical;}"],
+  ["resize-x", ".resize-x{resize:horizontal;}"],
+  ["resize", ".resize{resize:both;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

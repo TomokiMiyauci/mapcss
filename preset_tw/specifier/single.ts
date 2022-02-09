@@ -421,3 +421,9 @@ export const pointer: RecordSpecifier = {
     auto: { "pointer-events": "auto" },
   },
 };
+export const resize: RecordSpecifier = {
+  DEFAULT: { resize: "both" },
+  none: { resize: "none" },
+  x: { resize: "horizontal" },
+  y: { resize: "vertical" },
+};

@@ -45,3 +45,10 @@ export const pointerEvents = [
   "pointer-events-none",
   "pointer-events-auto",
 ];
+
+export const resize = [
+  "resize-none",
+  "resize-y",
+  "resize-x",
+  "resize",
+];
