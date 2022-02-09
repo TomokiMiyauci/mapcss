@@ -8,6 +8,7 @@ import {
   capitalize,
   contents,
   contrast,
+  delay,
   diagonal,
   drop,
   duration,
@@ -118,6 +119,7 @@ import { backdrop } from "./backdrop.ts";
 import { transition } from "./transition.ts";
 
 export const specifierMap = {
+  delay,
   ease,
   duration,
   transition,

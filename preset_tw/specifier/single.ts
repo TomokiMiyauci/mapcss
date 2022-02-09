@@ -269,3 +269,14 @@ export const ease: RecordSpecifier = {
   },
   out: { "transition-timing-function": "cubic-bezier(0, 0, 0.2, 1)" },
 };
+
+export const delay: EntriesSpecifier = [
+  [
+    rePositiveNumber,
+    ([, pNumber]) =>
+      parseNumeric(pNumber).map(unit("ms")).match({
+        some: (ms) => ({ "transition-delay": ms }),
+        none: undefined,
+      }),
+  ],
+];
