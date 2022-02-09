@@ -318,3 +318,19 @@ export const skew: RecordSpecifier = {
     ],
   ],
 };
+
+export const origin: RecordSpecifier = {
+  center: { "transform-origin": "center" },
+  left: { "transform-origin": "left" },
+  right: { "transform-origin": "right" },
+  top: {
+    DEFAULT: { "transform-origin": "top" },
+    right: { "transform-origin": "top right" },
+    left: { "transform-origin": "top left" },
+  },
+  bottom: {
+    DEFAULT: { "transform-origin": "bottom" },
+    right: { "transform-origin": "bottom right" },
+    left: { "transform-origin": "bottom left" },
+  },
+};

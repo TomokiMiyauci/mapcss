@@ -28,6 +28,7 @@ import {
   no,
   oldstyle,
   ordinal,
+  origin,
   overline,
   proportional,
   relative,
@@ -123,6 +124,7 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 
 export const specifierMap = {
+  origin,
   skew,
   translate,
   rotate,

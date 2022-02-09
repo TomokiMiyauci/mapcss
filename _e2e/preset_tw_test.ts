@@ -9324,6 +9324,18 @@ const expects: [string, string][] = [
     "skew-y-12",
     ".skew-y-12{--map-skew-y:12deg;transform:translate(var(--map-translate-x), var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y));}",
   ],
+  ["origin-center", ".origin-center{transform-origin:center;}"],
+  ["origin-top", ".origin-top{transform-origin:top;}"],
+  ["origin-right", ".origin-right{transform-origin:right;}"],
+  ["origin-bottom", ".origin-bottom{transform-origin:bottom;}"],
+  ["origin-left", ".origin-left{transform-origin:left;}"],
+  ["origin-top-right", ".origin-top-right{transform-origin:top right;}"],
+  [
+    "origin-bottom-right",
+    ".origin-bottom-right{transform-origin:bottom right;}",
+  ],
+  ["origin-bottom-left", ".origin-bottom-left{transform-origin:bottom left;}"],
+  ["origin-top-left", ".origin-top-left{transform-origin:top left;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

@@ -122,7 +122,7 @@ export const translates = [
   "translate-y-3/4",
 ];
 
-export const skew = [
+export const skews = [
   "skew-x-0",
   "skew-y-0",
   "skew-x-1",
@@ -135,4 +135,16 @@ export const skew = [
   "skew-y-6",
   "skew-x-12",
   "skew-y-12",
+];
+
+export const origins = [
+  "origin-center",
+  "origin-top",
+  "origin-right",
+  "origin-bottom",
+  "origin-left",
+  "origin-top-right",
+  "origin-bottom-right",
+  "origin-bottom-left",
+  "origin-top-left",
 ];
