@@ -10330,6 +10330,9 @@ const expects: [string, string][] = [
   ["will-change-scroll", ".will-change-scroll{will-change:scroll-position;}"],
   ["will-change-contents", ".will-change-contents{will-change:contents;}"],
   ["will-change-transform", ".will-change-transform{will-change:transform;}"],
+  ["stroke-0", ".stroke-0{stroke-width:0;}"],
+  ["stroke-1", ".stroke-1{stroke-width:1;}"],
+  ["stroke-2", ".stroke-2{stroke-width:2;}"],
   [
     "sr-only",
     ".sr-only{border-width:0;clip:rect(0, 0, 0, 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px;}",

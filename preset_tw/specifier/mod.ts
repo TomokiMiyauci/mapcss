@@ -131,8 +131,10 @@ import { scale } from "./scale.ts";
 import { translate } from "./translate.ts";
 import { scroll } from "./scroll.ts";
 import { snap } from "./snap.ts";
+import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
+  stroke,
   snap,
   touch,
   select,
