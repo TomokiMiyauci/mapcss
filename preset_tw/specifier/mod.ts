@@ -17,6 +17,7 @@ import {
   drop,
   duration,
   ease,
+  fill,
   fixed,
   grayscale,
   hidden,
@@ -136,6 +137,7 @@ import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
+  fill,
   caret,
   accent,
   stroke,

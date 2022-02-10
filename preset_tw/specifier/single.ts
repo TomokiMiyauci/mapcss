@@ -553,3 +553,45 @@ export const will: RecordSpecifier = {
     transform: { "will-change": "transform" },
   },
 };
+function toFill(color: string) {
+  return { fill: color };
+}
+export const fill: EntriesSpecifier = [
+  [reSlashNumber, ([, body, numeric], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+
+    return parseNumeric(numeric).match({
+      some: (number) =>
+        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
+          some: toFill,
+          none: undefined,
+        }),
+      none: undefined,
+    });
+  }],
+  [re$SlashBracket$, ([, body, alpha], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
+      rgbFn,
+    ).match({
+      some: toFill,
+      none: undefined,
+    });
+  }],
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      return parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: toFill,
+          none: () => toFill(color),
+        });
+    },
+  ],
+];
