@@ -1,8 +1,16 @@
 import { stringifyCustomProperty } from "../../core/utils/stringify.ts";
-import { colorByStrRGBA, customPropertySet, pxBy } from "./_utils.ts";
-import { reAll, rePositiveNumber } from "../../core/utils/regexp.ts";
+import { customPropertySet } from "./_utils.ts";
+import { pxBy } from "./_utils.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
 import { isUndefined } from "../../deps.ts";
+import {
+  re$SlashBracket$,
+  reAll,
+  rePositiveNumber,
+  reSlashNumber,
+} from "../../core/utils/regexp.ts";
+import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
+import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
@@ -82,12 +90,41 @@ export const divide: EntriesSpecifier = [
         }),
     ],
   ]],
-  [reAll, ([, body], context) => {
-    const _color = resolveTheme(body, "color", context);
-    if (isUndefined(_color)) return;
-    const color = colorByStrRGBA(_color);
+  [reSlashNumber, ([, body, numeric], context) => {
+    const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
-    return [{ "border-color": color }, combinator];
+    return parseNumeric(numeric).match({
+      some: (number) =>
+        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
+          some: (color) => [{ "border-color": color }, combinator],
+          none: undefined,
+        }),
+      none: undefined,
+    });
   }],
+  [re$SlashBracket$, ([, body, alpha], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
+      rgbFn,
+    ).match({
+      some: (color) => [{ "border-color": color }, combinator],
+      none: undefined,
+    });
+  }],
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      return parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: (color) => [{ "border-color": color }, combinator],
+          none: [{ "border-color": color }, combinator],
+        });
+    },
+  ],
 ];

@@ -12121,8 +12121,2683 @@ const expects: [string, string][] = [
     ".divide-inherit>:not([hidden])~:not([hidden]){border-color:inherit;}",
   ],
   [
+    "divide-current",
+    ".divide-current>:not([hidden])~:not([hidden]){border-color:currentColor;}",
+  ],
+  [
+    "divide-transparent",
+    ".divide-transparent>:not([hidden])~:not([hidden]){border-color:transparent;}",
+  ],
+  [
+    "divide-black",
+    ".divide-black>:not([hidden])~:not([hidden]){border-color:rgb(0 0 0/1);}",
+  ],
+  [
+    "divide-white",
+    ".divide-white>:not([hidden])~:not([hidden]){border-color:rgb(255 255 255/1);}",
+  ],
+  [
+    "divide-slate-50",
+    ".divide-slate-50>:not([hidden])~:not([hidden]){border-color:rgb(248 250 252/1);}",
+  ],
+  [
+    "divide-slate-100",
+    ".divide-slate-100>:not([hidden])~:not([hidden]){border-color:rgb(241 245 249/1);}",
+  ],
+  [
+    "divide-slate-200",
+    ".divide-slate-200>:not([hidden])~:not([hidden]){border-color:rgb(226 232 240/1);}",
+  ],
+  [
+    "divide-slate-300",
+    ".divide-slate-300>:not([hidden])~:not([hidden]){border-color:rgb(203 213 225/1);}",
+  ],
+  [
+    "divide-slate-400",
+    ".divide-slate-400>:not([hidden])~:not([hidden]){border-color:rgb(148 163 184/1);}",
+  ],
+  [
+    "divide-slate-500",
+    ".divide-slate-500>:not([hidden])~:not([hidden]){border-color:rgb(100 116 139/1);}",
+  ],
+  [
+    "divide-slate-600",
+    ".divide-slate-600>:not([hidden])~:not([hidden]){border-color:rgb(71 85 105/1);}",
+  ],
+  [
+    "divide-slate-700",
+    ".divide-slate-700>:not([hidden])~:not([hidden]){border-color:rgb(51 65 85/1);}",
+  ],
+  [
+    "divide-slate-800",
+    ".divide-slate-800>:not([hidden])~:not([hidden]){border-color:rgb(30 41 59/1);}",
+  ],
+  [
+    "divide-slate-900",
+    ".divide-slate-900>:not([hidden])~:not([hidden]){border-color:rgb(15 23 42/1);}",
+  ],
+  [
+    "divide-gray-50",
+    ".divide-gray-50>:not([hidden])~:not([hidden]){border-color:rgb(249 250 251/1);}",
+  ],
+  [
+    "divide-gray-100",
+    ".divide-gray-100>:not([hidden])~:not([hidden]){border-color:rgb(243 244 246/1);}",
+  ],
+  [
+    "divide-gray-200",
+    ".divide-gray-200>:not([hidden])~:not([hidden]){border-color:rgb(229 231 235/1);}",
+  ],
+  [
+    "divide-gray-300",
+    ".divide-gray-300>:not([hidden])~:not([hidden]){border-color:rgb(209 213 219/1);}",
+  ],
+  [
+    "divide-gray-400",
+    ".divide-gray-400>:not([hidden])~:not([hidden]){border-color:rgb(156 163 175/1);}",
+  ],
+  [
+    "divide-gray-500",
+    ".divide-gray-500>:not([hidden])~:not([hidden]){border-color:rgb(107 114 128/1);}",
+  ],
+  [
+    "divide-gray-600",
+    ".divide-gray-600>:not([hidden])~:not([hidden]){border-color:rgb(75 85 99/1);}",
+  ],
+  [
+    "divide-gray-700",
+    ".divide-gray-700>:not([hidden])~:not([hidden]){border-color:rgb(55 65 81/1);}",
+  ],
+  [
+    "divide-gray-800",
+    ".divide-gray-800>:not([hidden])~:not([hidden]){border-color:rgb(31 41 55/1);}",
+  ],
+  [
+    "divide-gray-900",
+    ".divide-gray-900>:not([hidden])~:not([hidden]){border-color:rgb(17 24 39/1);}",
+  ],
+  [
+    "divide-zinc-50",
+    ".divide-zinc-50>:not([hidden])~:not([hidden]){border-color:rgb(250 250 250/1);}",
+  ],
+  [
+    "divide-zinc-100",
+    ".divide-zinc-100>:not([hidden])~:not([hidden]){border-color:rgb(244 244 245/1);}",
+  ],
+  [
+    "divide-zinc-200",
+    ".divide-zinc-200>:not([hidden])~:not([hidden]){border-color:rgb(228 228 231/1);}",
+  ],
+  [
+    "divide-zinc-300",
+    ".divide-zinc-300>:not([hidden])~:not([hidden]){border-color:rgb(212 212 216/1);}",
+  ],
+  [
+    "divide-zinc-400",
+    ".divide-zinc-400>:not([hidden])~:not([hidden]){border-color:rgb(161 161 170/1);}",
+  ],
+  [
+    "divide-zinc-500",
+    ".divide-zinc-500>:not([hidden])~:not([hidden]){border-color:rgb(113 113 122/1);}",
+  ],
+  [
+    "divide-zinc-600",
+    ".divide-zinc-600>:not([hidden])~:not([hidden]){border-color:rgb(82 82 91/1);}",
+  ],
+  [
+    "divide-zinc-700",
+    ".divide-zinc-700>:not([hidden])~:not([hidden]){border-color:rgb(63 63 70/1);}",
+  ],
+  [
+    "divide-zinc-800",
+    ".divide-zinc-800>:not([hidden])~:not([hidden]){border-color:rgb(39 39 42/1);}",
+  ],
+  [
+    "divide-zinc-900",
+    ".divide-zinc-900>:not([hidden])~:not([hidden]){border-color:rgb(24 24 27/1);}",
+  ],
+  [
+    "divide-neutral-50",
+    ".divide-neutral-50>:not([hidden])~:not([hidden]){border-color:rgb(250 250 250/1);}",
+  ],
+  [
+    "divide-neutral-100",
+    ".divide-neutral-100>:not([hidden])~:not([hidden]){border-color:rgb(245 245 245/1);}",
+  ],
+  [
+    "divide-neutral-200",
+    ".divide-neutral-200>:not([hidden])~:not([hidden]){border-color:rgb(229 229 229/1);}",
+  ],
+  [
+    "divide-neutral-300",
+    ".divide-neutral-300>:not([hidden])~:not([hidden]){border-color:rgb(212 212 212/1);}",
+  ],
+  [
+    "divide-neutral-400",
+    ".divide-neutral-400>:not([hidden])~:not([hidden]){border-color:rgb(163 163 163/1);}",
+  ],
+  [
+    "divide-neutral-500",
+    ".divide-neutral-500>:not([hidden])~:not([hidden]){border-color:rgb(115 115 115/1);}",
+  ],
+  [
+    "divide-neutral-600",
+    ".divide-neutral-600>:not([hidden])~:not([hidden]){border-color:rgb(82 82 82/1);}",
+  ],
+  [
+    "divide-neutral-700",
+    ".divide-neutral-700>:not([hidden])~:not([hidden]){border-color:rgb(64 64 64/1);}",
+  ],
+  [
+    "divide-neutral-800",
+    ".divide-neutral-800>:not([hidden])~:not([hidden]){border-color:rgb(38 38 38/1);}",
+  ],
+  [
+    "divide-neutral-900",
+    ".divide-neutral-900>:not([hidden])~:not([hidden]){border-color:rgb(23 23 23/1);}",
+  ],
+  [
+    "divide-stone-50",
+    ".divide-stone-50>:not([hidden])~:not([hidden]){border-color:rgb(250 250 249/1);}",
+  ],
+  [
+    "divide-stone-100",
+    ".divide-stone-100>:not([hidden])~:not([hidden]){border-color:rgb(245 245 244/1);}",
+  ],
+  [
+    "divide-stone-200",
+    ".divide-stone-200>:not([hidden])~:not([hidden]){border-color:rgb(231 229 228/1);}",
+  ],
+  [
+    "divide-stone-300",
+    ".divide-stone-300>:not([hidden])~:not([hidden]){border-color:rgb(214 211 209/1);}",
+  ],
+  [
+    "divide-stone-400",
+    ".divide-stone-400>:not([hidden])~:not([hidden]){border-color:rgb(168 162 158/1);}",
+  ],
+  [
+    "divide-stone-500",
+    ".divide-stone-500>:not([hidden])~:not([hidden]){border-color:rgb(120 113 108/1);}",
+  ],
+  [
+    "divide-stone-600",
+    ".divide-stone-600>:not([hidden])~:not([hidden]){border-color:rgb(87 83 78/1);}",
+  ],
+  [
+    "divide-stone-700",
+    ".divide-stone-700>:not([hidden])~:not([hidden]){border-color:rgb(68 64 60/1);}",
+  ],
+  [
+    "divide-stone-800",
+    ".divide-stone-800>:not([hidden])~:not([hidden]){border-color:rgb(41 37 36/1);}",
+  ],
+  [
+    "divide-stone-900",
+    ".divide-stone-900>:not([hidden])~:not([hidden]){border-color:rgb(28 25 23/1);}",
+  ],
+  [
     "divide-red-50",
-    ".divide-red-50>:not([hidden])~:not([hidden]){border-color:rgba(254,242,242,1);}",
+    ".divide-red-50>:not([hidden])~:not([hidden]){border-color:rgb(254 242 242/1);}",
+  ],
+  [
+    "divide-red-100",
+    ".divide-red-100>:not([hidden])~:not([hidden]){border-color:rgb(254 226 226/1);}",
+  ],
+  [
+    "divide-red-200",
+    ".divide-red-200>:not([hidden])~:not([hidden]){border-color:rgb(254 202 202/1);}",
+  ],
+  [
+    "divide-red-300",
+    ".divide-red-300>:not([hidden])~:not([hidden]){border-color:rgb(252 165 165/1);}",
+  ],
+  [
+    "divide-red-400",
+    ".divide-red-400>:not([hidden])~:not([hidden]){border-color:rgb(248 113 113/1);}",
+  ],
+  [
+    "divide-red-500",
+    ".divide-red-500>:not([hidden])~:not([hidden]){border-color:rgb(239 68 68/1);}",
+  ],
+  [
+    "divide-red-600",
+    ".divide-red-600>:not([hidden])~:not([hidden]){border-color:rgb(220 38 38/1);}",
+  ],
+  [
+    "divide-red-700",
+    ".divide-red-700>:not([hidden])~:not([hidden]){border-color:rgb(185 28 28/1);}",
+  ],
+  [
+    "divide-red-800",
+    ".divide-red-800>:not([hidden])~:not([hidden]){border-color:rgb(153 27 27/1);}",
+  ],
+  [
+    "divide-red-900",
+    ".divide-red-900>:not([hidden])~:not([hidden]){border-color:rgb(127 29 29/1);}",
+  ],
+  [
+    "divide-orange-50",
+    ".divide-orange-50>:not([hidden])~:not([hidden]){border-color:rgb(255 247 237/1);}",
+  ],
+  [
+    "divide-orange-100",
+    ".divide-orange-100>:not([hidden])~:not([hidden]){border-color:rgb(255 237 213/1);}",
+  ],
+  [
+    "divide-orange-200",
+    ".divide-orange-200>:not([hidden])~:not([hidden]){border-color:rgb(254 215 170/1);}",
+  ],
+  [
+    "divide-orange-300",
+    ".divide-orange-300>:not([hidden])~:not([hidden]){border-color:rgb(253 186 116/1);}",
+  ],
+  [
+    "divide-orange-400",
+    ".divide-orange-400>:not([hidden])~:not([hidden]){border-color:rgb(251 146 60/1);}",
+  ],
+  [
+    "divide-orange-500",
+    ".divide-orange-500>:not([hidden])~:not([hidden]){border-color:rgb(249 115 22/1);}",
+  ],
+  [
+    "divide-orange-600",
+    ".divide-orange-600>:not([hidden])~:not([hidden]){border-color:rgb(234 88 12/1);}",
+  ],
+  [
+    "divide-orange-700",
+    ".divide-orange-700>:not([hidden])~:not([hidden]){border-color:rgb(194 65 12/1);}",
+  ],
+  [
+    "divide-orange-800",
+    ".divide-orange-800>:not([hidden])~:not([hidden]){border-color:rgb(154 52 18/1);}",
+  ],
+  [
+    "divide-orange-900",
+    ".divide-orange-900>:not([hidden])~:not([hidden]){border-color:rgb(124 45 18/1);}",
+  ],
+  [
+    "divide-amber-50",
+    ".divide-amber-50>:not([hidden])~:not([hidden]){border-color:rgb(255 251 235/1);}",
+  ],
+  [
+    "divide-amber-100",
+    ".divide-amber-100>:not([hidden])~:not([hidden]){border-color:rgb(254 243 199/1);}",
+  ],
+  [
+    "divide-amber-200",
+    ".divide-amber-200>:not([hidden])~:not([hidden]){border-color:rgb(253 230 138/1);}",
+  ],
+  [
+    "divide-amber-300",
+    ".divide-amber-300>:not([hidden])~:not([hidden]){border-color:rgb(252 211 77/1);}",
+  ],
+  [
+    "divide-amber-400",
+    ".divide-amber-400>:not([hidden])~:not([hidden]){border-color:rgb(251 191 36/1);}",
+  ],
+  [
+    "divide-amber-500",
+    ".divide-amber-500>:not([hidden])~:not([hidden]){border-color:rgb(245 158 11/1);}",
+  ],
+  [
+    "divide-amber-600",
+    ".divide-amber-600>:not([hidden])~:not([hidden]){border-color:rgb(217 119 6/1);}",
+  ],
+  [
+    "divide-amber-700",
+    ".divide-amber-700>:not([hidden])~:not([hidden]){border-color:rgb(180 83 9/1);}",
+  ],
+  [
+    "divide-amber-800",
+    ".divide-amber-800>:not([hidden])~:not([hidden]){border-color:rgb(146 64 14/1);}",
+  ],
+  [
+    "divide-amber-900",
+    ".divide-amber-900>:not([hidden])~:not([hidden]){border-color:rgb(120 53 15/1);}",
+  ],
+  [
+    "divide-yellow-50",
+    ".divide-yellow-50>:not([hidden])~:not([hidden]){border-color:rgb(254 252 232/1);}",
+  ],
+  [
+    "divide-yellow-100",
+    ".divide-yellow-100>:not([hidden])~:not([hidden]){border-color:rgb(254 249 195/1);}",
+  ],
+  [
+    "divide-yellow-200",
+    ".divide-yellow-200>:not([hidden])~:not([hidden]){border-color:rgb(254 240 138/1);}",
+  ],
+  [
+    "divide-yellow-300",
+    ".divide-yellow-300>:not([hidden])~:not([hidden]){border-color:rgb(253 224 71/1);}",
+  ],
+  [
+    "divide-yellow-400",
+    ".divide-yellow-400>:not([hidden])~:not([hidden]){border-color:rgb(250 204 21/1);}",
+  ],
+  [
+    "divide-yellow-500",
+    ".divide-yellow-500>:not([hidden])~:not([hidden]){border-color:rgb(234 179 8/1);}",
+  ],
+  [
+    "divide-yellow-600",
+    ".divide-yellow-600>:not([hidden])~:not([hidden]){border-color:rgb(202 138 4/1);}",
+  ],
+  [
+    "divide-yellow-700",
+    ".divide-yellow-700>:not([hidden])~:not([hidden]){border-color:rgb(161 98 7/1);}",
+  ],
+  [
+    "divide-yellow-800",
+    ".divide-yellow-800>:not([hidden])~:not([hidden]){border-color:rgb(133 77 14/1);}",
+  ],
+  [
+    "divide-yellow-900",
+    ".divide-yellow-900>:not([hidden])~:not([hidden]){border-color:rgb(113 63 18/1);}",
+  ],
+  [
+    "divide-lime-50",
+    ".divide-lime-50>:not([hidden])~:not([hidden]){border-color:rgb(247 254 231/1);}",
+  ],
+  [
+    "divide-lime-100",
+    ".divide-lime-100>:not([hidden])~:not([hidden]){border-color:rgb(236 252 203/1);}",
+  ],
+  [
+    "divide-lime-200",
+    ".divide-lime-200>:not([hidden])~:not([hidden]){border-color:rgb(217 249 157/1);}",
+  ],
+  [
+    "divide-lime-300",
+    ".divide-lime-300>:not([hidden])~:not([hidden]){border-color:rgb(190 242 100/1);}",
+  ],
+  [
+    "divide-lime-400",
+    ".divide-lime-400>:not([hidden])~:not([hidden]){border-color:rgb(163 230 53/1);}",
+  ],
+  [
+    "divide-lime-500",
+    ".divide-lime-500>:not([hidden])~:not([hidden]){border-color:rgb(132 204 22/1);}",
+  ],
+  [
+    "divide-lime-600",
+    ".divide-lime-600>:not([hidden])~:not([hidden]){border-color:rgb(101 163 13/1);}",
+  ],
+  [
+    "divide-lime-700",
+    ".divide-lime-700>:not([hidden])~:not([hidden]){border-color:rgb(77 124 15/1);}",
+  ],
+  [
+    "divide-lime-800",
+    ".divide-lime-800>:not([hidden])~:not([hidden]){border-color:rgb(63 98 18/1);}",
+  ],
+  [
+    "divide-lime-900",
+    ".divide-lime-900>:not([hidden])~:not([hidden]){border-color:rgb(54 83 20/1);}",
+  ],
+  [
+    "divide-green-50",
+    ".divide-green-50>:not([hidden])~:not([hidden]){border-color:rgb(240 253 244/1);}",
+  ],
+  [
+    "divide-green-100",
+    ".divide-green-100>:not([hidden])~:not([hidden]){border-color:rgb(220 252 231/1);}",
+  ],
+  [
+    "divide-green-200",
+    ".divide-green-200>:not([hidden])~:not([hidden]){border-color:rgb(187 247 208/1);}",
+  ],
+  [
+    "divide-green-300",
+    ".divide-green-300>:not([hidden])~:not([hidden]){border-color:rgb(134 239 172/1);}",
+  ],
+  [
+    "divide-green-400",
+    ".divide-green-400>:not([hidden])~:not([hidden]){border-color:rgb(74 222 128/1);}",
+  ],
+  [
+    "divide-green-500",
+    ".divide-green-500>:not([hidden])~:not([hidden]){border-color:rgb(34 197 94/1);}",
+  ],
+  [
+    "divide-green-600",
+    ".divide-green-600>:not([hidden])~:not([hidden]){border-color:rgb(22 163 74/1);}",
+  ],
+  [
+    "divide-green-700",
+    ".divide-green-700>:not([hidden])~:not([hidden]){border-color:rgb(21 128 61/1);}",
+  ],
+  [
+    "divide-green-800",
+    ".divide-green-800>:not([hidden])~:not([hidden]){border-color:rgb(22 101 52/1);}",
+  ],
+  [
+    "divide-green-900",
+    ".divide-green-900>:not([hidden])~:not([hidden]){border-color:rgb(20 83 45/1);}",
+  ],
+  [
+    "divide-emerald-50",
+    ".divide-emerald-50>:not([hidden])~:not([hidden]){border-color:rgb(236 253 245/1);}",
+  ],
+  [
+    "divide-emerald-100",
+    ".divide-emerald-100>:not([hidden])~:not([hidden]){border-color:rgb(209 250 229/1);}",
+  ],
+  [
+    "divide-emerald-200",
+    ".divide-emerald-200>:not([hidden])~:not([hidden]){border-color:rgb(167 243 208/1);}",
+  ],
+  [
+    "divide-emerald-300",
+    ".divide-emerald-300>:not([hidden])~:not([hidden]){border-color:rgb(110 231 183/1);}",
+  ],
+  [
+    "divide-emerald-400",
+    ".divide-emerald-400>:not([hidden])~:not([hidden]){border-color:rgb(52 211 153/1);}",
+  ],
+  [
+    "divide-emerald-500",
+    ".divide-emerald-500>:not([hidden])~:not([hidden]){border-color:rgb(16 185 129/1);}",
+  ],
+  [
+    "divide-emerald-600",
+    ".divide-emerald-600>:not([hidden])~:not([hidden]){border-color:rgb(5 150 105/1);}",
+  ],
+  [
+    "divide-emerald-700",
+    ".divide-emerald-700>:not([hidden])~:not([hidden]){border-color:rgb(4 120 87/1);}",
+  ],
+  [
+    "divide-emerald-800",
+    ".divide-emerald-800>:not([hidden])~:not([hidden]){border-color:rgb(6 95 70/1);}",
+  ],
+  [
+    "divide-emerald-900",
+    ".divide-emerald-900>:not([hidden])~:not([hidden]){border-color:rgb(6 78 59/1);}",
+  ],
+  [
+    "divide-teal-50",
+    ".divide-teal-50>:not([hidden])~:not([hidden]){border-color:rgb(240 253 250/1);}",
+  ],
+  [
+    "divide-teal-100",
+    ".divide-teal-100>:not([hidden])~:not([hidden]){border-color:rgb(204 251 241/1);}",
+  ],
+  [
+    "divide-teal-200",
+    ".divide-teal-200>:not([hidden])~:not([hidden]){border-color:rgb(153 246 228/1);}",
+  ],
+  [
+    "divide-teal-300",
+    ".divide-teal-300>:not([hidden])~:not([hidden]){border-color:rgb(94 234 212/1);}",
+  ],
+  [
+    "divide-teal-400",
+    ".divide-teal-400>:not([hidden])~:not([hidden]){border-color:rgb(45 212 191/1);}",
+  ],
+  [
+    "divide-teal-500",
+    ".divide-teal-500>:not([hidden])~:not([hidden]){border-color:rgb(20 184 166/1);}",
+  ],
+  [
+    "divide-teal-600",
+    ".divide-teal-600>:not([hidden])~:not([hidden]){border-color:rgb(13 148 136/1);}",
+  ],
+  [
+    "divide-teal-700",
+    ".divide-teal-700>:not([hidden])~:not([hidden]){border-color:rgb(15 118 110/1);}",
+  ],
+  [
+    "divide-teal-800",
+    ".divide-teal-800>:not([hidden])~:not([hidden]){border-color:rgb(17 94 89/1);}",
+  ],
+  [
+    "divide-teal-900",
+    ".divide-teal-900>:not([hidden])~:not([hidden]){border-color:rgb(19 78 74/1);}",
+  ],
+  [
+    "divide-cyan-50",
+    ".divide-cyan-50>:not([hidden])~:not([hidden]){border-color:rgb(236 254 255/1);}",
+  ],
+  [
+    "divide-cyan-100",
+    ".divide-cyan-100>:not([hidden])~:not([hidden]){border-color:rgb(207 250 254/1);}",
+  ],
+  [
+    "divide-cyan-200",
+    ".divide-cyan-200>:not([hidden])~:not([hidden]){border-color:rgb(165 243 252/1);}",
+  ],
+  [
+    "divide-cyan-300",
+    ".divide-cyan-300>:not([hidden])~:not([hidden]){border-color:rgb(103 232 249/1);}",
+  ],
+  [
+    "divide-cyan-400",
+    ".divide-cyan-400>:not([hidden])~:not([hidden]){border-color:rgb(34 211 238/1);}",
+  ],
+  [
+    "divide-cyan-500",
+    ".divide-cyan-500>:not([hidden])~:not([hidden]){border-color:rgb(6 182 212/1);}",
+  ],
+  [
+    "divide-cyan-600",
+    ".divide-cyan-600>:not([hidden])~:not([hidden]){border-color:rgb(8 145 178/1);}",
+  ],
+  [
+    "divide-cyan-700",
+    ".divide-cyan-700>:not([hidden])~:not([hidden]){border-color:rgb(14 116 144/1);}",
+  ],
+  [
+    "divide-cyan-800",
+    ".divide-cyan-800>:not([hidden])~:not([hidden]){border-color:rgb(21 94 117/1);}",
+  ],
+  [
+    "divide-cyan-900",
+    ".divide-cyan-900>:not([hidden])~:not([hidden]){border-color:rgb(22 78 99/1);}",
+  ],
+  [
+    "divide-sky-50",
+    ".divide-sky-50>:not([hidden])~:not([hidden]){border-color:rgb(240 249 255/1);}",
+  ],
+  [
+    "divide-sky-100",
+    ".divide-sky-100>:not([hidden])~:not([hidden]){border-color:rgb(224 242 254/1);}",
+  ],
+  [
+    "divide-sky-200",
+    ".divide-sky-200>:not([hidden])~:not([hidden]){border-color:rgb(186 230 253/1);}",
+  ],
+  [
+    "divide-sky-300",
+    ".divide-sky-300>:not([hidden])~:not([hidden]){border-color:rgb(125 211 252/1);}",
+  ],
+  [
+    "divide-sky-400",
+    ".divide-sky-400>:not([hidden])~:not([hidden]){border-color:rgb(56 189 248/1);}",
+  ],
+  [
+    "divide-sky-500",
+    ".divide-sky-500>:not([hidden])~:not([hidden]){border-color:rgb(14 165 233/1);}",
+  ],
+  [
+    "divide-sky-600",
+    ".divide-sky-600>:not([hidden])~:not([hidden]){border-color:rgb(2 132 199/1);}",
+  ],
+  [
+    "divide-sky-700",
+    ".divide-sky-700>:not([hidden])~:not([hidden]){border-color:rgb(3 105 161/1);}",
+  ],
+  [
+    "divide-sky-800",
+    ".divide-sky-800>:not([hidden])~:not([hidden]){border-color:rgb(7 89 133/1);}",
+  ],
+  [
+    "divide-sky-900",
+    ".divide-sky-900>:not([hidden])~:not([hidden]){border-color:rgb(12 74 110/1);}",
+  ],
+  [
+    "divide-blue-50",
+    ".divide-blue-50>:not([hidden])~:not([hidden]){border-color:rgb(239 246 255/1);}",
+  ],
+  [
+    "divide-blue-100",
+    ".divide-blue-100>:not([hidden])~:not([hidden]){border-color:rgb(219 234 254/1);}",
+  ],
+  [
+    "divide-blue-200",
+    ".divide-blue-200>:not([hidden])~:not([hidden]){border-color:rgb(191 219 254/1);}",
+  ],
+  [
+    "divide-blue-300",
+    ".divide-blue-300>:not([hidden])~:not([hidden]){border-color:rgb(147 197 253/1);}",
+  ],
+  [
+    "divide-blue-400",
+    ".divide-blue-400>:not([hidden])~:not([hidden]){border-color:rgb(96 165 250/1);}",
+  ],
+  [
+    "divide-blue-500",
+    ".divide-blue-500>:not([hidden])~:not([hidden]){border-color:rgb(59 130 246/1);}",
+  ],
+  [
+    "divide-blue-600",
+    ".divide-blue-600>:not([hidden])~:not([hidden]){border-color:rgb(37 99 235/1);}",
+  ],
+  [
+    "divide-blue-700",
+    ".divide-blue-700>:not([hidden])~:not([hidden]){border-color:rgb(29 78 216/1);}",
+  ],
+  [
+    "divide-blue-800",
+    ".divide-blue-800>:not([hidden])~:not([hidden]){border-color:rgb(30 64 175/1);}",
+  ],
+  [
+    "divide-blue-900",
+    ".divide-blue-900>:not([hidden])~:not([hidden]){border-color:rgb(30 58 138/1);}",
+  ],
+  [
+    "divide-indigo-50",
+    ".divide-indigo-50>:not([hidden])~:not([hidden]){border-color:rgb(238 242 255/1);}",
+  ],
+  [
+    "divide-indigo-100",
+    ".divide-indigo-100>:not([hidden])~:not([hidden]){border-color:rgb(224 231 255/1);}",
+  ],
+  [
+    "divide-indigo-200",
+    ".divide-indigo-200>:not([hidden])~:not([hidden]){border-color:rgb(199 210 254/1);}",
+  ],
+  [
+    "divide-indigo-300",
+    ".divide-indigo-300>:not([hidden])~:not([hidden]){border-color:rgb(165 180 252/1);}",
+  ],
+  [
+    "divide-indigo-400",
+    ".divide-indigo-400>:not([hidden])~:not([hidden]){border-color:rgb(129 140 248/1);}",
+  ],
+  [
+    "divide-indigo-500",
+    ".divide-indigo-500>:not([hidden])~:not([hidden]){border-color:rgb(99 102 241/1);}",
+  ],
+  [
+    "divide-indigo-600",
+    ".divide-indigo-600>:not([hidden])~:not([hidden]){border-color:rgb(79 70 229/1);}",
+  ],
+  [
+    "divide-indigo-700",
+    ".divide-indigo-700>:not([hidden])~:not([hidden]){border-color:rgb(67 56 202/1);}",
+  ],
+  [
+    "divide-indigo-800",
+    ".divide-indigo-800>:not([hidden])~:not([hidden]){border-color:rgb(55 48 163/1);}",
+  ],
+  [
+    "divide-indigo-900",
+    ".divide-indigo-900>:not([hidden])~:not([hidden]){border-color:rgb(49 46 129/1);}",
+  ],
+  [
+    "divide-violet-50",
+    ".divide-violet-50>:not([hidden])~:not([hidden]){border-color:rgb(245 243 255/1);}",
+  ],
+  [
+    "divide-violet-100",
+    ".divide-violet-100>:not([hidden])~:not([hidden]){border-color:rgb(237 233 254/1);}",
+  ],
+  [
+    "divide-violet-200",
+    ".divide-violet-200>:not([hidden])~:not([hidden]){border-color:rgb(221 214 254/1);}",
+  ],
+  [
+    "divide-violet-300",
+    ".divide-violet-300>:not([hidden])~:not([hidden]){border-color:rgb(196 181 253/1);}",
+  ],
+  [
+    "divide-violet-400",
+    ".divide-violet-400>:not([hidden])~:not([hidden]){border-color:rgb(167 139 250/1);}",
+  ],
+  [
+    "divide-violet-500",
+    ".divide-violet-500>:not([hidden])~:not([hidden]){border-color:rgb(139 92 246/1);}",
+  ],
+  [
+    "divide-violet-600",
+    ".divide-violet-600>:not([hidden])~:not([hidden]){border-color:rgb(124 58 237/1);}",
+  ],
+  [
+    "divide-violet-700",
+    ".divide-violet-700>:not([hidden])~:not([hidden]){border-color:rgb(109 40 217/1);}",
+  ],
+  [
+    "divide-violet-800",
+    ".divide-violet-800>:not([hidden])~:not([hidden]){border-color:rgb(91 33 182/1);}",
+  ],
+  [
+    "divide-violet-900",
+    ".divide-violet-900>:not([hidden])~:not([hidden]){border-color:rgb(76 29 149/1);}",
+  ],
+  [
+    "divide-purple-50",
+    ".divide-purple-50>:not([hidden])~:not([hidden]){border-color:rgb(250 245 255/1);}",
+  ],
+  [
+    "divide-purple-100",
+    ".divide-purple-100>:not([hidden])~:not([hidden]){border-color:rgb(243 232 255/1);}",
+  ],
+  [
+    "divide-purple-200",
+    ".divide-purple-200>:not([hidden])~:not([hidden]){border-color:rgb(233 213 255/1);}",
+  ],
+  [
+    "divide-purple-300",
+    ".divide-purple-300>:not([hidden])~:not([hidden]){border-color:rgb(216 180 254/1);}",
+  ],
+  [
+    "divide-purple-400",
+    ".divide-purple-400>:not([hidden])~:not([hidden]){border-color:rgb(192 132 252/1);}",
+  ],
+  [
+    "divide-purple-500",
+    ".divide-purple-500>:not([hidden])~:not([hidden]){border-color:rgb(168 85 247/1);}",
+  ],
+  [
+    "divide-purple-600",
+    ".divide-purple-600>:not([hidden])~:not([hidden]){border-color:rgb(147 51 234/1);}",
+  ],
+  [
+    "divide-purple-700",
+    ".divide-purple-700>:not([hidden])~:not([hidden]){border-color:rgb(126 34 206/1);}",
+  ],
+  [
+    "divide-purple-800",
+    ".divide-purple-800>:not([hidden])~:not([hidden]){border-color:rgb(107 33 168/1);}",
+  ],
+  [
+    "divide-purple-900",
+    ".divide-purple-900>:not([hidden])~:not([hidden]){border-color:rgb(88 28 135/1);}",
+  ],
+  [
+    "divide-fuchsia-50",
+    ".divide-fuchsia-50>:not([hidden])~:not([hidden]){border-color:rgb(253 244 255/1);}",
+  ],
+  [
+    "divide-fuchsia-100",
+    ".divide-fuchsia-100>:not([hidden])~:not([hidden]){border-color:rgb(250 232 255/1);}",
+  ],
+  [
+    "divide-fuchsia-200",
+    ".divide-fuchsia-200>:not([hidden])~:not([hidden]){border-color:rgb(245 208 254/1);}",
+  ],
+  [
+    "divide-fuchsia-300",
+    ".divide-fuchsia-300>:not([hidden])~:not([hidden]){border-color:rgb(240 171 252/1);}",
+  ],
+  [
+    "divide-fuchsia-400",
+    ".divide-fuchsia-400>:not([hidden])~:not([hidden]){border-color:rgb(232 121 249/1);}",
+  ],
+  [
+    "divide-fuchsia-500",
+    ".divide-fuchsia-500>:not([hidden])~:not([hidden]){border-color:rgb(217 70 239/1);}",
+  ],
+  [
+    "divide-fuchsia-600",
+    ".divide-fuchsia-600>:not([hidden])~:not([hidden]){border-color:rgb(192 38 211/1);}",
+  ],
+  [
+    "divide-fuchsia-700",
+    ".divide-fuchsia-700>:not([hidden])~:not([hidden]){border-color:rgb(162 28 175/1);}",
+  ],
+  [
+    "divide-fuchsia-800",
+    ".divide-fuchsia-800>:not([hidden])~:not([hidden]){border-color:rgb(134 25 143/1);}",
+  ],
+  [
+    "divide-fuchsia-900",
+    ".divide-fuchsia-900>:not([hidden])~:not([hidden]){border-color:rgb(112 26 117/1);}",
+  ],
+  [
+    "divide-pink-50",
+    ".divide-pink-50>:not([hidden])~:not([hidden]){border-color:rgb(253 242 248/1);}",
+  ],
+  [
+    "divide-pink-100",
+    ".divide-pink-100>:not([hidden])~:not([hidden]){border-color:rgb(252 231 243/1);}",
+  ],
+  [
+    "divide-pink-200",
+    ".divide-pink-200>:not([hidden])~:not([hidden]){border-color:rgb(251 207 232/1);}",
+  ],
+  [
+    "divide-pink-300",
+    ".divide-pink-300>:not([hidden])~:not([hidden]){border-color:rgb(249 168 212/1);}",
+  ],
+  [
+    "divide-pink-400",
+    ".divide-pink-400>:not([hidden])~:not([hidden]){border-color:rgb(244 114 182/1);}",
+  ],
+  [
+    "divide-pink-500",
+    ".divide-pink-500>:not([hidden])~:not([hidden]){border-color:rgb(236 72 153/1);}",
+  ],
+  [
+    "divide-pink-600",
+    ".divide-pink-600>:not([hidden])~:not([hidden]){border-color:rgb(219 39 119/1);}",
+  ],
+  [
+    "divide-pink-700",
+    ".divide-pink-700>:not([hidden])~:not([hidden]){border-color:rgb(190 24 93/1);}",
+  ],
+  [
+    "divide-pink-800",
+    ".divide-pink-800>:not([hidden])~:not([hidden]){border-color:rgb(157 23 77/1);}",
+  ],
+  [
+    "divide-pink-900",
+    ".divide-pink-900>:not([hidden])~:not([hidden]){border-color:rgb(131 24 67/1);}",
+  ],
+  [
+    "divide-rose-50",
+    ".divide-rose-50>:not([hidden])~:not([hidden]){border-color:rgb(255 241 242/1);}",
+  ],
+  [
+    "divide-rose-100",
+    ".divide-rose-100>:not([hidden])~:not([hidden]){border-color:rgb(255 228 230/1);}",
+  ],
+  [
+    "divide-rose-200",
+    ".divide-rose-200>:not([hidden])~:not([hidden]){border-color:rgb(254 205 211/1);}",
+  ],
+  [
+    "divide-rose-300",
+    ".divide-rose-300>:not([hidden])~:not([hidden]){border-color:rgb(253 164 175/1);}",
+  ],
+  [
+    "divide-rose-400",
+    ".divide-rose-400>:not([hidden])~:not([hidden]){border-color:rgb(251 113 133/1);}",
+  ],
+  [
+    "divide-rose-500",
+    ".divide-rose-500>:not([hidden])~:not([hidden]){border-color:rgb(244 63 94/1);}",
+  ],
+  [
+    "divide-rose-600",
+    ".divide-rose-600>:not([hidden])~:not([hidden]){border-color:rgb(225 29 72/1);}",
+  ],
+  [
+    "divide-rose-700",
+    ".divide-rose-700>:not([hidden])~:not([hidden]){border-color:rgb(190 18 60/1);}",
+  ],
+  [
+    "divide-rose-800",
+    ".divide-rose-800>:not([hidden])~:not([hidden]){border-color:rgb(159 18 57/1);}",
+  ],
+  [
+    "divide-rose-900",
+    ".divide-rose-900>:not([hidden])~:not([hidden]){border-color:rgb(136 19 55/1);}",
+  ],
+  ["divide-inherit/50", ""],
+  ["divide-current/50", ""],
+  ["divide-transparent/50", ""],
+  [
+    "divide-black/50",
+    ".divide-black\\/50>:not([hidden])~:not([hidden]){border-color:rgb(0 0 0/.5);}",
+  ],
+  [
+    "divide-white/50",
+    ".divide-white\\/50>:not([hidden])~:not([hidden]){border-color:rgb(255 255 255/.5);}",
+  ],
+  [
+    "divide-slate-50/50",
+    ".divide-slate-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(248 250 252/.5);}",
+  ],
+  [
+    "divide-slate-100/50",
+    ".divide-slate-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(241 245 249/.5);}",
+  ],
+  [
+    "divide-slate-200/50",
+    ".divide-slate-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(226 232 240/.5);}",
+  ],
+  [
+    "divide-slate-300/50",
+    ".divide-slate-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(203 213 225/.5);}",
+  ],
+  [
+    "divide-slate-400/50",
+    ".divide-slate-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(148 163 184/.5);}",
+  ],
+  [
+    "divide-slate-500/50",
+    ".divide-slate-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(100 116 139/.5);}",
+  ],
+  [
+    "divide-slate-600/50",
+    ".divide-slate-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(71 85 105/.5);}",
+  ],
+  [
+    "divide-slate-700/50",
+    ".divide-slate-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(51 65 85/.5);}",
+  ],
+  [
+    "divide-slate-800/50",
+    ".divide-slate-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(30 41 59/.5);}",
+  ],
+  [
+    "divide-slate-900/50",
+    ".divide-slate-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(15 23 42/.5);}",
+  ],
+  [
+    "divide-gray-50/50",
+    ".divide-gray-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(249 250 251/.5);}",
+  ],
+  [
+    "divide-gray-100/50",
+    ".divide-gray-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(243 244 246/.5);}",
+  ],
+  [
+    "divide-gray-200/50",
+    ".divide-gray-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(229 231 235/.5);}",
+  ],
+  [
+    "divide-gray-300/50",
+    ".divide-gray-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(209 213 219/.5);}",
+  ],
+  [
+    "divide-gray-400/50",
+    ".divide-gray-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(156 163 175/.5);}",
+  ],
+  [
+    "divide-gray-500/50",
+    ".divide-gray-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(107 114 128/.5);}",
+  ],
+  [
+    "divide-gray-600/50",
+    ".divide-gray-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(75 85 99/.5);}",
+  ],
+  [
+    "divide-gray-700/50",
+    ".divide-gray-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(55 65 81/.5);}",
+  ],
+  [
+    "divide-gray-800/50",
+    ".divide-gray-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(31 41 55/.5);}",
+  ],
+  [
+    "divide-gray-900/50",
+    ".divide-gray-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(17 24 39/.5);}",
+  ],
+  [
+    "divide-zinc-50/50",
+    ".divide-zinc-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "divide-zinc-100/50",
+    ".divide-zinc-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(244 244 245/.5);}",
+  ],
+  [
+    "divide-zinc-200/50",
+    ".divide-zinc-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(228 228 231/.5);}",
+  ],
+  [
+    "divide-zinc-300/50",
+    ".divide-zinc-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(212 212 216/.5);}",
+  ],
+  [
+    "divide-zinc-400/50",
+    ".divide-zinc-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(161 161 170/.5);}",
+  ],
+  [
+    "divide-zinc-500/50",
+    ".divide-zinc-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(113 113 122/.5);}",
+  ],
+  [
+    "divide-zinc-600/50",
+    ".divide-zinc-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(82 82 91/.5);}",
+  ],
+  [
+    "divide-zinc-700/50",
+    ".divide-zinc-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(63 63 70/.5);}",
+  ],
+  [
+    "divide-zinc-800/50",
+    ".divide-zinc-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(39 39 42/.5);}",
+  ],
+  [
+    "divide-zinc-900/50",
+    ".divide-zinc-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(24 24 27/.5);}",
+  ],
+  [
+    "divide-neutral-50/50",
+    ".divide-neutral-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "divide-neutral-100/50",
+    ".divide-neutral-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(245 245 245/.5);}",
+  ],
+  [
+    "divide-neutral-200/50",
+    ".divide-neutral-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(229 229 229/.5);}",
+  ],
+  [
+    "divide-neutral-300/50",
+    ".divide-neutral-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(212 212 212/.5);}",
+  ],
+  [
+    "divide-neutral-400/50",
+    ".divide-neutral-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(163 163 163/.5);}",
+  ],
+  [
+    "divide-neutral-500/50",
+    ".divide-neutral-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(115 115 115/.5);}",
+  ],
+  [
+    "divide-neutral-600/50",
+    ".divide-neutral-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(82 82 82/.5);}",
+  ],
+  [
+    "divide-neutral-700/50",
+    ".divide-neutral-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(64 64 64/.5);}",
+  ],
+  [
+    "divide-neutral-800/50",
+    ".divide-neutral-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(38 38 38/.5);}",
+  ],
+  [
+    "divide-neutral-900/50",
+    ".divide-neutral-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(23 23 23/.5);}",
+  ],
+  [
+    "divide-stone-50/50",
+    ".divide-stone-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(250 250 249/.5);}",
+  ],
+  [
+    "divide-stone-100/50",
+    ".divide-stone-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(245 245 244/.5);}",
+  ],
+  [
+    "divide-stone-200/50",
+    ".divide-stone-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(231 229 228/.5);}",
+  ],
+  [
+    "divide-stone-300/50",
+    ".divide-stone-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(214 211 209/.5);}",
+  ],
+  [
+    "divide-stone-400/50",
+    ".divide-stone-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(168 162 158/.5);}",
+  ],
+  [
+    "divide-stone-500/50",
+    ".divide-stone-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(120 113 108/.5);}",
+  ],
+  [
+    "divide-stone-600/50",
+    ".divide-stone-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(87 83 78/.5);}",
+  ],
+  [
+    "divide-stone-700/50",
+    ".divide-stone-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(68 64 60/.5);}",
+  ],
+  [
+    "divide-stone-800/50",
+    ".divide-stone-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(41 37 36/.5);}",
+  ],
+  [
+    "divide-stone-900/50",
+    ".divide-stone-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(28 25 23/.5);}",
+  ],
+  [
+    "divide-red-50/50",
+    ".divide-red-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 242 242/.5);}",
+  ],
+  [
+    "divide-red-100/50",
+    ".divide-red-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 226 226/.5);}",
+  ],
+  [
+    "divide-red-200/50",
+    ".divide-red-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 202 202/.5);}",
+  ],
+  [
+    "divide-red-300/50",
+    ".divide-red-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(252 165 165/.5);}",
+  ],
+  [
+    "divide-red-400/50",
+    ".divide-red-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(248 113 113/.5);}",
+  ],
+  [
+    "divide-red-500/50",
+    ".divide-red-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(239 68 68/.5);}",
+  ],
+  [
+    "divide-red-600/50",
+    ".divide-red-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(220 38 38/.5);}",
+  ],
+  [
+    "divide-red-700/50",
+    ".divide-red-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(185 28 28/.5);}",
+  ],
+  [
+    "divide-red-800/50",
+    ".divide-red-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(153 27 27/.5);}",
+  ],
+  [
+    "divide-red-900/50",
+    ".divide-red-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(127 29 29/.5);}",
+  ],
+  [
+    "divide-orange-50/50",
+    ".divide-orange-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(255 247 237/.5);}",
+  ],
+  [
+    "divide-orange-100/50",
+    ".divide-orange-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(255 237 213/.5);}",
+  ],
+  [
+    "divide-orange-200/50",
+    ".divide-orange-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 215 170/.5);}",
+  ],
+  [
+    "divide-orange-300/50",
+    ".divide-orange-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(253 186 116/.5);}",
+  ],
+  [
+    "divide-orange-400/50",
+    ".divide-orange-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(251 146 60/.5);}",
+  ],
+  [
+    "divide-orange-500/50",
+    ".divide-orange-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(249 115 22/.5);}",
+  ],
+  [
+    "divide-orange-600/50",
+    ".divide-orange-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(234 88 12/.5);}",
+  ],
+  [
+    "divide-orange-700/50",
+    ".divide-orange-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(194 65 12/.5);}",
+  ],
+  [
+    "divide-orange-800/50",
+    ".divide-orange-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(154 52 18/.5);}",
+  ],
+  [
+    "divide-orange-900/50",
+    ".divide-orange-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(124 45 18/.5);}",
+  ],
+  [
+    "divide-amber-50/50",
+    ".divide-amber-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(255 251 235/.5);}",
+  ],
+  [
+    "divide-amber-100/50",
+    ".divide-amber-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 243 199/.5);}",
+  ],
+  [
+    "divide-amber-200/50",
+    ".divide-amber-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(253 230 138/.5);}",
+  ],
+  [
+    "divide-amber-300/50",
+    ".divide-amber-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(252 211 77/.5);}",
+  ],
+  [
+    "divide-amber-400/50",
+    ".divide-amber-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(251 191 36/.5);}",
+  ],
+  [
+    "divide-amber-500/50",
+    ".divide-amber-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(245 158 11/.5);}",
+  ],
+  [
+    "divide-amber-600/50",
+    ".divide-amber-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(217 119 6/.5);}",
+  ],
+  [
+    "divide-amber-700/50",
+    ".divide-amber-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(180 83 9/.5);}",
+  ],
+  [
+    "divide-amber-800/50",
+    ".divide-amber-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(146 64 14/.5);}",
+  ],
+  [
+    "divide-amber-900/50",
+    ".divide-amber-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(120 53 15/.5);}",
+  ],
+  [
+    "divide-yellow-50/50",
+    ".divide-yellow-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 252 232/.5);}",
+  ],
+  [
+    "divide-yellow-100/50",
+    ".divide-yellow-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 249 195/.5);}",
+  ],
+  [
+    "divide-yellow-200/50",
+    ".divide-yellow-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 240 138/.5);}",
+  ],
+  [
+    "divide-yellow-300/50",
+    ".divide-yellow-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(253 224 71/.5);}",
+  ],
+  [
+    "divide-yellow-400/50",
+    ".divide-yellow-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(250 204 21/.5);}",
+  ],
+  [
+    "divide-yellow-500/50",
+    ".divide-yellow-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(234 179 8/.5);}",
+  ],
+  [
+    "divide-yellow-600/50",
+    ".divide-yellow-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(202 138 4/.5);}",
+  ],
+  [
+    "divide-yellow-700/50",
+    ".divide-yellow-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(161 98 7/.5);}",
+  ],
+  [
+    "divide-yellow-800/50",
+    ".divide-yellow-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(133 77 14/.5);}",
+  ],
+  [
+    "divide-yellow-900/50",
+    ".divide-yellow-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(113 63 18/.5);}",
+  ],
+  [
+    "divide-lime-50/50",
+    ".divide-lime-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(247 254 231/.5);}",
+  ],
+  [
+    "divide-lime-100/50",
+    ".divide-lime-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(236 252 203/.5);}",
+  ],
+  [
+    "divide-lime-200/50",
+    ".divide-lime-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(217 249 157/.5);}",
+  ],
+  [
+    "divide-lime-300/50",
+    ".divide-lime-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(190 242 100/.5);}",
+  ],
+  [
+    "divide-lime-400/50",
+    ".divide-lime-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(163 230 53/.5);}",
+  ],
+  [
+    "divide-lime-500/50",
+    ".divide-lime-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(132 204 22/.5);}",
+  ],
+  [
+    "divide-lime-600/50",
+    ".divide-lime-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(101 163 13/.5);}",
+  ],
+  [
+    "divide-lime-700/50",
+    ".divide-lime-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(77 124 15/.5);}",
+  ],
+  [
+    "divide-lime-800/50",
+    ".divide-lime-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(63 98 18/.5);}",
+  ],
+  [
+    "divide-lime-900/50",
+    ".divide-lime-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(54 83 20/.5);}",
+  ],
+  [
+    "divide-green-50/50",
+    ".divide-green-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(240 253 244/.5);}",
+  ],
+  [
+    "divide-green-100/50",
+    ".divide-green-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(220 252 231/.5);}",
+  ],
+  [
+    "divide-green-200/50",
+    ".divide-green-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(187 247 208/.5);}",
+  ],
+  [
+    "divide-green-300/50",
+    ".divide-green-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(134 239 172/.5);}",
+  ],
+  [
+    "divide-green-400/50",
+    ".divide-green-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(74 222 128/.5);}",
+  ],
+  [
+    "divide-green-500/50",
+    ".divide-green-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(34 197 94/.5);}",
+  ],
+  [
+    "divide-green-600/50",
+    ".divide-green-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(22 163 74/.5);}",
+  ],
+  [
+    "divide-green-700/50",
+    ".divide-green-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(21 128 61/.5);}",
+  ],
+  [
+    "divide-green-800/50",
+    ".divide-green-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(22 101 52/.5);}",
+  ],
+  [
+    "divide-green-900/50",
+    ".divide-green-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(20 83 45/.5);}",
+  ],
+  [
+    "divide-emerald-50/50",
+    ".divide-emerald-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(236 253 245/.5);}",
+  ],
+  [
+    "divide-emerald-100/50",
+    ".divide-emerald-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(209 250 229/.5);}",
+  ],
+  [
+    "divide-emerald-200/50",
+    ".divide-emerald-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(167 243 208/.5);}",
+  ],
+  [
+    "divide-emerald-300/50",
+    ".divide-emerald-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(110 231 183/.5);}",
+  ],
+  [
+    "divide-emerald-400/50",
+    ".divide-emerald-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(52 211 153/.5);}",
+  ],
+  [
+    "divide-emerald-500/50",
+    ".divide-emerald-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(16 185 129/.5);}",
+  ],
+  [
+    "divide-emerald-600/50",
+    ".divide-emerald-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(5 150 105/.5);}",
+  ],
+  [
+    "divide-emerald-700/50",
+    ".divide-emerald-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(4 120 87/.5);}",
+  ],
+  [
+    "divide-emerald-800/50",
+    ".divide-emerald-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(6 95 70/.5);}",
+  ],
+  [
+    "divide-emerald-900/50",
+    ".divide-emerald-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(6 78 59/.5);}",
+  ],
+  [
+    "divide-teal-50/50",
+    ".divide-teal-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(240 253 250/.5);}",
+  ],
+  [
+    "divide-teal-100/50",
+    ".divide-teal-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(204 251 241/.5);}",
+  ],
+  [
+    "divide-teal-200/50",
+    ".divide-teal-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(153 246 228/.5);}",
+  ],
+  [
+    "divide-teal-300/50",
+    ".divide-teal-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(94 234 212/.5);}",
+  ],
+  [
+    "divide-teal-400/50",
+    ".divide-teal-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(45 212 191/.5);}",
+  ],
+  [
+    "divide-teal-500/50",
+    ".divide-teal-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(20 184 166/.5);}",
+  ],
+  [
+    "divide-teal-600/50",
+    ".divide-teal-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(13 148 136/.5);}",
+  ],
+  [
+    "divide-teal-700/50",
+    ".divide-teal-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(15 118 110/.5);}",
+  ],
+  [
+    "divide-teal-800/50",
+    ".divide-teal-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(17 94 89/.5);}",
+  ],
+  [
+    "divide-teal-900/50",
+    ".divide-teal-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(19 78 74/.5);}",
+  ],
+  [
+    "divide-cyan-50/50",
+    ".divide-cyan-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(236 254 255/.5);}",
+  ],
+  [
+    "divide-cyan-100/50",
+    ".divide-cyan-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(207 250 254/.5);}",
+  ],
+  [
+    "divide-cyan-200/50",
+    ".divide-cyan-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(165 243 252/.5);}",
+  ],
+  [
+    "divide-cyan-300/50",
+    ".divide-cyan-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(103 232 249/.5);}",
+  ],
+  [
+    "divide-cyan-400/50",
+    ".divide-cyan-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(34 211 238/.5);}",
+  ],
+  [
+    "divide-cyan-500/50",
+    ".divide-cyan-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(6 182 212/.5);}",
+  ],
+  [
+    "divide-cyan-600/50",
+    ".divide-cyan-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(8 145 178/.5);}",
+  ],
+  [
+    "divide-cyan-700/50",
+    ".divide-cyan-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(14 116 144/.5);}",
+  ],
+  [
+    "divide-cyan-800/50",
+    ".divide-cyan-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(21 94 117/.5);}",
+  ],
+  [
+    "divide-cyan-900/50",
+    ".divide-cyan-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(22 78 99/.5);}",
+  ],
+  [
+    "divide-sky-50/50",
+    ".divide-sky-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(240 249 255/.5);}",
+  ],
+  [
+    "divide-sky-100/50",
+    ".divide-sky-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(224 242 254/.5);}",
+  ],
+  [
+    "divide-sky-200/50",
+    ".divide-sky-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(186 230 253/.5);}",
+  ],
+  [
+    "divide-sky-300/50",
+    ".divide-sky-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(125 211 252/.5);}",
+  ],
+  [
+    "divide-sky-400/50",
+    ".divide-sky-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(56 189 248/.5);}",
+  ],
+  [
+    "divide-sky-500/50",
+    ".divide-sky-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(14 165 233/.5);}",
+  ],
+  [
+    "divide-sky-600/50",
+    ".divide-sky-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(2 132 199/.5);}",
+  ],
+  [
+    "divide-sky-700/50",
+    ".divide-sky-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(3 105 161/.5);}",
+  ],
+  [
+    "divide-sky-800/50",
+    ".divide-sky-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(7 89 133/.5);}",
+  ],
+  [
+    "divide-sky-900/50",
+    ".divide-sky-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(12 74 110/.5);}",
+  ],
+  [
+    "divide-blue-50/50",
+    ".divide-blue-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(239 246 255/.5);}",
+  ],
+  [
+    "divide-blue-100/50",
+    ".divide-blue-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(219 234 254/.5);}",
+  ],
+  [
+    "divide-blue-200/50",
+    ".divide-blue-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(191 219 254/.5);}",
+  ],
+  [
+    "divide-blue-300/50",
+    ".divide-blue-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(147 197 253/.5);}",
+  ],
+  [
+    "divide-blue-400/50",
+    ".divide-blue-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(96 165 250/.5);}",
+  ],
+  [
+    "divide-blue-500/50",
+    ".divide-blue-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(59 130 246/.5);}",
+  ],
+  [
+    "divide-blue-600/50",
+    ".divide-blue-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(37 99 235/.5);}",
+  ],
+  [
+    "divide-blue-700/50",
+    ".divide-blue-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(29 78 216/.5);}",
+  ],
+  [
+    "divide-blue-800/50",
+    ".divide-blue-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(30 64 175/.5);}",
+  ],
+  [
+    "divide-blue-900/50",
+    ".divide-blue-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(30 58 138/.5);}",
+  ],
+  [
+    "divide-indigo-50/50",
+    ".divide-indigo-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(238 242 255/.5);}",
+  ],
+  [
+    "divide-indigo-100/50",
+    ".divide-indigo-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(224 231 255/.5);}",
+  ],
+  [
+    "divide-indigo-200/50",
+    ".divide-indigo-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(199 210 254/.5);}",
+  ],
+  [
+    "divide-indigo-300/50",
+    ".divide-indigo-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(165 180 252/.5);}",
+  ],
+  [
+    "divide-indigo-400/50",
+    ".divide-indigo-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(129 140 248/.5);}",
+  ],
+  [
+    "divide-indigo-500/50",
+    ".divide-indigo-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(99 102 241/.5);}",
+  ],
+  [
+    "divide-indigo-600/50",
+    ".divide-indigo-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(79 70 229/.5);}",
+  ],
+  [
+    "divide-indigo-700/50",
+    ".divide-indigo-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(67 56 202/.5);}",
+  ],
+  [
+    "divide-indigo-800/50",
+    ".divide-indigo-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(55 48 163/.5);}",
+  ],
+  [
+    "divide-indigo-900/50",
+    ".divide-indigo-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(49 46 129/.5);}",
+  ],
+  [
+    "divide-violet-50/50",
+    ".divide-violet-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(245 243 255/.5);}",
+  ],
+  [
+    "divide-violet-100/50",
+    ".divide-violet-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(237 233 254/.5);}",
+  ],
+  [
+    "divide-violet-200/50",
+    ".divide-violet-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(221 214 254/.5);}",
+  ],
+  [
+    "divide-violet-300/50",
+    ".divide-violet-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(196 181 253/.5);}",
+  ],
+  [
+    "divide-violet-400/50",
+    ".divide-violet-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(167 139 250/.5);}",
+  ],
+  [
+    "divide-violet-500/50",
+    ".divide-violet-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(139 92 246/.5);}",
+  ],
+  [
+    "divide-violet-600/50",
+    ".divide-violet-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(124 58 237/.5);}",
+  ],
+  [
+    "divide-violet-700/50",
+    ".divide-violet-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(109 40 217/.5);}",
+  ],
+  [
+    "divide-violet-800/50",
+    ".divide-violet-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(91 33 182/.5);}",
+  ],
+  [
+    "divide-violet-900/50",
+    ".divide-violet-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(76 29 149/.5);}",
+  ],
+  [
+    "divide-purple-50/50",
+    ".divide-purple-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(250 245 255/.5);}",
+  ],
+  [
+    "divide-purple-100/50",
+    ".divide-purple-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(243 232 255/.5);}",
+  ],
+  [
+    "divide-purple-200/50",
+    ".divide-purple-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(233 213 255/.5);}",
+  ],
+  [
+    "divide-purple-300/50",
+    ".divide-purple-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(216 180 254/.5);}",
+  ],
+  [
+    "divide-purple-400/50",
+    ".divide-purple-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(192 132 252/.5);}",
+  ],
+  [
+    "divide-purple-500/50",
+    ".divide-purple-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(168 85 247/.5);}",
+  ],
+  [
+    "divide-purple-600/50",
+    ".divide-purple-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(147 51 234/.5);}",
+  ],
+  [
+    "divide-purple-700/50",
+    ".divide-purple-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(126 34 206/.5);}",
+  ],
+  [
+    "divide-purple-800/50",
+    ".divide-purple-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(107 33 168/.5);}",
+  ],
+  [
+    "divide-purple-900/50",
+    ".divide-purple-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(88 28 135/.5);}",
+  ],
+  [
+    "divide-fuchsia-50/50",
+    ".divide-fuchsia-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(253 244 255/.5);}",
+  ],
+  [
+    "divide-fuchsia-100/50",
+    ".divide-fuchsia-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(250 232 255/.5);}",
+  ],
+  [
+    "divide-fuchsia-200/50",
+    ".divide-fuchsia-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(245 208 254/.5);}",
+  ],
+  [
+    "divide-fuchsia-300/50",
+    ".divide-fuchsia-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(240 171 252/.5);}",
+  ],
+  [
+    "divide-fuchsia-400/50",
+    ".divide-fuchsia-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(232 121 249/.5);}",
+  ],
+  [
+    "divide-fuchsia-500/50",
+    ".divide-fuchsia-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(217 70 239/.5);}",
+  ],
+  [
+    "divide-fuchsia-600/50",
+    ".divide-fuchsia-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(192 38 211/.5);}",
+  ],
+  [
+    "divide-fuchsia-700/50",
+    ".divide-fuchsia-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(162 28 175/.5);}",
+  ],
+  [
+    "divide-fuchsia-800/50",
+    ".divide-fuchsia-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(134 25 143/.5);}",
+  ],
+  [
+    "divide-fuchsia-900/50",
+    ".divide-fuchsia-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(112 26 117/.5);}",
+  ],
+  [
+    "divide-pink-50/50",
+    ".divide-pink-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(253 242 248/.5);}",
+  ],
+  [
+    "divide-pink-100/50",
+    ".divide-pink-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(252 231 243/.5);}",
+  ],
+  [
+    "divide-pink-200/50",
+    ".divide-pink-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(251 207 232/.5);}",
+  ],
+  [
+    "divide-pink-300/50",
+    ".divide-pink-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(249 168 212/.5);}",
+  ],
+  [
+    "divide-pink-400/50",
+    ".divide-pink-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(244 114 182/.5);}",
+  ],
+  [
+    "divide-pink-500/50",
+    ".divide-pink-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(236 72 153/.5);}",
+  ],
+  [
+    "divide-pink-600/50",
+    ".divide-pink-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(219 39 119/.5);}",
+  ],
+  [
+    "divide-pink-700/50",
+    ".divide-pink-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(190 24 93/.5);}",
+  ],
+  [
+    "divide-pink-800/50",
+    ".divide-pink-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(157 23 77/.5);}",
+  ],
+  [
+    "divide-pink-900/50",
+    ".divide-pink-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(131 24 67/.5);}",
+  ],
+  [
+    "divide-rose-50/50",
+    ".divide-rose-50\\/50>:not([hidden])~:not([hidden]){border-color:rgb(255 241 242/.5);}",
+  ],
+  [
+    "divide-rose-100/50",
+    ".divide-rose-100\\/50>:not([hidden])~:not([hidden]){border-color:rgb(255 228 230/.5);}",
+  ],
+  [
+    "divide-rose-200/50",
+    ".divide-rose-200\\/50>:not([hidden])~:not([hidden]){border-color:rgb(254 205 211/.5);}",
+  ],
+  [
+    "divide-rose-300/50",
+    ".divide-rose-300\\/50>:not([hidden])~:not([hidden]){border-color:rgb(253 164 175/.5);}",
+  ],
+  [
+    "divide-rose-400/50",
+    ".divide-rose-400\\/50>:not([hidden])~:not([hidden]){border-color:rgb(251 113 133/.5);}",
+  ],
+  [
+    "divide-rose-500/50",
+    ".divide-rose-500\\/50>:not([hidden])~:not([hidden]){border-color:rgb(244 63 94/.5);}",
+  ],
+  [
+    "divide-rose-600/50",
+    ".divide-rose-600\\/50>:not([hidden])~:not([hidden]){border-color:rgb(225 29 72/.5);}",
+  ],
+  [
+    "divide-rose-700/50",
+    ".divide-rose-700\\/50>:not([hidden])~:not([hidden]){border-color:rgb(190 18 60/.5);}",
+  ],
+  [
+    "divide-rose-800/50",
+    ".divide-rose-800\\/50>:not([hidden])~:not([hidden]){border-color:rgb(159 18 57/.5);}",
+  ],
+  ["divide-inherit/[1%]", ""],
+  ["divide-current/[1%]", ""],
+  ["divide-transparent/[1%]", ""],
+  [
+    "divide-rose-900/50",
+    ".divide-rose-900\\/50>:not([hidden])~:not([hidden]){border-color:rgb(136 19 55/.5);}",
+  ],
+  [
+    "divide-black/[1%]",
+    ".divide-black\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(0 0 0/1%);}",
+  ],
+  [
+    "divide-white/[1%]",
+    ".divide-white\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(255 255 255/1%);}",
+  ],
+
+  [
+    "divide-slate-50/[1%]",
+    ".divide-slate-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(248 250 252/1%);}",
+  ],
+  [
+    "divide-slate-100/[1%]",
+    ".divide-slate-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(241 245 249/1%);}",
+  ],
+  [
+    "divide-slate-200/[1%]",
+    ".divide-slate-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(226 232 240/1%);}",
+  ],
+  [
+    "divide-slate-300/[1%]",
+    ".divide-slate-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(203 213 225/1%);}",
+  ],
+  [
+    "divide-slate-400/[1%]",
+    ".divide-slate-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(148 163 184/1%);}",
+  ],
+  [
+    "divide-slate-500/[1%]",
+    ".divide-slate-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(100 116 139/1%);}",
+  ],
+  [
+    "divide-slate-600/[1%]",
+    ".divide-slate-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(71 85 105/1%);}",
+  ],
+  [
+    "divide-slate-700/[1%]",
+    ".divide-slate-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(51 65 85/1%);}",
+  ],
+  [
+    "divide-slate-800/[1%]",
+    ".divide-slate-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(30 41 59/1%);}",
+  ],
+  [
+    "divide-slate-900/[1%]",
+    ".divide-slate-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(15 23 42/1%);}",
+  ],
+  [
+    "divide-gray-50/[1%]",
+    ".divide-gray-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(249 250 251/1%);}",
+  ],
+  [
+    "divide-gray-100/[1%]",
+    ".divide-gray-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(243 244 246/1%);}",
+  ],
+  [
+    "divide-gray-200/[1%]",
+    ".divide-gray-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(229 231 235/1%);}",
+  ],
+  [
+    "divide-gray-300/[1%]",
+    ".divide-gray-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(209 213 219/1%);}",
+  ],
+  [
+    "divide-gray-400/[1%]",
+    ".divide-gray-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(156 163 175/1%);}",
+  ],
+  [
+    "divide-gray-500/[1%]",
+    ".divide-gray-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(107 114 128/1%);}",
+  ],
+  [
+    "divide-gray-600/[1%]",
+    ".divide-gray-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(75 85 99/1%);}",
+  ],
+  [
+    "divide-gray-700/[1%]",
+    ".divide-gray-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(55 65 81/1%);}",
+  ],
+  [
+    "divide-gray-800/[1%]",
+    ".divide-gray-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(31 41 55/1%);}",
+  ],
+  [
+    "divide-gray-900/[1%]",
+    ".divide-gray-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(17 24 39/1%);}",
+  ],
+  [
+    "divide-zinc-50/[1%]",
+    ".divide-zinc-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "divide-zinc-100/[1%]",
+    ".divide-zinc-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(244 244 245/1%);}",
+  ],
+  [
+    "divide-zinc-200/[1%]",
+    ".divide-zinc-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(228 228 231/1%);}",
+  ],
+  [
+    "divide-zinc-300/[1%]",
+    ".divide-zinc-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(212 212 216/1%);}",
+  ],
+  [
+    "divide-zinc-400/[1%]",
+    ".divide-zinc-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(161 161 170/1%);}",
+  ],
+  [
+    "divide-zinc-500/[1%]",
+    ".divide-zinc-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(113 113 122/1%);}",
+  ],
+  [
+    "divide-zinc-600/[1%]",
+    ".divide-zinc-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(82 82 91/1%);}",
+  ],
+  [
+    "divide-zinc-700/[1%]",
+    ".divide-zinc-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(63 63 70/1%);}",
+  ],
+  [
+    "divide-zinc-800/[1%]",
+    ".divide-zinc-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(39 39 42/1%);}",
+  ],
+  [
+    "divide-zinc-900/[1%]",
+    ".divide-zinc-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(24 24 27/1%);}",
+  ],
+  [
+    "divide-neutral-50/[1%]",
+    ".divide-neutral-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "divide-neutral-100/[1%]",
+    ".divide-neutral-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(245 245 245/1%);}",
+  ],
+  [
+    "divide-neutral-200/[1%]",
+    ".divide-neutral-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(229 229 229/1%);}",
+  ],
+  [
+    "divide-neutral-300/[1%]",
+    ".divide-neutral-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(212 212 212/1%);}",
+  ],
+  [
+    "divide-neutral-400/[1%]",
+    ".divide-neutral-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(163 163 163/1%);}",
+  ],
+  [
+    "divide-neutral-500/[1%]",
+    ".divide-neutral-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(115 115 115/1%);}",
+  ],
+  [
+    "divide-neutral-600/[1%]",
+    ".divide-neutral-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(82 82 82/1%);}",
+  ],
+  [
+    "divide-neutral-700/[1%]",
+    ".divide-neutral-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(64 64 64/1%);}",
+  ],
+  [
+    "divide-neutral-800/[1%]",
+    ".divide-neutral-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(38 38 38/1%);}",
+  ],
+  [
+    "divide-neutral-900/[1%]",
+    ".divide-neutral-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(23 23 23/1%);}",
+  ],
+  [
+    "divide-stone-50/[1%]",
+    ".divide-stone-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(250 250 249/1%);}",
+  ],
+  [
+    "divide-stone-100/[1%]",
+    ".divide-stone-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(245 245 244/1%);}",
+  ],
+  [
+    "divide-stone-200/[1%]",
+    ".divide-stone-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(231 229 228/1%);}",
+  ],
+  [
+    "divide-stone-300/[1%]",
+    ".divide-stone-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(214 211 209/1%);}",
+  ],
+  [
+    "divide-stone-400/[1%]",
+    ".divide-stone-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(168 162 158/1%);}",
+  ],
+  [
+    "divide-stone-500/[1%]",
+    ".divide-stone-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(120 113 108/1%);}",
+  ],
+  [
+    "divide-stone-600/[1%]",
+    ".divide-stone-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(87 83 78/1%);}",
+  ],
+  [
+    "divide-stone-700/[1%]",
+    ".divide-stone-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(68 64 60/1%);}",
+  ],
+  [
+    "divide-stone-800/[1%]",
+    ".divide-stone-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(41 37 36/1%);}",
+  ],
+  [
+    "divide-stone-900/[1%]",
+    ".divide-stone-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(28 25 23/1%);}",
+  ],
+  [
+    "divide-red-50/[1%]",
+    ".divide-red-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 242 242/1%);}",
+  ],
+  [
+    "divide-red-100/[1%]",
+    ".divide-red-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 226 226/1%);}",
+  ],
+  [
+    "divide-red-200/[1%]",
+    ".divide-red-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 202 202/1%);}",
+  ],
+  [
+    "divide-red-300/[1%]",
+    ".divide-red-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(252 165 165/1%);}",
+  ],
+  [
+    "divide-red-400/[1%]",
+    ".divide-red-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(248 113 113/1%);}",
+  ],
+  [
+    "divide-red-500/[1%]",
+    ".divide-red-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(239 68 68/1%);}",
+  ],
+  [
+    "divide-red-600/[1%]",
+    ".divide-red-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(220 38 38/1%);}",
+  ],
+  [
+    "divide-red-700/[1%]",
+    ".divide-red-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(185 28 28/1%);}",
+  ],
+  [
+    "divide-red-800/[1%]",
+    ".divide-red-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(153 27 27/1%);}",
+  ],
+  [
+    "divide-red-900/[1%]",
+    ".divide-red-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(127 29 29/1%);}",
+  ],
+  [
+    "divide-orange-50/[1%]",
+    ".divide-orange-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(255 247 237/1%);}",
+  ],
+  [
+    "divide-orange-100/[1%]",
+    ".divide-orange-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(255 237 213/1%);}",
+  ],
+  [
+    "divide-orange-200/[1%]",
+    ".divide-orange-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 215 170/1%);}",
+  ],
+  [
+    "divide-orange-300/[1%]",
+    ".divide-orange-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(253 186 116/1%);}",
+  ],
+  [
+    "divide-orange-400/[1%]",
+    ".divide-orange-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(251 146 60/1%);}",
+  ],
+  [
+    "divide-orange-500/[1%]",
+    ".divide-orange-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(249 115 22/1%);}",
+  ],
+  [
+    "divide-orange-600/[1%]",
+    ".divide-orange-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(234 88 12/1%);}",
+  ],
+  [
+    "divide-orange-700/[1%]",
+    ".divide-orange-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(194 65 12/1%);}",
+  ],
+  [
+    "divide-orange-800/[1%]",
+    ".divide-orange-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(154 52 18/1%);}",
+  ],
+  [
+    "divide-orange-900/[1%]",
+    ".divide-orange-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(124 45 18/1%);}",
+  ],
+  [
+    "divide-amber-50/[1%]",
+    ".divide-amber-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(255 251 235/1%);}",
+  ],
+  [
+    "divide-amber-100/[1%]",
+    ".divide-amber-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 243 199/1%);}",
+  ],
+  [
+    "divide-amber-200/[1%]",
+    ".divide-amber-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(253 230 138/1%);}",
+  ],
+  [
+    "divide-amber-300/[1%]",
+    ".divide-amber-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(252 211 77/1%);}",
+  ],
+  [
+    "divide-amber-400/[1%]",
+    ".divide-amber-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(251 191 36/1%);}",
+  ],
+  [
+    "divide-amber-500/[1%]",
+    ".divide-amber-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(245 158 11/1%);}",
+  ],
+  [
+    "divide-amber-600/[1%]",
+    ".divide-amber-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(217 119 6/1%);}",
+  ],
+  [
+    "divide-amber-700/[1%]",
+    ".divide-amber-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(180 83 9/1%);}",
+  ],
+  [
+    "divide-amber-800/[1%]",
+    ".divide-amber-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(146 64 14/1%);}",
+  ],
+  [
+    "divide-amber-900/[1%]",
+    ".divide-amber-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(120 53 15/1%);}",
+  ],
+  [
+    "divide-yellow-50/[1%]",
+    ".divide-yellow-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 252 232/1%);}",
+  ],
+  [
+    "divide-yellow-100/[1%]",
+    ".divide-yellow-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 249 195/1%);}",
+  ],
+  [
+    "divide-yellow-200/[1%]",
+    ".divide-yellow-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 240 138/1%);}",
+  ],
+  [
+    "divide-yellow-300/[1%]",
+    ".divide-yellow-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(253 224 71/1%);}",
+  ],
+  [
+    "divide-yellow-400/[1%]",
+    ".divide-yellow-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(250 204 21/1%);}",
+  ],
+  [
+    "divide-yellow-500/[1%]",
+    ".divide-yellow-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(234 179 8/1%);}",
+  ],
+  [
+    "divide-yellow-600/[1%]",
+    ".divide-yellow-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(202 138 4/1%);}",
+  ],
+  [
+    "divide-yellow-700/[1%]",
+    ".divide-yellow-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(161 98 7/1%);}",
+  ],
+  [
+    "divide-yellow-800/[1%]",
+    ".divide-yellow-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(133 77 14/1%);}",
+  ],
+  [
+    "divide-yellow-900/[1%]",
+    ".divide-yellow-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(113 63 18/1%);}",
+  ],
+  [
+    "divide-lime-50/[1%]",
+    ".divide-lime-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(247 254 231/1%);}",
+  ],
+  [
+    "divide-lime-100/[1%]",
+    ".divide-lime-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(236 252 203/1%);}",
+  ],
+  [
+    "divide-lime-200/[1%]",
+    ".divide-lime-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(217 249 157/1%);}",
+  ],
+  [
+    "divide-lime-300/[1%]",
+    ".divide-lime-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(190 242 100/1%);}",
+  ],
+  [
+    "divide-lime-400/[1%]",
+    ".divide-lime-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(163 230 53/1%);}",
+  ],
+  [
+    "divide-lime-500/[1%]",
+    ".divide-lime-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(132 204 22/1%);}",
+  ],
+  [
+    "divide-lime-600/[1%]",
+    ".divide-lime-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(101 163 13/1%);}",
+  ],
+  [
+    "divide-lime-700/[1%]",
+    ".divide-lime-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(77 124 15/1%);}",
+  ],
+  [
+    "divide-lime-800/[1%]",
+    ".divide-lime-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(63 98 18/1%);}",
+  ],
+  [
+    "divide-lime-900/[1%]",
+    ".divide-lime-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(54 83 20/1%);}",
+  ],
+  [
+    "divide-green-50/[1%]",
+    ".divide-green-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(240 253 244/1%);}",
+  ],
+  [
+    "divide-green-100/[1%]",
+    ".divide-green-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(220 252 231/1%);}",
+  ],
+  [
+    "divide-green-200/[1%]",
+    ".divide-green-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(187 247 208/1%);}",
+  ],
+  [
+    "divide-green-300/[1%]",
+    ".divide-green-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(134 239 172/1%);}",
+  ],
+  [
+    "divide-green-400/[1%]",
+    ".divide-green-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(74 222 128/1%);}",
+  ],
+  [
+    "divide-green-500/[1%]",
+    ".divide-green-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(34 197 94/1%);}",
+  ],
+  [
+    "divide-green-600/[1%]",
+    ".divide-green-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(22 163 74/1%);}",
+  ],
+  [
+    "divide-green-700/[1%]",
+    ".divide-green-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(21 128 61/1%);}",
+  ],
+  [
+    "divide-green-800/[1%]",
+    ".divide-green-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(22 101 52/1%);}",
+  ],
+  [
+    "divide-green-900/[1%]",
+    ".divide-green-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(20 83 45/1%);}",
+  ],
+  [
+    "divide-emerald-50/[1%]",
+    ".divide-emerald-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(236 253 245/1%);}",
+  ],
+  [
+    "divide-emerald-100/[1%]",
+    ".divide-emerald-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(209 250 229/1%);}",
+  ],
+  [
+    "divide-emerald-200/[1%]",
+    ".divide-emerald-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(167 243 208/1%);}",
+  ],
+  [
+    "divide-emerald-300/[1%]",
+    ".divide-emerald-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(110 231 183/1%);}",
+  ],
+  [
+    "divide-emerald-400/[1%]",
+    ".divide-emerald-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(52 211 153/1%);}",
+  ],
+  [
+    "divide-emerald-500/[1%]",
+    ".divide-emerald-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(16 185 129/1%);}",
+  ],
+  [
+    "divide-emerald-600/[1%]",
+    ".divide-emerald-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(5 150 105/1%);}",
+  ],
+  [
+    "divide-emerald-700/[1%]",
+    ".divide-emerald-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(4 120 87/1%);}",
+  ],
+  [
+    "divide-emerald-800/[1%]",
+    ".divide-emerald-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(6 95 70/1%);}",
+  ],
+  [
+    "divide-emerald-900/[1%]",
+    ".divide-emerald-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(6 78 59/1%);}",
+  ],
+  [
+    "divide-teal-50/[1%]",
+    ".divide-teal-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(240 253 250/1%);}",
+  ],
+  [
+    "divide-teal-100/[1%]",
+    ".divide-teal-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(204 251 241/1%);}",
+  ],
+  [
+    "divide-teal-200/[1%]",
+    ".divide-teal-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(153 246 228/1%);}",
+  ],
+  [
+    "divide-teal-300/[1%]",
+    ".divide-teal-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(94 234 212/1%);}",
+  ],
+  [
+    "divide-teal-400/[1%]",
+    ".divide-teal-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(45 212 191/1%);}",
+  ],
+  [
+    "divide-teal-500/[1%]",
+    ".divide-teal-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(20 184 166/1%);}",
+  ],
+  [
+    "divide-teal-600/[1%]",
+    ".divide-teal-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(13 148 136/1%);}",
+  ],
+  [
+    "divide-teal-700/[1%]",
+    ".divide-teal-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(15 118 110/1%);}",
+  ],
+  [
+    "divide-teal-800/[1%]",
+    ".divide-teal-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(17 94 89/1%);}",
+  ],
+  [
+    "divide-teal-900/[1%]",
+    ".divide-teal-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(19 78 74/1%);}",
+  ],
+  [
+    "divide-cyan-50/[1%]",
+    ".divide-cyan-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(236 254 255/1%);}",
+  ],
+  [
+    "divide-cyan-100/[1%]",
+    ".divide-cyan-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(207 250 254/1%);}",
+  ],
+  [
+    "divide-cyan-200/[1%]",
+    ".divide-cyan-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(165 243 252/1%);}",
+  ],
+  [
+    "divide-cyan-300/[1%]",
+    ".divide-cyan-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(103 232 249/1%);}",
+  ],
+  [
+    "divide-cyan-400/[1%]",
+    ".divide-cyan-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(34 211 238/1%);}",
+  ],
+  [
+    "divide-cyan-500/[1%]",
+    ".divide-cyan-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(6 182 212/1%);}",
+  ],
+  [
+    "divide-cyan-600/[1%]",
+    ".divide-cyan-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(8 145 178/1%);}",
+  ],
+  [
+    "divide-cyan-700/[1%]",
+    ".divide-cyan-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(14 116 144/1%);}",
+  ],
+  [
+    "divide-cyan-800/[1%]",
+    ".divide-cyan-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(21 94 117/1%);}",
+  ],
+  [
+    "divide-cyan-900/[1%]",
+    ".divide-cyan-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(22 78 99/1%);}",
+  ],
+  [
+    "divide-sky-50/[1%]",
+    ".divide-sky-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(240 249 255/1%);}",
+  ],
+  [
+    "divide-sky-100/[1%]",
+    ".divide-sky-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(224 242 254/1%);}",
+  ],
+  [
+    "divide-sky-200/[1%]",
+    ".divide-sky-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(186 230 253/1%);}",
+  ],
+  [
+    "divide-sky-300/[1%]",
+    ".divide-sky-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(125 211 252/1%);}",
+  ],
+  [
+    "divide-sky-400/[1%]",
+    ".divide-sky-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(56 189 248/1%);}",
+  ],
+  [
+    "divide-sky-500/[1%]",
+    ".divide-sky-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(14 165 233/1%);}",
+  ],
+  [
+    "divide-sky-600/[1%]",
+    ".divide-sky-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(2 132 199/1%);}",
+  ],
+  [
+    "divide-sky-700/[1%]",
+    ".divide-sky-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(3 105 161/1%);}",
+  ],
+  [
+    "divide-sky-800/[1%]",
+    ".divide-sky-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(7 89 133/1%);}",
+  ],
+  [
+    "divide-sky-900/[1%]",
+    ".divide-sky-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(12 74 110/1%);}",
+  ],
+  [
+    "divide-blue-50/[1%]",
+    ".divide-blue-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(239 246 255/1%);}",
+  ],
+  [
+    "divide-blue-100/[1%]",
+    ".divide-blue-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(219 234 254/1%);}",
+  ],
+  [
+    "divide-blue-200/[1%]",
+    ".divide-blue-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(191 219 254/1%);}",
+  ],
+  [
+    "divide-blue-300/[1%]",
+    ".divide-blue-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(147 197 253/1%);}",
+  ],
+  [
+    "divide-blue-400/[1%]",
+    ".divide-blue-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(96 165 250/1%);}",
+  ],
+  [
+    "divide-blue-500/[1%]",
+    ".divide-blue-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(59 130 246/1%);}",
+  ],
+  [
+    "divide-blue-600/[1%]",
+    ".divide-blue-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(37 99 235/1%);}",
+  ],
+  [
+    "divide-blue-700/[1%]",
+    ".divide-blue-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(29 78 216/1%);}",
+  ],
+  [
+    "divide-blue-800/[1%]",
+    ".divide-blue-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(30 64 175/1%);}",
+  ],
+  [
+    "divide-blue-900/[1%]",
+    ".divide-blue-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(30 58 138/1%);}",
+  ],
+  [
+    "divide-indigo-50/[1%]",
+    ".divide-indigo-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(238 242 255/1%);}",
+  ],
+  [
+    "divide-indigo-100/[1%]",
+    ".divide-indigo-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(224 231 255/1%);}",
+  ],
+  [
+    "divide-indigo-200/[1%]",
+    ".divide-indigo-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(199 210 254/1%);}",
+  ],
+  [
+    "divide-indigo-300/[1%]",
+    ".divide-indigo-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(165 180 252/1%);}",
+  ],
+  [
+    "divide-indigo-400/[1%]",
+    ".divide-indigo-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(129 140 248/1%);}",
+  ],
+  [
+    "divide-indigo-500/[1%]",
+    ".divide-indigo-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(99 102 241/1%);}",
+  ],
+  [
+    "divide-indigo-600/[1%]",
+    ".divide-indigo-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(79 70 229/1%);}",
+  ],
+  [
+    "divide-indigo-700/[1%]",
+    ".divide-indigo-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(67 56 202/1%);}",
+  ],
+  [
+    "divide-indigo-800/[1%]",
+    ".divide-indigo-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(55 48 163/1%);}",
+  ],
+  [
+    "divide-indigo-900/[1%]",
+    ".divide-indigo-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(49 46 129/1%);}",
+  ],
+  [
+    "divide-violet-50/[1%]",
+    ".divide-violet-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(245 243 255/1%);}",
+  ],
+  [
+    "divide-violet-100/[1%]",
+    ".divide-violet-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(237 233 254/1%);}",
+  ],
+  [
+    "divide-violet-200/[1%]",
+    ".divide-violet-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(221 214 254/1%);}",
+  ],
+  [
+    "divide-violet-300/[1%]",
+    ".divide-violet-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(196 181 253/1%);}",
+  ],
+  [
+    "divide-violet-400/[1%]",
+    ".divide-violet-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(167 139 250/1%);}",
+  ],
+  [
+    "divide-violet-500/[1%]",
+    ".divide-violet-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(139 92 246/1%);}",
+  ],
+  [
+    "divide-violet-600/[1%]",
+    ".divide-violet-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(124 58 237/1%);}",
+  ],
+  [
+    "divide-violet-700/[1%]",
+    ".divide-violet-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(109 40 217/1%);}",
+  ],
+  [
+    "divide-violet-800/[1%]",
+    ".divide-violet-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(91 33 182/1%);}",
+  ],
+  [
+    "divide-violet-900/[1%]",
+    ".divide-violet-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(76 29 149/1%);}",
+  ],
+  [
+    "divide-purple-50/[1%]",
+    ".divide-purple-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(250 245 255/1%);}",
+  ],
+  [
+    "divide-purple-100/[1%]",
+    ".divide-purple-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(243 232 255/1%);}",
+  ],
+  [
+    "divide-purple-200/[1%]",
+    ".divide-purple-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(233 213 255/1%);}",
+  ],
+  [
+    "divide-purple-300/[1%]",
+    ".divide-purple-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(216 180 254/1%);}",
+  ],
+  [
+    "divide-purple-400/[1%]",
+    ".divide-purple-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(192 132 252/1%);}",
+  ],
+  [
+    "divide-purple-500/[1%]",
+    ".divide-purple-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(168 85 247/1%);}",
+  ],
+  [
+    "divide-purple-600/[1%]",
+    ".divide-purple-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(147 51 234/1%);}",
+  ],
+  [
+    "divide-purple-700/[1%]",
+    ".divide-purple-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(126 34 206/1%);}",
+  ],
+  [
+    "divide-purple-800/[1%]",
+    ".divide-purple-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(107 33 168/1%);}",
+  ],
+  [
+    "divide-purple-900/[1%]",
+    ".divide-purple-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(88 28 135/1%);}",
+  ],
+  [
+    "divide-fuchsia-50/[1%]",
+    ".divide-fuchsia-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(253 244 255/1%);}",
+  ],
+  [
+    "divide-fuchsia-100/[1%]",
+    ".divide-fuchsia-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(250 232 255/1%);}",
+  ],
+  [
+    "divide-fuchsia-200/[1%]",
+    ".divide-fuchsia-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(245 208 254/1%);}",
+  ],
+  [
+    "divide-fuchsia-300/[1%]",
+    ".divide-fuchsia-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(240 171 252/1%);}",
+  ],
+  [
+    "divide-fuchsia-400/[1%]",
+    ".divide-fuchsia-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(232 121 249/1%);}",
+  ],
+  [
+    "divide-fuchsia-500/[1%]",
+    ".divide-fuchsia-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(217 70 239/1%);}",
+  ],
+  [
+    "divide-fuchsia-600/[1%]",
+    ".divide-fuchsia-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(192 38 211/1%);}",
+  ],
+  [
+    "divide-fuchsia-700/[1%]",
+    ".divide-fuchsia-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(162 28 175/1%);}",
+  ],
+  [
+    "divide-fuchsia-800/[1%]",
+    ".divide-fuchsia-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(134 25 143/1%);}",
+  ],
+  [
+    "divide-fuchsia-900/[1%]",
+    ".divide-fuchsia-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(112 26 117/1%);}",
+  ],
+  [
+    "divide-pink-50/[1%]",
+    ".divide-pink-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(253 242 248/1%);}",
+  ],
+  [
+    "divide-pink-100/[1%]",
+    ".divide-pink-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(252 231 243/1%);}",
+  ],
+  [
+    "divide-pink-200/[1%]",
+    ".divide-pink-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(251 207 232/1%);}",
+  ],
+  [
+    "divide-pink-300/[1%]",
+    ".divide-pink-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(249 168 212/1%);}",
+  ],
+  [
+    "divide-pink-400/[1%]",
+    ".divide-pink-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(244 114 182/1%);}",
+  ],
+  [
+    "divide-pink-500/[1%]",
+    ".divide-pink-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(236 72 153/1%);}",
+  ],
+  [
+    "divide-pink-600/[1%]",
+    ".divide-pink-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(219 39 119/1%);}",
+  ],
+  [
+    "divide-pink-700/[1%]",
+    ".divide-pink-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(190 24 93/1%);}",
+  ],
+  [
+    "divide-pink-800/[1%]",
+    ".divide-pink-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(157 23 77/1%);}",
+  ],
+  [
+    "divide-pink-900/[1%]",
+    ".divide-pink-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(131 24 67/1%);}",
+  ],
+  [
+    "divide-rose-50/[1%]",
+    ".divide-rose-50\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(255 241 242/1%);}",
+  ],
+  [
+    "divide-rose-100/[1%]",
+    ".divide-rose-100\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(255 228 230/1%);}",
+  ],
+  [
+    "divide-rose-200/[1%]",
+    ".divide-rose-200\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(254 205 211/1%);}",
+  ],
+  [
+    "divide-rose-300/[1%]",
+    ".divide-rose-300\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(253 164 175/1%);}",
+  ],
+  [
+    "divide-rose-400/[1%]",
+    ".divide-rose-400\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(251 113 133/1%);}",
+  ],
+  [
+    "divide-rose-500/[1%]",
+    ".divide-rose-500\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(244 63 94/1%);}",
+  ],
+  [
+    "divide-rose-600/[1%]",
+    ".divide-rose-600\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(225 29 72/1%);}",
+  ],
+  [
+    "divide-rose-700/[1%]",
+    ".divide-rose-700\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(190 18 60/1%);}",
+  ],
+  [
+    "divide-rose-800/[1%]",
+    ".divide-rose-800\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(159 18 57/1%);}",
+  ],
+  [
+    "divide-rose-900/[1%]",
+    ".divide-rose-900\\/\\[1\\%\\]>:not([hidden])~:not([hidden]){border-color:rgb(136 19 55/1%);}",
   ],
   ["normal-nums", ".normal-nums{font-variant-numeric:normal;}"],
   ["slashed-zero", ".slashed-zero{font-variant-numeric:slashed-zero;}"],
