@@ -1,14 +1,18 @@
+import { customPropertySet } from "./_utils.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import {
-  colorByRGBA,
-  customPropertySet,
-  fillRGBA,
-  numericBy,
-} from "./_utils.ts";
 import { isUndefined } from "../../deps.ts";
-import { stringifyRGBA } from "../../core/utils/color.ts";
-import { reAll, reSlashNumber } from "../../core/utils/regexp.ts";
+import {
+  re$SlashBracket$,
+  reAll,
+  reSlashNumber,
+} from "../../core/utils/regexp.ts";
+import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
+import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
 import type { Specifier } from "../../core/types.ts";
+
+function toBackgroundColor(color: string): { "background-color": string } {
+  return { "background-color": color };
+}
 
 function varFnGradientStops(variablePrefix: string): string {
   const [, varFn] = customPropertySet("gradient-stops", variablePrefix);
@@ -130,10 +134,24 @@ export const bg: Specifier = [
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
-    return numericBy(numeric, (number) =>
-      colorByRGBA(color, (rgba) => ({
-        "background-color": stringifyRGBA(fillRGBA(rgba, number / 100)),
-      })));
+    return parseNumeric(numeric).match({
+      some: (number) =>
+        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
+          some: toBackgroundColor,
+          none: undefined,
+        }),
+      none: undefined,
+    });
+  }],
+  [re$SlashBracket$, ([, body, alpha], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
+      rgbFn,
+    ).match({
+      some: toBackgroundColor,
+      none: undefined,
+    });
   }],
   [
     reAll,
@@ -141,11 +159,12 @@ export const bg: Specifier = [
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
-      return colorByRGBA(color, (rgba) => ({
-        "background-color": stringifyRGBA(fillRGBA(rgba)),
-      }), (raw) => ({
-        "background-color": raw,
-      }));
+      return parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: toBackgroundColor,
+          none: () => ({ "background-color": color }),
+        });
     },
   ],
 ];

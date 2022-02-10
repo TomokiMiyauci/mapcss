@@ -12194,6 +12194,1761 @@ const expects: [string, string][] = [
   ["bg-clip-padding", ".bg-clip-padding{background-clip:padding-box;}"],
   ["bg-clip-content", ".bg-clip-content{background-clip:content-box;}"],
   ["bg-clip-text", ".bg-clip-text{background-clip:text;}"],
+  ["bg-inherit", ".bg-inherit{background-color:inherit;}"],
+  ["bg-current", ".bg-current{background-color:currentColor;}"],
+  ["bg-transparent", ".bg-transparent{background-color:transparent;}"],
+  ["bg-black", ".bg-black{background-color:rgb(0 0 0/1);}"],
+  ["bg-white", ".bg-white{background-color:rgb(255 255 255/1);}"],
+  ["bg-slate-50", ".bg-slate-50{background-color:rgb(248 250 252/1);}"],
+  ["bg-slate-100", ".bg-slate-100{background-color:rgb(241 245 249/1);}"],
+  ["bg-slate-200", ".bg-slate-200{background-color:rgb(226 232 240/1);}"],
+  ["bg-slate-300", ".bg-slate-300{background-color:rgb(203 213 225/1);}"],
+  ["bg-slate-400", ".bg-slate-400{background-color:rgb(148 163 184/1);}"],
+  ["bg-slate-500", ".bg-slate-500{background-color:rgb(100 116 139/1);}"],
+  ["bg-slate-600", ".bg-slate-600{background-color:rgb(71 85 105/1);}"],
+  ["bg-slate-700", ".bg-slate-700{background-color:rgb(51 65 85/1);}"],
+  ["bg-slate-800", ".bg-slate-800{background-color:rgb(30 41 59/1);}"],
+  ["bg-slate-900", ".bg-slate-900{background-color:rgb(15 23 42/1);}"],
+  ["bg-gray-50", ".bg-gray-50{background-color:rgb(249 250 251/1);}"],
+  ["bg-gray-100", ".bg-gray-100{background-color:rgb(243 244 246/1);}"],
+  ["bg-gray-200", ".bg-gray-200{background-color:rgb(229 231 235/1);}"],
+  ["bg-gray-300", ".bg-gray-300{background-color:rgb(209 213 219/1);}"],
+  ["bg-gray-400", ".bg-gray-400{background-color:rgb(156 163 175/1);}"],
+  ["bg-gray-500", ".bg-gray-500{background-color:rgb(107 114 128/1);}"],
+  ["bg-gray-600", ".bg-gray-600{background-color:rgb(75 85 99/1);}"],
+  ["bg-gray-700", ".bg-gray-700{background-color:rgb(55 65 81/1);}"],
+  ["bg-gray-800", ".bg-gray-800{background-color:rgb(31 41 55/1);}"],
+  ["bg-gray-900", ".bg-gray-900{background-color:rgb(17 24 39/1);}"],
+  ["bg-zinc-50", ".bg-zinc-50{background-color:rgb(250 250 250/1);}"],
+  ["bg-zinc-100", ".bg-zinc-100{background-color:rgb(244 244 245/1);}"],
+  ["bg-zinc-200", ".bg-zinc-200{background-color:rgb(228 228 231/1);}"],
+  ["bg-zinc-300", ".bg-zinc-300{background-color:rgb(212 212 216/1);}"],
+  ["bg-zinc-400", ".bg-zinc-400{background-color:rgb(161 161 170/1);}"],
+  ["bg-zinc-500", ".bg-zinc-500{background-color:rgb(113 113 122/1);}"],
+  ["bg-zinc-600", ".bg-zinc-600{background-color:rgb(82 82 91/1);}"],
+  ["bg-zinc-700", ".bg-zinc-700{background-color:rgb(63 63 70/1);}"],
+  ["bg-zinc-800", ".bg-zinc-800{background-color:rgb(39 39 42/1);}"],
+  ["bg-zinc-900", ".bg-zinc-900{background-color:rgb(24 24 27/1);}"],
+  ["bg-neutral-50", ".bg-neutral-50{background-color:rgb(250 250 250/1);}"],
+  ["bg-neutral-100", ".bg-neutral-100{background-color:rgb(245 245 245/1);}"],
+  ["bg-neutral-200", ".bg-neutral-200{background-color:rgb(229 229 229/1);}"],
+  ["bg-neutral-300", ".bg-neutral-300{background-color:rgb(212 212 212/1);}"],
+  ["bg-neutral-400", ".bg-neutral-400{background-color:rgb(163 163 163/1);}"],
+  ["bg-neutral-500", ".bg-neutral-500{background-color:rgb(115 115 115/1);}"],
+  ["bg-neutral-600", ".bg-neutral-600{background-color:rgb(82 82 82/1);}"],
+  ["bg-neutral-700", ".bg-neutral-700{background-color:rgb(64 64 64/1);}"],
+  ["bg-neutral-800", ".bg-neutral-800{background-color:rgb(38 38 38/1);}"],
+  ["bg-neutral-900", ".bg-neutral-900{background-color:rgb(23 23 23/1);}"],
+  ["bg-stone-50", ".bg-stone-50{background-color:rgb(250 250 249/1);}"],
+  ["bg-stone-100", ".bg-stone-100{background-color:rgb(245 245 244/1);}"],
+  ["bg-stone-200", ".bg-stone-200{background-color:rgb(231 229 228/1);}"],
+  ["bg-stone-300", ".bg-stone-300{background-color:rgb(214 211 209/1);}"],
+  ["bg-stone-400", ".bg-stone-400{background-color:rgb(168 162 158/1);}"],
+  ["bg-stone-500", ".bg-stone-500{background-color:rgb(120 113 108/1);}"],
+  ["bg-stone-600", ".bg-stone-600{background-color:rgb(87 83 78/1);}"],
+  ["bg-stone-700", ".bg-stone-700{background-color:rgb(68 64 60/1);}"],
+  ["bg-stone-800", ".bg-stone-800{background-color:rgb(41 37 36/1);}"],
+  ["bg-stone-900", ".bg-stone-900{background-color:rgb(28 25 23/1);}"],
+  ["bg-red-50", ".bg-red-50{background-color:rgb(254 242 242/1);}"],
+  ["bg-red-100", ".bg-red-100{background-color:rgb(254 226 226/1);}"],
+  ["bg-red-200", ".bg-red-200{background-color:rgb(254 202 202/1);}"],
+  ["bg-red-300", ".bg-red-300{background-color:rgb(252 165 165/1);}"],
+  ["bg-red-400", ".bg-red-400{background-color:rgb(248 113 113/1);}"],
+  ["bg-red-500", ".bg-red-500{background-color:rgb(239 68 68/1);}"],
+  ["bg-red-600", ".bg-red-600{background-color:rgb(220 38 38/1);}"],
+  ["bg-red-700", ".bg-red-700{background-color:rgb(185 28 28/1);}"],
+  ["bg-red-800", ".bg-red-800{background-color:rgb(153 27 27/1);}"],
+  ["bg-red-900", ".bg-red-900{background-color:rgb(127 29 29/1);}"],
+  ["bg-orange-50", ".bg-orange-50{background-color:rgb(255 247 237/1);}"],
+  ["bg-orange-100", ".bg-orange-100{background-color:rgb(255 237 213/1);}"],
+  ["bg-orange-200", ".bg-orange-200{background-color:rgb(254 215 170/1);}"],
+  ["bg-orange-300", ".bg-orange-300{background-color:rgb(253 186 116/1);}"],
+  ["bg-orange-400", ".bg-orange-400{background-color:rgb(251 146 60/1);}"],
+  ["bg-orange-500", ".bg-orange-500{background-color:rgb(249 115 22/1);}"],
+  ["bg-orange-600", ".bg-orange-600{background-color:rgb(234 88 12/1);}"],
+  ["bg-orange-700", ".bg-orange-700{background-color:rgb(194 65 12/1);}"],
+  ["bg-orange-800", ".bg-orange-800{background-color:rgb(154 52 18/1);}"],
+  ["bg-orange-900", ".bg-orange-900{background-color:rgb(124 45 18/1);}"],
+  ["bg-amber-50", ".bg-amber-50{background-color:rgb(255 251 235/1);}"],
+  ["bg-amber-100", ".bg-amber-100{background-color:rgb(254 243 199/1);}"],
+  ["bg-amber-200", ".bg-amber-200{background-color:rgb(253 230 138/1);}"],
+  ["bg-amber-300", ".bg-amber-300{background-color:rgb(252 211 77/1);}"],
+  ["bg-amber-400", ".bg-amber-400{background-color:rgb(251 191 36/1);}"],
+  ["bg-amber-500", ".bg-amber-500{background-color:rgb(245 158 11/1);}"],
+  ["bg-amber-600", ".bg-amber-600{background-color:rgb(217 119 6/1);}"],
+  ["bg-amber-700", ".bg-amber-700{background-color:rgb(180 83 9/1);}"],
+  ["bg-amber-800", ".bg-amber-800{background-color:rgb(146 64 14/1);}"],
+  ["bg-amber-900", ".bg-amber-900{background-color:rgb(120 53 15/1);}"],
+  ["bg-yellow-50", ".bg-yellow-50{background-color:rgb(254 252 232/1);}"],
+  ["bg-yellow-100", ".bg-yellow-100{background-color:rgb(254 249 195/1);}"],
+  ["bg-yellow-200", ".bg-yellow-200{background-color:rgb(254 240 138/1);}"],
+  ["bg-yellow-300", ".bg-yellow-300{background-color:rgb(253 224 71/1);}"],
+  ["bg-yellow-400", ".bg-yellow-400{background-color:rgb(250 204 21/1);}"],
+  ["bg-yellow-500", ".bg-yellow-500{background-color:rgb(234 179 8/1);}"],
+  ["bg-yellow-600", ".bg-yellow-600{background-color:rgb(202 138 4/1);}"],
+  ["bg-yellow-700", ".bg-yellow-700{background-color:rgb(161 98 7/1);}"],
+  ["bg-yellow-800", ".bg-yellow-800{background-color:rgb(133 77 14/1);}"],
+  ["bg-yellow-900", ".bg-yellow-900{background-color:rgb(113 63 18/1);}"],
+  ["bg-lime-50", ".bg-lime-50{background-color:rgb(247 254 231/1);}"],
+  ["bg-lime-100", ".bg-lime-100{background-color:rgb(236 252 203/1);}"],
+  ["bg-lime-200", ".bg-lime-200{background-color:rgb(217 249 157/1);}"],
+  ["bg-lime-300", ".bg-lime-300{background-color:rgb(190 242 100/1);}"],
+  ["bg-lime-400", ".bg-lime-400{background-color:rgb(163 230 53/1);}"],
+  ["bg-lime-500", ".bg-lime-500{background-color:rgb(132 204 22/1);}"],
+  ["bg-lime-600", ".bg-lime-600{background-color:rgb(101 163 13/1);}"],
+  ["bg-lime-700", ".bg-lime-700{background-color:rgb(77 124 15/1);}"],
+  ["bg-lime-800", ".bg-lime-800{background-color:rgb(63 98 18/1);}"],
+  ["bg-lime-900", ".bg-lime-900{background-color:rgb(54 83 20/1);}"],
+  ["bg-green-50", ".bg-green-50{background-color:rgb(240 253 244/1);}"],
+  ["bg-green-100", ".bg-green-100{background-color:rgb(220 252 231/1);}"],
+  ["bg-green-200", ".bg-green-200{background-color:rgb(187 247 208/1);}"],
+  ["bg-green-300", ".bg-green-300{background-color:rgb(134 239 172/1);}"],
+  ["bg-green-400", ".bg-green-400{background-color:rgb(74 222 128/1);}"],
+  ["bg-green-500", ".bg-green-500{background-color:rgb(34 197 94/1);}"],
+  ["bg-green-600", ".bg-green-600{background-color:rgb(22 163 74/1);}"],
+  ["bg-green-700", ".bg-green-700{background-color:rgb(21 128 61/1);}"],
+  ["bg-green-800", ".bg-green-800{background-color:rgb(22 101 52/1);}"],
+  ["bg-green-900", ".bg-green-900{background-color:rgb(20 83 45/1);}"],
+  ["bg-emerald-50", ".bg-emerald-50{background-color:rgb(236 253 245/1);}"],
+  ["bg-emerald-100", ".bg-emerald-100{background-color:rgb(209 250 229/1);}"],
+  ["bg-emerald-200", ".bg-emerald-200{background-color:rgb(167 243 208/1);}"],
+  ["bg-emerald-300", ".bg-emerald-300{background-color:rgb(110 231 183/1);}"],
+  ["bg-emerald-400", ".bg-emerald-400{background-color:rgb(52 211 153/1);}"],
+  ["bg-emerald-500", ".bg-emerald-500{background-color:rgb(16 185 129/1);}"],
+  ["bg-emerald-600", ".bg-emerald-600{background-color:rgb(5 150 105/1);}"],
+  ["bg-emerald-700", ".bg-emerald-700{background-color:rgb(4 120 87/1);}"],
+  ["bg-emerald-800", ".bg-emerald-800{background-color:rgb(6 95 70/1);}"],
+  ["bg-emerald-900", ".bg-emerald-900{background-color:rgb(6 78 59/1);}"],
+  ["bg-teal-50", ".bg-teal-50{background-color:rgb(240 253 250/1);}"],
+  ["bg-teal-100", ".bg-teal-100{background-color:rgb(204 251 241/1);}"],
+  ["bg-teal-200", ".bg-teal-200{background-color:rgb(153 246 228/1);}"],
+  ["bg-teal-300", ".bg-teal-300{background-color:rgb(94 234 212/1);}"],
+  ["bg-teal-400", ".bg-teal-400{background-color:rgb(45 212 191/1);}"],
+  ["bg-teal-500", ".bg-teal-500{background-color:rgb(20 184 166/1);}"],
+  ["bg-teal-600", ".bg-teal-600{background-color:rgb(13 148 136/1);}"],
+  ["bg-teal-700", ".bg-teal-700{background-color:rgb(15 118 110/1);}"],
+  ["bg-teal-800", ".bg-teal-800{background-color:rgb(17 94 89/1);}"],
+  ["bg-teal-900", ".bg-teal-900{background-color:rgb(19 78 74/1);}"],
+  ["bg-cyan-50", ".bg-cyan-50{background-color:rgb(236 254 255/1);}"],
+  ["bg-cyan-100", ".bg-cyan-100{background-color:rgb(207 250 254/1);}"],
+  ["bg-cyan-200", ".bg-cyan-200{background-color:rgb(165 243 252/1);}"],
+  ["bg-cyan-300", ".bg-cyan-300{background-color:rgb(103 232 249/1);}"],
+  ["bg-cyan-400", ".bg-cyan-400{background-color:rgb(34 211 238/1);}"],
+  ["bg-cyan-500", ".bg-cyan-500{background-color:rgb(6 182 212/1);}"],
+  ["bg-cyan-600", ".bg-cyan-600{background-color:rgb(8 145 178/1);}"],
+  ["bg-cyan-700", ".bg-cyan-700{background-color:rgb(14 116 144/1);}"],
+  ["bg-cyan-800", ".bg-cyan-800{background-color:rgb(21 94 117/1);}"],
+  ["bg-cyan-900", ".bg-cyan-900{background-color:rgb(22 78 99/1);}"],
+  ["bg-sky-50", ".bg-sky-50{background-color:rgb(240 249 255/1);}"],
+  ["bg-sky-100", ".bg-sky-100{background-color:rgb(224 242 254/1);}"],
+  ["bg-sky-200", ".bg-sky-200{background-color:rgb(186 230 253/1);}"],
+  ["bg-sky-300", ".bg-sky-300{background-color:rgb(125 211 252/1);}"],
+  ["bg-sky-400", ".bg-sky-400{background-color:rgb(56 189 248/1);}"],
+  ["bg-sky-500", ".bg-sky-500{background-color:rgb(14 165 233/1);}"],
+  ["bg-sky-600", ".bg-sky-600{background-color:rgb(2 132 199/1);}"],
+  ["bg-sky-700", ".bg-sky-700{background-color:rgb(3 105 161/1);}"],
+  ["bg-sky-800", ".bg-sky-800{background-color:rgb(7 89 133/1);}"],
+  ["bg-sky-900", ".bg-sky-900{background-color:rgb(12 74 110/1);}"],
+  ["bg-blue-50", ".bg-blue-50{background-color:rgb(239 246 255/1);}"],
+  ["bg-blue-100", ".bg-blue-100{background-color:rgb(219 234 254/1);}"],
+  ["bg-blue-200", ".bg-blue-200{background-color:rgb(191 219 254/1);}"],
+  ["bg-blue-300", ".bg-blue-300{background-color:rgb(147 197 253/1);}"],
+  ["bg-blue-400", ".bg-blue-400{background-color:rgb(96 165 250/1);}"],
+  ["bg-blue-500", ".bg-blue-500{background-color:rgb(59 130 246/1);}"],
+  ["bg-blue-600", ".bg-blue-600{background-color:rgb(37 99 235/1);}"],
+  ["bg-blue-700", ".bg-blue-700{background-color:rgb(29 78 216/1);}"],
+  ["bg-blue-800", ".bg-blue-800{background-color:rgb(30 64 175/1);}"],
+  ["bg-blue-900", ".bg-blue-900{background-color:rgb(30 58 138/1);}"],
+  ["bg-indigo-50", ".bg-indigo-50{background-color:rgb(238 242 255/1);}"],
+  ["bg-indigo-100", ".bg-indigo-100{background-color:rgb(224 231 255/1);}"],
+  ["bg-indigo-200", ".bg-indigo-200{background-color:rgb(199 210 254/1);}"],
+  ["bg-indigo-300", ".bg-indigo-300{background-color:rgb(165 180 252/1);}"],
+  ["bg-indigo-400", ".bg-indigo-400{background-color:rgb(129 140 248/1);}"],
+  ["bg-indigo-500", ".bg-indigo-500{background-color:rgb(99 102 241/1);}"],
+  ["bg-indigo-600", ".bg-indigo-600{background-color:rgb(79 70 229/1);}"],
+  ["bg-indigo-700", ".bg-indigo-700{background-color:rgb(67 56 202/1);}"],
+  ["bg-indigo-800", ".bg-indigo-800{background-color:rgb(55 48 163/1);}"],
+  ["bg-indigo-900", ".bg-indigo-900{background-color:rgb(49 46 129/1);}"],
+  ["bg-violet-50", ".bg-violet-50{background-color:rgb(245 243 255/1);}"],
+  ["bg-violet-100", ".bg-violet-100{background-color:rgb(237 233 254/1);}"],
+  ["bg-violet-200", ".bg-violet-200{background-color:rgb(221 214 254/1);}"],
+  ["bg-violet-300", ".bg-violet-300{background-color:rgb(196 181 253/1);}"],
+  ["bg-violet-400", ".bg-violet-400{background-color:rgb(167 139 250/1);}"],
+  ["bg-violet-500", ".bg-violet-500{background-color:rgb(139 92 246/1);}"],
+  ["bg-violet-600", ".bg-violet-600{background-color:rgb(124 58 237/1);}"],
+  ["bg-violet-700", ".bg-violet-700{background-color:rgb(109 40 217/1);}"],
+  ["bg-violet-800", ".bg-violet-800{background-color:rgb(91 33 182/1);}"],
+  ["bg-violet-900", ".bg-violet-900{background-color:rgb(76 29 149/1);}"],
+  ["bg-purple-50", ".bg-purple-50{background-color:rgb(250 245 255/1);}"],
+  ["bg-purple-100", ".bg-purple-100{background-color:rgb(243 232 255/1);}"],
+  ["bg-purple-200", ".bg-purple-200{background-color:rgb(233 213 255/1);}"],
+  ["bg-purple-300", ".bg-purple-300{background-color:rgb(216 180 254/1);}"],
+  ["bg-purple-400", ".bg-purple-400{background-color:rgb(192 132 252/1);}"],
+  ["bg-purple-500", ".bg-purple-500{background-color:rgb(168 85 247/1);}"],
+  ["bg-purple-600", ".bg-purple-600{background-color:rgb(147 51 234/1);}"],
+  ["bg-purple-700", ".bg-purple-700{background-color:rgb(126 34 206/1);}"],
+  ["bg-purple-800", ".bg-purple-800{background-color:rgb(107 33 168/1);}"],
+  ["bg-purple-900", ".bg-purple-900{background-color:rgb(88 28 135/1);}"],
+  ["bg-fuchsia-50", ".bg-fuchsia-50{background-color:rgb(253 244 255/1);}"],
+  ["bg-fuchsia-100", ".bg-fuchsia-100{background-color:rgb(250 232 255/1);}"],
+  ["bg-fuchsia-200", ".bg-fuchsia-200{background-color:rgb(245 208 254/1);}"],
+  ["bg-fuchsia-300", ".bg-fuchsia-300{background-color:rgb(240 171 252/1);}"],
+  ["bg-fuchsia-400", ".bg-fuchsia-400{background-color:rgb(232 121 249/1);}"],
+  ["bg-fuchsia-500", ".bg-fuchsia-500{background-color:rgb(217 70 239/1);}"],
+  ["bg-fuchsia-600", ".bg-fuchsia-600{background-color:rgb(192 38 211/1);}"],
+  ["bg-fuchsia-700", ".bg-fuchsia-700{background-color:rgb(162 28 175/1);}"],
+  ["bg-fuchsia-800", ".bg-fuchsia-800{background-color:rgb(134 25 143/1);}"],
+  ["bg-fuchsia-900", ".bg-fuchsia-900{background-color:rgb(112 26 117/1);}"],
+  ["bg-pink-50", ".bg-pink-50{background-color:rgb(253 242 248/1);}"],
+  ["bg-pink-100", ".bg-pink-100{background-color:rgb(252 231 243/1);}"],
+  ["bg-pink-200", ".bg-pink-200{background-color:rgb(251 207 232/1);}"],
+  ["bg-pink-300", ".bg-pink-300{background-color:rgb(249 168 212/1);}"],
+  ["bg-pink-400", ".bg-pink-400{background-color:rgb(244 114 182/1);}"],
+  ["bg-pink-500", ".bg-pink-500{background-color:rgb(236 72 153/1);}"],
+  ["bg-pink-600", ".bg-pink-600{background-color:rgb(219 39 119/1);}"],
+  ["bg-pink-700", ".bg-pink-700{background-color:rgb(190 24 93/1);}"],
+  ["bg-pink-800", ".bg-pink-800{background-color:rgb(157 23 77/1);}"],
+  ["bg-pink-900", ".bg-pink-900{background-color:rgb(131 24 67/1);}"],
+  ["bg-rose-50", ".bg-rose-50{background-color:rgb(255 241 242/1);}"],
+  ["bg-rose-100", ".bg-rose-100{background-color:rgb(255 228 230/1);}"],
+  ["bg-rose-200", ".bg-rose-200{background-color:rgb(254 205 211/1);}"],
+  ["bg-rose-300", ".bg-rose-300{background-color:rgb(253 164 175/1);}"],
+  ["bg-rose-400", ".bg-rose-400{background-color:rgb(251 113 133/1);}"],
+  ["bg-rose-500", ".bg-rose-500{background-color:rgb(244 63 94/1);}"],
+  ["bg-rose-600", ".bg-rose-600{background-color:rgb(225 29 72/1);}"],
+  ["bg-rose-700", ".bg-rose-700{background-color:rgb(190 18 60/1);}"],
+  ["bg-rose-800", ".bg-rose-800{background-color:rgb(159 18 57/1);}"],
+  ["bg-rose-900", ".bg-rose-900{background-color:rgb(136 19 55/1);}"],
+  ["bg-black/50", ".bg-black\\/50{background-color:rgb(0 0 0/.5);}"],
+  ["bg-white/50", ".bg-white\\/50{background-color:rgb(255 255 255/.5);}"],
+  [
+    "bg-slate-50/50",
+    ".bg-slate-50\\/50{background-color:rgb(248 250 252/.5);}",
+  ],
+  [
+    "bg-slate-100/50",
+    ".bg-slate-100\\/50{background-color:rgb(241 245 249/.5);}",
+  ],
+  [
+    "bg-slate-200/50",
+    ".bg-slate-200\\/50{background-color:rgb(226 232 240/.5);}",
+  ],
+  [
+    "bg-slate-300/50",
+    ".bg-slate-300\\/50{background-color:rgb(203 213 225/.5);}",
+  ],
+  [
+    "bg-slate-400/50",
+    ".bg-slate-400\\/50{background-color:rgb(148 163 184/.5);}",
+  ],
+  [
+    "bg-slate-500/50",
+    ".bg-slate-500\\/50{background-color:rgb(100 116 139/.5);}",
+  ],
+  [
+    "bg-slate-600/50",
+    ".bg-slate-600\\/50{background-color:rgb(71 85 105/.5);}",
+  ],
+  ["bg-slate-700/50", ".bg-slate-700\\/50{background-color:rgb(51 65 85/.5);}"],
+  ["bg-slate-800/50", ".bg-slate-800\\/50{background-color:rgb(30 41 59/.5);}"],
+  ["bg-slate-900/50", ".bg-slate-900\\/50{background-color:rgb(15 23 42/.5);}"],
+  ["bg-gray-50/50", ".bg-gray-50\\/50{background-color:rgb(249 250 251/.5);}"],
+  [
+    "bg-gray-100/50",
+    ".bg-gray-100\\/50{background-color:rgb(243 244 246/.5);}",
+  ],
+  [
+    "bg-gray-200/50",
+    ".bg-gray-200\\/50{background-color:rgb(229 231 235/.5);}",
+  ],
+  [
+    "bg-gray-300/50",
+    ".bg-gray-300\\/50{background-color:rgb(209 213 219/.5);}",
+  ],
+  [
+    "bg-gray-400/50",
+    ".bg-gray-400\\/50{background-color:rgb(156 163 175/.5);}",
+  ],
+  [
+    "bg-gray-500/50",
+    ".bg-gray-500\\/50{background-color:rgb(107 114 128/.5);}",
+  ],
+  ["bg-gray-600/50", ".bg-gray-600\\/50{background-color:rgb(75 85 99/.5);}"],
+  ["bg-gray-700/50", ".bg-gray-700\\/50{background-color:rgb(55 65 81/.5);}"],
+  ["bg-gray-800/50", ".bg-gray-800\\/50{background-color:rgb(31 41 55/.5);}"],
+  ["bg-gray-900/50", ".bg-gray-900\\/50{background-color:rgb(17 24 39/.5);}"],
+  ["bg-zinc-50/50", ".bg-zinc-50\\/50{background-color:rgb(250 250 250/.5);}"],
+  [
+    "bg-zinc-100/50",
+    ".bg-zinc-100\\/50{background-color:rgb(244 244 245/.5);}",
+  ],
+  [
+    "bg-zinc-200/50",
+    ".bg-zinc-200\\/50{background-color:rgb(228 228 231/.5);}",
+  ],
+  [
+    "bg-zinc-300/50",
+    ".bg-zinc-300\\/50{background-color:rgb(212 212 216/.5);}",
+  ],
+  [
+    "bg-zinc-400/50",
+    ".bg-zinc-400\\/50{background-color:rgb(161 161 170/.5);}",
+  ],
+  [
+    "bg-zinc-500/50",
+    ".bg-zinc-500\\/50{background-color:rgb(113 113 122/.5);}",
+  ],
+  ["bg-zinc-600/50", ".bg-zinc-600\\/50{background-color:rgb(82 82 91/.5);}"],
+  ["bg-zinc-700/50", ".bg-zinc-700\\/50{background-color:rgb(63 63 70/.5);}"],
+  ["bg-zinc-800/50", ".bg-zinc-800\\/50{background-color:rgb(39 39 42/.5);}"],
+  ["bg-zinc-900/50", ".bg-zinc-900\\/50{background-color:rgb(24 24 27/.5);}"],
+  [
+    "bg-neutral-50/50",
+    ".bg-neutral-50\\/50{background-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "bg-neutral-100/50",
+    ".bg-neutral-100\\/50{background-color:rgb(245 245 245/.5);}",
+  ],
+  [
+    "bg-neutral-200/50",
+    ".bg-neutral-200\\/50{background-color:rgb(229 229 229/.5);}",
+  ],
+  [
+    "bg-neutral-300/50",
+    ".bg-neutral-300\\/50{background-color:rgb(212 212 212/.5);}",
+  ],
+  [
+    "bg-neutral-400/50",
+    ".bg-neutral-400\\/50{background-color:rgb(163 163 163/.5);}",
+  ],
+  [
+    "bg-neutral-500/50",
+    ".bg-neutral-500\\/50{background-color:rgb(115 115 115/.5);}",
+  ],
+  [
+    "bg-neutral-600/50",
+    ".bg-neutral-600\\/50{background-color:rgb(82 82 82/.5);}",
+  ],
+  [
+    "bg-neutral-700/50",
+    ".bg-neutral-700\\/50{background-color:rgb(64 64 64/.5);}",
+  ],
+  [
+    "bg-neutral-800/50",
+    ".bg-neutral-800\\/50{background-color:rgb(38 38 38/.5);}",
+  ],
+  [
+    "bg-neutral-900/50",
+    ".bg-neutral-900\\/50{background-color:rgb(23 23 23/.5);}",
+  ],
+  [
+    "bg-stone-50/50",
+    ".bg-stone-50\\/50{background-color:rgb(250 250 249/.5);}",
+  ],
+  [
+    "bg-stone-100/50",
+    ".bg-stone-100\\/50{background-color:rgb(245 245 244/.5);}",
+  ],
+  [
+    "bg-stone-200/50",
+    ".bg-stone-200\\/50{background-color:rgb(231 229 228/.5);}",
+  ],
+  [
+    "bg-stone-300/50",
+    ".bg-stone-300\\/50{background-color:rgb(214 211 209/.5);}",
+  ],
+  [
+    "bg-stone-400/50",
+    ".bg-stone-400\\/50{background-color:rgb(168 162 158/.5);}",
+  ],
+  [
+    "bg-stone-500/50",
+    ".bg-stone-500\\/50{background-color:rgb(120 113 108/.5);}",
+  ],
+  ["bg-stone-600/50", ".bg-stone-600\\/50{background-color:rgb(87 83 78/.5);}"],
+  ["bg-stone-700/50", ".bg-stone-700\\/50{background-color:rgb(68 64 60/.5);}"],
+  ["bg-stone-800/50", ".bg-stone-800\\/50{background-color:rgb(41 37 36/.5);}"],
+  ["bg-stone-900/50", ".bg-stone-900\\/50{background-color:rgb(28 25 23/.5);}"],
+  ["bg-red-50/50", ".bg-red-50\\/50{background-color:rgb(254 242 242/.5);}"],
+  ["bg-red-100/50", ".bg-red-100\\/50{background-color:rgb(254 226 226/.5);}"],
+  ["bg-red-200/50", ".bg-red-200\\/50{background-color:rgb(254 202 202/.5);}"],
+  ["bg-red-300/50", ".bg-red-300\\/50{background-color:rgb(252 165 165/.5);}"],
+  ["bg-red-400/50", ".bg-red-400\\/50{background-color:rgb(248 113 113/.5);}"],
+  ["bg-red-500/50", ".bg-red-500\\/50{background-color:rgb(239 68 68/.5);}"],
+  ["bg-red-600/50", ".bg-red-600\\/50{background-color:rgb(220 38 38/.5);}"],
+  ["bg-red-700/50", ".bg-red-700\\/50{background-color:rgb(185 28 28/.5);}"],
+  ["bg-red-800/50", ".bg-red-800\\/50{background-color:rgb(153 27 27/.5);}"],
+  ["bg-red-900/50", ".bg-red-900\\/50{background-color:rgb(127 29 29/.5);}"],
+  [
+    "bg-orange-50/50",
+    ".bg-orange-50\\/50{background-color:rgb(255 247 237/.5);}",
+  ],
+  [
+    "bg-orange-100/50",
+    ".bg-orange-100\\/50{background-color:rgb(255 237 213/.5);}",
+  ],
+  [
+    "bg-orange-200/50",
+    ".bg-orange-200\\/50{background-color:rgb(254 215 170/.5);}",
+  ],
+  [
+    "bg-orange-300/50",
+    ".bg-orange-300\\/50{background-color:rgb(253 186 116/.5);}",
+  ],
+  [
+    "bg-orange-400/50",
+    ".bg-orange-400\\/50{background-color:rgb(251 146 60/.5);}",
+  ],
+  [
+    "bg-orange-500/50",
+    ".bg-orange-500\\/50{background-color:rgb(249 115 22/.5);}",
+  ],
+  [
+    "bg-orange-600/50",
+    ".bg-orange-600\\/50{background-color:rgb(234 88 12/.5);}",
+  ],
+  [
+    "bg-orange-700/50",
+    ".bg-orange-700\\/50{background-color:rgb(194 65 12/.5);}",
+  ],
+  [
+    "bg-orange-800/50",
+    ".bg-orange-800\\/50{background-color:rgb(154 52 18/.5);}",
+  ],
+  [
+    "bg-orange-900/50",
+    ".bg-orange-900\\/50{background-color:rgb(124 45 18/.5);}",
+  ],
+  [
+    "bg-amber-50/50",
+    ".bg-amber-50\\/50{background-color:rgb(255 251 235/.5);}",
+  ],
+  [
+    "bg-amber-100/50",
+    ".bg-amber-100\\/50{background-color:rgb(254 243 199/.5);}",
+  ],
+  [
+    "bg-amber-200/50",
+    ".bg-amber-200\\/50{background-color:rgb(253 230 138/.5);}",
+  ],
+  [
+    "bg-amber-300/50",
+    ".bg-amber-300\\/50{background-color:rgb(252 211 77/.5);}",
+  ],
+  [
+    "bg-amber-400/50",
+    ".bg-amber-400\\/50{background-color:rgb(251 191 36/.5);}",
+  ],
+  [
+    "bg-amber-500/50",
+    ".bg-amber-500\\/50{background-color:rgb(245 158 11/.5);}",
+  ],
+  [
+    "bg-amber-600/50",
+    ".bg-amber-600\\/50{background-color:rgb(217 119 6/.5);}",
+  ],
+  ["bg-amber-700/50", ".bg-amber-700\\/50{background-color:rgb(180 83 9/.5);}"],
+  [
+    "bg-amber-800/50",
+    ".bg-amber-800\\/50{background-color:rgb(146 64 14/.5);}",
+  ],
+  [
+    "bg-amber-900/50",
+    ".bg-amber-900\\/50{background-color:rgb(120 53 15/.5);}",
+  ],
+  [
+    "bg-yellow-50/50",
+    ".bg-yellow-50\\/50{background-color:rgb(254 252 232/.5);}",
+  ],
+  [
+    "bg-yellow-100/50",
+    ".bg-yellow-100\\/50{background-color:rgb(254 249 195/.5);}",
+  ],
+  [
+    "bg-yellow-200/50",
+    ".bg-yellow-200\\/50{background-color:rgb(254 240 138/.5);}",
+  ],
+  [
+    "bg-yellow-300/50",
+    ".bg-yellow-300\\/50{background-color:rgb(253 224 71/.5);}",
+  ],
+  [
+    "bg-yellow-400/50",
+    ".bg-yellow-400\\/50{background-color:rgb(250 204 21/.5);}",
+  ],
+  [
+    "bg-yellow-500/50",
+    ".bg-yellow-500\\/50{background-color:rgb(234 179 8/.5);}",
+  ],
+  [
+    "bg-yellow-600/50",
+    ".bg-yellow-600\\/50{background-color:rgb(202 138 4/.5);}",
+  ],
+  [
+    "bg-yellow-700/50",
+    ".bg-yellow-700\\/50{background-color:rgb(161 98 7/.5);}",
+  ],
+  [
+    "bg-yellow-800/50",
+    ".bg-yellow-800\\/50{background-color:rgb(133 77 14/.5);}",
+  ],
+  [
+    "bg-yellow-900/50",
+    ".bg-yellow-900\\/50{background-color:rgb(113 63 18/.5);}",
+  ],
+  ["bg-lime-50/50", ".bg-lime-50\\/50{background-color:rgb(247 254 231/.5);}"],
+  [
+    "bg-lime-100/50",
+    ".bg-lime-100\\/50{background-color:rgb(236 252 203/.5);}",
+  ],
+  [
+    "bg-lime-200/50",
+    ".bg-lime-200\\/50{background-color:rgb(217 249 157/.5);}",
+  ],
+  [
+    "bg-lime-300/50",
+    ".bg-lime-300\\/50{background-color:rgb(190 242 100/.5);}",
+  ],
+  ["bg-lime-400/50", ".bg-lime-400\\/50{background-color:rgb(163 230 53/.5);}"],
+  ["bg-lime-500/50", ".bg-lime-500\\/50{background-color:rgb(132 204 22/.5);}"],
+  ["bg-lime-600/50", ".bg-lime-600\\/50{background-color:rgb(101 163 13/.5);}"],
+  ["bg-lime-700/50", ".bg-lime-700\\/50{background-color:rgb(77 124 15/.5);}"],
+  ["bg-lime-800/50", ".bg-lime-800\\/50{background-color:rgb(63 98 18/.5);}"],
+  ["bg-lime-900/50", ".bg-lime-900\\/50{background-color:rgb(54 83 20/.5);}"],
+  [
+    "bg-green-50/50",
+    ".bg-green-50\\/50{background-color:rgb(240 253 244/.5);}",
+  ],
+  [
+    "bg-green-100/50",
+    ".bg-green-100\\/50{background-color:rgb(220 252 231/.5);}",
+  ],
+  [
+    "bg-green-200/50",
+    ".bg-green-200\\/50{background-color:rgb(187 247 208/.5);}",
+  ],
+  [
+    "bg-green-300/50",
+    ".bg-green-300\\/50{background-color:rgb(134 239 172/.5);}",
+  ],
+  [
+    "bg-green-400/50",
+    ".bg-green-400\\/50{background-color:rgb(74 222 128/.5);}",
+  ],
+  [
+    "bg-green-500/50",
+    ".bg-green-500\\/50{background-color:rgb(34 197 94/.5);}",
+  ],
+  [
+    "bg-green-600/50",
+    ".bg-green-600\\/50{background-color:rgb(22 163 74/.5);}",
+  ],
+  [
+    "bg-green-700/50",
+    ".bg-green-700\\/50{background-color:rgb(21 128 61/.5);}",
+  ],
+  [
+    "bg-green-800/50",
+    ".bg-green-800\\/50{background-color:rgb(22 101 52/.5);}",
+  ],
+  ["bg-green-900/50", ".bg-green-900\\/50{background-color:rgb(20 83 45/.5);}"],
+  [
+    "bg-emerald-50/50",
+    ".bg-emerald-50\\/50{background-color:rgb(236 253 245/.5);}",
+  ],
+  [
+    "bg-emerald-100/50",
+    ".bg-emerald-100\\/50{background-color:rgb(209 250 229/.5);}",
+  ],
+  [
+    "bg-emerald-200/50",
+    ".bg-emerald-200\\/50{background-color:rgb(167 243 208/.5);}",
+  ],
+  [
+    "bg-emerald-300/50",
+    ".bg-emerald-300\\/50{background-color:rgb(110 231 183/.5);}",
+  ],
+  [
+    "bg-emerald-400/50",
+    ".bg-emerald-400\\/50{background-color:rgb(52 211 153/.5);}",
+  ],
+  [
+    "bg-emerald-500/50",
+    ".bg-emerald-500\\/50{background-color:rgb(16 185 129/.5);}",
+  ],
+  [
+    "bg-emerald-600/50",
+    ".bg-emerald-600\\/50{background-color:rgb(5 150 105/.5);}",
+  ],
+  [
+    "bg-emerald-700/50",
+    ".bg-emerald-700\\/50{background-color:rgb(4 120 87/.5);}",
+  ],
+  [
+    "bg-emerald-800/50",
+    ".bg-emerald-800\\/50{background-color:rgb(6 95 70/.5);}",
+  ],
+  [
+    "bg-emerald-900/50",
+    ".bg-emerald-900\\/50{background-color:rgb(6 78 59/.5);}",
+  ],
+  ["bg-teal-50/50", ".bg-teal-50\\/50{background-color:rgb(240 253 250/.5);}"],
+  [
+    "bg-teal-100/50",
+    ".bg-teal-100\\/50{background-color:rgb(204 251 241/.5);}",
+  ],
+  [
+    "bg-teal-200/50",
+    ".bg-teal-200\\/50{background-color:rgb(153 246 228/.5);}",
+  ],
+  ["bg-teal-300/50", ".bg-teal-300\\/50{background-color:rgb(94 234 212/.5);}"],
+  ["bg-teal-400/50", ".bg-teal-400\\/50{background-color:rgb(45 212 191/.5);}"],
+  ["bg-teal-500/50", ".bg-teal-500\\/50{background-color:rgb(20 184 166/.5);}"],
+  ["bg-teal-600/50", ".bg-teal-600\\/50{background-color:rgb(13 148 136/.5);}"],
+  ["bg-teal-700/50", ".bg-teal-700\\/50{background-color:rgb(15 118 110/.5);}"],
+  ["bg-teal-800/50", ".bg-teal-800\\/50{background-color:rgb(17 94 89/.5);}"],
+  ["bg-teal-900/50", ".bg-teal-900\\/50{background-color:rgb(19 78 74/.5);}"],
+  ["bg-cyan-50/50", ".bg-cyan-50\\/50{background-color:rgb(236 254 255/.5);}"],
+  [
+    "bg-cyan-100/50",
+    ".bg-cyan-100\\/50{background-color:rgb(207 250 254/.5);}",
+  ],
+  [
+    "bg-cyan-200/50",
+    ".bg-cyan-200\\/50{background-color:rgb(165 243 252/.5);}",
+  ],
+  [
+    "bg-cyan-300/50",
+    ".bg-cyan-300\\/50{background-color:rgb(103 232 249/.5);}",
+  ],
+  ["bg-cyan-400/50", ".bg-cyan-400\\/50{background-color:rgb(34 211 238/.5);}"],
+  ["bg-cyan-500/50", ".bg-cyan-500\\/50{background-color:rgb(6 182 212/.5);}"],
+  ["bg-cyan-600/50", ".bg-cyan-600\\/50{background-color:rgb(8 145 178/.5);}"],
+  ["bg-cyan-700/50", ".bg-cyan-700\\/50{background-color:rgb(14 116 144/.5);}"],
+  ["bg-cyan-800/50", ".bg-cyan-800\\/50{background-color:rgb(21 94 117/.5);}"],
+  ["bg-cyan-900/50", ".bg-cyan-900\\/50{background-color:rgb(22 78 99/.5);}"],
+  ["bg-sky-50/50", ".bg-sky-50\\/50{background-color:rgb(240 249 255/.5);}"],
+  ["bg-sky-100/50", ".bg-sky-100\\/50{background-color:rgb(224 242 254/.5);}"],
+  ["bg-sky-200/50", ".bg-sky-200\\/50{background-color:rgb(186 230 253/.5);}"],
+  ["bg-sky-300/50", ".bg-sky-300\\/50{background-color:rgb(125 211 252/.5);}"],
+  ["bg-sky-400/50", ".bg-sky-400\\/50{background-color:rgb(56 189 248/.5);}"],
+  ["bg-sky-500/50", ".bg-sky-500\\/50{background-color:rgb(14 165 233/.5);}"],
+  ["bg-sky-600/50", ".bg-sky-600\\/50{background-color:rgb(2 132 199/.5);}"],
+  ["bg-sky-700/50", ".bg-sky-700\\/50{background-color:rgb(3 105 161/.5);}"],
+  ["bg-sky-800/50", ".bg-sky-800\\/50{background-color:rgb(7 89 133/.5);}"],
+  ["bg-sky-900/50", ".bg-sky-900\\/50{background-color:rgb(12 74 110/.5);}"],
+  ["bg-blue-50/50", ".bg-blue-50\\/50{background-color:rgb(239 246 255/.5);}"],
+  [
+    "bg-blue-100/50",
+    ".bg-blue-100\\/50{background-color:rgb(219 234 254/.5);}",
+  ],
+  [
+    "bg-blue-200/50",
+    ".bg-blue-200\\/50{background-color:rgb(191 219 254/.5);}",
+  ],
+  [
+    "bg-blue-300/50",
+    ".bg-blue-300\\/50{background-color:rgb(147 197 253/.5);}",
+  ],
+  ["bg-blue-400/50", ".bg-blue-400\\/50{background-color:rgb(96 165 250/.5);}"],
+  ["bg-blue-500/50", ".bg-blue-500\\/50{background-color:rgb(59 130 246/.5);}"],
+  ["bg-blue-600/50", ".bg-blue-600\\/50{background-color:rgb(37 99 235/.5);}"],
+  ["bg-blue-700/50", ".bg-blue-700\\/50{background-color:rgb(29 78 216/.5);}"],
+  ["bg-blue-800/50", ".bg-blue-800\\/50{background-color:rgb(30 64 175/.5);}"],
+  ["bg-blue-900/50", ".bg-blue-900\\/50{background-color:rgb(30 58 138/.5);}"],
+  [
+    "bg-indigo-50/50",
+    ".bg-indigo-50\\/50{background-color:rgb(238 242 255/.5);}",
+  ],
+  [
+    "bg-indigo-100/50",
+    ".bg-indigo-100\\/50{background-color:rgb(224 231 255/.5);}",
+  ],
+  [
+    "bg-indigo-200/50",
+    ".bg-indigo-200\\/50{background-color:rgb(199 210 254/.5);}",
+  ],
+  [
+    "bg-indigo-300/50",
+    ".bg-indigo-300\\/50{background-color:rgb(165 180 252/.5);}",
+  ],
+  [
+    "bg-indigo-400/50",
+    ".bg-indigo-400\\/50{background-color:rgb(129 140 248/.5);}",
+  ],
+  [
+    "bg-indigo-500/50",
+    ".bg-indigo-500\\/50{background-color:rgb(99 102 241/.5);}",
+  ],
+  [
+    "bg-indigo-600/50",
+    ".bg-indigo-600\\/50{background-color:rgb(79 70 229/.5);}",
+  ],
+  [
+    "bg-indigo-700/50",
+    ".bg-indigo-700\\/50{background-color:rgb(67 56 202/.5);}",
+  ],
+  [
+    "bg-indigo-800/50",
+    ".bg-indigo-800\\/50{background-color:rgb(55 48 163/.5);}",
+  ],
+  [
+    "bg-indigo-900/50",
+    ".bg-indigo-900\\/50{background-color:rgb(49 46 129/.5);}",
+  ],
+  [
+    "bg-violet-50/50",
+    ".bg-violet-50\\/50{background-color:rgb(245 243 255/.5);}",
+  ],
+  [
+    "bg-violet-100/50",
+    ".bg-violet-100\\/50{background-color:rgb(237 233 254/.5);}",
+  ],
+  [
+    "bg-violet-200/50",
+    ".bg-violet-200\\/50{background-color:rgb(221 214 254/.5);}",
+  ],
+  [
+    "bg-violet-300/50",
+    ".bg-violet-300\\/50{background-color:rgb(196 181 253/.5);}",
+  ],
+  [
+    "bg-violet-400/50",
+    ".bg-violet-400\\/50{background-color:rgb(167 139 250/.5);}",
+  ],
+  [
+    "bg-violet-500/50",
+    ".bg-violet-500\\/50{background-color:rgb(139 92 246/.5);}",
+  ],
+  [
+    "bg-violet-600/50",
+    ".bg-violet-600\\/50{background-color:rgb(124 58 237/.5);}",
+  ],
+  [
+    "bg-violet-700/50",
+    ".bg-violet-700\\/50{background-color:rgb(109 40 217/.5);}",
+  ],
+  [
+    "bg-violet-800/50",
+    ".bg-violet-800\\/50{background-color:rgb(91 33 182/.5);}",
+  ],
+  [
+    "bg-violet-900/50",
+    ".bg-violet-900\\/50{background-color:rgb(76 29 149/.5);}",
+  ],
+  [
+    "bg-purple-50/50",
+    ".bg-purple-50\\/50{background-color:rgb(250 245 255/.5);}",
+  ],
+  [
+    "bg-purple-100/50",
+    ".bg-purple-100\\/50{background-color:rgb(243 232 255/.5);}",
+  ],
+  [
+    "bg-purple-200/50",
+    ".bg-purple-200\\/50{background-color:rgb(233 213 255/.5);}",
+  ],
+  [
+    "bg-purple-300/50",
+    ".bg-purple-300\\/50{background-color:rgb(216 180 254/.5);}",
+  ],
+  [
+    "bg-purple-400/50",
+    ".bg-purple-400\\/50{background-color:rgb(192 132 252/.5);}",
+  ],
+  [
+    "bg-purple-500/50",
+    ".bg-purple-500\\/50{background-color:rgb(168 85 247/.5);}",
+  ],
+  [
+    "bg-purple-600/50",
+    ".bg-purple-600\\/50{background-color:rgb(147 51 234/.5);}",
+  ],
+  [
+    "bg-purple-700/50",
+    ".bg-purple-700\\/50{background-color:rgb(126 34 206/.5);}",
+  ],
+  [
+    "bg-purple-800/50",
+    ".bg-purple-800\\/50{background-color:rgb(107 33 168/.5);}",
+  ],
+  [
+    "bg-purple-900/50",
+    ".bg-purple-900\\/50{background-color:rgb(88 28 135/.5);}",
+  ],
+  [
+    "bg-fuchsia-50/50",
+    ".bg-fuchsia-50\\/50{background-color:rgb(253 244 255/.5);}",
+  ],
+  [
+    "bg-fuchsia-100/50",
+    ".bg-fuchsia-100\\/50{background-color:rgb(250 232 255/.5);}",
+  ],
+  [
+    "bg-fuchsia-200/50",
+    ".bg-fuchsia-200\\/50{background-color:rgb(245 208 254/.5);}",
+  ],
+  [
+    "bg-fuchsia-300/50",
+    ".bg-fuchsia-300\\/50{background-color:rgb(240 171 252/.5);}",
+  ],
+  [
+    "bg-fuchsia-400/50",
+    ".bg-fuchsia-400\\/50{background-color:rgb(232 121 249/.5);}",
+  ],
+  [
+    "bg-fuchsia-500/50",
+    ".bg-fuchsia-500\\/50{background-color:rgb(217 70 239/.5);}",
+  ],
+  [
+    "bg-fuchsia-600/50",
+    ".bg-fuchsia-600\\/50{background-color:rgb(192 38 211/.5);}",
+  ],
+  [
+    "bg-fuchsia-700/50",
+    ".bg-fuchsia-700\\/50{background-color:rgb(162 28 175/.5);}",
+  ],
+  [
+    "bg-fuchsia-800/50",
+    ".bg-fuchsia-800\\/50{background-color:rgb(134 25 143/.5);}",
+  ],
+  [
+    "bg-fuchsia-900/50",
+    ".bg-fuchsia-900\\/50{background-color:rgb(112 26 117/.5);}",
+  ],
+  ["bg-pink-50/50", ".bg-pink-50\\/50{background-color:rgb(253 242 248/.5);}"],
+  [
+    "bg-pink-100/50",
+    ".bg-pink-100\\/50{background-color:rgb(252 231 243/.5);}",
+  ],
+  [
+    "bg-pink-200/50",
+    ".bg-pink-200\\/50{background-color:rgb(251 207 232/.5);}",
+  ],
+  [
+    "bg-pink-300/50",
+    ".bg-pink-300\\/50{background-color:rgb(249 168 212/.5);}",
+  ],
+  [
+    "bg-pink-400/50",
+    ".bg-pink-400\\/50{background-color:rgb(244 114 182/.5);}",
+  ],
+  ["bg-pink-500/50", ".bg-pink-500\\/50{background-color:rgb(236 72 153/.5);}"],
+  ["bg-pink-600/50", ".bg-pink-600\\/50{background-color:rgb(219 39 119/.5);}"],
+  ["bg-pink-700/50", ".bg-pink-700\\/50{background-color:rgb(190 24 93/.5);}"],
+  ["bg-pink-800/50", ".bg-pink-800\\/50{background-color:rgb(157 23 77/.5);}"],
+  ["bg-pink-900/50", ".bg-pink-900\\/50{background-color:rgb(131 24 67/.5);}"],
+  ["bg-rose-50/50", ".bg-rose-50\\/50{background-color:rgb(255 241 242/.5);}"],
+  [
+    "bg-rose-100/50",
+    ".bg-rose-100\\/50{background-color:rgb(255 228 230/.5);}",
+  ],
+  [
+    "bg-rose-200/50",
+    ".bg-rose-200\\/50{background-color:rgb(254 205 211/.5);}",
+  ],
+  [
+    "bg-rose-300/50",
+    ".bg-rose-300\\/50{background-color:rgb(253 164 175/.5);}",
+  ],
+  [
+    "bg-rose-400/50",
+    ".bg-rose-400\\/50{background-color:rgb(251 113 133/.5);}",
+  ],
+  ["bg-rose-500/50", ".bg-rose-500\\/50{background-color:rgb(244 63 94/.5);}"],
+  ["bg-rose-600/50", ".bg-rose-600\\/50{background-color:rgb(225 29 72/.5);}"],
+  ["bg-rose-700/50", ".bg-rose-700\\/50{background-color:rgb(190 18 60/.5);}"],
+  ["bg-rose-800/50", ".bg-rose-800\\/50{background-color:rgb(159 18 57/.5);}"],
+  ["bg-rose-900/50", ".bg-rose-900\\/50{background-color:rgb(136 19 55/.5);}"],
+  ["bg-inherit/[1%]", ""],
+  ["bg-current/[1%]", ""],
+  ["bg-transparent/[1%]", ""],
+  ["bg-black/[1%]", ".bg-black\\/\\[1\\%\\]{background-color:rgb(0 0 0/1%);}"],
+  [
+    "bg-white/[1%]",
+    ".bg-white\\/\\[1\\%\\]{background-color:rgb(255 255 255/1%);}",
+  ],
+  [
+    "bg-slate-50/[1%]",
+    ".bg-slate-50\\/\\[1\\%\\]{background-color:rgb(248 250 252/1%);}",
+  ],
+  [
+    "bg-slate-100/[1%]",
+    ".bg-slate-100\\/\\[1\\%\\]{background-color:rgb(241 245 249/1%);}",
+  ],
+  [
+    "bg-slate-200/[1%]",
+    ".bg-slate-200\\/\\[1\\%\\]{background-color:rgb(226 232 240/1%);}",
+  ],
+  [
+    "bg-slate-300/[1%]",
+    ".bg-slate-300\\/\\[1\\%\\]{background-color:rgb(203 213 225/1%);}",
+  ],
+  [
+    "bg-slate-400/[1%]",
+    ".bg-slate-400\\/\\[1\\%\\]{background-color:rgb(148 163 184/1%);}",
+  ],
+  [
+    "bg-slate-500/[1%]",
+    ".bg-slate-500\\/\\[1\\%\\]{background-color:rgb(100 116 139/1%);}",
+  ],
+  [
+    "bg-slate-600/[1%]",
+    ".bg-slate-600\\/\\[1\\%\\]{background-color:rgb(71 85 105/1%);}",
+  ],
+  [
+    "bg-slate-700/[1%]",
+    ".bg-slate-700\\/\\[1\\%\\]{background-color:rgb(51 65 85/1%);}",
+  ],
+  [
+    "bg-slate-800/[1%]",
+    ".bg-slate-800\\/\\[1\\%\\]{background-color:rgb(30 41 59/1%);}",
+  ],
+  [
+    "bg-slate-900/[1%]",
+    ".bg-slate-900\\/\\[1\\%\\]{background-color:rgb(15 23 42/1%);}",
+  ],
+  [
+    "bg-gray-50/[1%]",
+    ".bg-gray-50\\/\\[1\\%\\]{background-color:rgb(249 250 251/1%);}",
+  ],
+  [
+    "bg-gray-100/[1%]",
+    ".bg-gray-100\\/\\[1\\%\\]{background-color:rgb(243 244 246/1%);}",
+  ],
+  [
+    "bg-gray-200/[1%]",
+    ".bg-gray-200\\/\\[1\\%\\]{background-color:rgb(229 231 235/1%);}",
+  ],
+  [
+    "bg-gray-300/[1%]",
+    ".bg-gray-300\\/\\[1\\%\\]{background-color:rgb(209 213 219/1%);}",
+  ],
+  [
+    "bg-gray-400/[1%]",
+    ".bg-gray-400\\/\\[1\\%\\]{background-color:rgb(156 163 175/1%);}",
+  ],
+  [
+    "bg-gray-500/[1%]",
+    ".bg-gray-500\\/\\[1\\%\\]{background-color:rgb(107 114 128/1%);}",
+  ],
+  [
+    "bg-gray-600/[1%]",
+    ".bg-gray-600\\/\\[1\\%\\]{background-color:rgb(75 85 99/1%);}",
+  ],
+  [
+    "bg-gray-700/[1%]",
+    ".bg-gray-700\\/\\[1\\%\\]{background-color:rgb(55 65 81/1%);}",
+  ],
+  [
+    "bg-gray-800/[1%]",
+    ".bg-gray-800\\/\\[1\\%\\]{background-color:rgb(31 41 55/1%);}",
+  ],
+  [
+    "bg-gray-900/[1%]",
+    ".bg-gray-900\\/\\[1\\%\\]{background-color:rgb(17 24 39/1%);}",
+  ],
+  [
+    "bg-zinc-50/[1%]",
+    ".bg-zinc-50\\/\\[1\\%\\]{background-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "bg-zinc-100/[1%]",
+    ".bg-zinc-100\\/\\[1\\%\\]{background-color:rgb(244 244 245/1%);}",
+  ],
+  [
+    "bg-zinc-200/[1%]",
+    ".bg-zinc-200\\/\\[1\\%\\]{background-color:rgb(228 228 231/1%);}",
+  ],
+  [
+    "bg-zinc-300/[1%]",
+    ".bg-zinc-300\\/\\[1\\%\\]{background-color:rgb(212 212 216/1%);}",
+  ],
+  [
+    "bg-zinc-400/[1%]",
+    ".bg-zinc-400\\/\\[1\\%\\]{background-color:rgb(161 161 170/1%);}",
+  ],
+  [
+    "bg-zinc-500/[1%]",
+    ".bg-zinc-500\\/\\[1\\%\\]{background-color:rgb(113 113 122/1%);}",
+  ],
+  [
+    "bg-zinc-600/[1%]",
+    ".bg-zinc-600\\/\\[1\\%\\]{background-color:rgb(82 82 91/1%);}",
+  ],
+  [
+    "bg-zinc-700/[1%]",
+    ".bg-zinc-700\\/\\[1\\%\\]{background-color:rgb(63 63 70/1%);}",
+  ],
+  [
+    "bg-zinc-800/[1%]",
+    ".bg-zinc-800\\/\\[1\\%\\]{background-color:rgb(39 39 42/1%);}",
+  ],
+  [
+    "bg-zinc-900/[1%]",
+    ".bg-zinc-900\\/\\[1\\%\\]{background-color:rgb(24 24 27/1%);}",
+  ],
+  [
+    "bg-neutral-50/[1%]",
+    ".bg-neutral-50\\/\\[1\\%\\]{background-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "bg-neutral-100/[1%]",
+    ".bg-neutral-100\\/\\[1\\%\\]{background-color:rgb(245 245 245/1%);}",
+  ],
+  [
+    "bg-neutral-200/[1%]",
+    ".bg-neutral-200\\/\\[1\\%\\]{background-color:rgb(229 229 229/1%);}",
+  ],
+  [
+    "bg-neutral-300/[1%]",
+    ".bg-neutral-300\\/\\[1\\%\\]{background-color:rgb(212 212 212/1%);}",
+  ],
+  [
+    "bg-neutral-400/[1%]",
+    ".bg-neutral-400\\/\\[1\\%\\]{background-color:rgb(163 163 163/1%);}",
+  ],
+  [
+    "bg-neutral-500/[1%]",
+    ".bg-neutral-500\\/\\[1\\%\\]{background-color:rgb(115 115 115/1%);}",
+  ],
+  [
+    "bg-neutral-600/[1%]",
+    ".bg-neutral-600\\/\\[1\\%\\]{background-color:rgb(82 82 82/1%);}",
+  ],
+  [
+    "bg-neutral-700/[1%]",
+    ".bg-neutral-700\\/\\[1\\%\\]{background-color:rgb(64 64 64/1%);}",
+  ],
+  [
+    "bg-neutral-800/[1%]",
+    ".bg-neutral-800\\/\\[1\\%\\]{background-color:rgb(38 38 38/1%);}",
+  ],
+  [
+    "bg-neutral-900/[1%]",
+    ".bg-neutral-900\\/\\[1\\%\\]{background-color:rgb(23 23 23/1%);}",
+  ],
+  [
+    "bg-stone-50/[1%]",
+    ".bg-stone-50\\/\\[1\\%\\]{background-color:rgb(250 250 249/1%);}",
+  ],
+  [
+    "bg-stone-100/[1%]",
+    ".bg-stone-100\\/\\[1\\%\\]{background-color:rgb(245 245 244/1%);}",
+  ],
+  [
+    "bg-stone-200/[1%]",
+    ".bg-stone-200\\/\\[1\\%\\]{background-color:rgb(231 229 228/1%);}",
+  ],
+  [
+    "bg-stone-300/[1%]",
+    ".bg-stone-300\\/\\[1\\%\\]{background-color:rgb(214 211 209/1%);}",
+  ],
+  [
+    "bg-stone-400/[1%]",
+    ".bg-stone-400\\/\\[1\\%\\]{background-color:rgb(168 162 158/1%);}",
+  ],
+  [
+    "bg-stone-500/[1%]",
+    ".bg-stone-500\\/\\[1\\%\\]{background-color:rgb(120 113 108/1%);}",
+  ],
+  [
+    "bg-stone-600/[1%]",
+    ".bg-stone-600\\/\\[1\\%\\]{background-color:rgb(87 83 78/1%);}",
+  ],
+  [
+    "bg-stone-700/[1%]",
+    ".bg-stone-700\\/\\[1\\%\\]{background-color:rgb(68 64 60/1%);}",
+  ],
+  [
+    "bg-stone-800/[1%]",
+    ".bg-stone-800\\/\\[1\\%\\]{background-color:rgb(41 37 36/1%);}",
+  ],
+  [
+    "bg-stone-900/[1%]",
+    ".bg-stone-900\\/\\[1\\%\\]{background-color:rgb(28 25 23/1%);}",
+  ],
+  [
+    "bg-red-50/[1%]",
+    ".bg-red-50\\/\\[1\\%\\]{background-color:rgb(254 242 242/1%);}",
+  ],
+  [
+    "bg-red-100/[1%]",
+    ".bg-red-100\\/\\[1\\%\\]{background-color:rgb(254 226 226/1%);}",
+  ],
+  [
+    "bg-red-200/[1%]",
+    ".bg-red-200\\/\\[1\\%\\]{background-color:rgb(254 202 202/1%);}",
+  ],
+  [
+    "bg-red-300/[1%]",
+    ".bg-red-300\\/\\[1\\%\\]{background-color:rgb(252 165 165/1%);}",
+  ],
+  [
+    "bg-red-400/[1%]",
+    ".bg-red-400\\/\\[1\\%\\]{background-color:rgb(248 113 113/1%);}",
+  ],
+  [
+    "bg-red-500/[1%]",
+    ".bg-red-500\\/\\[1\\%\\]{background-color:rgb(239 68 68/1%);}",
+  ],
+  [
+    "bg-red-600/[1%]",
+    ".bg-red-600\\/\\[1\\%\\]{background-color:rgb(220 38 38/1%);}",
+  ],
+  [
+    "bg-red-700/[1%]",
+    ".bg-red-700\\/\\[1\\%\\]{background-color:rgb(185 28 28/1%);}",
+  ],
+  [
+    "bg-red-800/[1%]",
+    ".bg-red-800\\/\\[1\\%\\]{background-color:rgb(153 27 27/1%);}",
+  ],
+  [
+    "bg-red-900/[1%]",
+    ".bg-red-900\\/\\[1\\%\\]{background-color:rgb(127 29 29/1%);}",
+  ],
+  [
+    "bg-orange-50/[1%]",
+    ".bg-orange-50\\/\\[1\\%\\]{background-color:rgb(255 247 237/1%);}",
+  ],
+  [
+    "bg-orange-100/[1%]",
+    ".bg-orange-100\\/\\[1\\%\\]{background-color:rgb(255 237 213/1%);}",
+  ],
+  [
+    "bg-orange-200/[1%]",
+    ".bg-orange-200\\/\\[1\\%\\]{background-color:rgb(254 215 170/1%);}",
+  ],
+  [
+    "bg-orange-300/[1%]",
+    ".bg-orange-300\\/\\[1\\%\\]{background-color:rgb(253 186 116/1%);}",
+  ],
+  [
+    "bg-orange-400/[1%]",
+    ".bg-orange-400\\/\\[1\\%\\]{background-color:rgb(251 146 60/1%);}",
+  ],
+  [
+    "bg-orange-500/[1%]",
+    ".bg-orange-500\\/\\[1\\%\\]{background-color:rgb(249 115 22/1%);}",
+  ],
+  [
+    "bg-orange-600/[1%]",
+    ".bg-orange-600\\/\\[1\\%\\]{background-color:rgb(234 88 12/1%);}",
+  ],
+  [
+    "bg-orange-700/[1%]",
+    ".bg-orange-700\\/\\[1\\%\\]{background-color:rgb(194 65 12/1%);}",
+  ],
+  [
+    "bg-orange-800/[1%]",
+    ".bg-orange-800\\/\\[1\\%\\]{background-color:rgb(154 52 18/1%);}",
+  ],
+  [
+    "bg-orange-900/[1%]",
+    ".bg-orange-900\\/\\[1\\%\\]{background-color:rgb(124 45 18/1%);}",
+  ],
+  [
+    "bg-amber-50/[1%]",
+    ".bg-amber-50\\/\\[1\\%\\]{background-color:rgb(255 251 235/1%);}",
+  ],
+  [
+    "bg-amber-100/[1%]",
+    ".bg-amber-100\\/\\[1\\%\\]{background-color:rgb(254 243 199/1%);}",
+  ],
+  [
+    "bg-amber-200/[1%]",
+    ".bg-amber-200\\/\\[1\\%\\]{background-color:rgb(253 230 138/1%);}",
+  ],
+  [
+    "bg-amber-300/[1%]",
+    ".bg-amber-300\\/\\[1\\%\\]{background-color:rgb(252 211 77/1%);}",
+  ],
+  [
+    "bg-amber-400/[1%]",
+    ".bg-amber-400\\/\\[1\\%\\]{background-color:rgb(251 191 36/1%);}",
+  ],
+  [
+    "bg-amber-500/[1%]",
+    ".bg-amber-500\\/\\[1\\%\\]{background-color:rgb(245 158 11/1%);}",
+  ],
+  [
+    "bg-amber-600/[1%]",
+    ".bg-amber-600\\/\\[1\\%\\]{background-color:rgb(217 119 6/1%);}",
+  ],
+  [
+    "bg-amber-700/[1%]",
+    ".bg-amber-700\\/\\[1\\%\\]{background-color:rgb(180 83 9/1%);}",
+  ],
+  [
+    "bg-amber-800/[1%]",
+    ".bg-amber-800\\/\\[1\\%\\]{background-color:rgb(146 64 14/1%);}",
+  ],
+  [
+    "bg-amber-900/[1%]",
+    ".bg-amber-900\\/\\[1\\%\\]{background-color:rgb(120 53 15/1%);}",
+  ],
+  [
+    "bg-yellow-50/[1%]",
+    ".bg-yellow-50\\/\\[1\\%\\]{background-color:rgb(254 252 232/1%);}",
+  ],
+  [
+    "bg-yellow-100/[1%]",
+    ".bg-yellow-100\\/\\[1\\%\\]{background-color:rgb(254 249 195/1%);}",
+  ],
+  [
+    "bg-yellow-200/[1%]",
+    ".bg-yellow-200\\/\\[1\\%\\]{background-color:rgb(254 240 138/1%);}",
+  ],
+  [
+    "bg-yellow-300/[1%]",
+    ".bg-yellow-300\\/\\[1\\%\\]{background-color:rgb(253 224 71/1%);}",
+  ],
+  [
+    "bg-yellow-400/[1%]",
+    ".bg-yellow-400\\/\\[1\\%\\]{background-color:rgb(250 204 21/1%);}",
+  ],
+  [
+    "bg-yellow-500/[1%]",
+    ".bg-yellow-500\\/\\[1\\%\\]{background-color:rgb(234 179 8/1%);}",
+  ],
+  [
+    "bg-yellow-600/[1%]",
+    ".bg-yellow-600\\/\\[1\\%\\]{background-color:rgb(202 138 4/1%);}",
+  ],
+  [
+    "bg-yellow-700/[1%]",
+    ".bg-yellow-700\\/\\[1\\%\\]{background-color:rgb(161 98 7/1%);}",
+  ],
+  [
+    "bg-yellow-800/[1%]",
+    ".bg-yellow-800\\/\\[1\\%\\]{background-color:rgb(133 77 14/1%);}",
+  ],
+  [
+    "bg-yellow-900/[1%]",
+    ".bg-yellow-900\\/\\[1\\%\\]{background-color:rgb(113 63 18/1%);}",
+  ],
+  [
+    "bg-lime-50/[1%]",
+    ".bg-lime-50\\/\\[1\\%\\]{background-color:rgb(247 254 231/1%);}",
+  ],
+  [
+    "bg-lime-100/[1%]",
+    ".bg-lime-100\\/\\[1\\%\\]{background-color:rgb(236 252 203/1%);}",
+  ],
+  [
+    "bg-lime-200/[1%]",
+    ".bg-lime-200\\/\\[1\\%\\]{background-color:rgb(217 249 157/1%);}",
+  ],
+  [
+    "bg-lime-300/[1%]",
+    ".bg-lime-300\\/\\[1\\%\\]{background-color:rgb(190 242 100/1%);}",
+  ],
+  [
+    "bg-lime-400/[1%]",
+    ".bg-lime-400\\/\\[1\\%\\]{background-color:rgb(163 230 53/1%);}",
+  ],
+  [
+    "bg-lime-500/[1%]",
+    ".bg-lime-500\\/\\[1\\%\\]{background-color:rgb(132 204 22/1%);}",
+  ],
+  [
+    "bg-lime-600/[1%]",
+    ".bg-lime-600\\/\\[1\\%\\]{background-color:rgb(101 163 13/1%);}",
+  ],
+  [
+    "bg-lime-700/[1%]",
+    ".bg-lime-700\\/\\[1\\%\\]{background-color:rgb(77 124 15/1%);}",
+  ],
+  [
+    "bg-lime-800/[1%]",
+    ".bg-lime-800\\/\\[1\\%\\]{background-color:rgb(63 98 18/1%);}",
+  ],
+  [
+    "bg-lime-900/[1%]",
+    ".bg-lime-900\\/\\[1\\%\\]{background-color:rgb(54 83 20/1%);}",
+  ],
+  [
+    "bg-green-50/[1%]",
+    ".bg-green-50\\/\\[1\\%\\]{background-color:rgb(240 253 244/1%);}",
+  ],
+  [
+    "bg-green-100/[1%]",
+    ".bg-green-100\\/\\[1\\%\\]{background-color:rgb(220 252 231/1%);}",
+  ],
+  [
+    "bg-green-200/[1%]",
+    ".bg-green-200\\/\\[1\\%\\]{background-color:rgb(187 247 208/1%);}",
+  ],
+  [
+    "bg-green-300/[1%]",
+    ".bg-green-300\\/\\[1\\%\\]{background-color:rgb(134 239 172/1%);}",
+  ],
+  [
+    "bg-green-400/[1%]",
+    ".bg-green-400\\/\\[1\\%\\]{background-color:rgb(74 222 128/1%);}",
+  ],
+  [
+    "bg-green-500/[1%]",
+    ".bg-green-500\\/\\[1\\%\\]{background-color:rgb(34 197 94/1%);}",
+  ],
+  [
+    "bg-green-600/[1%]",
+    ".bg-green-600\\/\\[1\\%\\]{background-color:rgb(22 163 74/1%);}",
+  ],
+  [
+    "bg-green-700/[1%]",
+    ".bg-green-700\\/\\[1\\%\\]{background-color:rgb(21 128 61/1%);}",
+  ],
+  [
+    "bg-green-800/[1%]",
+    ".bg-green-800\\/\\[1\\%\\]{background-color:rgb(22 101 52/1%);}",
+  ],
+  [
+    "bg-green-900/[1%]",
+    ".bg-green-900\\/\\[1\\%\\]{background-color:rgb(20 83 45/1%);}",
+  ],
+  [
+    "bg-emerald-50/[1%]",
+    ".bg-emerald-50\\/\\[1\\%\\]{background-color:rgb(236 253 245/1%);}",
+  ],
+  [
+    "bg-emerald-100/[1%]",
+    ".bg-emerald-100\\/\\[1\\%\\]{background-color:rgb(209 250 229/1%);}",
+  ],
+  [
+    "bg-emerald-200/[1%]",
+    ".bg-emerald-200\\/\\[1\\%\\]{background-color:rgb(167 243 208/1%);}",
+  ],
+  [
+    "bg-emerald-300/[1%]",
+    ".bg-emerald-300\\/\\[1\\%\\]{background-color:rgb(110 231 183/1%);}",
+  ],
+  [
+    "bg-emerald-400/[1%]",
+    ".bg-emerald-400\\/\\[1\\%\\]{background-color:rgb(52 211 153/1%);}",
+  ],
+  [
+    "bg-emerald-500/[1%]",
+    ".bg-emerald-500\\/\\[1\\%\\]{background-color:rgb(16 185 129/1%);}",
+  ],
+  [
+    "bg-emerald-600/[1%]",
+    ".bg-emerald-600\\/\\[1\\%\\]{background-color:rgb(5 150 105/1%);}",
+  ],
+  [
+    "bg-emerald-700/[1%]",
+    ".bg-emerald-700\\/\\[1\\%\\]{background-color:rgb(4 120 87/1%);}",
+  ],
+  [
+    "bg-emerald-800/[1%]",
+    ".bg-emerald-800\\/\\[1\\%\\]{background-color:rgb(6 95 70/1%);}",
+  ],
+  [
+    "bg-emerald-900/[1%]",
+    ".bg-emerald-900\\/\\[1\\%\\]{background-color:rgb(6 78 59/1%);}",
+  ],
+  [
+    "bg-teal-50/[1%]",
+    ".bg-teal-50\\/\\[1\\%\\]{background-color:rgb(240 253 250/1%);}",
+  ],
+  [
+    "bg-teal-100/[1%]",
+    ".bg-teal-100\\/\\[1\\%\\]{background-color:rgb(204 251 241/1%);}",
+  ],
+  [
+    "bg-teal-200/[1%]",
+    ".bg-teal-200\\/\\[1\\%\\]{background-color:rgb(153 246 228/1%);}",
+  ],
+  [
+    "bg-teal-300/[1%]",
+    ".bg-teal-300\\/\\[1\\%\\]{background-color:rgb(94 234 212/1%);}",
+  ],
+  [
+    "bg-teal-400/[1%]",
+    ".bg-teal-400\\/\\[1\\%\\]{background-color:rgb(45 212 191/1%);}",
+  ],
+  [
+    "bg-teal-500/[1%]",
+    ".bg-teal-500\\/\\[1\\%\\]{background-color:rgb(20 184 166/1%);}",
+  ],
+  [
+    "bg-teal-600/[1%]",
+    ".bg-teal-600\\/\\[1\\%\\]{background-color:rgb(13 148 136/1%);}",
+  ],
+  [
+    "bg-teal-700/[1%]",
+    ".bg-teal-700\\/\\[1\\%\\]{background-color:rgb(15 118 110/1%);}",
+  ],
+  [
+    "bg-teal-800/[1%]",
+    ".bg-teal-800\\/\\[1\\%\\]{background-color:rgb(17 94 89/1%);}",
+  ],
+  [
+    "bg-teal-900/[1%]",
+    ".bg-teal-900\\/\\[1\\%\\]{background-color:rgb(19 78 74/1%);}",
+  ],
+  [
+    "bg-cyan-50/[1%]",
+    ".bg-cyan-50\\/\\[1\\%\\]{background-color:rgb(236 254 255/1%);}",
+  ],
+  [
+    "bg-cyan-100/[1%]",
+    ".bg-cyan-100\\/\\[1\\%\\]{background-color:rgb(207 250 254/1%);}",
+  ],
+  [
+    "bg-cyan-200/[1%]",
+    ".bg-cyan-200\\/\\[1\\%\\]{background-color:rgb(165 243 252/1%);}",
+  ],
+  [
+    "bg-cyan-300/[1%]",
+    ".bg-cyan-300\\/\\[1\\%\\]{background-color:rgb(103 232 249/1%);}",
+  ],
+  [
+    "bg-cyan-400/[1%]",
+    ".bg-cyan-400\\/\\[1\\%\\]{background-color:rgb(34 211 238/1%);}",
+  ],
+  [
+    "bg-cyan-500/[1%]",
+    ".bg-cyan-500\\/\\[1\\%\\]{background-color:rgb(6 182 212/1%);}",
+  ],
+  [
+    "bg-cyan-600/[1%]",
+    ".bg-cyan-600\\/\\[1\\%\\]{background-color:rgb(8 145 178/1%);}",
+  ],
+  [
+    "bg-cyan-700/[1%]",
+    ".bg-cyan-700\\/\\[1\\%\\]{background-color:rgb(14 116 144/1%);}",
+  ],
+  [
+    "bg-cyan-800/[1%]",
+    ".bg-cyan-800\\/\\[1\\%\\]{background-color:rgb(21 94 117/1%);}",
+  ],
+  [
+    "bg-cyan-900/[1%]",
+    ".bg-cyan-900\\/\\[1\\%\\]{background-color:rgb(22 78 99/1%);}",
+  ],
+  [
+    "bg-sky-50/[1%]",
+    ".bg-sky-50\\/\\[1\\%\\]{background-color:rgb(240 249 255/1%);}",
+  ],
+  [
+    "bg-sky-100/[1%]",
+    ".bg-sky-100\\/\\[1\\%\\]{background-color:rgb(224 242 254/1%);}",
+  ],
+  [
+    "bg-sky-200/[1%]",
+    ".bg-sky-200\\/\\[1\\%\\]{background-color:rgb(186 230 253/1%);}",
+  ],
+  [
+    "bg-sky-300/[1%]",
+    ".bg-sky-300\\/\\[1\\%\\]{background-color:rgb(125 211 252/1%);}",
+  ],
+  [
+    "bg-sky-400/[1%]",
+    ".bg-sky-400\\/\\[1\\%\\]{background-color:rgb(56 189 248/1%);}",
+  ],
+  [
+    "bg-sky-500/[1%]",
+    ".bg-sky-500\\/\\[1\\%\\]{background-color:rgb(14 165 233/1%);}",
+  ],
+  [
+    "bg-sky-600/[1%]",
+    ".bg-sky-600\\/\\[1\\%\\]{background-color:rgb(2 132 199/1%);}",
+  ],
+  [
+    "bg-sky-700/[1%]",
+    ".bg-sky-700\\/\\[1\\%\\]{background-color:rgb(3 105 161/1%);}",
+  ],
+  [
+    "bg-sky-800/[1%]",
+    ".bg-sky-800\\/\\[1\\%\\]{background-color:rgb(7 89 133/1%);}",
+  ],
+  [
+    "bg-sky-900/[1%]",
+    ".bg-sky-900\\/\\[1\\%\\]{background-color:rgb(12 74 110/1%);}",
+  ],
+  [
+    "bg-blue-50/[1%]",
+    ".bg-blue-50\\/\\[1\\%\\]{background-color:rgb(239 246 255/1%);}",
+  ],
+  [
+    "bg-blue-100/[1%]",
+    ".bg-blue-100\\/\\[1\\%\\]{background-color:rgb(219 234 254/1%);}",
+  ],
+  [
+    "bg-blue-200/[1%]",
+    ".bg-blue-200\\/\\[1\\%\\]{background-color:rgb(191 219 254/1%);}",
+  ],
+  [
+    "bg-blue-300/[1%]",
+    ".bg-blue-300\\/\\[1\\%\\]{background-color:rgb(147 197 253/1%);}",
+  ],
+  [
+    "bg-blue-400/[1%]",
+    ".bg-blue-400\\/\\[1\\%\\]{background-color:rgb(96 165 250/1%);}",
+  ],
+  [
+    "bg-blue-500/[1%]",
+    ".bg-blue-500\\/\\[1\\%\\]{background-color:rgb(59 130 246/1%);}",
+  ],
+  [
+    "bg-blue-600/[1%]",
+    ".bg-blue-600\\/\\[1\\%\\]{background-color:rgb(37 99 235/1%);}",
+  ],
+  [
+    "bg-blue-700/[1%]",
+    ".bg-blue-700\\/\\[1\\%\\]{background-color:rgb(29 78 216/1%);}",
+  ],
+  [
+    "bg-blue-800/[1%]",
+    ".bg-blue-800\\/\\[1\\%\\]{background-color:rgb(30 64 175/1%);}",
+  ],
+  [
+    "bg-blue-900/[1%]",
+    ".bg-blue-900\\/\\[1\\%\\]{background-color:rgb(30 58 138/1%);}",
+  ],
+  [
+    "bg-indigo-50/[1%]",
+    ".bg-indigo-50\\/\\[1\\%\\]{background-color:rgb(238 242 255/1%);}",
+  ],
+  [
+    "bg-indigo-100/[1%]",
+    ".bg-indigo-100\\/\\[1\\%\\]{background-color:rgb(224 231 255/1%);}",
+  ],
+  [
+    "bg-indigo-200/[1%]",
+    ".bg-indigo-200\\/\\[1\\%\\]{background-color:rgb(199 210 254/1%);}",
+  ],
+  [
+    "bg-indigo-300/[1%]",
+    ".bg-indigo-300\\/\\[1\\%\\]{background-color:rgb(165 180 252/1%);}",
+  ],
+  [
+    "bg-indigo-400/[1%]",
+    ".bg-indigo-400\\/\\[1\\%\\]{background-color:rgb(129 140 248/1%);}",
+  ],
+  [
+    "bg-indigo-500/[1%]",
+    ".bg-indigo-500\\/\\[1\\%\\]{background-color:rgb(99 102 241/1%);}",
+  ],
+  [
+    "bg-indigo-600/[1%]",
+    ".bg-indigo-600\\/\\[1\\%\\]{background-color:rgb(79 70 229/1%);}",
+  ],
+  [
+    "bg-indigo-700/[1%]",
+    ".bg-indigo-700\\/\\[1\\%\\]{background-color:rgb(67 56 202/1%);}",
+  ],
+  [
+    "bg-indigo-800/[1%]",
+    ".bg-indigo-800\\/\\[1\\%\\]{background-color:rgb(55 48 163/1%);}",
+  ],
+  [
+    "bg-indigo-900/[1%]",
+    ".bg-indigo-900\\/\\[1\\%\\]{background-color:rgb(49 46 129/1%);}",
+  ],
+  [
+    "bg-violet-50/[1%]",
+    ".bg-violet-50\\/\\[1\\%\\]{background-color:rgb(245 243 255/1%);}",
+  ],
+  [
+    "bg-violet-100/[1%]",
+    ".bg-violet-100\\/\\[1\\%\\]{background-color:rgb(237 233 254/1%);}",
+  ],
+  [
+    "bg-violet-200/[1%]",
+    ".bg-violet-200\\/\\[1\\%\\]{background-color:rgb(221 214 254/1%);}",
+  ],
+  [
+    "bg-violet-300/[1%]",
+    ".bg-violet-300\\/\\[1\\%\\]{background-color:rgb(196 181 253/1%);}",
+  ],
+  [
+    "bg-violet-400/[1%]",
+    ".bg-violet-400\\/\\[1\\%\\]{background-color:rgb(167 139 250/1%);}",
+  ],
+  [
+    "bg-violet-500/[1%]",
+    ".bg-violet-500\\/\\[1\\%\\]{background-color:rgb(139 92 246/1%);}",
+  ],
+  [
+    "bg-violet-600/[1%]",
+    ".bg-violet-600\\/\\[1\\%\\]{background-color:rgb(124 58 237/1%);}",
+  ],
+  [
+    "bg-violet-700/[1%]",
+    ".bg-violet-700\\/\\[1\\%\\]{background-color:rgb(109 40 217/1%);}",
+  ],
+  [
+    "bg-violet-800/[1%]",
+    ".bg-violet-800\\/\\[1\\%\\]{background-color:rgb(91 33 182/1%);}",
+  ],
+  [
+    "bg-violet-900/[1%]",
+    ".bg-violet-900\\/\\[1\\%\\]{background-color:rgb(76 29 149/1%);}",
+  ],
+  [
+    "bg-purple-50/[1%]",
+    ".bg-purple-50\\/\\[1\\%\\]{background-color:rgb(250 245 255/1%);}",
+  ],
+  [
+    "bg-purple-100/[1%]",
+    ".bg-purple-100\\/\\[1\\%\\]{background-color:rgb(243 232 255/1%);}",
+  ],
+  [
+    "bg-purple-200/[1%]",
+    ".bg-purple-200\\/\\[1\\%\\]{background-color:rgb(233 213 255/1%);}",
+  ],
+  [
+    "bg-purple-300/[1%]",
+    ".bg-purple-300\\/\\[1\\%\\]{background-color:rgb(216 180 254/1%);}",
+  ],
+  [
+    "bg-purple-400/[1%]",
+    ".bg-purple-400\\/\\[1\\%\\]{background-color:rgb(192 132 252/1%);}",
+  ],
+  [
+    "bg-purple-500/[1%]",
+    ".bg-purple-500\\/\\[1\\%\\]{background-color:rgb(168 85 247/1%);}",
+  ],
+  [
+    "bg-purple-600/[1%]",
+    ".bg-purple-600\\/\\[1\\%\\]{background-color:rgb(147 51 234/1%);}",
+  ],
+  [
+    "bg-purple-700/[1%]",
+    ".bg-purple-700\\/\\[1\\%\\]{background-color:rgb(126 34 206/1%);}",
+  ],
+  [
+    "bg-purple-800/[1%]",
+    ".bg-purple-800\\/\\[1\\%\\]{background-color:rgb(107 33 168/1%);}",
+  ],
+  [
+    "bg-purple-900/[1%]",
+    ".bg-purple-900\\/\\[1\\%\\]{background-color:rgb(88 28 135/1%);}",
+  ],
+  [
+    "bg-fuchsia-50/[1%]",
+    ".bg-fuchsia-50\\/\\[1\\%\\]{background-color:rgb(253 244 255/1%);}",
+  ],
+  [
+    "bg-fuchsia-100/[1%]",
+    ".bg-fuchsia-100\\/\\[1\\%\\]{background-color:rgb(250 232 255/1%);}",
+  ],
+  [
+    "bg-fuchsia-200/[1%]",
+    ".bg-fuchsia-200\\/\\[1\\%\\]{background-color:rgb(245 208 254/1%);}",
+  ],
+  [
+    "bg-fuchsia-300/[1%]",
+    ".bg-fuchsia-300\\/\\[1\\%\\]{background-color:rgb(240 171 252/1%);}",
+  ],
+  [
+    "bg-fuchsia-400/[1%]",
+    ".bg-fuchsia-400\\/\\[1\\%\\]{background-color:rgb(232 121 249/1%);}",
+  ],
+  [
+    "bg-fuchsia-500/[1%]",
+    ".bg-fuchsia-500\\/\\[1\\%\\]{background-color:rgb(217 70 239/1%);}",
+  ],
+  [
+    "bg-fuchsia-600/[1%]",
+    ".bg-fuchsia-600\\/\\[1\\%\\]{background-color:rgb(192 38 211/1%);}",
+  ],
+  [
+    "bg-fuchsia-700/[1%]",
+    ".bg-fuchsia-700\\/\\[1\\%\\]{background-color:rgb(162 28 175/1%);}",
+  ],
+  [
+    "bg-fuchsia-800/[1%]",
+    ".bg-fuchsia-800\\/\\[1\\%\\]{background-color:rgb(134 25 143/1%);}",
+  ],
+  [
+    "bg-fuchsia-900/[1%]",
+    ".bg-fuchsia-900\\/\\[1\\%\\]{background-color:rgb(112 26 117/1%);}",
+  ],
+  [
+    "bg-pink-50/[1%]",
+    ".bg-pink-50\\/\\[1\\%\\]{background-color:rgb(253 242 248/1%);}",
+  ],
+  [
+    "bg-pink-100/[1%]",
+    ".bg-pink-100\\/\\[1\\%\\]{background-color:rgb(252 231 243/1%);}",
+  ],
+  [
+    "bg-pink-200/[1%]",
+    ".bg-pink-200\\/\\[1\\%\\]{background-color:rgb(251 207 232/1%);}",
+  ],
+  [
+    "bg-pink-300/[1%]",
+    ".bg-pink-300\\/\\[1\\%\\]{background-color:rgb(249 168 212/1%);}",
+  ],
+  [
+    "bg-pink-400/[1%]",
+    ".bg-pink-400\\/\\[1\\%\\]{background-color:rgb(244 114 182/1%);}",
+  ],
+  [
+    "bg-pink-500/[1%]",
+    ".bg-pink-500\\/\\[1\\%\\]{background-color:rgb(236 72 153/1%);}",
+  ],
+  [
+    "bg-pink-600/[1%]",
+    ".bg-pink-600\\/\\[1\\%\\]{background-color:rgb(219 39 119/1%);}",
+  ],
+  [
+    "bg-pink-700/[1%]",
+    ".bg-pink-700\\/\\[1\\%\\]{background-color:rgb(190 24 93/1%);}",
+  ],
+  [
+    "bg-pink-800/[1%]",
+    ".bg-pink-800\\/\\[1\\%\\]{background-color:rgb(157 23 77/1%);}",
+  ],
+  [
+    "bg-pink-900/[1%]",
+    ".bg-pink-900\\/\\[1\\%\\]{background-color:rgb(131 24 67/1%);}",
+  ],
+  [
+    "bg-rose-50/[1%]",
+    ".bg-rose-50\\/\\[1\\%\\]{background-color:rgb(255 241 242/1%);}",
+  ],
+  [
+    "bg-rose-100/[1%]",
+    ".bg-rose-100\\/\\[1\\%\\]{background-color:rgb(255 228 230/1%);}",
+  ],
+  [
+    "bg-rose-200/[1%]",
+    ".bg-rose-200\\/\\[1\\%\\]{background-color:rgb(254 205 211/1%);}",
+  ],
+  [
+    "bg-rose-300/[1%]",
+    ".bg-rose-300\\/\\[1\\%\\]{background-color:rgb(253 164 175/1%);}",
+  ],
+  [
+    "bg-rose-400/[1%]",
+    ".bg-rose-400\\/\\[1\\%\\]{background-color:rgb(251 113 133/1%);}",
+  ],
+  [
+    "bg-rose-500/[1%]",
+    ".bg-rose-500\\/\\[1\\%\\]{background-color:rgb(244 63 94/1%);}",
+  ],
+  [
+    "bg-rose-600/[1%]",
+    ".bg-rose-600\\/\\[1\\%\\]{background-color:rgb(225 29 72/1%);}",
+  ],
+  [
+    "bg-rose-700/[1%]",
+    ".bg-rose-700\\/\\[1\\%\\]{background-color:rgb(190 18 60/1%);}",
+  ],
+  [
+    "bg-rose-800/[1%]",
+    ".bg-rose-800\\/\\[1\\%\\]{background-color:rgb(159 18 57/1%);}",
+  ],
+  [
+    "bg-rose-900/[1%]",
+    ".bg-rose-900\\/\\[1\\%\\]{background-color:rgb(136 19 55/1%);}",
+  ],
   ["bg-origin-border", ".bg-origin-border{background-origin:border-box;}"],
   ["bg-origin-padding", ".bg-origin-padding{background-origin:padding-box;}"],
   ["bg-origin-content", ".bg-origin-content{background-origin:content-box;}"],

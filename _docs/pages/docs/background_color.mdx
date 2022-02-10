@@ -3,3 +3,60 @@ title: Background Color
 description: Utilities for controlling an element's background color.
 category: Background
 ---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the background color
+
+Control the background color of an element using the `bg-{color}` utilities.
+
+<Example>
+  <div className="text-center">
+    <button type="button" className="py-2 px-3 bg-indigo-500 text-white text-sm font-semibold rounded-md shadow focus:outline-none" tabIndex="-1">
+      Save changes
+    </button>
+  </div>
+</Example>
+
+```html
+<button className="**bg-indigo-500** ...">
+  Save changes
+</button>
+```
+
+### Changing the opacity
+
+Control the opacity of an element's background color using the color opacity modifier.
+
+<Example>
+  <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 text-sm text-white">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">bg-sky-500</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-md shadow-sm opacity-100">Button A</button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">bg-sky-500/75</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-sky-500/75 text-white rounded-md shadow-sm opacity-100">Button B</button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">bg-sky-500/50</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-sky-500/50 text-white rounded-md shadow-sm opacity-100">Button C</button>
+    </div>
+  </div>
+</Example>
+
+```html
+<button className="bg-sky-500**/100** ..."></button>
+<button className="bg-sky-500**/75** ..."></button>
+<button className="bg-sky-500**/50** ..."></button>
+```
+
+You can use any value defined in your [opacity scale](/docs/opacity), or use arbitrary values if you need to deviate from your design tokens.
+
+```html
+<div className="bg-sky-500**/[.06]** ..."></div>
+```
+
+---
