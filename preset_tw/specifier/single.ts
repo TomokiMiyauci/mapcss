@@ -468,6 +468,48 @@ export const cursor: RecordSpecifier = {
     allowed: { cursor: "not-allowed" },
   },
 };
+function toCaretColor(color: string) {
+  return { "caret-color": color };
+}
+export const caret: EntriesSpecifier = [
+  [reSlashNumber, ([, body, numeric], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+
+    return parseNumeric(numeric).match({
+      some: (number) =>
+        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
+          some: toCaretColor,
+          none: undefined,
+        }),
+      none: undefined,
+    });
+  }],
+  [re$SlashBracket$, ([, body, alpha], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
+      rgbFn,
+    ).match({
+      some: toCaretColor,
+      none: undefined,
+    });
+  }],
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      return parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: toCaretColor,
+          none: () => toCaretColor(color),
+        });
+    },
+  ],
+];
 export const pointer: RecordSpecifier = {
   events: {
     none: { "pointer-events": "none" },

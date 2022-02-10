@@ -26874,6 +26874,1830 @@ const expects: [string, string][] = [
   ["cursor-nwse-resize", ".cursor-nwse-resize{cursor:nwse-resize;}"],
   ["cursor-zoom-in", ".cursor-zoom-in{cursor:zoom-in;}"],
   ["cursor-zoom-out", ".cursor-zoom-out{cursor:zoom-out;}"],
+  ["caret-inherit", ".caret-inherit{caret-color:inherit;}"],
+  ["caret-current", ".caret-current{caret-color:currentColor;}"],
+  ["caret-transparent", ".caret-transparent{caret-color:transparent;}"],
+  ["caret-black", ".caret-black{caret-color:rgb(0 0 0/1);}"],
+  ["caret-white", ".caret-white{caret-color:rgb(255 255 255/1);}"],
+  ["caret-slate-50", ".caret-slate-50{caret-color:rgb(248 250 252/1);}"],
+  ["caret-slate-100", ".caret-slate-100{caret-color:rgb(241 245 249/1);}"],
+  ["caret-slate-200", ".caret-slate-200{caret-color:rgb(226 232 240/1);}"],
+  ["caret-slate-300", ".caret-slate-300{caret-color:rgb(203 213 225/1);}"],
+  ["caret-slate-400", ".caret-slate-400{caret-color:rgb(148 163 184/1);}"],
+  ["caret-slate-500", ".caret-slate-500{caret-color:rgb(100 116 139/1);}"],
+  ["caret-slate-600", ".caret-slate-600{caret-color:rgb(71 85 105/1);}"],
+  ["caret-slate-700", ".caret-slate-700{caret-color:rgb(51 65 85/1);}"],
+  ["caret-slate-800", ".caret-slate-800{caret-color:rgb(30 41 59/1);}"],
+  ["caret-slate-900", ".caret-slate-900{caret-color:rgb(15 23 42/1);}"],
+  ["caret-gray-50", ".caret-gray-50{caret-color:rgb(249 250 251/1);}"],
+  ["caret-gray-100", ".caret-gray-100{caret-color:rgb(243 244 246/1);}"],
+  ["caret-gray-200", ".caret-gray-200{caret-color:rgb(229 231 235/1);}"],
+  ["caret-gray-300", ".caret-gray-300{caret-color:rgb(209 213 219/1);}"],
+  ["caret-gray-400", ".caret-gray-400{caret-color:rgb(156 163 175/1);}"],
+  ["caret-gray-500", ".caret-gray-500{caret-color:rgb(107 114 128/1);}"],
+  ["caret-gray-600", ".caret-gray-600{caret-color:rgb(75 85 99/1);}"],
+  ["caret-gray-700", ".caret-gray-700{caret-color:rgb(55 65 81/1);}"],
+  ["caret-gray-800", ".caret-gray-800{caret-color:rgb(31 41 55/1);}"],
+  ["caret-gray-900", ".caret-gray-900{caret-color:rgb(17 24 39/1);}"],
+  ["caret-zinc-50", ".caret-zinc-50{caret-color:rgb(250 250 250/1);}"],
+  ["caret-zinc-100", ".caret-zinc-100{caret-color:rgb(244 244 245/1);}"],
+  ["caret-zinc-200", ".caret-zinc-200{caret-color:rgb(228 228 231/1);}"],
+  ["caret-zinc-300", ".caret-zinc-300{caret-color:rgb(212 212 216/1);}"],
+  ["caret-zinc-400", ".caret-zinc-400{caret-color:rgb(161 161 170/1);}"],
+  ["caret-zinc-500", ".caret-zinc-500{caret-color:rgb(113 113 122/1);}"],
+  ["caret-zinc-600", ".caret-zinc-600{caret-color:rgb(82 82 91/1);}"],
+  ["caret-zinc-700", ".caret-zinc-700{caret-color:rgb(63 63 70/1);}"],
+  ["caret-zinc-800", ".caret-zinc-800{caret-color:rgb(39 39 42/1);}"],
+  ["caret-zinc-900", ".caret-zinc-900{caret-color:rgb(24 24 27/1);}"],
+  ["caret-neutral-50", ".caret-neutral-50{caret-color:rgb(250 250 250/1);}"],
+  ["caret-neutral-100", ".caret-neutral-100{caret-color:rgb(245 245 245/1);}"],
+  ["caret-neutral-200", ".caret-neutral-200{caret-color:rgb(229 229 229/1);}"],
+  ["caret-neutral-300", ".caret-neutral-300{caret-color:rgb(212 212 212/1);}"],
+  ["caret-neutral-400", ".caret-neutral-400{caret-color:rgb(163 163 163/1);}"],
+  ["caret-neutral-500", ".caret-neutral-500{caret-color:rgb(115 115 115/1);}"],
+  ["caret-neutral-600", ".caret-neutral-600{caret-color:rgb(82 82 82/1);}"],
+  ["caret-neutral-700", ".caret-neutral-700{caret-color:rgb(64 64 64/1);}"],
+  ["caret-neutral-800", ".caret-neutral-800{caret-color:rgb(38 38 38/1);}"],
+  ["caret-neutral-900", ".caret-neutral-900{caret-color:rgb(23 23 23/1);}"],
+  ["caret-stone-50", ".caret-stone-50{caret-color:rgb(250 250 249/1);}"],
+  ["caret-stone-100", ".caret-stone-100{caret-color:rgb(245 245 244/1);}"],
+  ["caret-stone-200", ".caret-stone-200{caret-color:rgb(231 229 228/1);}"],
+  ["caret-stone-300", ".caret-stone-300{caret-color:rgb(214 211 209/1);}"],
+  ["caret-stone-400", ".caret-stone-400{caret-color:rgb(168 162 158/1);}"],
+  ["caret-stone-500", ".caret-stone-500{caret-color:rgb(120 113 108/1);}"],
+  ["caret-stone-600", ".caret-stone-600{caret-color:rgb(87 83 78/1);}"],
+  ["caret-stone-700", ".caret-stone-700{caret-color:rgb(68 64 60/1);}"],
+  ["caret-stone-800", ".caret-stone-800{caret-color:rgb(41 37 36/1);}"],
+  ["caret-stone-900", ".caret-stone-900{caret-color:rgb(28 25 23/1);}"],
+  ["caret-red-50", ".caret-red-50{caret-color:rgb(254 242 242/1);}"],
+  ["caret-red-100", ".caret-red-100{caret-color:rgb(254 226 226/1);}"],
+  ["caret-red-200", ".caret-red-200{caret-color:rgb(254 202 202/1);}"],
+  ["caret-red-300", ".caret-red-300{caret-color:rgb(252 165 165/1);}"],
+  ["caret-red-400", ".caret-red-400{caret-color:rgb(248 113 113/1);}"],
+  ["caret-red-500", ".caret-red-500{caret-color:rgb(239 68 68/1);}"],
+  ["caret-red-600", ".caret-red-600{caret-color:rgb(220 38 38/1);}"],
+  ["caret-red-700", ".caret-red-700{caret-color:rgb(185 28 28/1);}"],
+  ["caret-red-800", ".caret-red-800{caret-color:rgb(153 27 27/1);}"],
+  ["caret-red-900", ".caret-red-900{caret-color:rgb(127 29 29/1);}"],
+  ["caret-orange-50", ".caret-orange-50{caret-color:rgb(255 247 237/1);}"],
+  ["caret-orange-100", ".caret-orange-100{caret-color:rgb(255 237 213/1);}"],
+  ["caret-orange-200", ".caret-orange-200{caret-color:rgb(254 215 170/1);}"],
+  ["caret-orange-300", ".caret-orange-300{caret-color:rgb(253 186 116/1);}"],
+  ["caret-orange-400", ".caret-orange-400{caret-color:rgb(251 146 60/1);}"],
+  ["caret-orange-500", ".caret-orange-500{caret-color:rgb(249 115 22/1);}"],
+  ["caret-orange-600", ".caret-orange-600{caret-color:rgb(234 88 12/1);}"],
+  ["caret-orange-700", ".caret-orange-700{caret-color:rgb(194 65 12/1);}"],
+  ["caret-orange-800", ".caret-orange-800{caret-color:rgb(154 52 18/1);}"],
+  ["caret-orange-900", ".caret-orange-900{caret-color:rgb(124 45 18/1);}"],
+  ["caret-amber-50", ".caret-amber-50{caret-color:rgb(255 251 235/1);}"],
+  ["caret-amber-100", ".caret-amber-100{caret-color:rgb(254 243 199/1);}"],
+  ["caret-amber-200", ".caret-amber-200{caret-color:rgb(253 230 138/1);}"],
+  ["caret-amber-300", ".caret-amber-300{caret-color:rgb(252 211 77/1);}"],
+  ["caret-amber-400", ".caret-amber-400{caret-color:rgb(251 191 36/1);}"],
+  ["caret-amber-500", ".caret-amber-500{caret-color:rgb(245 158 11/1);}"],
+  ["caret-amber-600", ".caret-amber-600{caret-color:rgb(217 119 6/1);}"],
+  ["caret-amber-700", ".caret-amber-700{caret-color:rgb(180 83 9/1);}"],
+  ["caret-amber-800", ".caret-amber-800{caret-color:rgb(146 64 14/1);}"],
+  ["caret-amber-900", ".caret-amber-900{caret-color:rgb(120 53 15/1);}"],
+  ["caret-yellow-50", ".caret-yellow-50{caret-color:rgb(254 252 232/1);}"],
+  ["caret-yellow-100", ".caret-yellow-100{caret-color:rgb(254 249 195/1);}"],
+  ["caret-yellow-200", ".caret-yellow-200{caret-color:rgb(254 240 138/1);}"],
+  ["caret-yellow-300", ".caret-yellow-300{caret-color:rgb(253 224 71/1);}"],
+  ["caret-yellow-400", ".caret-yellow-400{caret-color:rgb(250 204 21/1);}"],
+  ["caret-yellow-500", ".caret-yellow-500{caret-color:rgb(234 179 8/1);}"],
+  ["caret-yellow-600", ".caret-yellow-600{caret-color:rgb(202 138 4/1);}"],
+  ["caret-yellow-700", ".caret-yellow-700{caret-color:rgb(161 98 7/1);}"],
+  ["caret-yellow-800", ".caret-yellow-800{caret-color:rgb(133 77 14/1);}"],
+  ["caret-yellow-900", ".caret-yellow-900{caret-color:rgb(113 63 18/1);}"],
+  ["caret-lime-50", ".caret-lime-50{caret-color:rgb(247 254 231/1);}"],
+  ["caret-lime-100", ".caret-lime-100{caret-color:rgb(236 252 203/1);}"],
+  ["caret-lime-200", ".caret-lime-200{caret-color:rgb(217 249 157/1);}"],
+  ["caret-lime-300", ".caret-lime-300{caret-color:rgb(190 242 100/1);}"],
+  ["caret-lime-400", ".caret-lime-400{caret-color:rgb(163 230 53/1);}"],
+  ["caret-lime-500", ".caret-lime-500{caret-color:rgb(132 204 22/1);}"],
+  ["caret-lime-600", ".caret-lime-600{caret-color:rgb(101 163 13/1);}"],
+  ["caret-lime-700", ".caret-lime-700{caret-color:rgb(77 124 15/1);}"],
+  ["caret-lime-800", ".caret-lime-800{caret-color:rgb(63 98 18/1);}"],
+  ["caret-lime-900", ".caret-lime-900{caret-color:rgb(54 83 20/1);}"],
+  ["caret-green-50", ".caret-green-50{caret-color:rgb(240 253 244/1);}"],
+  ["caret-green-100", ".caret-green-100{caret-color:rgb(220 252 231/1);}"],
+  ["caret-green-200", ".caret-green-200{caret-color:rgb(187 247 208/1);}"],
+  ["caret-green-300", ".caret-green-300{caret-color:rgb(134 239 172/1);}"],
+  ["caret-green-400", ".caret-green-400{caret-color:rgb(74 222 128/1);}"],
+  ["caret-green-500", ".caret-green-500{caret-color:rgb(34 197 94/1);}"],
+  ["caret-green-600", ".caret-green-600{caret-color:rgb(22 163 74/1);}"],
+  ["caret-green-700", ".caret-green-700{caret-color:rgb(21 128 61/1);}"],
+  ["caret-green-800", ".caret-green-800{caret-color:rgb(22 101 52/1);}"],
+  ["caret-green-900", ".caret-green-900{caret-color:rgb(20 83 45/1);}"],
+  ["caret-emerald-50", ".caret-emerald-50{caret-color:rgb(236 253 245/1);}"],
+  ["caret-emerald-100", ".caret-emerald-100{caret-color:rgb(209 250 229/1);}"],
+  ["caret-emerald-200", ".caret-emerald-200{caret-color:rgb(167 243 208/1);}"],
+  ["caret-emerald-300", ".caret-emerald-300{caret-color:rgb(110 231 183/1);}"],
+  ["caret-emerald-400", ".caret-emerald-400{caret-color:rgb(52 211 153/1);}"],
+  ["caret-emerald-500", ".caret-emerald-500{caret-color:rgb(16 185 129/1);}"],
+  ["caret-emerald-600", ".caret-emerald-600{caret-color:rgb(5 150 105/1);}"],
+  ["caret-emerald-700", ".caret-emerald-700{caret-color:rgb(4 120 87/1);}"],
+  ["caret-emerald-800", ".caret-emerald-800{caret-color:rgb(6 95 70/1);}"],
+  ["caret-emerald-900", ".caret-emerald-900{caret-color:rgb(6 78 59/1);}"],
+  ["caret-teal-50", ".caret-teal-50{caret-color:rgb(240 253 250/1);}"],
+  ["caret-teal-100", ".caret-teal-100{caret-color:rgb(204 251 241/1);}"],
+  ["caret-teal-200", ".caret-teal-200{caret-color:rgb(153 246 228/1);}"],
+  ["caret-teal-300", ".caret-teal-300{caret-color:rgb(94 234 212/1);}"],
+  ["caret-teal-400", ".caret-teal-400{caret-color:rgb(45 212 191/1);}"],
+  ["caret-teal-500", ".caret-teal-500{caret-color:rgb(20 184 166/1);}"],
+  ["caret-teal-600", ".caret-teal-600{caret-color:rgb(13 148 136/1);}"],
+  ["caret-teal-700", ".caret-teal-700{caret-color:rgb(15 118 110/1);}"],
+  ["caret-teal-800", ".caret-teal-800{caret-color:rgb(17 94 89/1);}"],
+  ["caret-teal-900", ".caret-teal-900{caret-color:rgb(19 78 74/1);}"],
+  ["caret-cyan-50", ".caret-cyan-50{caret-color:rgb(236 254 255/1);}"],
+  ["caret-cyan-100", ".caret-cyan-100{caret-color:rgb(207 250 254/1);}"],
+  ["caret-cyan-200", ".caret-cyan-200{caret-color:rgb(165 243 252/1);}"],
+  ["caret-cyan-300", ".caret-cyan-300{caret-color:rgb(103 232 249/1);}"],
+  ["caret-cyan-400", ".caret-cyan-400{caret-color:rgb(34 211 238/1);}"],
+  ["caret-cyan-500", ".caret-cyan-500{caret-color:rgb(6 182 212/1);}"],
+  ["caret-cyan-600", ".caret-cyan-600{caret-color:rgb(8 145 178/1);}"],
+  ["caret-cyan-700", ".caret-cyan-700{caret-color:rgb(14 116 144/1);}"],
+  ["caret-cyan-800", ".caret-cyan-800{caret-color:rgb(21 94 117/1);}"],
+  ["caret-cyan-900", ".caret-cyan-900{caret-color:rgb(22 78 99/1);}"],
+  ["caret-sky-50", ".caret-sky-50{caret-color:rgb(240 249 255/1);}"],
+  ["caret-sky-100", ".caret-sky-100{caret-color:rgb(224 242 254/1);}"],
+  ["caret-sky-200", ".caret-sky-200{caret-color:rgb(186 230 253/1);}"],
+  ["caret-sky-300", ".caret-sky-300{caret-color:rgb(125 211 252/1);}"],
+  ["caret-sky-400", ".caret-sky-400{caret-color:rgb(56 189 248/1);}"],
+  ["caret-sky-500", ".caret-sky-500{caret-color:rgb(14 165 233/1);}"],
+  ["caret-sky-600", ".caret-sky-600{caret-color:rgb(2 132 199/1);}"],
+  ["caret-sky-700", ".caret-sky-700{caret-color:rgb(3 105 161/1);}"],
+  ["caret-sky-800", ".caret-sky-800{caret-color:rgb(7 89 133/1);}"],
+  ["caret-sky-900", ".caret-sky-900{caret-color:rgb(12 74 110/1);}"],
+  ["caret-blue-50", ".caret-blue-50{caret-color:rgb(239 246 255/1);}"],
+  ["caret-blue-100", ".caret-blue-100{caret-color:rgb(219 234 254/1);}"],
+  ["caret-blue-200", ".caret-blue-200{caret-color:rgb(191 219 254/1);}"],
+  ["caret-blue-300", ".caret-blue-300{caret-color:rgb(147 197 253/1);}"],
+  ["caret-blue-400", ".caret-blue-400{caret-color:rgb(96 165 250/1);}"],
+  ["caret-blue-500", ".caret-blue-500{caret-color:rgb(59 130 246/1);}"],
+  ["caret-blue-600", ".caret-blue-600{caret-color:rgb(37 99 235/1);}"],
+  ["caret-blue-700", ".caret-blue-700{caret-color:rgb(29 78 216/1);}"],
+  ["caret-blue-800", ".caret-blue-800{caret-color:rgb(30 64 175/1);}"],
+  ["caret-blue-900", ".caret-blue-900{caret-color:rgb(30 58 138/1);}"],
+  ["caret-indigo-50", ".caret-indigo-50{caret-color:rgb(238 242 255/1);}"],
+  ["caret-indigo-100", ".caret-indigo-100{caret-color:rgb(224 231 255/1);}"],
+  ["caret-indigo-200", ".caret-indigo-200{caret-color:rgb(199 210 254/1);}"],
+  ["caret-indigo-300", ".caret-indigo-300{caret-color:rgb(165 180 252/1);}"],
+  ["caret-indigo-400", ".caret-indigo-400{caret-color:rgb(129 140 248/1);}"],
+  ["caret-indigo-500", ".caret-indigo-500{caret-color:rgb(99 102 241/1);}"],
+  ["caret-indigo-600", ".caret-indigo-600{caret-color:rgb(79 70 229/1);}"],
+  ["caret-indigo-700", ".caret-indigo-700{caret-color:rgb(67 56 202/1);}"],
+  ["caret-indigo-800", ".caret-indigo-800{caret-color:rgb(55 48 163/1);}"],
+  ["caret-indigo-900", ".caret-indigo-900{caret-color:rgb(49 46 129/1);}"],
+  ["caret-violet-50", ".caret-violet-50{caret-color:rgb(245 243 255/1);}"],
+  ["caret-violet-100", ".caret-violet-100{caret-color:rgb(237 233 254/1);}"],
+  ["caret-violet-200", ".caret-violet-200{caret-color:rgb(221 214 254/1);}"],
+  ["caret-violet-300", ".caret-violet-300{caret-color:rgb(196 181 253/1);}"],
+  ["caret-violet-400", ".caret-violet-400{caret-color:rgb(167 139 250/1);}"],
+  ["caret-violet-500", ".caret-violet-500{caret-color:rgb(139 92 246/1);}"],
+  ["caret-violet-600", ".caret-violet-600{caret-color:rgb(124 58 237/1);}"],
+  ["caret-violet-700", ".caret-violet-700{caret-color:rgb(109 40 217/1);}"],
+  ["caret-violet-800", ".caret-violet-800{caret-color:rgb(91 33 182/1);}"],
+  ["caret-violet-900", ".caret-violet-900{caret-color:rgb(76 29 149/1);}"],
+  ["caret-purple-50", ".caret-purple-50{caret-color:rgb(250 245 255/1);}"],
+  ["caret-purple-100", ".caret-purple-100{caret-color:rgb(243 232 255/1);}"],
+  ["caret-purple-200", ".caret-purple-200{caret-color:rgb(233 213 255/1);}"],
+  ["caret-purple-300", ".caret-purple-300{caret-color:rgb(216 180 254/1);}"],
+  ["caret-purple-400", ".caret-purple-400{caret-color:rgb(192 132 252/1);}"],
+  ["caret-purple-500", ".caret-purple-500{caret-color:rgb(168 85 247/1);}"],
+  ["caret-purple-600", ".caret-purple-600{caret-color:rgb(147 51 234/1);}"],
+  ["caret-purple-700", ".caret-purple-700{caret-color:rgb(126 34 206/1);}"],
+  ["caret-purple-800", ".caret-purple-800{caret-color:rgb(107 33 168/1);}"],
+  ["caret-purple-900", ".caret-purple-900{caret-color:rgb(88 28 135/1);}"],
+  ["caret-fuchsia-50", ".caret-fuchsia-50{caret-color:rgb(253 244 255/1);}"],
+  ["caret-fuchsia-100", ".caret-fuchsia-100{caret-color:rgb(250 232 255/1);}"],
+  ["caret-fuchsia-200", ".caret-fuchsia-200{caret-color:rgb(245 208 254/1);}"],
+  ["caret-fuchsia-300", ".caret-fuchsia-300{caret-color:rgb(240 171 252/1);}"],
+  ["caret-fuchsia-400", ".caret-fuchsia-400{caret-color:rgb(232 121 249/1);}"],
+  ["caret-fuchsia-500", ".caret-fuchsia-500{caret-color:rgb(217 70 239/1);}"],
+  ["caret-fuchsia-600", ".caret-fuchsia-600{caret-color:rgb(192 38 211/1);}"],
+  ["caret-fuchsia-700", ".caret-fuchsia-700{caret-color:rgb(162 28 175/1);}"],
+  ["caret-fuchsia-800", ".caret-fuchsia-800{caret-color:rgb(134 25 143/1);}"],
+  ["caret-fuchsia-900", ".caret-fuchsia-900{caret-color:rgb(112 26 117/1);}"],
+  ["caret-pink-50", ".caret-pink-50{caret-color:rgb(253 242 248/1);}"],
+  ["caret-pink-100", ".caret-pink-100{caret-color:rgb(252 231 243/1);}"],
+  ["caret-pink-200", ".caret-pink-200{caret-color:rgb(251 207 232/1);}"],
+  ["caret-pink-300", ".caret-pink-300{caret-color:rgb(249 168 212/1);}"],
+  ["caret-pink-400", ".caret-pink-400{caret-color:rgb(244 114 182/1);}"],
+  ["caret-pink-500", ".caret-pink-500{caret-color:rgb(236 72 153/1);}"],
+  ["caret-pink-600", ".caret-pink-600{caret-color:rgb(219 39 119/1);}"],
+  ["caret-pink-700", ".caret-pink-700{caret-color:rgb(190 24 93/1);}"],
+  ["caret-pink-800", ".caret-pink-800{caret-color:rgb(157 23 77/1);}"],
+  ["caret-pink-900", ".caret-pink-900{caret-color:rgb(131 24 67/1);}"],
+  ["caret-rose-50", ".caret-rose-50{caret-color:rgb(255 241 242/1);}"],
+  ["caret-rose-100", ".caret-rose-100{caret-color:rgb(255 228 230/1);}"],
+  ["caret-rose-200", ".caret-rose-200{caret-color:rgb(254 205 211/1);}"],
+  ["caret-rose-300", ".caret-rose-300{caret-color:rgb(253 164 175/1);}"],
+  ["caret-rose-400", ".caret-rose-400{caret-color:rgb(251 113 133/1);}"],
+  ["caret-rose-500", ".caret-rose-500{caret-color:rgb(244 63 94/1);}"],
+  ["caret-rose-600", ".caret-rose-600{caret-color:rgb(225 29 72/1);}"],
+  ["caret-rose-700", ".caret-rose-700{caret-color:rgb(190 18 60/1);}"],
+  ["caret-rose-800", ".caret-rose-800{caret-color:rgb(159 18 57/1);}"],
+  ["caret-rose-900", ".caret-rose-900{caret-color:rgb(136 19 55/1);}"],
+  ["caret-black/50", ".caret-black\\/50{caret-color:rgb(0 0 0/.5);}"],
+  ["caret-white/50", ".caret-white\\/50{caret-color:rgb(255 255 255/.5);}"],
+  [
+    "caret-slate-50/50",
+    ".caret-slate-50\\/50{caret-color:rgb(248 250 252/.5);}",
+  ],
+  [
+    "caret-slate-100/50",
+    ".caret-slate-100\\/50{caret-color:rgb(241 245 249/.5);}",
+  ],
+  [
+    "caret-slate-200/50",
+    ".caret-slate-200\\/50{caret-color:rgb(226 232 240/.5);}",
+  ],
+  [
+    "caret-slate-300/50",
+    ".caret-slate-300\\/50{caret-color:rgb(203 213 225/.5);}",
+  ],
+  [
+    "caret-slate-400/50",
+    ".caret-slate-400\\/50{caret-color:rgb(148 163 184/.5);}",
+  ],
+  [
+    "caret-slate-500/50",
+    ".caret-slate-500\\/50{caret-color:rgb(100 116 139/.5);}",
+  ],
+  [
+    "caret-slate-600/50",
+    ".caret-slate-600\\/50{caret-color:rgb(71 85 105/.5);}",
+  ],
+  [
+    "caret-slate-700/50",
+    ".caret-slate-700\\/50{caret-color:rgb(51 65 85/.5);}",
+  ],
+  [
+    "caret-slate-800/50",
+    ".caret-slate-800\\/50{caret-color:rgb(30 41 59/.5);}",
+  ],
+  [
+    "caret-slate-900/50",
+    ".caret-slate-900\\/50{caret-color:rgb(15 23 42/.5);}",
+  ],
+  ["caret-gray-50/50", ".caret-gray-50\\/50{caret-color:rgb(249 250 251/.5);}"],
+  [
+    "caret-gray-100/50",
+    ".caret-gray-100\\/50{caret-color:rgb(243 244 246/.5);}",
+  ],
+  [
+    "caret-gray-200/50",
+    ".caret-gray-200\\/50{caret-color:rgb(229 231 235/.5);}",
+  ],
+  [
+    "caret-gray-300/50",
+    ".caret-gray-300\\/50{caret-color:rgb(209 213 219/.5);}",
+  ],
+  [
+    "caret-gray-400/50",
+    ".caret-gray-400\\/50{caret-color:rgb(156 163 175/.5);}",
+  ],
+  [
+    "caret-gray-500/50",
+    ".caret-gray-500\\/50{caret-color:rgb(107 114 128/.5);}",
+  ],
+  ["caret-gray-600/50", ".caret-gray-600\\/50{caret-color:rgb(75 85 99/.5);}"],
+  ["caret-gray-700/50", ".caret-gray-700\\/50{caret-color:rgb(55 65 81/.5);}"],
+  ["caret-gray-800/50", ".caret-gray-800\\/50{caret-color:rgb(31 41 55/.5);}"],
+  ["caret-gray-900/50", ".caret-gray-900\\/50{caret-color:rgb(17 24 39/.5);}"],
+  ["caret-zinc-50/50", ".caret-zinc-50\\/50{caret-color:rgb(250 250 250/.5);}"],
+  [
+    "caret-zinc-100/50",
+    ".caret-zinc-100\\/50{caret-color:rgb(244 244 245/.5);}",
+  ],
+  [
+    "caret-zinc-200/50",
+    ".caret-zinc-200\\/50{caret-color:rgb(228 228 231/.5);}",
+  ],
+  [
+    "caret-zinc-300/50",
+    ".caret-zinc-300\\/50{caret-color:rgb(212 212 216/.5);}",
+  ],
+  [
+    "caret-zinc-400/50",
+    ".caret-zinc-400\\/50{caret-color:rgb(161 161 170/.5);}",
+  ],
+  [
+    "caret-zinc-500/50",
+    ".caret-zinc-500\\/50{caret-color:rgb(113 113 122/.5);}",
+  ],
+  ["caret-zinc-600/50", ".caret-zinc-600\\/50{caret-color:rgb(82 82 91/.5);}"],
+  ["caret-zinc-700/50", ".caret-zinc-700\\/50{caret-color:rgb(63 63 70/.5);}"],
+  ["caret-zinc-800/50", ".caret-zinc-800\\/50{caret-color:rgb(39 39 42/.5);}"],
+  ["caret-zinc-900/50", ".caret-zinc-900\\/50{caret-color:rgb(24 24 27/.5);}"],
+  [
+    "caret-neutral-50/50",
+    ".caret-neutral-50\\/50{caret-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "caret-neutral-100/50",
+    ".caret-neutral-100\\/50{caret-color:rgb(245 245 245/.5);}",
+  ],
+  [
+    "caret-neutral-200/50",
+    ".caret-neutral-200\\/50{caret-color:rgb(229 229 229/.5);}",
+  ],
+  [
+    "caret-neutral-300/50",
+    ".caret-neutral-300\\/50{caret-color:rgb(212 212 212/.5);}",
+  ],
+  [
+    "caret-neutral-400/50",
+    ".caret-neutral-400\\/50{caret-color:rgb(163 163 163/.5);}",
+  ],
+  [
+    "caret-neutral-500/50",
+    ".caret-neutral-500\\/50{caret-color:rgb(115 115 115/.5);}",
+  ],
+  [
+    "caret-neutral-600/50",
+    ".caret-neutral-600\\/50{caret-color:rgb(82 82 82/.5);}",
+  ],
+  [
+    "caret-neutral-700/50",
+    ".caret-neutral-700\\/50{caret-color:rgb(64 64 64/.5);}",
+  ],
+  [
+    "caret-neutral-800/50",
+    ".caret-neutral-800\\/50{caret-color:rgb(38 38 38/.5);}",
+  ],
+  [
+    "caret-neutral-900/50",
+    ".caret-neutral-900\\/50{caret-color:rgb(23 23 23/.5);}",
+  ],
+  [
+    "caret-stone-50/50",
+    ".caret-stone-50\\/50{caret-color:rgb(250 250 249/.5);}",
+  ],
+  [
+    "caret-stone-100/50",
+    ".caret-stone-100\\/50{caret-color:rgb(245 245 244/.5);}",
+  ],
+  [
+    "caret-stone-200/50",
+    ".caret-stone-200\\/50{caret-color:rgb(231 229 228/.5);}",
+  ],
+  [
+    "caret-stone-300/50",
+    ".caret-stone-300\\/50{caret-color:rgb(214 211 209/.5);}",
+  ],
+  [
+    "caret-stone-400/50",
+    ".caret-stone-400\\/50{caret-color:rgb(168 162 158/.5);}",
+  ],
+  [
+    "caret-stone-500/50",
+    ".caret-stone-500\\/50{caret-color:rgb(120 113 108/.5);}",
+  ],
+  [
+    "caret-stone-600/50",
+    ".caret-stone-600\\/50{caret-color:rgb(87 83 78/.5);}",
+  ],
+  [
+    "caret-stone-700/50",
+    ".caret-stone-700\\/50{caret-color:rgb(68 64 60/.5);}",
+  ],
+  [
+    "caret-stone-800/50",
+    ".caret-stone-800\\/50{caret-color:rgb(41 37 36/.5);}",
+  ],
+  [
+    "caret-stone-900/50",
+    ".caret-stone-900\\/50{caret-color:rgb(28 25 23/.5);}",
+  ],
+  ["caret-red-50/50", ".caret-red-50\\/50{caret-color:rgb(254 242 242/.5);}"],
+  ["caret-red-100/50", ".caret-red-100\\/50{caret-color:rgb(254 226 226/.5);}"],
+  ["caret-red-200/50", ".caret-red-200\\/50{caret-color:rgb(254 202 202/.5);}"],
+  ["caret-red-300/50", ".caret-red-300\\/50{caret-color:rgb(252 165 165/.5);}"],
+  ["caret-red-400/50", ".caret-red-400\\/50{caret-color:rgb(248 113 113/.5);}"],
+  ["caret-red-500/50", ".caret-red-500\\/50{caret-color:rgb(239 68 68/.5);}"],
+  ["caret-red-600/50", ".caret-red-600\\/50{caret-color:rgb(220 38 38/.5);}"],
+  ["caret-red-700/50", ".caret-red-700\\/50{caret-color:rgb(185 28 28/.5);}"],
+  ["caret-red-800/50", ".caret-red-800\\/50{caret-color:rgb(153 27 27/.5);}"],
+  ["caret-red-900/50", ".caret-red-900\\/50{caret-color:rgb(127 29 29/.5);}"],
+  [
+    "caret-orange-50/50",
+    ".caret-orange-50\\/50{caret-color:rgb(255 247 237/.5);}",
+  ],
+  [
+    "caret-orange-100/50",
+    ".caret-orange-100\\/50{caret-color:rgb(255 237 213/.5);}",
+  ],
+  [
+    "caret-orange-200/50",
+    ".caret-orange-200\\/50{caret-color:rgb(254 215 170/.5);}",
+  ],
+  [
+    "caret-orange-300/50",
+    ".caret-orange-300\\/50{caret-color:rgb(253 186 116/.5);}",
+  ],
+  [
+    "caret-orange-400/50",
+    ".caret-orange-400\\/50{caret-color:rgb(251 146 60/.5);}",
+  ],
+  [
+    "caret-orange-500/50",
+    ".caret-orange-500\\/50{caret-color:rgb(249 115 22/.5);}",
+  ],
+  [
+    "caret-orange-600/50",
+    ".caret-orange-600\\/50{caret-color:rgb(234 88 12/.5);}",
+  ],
+  [
+    "caret-orange-700/50",
+    ".caret-orange-700\\/50{caret-color:rgb(194 65 12/.5);}",
+  ],
+  [
+    "caret-orange-800/50",
+    ".caret-orange-800\\/50{caret-color:rgb(154 52 18/.5);}",
+  ],
+  [
+    "caret-orange-900/50",
+    ".caret-orange-900\\/50{caret-color:rgb(124 45 18/.5);}",
+  ],
+  [
+    "caret-amber-50/50",
+    ".caret-amber-50\\/50{caret-color:rgb(255 251 235/.5);}",
+  ],
+  [
+    "caret-amber-100/50",
+    ".caret-amber-100\\/50{caret-color:rgb(254 243 199/.5);}",
+  ],
+  [
+    "caret-amber-200/50",
+    ".caret-amber-200\\/50{caret-color:rgb(253 230 138/.5);}",
+  ],
+  [
+    "caret-amber-300/50",
+    ".caret-amber-300\\/50{caret-color:rgb(252 211 77/.5);}",
+  ],
+  [
+    "caret-amber-400/50",
+    ".caret-amber-400\\/50{caret-color:rgb(251 191 36/.5);}",
+  ],
+  [
+    "caret-amber-500/50",
+    ".caret-amber-500\\/50{caret-color:rgb(245 158 11/.5);}",
+  ],
+  [
+    "caret-amber-600/50",
+    ".caret-amber-600\\/50{caret-color:rgb(217 119 6/.5);}",
+  ],
+  [
+    "caret-amber-700/50",
+    ".caret-amber-700\\/50{caret-color:rgb(180 83 9/.5);}",
+  ],
+  [
+    "caret-amber-800/50",
+    ".caret-amber-800\\/50{caret-color:rgb(146 64 14/.5);}",
+  ],
+  [
+    "caret-amber-900/50",
+    ".caret-amber-900\\/50{caret-color:rgb(120 53 15/.5);}",
+  ],
+  [
+    "caret-yellow-50/50",
+    ".caret-yellow-50\\/50{caret-color:rgb(254 252 232/.5);}",
+  ],
+  [
+    "caret-yellow-100/50",
+    ".caret-yellow-100\\/50{caret-color:rgb(254 249 195/.5);}",
+  ],
+  [
+    "caret-yellow-200/50",
+    ".caret-yellow-200\\/50{caret-color:rgb(254 240 138/.5);}",
+  ],
+  [
+    "caret-yellow-300/50",
+    ".caret-yellow-300\\/50{caret-color:rgb(253 224 71/.5);}",
+  ],
+  [
+    "caret-yellow-400/50",
+    ".caret-yellow-400\\/50{caret-color:rgb(250 204 21/.5);}",
+  ],
+  [
+    "caret-yellow-500/50",
+    ".caret-yellow-500\\/50{caret-color:rgb(234 179 8/.5);}",
+  ],
+  [
+    "caret-yellow-600/50",
+    ".caret-yellow-600\\/50{caret-color:rgb(202 138 4/.5);}",
+  ],
+  [
+    "caret-yellow-700/50",
+    ".caret-yellow-700\\/50{caret-color:rgb(161 98 7/.5);}",
+  ],
+  [
+    "caret-yellow-800/50",
+    ".caret-yellow-800\\/50{caret-color:rgb(133 77 14/.5);}",
+  ],
+  [
+    "caret-yellow-900/50",
+    ".caret-yellow-900\\/50{caret-color:rgb(113 63 18/.5);}",
+  ],
+  ["caret-lime-50/50", ".caret-lime-50\\/50{caret-color:rgb(247 254 231/.5);}"],
+  [
+    "caret-lime-100/50",
+    ".caret-lime-100\\/50{caret-color:rgb(236 252 203/.5);}",
+  ],
+  [
+    "caret-lime-200/50",
+    ".caret-lime-200\\/50{caret-color:rgb(217 249 157/.5);}",
+  ],
+  [
+    "caret-lime-300/50",
+    ".caret-lime-300\\/50{caret-color:rgb(190 242 100/.5);}",
+  ],
+  [
+    "caret-lime-400/50",
+    ".caret-lime-400\\/50{caret-color:rgb(163 230 53/.5);}",
+  ],
+  [
+    "caret-lime-500/50",
+    ".caret-lime-500\\/50{caret-color:rgb(132 204 22/.5);}",
+  ],
+  [
+    "caret-lime-600/50",
+    ".caret-lime-600\\/50{caret-color:rgb(101 163 13/.5);}",
+  ],
+  ["caret-lime-700/50", ".caret-lime-700\\/50{caret-color:rgb(77 124 15/.5);}"],
+  ["caret-lime-800/50", ".caret-lime-800\\/50{caret-color:rgb(63 98 18/.5);}"],
+  ["caret-lime-900/50", ".caret-lime-900\\/50{caret-color:rgb(54 83 20/.5);}"],
+  [
+    "caret-green-50/50",
+    ".caret-green-50\\/50{caret-color:rgb(240 253 244/.5);}",
+  ],
+  [
+    "caret-green-100/50",
+    ".caret-green-100\\/50{caret-color:rgb(220 252 231/.5);}",
+  ],
+  [
+    "caret-green-200/50",
+    ".caret-green-200\\/50{caret-color:rgb(187 247 208/.5);}",
+  ],
+  [
+    "caret-green-300/50",
+    ".caret-green-300\\/50{caret-color:rgb(134 239 172/.5);}",
+  ],
+  [
+    "caret-green-400/50",
+    ".caret-green-400\\/50{caret-color:rgb(74 222 128/.5);}",
+  ],
+  [
+    "caret-green-500/50",
+    ".caret-green-500\\/50{caret-color:rgb(34 197 94/.5);}",
+  ],
+  [
+    "caret-green-600/50",
+    ".caret-green-600\\/50{caret-color:rgb(22 163 74/.5);}",
+  ],
+  [
+    "caret-green-700/50",
+    ".caret-green-700\\/50{caret-color:rgb(21 128 61/.5);}",
+  ],
+  [
+    "caret-green-800/50",
+    ".caret-green-800\\/50{caret-color:rgb(22 101 52/.5);}",
+  ],
+  [
+    "caret-green-900/50",
+    ".caret-green-900\\/50{caret-color:rgb(20 83 45/.5);}",
+  ],
+  [
+    "caret-emerald-50/50",
+    ".caret-emerald-50\\/50{caret-color:rgb(236 253 245/.5);}",
+  ],
+  [
+    "caret-emerald-100/50",
+    ".caret-emerald-100\\/50{caret-color:rgb(209 250 229/.5);}",
+  ],
+  [
+    "caret-emerald-200/50",
+    ".caret-emerald-200\\/50{caret-color:rgb(167 243 208/.5);}",
+  ],
+  [
+    "caret-emerald-300/50",
+    ".caret-emerald-300\\/50{caret-color:rgb(110 231 183/.5);}",
+  ],
+  [
+    "caret-emerald-400/50",
+    ".caret-emerald-400\\/50{caret-color:rgb(52 211 153/.5);}",
+  ],
+  [
+    "caret-emerald-500/50",
+    ".caret-emerald-500\\/50{caret-color:rgb(16 185 129/.5);}",
+  ],
+  [
+    "caret-emerald-600/50",
+    ".caret-emerald-600\\/50{caret-color:rgb(5 150 105/.5);}",
+  ],
+  [
+    "caret-emerald-700/50",
+    ".caret-emerald-700\\/50{caret-color:rgb(4 120 87/.5);}",
+  ],
+  [
+    "caret-emerald-800/50",
+    ".caret-emerald-800\\/50{caret-color:rgb(6 95 70/.5);}",
+  ],
+  [
+    "caret-emerald-900/50",
+    ".caret-emerald-900\\/50{caret-color:rgb(6 78 59/.5);}",
+  ],
+  ["caret-teal-50/50", ".caret-teal-50\\/50{caret-color:rgb(240 253 250/.5);}"],
+  [
+    "caret-teal-100/50",
+    ".caret-teal-100\\/50{caret-color:rgb(204 251 241/.5);}",
+  ],
+  [
+    "caret-teal-200/50",
+    ".caret-teal-200\\/50{caret-color:rgb(153 246 228/.5);}",
+  ],
+  [
+    "caret-teal-300/50",
+    ".caret-teal-300\\/50{caret-color:rgb(94 234 212/.5);}",
+  ],
+  [
+    "caret-teal-400/50",
+    ".caret-teal-400\\/50{caret-color:rgb(45 212 191/.5);}",
+  ],
+  [
+    "caret-teal-500/50",
+    ".caret-teal-500\\/50{caret-color:rgb(20 184 166/.5);}",
+  ],
+  [
+    "caret-teal-600/50",
+    ".caret-teal-600\\/50{caret-color:rgb(13 148 136/.5);}",
+  ],
+  [
+    "caret-teal-700/50",
+    ".caret-teal-700\\/50{caret-color:rgb(15 118 110/.5);}",
+  ],
+  ["caret-teal-800/50", ".caret-teal-800\\/50{caret-color:rgb(17 94 89/.5);}"],
+  ["caret-teal-900/50", ".caret-teal-900\\/50{caret-color:rgb(19 78 74/.5);}"],
+  ["caret-cyan-50/50", ".caret-cyan-50\\/50{caret-color:rgb(236 254 255/.5);}"],
+  [
+    "caret-cyan-100/50",
+    ".caret-cyan-100\\/50{caret-color:rgb(207 250 254/.5);}",
+  ],
+  [
+    "caret-cyan-200/50",
+    ".caret-cyan-200\\/50{caret-color:rgb(165 243 252/.5);}",
+  ],
+  [
+    "caret-cyan-300/50",
+    ".caret-cyan-300\\/50{caret-color:rgb(103 232 249/.5);}",
+  ],
+  [
+    "caret-cyan-400/50",
+    ".caret-cyan-400\\/50{caret-color:rgb(34 211 238/.5);}",
+  ],
+  ["caret-cyan-500/50", ".caret-cyan-500\\/50{caret-color:rgb(6 182 212/.5);}"],
+  ["caret-cyan-600/50", ".caret-cyan-600\\/50{caret-color:rgb(8 145 178/.5);}"],
+  [
+    "caret-cyan-700/50",
+    ".caret-cyan-700\\/50{caret-color:rgb(14 116 144/.5);}",
+  ],
+  ["caret-cyan-800/50", ".caret-cyan-800\\/50{caret-color:rgb(21 94 117/.5);}"],
+  ["caret-cyan-900/50", ".caret-cyan-900\\/50{caret-color:rgb(22 78 99/.5);}"],
+  ["caret-sky-50/50", ".caret-sky-50\\/50{caret-color:rgb(240 249 255/.5);}"],
+  ["caret-sky-100/50", ".caret-sky-100\\/50{caret-color:rgb(224 242 254/.5);}"],
+  ["caret-sky-200/50", ".caret-sky-200\\/50{caret-color:rgb(186 230 253/.5);}"],
+  ["caret-sky-300/50", ".caret-sky-300\\/50{caret-color:rgb(125 211 252/.5);}"],
+  ["caret-sky-400/50", ".caret-sky-400\\/50{caret-color:rgb(56 189 248/.5);}"],
+  ["caret-sky-500/50", ".caret-sky-500\\/50{caret-color:rgb(14 165 233/.5);}"],
+  ["caret-sky-600/50", ".caret-sky-600\\/50{caret-color:rgb(2 132 199/.5);}"],
+  ["caret-sky-700/50", ".caret-sky-700\\/50{caret-color:rgb(3 105 161/.5);}"],
+  ["caret-sky-800/50", ".caret-sky-800\\/50{caret-color:rgb(7 89 133/.5);}"],
+  ["caret-sky-900/50", ".caret-sky-900\\/50{caret-color:rgb(12 74 110/.5);}"],
+  ["caret-blue-50/50", ".caret-blue-50\\/50{caret-color:rgb(239 246 255/.5);}"],
+  [
+    "caret-blue-100/50",
+    ".caret-blue-100\\/50{caret-color:rgb(219 234 254/.5);}",
+  ],
+  [
+    "caret-blue-200/50",
+    ".caret-blue-200\\/50{caret-color:rgb(191 219 254/.5);}",
+  ],
+  [
+    "caret-blue-300/50",
+    ".caret-blue-300\\/50{caret-color:rgb(147 197 253/.5);}",
+  ],
+  [
+    "caret-blue-400/50",
+    ".caret-blue-400\\/50{caret-color:rgb(96 165 250/.5);}",
+  ],
+  [
+    "caret-blue-500/50",
+    ".caret-blue-500\\/50{caret-color:rgb(59 130 246/.5);}",
+  ],
+  ["caret-blue-600/50", ".caret-blue-600\\/50{caret-color:rgb(37 99 235/.5);}"],
+  ["caret-blue-700/50", ".caret-blue-700\\/50{caret-color:rgb(29 78 216/.5);}"],
+  ["caret-blue-800/50", ".caret-blue-800\\/50{caret-color:rgb(30 64 175/.5);}"],
+  ["caret-blue-900/50", ".caret-blue-900\\/50{caret-color:rgb(30 58 138/.5);}"],
+  [
+    "caret-indigo-50/50",
+    ".caret-indigo-50\\/50{caret-color:rgb(238 242 255/.5);}",
+  ],
+  [
+    "caret-indigo-100/50",
+    ".caret-indigo-100\\/50{caret-color:rgb(224 231 255/.5);}",
+  ],
+  [
+    "caret-indigo-200/50",
+    ".caret-indigo-200\\/50{caret-color:rgb(199 210 254/.5);}",
+  ],
+  [
+    "caret-indigo-300/50",
+    ".caret-indigo-300\\/50{caret-color:rgb(165 180 252/.5);}",
+  ],
+  [
+    "caret-indigo-400/50",
+    ".caret-indigo-400\\/50{caret-color:rgb(129 140 248/.5);}",
+  ],
+  [
+    "caret-indigo-500/50",
+    ".caret-indigo-500\\/50{caret-color:rgb(99 102 241/.5);}",
+  ],
+  [
+    "caret-indigo-600/50",
+    ".caret-indigo-600\\/50{caret-color:rgb(79 70 229/.5);}",
+  ],
+  [
+    "caret-indigo-700/50",
+    ".caret-indigo-700\\/50{caret-color:rgb(67 56 202/.5);}",
+  ],
+  [
+    "caret-indigo-800/50",
+    ".caret-indigo-800\\/50{caret-color:rgb(55 48 163/.5);}",
+  ],
+  [
+    "caret-indigo-900/50",
+    ".caret-indigo-900\\/50{caret-color:rgb(49 46 129/.5);}",
+  ],
+  [
+    "caret-violet-50/50",
+    ".caret-violet-50\\/50{caret-color:rgb(245 243 255/.5);}",
+  ],
+  [
+    "caret-violet-100/50",
+    ".caret-violet-100\\/50{caret-color:rgb(237 233 254/.5);}",
+  ],
+  [
+    "caret-violet-200/50",
+    ".caret-violet-200\\/50{caret-color:rgb(221 214 254/.5);}",
+  ],
+  [
+    "caret-violet-300/50",
+    ".caret-violet-300\\/50{caret-color:rgb(196 181 253/.5);}",
+  ],
+  [
+    "caret-violet-400/50",
+    ".caret-violet-400\\/50{caret-color:rgb(167 139 250/.5);}",
+  ],
+  [
+    "caret-violet-500/50",
+    ".caret-violet-500\\/50{caret-color:rgb(139 92 246/.5);}",
+  ],
+  [
+    "caret-violet-600/50",
+    ".caret-violet-600\\/50{caret-color:rgb(124 58 237/.5);}",
+  ],
+  [
+    "caret-violet-700/50",
+    ".caret-violet-700\\/50{caret-color:rgb(109 40 217/.5);}",
+  ],
+  [
+    "caret-violet-800/50",
+    ".caret-violet-800\\/50{caret-color:rgb(91 33 182/.5);}",
+  ],
+  [
+    "caret-violet-900/50",
+    ".caret-violet-900\\/50{caret-color:rgb(76 29 149/.5);}",
+  ],
+  [
+    "caret-purple-50/50",
+    ".caret-purple-50\\/50{caret-color:rgb(250 245 255/.5);}",
+  ],
+  [
+    "caret-purple-100/50",
+    ".caret-purple-100\\/50{caret-color:rgb(243 232 255/.5);}",
+  ],
+  [
+    "caret-purple-200/50",
+    ".caret-purple-200\\/50{caret-color:rgb(233 213 255/.5);}",
+  ],
+  [
+    "caret-purple-300/50",
+    ".caret-purple-300\\/50{caret-color:rgb(216 180 254/.5);}",
+  ],
+  [
+    "caret-purple-400/50",
+    ".caret-purple-400\\/50{caret-color:rgb(192 132 252/.5);}",
+  ],
+  [
+    "caret-purple-500/50",
+    ".caret-purple-500\\/50{caret-color:rgb(168 85 247/.5);}",
+  ],
+  [
+    "caret-purple-600/50",
+    ".caret-purple-600\\/50{caret-color:rgb(147 51 234/.5);}",
+  ],
+  [
+    "caret-purple-700/50",
+    ".caret-purple-700\\/50{caret-color:rgb(126 34 206/.5);}",
+  ],
+  [
+    "caret-purple-800/50",
+    ".caret-purple-800\\/50{caret-color:rgb(107 33 168/.5);}",
+  ],
+  [
+    "caret-purple-900/50",
+    ".caret-purple-900\\/50{caret-color:rgb(88 28 135/.5);}",
+  ],
+  [
+    "caret-fuchsia-50/50",
+    ".caret-fuchsia-50\\/50{caret-color:rgb(253 244 255/.5);}",
+  ],
+  [
+    "caret-fuchsia-100/50",
+    ".caret-fuchsia-100\\/50{caret-color:rgb(250 232 255/.5);}",
+  ],
+  [
+    "caret-fuchsia-200/50",
+    ".caret-fuchsia-200\\/50{caret-color:rgb(245 208 254/.5);}",
+  ],
+  [
+    "caret-fuchsia-300/50",
+    ".caret-fuchsia-300\\/50{caret-color:rgb(240 171 252/.5);}",
+  ],
+  [
+    "caret-fuchsia-400/50",
+    ".caret-fuchsia-400\\/50{caret-color:rgb(232 121 249/.5);}",
+  ],
+  [
+    "caret-fuchsia-500/50",
+    ".caret-fuchsia-500\\/50{caret-color:rgb(217 70 239/.5);}",
+  ],
+  [
+    "caret-fuchsia-600/50",
+    ".caret-fuchsia-600\\/50{caret-color:rgb(192 38 211/.5);}",
+  ],
+  [
+    "caret-fuchsia-700/50",
+    ".caret-fuchsia-700\\/50{caret-color:rgb(162 28 175/.5);}",
+  ],
+  [
+    "caret-fuchsia-800/50",
+    ".caret-fuchsia-800\\/50{caret-color:rgb(134 25 143/.5);}",
+  ],
+  [
+    "caret-fuchsia-900/50",
+    ".caret-fuchsia-900\\/50{caret-color:rgb(112 26 117/.5);}",
+  ],
+  ["caret-pink-50/50", ".caret-pink-50\\/50{caret-color:rgb(253 242 248/.5);}"],
+  [
+    "caret-pink-100/50",
+    ".caret-pink-100\\/50{caret-color:rgb(252 231 243/.5);}",
+  ],
+  [
+    "caret-pink-200/50",
+    ".caret-pink-200\\/50{caret-color:rgb(251 207 232/.5);}",
+  ],
+  [
+    "caret-pink-300/50",
+    ".caret-pink-300\\/50{caret-color:rgb(249 168 212/.5);}",
+  ],
+  [
+    "caret-pink-400/50",
+    ".caret-pink-400\\/50{caret-color:rgb(244 114 182/.5);}",
+  ],
+  [
+    "caret-pink-500/50",
+    ".caret-pink-500\\/50{caret-color:rgb(236 72 153/.5);}",
+  ],
+  [
+    "caret-pink-600/50",
+    ".caret-pink-600\\/50{caret-color:rgb(219 39 119/.5);}",
+  ],
+  ["caret-pink-700/50", ".caret-pink-700\\/50{caret-color:rgb(190 24 93/.5);}"],
+  ["caret-pink-800/50", ".caret-pink-800\\/50{caret-color:rgb(157 23 77/.5);}"],
+  ["caret-pink-900/50", ".caret-pink-900\\/50{caret-color:rgb(131 24 67/.5);}"],
+  ["caret-rose-50/50", ".caret-rose-50\\/50{caret-color:rgb(255 241 242/.5);}"],
+  [
+    "caret-rose-100/50",
+    ".caret-rose-100\\/50{caret-color:rgb(255 228 230/.5);}",
+  ],
+  [
+    "caret-rose-200/50",
+    ".caret-rose-200\\/50{caret-color:rgb(254 205 211/.5);}",
+  ],
+  [
+    "caret-rose-300/50",
+    ".caret-rose-300\\/50{caret-color:rgb(253 164 175/.5);}",
+  ],
+  [
+    "caret-rose-400/50",
+    ".caret-rose-400\\/50{caret-color:rgb(251 113 133/.5);}",
+  ],
+  ["caret-rose-500/50", ".caret-rose-500\\/50{caret-color:rgb(244 63 94/.5);}"],
+  ["caret-rose-600/50", ".caret-rose-600\\/50{caret-color:rgb(225 29 72/.5);}"],
+  ["caret-rose-700/50", ".caret-rose-700\\/50{caret-color:rgb(190 18 60/.5);}"],
+  ["caret-rose-800/50", ".caret-rose-800\\/50{caret-color:rgb(159 18 57/.5);}"],
+  ["caret-rose-900/50", ".caret-rose-900\\/50{caret-color:rgb(136 19 55/.5);}"],
+  ["caret-inherit/[1%]", ""],
+  ["caret-current/[1%]", ""],
+  ["caret-transparent/[1%]", ""],
+  ["caret-black/[1%]", ".caret-black\\/\\[1\\%\\]{caret-color:rgb(0 0 0/1%);}"],
+  [
+    "caret-white/[1%]",
+    ".caret-white\\/\\[1\\%\\]{caret-color:rgb(255 255 255/1%);}",
+  ],
+  [
+    "caret-slate-50/[1%]",
+    ".caret-slate-50\\/\\[1\\%\\]{caret-color:rgb(248 250 252/1%);}",
+  ],
+  [
+    "caret-slate-100/[1%]",
+    ".caret-slate-100\\/\\[1\\%\\]{caret-color:rgb(241 245 249/1%);}",
+  ],
+  [
+    "caret-slate-200/[1%]",
+    ".caret-slate-200\\/\\[1\\%\\]{caret-color:rgb(226 232 240/1%);}",
+  ],
+  [
+    "caret-slate-300/[1%]",
+    ".caret-slate-300\\/\\[1\\%\\]{caret-color:rgb(203 213 225/1%);}",
+  ],
+  [
+    "caret-slate-400/[1%]",
+    ".caret-slate-400\\/\\[1\\%\\]{caret-color:rgb(148 163 184/1%);}",
+  ],
+  [
+    "caret-slate-500/[1%]",
+    ".caret-slate-500\\/\\[1\\%\\]{caret-color:rgb(100 116 139/1%);}",
+  ],
+  [
+    "caret-slate-600/[1%]",
+    ".caret-slate-600\\/\\[1\\%\\]{caret-color:rgb(71 85 105/1%);}",
+  ],
+  [
+    "caret-slate-700/[1%]",
+    ".caret-slate-700\\/\\[1\\%\\]{caret-color:rgb(51 65 85/1%);}",
+  ],
+  [
+    "caret-slate-800/[1%]",
+    ".caret-slate-800\\/\\[1\\%\\]{caret-color:rgb(30 41 59/1%);}",
+  ],
+  [
+    "caret-slate-900/[1%]",
+    ".caret-slate-900\\/\\[1\\%\\]{caret-color:rgb(15 23 42/1%);}",
+  ],
+  [
+    "caret-gray-50/[1%]",
+    ".caret-gray-50\\/\\[1\\%\\]{caret-color:rgb(249 250 251/1%);}",
+  ],
+  [
+    "caret-gray-100/[1%]",
+    ".caret-gray-100\\/\\[1\\%\\]{caret-color:rgb(243 244 246/1%);}",
+  ],
+  [
+    "caret-gray-200/[1%]",
+    ".caret-gray-200\\/\\[1\\%\\]{caret-color:rgb(229 231 235/1%);}",
+  ],
+  [
+    "caret-gray-300/[1%]",
+    ".caret-gray-300\\/\\[1\\%\\]{caret-color:rgb(209 213 219/1%);}",
+  ],
+  [
+    "caret-gray-400/[1%]",
+    ".caret-gray-400\\/\\[1\\%\\]{caret-color:rgb(156 163 175/1%);}",
+  ],
+  [
+    "caret-gray-500/[1%]",
+    ".caret-gray-500\\/\\[1\\%\\]{caret-color:rgb(107 114 128/1%);}",
+  ],
+  [
+    "caret-gray-600/[1%]",
+    ".caret-gray-600\\/\\[1\\%\\]{caret-color:rgb(75 85 99/1%);}",
+  ],
+  [
+    "caret-gray-700/[1%]",
+    ".caret-gray-700\\/\\[1\\%\\]{caret-color:rgb(55 65 81/1%);}",
+  ],
+  [
+    "caret-gray-800/[1%]",
+    ".caret-gray-800\\/\\[1\\%\\]{caret-color:rgb(31 41 55/1%);}",
+  ],
+  [
+    "caret-gray-900/[1%]",
+    ".caret-gray-900\\/\\[1\\%\\]{caret-color:rgb(17 24 39/1%);}",
+  ],
+  [
+    "caret-zinc-50/[1%]",
+    ".caret-zinc-50\\/\\[1\\%\\]{caret-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "caret-zinc-100/[1%]",
+    ".caret-zinc-100\\/\\[1\\%\\]{caret-color:rgb(244 244 245/1%);}",
+  ],
+  [
+    "caret-zinc-200/[1%]",
+    ".caret-zinc-200\\/\\[1\\%\\]{caret-color:rgb(228 228 231/1%);}",
+  ],
+  [
+    "caret-zinc-300/[1%]",
+    ".caret-zinc-300\\/\\[1\\%\\]{caret-color:rgb(212 212 216/1%);}",
+  ],
+  [
+    "caret-zinc-400/[1%]",
+    ".caret-zinc-400\\/\\[1\\%\\]{caret-color:rgb(161 161 170/1%);}",
+  ],
+  [
+    "caret-zinc-500/[1%]",
+    ".caret-zinc-500\\/\\[1\\%\\]{caret-color:rgb(113 113 122/1%);}",
+  ],
+  [
+    "caret-zinc-600/[1%]",
+    ".caret-zinc-600\\/\\[1\\%\\]{caret-color:rgb(82 82 91/1%);}",
+  ],
+  [
+    "caret-zinc-700/[1%]",
+    ".caret-zinc-700\\/\\[1\\%\\]{caret-color:rgb(63 63 70/1%);}",
+  ],
+  [
+    "caret-zinc-800/[1%]",
+    ".caret-zinc-800\\/\\[1\\%\\]{caret-color:rgb(39 39 42/1%);}",
+  ],
+  [
+    "caret-zinc-900/[1%]",
+    ".caret-zinc-900\\/\\[1\\%\\]{caret-color:rgb(24 24 27/1%);}",
+  ],
+  [
+    "caret-neutral-50/[1%]",
+    ".caret-neutral-50\\/\\[1\\%\\]{caret-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "caret-neutral-100/[1%]",
+    ".caret-neutral-100\\/\\[1\\%\\]{caret-color:rgb(245 245 245/1%);}",
+  ],
+  [
+    "caret-neutral-200/[1%]",
+    ".caret-neutral-200\\/\\[1\\%\\]{caret-color:rgb(229 229 229/1%);}",
+  ],
+  [
+    "caret-neutral-300/[1%]",
+    ".caret-neutral-300\\/\\[1\\%\\]{caret-color:rgb(212 212 212/1%);}",
+  ],
+  [
+    "caret-neutral-400/[1%]",
+    ".caret-neutral-400\\/\\[1\\%\\]{caret-color:rgb(163 163 163/1%);}",
+  ],
+  [
+    "caret-neutral-500/[1%]",
+    ".caret-neutral-500\\/\\[1\\%\\]{caret-color:rgb(115 115 115/1%);}",
+  ],
+  [
+    "caret-neutral-600/[1%]",
+    ".caret-neutral-600\\/\\[1\\%\\]{caret-color:rgb(82 82 82/1%);}",
+  ],
+  [
+    "caret-neutral-700/[1%]",
+    ".caret-neutral-700\\/\\[1\\%\\]{caret-color:rgb(64 64 64/1%);}",
+  ],
+  [
+    "caret-neutral-800/[1%]",
+    ".caret-neutral-800\\/\\[1\\%\\]{caret-color:rgb(38 38 38/1%);}",
+  ],
+  [
+    "caret-neutral-900/[1%]",
+    ".caret-neutral-900\\/\\[1\\%\\]{caret-color:rgb(23 23 23/1%);}",
+  ],
+  [
+    "caret-stone-50/[1%]",
+    ".caret-stone-50\\/\\[1\\%\\]{caret-color:rgb(250 250 249/1%);}",
+  ],
+  [
+    "caret-stone-100/[1%]",
+    ".caret-stone-100\\/\\[1\\%\\]{caret-color:rgb(245 245 244/1%);}",
+  ],
+  [
+    "caret-stone-200/[1%]",
+    ".caret-stone-200\\/\\[1\\%\\]{caret-color:rgb(231 229 228/1%);}",
+  ],
+  [
+    "caret-stone-300/[1%]",
+    ".caret-stone-300\\/\\[1\\%\\]{caret-color:rgb(214 211 209/1%);}",
+  ],
+  [
+    "caret-stone-400/[1%]",
+    ".caret-stone-400\\/\\[1\\%\\]{caret-color:rgb(168 162 158/1%);}",
+  ],
+  [
+    "caret-stone-500/[1%]",
+    ".caret-stone-500\\/\\[1\\%\\]{caret-color:rgb(120 113 108/1%);}",
+  ],
+  [
+    "caret-stone-600/[1%]",
+    ".caret-stone-600\\/\\[1\\%\\]{caret-color:rgb(87 83 78/1%);}",
+  ],
+  [
+    "caret-stone-700/[1%]",
+    ".caret-stone-700\\/\\[1\\%\\]{caret-color:rgb(68 64 60/1%);}",
+  ],
+  [
+    "caret-stone-800/[1%]",
+    ".caret-stone-800\\/\\[1\\%\\]{caret-color:rgb(41 37 36/1%);}",
+  ],
+  [
+    "caret-stone-900/[1%]",
+    ".caret-stone-900\\/\\[1\\%\\]{caret-color:rgb(28 25 23/1%);}",
+  ],
+  [
+    "caret-red-50/[1%]",
+    ".caret-red-50\\/\\[1\\%\\]{caret-color:rgb(254 242 242/1%);}",
+  ],
+  [
+    "caret-red-100/[1%]",
+    ".caret-red-100\\/\\[1\\%\\]{caret-color:rgb(254 226 226/1%);}",
+  ],
+  [
+    "caret-red-200/[1%]",
+    ".caret-red-200\\/\\[1\\%\\]{caret-color:rgb(254 202 202/1%);}",
+  ],
+  [
+    "caret-red-300/[1%]",
+    ".caret-red-300\\/\\[1\\%\\]{caret-color:rgb(252 165 165/1%);}",
+  ],
+  [
+    "caret-red-400/[1%]",
+    ".caret-red-400\\/\\[1\\%\\]{caret-color:rgb(248 113 113/1%);}",
+  ],
+  [
+    "caret-red-500/[1%]",
+    ".caret-red-500\\/\\[1\\%\\]{caret-color:rgb(239 68 68/1%);}",
+  ],
+  [
+    "caret-red-600/[1%]",
+    ".caret-red-600\\/\\[1\\%\\]{caret-color:rgb(220 38 38/1%);}",
+  ],
+  [
+    "caret-red-700/[1%]",
+    ".caret-red-700\\/\\[1\\%\\]{caret-color:rgb(185 28 28/1%);}",
+  ],
+  [
+    "caret-red-800/[1%]",
+    ".caret-red-800\\/\\[1\\%\\]{caret-color:rgb(153 27 27/1%);}",
+  ],
+  [
+    "caret-red-900/[1%]",
+    ".caret-red-900\\/\\[1\\%\\]{caret-color:rgb(127 29 29/1%);}",
+  ],
+  [
+    "caret-orange-50/[1%]",
+    ".caret-orange-50\\/\\[1\\%\\]{caret-color:rgb(255 247 237/1%);}",
+  ],
+  [
+    "caret-orange-100/[1%]",
+    ".caret-orange-100\\/\\[1\\%\\]{caret-color:rgb(255 237 213/1%);}",
+  ],
+  [
+    "caret-orange-200/[1%]",
+    ".caret-orange-200\\/\\[1\\%\\]{caret-color:rgb(254 215 170/1%);}",
+  ],
+  [
+    "caret-orange-300/[1%]",
+    ".caret-orange-300\\/\\[1\\%\\]{caret-color:rgb(253 186 116/1%);}",
+  ],
+  [
+    "caret-orange-400/[1%]",
+    ".caret-orange-400\\/\\[1\\%\\]{caret-color:rgb(251 146 60/1%);}",
+  ],
+  [
+    "caret-orange-500/[1%]",
+    ".caret-orange-500\\/\\[1\\%\\]{caret-color:rgb(249 115 22/1%);}",
+  ],
+  [
+    "caret-orange-600/[1%]",
+    ".caret-orange-600\\/\\[1\\%\\]{caret-color:rgb(234 88 12/1%);}",
+  ],
+  [
+    "caret-orange-700/[1%]",
+    ".caret-orange-700\\/\\[1\\%\\]{caret-color:rgb(194 65 12/1%);}",
+  ],
+  [
+    "caret-orange-800/[1%]",
+    ".caret-orange-800\\/\\[1\\%\\]{caret-color:rgb(154 52 18/1%);}",
+  ],
+  [
+    "caret-orange-900/[1%]",
+    ".caret-orange-900\\/\\[1\\%\\]{caret-color:rgb(124 45 18/1%);}",
+  ],
+  [
+    "caret-amber-50/[1%]",
+    ".caret-amber-50\\/\\[1\\%\\]{caret-color:rgb(255 251 235/1%);}",
+  ],
+  [
+    "caret-amber-100/[1%]",
+    ".caret-amber-100\\/\\[1\\%\\]{caret-color:rgb(254 243 199/1%);}",
+  ],
+  [
+    "caret-amber-200/[1%]",
+    ".caret-amber-200\\/\\[1\\%\\]{caret-color:rgb(253 230 138/1%);}",
+  ],
+  [
+    "caret-amber-300/[1%]",
+    ".caret-amber-300\\/\\[1\\%\\]{caret-color:rgb(252 211 77/1%);}",
+  ],
+  [
+    "caret-amber-400/[1%]",
+    ".caret-amber-400\\/\\[1\\%\\]{caret-color:rgb(251 191 36/1%);}",
+  ],
+  [
+    "caret-amber-500/[1%]",
+    ".caret-amber-500\\/\\[1\\%\\]{caret-color:rgb(245 158 11/1%);}",
+  ],
+  [
+    "caret-amber-600/[1%]",
+    ".caret-amber-600\\/\\[1\\%\\]{caret-color:rgb(217 119 6/1%);}",
+  ],
+  [
+    "caret-amber-700/[1%]",
+    ".caret-amber-700\\/\\[1\\%\\]{caret-color:rgb(180 83 9/1%);}",
+  ],
+  [
+    "caret-amber-800/[1%]",
+    ".caret-amber-800\\/\\[1\\%\\]{caret-color:rgb(146 64 14/1%);}",
+  ],
+  [
+    "caret-amber-900/[1%]",
+    ".caret-amber-900\\/\\[1\\%\\]{caret-color:rgb(120 53 15/1%);}",
+  ],
+  [
+    "caret-yellow-50/[1%]",
+    ".caret-yellow-50\\/\\[1\\%\\]{caret-color:rgb(254 252 232/1%);}",
+  ],
+  [
+    "caret-yellow-100/[1%]",
+    ".caret-yellow-100\\/\\[1\\%\\]{caret-color:rgb(254 249 195/1%);}",
+  ],
+  [
+    "caret-yellow-200/[1%]",
+    ".caret-yellow-200\\/\\[1\\%\\]{caret-color:rgb(254 240 138/1%);}",
+  ],
+  [
+    "caret-yellow-300/[1%]",
+    ".caret-yellow-300\\/\\[1\\%\\]{caret-color:rgb(253 224 71/1%);}",
+  ],
+  [
+    "caret-yellow-400/[1%]",
+    ".caret-yellow-400\\/\\[1\\%\\]{caret-color:rgb(250 204 21/1%);}",
+  ],
+  [
+    "caret-yellow-500/[1%]",
+    ".caret-yellow-500\\/\\[1\\%\\]{caret-color:rgb(234 179 8/1%);}",
+  ],
+  [
+    "caret-yellow-600/[1%]",
+    ".caret-yellow-600\\/\\[1\\%\\]{caret-color:rgb(202 138 4/1%);}",
+  ],
+  [
+    "caret-yellow-700/[1%]",
+    ".caret-yellow-700\\/\\[1\\%\\]{caret-color:rgb(161 98 7/1%);}",
+  ],
+  [
+    "caret-yellow-800/[1%]",
+    ".caret-yellow-800\\/\\[1\\%\\]{caret-color:rgb(133 77 14/1%);}",
+  ],
+  [
+    "caret-yellow-900/[1%]",
+    ".caret-yellow-900\\/\\[1\\%\\]{caret-color:rgb(113 63 18/1%);}",
+  ],
+  [
+    "caret-lime-50/[1%]",
+    ".caret-lime-50\\/\\[1\\%\\]{caret-color:rgb(247 254 231/1%);}",
+  ],
+  [
+    "caret-lime-100/[1%]",
+    ".caret-lime-100\\/\\[1\\%\\]{caret-color:rgb(236 252 203/1%);}",
+  ],
+  [
+    "caret-lime-200/[1%]",
+    ".caret-lime-200\\/\\[1\\%\\]{caret-color:rgb(217 249 157/1%);}",
+  ],
+  [
+    "caret-lime-300/[1%]",
+    ".caret-lime-300\\/\\[1\\%\\]{caret-color:rgb(190 242 100/1%);}",
+  ],
+  [
+    "caret-lime-400/[1%]",
+    ".caret-lime-400\\/\\[1\\%\\]{caret-color:rgb(163 230 53/1%);}",
+  ],
+  [
+    "caret-lime-500/[1%]",
+    ".caret-lime-500\\/\\[1\\%\\]{caret-color:rgb(132 204 22/1%);}",
+  ],
+  [
+    "caret-lime-600/[1%]",
+    ".caret-lime-600\\/\\[1\\%\\]{caret-color:rgb(101 163 13/1%);}",
+  ],
+  [
+    "caret-lime-700/[1%]",
+    ".caret-lime-700\\/\\[1\\%\\]{caret-color:rgb(77 124 15/1%);}",
+  ],
+  [
+    "caret-lime-800/[1%]",
+    ".caret-lime-800\\/\\[1\\%\\]{caret-color:rgb(63 98 18/1%);}",
+  ],
+  [
+    "caret-lime-900/[1%]",
+    ".caret-lime-900\\/\\[1\\%\\]{caret-color:rgb(54 83 20/1%);}",
+  ],
+  [
+    "caret-green-50/[1%]",
+    ".caret-green-50\\/\\[1\\%\\]{caret-color:rgb(240 253 244/1%);}",
+  ],
+  [
+    "caret-green-100/[1%]",
+    ".caret-green-100\\/\\[1\\%\\]{caret-color:rgb(220 252 231/1%);}",
+  ],
+  [
+    "caret-green-200/[1%]",
+    ".caret-green-200\\/\\[1\\%\\]{caret-color:rgb(187 247 208/1%);}",
+  ],
+  [
+    "caret-green-300/[1%]",
+    ".caret-green-300\\/\\[1\\%\\]{caret-color:rgb(134 239 172/1%);}",
+  ],
+  [
+    "caret-green-400/[1%]",
+    ".caret-green-400\\/\\[1\\%\\]{caret-color:rgb(74 222 128/1%);}",
+  ],
+  [
+    "caret-green-500/[1%]",
+    ".caret-green-500\\/\\[1\\%\\]{caret-color:rgb(34 197 94/1%);}",
+  ],
+  [
+    "caret-green-600/[1%]",
+    ".caret-green-600\\/\\[1\\%\\]{caret-color:rgb(22 163 74/1%);}",
+  ],
+  [
+    "caret-green-700/[1%]",
+    ".caret-green-700\\/\\[1\\%\\]{caret-color:rgb(21 128 61/1%);}",
+  ],
+  [
+    "caret-green-800/[1%]",
+    ".caret-green-800\\/\\[1\\%\\]{caret-color:rgb(22 101 52/1%);}",
+  ],
+  [
+    "caret-green-900/[1%]",
+    ".caret-green-900\\/\\[1\\%\\]{caret-color:rgb(20 83 45/1%);}",
+  ],
+  [
+    "caret-emerald-50/[1%]",
+    ".caret-emerald-50\\/\\[1\\%\\]{caret-color:rgb(236 253 245/1%);}",
+  ],
+  [
+    "caret-emerald-100/[1%]",
+    ".caret-emerald-100\\/\\[1\\%\\]{caret-color:rgb(209 250 229/1%);}",
+  ],
+  [
+    "caret-emerald-200/[1%]",
+    ".caret-emerald-200\\/\\[1\\%\\]{caret-color:rgb(167 243 208/1%);}",
+  ],
+  [
+    "caret-emerald-300/[1%]",
+    ".caret-emerald-300\\/\\[1\\%\\]{caret-color:rgb(110 231 183/1%);}",
+  ],
+  [
+    "caret-emerald-400/[1%]",
+    ".caret-emerald-400\\/\\[1\\%\\]{caret-color:rgb(52 211 153/1%);}",
+  ],
+  [
+    "caret-emerald-500/[1%]",
+    ".caret-emerald-500\\/\\[1\\%\\]{caret-color:rgb(16 185 129/1%);}",
+  ],
+  [
+    "caret-emerald-600/[1%]",
+    ".caret-emerald-600\\/\\[1\\%\\]{caret-color:rgb(5 150 105/1%);}",
+  ],
+  [
+    "caret-emerald-700/[1%]",
+    ".caret-emerald-700\\/\\[1\\%\\]{caret-color:rgb(4 120 87/1%);}",
+  ],
+  [
+    "caret-emerald-800/[1%]",
+    ".caret-emerald-800\\/\\[1\\%\\]{caret-color:rgb(6 95 70/1%);}",
+  ],
+  [
+    "caret-emerald-900/[1%]",
+    ".caret-emerald-900\\/\\[1\\%\\]{caret-color:rgb(6 78 59/1%);}",
+  ],
+  [
+    "caret-teal-50/[1%]",
+    ".caret-teal-50\\/\\[1\\%\\]{caret-color:rgb(240 253 250/1%);}",
+  ],
+  [
+    "caret-teal-100/[1%]",
+    ".caret-teal-100\\/\\[1\\%\\]{caret-color:rgb(204 251 241/1%);}",
+  ],
+  [
+    "caret-teal-200/[1%]",
+    ".caret-teal-200\\/\\[1\\%\\]{caret-color:rgb(153 246 228/1%);}",
+  ],
+  [
+    "caret-teal-300/[1%]",
+    ".caret-teal-300\\/\\[1\\%\\]{caret-color:rgb(94 234 212/1%);}",
+  ],
+  [
+    "caret-teal-400/[1%]",
+    ".caret-teal-400\\/\\[1\\%\\]{caret-color:rgb(45 212 191/1%);}",
+  ],
+  [
+    "caret-teal-500/[1%]",
+    ".caret-teal-500\\/\\[1\\%\\]{caret-color:rgb(20 184 166/1%);}",
+  ],
+  [
+    "caret-teal-600/[1%]",
+    ".caret-teal-600\\/\\[1\\%\\]{caret-color:rgb(13 148 136/1%);}",
+  ],
+  [
+    "caret-teal-700/[1%]",
+    ".caret-teal-700\\/\\[1\\%\\]{caret-color:rgb(15 118 110/1%);}",
+  ],
+  [
+    "caret-teal-800/[1%]",
+    ".caret-teal-800\\/\\[1\\%\\]{caret-color:rgb(17 94 89/1%);}",
+  ],
+  [
+    "caret-teal-900/[1%]",
+    ".caret-teal-900\\/\\[1\\%\\]{caret-color:rgb(19 78 74/1%);}",
+  ],
+  [
+    "caret-cyan-50/[1%]",
+    ".caret-cyan-50\\/\\[1\\%\\]{caret-color:rgb(236 254 255/1%);}",
+  ],
+  [
+    "caret-cyan-100/[1%]",
+    ".caret-cyan-100\\/\\[1\\%\\]{caret-color:rgb(207 250 254/1%);}",
+  ],
+  [
+    "caret-cyan-200/[1%]",
+    ".caret-cyan-200\\/\\[1\\%\\]{caret-color:rgb(165 243 252/1%);}",
+  ],
+  [
+    "caret-cyan-300/[1%]",
+    ".caret-cyan-300\\/\\[1\\%\\]{caret-color:rgb(103 232 249/1%);}",
+  ],
+  [
+    "caret-cyan-400/[1%]",
+    ".caret-cyan-400\\/\\[1\\%\\]{caret-color:rgb(34 211 238/1%);}",
+  ],
+  [
+    "caret-cyan-500/[1%]",
+    ".caret-cyan-500\\/\\[1\\%\\]{caret-color:rgb(6 182 212/1%);}",
+  ],
+  [
+    "caret-cyan-600/[1%]",
+    ".caret-cyan-600\\/\\[1\\%\\]{caret-color:rgb(8 145 178/1%);}",
+  ],
+  [
+    "caret-cyan-700/[1%]",
+    ".caret-cyan-700\\/\\[1\\%\\]{caret-color:rgb(14 116 144/1%);}",
+  ],
+  [
+    "caret-cyan-800/[1%]",
+    ".caret-cyan-800\\/\\[1\\%\\]{caret-color:rgb(21 94 117/1%);}",
+  ],
+  [
+    "caret-cyan-900/[1%]",
+    ".caret-cyan-900\\/\\[1\\%\\]{caret-color:rgb(22 78 99/1%);}",
+  ],
+  [
+    "caret-sky-50/[1%]",
+    ".caret-sky-50\\/\\[1\\%\\]{caret-color:rgb(240 249 255/1%);}",
+  ],
+  [
+    "caret-sky-100/[1%]",
+    ".caret-sky-100\\/\\[1\\%\\]{caret-color:rgb(224 242 254/1%);}",
+  ],
+  [
+    "caret-sky-200/[1%]",
+    ".caret-sky-200\\/\\[1\\%\\]{caret-color:rgb(186 230 253/1%);}",
+  ],
+  [
+    "caret-sky-300/[1%]",
+    ".caret-sky-300\\/\\[1\\%\\]{caret-color:rgb(125 211 252/1%);}",
+  ],
+  [
+    "caret-sky-400/[1%]",
+    ".caret-sky-400\\/\\[1\\%\\]{caret-color:rgb(56 189 248/1%);}",
+  ],
+  [
+    "caret-sky-500/[1%]",
+    ".caret-sky-500\\/\\[1\\%\\]{caret-color:rgb(14 165 233/1%);}",
+  ],
+  [
+    "caret-sky-600/[1%]",
+    ".caret-sky-600\\/\\[1\\%\\]{caret-color:rgb(2 132 199/1%);}",
+  ],
+  [
+    "caret-sky-700/[1%]",
+    ".caret-sky-700\\/\\[1\\%\\]{caret-color:rgb(3 105 161/1%);}",
+  ],
+  [
+    "caret-sky-800/[1%]",
+    ".caret-sky-800\\/\\[1\\%\\]{caret-color:rgb(7 89 133/1%);}",
+  ],
+  [
+    "caret-sky-900/[1%]",
+    ".caret-sky-900\\/\\[1\\%\\]{caret-color:rgb(12 74 110/1%);}",
+  ],
+  [
+    "caret-blue-50/[1%]",
+    ".caret-blue-50\\/\\[1\\%\\]{caret-color:rgb(239 246 255/1%);}",
+  ],
+  [
+    "caret-blue-100/[1%]",
+    ".caret-blue-100\\/\\[1\\%\\]{caret-color:rgb(219 234 254/1%);}",
+  ],
+  [
+    "caret-blue-200/[1%]",
+    ".caret-blue-200\\/\\[1\\%\\]{caret-color:rgb(191 219 254/1%);}",
+  ],
+  [
+    "caret-blue-300/[1%]",
+    ".caret-blue-300\\/\\[1\\%\\]{caret-color:rgb(147 197 253/1%);}",
+  ],
+  [
+    "caret-blue-400/[1%]",
+    ".caret-blue-400\\/\\[1\\%\\]{caret-color:rgb(96 165 250/1%);}",
+  ],
+  [
+    "caret-blue-500/[1%]",
+    ".caret-blue-500\\/\\[1\\%\\]{caret-color:rgb(59 130 246/1%);}",
+  ],
+  [
+    "caret-blue-600/[1%]",
+    ".caret-blue-600\\/\\[1\\%\\]{caret-color:rgb(37 99 235/1%);}",
+  ],
+  [
+    "caret-blue-700/[1%]",
+    ".caret-blue-700\\/\\[1\\%\\]{caret-color:rgb(29 78 216/1%);}",
+  ],
+  [
+    "caret-blue-800/[1%]",
+    ".caret-blue-800\\/\\[1\\%\\]{caret-color:rgb(30 64 175/1%);}",
+  ],
+  [
+    "caret-blue-900/[1%]",
+    ".caret-blue-900\\/\\[1\\%\\]{caret-color:rgb(30 58 138/1%);}",
+  ],
+  [
+    "caret-indigo-50/[1%]",
+    ".caret-indigo-50\\/\\[1\\%\\]{caret-color:rgb(238 242 255/1%);}",
+  ],
+  [
+    "caret-indigo-100/[1%]",
+    ".caret-indigo-100\\/\\[1\\%\\]{caret-color:rgb(224 231 255/1%);}",
+  ],
+  [
+    "caret-indigo-200/[1%]",
+    ".caret-indigo-200\\/\\[1\\%\\]{caret-color:rgb(199 210 254/1%);}",
+  ],
+  [
+    "caret-indigo-300/[1%]",
+    ".caret-indigo-300\\/\\[1\\%\\]{caret-color:rgb(165 180 252/1%);}",
+  ],
+  [
+    "caret-indigo-400/[1%]",
+    ".caret-indigo-400\\/\\[1\\%\\]{caret-color:rgb(129 140 248/1%);}",
+  ],
+  [
+    "caret-indigo-500/[1%]",
+    ".caret-indigo-500\\/\\[1\\%\\]{caret-color:rgb(99 102 241/1%);}",
+  ],
+  [
+    "caret-indigo-600/[1%]",
+    ".caret-indigo-600\\/\\[1\\%\\]{caret-color:rgb(79 70 229/1%);}",
+  ],
+  [
+    "caret-indigo-700/[1%]",
+    ".caret-indigo-700\\/\\[1\\%\\]{caret-color:rgb(67 56 202/1%);}",
+  ],
+  [
+    "caret-indigo-800/[1%]",
+    ".caret-indigo-800\\/\\[1\\%\\]{caret-color:rgb(55 48 163/1%);}",
+  ],
+  [
+    "caret-indigo-900/[1%]",
+    ".caret-indigo-900\\/\\[1\\%\\]{caret-color:rgb(49 46 129/1%);}",
+  ],
+  [
+    "caret-violet-50/[1%]",
+    ".caret-violet-50\\/\\[1\\%\\]{caret-color:rgb(245 243 255/1%);}",
+  ],
+  [
+    "caret-violet-100/[1%]",
+    ".caret-violet-100\\/\\[1\\%\\]{caret-color:rgb(237 233 254/1%);}",
+  ],
+  [
+    "caret-violet-200/[1%]",
+    ".caret-violet-200\\/\\[1\\%\\]{caret-color:rgb(221 214 254/1%);}",
+  ],
+  [
+    "caret-violet-300/[1%]",
+    ".caret-violet-300\\/\\[1\\%\\]{caret-color:rgb(196 181 253/1%);}",
+  ],
+  [
+    "caret-violet-400/[1%]",
+    ".caret-violet-400\\/\\[1\\%\\]{caret-color:rgb(167 139 250/1%);}",
+  ],
+  [
+    "caret-violet-500/[1%]",
+    ".caret-violet-500\\/\\[1\\%\\]{caret-color:rgb(139 92 246/1%);}",
+  ],
+  [
+    "caret-violet-600/[1%]",
+    ".caret-violet-600\\/\\[1\\%\\]{caret-color:rgb(124 58 237/1%);}",
+  ],
+  [
+    "caret-violet-700/[1%]",
+    ".caret-violet-700\\/\\[1\\%\\]{caret-color:rgb(109 40 217/1%);}",
+  ],
+  [
+    "caret-violet-800/[1%]",
+    ".caret-violet-800\\/\\[1\\%\\]{caret-color:rgb(91 33 182/1%);}",
+  ],
+  [
+    "caret-violet-900/[1%]",
+    ".caret-violet-900\\/\\[1\\%\\]{caret-color:rgb(76 29 149/1%);}",
+  ],
+  [
+    "caret-purple-50/[1%]",
+    ".caret-purple-50\\/\\[1\\%\\]{caret-color:rgb(250 245 255/1%);}",
+  ],
+  [
+    "caret-purple-100/[1%]",
+    ".caret-purple-100\\/\\[1\\%\\]{caret-color:rgb(243 232 255/1%);}",
+  ],
+  [
+    "caret-purple-200/[1%]",
+    ".caret-purple-200\\/\\[1\\%\\]{caret-color:rgb(233 213 255/1%);}",
+  ],
+  [
+    "caret-purple-300/[1%]",
+    ".caret-purple-300\\/\\[1\\%\\]{caret-color:rgb(216 180 254/1%);}",
+  ],
+  [
+    "caret-purple-400/[1%]",
+    ".caret-purple-400\\/\\[1\\%\\]{caret-color:rgb(192 132 252/1%);}",
+  ],
+  [
+    "caret-purple-500/[1%]",
+    ".caret-purple-500\\/\\[1\\%\\]{caret-color:rgb(168 85 247/1%);}",
+  ],
+  [
+    "caret-purple-600/[1%]",
+    ".caret-purple-600\\/\\[1\\%\\]{caret-color:rgb(147 51 234/1%);}",
+  ],
+  [
+    "caret-purple-700/[1%]",
+    ".caret-purple-700\\/\\[1\\%\\]{caret-color:rgb(126 34 206/1%);}",
+  ],
+  [
+    "caret-purple-800/[1%]",
+    ".caret-purple-800\\/\\[1\\%\\]{caret-color:rgb(107 33 168/1%);}",
+  ],
+  [
+    "caret-purple-900/[1%]",
+    ".caret-purple-900\\/\\[1\\%\\]{caret-color:rgb(88 28 135/1%);}",
+  ],
+  [
+    "caret-fuchsia-50/[1%]",
+    ".caret-fuchsia-50\\/\\[1\\%\\]{caret-color:rgb(253 244 255/1%);}",
+  ],
+  [
+    "caret-fuchsia-100/[1%]",
+    ".caret-fuchsia-100\\/\\[1\\%\\]{caret-color:rgb(250 232 255/1%);}",
+  ],
+  [
+    "caret-fuchsia-200/[1%]",
+    ".caret-fuchsia-200\\/\\[1\\%\\]{caret-color:rgb(245 208 254/1%);}",
+  ],
+  [
+    "caret-fuchsia-300/[1%]",
+    ".caret-fuchsia-300\\/\\[1\\%\\]{caret-color:rgb(240 171 252/1%);}",
+  ],
+  [
+    "caret-fuchsia-400/[1%]",
+    ".caret-fuchsia-400\\/\\[1\\%\\]{caret-color:rgb(232 121 249/1%);}",
+  ],
+  [
+    "caret-fuchsia-500/[1%]",
+    ".caret-fuchsia-500\\/\\[1\\%\\]{caret-color:rgb(217 70 239/1%);}",
+  ],
+  [
+    "caret-fuchsia-600/[1%]",
+    ".caret-fuchsia-600\\/\\[1\\%\\]{caret-color:rgb(192 38 211/1%);}",
+  ],
+  [
+    "caret-fuchsia-700/[1%]",
+    ".caret-fuchsia-700\\/\\[1\\%\\]{caret-color:rgb(162 28 175/1%);}",
+  ],
+  [
+    "caret-fuchsia-800/[1%]",
+    ".caret-fuchsia-800\\/\\[1\\%\\]{caret-color:rgb(134 25 143/1%);}",
+  ],
+  [
+    "caret-fuchsia-900/[1%]",
+    ".caret-fuchsia-900\\/\\[1\\%\\]{caret-color:rgb(112 26 117/1%);}",
+  ],
+  [
+    "caret-pink-50/[1%]",
+    ".caret-pink-50\\/\\[1\\%\\]{caret-color:rgb(253 242 248/1%);}",
+  ],
+  [
+    "caret-pink-100/[1%]",
+    ".caret-pink-100\\/\\[1\\%\\]{caret-color:rgb(252 231 243/1%);}",
+  ],
+  [
+    "caret-pink-200/[1%]",
+    ".caret-pink-200\\/\\[1\\%\\]{caret-color:rgb(251 207 232/1%);}",
+  ],
+  [
+    "caret-pink-300/[1%]",
+    ".caret-pink-300\\/\\[1\\%\\]{caret-color:rgb(249 168 212/1%);}",
+  ],
+  [
+    "caret-pink-400/[1%]",
+    ".caret-pink-400\\/\\[1\\%\\]{caret-color:rgb(244 114 182/1%);}",
+  ],
+  [
+    "caret-pink-500/[1%]",
+    ".caret-pink-500\\/\\[1\\%\\]{caret-color:rgb(236 72 153/1%);}",
+  ],
+  [
+    "caret-pink-600/[1%]",
+    ".caret-pink-600\\/\\[1\\%\\]{caret-color:rgb(219 39 119/1%);}",
+  ],
+  [
+    "caret-pink-700/[1%]",
+    ".caret-pink-700\\/\\[1\\%\\]{caret-color:rgb(190 24 93/1%);}",
+  ],
+  [
+    "caret-pink-800/[1%]",
+    ".caret-pink-800\\/\\[1\\%\\]{caret-color:rgb(157 23 77/1%);}",
+  ],
+  [
+    "caret-pink-900/[1%]",
+    ".caret-pink-900\\/\\[1\\%\\]{caret-color:rgb(131 24 67/1%);}",
+  ],
+  [
+    "caret-rose-50/[1%]",
+    ".caret-rose-50\\/\\[1\\%\\]{caret-color:rgb(255 241 242/1%);}",
+  ],
+  [
+    "caret-rose-100/[1%]",
+    ".caret-rose-100\\/\\[1\\%\\]{caret-color:rgb(255 228 230/1%);}",
+  ],
+  [
+    "caret-rose-200/[1%]",
+    ".caret-rose-200\\/\\[1\\%\\]{caret-color:rgb(254 205 211/1%);}",
+  ],
+  [
+    "caret-rose-300/[1%]",
+    ".caret-rose-300\\/\\[1\\%\\]{caret-color:rgb(253 164 175/1%);}",
+  ],
+  [
+    "caret-rose-400/[1%]",
+    ".caret-rose-400\\/\\[1\\%\\]{caret-color:rgb(251 113 133/1%);}",
+  ],
+  [
+    "caret-rose-500/[1%]",
+    ".caret-rose-500\\/\\[1\\%\\]{caret-color:rgb(244 63 94/1%);}",
+  ],
+  [
+    "caret-rose-600/[1%]",
+    ".caret-rose-600\\/\\[1\\%\\]{caret-color:rgb(225 29 72/1%);}",
+  ],
+  [
+    "caret-rose-700/[1%]",
+    ".caret-rose-700\\/\\[1\\%\\]{caret-color:rgb(190 18 60/1%);}",
+  ],
+  [
+    "caret-rose-800/[1%]",
+    ".caret-rose-800\\/\\[1\\%\\]{caret-color:rgb(159 18 57/1%);}",
+  ],
+  [
+    "caret-rose-900/[1%]",
+    ".caret-rose-900\\/\\[1\\%\\]{caret-color:rgb(136 19 55/1%);}",
+  ],
   ["pointer-events-none", ".pointer-events-none{pointer-events:none;}"],
   ["pointer-events-auto", ".pointer-events-auto{pointer-events:auto;}"],
   ["resize-none", ".resize-none{resize:none;}"],

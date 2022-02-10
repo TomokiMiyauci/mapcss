@@ -8,6 +8,7 @@ import {
   block,
   brightness,
   capitalize,
+  caret,
   contents,
   contrast,
   cursor,
@@ -135,6 +136,7 @@ import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
+  caret,
   accent,
   stroke,
   snap,
