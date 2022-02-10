@@ -5,6 +5,8 @@ export type RGBA = {
   a: number | undefined;
 };
 
+export type FilledRGBA = Record<keyof RGBA, number>;
+
 export function parseNumeric(value: string): number | undefined {
   const number = Number(value);
   if (Number.isNaN(number)) return;

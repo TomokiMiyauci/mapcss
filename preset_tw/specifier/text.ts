@@ -1,9 +1,17 @@
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { colorByRGBA, fillRGBA, numericBy } from "./_utils.ts";
 import { isUndefined } from "../../deps.ts";
-import { stringifyRGBA } from "../../core/utils/color.ts";
-import { reAll, reSlashNumber } from "../../core/utils/regexp.ts";
+import {
+  re$SlashBracket$,
+  reAll,
+  reSlashNumber,
+} from "../../core/utils/regexp.ts";
+import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
+import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
 import type { Specifier } from "../../core/types.ts";
+
+function toColor(color: string): { color: string } {
+  return { color };
+}
 
 export const text: Specifier = [
   ["xs", {
@@ -76,10 +84,24 @@ export const text: Specifier = [
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
-    return numericBy(numeric, (number) =>
-      colorByRGBA(color, (rgba) => ({
-        color: stringifyRGBA(fillRGBA(rgba, number / 100)),
-      })));
+    return parseNumeric(numeric).match({
+      some: (number) =>
+        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
+          some: toColor,
+          none: undefined,
+        }),
+      none: undefined,
+    });
+  }],
+  [re$SlashBracket$, ([, body, alpha], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
+      rgbFn,
+    ).match({
+      some: toColor,
+      none: undefined,
+    });
   }],
   [
     reAll,
@@ -87,11 +109,12 @@ export const text: Specifier = [
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
-      return colorByRGBA(color, (rgba) => ({
-        color: stringifyRGBA(fillRGBA(rgba)),
-      }), (raw) => ({
-        color: raw,
-      }));
+      return parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: toColor,
+          none: () => ({ color }),
+        });
     },
   ],
 ];

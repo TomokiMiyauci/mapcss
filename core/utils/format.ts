@@ -1,3 +1,5 @@
+import type { FilledRGBA, RGBA } from "./parse.ts";
+
 /** format numeric to `#.##`
  * ```ts
  * import { shortDecimal } from "https://deno.land/x/mapcss@$VERSION/core/utils/format.ts"
@@ -45,4 +47,24 @@ export function roundTo(number: number, digit: number): number {
 
 export function roundN(digit: number): (number: number) => number {
   return (number: number): number => roundTo(number, digit);
+}
+
+export function rgbFn(
+  { r, g, b, a }: Record<keyof RGBA, number | string>,
+): string {
+  const _r = shortDecimal(r);
+  const _g = shortDecimal(g);
+  const _b = shortDecimal(b);
+  const _a = shortDecimal(a);
+  return `rgb(${_r} ${_g} ${_b}/${_a})`;
+}
+
+export function completionRGBA(
+  alpha: number,
+  asDefault = false,
+): (rgba: RGBA) => FilledRGBA {
+  return ({ r, g, b, a }: RGBA): FilledRGBA => {
+    const _a = asDefault ? a ?? alpha : alpha;
+    return { r, g, b, a: _a };
+  };
 }
