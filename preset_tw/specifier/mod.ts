@@ -19,6 +19,7 @@ import {
   ease,
   fill,
   fixed,
+  from,
   grayscale,
   hidden,
   hue,
@@ -50,9 +51,11 @@ import {
   sticky,
   subpixel,
   tabular,
+  to,
   touch,
   truncate,
   uppercase,
+  via,
   visible,
   will,
 } from "./single.ts";
@@ -137,6 +140,9 @@ import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
+  to,
+  via,
+  from,
   fill,
   caret,
   accent,

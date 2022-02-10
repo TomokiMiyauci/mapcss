@@ -15,9 +15,13 @@ import type {
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
-import { handleTransform, transformValue } from "./_utils.ts";
+import {
+  customPropertySet,
+  handleTransform,
+  transformValue,
+} from "./_utils.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { isUndefined } from "../../deps.ts";
+import { isUndefined, Left, Right } from "../../deps.ts";
 import {
   re$SlashBracket$,
   reAll,
@@ -592,6 +596,117 @@ export const fill: EntriesSpecifier = [
           some: toFill,
           none: () => toFill(color),
         });
+    },
+  ],
+];
+
+function varGradient(varPrefix: string) {
+  const [varGradientFrom, varFnGradientFrom] = customPropertySet(
+    "gradient-from",
+    varPrefix,
+  );
+  const [varGradientStops] = customPropertySet(
+    "gradient-stops",
+    varPrefix,
+  );
+  const [varGradientTo] = customPropertySet(
+    "gradient-to",
+    varPrefix,
+  );
+  return {
+    varGradientFrom,
+    varFnGradientFrom,
+    varGradientStops,
+    varGradientTo,
+  };
+}
+function defaultGradientColor(isRGB: boolean, color: string): string {
+  // transparent is special as default color
+  return isRGB
+    ? color
+    : color === "transparent"
+    ? "rgb(0 0 0/0)"
+    : "rgb(255 255 255/0)";
+}
+
+export const from: EntriesSpecifier = [
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      const _color = parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: (color) => [true, color] as [boolean, string],
+          none: [false, color] as [boolean, string],
+        });
+
+      const defaultColor = defaultGradientColor(_color[0], _color[1]);
+
+      const {
+        varFnGradientFrom,
+        varGradientFrom,
+        varGradientStops,
+        varGradientTo,
+      } = varGradient(context.variablePrefix);
+
+      return {
+        [varGradientFrom]: _color[1],
+        [varGradientStops]:
+          `${varFnGradientFrom}, var(${varGradientTo}, ${defaultColor})`,
+      };
+    },
+  ],
+];
+export const via: EntriesSpecifier = [
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      const _color = parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: (color) => [true, color] as [boolean, string],
+          none: [false, color] as [boolean, string],
+        });
+
+      const defaultColor = defaultGradientColor(_color[0], _color[1]);
+
+      const {
+        varFnGradientFrom,
+        varGradientStops,
+        varGradientTo,
+      } = varGradient(context.variablePrefix);
+
+      return {
+        [varGradientStops]: `${varFnGradientFrom}, ${
+          _color[1]
+        }, var(${varGradientTo}, ${defaultColor})`,
+      };
+    },
+  ],
+];
+export const to: EntriesSpecifier = [
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      const _color = parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: (color) => color,
+          none: color,
+        });
+      const { varGradientTo } = varGradient(context.variablePrefix);
+      return {
+        [varGradientTo]: _color,
+      };
     },
   ],
 ];

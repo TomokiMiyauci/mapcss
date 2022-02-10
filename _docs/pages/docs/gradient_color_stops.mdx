@@ -1,0 +1,104 @@
+---
+title: Gradient Color Stops
+description: Utilities for controlling the color stops in background gradients.
+category: Background
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Starting color
+
+Set the starting color of a gradient using the `from-{color}` utilities.
+
+<Example>
+  <div className="space-y-2 mx-5">
+    <div className="flex justify-between">
+      <div className="flex flex-col space-y-2 items-center -translate-x-5">
+        <div className="rounded-full h-10 w-10 bg-indigo-500 border-4 border-white shadow-lg"></div>
+        <div className="bg-slate-300 w-0.5 h-4"></div>
+      </div>
+    </div>
+    <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-500"></div>
+  </div>
+</Example>
+
+```html
+<div className="bg-gradient-to-r **from-indigo-500** ..."></div>
+```
+
+### Ending color
+
+Set the ending color of a gradient using the `to-{color}` utilities.
+
+<Example>
+  <div className="space-y-2 mx-5">
+    <div className="flex justify-between">
+      <div className="flex flex-col space-y-2 items-center -translate-x-5">
+        <div className="rounded-full h-10 w-10 bg-cyan-500 border-4 border-white shadow-lg" />
+        <div className="bg-slate-300 w-0.5 h-4"></div>
+      </div>
+      <div className="flex flex-col space-y-2 items-center translate-x-5">
+        <div className="rounded-full h-10 w-10 bg-blue-500 border-4 border-white shadow-lg" />
+        <div className="bg-slate-300 w-0.5 h-4"></div>
+      </div>
+    </div>
+    <div className="p-4 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+  </div>
+</Example>
+
+```html
+<div className="bg-gradient-to-r from-cyan-500 **to-blue-500** ..."></div>
+```
+
+Gradients to **do not** fade in from transparent by default. To fade in from transparent, reverse the gradient direction and use a `from-{color}` utility.
+
+### Middle color
+
+Add a middle color to a gradient using the `via-{color}` utilities.
+
+<Example>
+  <div className="space-y-2 mx-5">
+    <div className="flex justify-between">
+      <div className="flex flex-col space-y-2 items-center -translate-x-5">
+        <div className="rounded-full h-10 w-10 bg-indigo-500 border-4 border-white shadow-lg"></div>
+        <div className="bg-slate-300 w-0.5 h-4"></div>
+      </div>
+      <div className="flex flex-col space-y-2 items-center">
+        <div className="rounded-full h-10 w-10 bg-purple-500 border-4 border-white shadow-lg"></div>
+        <div className="bg-slate-300 w-0.5 h-4"></div>
+      </div>
+      <div className="flex flex-col space-y-2 items-center translate-x-5">
+        <div className="rounded-full h-10 w-10 bg-pink-500 border-4 border-white shadow-lg"></div>
+        <div className="bg-slate-300 w-0.5 h-4"></div>
+      </div>
+    </div>
+    <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+  </div>
+</Example>
+
+```html
+<div className="bg-gradient-to-r from-indigo-500 **via-purple-500** to-pink-500 ..."></div>
+```
+
+Gradients with a `from-{color}` and `via-{color}` will fade out to transparent by default if no `to-{color}` is present.
+
+### Fading to transparent
+
+Gradients fade out to transparent by default, without requiring you to add `to-transparent` explicitly. Tailwind intelligently calculates the _right_ "transparent" value to use based on the starting color to avoid [a bug in Safari](https://bugs.webkit.org/show_bug.cgi?id=150940) that causes fading to simply the `transparent` keyword to fade through gray, which just looks awful.
+
+
+```html
+<div className="bg-gradient-to-r from-blue-500 to-transparent">
+  <!-- ... -->
+</div>
+```
+
+```html
+<div className="bg-gradient-to-r from-blue-500">
+  <!-- ... -->
+</div>
+```
+
+---
