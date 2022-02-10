@@ -1,3 +1,36 @@
+# [1.0.0-beta.9](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2022-02-10)
+
+
+### Features
+
+* **preset_tw:** add arbitary rule to `border-color` ([426c6a0](https://github.com/TomokiMiyauci/mapcss/commit/426c6a0e014f2136e4115daf51b3d9378ab9d250))
+* **preset_tw:** add arbitrary rule for `divide` ([a8e8277](https://github.com/TomokiMiyauci/mapcss/commit/a8e82772b7c0217e96d3133bb4fff41b0d185097))
+* **preset_tw:** add arbitrary rule of `outline` ([37a9937](https://github.com/TomokiMiyauci/mapcss/commit/37a993795094ff734194214b838817e763a222e3))
+* **preset_tw:** add specifier for `gradient-color-steps` ([eda7df8](https://github.com/TomokiMiyauci/mapcss/commit/eda7df81a72602cd6172eced292674e59acd5c57))
+* **preset_tw:** add specifier for `ring-color` ([9f1d16e](https://github.com/TomokiMiyauci/mapcss/commit/9f1d16e89172a1aafc22e8350c81185b2af8c16b))
+* **preset_tw:** add specifier for `ring-offset-color` ([6a5be57](https://github.com/TomokiMiyauci/mapcss/commit/6a5be578048b69994916d86a9b8250859f27bed6))
+* **preset_tw:** add specifier for `scroll-behavior` ([f94bf1b](https://github.com/TomokiMiyauci/mapcss/commit/f94bf1b2180d48807437a5403eec5180cf9f36c3))
+* **preset_tw:** add specifier for `scroll-margin` ([617aac6](https://github.com/TomokiMiyauci/mapcss/commit/617aac6d0f3b0e6c59e1ff26746b6efba1a6047a))
+* **preset_tw:** add specifier for `scroll-padding` ([32a7836](https://github.com/TomokiMiyauci/mapcss/commit/32a78361fe747443e3ad7aa675b3cbe9d23706bd))
+* **preset_tw:** add specifier for `scroll-snap-align` ([b64d705](https://github.com/TomokiMiyauci/mapcss/commit/b64d7050680abe830f90c557b78aa84063bd04cd))
+* **preset_tw:** add specifier for `scroll-snap-stop` ([dddee5c](https://github.com/TomokiMiyauci/mapcss/commit/dddee5ccc20f5ca7297c42bb9331921bfb0cc8a6))
+* **preset_tw:** add specifier for `scroll-snap-type` ([cf26590](https://github.com/TomokiMiyauci/mapcss/commit/cf26590001e88101dac1d3fd742fd6f6caed068b))
+* **preset_tw:** add specifier for `stroke-width` ([3485bd0](https://github.com/TomokiMiyauci/mapcss/commit/3485bd07ccab77f459acb08e14f61c39a51bda66))
+* **preset_tw:** add specifier for `stroke` ([a5ffbb0](https://github.com/TomokiMiyauci/mapcss/commit/a5ffbb0f9dc3aeb01ebdf9167eb07c851fb2f99c))
+* **preset_tw:** add specifier for `text-decoration-color` ([d5854d3](https://github.com/TomokiMiyauci/mapcss/commit/d5854d3020f70319bc5e8575cfebeb24beaaed11))
+* **preset_tw:** add specifier of `accent` ([ce3b437](https://github.com/TomokiMiyauci/mapcss/commit/ce3b4374841ee665b09ed7bb121d5c7ab950fcaf))
+* **preset_tw:** add specifier of `appearance` ([09801bb](https://github.com/TomokiMiyauci/mapcss/commit/09801bb0a6c0a0406615aef6957ac3a2480f5290))
+* **preset_tw:** add specifier of `carret` ([8519ef5](https://github.com/TomokiMiyauci/mapcss/commit/8519ef5164eae8a45daa0f269c600254e377e6ae))
+* **preset_tw:** add specifier of `cursor` ([7effd08](https://github.com/TomokiMiyauci/mapcss/commit/7effd08755cc4ddb2e4e06ba633e9e936267d9ac))
+* **preset_tw:** add specifier of `fill` ([37cc3b2](https://github.com/TomokiMiyauci/mapcss/commit/37cc3b258fd4c46781aaefbc96ea6ebdb7c9eac5))
+* **preset_tw:** add specifier of `pointer` ([c5b2744](https://github.com/TomokiMiyauci/mapcss/commit/c5b2744134e7ae296b7129e3173396864ef9a44a))
+* **preset_tw:** add specifier of `resize` ([b1a9729](https://github.com/TomokiMiyauci/mapcss/commit/b1a9729afc7017fc6e0c8748a764c0ccbfc686b0))
+* **preset_tw:** add specifier of `touch` ([c861e49](https://github.com/TomokiMiyauci/mapcss/commit/c861e49cf354ad93a2d409b1a63291c410422da2))
+* **preset_tw:** add specifier of `user` ([96e661a](https://github.com/TomokiMiyauci/mapcss/commit/96e661a9fc38326464c88d4f7ab7cf72ebad0565))
+* **preset_tw:** add specifier of `will` ([4c7068a](https://github.com/TomokiMiyauci/mapcss/commit/4c7068a571bfac3f4cf50d18490ebf4205f073b0))
+* **preset_tw:** change color number format to rgb ([5592491](https://github.com/TomokiMiyauci/mapcss/commit/55924914a856d2a24b4aa3e2ef567c1b5750bf0e))
+* **preset_tw:** change color style to rgb, add arbitaray rule ([166f110](https://github.com/TomokiMiyauci/mapcss/commit/166f1105c5bd82c912193ede9e8038cdaacf16b7))
+
 # [1.0.0-beta.8](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2022-02-09)
 
 
