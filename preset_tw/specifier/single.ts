@@ -21,7 +21,7 @@ import {
   transformValue,
 } from "./_utils.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { isUndefined, Left, Right } from "../../deps.ts";
+import { isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,
   reAll,
