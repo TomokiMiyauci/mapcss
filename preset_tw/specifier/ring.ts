@@ -21,6 +21,11 @@ function toRingColor(varPrefix: string) {
     [customProperty("ring-color", varPrefix)]: value,
   });
 }
+function toRingOffsetColor(varPrefix: string) {
+  return (value: string): CSSObject => ({
+    [customProperty("ring-offset-color", varPrefix)]: value,
+  });
+}
 
 function handleRingWidth(value: string, variablePrefix: string): CSSObject {
   const [varRingOffsetShadow, varFnRingOffsetShadow] = customPropertySet(
@@ -80,6 +85,46 @@ export const ring: EntriesSpecifier = [
           [varRingOffsetWidth]: px,
         };
       })],
+    [reSlashNumber, ([, body, numeric], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      return parseNumeric(numeric).match({
+        some: (number) =>
+          parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match(
+            {
+              some: toRingOffsetColor(context.variablePrefix),
+              none: undefined,
+            },
+          ),
+        none: undefined,
+      });
+    }],
+    [re$SlashBracket$, ([, body, alpha], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+      return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+        .map(
+          rgbFn,
+        ).match({
+          some: toRingOffsetColor(context.variablePrefix),
+          none: undefined,
+        });
+    }],
+    [
+      reAll,
+      ([body], context) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+
+        return parseColor(color).map(completionRGBA(1, true))
+          .map(rgbFn)
+          .match({
+            some: toRingOffsetColor(context.variablePrefix),
+            none: () => toRingOffsetColor(context.variablePrefix)(color),
+          });
+      },
+    ],
   ]],
   [
     reNumeric,

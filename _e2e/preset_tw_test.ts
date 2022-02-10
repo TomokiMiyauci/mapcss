@@ -15957,6 +15957,2685 @@ const expects: [string, string][] = [
   ["ring-offset-2", ".ring-offset-2{--map-ring-offset-width:2px;}"],
   ["ring-offset-4", ".ring-offset-4{--map-ring-offset-width:4px;}"],
   ["ring-offset-8", ".ring-offset-8{--map-ring-offset-width:8px;}"],
+  [
+    "ring-offset-inherit",
+    ".ring-offset-inherit{--map-ring-offset-color:inherit;}",
+  ],
+  [
+    "ring-offset-current",
+    ".ring-offset-current{--map-ring-offset-color:currentColor;}",
+  ],
+  [
+    "ring-offset-transparent",
+    ".ring-offset-transparent{--map-ring-offset-color:transparent;}",
+  ],
+  [
+    "ring-offset-black",
+    ".ring-offset-black{--map-ring-offset-color:rgb(0 0 0/1);}",
+  ],
+  [
+    "ring-offset-white",
+    ".ring-offset-white{--map-ring-offset-color:rgb(255 255 255/1);}",
+  ],
+  [
+    "ring-offset-slate-50",
+    ".ring-offset-slate-50{--map-ring-offset-color:rgb(248 250 252/1);}",
+  ],
+  [
+    "ring-offset-slate-100",
+    ".ring-offset-slate-100{--map-ring-offset-color:rgb(241 245 249/1);}",
+  ],
+  [
+    "ring-offset-slate-200",
+    ".ring-offset-slate-200{--map-ring-offset-color:rgb(226 232 240/1);}",
+  ],
+  [
+    "ring-offset-slate-300",
+    ".ring-offset-slate-300{--map-ring-offset-color:rgb(203 213 225/1);}",
+  ],
+  [
+    "ring-offset-slate-400",
+    ".ring-offset-slate-400{--map-ring-offset-color:rgb(148 163 184/1);}",
+  ],
+  [
+    "ring-offset-slate-500",
+    ".ring-offset-slate-500{--map-ring-offset-color:rgb(100 116 139/1);}",
+  ],
+  [
+    "ring-offset-slate-600",
+    ".ring-offset-slate-600{--map-ring-offset-color:rgb(71 85 105/1);}",
+  ],
+  [
+    "ring-offset-slate-700",
+    ".ring-offset-slate-700{--map-ring-offset-color:rgb(51 65 85/1);}",
+  ],
+  [
+    "ring-offset-slate-800",
+    ".ring-offset-slate-800{--map-ring-offset-color:rgb(30 41 59/1);}",
+  ],
+  [
+    "ring-offset-slate-900",
+    ".ring-offset-slate-900{--map-ring-offset-color:rgb(15 23 42/1);}",
+  ],
+  [
+    "ring-offset-gray-50",
+    ".ring-offset-gray-50{--map-ring-offset-color:rgb(249 250 251/1);}",
+  ],
+  [
+    "ring-offset-gray-100",
+    ".ring-offset-gray-100{--map-ring-offset-color:rgb(243 244 246/1);}",
+  ],
+  [
+    "ring-offset-gray-200",
+    ".ring-offset-gray-200{--map-ring-offset-color:rgb(229 231 235/1);}",
+  ],
+  [
+    "ring-offset-gray-300",
+    ".ring-offset-gray-300{--map-ring-offset-color:rgb(209 213 219/1);}",
+  ],
+  [
+    "ring-offset-gray-400",
+    ".ring-offset-gray-400{--map-ring-offset-color:rgb(156 163 175/1);}",
+  ],
+  [
+    "ring-offset-gray-500",
+    ".ring-offset-gray-500{--map-ring-offset-color:rgb(107 114 128/1);}",
+  ],
+  [
+    "ring-offset-gray-600",
+    ".ring-offset-gray-600{--map-ring-offset-color:rgb(75 85 99/1);}",
+  ],
+  [
+    "ring-offset-gray-700",
+    ".ring-offset-gray-700{--map-ring-offset-color:rgb(55 65 81/1);}",
+  ],
+  [
+    "ring-offset-gray-800",
+    ".ring-offset-gray-800{--map-ring-offset-color:rgb(31 41 55/1);}",
+  ],
+  [
+    "ring-offset-gray-900",
+    ".ring-offset-gray-900{--map-ring-offset-color:rgb(17 24 39/1);}",
+  ],
+  [
+    "ring-offset-zinc-50",
+    ".ring-offset-zinc-50{--map-ring-offset-color:rgb(250 250 250/1);}",
+  ],
+  [
+    "ring-offset-zinc-100",
+    ".ring-offset-zinc-100{--map-ring-offset-color:rgb(244 244 245/1);}",
+  ],
+  [
+    "ring-offset-zinc-200",
+    ".ring-offset-zinc-200{--map-ring-offset-color:rgb(228 228 231/1);}",
+  ],
+  [
+    "ring-offset-zinc-300",
+    ".ring-offset-zinc-300{--map-ring-offset-color:rgb(212 212 216/1);}",
+  ],
+  [
+    "ring-offset-zinc-400",
+    ".ring-offset-zinc-400{--map-ring-offset-color:rgb(161 161 170/1);}",
+  ],
+  [
+    "ring-offset-zinc-500",
+    ".ring-offset-zinc-500{--map-ring-offset-color:rgb(113 113 122/1);}",
+  ],
+  [
+    "ring-offset-zinc-600",
+    ".ring-offset-zinc-600{--map-ring-offset-color:rgb(82 82 91/1);}",
+  ],
+  [
+    "ring-offset-zinc-700",
+    ".ring-offset-zinc-700{--map-ring-offset-color:rgb(63 63 70/1);}",
+  ],
+  [
+    "ring-offset-zinc-800",
+    ".ring-offset-zinc-800{--map-ring-offset-color:rgb(39 39 42/1);}",
+  ],
+  [
+    "ring-offset-zinc-900",
+    ".ring-offset-zinc-900{--map-ring-offset-color:rgb(24 24 27/1);}",
+  ],
+  [
+    "ring-offset-neutral-50",
+    ".ring-offset-neutral-50{--map-ring-offset-color:rgb(250 250 250/1);}",
+  ],
+  [
+    "ring-offset-neutral-100",
+    ".ring-offset-neutral-100{--map-ring-offset-color:rgb(245 245 245/1);}",
+  ],
+  [
+    "ring-offset-neutral-200",
+    ".ring-offset-neutral-200{--map-ring-offset-color:rgb(229 229 229/1);}",
+  ],
+  [
+    "ring-offset-neutral-300",
+    ".ring-offset-neutral-300{--map-ring-offset-color:rgb(212 212 212/1);}",
+  ],
+  [
+    "ring-offset-neutral-400",
+    ".ring-offset-neutral-400{--map-ring-offset-color:rgb(163 163 163/1);}",
+  ],
+  [
+    "ring-offset-neutral-500",
+    ".ring-offset-neutral-500{--map-ring-offset-color:rgb(115 115 115/1);}",
+  ],
+  [
+    "ring-offset-neutral-600",
+    ".ring-offset-neutral-600{--map-ring-offset-color:rgb(82 82 82/1);}",
+  ],
+  [
+    "ring-offset-neutral-700",
+    ".ring-offset-neutral-700{--map-ring-offset-color:rgb(64 64 64/1);}",
+  ],
+  [
+    "ring-offset-neutral-800",
+    ".ring-offset-neutral-800{--map-ring-offset-color:rgb(38 38 38/1);}",
+  ],
+  [
+    "ring-offset-neutral-900",
+    ".ring-offset-neutral-900{--map-ring-offset-color:rgb(23 23 23/1);}",
+  ],
+  [
+    "ring-offset-stone-50",
+    ".ring-offset-stone-50{--map-ring-offset-color:rgb(250 250 249/1);}",
+  ],
+  [
+    "ring-offset-stone-100",
+    ".ring-offset-stone-100{--map-ring-offset-color:rgb(245 245 244/1);}",
+  ],
+  [
+    "ring-offset-stone-200",
+    ".ring-offset-stone-200{--map-ring-offset-color:rgb(231 229 228/1);}",
+  ],
+  [
+    "ring-offset-stone-300",
+    ".ring-offset-stone-300{--map-ring-offset-color:rgb(214 211 209/1);}",
+  ],
+  [
+    "ring-offset-stone-400",
+    ".ring-offset-stone-400{--map-ring-offset-color:rgb(168 162 158/1);}",
+  ],
+  [
+    "ring-offset-stone-500",
+    ".ring-offset-stone-500{--map-ring-offset-color:rgb(120 113 108/1);}",
+  ],
+  [
+    "ring-offset-stone-600",
+    ".ring-offset-stone-600{--map-ring-offset-color:rgb(87 83 78/1);}",
+  ],
+  [
+    "ring-offset-stone-700",
+    ".ring-offset-stone-700{--map-ring-offset-color:rgb(68 64 60/1);}",
+  ],
+  [
+    "ring-offset-stone-800",
+    ".ring-offset-stone-800{--map-ring-offset-color:rgb(41 37 36/1);}",
+  ],
+  [
+    "ring-offset-stone-900",
+    ".ring-offset-stone-900{--map-ring-offset-color:rgb(28 25 23/1);}",
+  ],
+  [
+    "ring-offset-red-50",
+    ".ring-offset-red-50{--map-ring-offset-color:rgb(254 242 242/1);}",
+  ],
+  [
+    "ring-offset-red-100",
+    ".ring-offset-red-100{--map-ring-offset-color:rgb(254 226 226/1);}",
+  ],
+  [
+    "ring-offset-red-200",
+    ".ring-offset-red-200{--map-ring-offset-color:rgb(254 202 202/1);}",
+  ],
+  [
+    "ring-offset-red-300",
+    ".ring-offset-red-300{--map-ring-offset-color:rgb(252 165 165/1);}",
+  ],
+  [
+    "ring-offset-red-400",
+    ".ring-offset-red-400{--map-ring-offset-color:rgb(248 113 113/1);}",
+  ],
+  [
+    "ring-offset-red-500",
+    ".ring-offset-red-500{--map-ring-offset-color:rgb(239 68 68/1);}",
+  ],
+  [
+    "ring-offset-red-600",
+    ".ring-offset-red-600{--map-ring-offset-color:rgb(220 38 38/1);}",
+  ],
+  [
+    "ring-offset-red-700",
+    ".ring-offset-red-700{--map-ring-offset-color:rgb(185 28 28/1);}",
+  ],
+  [
+    "ring-offset-red-800",
+    ".ring-offset-red-800{--map-ring-offset-color:rgb(153 27 27/1);}",
+  ],
+  [
+    "ring-offset-red-900",
+    ".ring-offset-red-900{--map-ring-offset-color:rgb(127 29 29/1);}",
+  ],
+  [
+    "ring-offset-orange-50",
+    ".ring-offset-orange-50{--map-ring-offset-color:rgb(255 247 237/1);}",
+  ],
+  [
+    "ring-offset-orange-100",
+    ".ring-offset-orange-100{--map-ring-offset-color:rgb(255 237 213/1);}",
+  ],
+  [
+    "ring-offset-orange-200",
+    ".ring-offset-orange-200{--map-ring-offset-color:rgb(254 215 170/1);}",
+  ],
+  [
+    "ring-offset-orange-300",
+    ".ring-offset-orange-300{--map-ring-offset-color:rgb(253 186 116/1);}",
+  ],
+  [
+    "ring-offset-orange-400",
+    ".ring-offset-orange-400{--map-ring-offset-color:rgb(251 146 60/1);}",
+  ],
+  [
+    "ring-offset-orange-500",
+    ".ring-offset-orange-500{--map-ring-offset-color:rgb(249 115 22/1);}",
+  ],
+  [
+    "ring-offset-orange-600",
+    ".ring-offset-orange-600{--map-ring-offset-color:rgb(234 88 12/1);}",
+  ],
+  [
+    "ring-offset-orange-700",
+    ".ring-offset-orange-700{--map-ring-offset-color:rgb(194 65 12/1);}",
+  ],
+  [
+    "ring-offset-orange-800",
+    ".ring-offset-orange-800{--map-ring-offset-color:rgb(154 52 18/1);}",
+  ],
+  [
+    "ring-offset-orange-900",
+    ".ring-offset-orange-900{--map-ring-offset-color:rgb(124 45 18/1);}",
+  ],
+  [
+    "ring-offset-amber-50",
+    ".ring-offset-amber-50{--map-ring-offset-color:rgb(255 251 235/1);}",
+  ],
+  [
+    "ring-offset-amber-100",
+    ".ring-offset-amber-100{--map-ring-offset-color:rgb(254 243 199/1);}",
+  ],
+  [
+    "ring-offset-amber-200",
+    ".ring-offset-amber-200{--map-ring-offset-color:rgb(253 230 138/1);}",
+  ],
+  [
+    "ring-offset-amber-300",
+    ".ring-offset-amber-300{--map-ring-offset-color:rgb(252 211 77/1);}",
+  ],
+  [
+    "ring-offset-amber-400",
+    ".ring-offset-amber-400{--map-ring-offset-color:rgb(251 191 36/1);}",
+  ],
+  [
+    "ring-offset-amber-500",
+    ".ring-offset-amber-500{--map-ring-offset-color:rgb(245 158 11/1);}",
+  ],
+  [
+    "ring-offset-amber-600",
+    ".ring-offset-amber-600{--map-ring-offset-color:rgb(217 119 6/1);}",
+  ],
+  [
+    "ring-offset-amber-700",
+    ".ring-offset-amber-700{--map-ring-offset-color:rgb(180 83 9/1);}",
+  ],
+  [
+    "ring-offset-amber-800",
+    ".ring-offset-amber-800{--map-ring-offset-color:rgb(146 64 14/1);}",
+  ],
+  [
+    "ring-offset-amber-900",
+    ".ring-offset-amber-900{--map-ring-offset-color:rgb(120 53 15/1);}",
+  ],
+  [
+    "ring-offset-yellow-50",
+    ".ring-offset-yellow-50{--map-ring-offset-color:rgb(254 252 232/1);}",
+  ],
+  [
+    "ring-offset-yellow-100",
+    ".ring-offset-yellow-100{--map-ring-offset-color:rgb(254 249 195/1);}",
+  ],
+  [
+    "ring-offset-yellow-200",
+    ".ring-offset-yellow-200{--map-ring-offset-color:rgb(254 240 138/1);}",
+  ],
+  [
+    "ring-offset-yellow-300",
+    ".ring-offset-yellow-300{--map-ring-offset-color:rgb(253 224 71/1);}",
+  ],
+  [
+    "ring-offset-yellow-400",
+    ".ring-offset-yellow-400{--map-ring-offset-color:rgb(250 204 21/1);}",
+  ],
+  [
+    "ring-offset-yellow-500",
+    ".ring-offset-yellow-500{--map-ring-offset-color:rgb(234 179 8/1);}",
+  ],
+  [
+    "ring-offset-yellow-600",
+    ".ring-offset-yellow-600{--map-ring-offset-color:rgb(202 138 4/1);}",
+  ],
+  [
+    "ring-offset-yellow-700",
+    ".ring-offset-yellow-700{--map-ring-offset-color:rgb(161 98 7/1);}",
+  ],
+  [
+    "ring-offset-yellow-800",
+    ".ring-offset-yellow-800{--map-ring-offset-color:rgb(133 77 14/1);}",
+  ],
+  [
+    "ring-offset-yellow-900",
+    ".ring-offset-yellow-900{--map-ring-offset-color:rgb(113 63 18/1);}",
+  ],
+  [
+    "ring-offset-lime-50",
+    ".ring-offset-lime-50{--map-ring-offset-color:rgb(247 254 231/1);}",
+  ],
+  [
+    "ring-offset-lime-100",
+    ".ring-offset-lime-100{--map-ring-offset-color:rgb(236 252 203/1);}",
+  ],
+  [
+    "ring-offset-lime-200",
+    ".ring-offset-lime-200{--map-ring-offset-color:rgb(217 249 157/1);}",
+  ],
+  [
+    "ring-offset-lime-300",
+    ".ring-offset-lime-300{--map-ring-offset-color:rgb(190 242 100/1);}",
+  ],
+  [
+    "ring-offset-lime-400",
+    ".ring-offset-lime-400{--map-ring-offset-color:rgb(163 230 53/1);}",
+  ],
+  [
+    "ring-offset-lime-500",
+    ".ring-offset-lime-500{--map-ring-offset-color:rgb(132 204 22/1);}",
+  ],
+  [
+    "ring-offset-lime-600",
+    ".ring-offset-lime-600{--map-ring-offset-color:rgb(101 163 13/1);}",
+  ],
+  [
+    "ring-offset-lime-700",
+    ".ring-offset-lime-700{--map-ring-offset-color:rgb(77 124 15/1);}",
+  ],
+  [
+    "ring-offset-lime-800",
+    ".ring-offset-lime-800{--map-ring-offset-color:rgb(63 98 18/1);}",
+  ],
+  [
+    "ring-offset-lime-900",
+    ".ring-offset-lime-900{--map-ring-offset-color:rgb(54 83 20/1);}",
+  ],
+  [
+    "ring-offset-green-50",
+    ".ring-offset-green-50{--map-ring-offset-color:rgb(240 253 244/1);}",
+  ],
+  [
+    "ring-offset-green-100",
+    ".ring-offset-green-100{--map-ring-offset-color:rgb(220 252 231/1);}",
+  ],
+  [
+    "ring-offset-green-200",
+    ".ring-offset-green-200{--map-ring-offset-color:rgb(187 247 208/1);}",
+  ],
+  [
+    "ring-offset-green-300",
+    ".ring-offset-green-300{--map-ring-offset-color:rgb(134 239 172/1);}",
+  ],
+  [
+    "ring-offset-green-400",
+    ".ring-offset-green-400{--map-ring-offset-color:rgb(74 222 128/1);}",
+  ],
+  [
+    "ring-offset-green-500",
+    ".ring-offset-green-500{--map-ring-offset-color:rgb(34 197 94/1);}",
+  ],
+  [
+    "ring-offset-green-600",
+    ".ring-offset-green-600{--map-ring-offset-color:rgb(22 163 74/1);}",
+  ],
+  [
+    "ring-offset-green-700",
+    ".ring-offset-green-700{--map-ring-offset-color:rgb(21 128 61/1);}",
+  ],
+  [
+    "ring-offset-green-800",
+    ".ring-offset-green-800{--map-ring-offset-color:rgb(22 101 52/1);}",
+  ],
+  [
+    "ring-offset-green-900",
+    ".ring-offset-green-900{--map-ring-offset-color:rgb(20 83 45/1);}",
+  ],
+  [
+    "ring-offset-emerald-50",
+    ".ring-offset-emerald-50{--map-ring-offset-color:rgb(236 253 245/1);}",
+  ],
+  [
+    "ring-offset-emerald-100",
+    ".ring-offset-emerald-100{--map-ring-offset-color:rgb(209 250 229/1);}",
+  ],
+  [
+    "ring-offset-emerald-200",
+    ".ring-offset-emerald-200{--map-ring-offset-color:rgb(167 243 208/1);}",
+  ],
+  [
+    "ring-offset-emerald-300",
+    ".ring-offset-emerald-300{--map-ring-offset-color:rgb(110 231 183/1);}",
+  ],
+  [
+    "ring-offset-emerald-400",
+    ".ring-offset-emerald-400{--map-ring-offset-color:rgb(52 211 153/1);}",
+  ],
+  [
+    "ring-offset-emerald-500",
+    ".ring-offset-emerald-500{--map-ring-offset-color:rgb(16 185 129/1);}",
+  ],
+  [
+    "ring-offset-emerald-600",
+    ".ring-offset-emerald-600{--map-ring-offset-color:rgb(5 150 105/1);}",
+  ],
+  [
+    "ring-offset-emerald-700",
+    ".ring-offset-emerald-700{--map-ring-offset-color:rgb(4 120 87/1);}",
+  ],
+  [
+    "ring-offset-emerald-800",
+    ".ring-offset-emerald-800{--map-ring-offset-color:rgb(6 95 70/1);}",
+  ],
+  [
+    "ring-offset-emerald-900",
+    ".ring-offset-emerald-900{--map-ring-offset-color:rgb(6 78 59/1);}",
+  ],
+  [
+    "ring-offset-teal-50",
+    ".ring-offset-teal-50{--map-ring-offset-color:rgb(240 253 250/1);}",
+  ],
+  [
+    "ring-offset-teal-100",
+    ".ring-offset-teal-100{--map-ring-offset-color:rgb(204 251 241/1);}",
+  ],
+  [
+    "ring-offset-teal-200",
+    ".ring-offset-teal-200{--map-ring-offset-color:rgb(153 246 228/1);}",
+  ],
+  [
+    "ring-offset-teal-300",
+    ".ring-offset-teal-300{--map-ring-offset-color:rgb(94 234 212/1);}",
+  ],
+  [
+    "ring-offset-teal-400",
+    ".ring-offset-teal-400{--map-ring-offset-color:rgb(45 212 191/1);}",
+  ],
+  [
+    "ring-offset-teal-500",
+    ".ring-offset-teal-500{--map-ring-offset-color:rgb(20 184 166/1);}",
+  ],
+  [
+    "ring-offset-teal-600",
+    ".ring-offset-teal-600{--map-ring-offset-color:rgb(13 148 136/1);}",
+  ],
+  [
+    "ring-offset-teal-700",
+    ".ring-offset-teal-700{--map-ring-offset-color:rgb(15 118 110/1);}",
+  ],
+  [
+    "ring-offset-teal-800",
+    ".ring-offset-teal-800{--map-ring-offset-color:rgb(17 94 89/1);}",
+  ],
+  [
+    "ring-offset-teal-900",
+    ".ring-offset-teal-900{--map-ring-offset-color:rgb(19 78 74/1);}",
+  ],
+  [
+    "ring-offset-cyan-50",
+    ".ring-offset-cyan-50{--map-ring-offset-color:rgb(236 254 255/1);}",
+  ],
+  [
+    "ring-offset-cyan-100",
+    ".ring-offset-cyan-100{--map-ring-offset-color:rgb(207 250 254/1);}",
+  ],
+  [
+    "ring-offset-cyan-200",
+    ".ring-offset-cyan-200{--map-ring-offset-color:rgb(165 243 252/1);}",
+  ],
+  [
+    "ring-offset-cyan-300",
+    ".ring-offset-cyan-300{--map-ring-offset-color:rgb(103 232 249/1);}",
+  ],
+  [
+    "ring-offset-cyan-400",
+    ".ring-offset-cyan-400{--map-ring-offset-color:rgb(34 211 238/1);}",
+  ],
+  [
+    "ring-offset-cyan-500",
+    ".ring-offset-cyan-500{--map-ring-offset-color:rgb(6 182 212/1);}",
+  ],
+  [
+    "ring-offset-cyan-600",
+    ".ring-offset-cyan-600{--map-ring-offset-color:rgb(8 145 178/1);}",
+  ],
+  [
+    "ring-offset-cyan-700",
+    ".ring-offset-cyan-700{--map-ring-offset-color:rgb(14 116 144/1);}",
+  ],
+  [
+    "ring-offset-cyan-800",
+    ".ring-offset-cyan-800{--map-ring-offset-color:rgb(21 94 117/1);}",
+  ],
+  [
+    "ring-offset-cyan-900",
+    ".ring-offset-cyan-900{--map-ring-offset-color:rgb(22 78 99/1);}",
+  ],
+  [
+    "ring-offset-sky-50",
+    ".ring-offset-sky-50{--map-ring-offset-color:rgb(240 249 255/1);}",
+  ],
+  [
+    "ring-offset-sky-100",
+    ".ring-offset-sky-100{--map-ring-offset-color:rgb(224 242 254/1);}",
+  ],
+  [
+    "ring-offset-sky-200",
+    ".ring-offset-sky-200{--map-ring-offset-color:rgb(186 230 253/1);}",
+  ],
+  [
+    "ring-offset-sky-300",
+    ".ring-offset-sky-300{--map-ring-offset-color:rgb(125 211 252/1);}",
+  ],
+  [
+    "ring-offset-sky-400",
+    ".ring-offset-sky-400{--map-ring-offset-color:rgb(56 189 248/1);}",
+  ],
+  [
+    "ring-offset-sky-500",
+    ".ring-offset-sky-500{--map-ring-offset-color:rgb(14 165 233/1);}",
+  ],
+  [
+    "ring-offset-sky-600",
+    ".ring-offset-sky-600{--map-ring-offset-color:rgb(2 132 199/1);}",
+  ],
+  [
+    "ring-offset-sky-700",
+    ".ring-offset-sky-700{--map-ring-offset-color:rgb(3 105 161/1);}",
+  ],
+  [
+    "ring-offset-sky-800",
+    ".ring-offset-sky-800{--map-ring-offset-color:rgb(7 89 133/1);}",
+  ],
+  [
+    "ring-offset-sky-900",
+    ".ring-offset-sky-900{--map-ring-offset-color:rgb(12 74 110/1);}",
+  ],
+  [
+    "ring-offset-blue-50",
+    ".ring-offset-blue-50{--map-ring-offset-color:rgb(239 246 255/1);}",
+  ],
+  [
+    "ring-offset-blue-100",
+    ".ring-offset-blue-100{--map-ring-offset-color:rgb(219 234 254/1);}",
+  ],
+  [
+    "ring-offset-blue-200",
+    ".ring-offset-blue-200{--map-ring-offset-color:rgb(191 219 254/1);}",
+  ],
+  [
+    "ring-offset-blue-300",
+    ".ring-offset-blue-300{--map-ring-offset-color:rgb(147 197 253/1);}",
+  ],
+  [
+    "ring-offset-blue-400",
+    ".ring-offset-blue-400{--map-ring-offset-color:rgb(96 165 250/1);}",
+  ],
+  [
+    "ring-offset-blue-500",
+    ".ring-offset-blue-500{--map-ring-offset-color:rgb(59 130 246/1);}",
+  ],
+  [
+    "ring-offset-blue-600",
+    ".ring-offset-blue-600{--map-ring-offset-color:rgb(37 99 235/1);}",
+  ],
+  [
+    "ring-offset-blue-700",
+    ".ring-offset-blue-700{--map-ring-offset-color:rgb(29 78 216/1);}",
+  ],
+  [
+    "ring-offset-blue-800",
+    ".ring-offset-blue-800{--map-ring-offset-color:rgb(30 64 175/1);}",
+  ],
+  [
+    "ring-offset-blue-900",
+    ".ring-offset-blue-900{--map-ring-offset-color:rgb(30 58 138/1);}",
+  ],
+  [
+    "ring-offset-indigo-50",
+    ".ring-offset-indigo-50{--map-ring-offset-color:rgb(238 242 255/1);}",
+  ],
+  [
+    "ring-offset-indigo-100",
+    ".ring-offset-indigo-100{--map-ring-offset-color:rgb(224 231 255/1);}",
+  ],
+  [
+    "ring-offset-indigo-200",
+    ".ring-offset-indigo-200{--map-ring-offset-color:rgb(199 210 254/1);}",
+  ],
+  [
+    "ring-offset-indigo-300",
+    ".ring-offset-indigo-300{--map-ring-offset-color:rgb(165 180 252/1);}",
+  ],
+  [
+    "ring-offset-indigo-400",
+    ".ring-offset-indigo-400{--map-ring-offset-color:rgb(129 140 248/1);}",
+  ],
+  [
+    "ring-offset-indigo-500",
+    ".ring-offset-indigo-500{--map-ring-offset-color:rgb(99 102 241/1);}",
+  ],
+  [
+    "ring-offset-indigo-600",
+    ".ring-offset-indigo-600{--map-ring-offset-color:rgb(79 70 229/1);}",
+  ],
+  [
+    "ring-offset-indigo-700",
+    ".ring-offset-indigo-700{--map-ring-offset-color:rgb(67 56 202/1);}",
+  ],
+  [
+    "ring-offset-indigo-800",
+    ".ring-offset-indigo-800{--map-ring-offset-color:rgb(55 48 163/1);}",
+  ],
+  [
+    "ring-offset-indigo-900",
+    ".ring-offset-indigo-900{--map-ring-offset-color:rgb(49 46 129/1);}",
+  ],
+  [
+    "ring-offset-violet-50",
+    ".ring-offset-violet-50{--map-ring-offset-color:rgb(245 243 255/1);}",
+  ],
+  [
+    "ring-offset-violet-100",
+    ".ring-offset-violet-100{--map-ring-offset-color:rgb(237 233 254/1);}",
+  ],
+  [
+    "ring-offset-violet-200",
+    ".ring-offset-violet-200{--map-ring-offset-color:rgb(221 214 254/1);}",
+  ],
+  [
+    "ring-offset-violet-300",
+    ".ring-offset-violet-300{--map-ring-offset-color:rgb(196 181 253/1);}",
+  ],
+  [
+    "ring-offset-violet-400",
+    ".ring-offset-violet-400{--map-ring-offset-color:rgb(167 139 250/1);}",
+  ],
+  [
+    "ring-offset-violet-500",
+    ".ring-offset-violet-500{--map-ring-offset-color:rgb(139 92 246/1);}",
+  ],
+  [
+    "ring-offset-violet-600",
+    ".ring-offset-violet-600{--map-ring-offset-color:rgb(124 58 237/1);}",
+  ],
+  [
+    "ring-offset-violet-700",
+    ".ring-offset-violet-700{--map-ring-offset-color:rgb(109 40 217/1);}",
+  ],
+  [
+    "ring-offset-violet-800",
+    ".ring-offset-violet-800{--map-ring-offset-color:rgb(91 33 182/1);}",
+  ],
+  [
+    "ring-offset-violet-900",
+    ".ring-offset-violet-900{--map-ring-offset-color:rgb(76 29 149/1);}",
+  ],
+  [
+    "ring-offset-purple-50",
+    ".ring-offset-purple-50{--map-ring-offset-color:rgb(250 245 255/1);}",
+  ],
+  [
+    "ring-offset-purple-100",
+    ".ring-offset-purple-100{--map-ring-offset-color:rgb(243 232 255/1);}",
+  ],
+  [
+    "ring-offset-purple-200",
+    ".ring-offset-purple-200{--map-ring-offset-color:rgb(233 213 255/1);}",
+  ],
+  [
+    "ring-offset-purple-300",
+    ".ring-offset-purple-300{--map-ring-offset-color:rgb(216 180 254/1);}",
+  ],
+  [
+    "ring-offset-purple-400",
+    ".ring-offset-purple-400{--map-ring-offset-color:rgb(192 132 252/1);}",
+  ],
+  [
+    "ring-offset-purple-500",
+    ".ring-offset-purple-500{--map-ring-offset-color:rgb(168 85 247/1);}",
+  ],
+  [
+    "ring-offset-purple-600",
+    ".ring-offset-purple-600{--map-ring-offset-color:rgb(147 51 234/1);}",
+  ],
+  [
+    "ring-offset-purple-700",
+    ".ring-offset-purple-700{--map-ring-offset-color:rgb(126 34 206/1);}",
+  ],
+  [
+    "ring-offset-purple-800",
+    ".ring-offset-purple-800{--map-ring-offset-color:rgb(107 33 168/1);}",
+  ],
+  [
+    "ring-offset-purple-900",
+    ".ring-offset-purple-900{--map-ring-offset-color:rgb(88 28 135/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-50",
+    ".ring-offset-fuchsia-50{--map-ring-offset-color:rgb(253 244 255/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-100",
+    ".ring-offset-fuchsia-100{--map-ring-offset-color:rgb(250 232 255/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-200",
+    ".ring-offset-fuchsia-200{--map-ring-offset-color:rgb(245 208 254/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-300",
+    ".ring-offset-fuchsia-300{--map-ring-offset-color:rgb(240 171 252/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-400",
+    ".ring-offset-fuchsia-400{--map-ring-offset-color:rgb(232 121 249/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-500",
+    ".ring-offset-fuchsia-500{--map-ring-offset-color:rgb(217 70 239/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-600",
+    ".ring-offset-fuchsia-600{--map-ring-offset-color:rgb(192 38 211/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-700",
+    ".ring-offset-fuchsia-700{--map-ring-offset-color:rgb(162 28 175/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-800",
+    ".ring-offset-fuchsia-800{--map-ring-offset-color:rgb(134 25 143/1);}",
+  ],
+  [
+    "ring-offset-fuchsia-900",
+    ".ring-offset-fuchsia-900{--map-ring-offset-color:rgb(112 26 117/1);}",
+  ],
+  [
+    "ring-offset-pink-50",
+    ".ring-offset-pink-50{--map-ring-offset-color:rgb(253 242 248/1);}",
+  ],
+  [
+    "ring-offset-pink-100",
+    ".ring-offset-pink-100{--map-ring-offset-color:rgb(252 231 243/1);}",
+  ],
+  [
+    "ring-offset-pink-200",
+    ".ring-offset-pink-200{--map-ring-offset-color:rgb(251 207 232/1);}",
+  ],
+  [
+    "ring-offset-pink-300",
+    ".ring-offset-pink-300{--map-ring-offset-color:rgb(249 168 212/1);}",
+  ],
+  [
+    "ring-offset-pink-400",
+    ".ring-offset-pink-400{--map-ring-offset-color:rgb(244 114 182/1);}",
+  ],
+  [
+    "ring-offset-pink-500",
+    ".ring-offset-pink-500{--map-ring-offset-color:rgb(236 72 153/1);}",
+  ],
+  [
+    "ring-offset-pink-600",
+    ".ring-offset-pink-600{--map-ring-offset-color:rgb(219 39 119/1);}",
+  ],
+  [
+    "ring-offset-pink-700",
+    ".ring-offset-pink-700{--map-ring-offset-color:rgb(190 24 93/1);}",
+  ],
+  [
+    "ring-offset-pink-800",
+    ".ring-offset-pink-800{--map-ring-offset-color:rgb(157 23 77/1);}",
+  ],
+  [
+    "ring-offset-pink-900",
+    ".ring-offset-pink-900{--map-ring-offset-color:rgb(131 24 67/1);}",
+  ],
+  [
+    "ring-offset-rose-50",
+    ".ring-offset-rose-50{--map-ring-offset-color:rgb(255 241 242/1);}",
+  ],
+  [
+    "ring-offset-rose-100",
+    ".ring-offset-rose-100{--map-ring-offset-color:rgb(255 228 230/1);}",
+  ],
+  [
+    "ring-offset-rose-200",
+    ".ring-offset-rose-200{--map-ring-offset-color:rgb(254 205 211/1);}",
+  ],
+  [
+    "ring-offset-rose-300",
+    ".ring-offset-rose-300{--map-ring-offset-color:rgb(253 164 175/1);}",
+  ],
+  [
+    "ring-offset-rose-400",
+    ".ring-offset-rose-400{--map-ring-offset-color:rgb(251 113 133/1);}",
+  ],
+  [
+    "ring-offset-rose-500",
+    ".ring-offset-rose-500{--map-ring-offset-color:rgb(244 63 94/1);}",
+  ],
+  [
+    "ring-offset-rose-600",
+    ".ring-offset-rose-600{--map-ring-offset-color:rgb(225 29 72/1);}",
+  ],
+  [
+    "ring-offset-rose-700",
+    ".ring-offset-rose-700{--map-ring-offset-color:rgb(190 18 60/1);}",
+  ],
+  [
+    "ring-offset-rose-800",
+    ".ring-offset-rose-800{--map-ring-offset-color:rgb(159 18 57/1);}",
+  ],
+  [
+    "ring-offset-rose-900",
+    ".ring-offset-rose-900{--map-ring-offset-color:rgb(136 19 55/1);}",
+  ],
+  [
+    "ring-offset-black/50",
+    ".ring-offset-black\\/50{--map-ring-offset-color:rgb(0 0 0/.5);}",
+  ],
+  [
+    "ring-offset-white/50",
+    ".ring-offset-white\\/50{--map-ring-offset-color:rgb(255 255 255/.5);}",
+  ],
+  [
+    "ring-offset-slate-50/50",
+    ".ring-offset-slate-50\\/50{--map-ring-offset-color:rgb(248 250 252/.5);}",
+  ],
+  [
+    "ring-offset-slate-100/50",
+    ".ring-offset-slate-100\\/50{--map-ring-offset-color:rgb(241 245 249/.5);}",
+  ],
+  [
+    "ring-offset-slate-200/50",
+    ".ring-offset-slate-200\\/50{--map-ring-offset-color:rgb(226 232 240/.5);}",
+  ],
+  [
+    "ring-offset-slate-300/50",
+    ".ring-offset-slate-300\\/50{--map-ring-offset-color:rgb(203 213 225/.5);}",
+  ],
+  [
+    "ring-offset-slate-400/50",
+    ".ring-offset-slate-400\\/50{--map-ring-offset-color:rgb(148 163 184/.5);}",
+  ],
+  [
+    "ring-offset-slate-500/50",
+    ".ring-offset-slate-500\\/50{--map-ring-offset-color:rgb(100 116 139/.5);}",
+  ],
+  [
+    "ring-offset-slate-600/50",
+    ".ring-offset-slate-600\\/50{--map-ring-offset-color:rgb(71 85 105/.5);}",
+  ],
+  [
+    "ring-offset-slate-700/50",
+    ".ring-offset-slate-700\\/50{--map-ring-offset-color:rgb(51 65 85/.5);}",
+  ],
+  [
+    "ring-offset-slate-800/50",
+    ".ring-offset-slate-800\\/50{--map-ring-offset-color:rgb(30 41 59/.5);}",
+  ],
+  [
+    "ring-offset-slate-900/50",
+    ".ring-offset-slate-900\\/50{--map-ring-offset-color:rgb(15 23 42/.5);}",
+  ],
+  [
+    "ring-offset-gray-50/50",
+    ".ring-offset-gray-50\\/50{--map-ring-offset-color:rgb(249 250 251/.5);}",
+  ],
+  [
+    "ring-offset-gray-100/50",
+    ".ring-offset-gray-100\\/50{--map-ring-offset-color:rgb(243 244 246/.5);}",
+  ],
+  [
+    "ring-offset-gray-200/50",
+    ".ring-offset-gray-200\\/50{--map-ring-offset-color:rgb(229 231 235/.5);}",
+  ],
+  [
+    "ring-offset-gray-300/50",
+    ".ring-offset-gray-300\\/50{--map-ring-offset-color:rgb(209 213 219/.5);}",
+  ],
+  [
+    "ring-offset-gray-400/50",
+    ".ring-offset-gray-400\\/50{--map-ring-offset-color:rgb(156 163 175/.5);}",
+  ],
+  [
+    "ring-offset-gray-500/50",
+    ".ring-offset-gray-500\\/50{--map-ring-offset-color:rgb(107 114 128/.5);}",
+  ],
+  [
+    "ring-offset-gray-600/50",
+    ".ring-offset-gray-600\\/50{--map-ring-offset-color:rgb(75 85 99/.5);}",
+  ],
+  [
+    "ring-offset-gray-700/50",
+    ".ring-offset-gray-700\\/50{--map-ring-offset-color:rgb(55 65 81/.5);}",
+  ],
+  [
+    "ring-offset-gray-800/50",
+    ".ring-offset-gray-800\\/50{--map-ring-offset-color:rgb(31 41 55/.5);}",
+  ],
+  [
+    "ring-offset-gray-900/50",
+    ".ring-offset-gray-900\\/50{--map-ring-offset-color:rgb(17 24 39/.5);}",
+  ],
+  [
+    "ring-offset-zinc-50/50",
+    ".ring-offset-zinc-50\\/50{--map-ring-offset-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "ring-offset-zinc-100/50",
+    ".ring-offset-zinc-100\\/50{--map-ring-offset-color:rgb(244 244 245/.5);}",
+  ],
+  [
+    "ring-offset-zinc-200/50",
+    ".ring-offset-zinc-200\\/50{--map-ring-offset-color:rgb(228 228 231/.5);}",
+  ],
+  [
+    "ring-offset-zinc-300/50",
+    ".ring-offset-zinc-300\\/50{--map-ring-offset-color:rgb(212 212 216/.5);}",
+  ],
+  [
+    "ring-offset-zinc-400/50",
+    ".ring-offset-zinc-400\\/50{--map-ring-offset-color:rgb(161 161 170/.5);}",
+  ],
+  [
+    "ring-offset-zinc-500/50",
+    ".ring-offset-zinc-500\\/50{--map-ring-offset-color:rgb(113 113 122/.5);}",
+  ],
+  [
+    "ring-offset-zinc-600/50",
+    ".ring-offset-zinc-600\\/50{--map-ring-offset-color:rgb(82 82 91/.5);}",
+  ],
+  [
+    "ring-offset-zinc-700/50",
+    ".ring-offset-zinc-700\\/50{--map-ring-offset-color:rgb(63 63 70/.5);}",
+  ],
+  [
+    "ring-offset-zinc-800/50",
+    ".ring-offset-zinc-800\\/50{--map-ring-offset-color:rgb(39 39 42/.5);}",
+  ],
+  [
+    "ring-offset-zinc-900/50",
+    ".ring-offset-zinc-900\\/50{--map-ring-offset-color:rgb(24 24 27/.5);}",
+  ],
+  [
+    "ring-offset-neutral-50/50",
+    ".ring-offset-neutral-50\\/50{--map-ring-offset-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "ring-offset-neutral-100/50",
+    ".ring-offset-neutral-100\\/50{--map-ring-offset-color:rgb(245 245 245/.5);}",
+  ],
+  [
+    "ring-offset-neutral-200/50",
+    ".ring-offset-neutral-200\\/50{--map-ring-offset-color:rgb(229 229 229/.5);}",
+  ],
+  [
+    "ring-offset-neutral-300/50",
+    ".ring-offset-neutral-300\\/50{--map-ring-offset-color:rgb(212 212 212/.5);}",
+  ],
+  [
+    "ring-offset-neutral-400/50",
+    ".ring-offset-neutral-400\\/50{--map-ring-offset-color:rgb(163 163 163/.5);}",
+  ],
+  [
+    "ring-offset-neutral-500/50",
+    ".ring-offset-neutral-500\\/50{--map-ring-offset-color:rgb(115 115 115/.5);}",
+  ],
+  [
+    "ring-offset-neutral-600/50",
+    ".ring-offset-neutral-600\\/50{--map-ring-offset-color:rgb(82 82 82/.5);}",
+  ],
+  [
+    "ring-offset-neutral-700/50",
+    ".ring-offset-neutral-700\\/50{--map-ring-offset-color:rgb(64 64 64/.5);}",
+  ],
+  [
+    "ring-offset-neutral-800/50",
+    ".ring-offset-neutral-800\\/50{--map-ring-offset-color:rgb(38 38 38/.5);}",
+  ],
+  [
+    "ring-offset-neutral-900/50",
+    ".ring-offset-neutral-900\\/50{--map-ring-offset-color:rgb(23 23 23/.5);}",
+  ],
+  [
+    "ring-offset-stone-50/50",
+    ".ring-offset-stone-50\\/50{--map-ring-offset-color:rgb(250 250 249/.5);}",
+  ],
+  [
+    "ring-offset-stone-100/50",
+    ".ring-offset-stone-100\\/50{--map-ring-offset-color:rgb(245 245 244/.5);}",
+  ],
+  [
+    "ring-offset-stone-200/50",
+    ".ring-offset-stone-200\\/50{--map-ring-offset-color:rgb(231 229 228/.5);}",
+  ],
+  [
+    "ring-offset-stone-300/50",
+    ".ring-offset-stone-300\\/50{--map-ring-offset-color:rgb(214 211 209/.5);}",
+  ],
+  [
+    "ring-offset-stone-400/50",
+    ".ring-offset-stone-400\\/50{--map-ring-offset-color:rgb(168 162 158/.5);}",
+  ],
+  [
+    "ring-offset-stone-500/50",
+    ".ring-offset-stone-500\\/50{--map-ring-offset-color:rgb(120 113 108/.5);}",
+  ],
+  [
+    "ring-offset-stone-600/50",
+    ".ring-offset-stone-600\\/50{--map-ring-offset-color:rgb(87 83 78/.5);}",
+  ],
+  [
+    "ring-offset-stone-700/50",
+    ".ring-offset-stone-700\\/50{--map-ring-offset-color:rgb(68 64 60/.5);}",
+  ],
+  [
+    "ring-offset-stone-800/50",
+    ".ring-offset-stone-800\\/50{--map-ring-offset-color:rgb(41 37 36/.5);}",
+  ],
+  [
+    "ring-offset-stone-900/50",
+    ".ring-offset-stone-900\\/50{--map-ring-offset-color:rgb(28 25 23/.5);}",
+  ],
+  [
+    "ring-offset-red-50/50",
+    ".ring-offset-red-50\\/50{--map-ring-offset-color:rgb(254 242 242/.5);}",
+  ],
+  [
+    "ring-offset-red-100/50",
+    ".ring-offset-red-100\\/50{--map-ring-offset-color:rgb(254 226 226/.5);}",
+  ],
+  [
+    "ring-offset-red-200/50",
+    ".ring-offset-red-200\\/50{--map-ring-offset-color:rgb(254 202 202/.5);}",
+  ],
+  [
+    "ring-offset-red-300/50",
+    ".ring-offset-red-300\\/50{--map-ring-offset-color:rgb(252 165 165/.5);}",
+  ],
+  [
+    "ring-offset-red-400/50",
+    ".ring-offset-red-400\\/50{--map-ring-offset-color:rgb(248 113 113/.5);}",
+  ],
+  [
+    "ring-offset-red-500/50",
+    ".ring-offset-red-500\\/50{--map-ring-offset-color:rgb(239 68 68/.5);}",
+  ],
+  [
+    "ring-offset-red-600/50",
+    ".ring-offset-red-600\\/50{--map-ring-offset-color:rgb(220 38 38/.5);}",
+  ],
+  [
+    "ring-offset-red-700/50",
+    ".ring-offset-red-700\\/50{--map-ring-offset-color:rgb(185 28 28/.5);}",
+  ],
+  [
+    "ring-offset-red-800/50",
+    ".ring-offset-red-800\\/50{--map-ring-offset-color:rgb(153 27 27/.5);}",
+  ],
+  [
+    "ring-offset-red-900/50",
+    ".ring-offset-red-900\\/50{--map-ring-offset-color:rgb(127 29 29/.5);}",
+  ],
+  [
+    "ring-offset-orange-50/50",
+    ".ring-offset-orange-50\\/50{--map-ring-offset-color:rgb(255 247 237/.5);}",
+  ],
+  [
+    "ring-offset-orange-100/50",
+    ".ring-offset-orange-100\\/50{--map-ring-offset-color:rgb(255 237 213/.5);}",
+  ],
+  [
+    "ring-offset-orange-200/50",
+    ".ring-offset-orange-200\\/50{--map-ring-offset-color:rgb(254 215 170/.5);}",
+  ],
+  [
+    "ring-offset-orange-300/50",
+    ".ring-offset-orange-300\\/50{--map-ring-offset-color:rgb(253 186 116/.5);}",
+  ],
+  [
+    "ring-offset-orange-400/50",
+    ".ring-offset-orange-400\\/50{--map-ring-offset-color:rgb(251 146 60/.5);}",
+  ],
+  [
+    "ring-offset-orange-500/50",
+    ".ring-offset-orange-500\\/50{--map-ring-offset-color:rgb(249 115 22/.5);}",
+  ],
+  [
+    "ring-offset-orange-600/50",
+    ".ring-offset-orange-600\\/50{--map-ring-offset-color:rgb(234 88 12/.5);}",
+  ],
+  [
+    "ring-offset-orange-700/50",
+    ".ring-offset-orange-700\\/50{--map-ring-offset-color:rgb(194 65 12/.5);}",
+  ],
+  [
+    "ring-offset-orange-800/50",
+    ".ring-offset-orange-800\\/50{--map-ring-offset-color:rgb(154 52 18/.5);}",
+  ],
+  [
+    "ring-offset-orange-900/50",
+    ".ring-offset-orange-900\\/50{--map-ring-offset-color:rgb(124 45 18/.5);}",
+  ],
+  [
+    "ring-offset-amber-50/50",
+    ".ring-offset-amber-50\\/50{--map-ring-offset-color:rgb(255 251 235/.5);}",
+  ],
+  [
+    "ring-offset-amber-100/50",
+    ".ring-offset-amber-100\\/50{--map-ring-offset-color:rgb(254 243 199/.5);}",
+  ],
+  [
+    "ring-offset-amber-200/50",
+    ".ring-offset-amber-200\\/50{--map-ring-offset-color:rgb(253 230 138/.5);}",
+  ],
+  [
+    "ring-offset-amber-300/50",
+    ".ring-offset-amber-300\\/50{--map-ring-offset-color:rgb(252 211 77/.5);}",
+  ],
+  [
+    "ring-offset-amber-400/50",
+    ".ring-offset-amber-400\\/50{--map-ring-offset-color:rgb(251 191 36/.5);}",
+  ],
+  [
+    "ring-offset-amber-500/50",
+    ".ring-offset-amber-500\\/50{--map-ring-offset-color:rgb(245 158 11/.5);}",
+  ],
+  [
+    "ring-offset-amber-600/50",
+    ".ring-offset-amber-600\\/50{--map-ring-offset-color:rgb(217 119 6/.5);}",
+  ],
+  [
+    "ring-offset-amber-700/50",
+    ".ring-offset-amber-700\\/50{--map-ring-offset-color:rgb(180 83 9/.5);}",
+  ],
+  [
+    "ring-offset-amber-800/50",
+    ".ring-offset-amber-800\\/50{--map-ring-offset-color:rgb(146 64 14/.5);}",
+  ],
+  [
+    "ring-offset-amber-900/50",
+    ".ring-offset-amber-900\\/50{--map-ring-offset-color:rgb(120 53 15/.5);}",
+  ],
+  [
+    "ring-offset-yellow-50/50",
+    ".ring-offset-yellow-50\\/50{--map-ring-offset-color:rgb(254 252 232/.5);}",
+  ],
+  [
+    "ring-offset-yellow-100/50",
+    ".ring-offset-yellow-100\\/50{--map-ring-offset-color:rgb(254 249 195/.5);}",
+  ],
+  [
+    "ring-offset-yellow-200/50",
+    ".ring-offset-yellow-200\\/50{--map-ring-offset-color:rgb(254 240 138/.5);}",
+  ],
+  [
+    "ring-offset-yellow-300/50",
+    ".ring-offset-yellow-300\\/50{--map-ring-offset-color:rgb(253 224 71/.5);}",
+  ],
+  [
+    "ring-offset-yellow-400/50",
+    ".ring-offset-yellow-400\\/50{--map-ring-offset-color:rgb(250 204 21/.5);}",
+  ],
+  [
+    "ring-offset-yellow-500/50",
+    ".ring-offset-yellow-500\\/50{--map-ring-offset-color:rgb(234 179 8/.5);}",
+  ],
+  [
+    "ring-offset-yellow-600/50",
+    ".ring-offset-yellow-600\\/50{--map-ring-offset-color:rgb(202 138 4/.5);}",
+  ],
+  [
+    "ring-offset-yellow-700/50",
+    ".ring-offset-yellow-700\\/50{--map-ring-offset-color:rgb(161 98 7/.5);}",
+  ],
+  [
+    "ring-offset-yellow-800/50",
+    ".ring-offset-yellow-800\\/50{--map-ring-offset-color:rgb(133 77 14/.5);}",
+  ],
+  [
+    "ring-offset-yellow-900/50",
+    ".ring-offset-yellow-900\\/50{--map-ring-offset-color:rgb(113 63 18/.5);}",
+  ],
+  [
+    "ring-offset-lime-50/50",
+    ".ring-offset-lime-50\\/50{--map-ring-offset-color:rgb(247 254 231/.5);}",
+  ],
+  [
+    "ring-offset-lime-100/50",
+    ".ring-offset-lime-100\\/50{--map-ring-offset-color:rgb(236 252 203/.5);}",
+  ],
+  [
+    "ring-offset-lime-200/50",
+    ".ring-offset-lime-200\\/50{--map-ring-offset-color:rgb(217 249 157/.5);}",
+  ],
+  [
+    "ring-offset-lime-300/50",
+    ".ring-offset-lime-300\\/50{--map-ring-offset-color:rgb(190 242 100/.5);}",
+  ],
+  [
+    "ring-offset-lime-400/50",
+    ".ring-offset-lime-400\\/50{--map-ring-offset-color:rgb(163 230 53/.5);}",
+  ],
+  [
+    "ring-offset-lime-500/50",
+    ".ring-offset-lime-500\\/50{--map-ring-offset-color:rgb(132 204 22/.5);}",
+  ],
+  [
+    "ring-offset-lime-600/50",
+    ".ring-offset-lime-600\\/50{--map-ring-offset-color:rgb(101 163 13/.5);}",
+  ],
+  [
+    "ring-offset-lime-700/50",
+    ".ring-offset-lime-700\\/50{--map-ring-offset-color:rgb(77 124 15/.5);}",
+  ],
+  [
+    "ring-offset-lime-800/50",
+    ".ring-offset-lime-800\\/50{--map-ring-offset-color:rgb(63 98 18/.5);}",
+  ],
+  [
+    "ring-offset-lime-900/50",
+    ".ring-offset-lime-900\\/50{--map-ring-offset-color:rgb(54 83 20/.5);}",
+  ],
+  [
+    "ring-offset-green-50/50",
+    ".ring-offset-green-50\\/50{--map-ring-offset-color:rgb(240 253 244/.5);}",
+  ],
+  [
+    "ring-offset-green-100/50",
+    ".ring-offset-green-100\\/50{--map-ring-offset-color:rgb(220 252 231/.5);}",
+  ],
+  [
+    "ring-offset-green-200/50",
+    ".ring-offset-green-200\\/50{--map-ring-offset-color:rgb(187 247 208/.5);}",
+  ],
+  [
+    "ring-offset-green-300/50",
+    ".ring-offset-green-300\\/50{--map-ring-offset-color:rgb(134 239 172/.5);}",
+  ],
+  [
+    "ring-offset-green-400/50",
+    ".ring-offset-green-400\\/50{--map-ring-offset-color:rgb(74 222 128/.5);}",
+  ],
+  [
+    "ring-offset-green-500/50",
+    ".ring-offset-green-500\\/50{--map-ring-offset-color:rgb(34 197 94/.5);}",
+  ],
+  [
+    "ring-offset-green-600/50",
+    ".ring-offset-green-600\\/50{--map-ring-offset-color:rgb(22 163 74/.5);}",
+  ],
+  [
+    "ring-offset-green-700/50",
+    ".ring-offset-green-700\\/50{--map-ring-offset-color:rgb(21 128 61/.5);}",
+  ],
+  [
+    "ring-offset-green-800/50",
+    ".ring-offset-green-800\\/50{--map-ring-offset-color:rgb(22 101 52/.5);}",
+  ],
+  [
+    "ring-offset-green-900/50",
+    ".ring-offset-green-900\\/50{--map-ring-offset-color:rgb(20 83 45/.5);}",
+  ],
+  [
+    "ring-offset-emerald-50/50",
+    ".ring-offset-emerald-50\\/50{--map-ring-offset-color:rgb(236 253 245/.5);}",
+  ],
+  [
+    "ring-offset-emerald-100/50",
+    ".ring-offset-emerald-100\\/50{--map-ring-offset-color:rgb(209 250 229/.5);}",
+  ],
+  [
+    "ring-offset-emerald-200/50",
+    ".ring-offset-emerald-200\\/50{--map-ring-offset-color:rgb(167 243 208/.5);}",
+  ],
+  [
+    "ring-offset-emerald-300/50",
+    ".ring-offset-emerald-300\\/50{--map-ring-offset-color:rgb(110 231 183/.5);}",
+  ],
+  [
+    "ring-offset-emerald-400/50",
+    ".ring-offset-emerald-400\\/50{--map-ring-offset-color:rgb(52 211 153/.5);}",
+  ],
+  [
+    "ring-offset-emerald-500/50",
+    ".ring-offset-emerald-500\\/50{--map-ring-offset-color:rgb(16 185 129/.5);}",
+  ],
+  [
+    "ring-offset-emerald-600/50",
+    ".ring-offset-emerald-600\\/50{--map-ring-offset-color:rgb(5 150 105/.5);}",
+  ],
+  [
+    "ring-offset-emerald-700/50",
+    ".ring-offset-emerald-700\\/50{--map-ring-offset-color:rgb(4 120 87/.5);}",
+  ],
+  [
+    "ring-offset-emerald-800/50",
+    ".ring-offset-emerald-800\\/50{--map-ring-offset-color:rgb(6 95 70/.5);}",
+  ],
+  [
+    "ring-offset-emerald-900/50",
+    ".ring-offset-emerald-900\\/50{--map-ring-offset-color:rgb(6 78 59/.5);}",
+  ],
+  [
+    "ring-offset-teal-50/50",
+    ".ring-offset-teal-50\\/50{--map-ring-offset-color:rgb(240 253 250/.5);}",
+  ],
+  [
+    "ring-offset-teal-100/50",
+    ".ring-offset-teal-100\\/50{--map-ring-offset-color:rgb(204 251 241/.5);}",
+  ],
+  [
+    "ring-offset-teal-200/50",
+    ".ring-offset-teal-200\\/50{--map-ring-offset-color:rgb(153 246 228/.5);}",
+  ],
+  [
+    "ring-offset-teal-300/50",
+    ".ring-offset-teal-300\\/50{--map-ring-offset-color:rgb(94 234 212/.5);}",
+  ],
+  [
+    "ring-offset-teal-400/50",
+    ".ring-offset-teal-400\\/50{--map-ring-offset-color:rgb(45 212 191/.5);}",
+  ],
+  [
+    "ring-offset-teal-500/50",
+    ".ring-offset-teal-500\\/50{--map-ring-offset-color:rgb(20 184 166/.5);}",
+  ],
+  [
+    "ring-offset-teal-600/50",
+    ".ring-offset-teal-600\\/50{--map-ring-offset-color:rgb(13 148 136/.5);}",
+  ],
+  [
+    "ring-offset-teal-700/50",
+    ".ring-offset-teal-700\\/50{--map-ring-offset-color:rgb(15 118 110/.5);}",
+  ],
+  [
+    "ring-offset-teal-800/50",
+    ".ring-offset-teal-800\\/50{--map-ring-offset-color:rgb(17 94 89/.5);}",
+  ],
+  [
+    "ring-offset-teal-900/50",
+    ".ring-offset-teal-900\\/50{--map-ring-offset-color:rgb(19 78 74/.5);}",
+  ],
+  [
+    "ring-offset-cyan-50/50",
+    ".ring-offset-cyan-50\\/50{--map-ring-offset-color:rgb(236 254 255/.5);}",
+  ],
+  [
+    "ring-offset-cyan-100/50",
+    ".ring-offset-cyan-100\\/50{--map-ring-offset-color:rgb(207 250 254/.5);}",
+  ],
+  [
+    "ring-offset-cyan-200/50",
+    ".ring-offset-cyan-200\\/50{--map-ring-offset-color:rgb(165 243 252/.5);}",
+  ],
+  [
+    "ring-offset-cyan-300/50",
+    ".ring-offset-cyan-300\\/50{--map-ring-offset-color:rgb(103 232 249/.5);}",
+  ],
+  [
+    "ring-offset-cyan-400/50",
+    ".ring-offset-cyan-400\\/50{--map-ring-offset-color:rgb(34 211 238/.5);}",
+  ],
+  [
+    "ring-offset-cyan-500/50",
+    ".ring-offset-cyan-500\\/50{--map-ring-offset-color:rgb(6 182 212/.5);}",
+  ],
+  [
+    "ring-offset-cyan-600/50",
+    ".ring-offset-cyan-600\\/50{--map-ring-offset-color:rgb(8 145 178/.5);}",
+  ],
+  [
+    "ring-offset-cyan-700/50",
+    ".ring-offset-cyan-700\\/50{--map-ring-offset-color:rgb(14 116 144/.5);}",
+  ],
+  [
+    "ring-offset-cyan-800/50",
+    ".ring-offset-cyan-800\\/50{--map-ring-offset-color:rgb(21 94 117/.5);}",
+  ],
+  [
+    "ring-offset-cyan-900/50",
+    ".ring-offset-cyan-900\\/50{--map-ring-offset-color:rgb(22 78 99/.5);}",
+  ],
+  [
+    "ring-offset-sky-50/50",
+    ".ring-offset-sky-50\\/50{--map-ring-offset-color:rgb(240 249 255/.5);}",
+  ],
+  [
+    "ring-offset-sky-100/50",
+    ".ring-offset-sky-100\\/50{--map-ring-offset-color:rgb(224 242 254/.5);}",
+  ],
+  [
+    "ring-offset-sky-200/50",
+    ".ring-offset-sky-200\\/50{--map-ring-offset-color:rgb(186 230 253/.5);}",
+  ],
+  [
+    "ring-offset-sky-300/50",
+    ".ring-offset-sky-300\\/50{--map-ring-offset-color:rgb(125 211 252/.5);}",
+  ],
+  [
+    "ring-offset-sky-400/50",
+    ".ring-offset-sky-400\\/50{--map-ring-offset-color:rgb(56 189 248/.5);}",
+  ],
+  [
+    "ring-offset-sky-500/50",
+    ".ring-offset-sky-500\\/50{--map-ring-offset-color:rgb(14 165 233/.5);}",
+  ],
+  [
+    "ring-offset-sky-600/50",
+    ".ring-offset-sky-600\\/50{--map-ring-offset-color:rgb(2 132 199/.5);}",
+  ],
+  [
+    "ring-offset-sky-700/50",
+    ".ring-offset-sky-700\\/50{--map-ring-offset-color:rgb(3 105 161/.5);}",
+  ],
+  [
+    "ring-offset-sky-800/50",
+    ".ring-offset-sky-800\\/50{--map-ring-offset-color:rgb(7 89 133/.5);}",
+  ],
+  [
+    "ring-offset-sky-900/50",
+    ".ring-offset-sky-900\\/50{--map-ring-offset-color:rgb(12 74 110/.5);}",
+  ],
+  [
+    "ring-offset-blue-50/50",
+    ".ring-offset-blue-50\\/50{--map-ring-offset-color:rgb(239 246 255/.5);}",
+  ],
+  [
+    "ring-offset-blue-100/50",
+    ".ring-offset-blue-100\\/50{--map-ring-offset-color:rgb(219 234 254/.5);}",
+  ],
+  [
+    "ring-offset-blue-200/50",
+    ".ring-offset-blue-200\\/50{--map-ring-offset-color:rgb(191 219 254/.5);}",
+  ],
+  [
+    "ring-offset-blue-300/50",
+    ".ring-offset-blue-300\\/50{--map-ring-offset-color:rgb(147 197 253/.5);}",
+  ],
+  [
+    "ring-offset-blue-400/50",
+    ".ring-offset-blue-400\\/50{--map-ring-offset-color:rgb(96 165 250/.5);}",
+  ],
+  [
+    "ring-offset-blue-500/50",
+    ".ring-offset-blue-500\\/50{--map-ring-offset-color:rgb(59 130 246/.5);}",
+  ],
+  [
+    "ring-offset-blue-600/50",
+    ".ring-offset-blue-600\\/50{--map-ring-offset-color:rgb(37 99 235/.5);}",
+  ],
+  [
+    "ring-offset-blue-700/50",
+    ".ring-offset-blue-700\\/50{--map-ring-offset-color:rgb(29 78 216/.5);}",
+  ],
+  [
+    "ring-offset-blue-800/50",
+    ".ring-offset-blue-800\\/50{--map-ring-offset-color:rgb(30 64 175/.5);}",
+  ],
+  [
+    "ring-offset-blue-900/50",
+    ".ring-offset-blue-900\\/50{--map-ring-offset-color:rgb(30 58 138/.5);}",
+  ],
+  [
+    "ring-offset-indigo-50/50",
+    ".ring-offset-indigo-50\\/50{--map-ring-offset-color:rgb(238 242 255/.5);}",
+  ],
+  [
+    "ring-offset-indigo-100/50",
+    ".ring-offset-indigo-100\\/50{--map-ring-offset-color:rgb(224 231 255/.5);}",
+  ],
+  [
+    "ring-offset-indigo-200/50",
+    ".ring-offset-indigo-200\\/50{--map-ring-offset-color:rgb(199 210 254/.5);}",
+  ],
+  [
+    "ring-offset-indigo-300/50",
+    ".ring-offset-indigo-300\\/50{--map-ring-offset-color:rgb(165 180 252/.5);}",
+  ],
+  [
+    "ring-offset-indigo-400/50",
+    ".ring-offset-indigo-400\\/50{--map-ring-offset-color:rgb(129 140 248/.5);}",
+  ],
+  [
+    "ring-offset-indigo-500/50",
+    ".ring-offset-indigo-500\\/50{--map-ring-offset-color:rgb(99 102 241/.5);}",
+  ],
+  [
+    "ring-offset-indigo-600/50",
+    ".ring-offset-indigo-600\\/50{--map-ring-offset-color:rgb(79 70 229/.5);}",
+  ],
+  [
+    "ring-offset-indigo-700/50",
+    ".ring-offset-indigo-700\\/50{--map-ring-offset-color:rgb(67 56 202/.5);}",
+  ],
+  [
+    "ring-offset-indigo-800/50",
+    ".ring-offset-indigo-800\\/50{--map-ring-offset-color:rgb(55 48 163/.5);}",
+  ],
+  [
+    "ring-offset-indigo-900/50",
+    ".ring-offset-indigo-900\\/50{--map-ring-offset-color:rgb(49 46 129/.5);}",
+  ],
+  [
+    "ring-offset-violet-50/50",
+    ".ring-offset-violet-50\\/50{--map-ring-offset-color:rgb(245 243 255/.5);}",
+  ],
+  [
+    "ring-offset-violet-100/50",
+    ".ring-offset-violet-100\\/50{--map-ring-offset-color:rgb(237 233 254/.5);}",
+  ],
+  [
+    "ring-offset-violet-200/50",
+    ".ring-offset-violet-200\\/50{--map-ring-offset-color:rgb(221 214 254/.5);}",
+  ],
+  [
+    "ring-offset-violet-300/50",
+    ".ring-offset-violet-300\\/50{--map-ring-offset-color:rgb(196 181 253/.5);}",
+  ],
+  [
+    "ring-offset-violet-400/50",
+    ".ring-offset-violet-400\\/50{--map-ring-offset-color:rgb(167 139 250/.5);}",
+  ],
+  [
+    "ring-offset-violet-500/50",
+    ".ring-offset-violet-500\\/50{--map-ring-offset-color:rgb(139 92 246/.5);}",
+  ],
+  [
+    "ring-offset-violet-600/50",
+    ".ring-offset-violet-600\\/50{--map-ring-offset-color:rgb(124 58 237/.5);}",
+  ],
+  [
+    "ring-offset-violet-700/50",
+    ".ring-offset-violet-700\\/50{--map-ring-offset-color:rgb(109 40 217/.5);}",
+  ],
+  [
+    "ring-offset-violet-800/50",
+    ".ring-offset-violet-800\\/50{--map-ring-offset-color:rgb(91 33 182/.5);}",
+  ],
+  [
+    "ring-offset-violet-900/50",
+    ".ring-offset-violet-900\\/50{--map-ring-offset-color:rgb(76 29 149/.5);}",
+  ],
+  [
+    "ring-offset-purple-50/50",
+    ".ring-offset-purple-50\\/50{--map-ring-offset-color:rgb(250 245 255/.5);}",
+  ],
+  [
+    "ring-offset-purple-100/50",
+    ".ring-offset-purple-100\\/50{--map-ring-offset-color:rgb(243 232 255/.5);}",
+  ],
+  [
+    "ring-offset-purple-200/50",
+    ".ring-offset-purple-200\\/50{--map-ring-offset-color:rgb(233 213 255/.5);}",
+  ],
+  [
+    "ring-offset-purple-300/50",
+    ".ring-offset-purple-300\\/50{--map-ring-offset-color:rgb(216 180 254/.5);}",
+  ],
+  [
+    "ring-offset-purple-400/50",
+    ".ring-offset-purple-400\\/50{--map-ring-offset-color:rgb(192 132 252/.5);}",
+  ],
+  [
+    "ring-offset-purple-500/50",
+    ".ring-offset-purple-500\\/50{--map-ring-offset-color:rgb(168 85 247/.5);}",
+  ],
+  [
+    "ring-offset-purple-600/50",
+    ".ring-offset-purple-600\\/50{--map-ring-offset-color:rgb(147 51 234/.5);}",
+  ],
+  [
+    "ring-offset-purple-700/50",
+    ".ring-offset-purple-700\\/50{--map-ring-offset-color:rgb(126 34 206/.5);}",
+  ],
+  [
+    "ring-offset-purple-800/50",
+    ".ring-offset-purple-800\\/50{--map-ring-offset-color:rgb(107 33 168/.5);}",
+  ],
+  [
+    "ring-offset-purple-900/50",
+    ".ring-offset-purple-900\\/50{--map-ring-offset-color:rgb(88 28 135/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-50/50",
+    ".ring-offset-fuchsia-50\\/50{--map-ring-offset-color:rgb(253 244 255/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-100/50",
+    ".ring-offset-fuchsia-100\\/50{--map-ring-offset-color:rgb(250 232 255/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-200/50",
+    ".ring-offset-fuchsia-200\\/50{--map-ring-offset-color:rgb(245 208 254/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-300/50",
+    ".ring-offset-fuchsia-300\\/50{--map-ring-offset-color:rgb(240 171 252/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-400/50",
+    ".ring-offset-fuchsia-400\\/50{--map-ring-offset-color:rgb(232 121 249/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-500/50",
+    ".ring-offset-fuchsia-500\\/50{--map-ring-offset-color:rgb(217 70 239/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-600/50",
+    ".ring-offset-fuchsia-600\\/50{--map-ring-offset-color:rgb(192 38 211/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-700/50",
+    ".ring-offset-fuchsia-700\\/50{--map-ring-offset-color:rgb(162 28 175/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-800/50",
+    ".ring-offset-fuchsia-800\\/50{--map-ring-offset-color:rgb(134 25 143/.5);}",
+  ],
+  [
+    "ring-offset-fuchsia-900/50",
+    ".ring-offset-fuchsia-900\\/50{--map-ring-offset-color:rgb(112 26 117/.5);}",
+  ],
+  [
+    "ring-offset-pink-50/50",
+    ".ring-offset-pink-50\\/50{--map-ring-offset-color:rgb(253 242 248/.5);}",
+  ],
+  [
+    "ring-offset-pink-100/50",
+    ".ring-offset-pink-100\\/50{--map-ring-offset-color:rgb(252 231 243/.5);}",
+  ],
+  [
+    "ring-offset-pink-200/50",
+    ".ring-offset-pink-200\\/50{--map-ring-offset-color:rgb(251 207 232/.5);}",
+  ],
+  [
+    "ring-offset-pink-300/50",
+    ".ring-offset-pink-300\\/50{--map-ring-offset-color:rgb(249 168 212/.5);}",
+  ],
+  [
+    "ring-offset-pink-400/50",
+    ".ring-offset-pink-400\\/50{--map-ring-offset-color:rgb(244 114 182/.5);}",
+  ],
+  [
+    "ring-offset-pink-500/50",
+    ".ring-offset-pink-500\\/50{--map-ring-offset-color:rgb(236 72 153/.5);}",
+  ],
+  [
+    "ring-offset-pink-600/50",
+    ".ring-offset-pink-600\\/50{--map-ring-offset-color:rgb(219 39 119/.5);}",
+  ],
+  [
+    "ring-offset-pink-700/50",
+    ".ring-offset-pink-700\\/50{--map-ring-offset-color:rgb(190 24 93/.5);}",
+  ],
+  [
+    "ring-offset-pink-800/50",
+    ".ring-offset-pink-800\\/50{--map-ring-offset-color:rgb(157 23 77/.5);}",
+  ],
+  [
+    "ring-offset-pink-900/50",
+    ".ring-offset-pink-900\\/50{--map-ring-offset-color:rgb(131 24 67/.5);}",
+  ],
+  [
+    "ring-offset-rose-50/50",
+    ".ring-offset-rose-50\\/50{--map-ring-offset-color:rgb(255 241 242/.5);}",
+  ],
+  [
+    "ring-offset-rose-100/50",
+    ".ring-offset-rose-100\\/50{--map-ring-offset-color:rgb(255 228 230/.5);}",
+  ],
+  [
+    "ring-offset-rose-200/50",
+    ".ring-offset-rose-200\\/50{--map-ring-offset-color:rgb(254 205 211/.5);}",
+  ],
+  [
+    "ring-offset-rose-300/50",
+    ".ring-offset-rose-300\\/50{--map-ring-offset-color:rgb(253 164 175/.5);}",
+  ],
+  [
+    "ring-offset-rose-400/50",
+    ".ring-offset-rose-400\\/50{--map-ring-offset-color:rgb(251 113 133/.5);}",
+  ],
+  [
+    "ring-offset-rose-500/50",
+    ".ring-offset-rose-500\\/50{--map-ring-offset-color:rgb(244 63 94/.5);}",
+  ],
+  [
+    "ring-offset-rose-600/50",
+    ".ring-offset-rose-600\\/50{--map-ring-offset-color:rgb(225 29 72/.5);}",
+  ],
+  [
+    "ring-offset-rose-700/50",
+    ".ring-offset-rose-700\\/50{--map-ring-offset-color:rgb(190 18 60/.5);}",
+  ],
+  [
+    "ring-offset-rose-800/50",
+    ".ring-offset-rose-800\\/50{--map-ring-offset-color:rgb(159 18 57/.5);}",
+  ],
+  [
+    "ring-offset-rose-900/50",
+    ".ring-offset-rose-900\\/50{--map-ring-offset-color:rgb(136 19 55/.5);}",
+  ],
+  ["ring-offset-inherit/[1%]", ""],
+  ["ring-offset-current/[1%]", ""],
+  ["ring-offset-transparent/[1%]", ""],
+  [
+    "ring-offset-black/[1%]",
+    ".ring-offset-black\\/\\[1\\%\\]{--map-ring-offset-color:rgb(0 0 0/1%);}",
+  ],
+  [
+    "ring-offset-white/[1%]",
+    ".ring-offset-white\\/\\[1\\%\\]{--map-ring-offset-color:rgb(255 255 255/1%);}",
+  ],
+  [
+    "ring-offset-slate-50/[1%]",
+    ".ring-offset-slate-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(248 250 252/1%);}",
+  ],
+  [
+    "ring-offset-slate-100/[1%]",
+    ".ring-offset-slate-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(241 245 249/1%);}",
+  ],
+  [
+    "ring-offset-slate-200/[1%]",
+    ".ring-offset-slate-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(226 232 240/1%);}",
+  ],
+  [
+    "ring-offset-slate-300/[1%]",
+    ".ring-offset-slate-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(203 213 225/1%);}",
+  ],
+  [
+    "ring-offset-slate-400/[1%]",
+    ".ring-offset-slate-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(148 163 184/1%);}",
+  ],
+  [
+    "ring-offset-slate-500/[1%]",
+    ".ring-offset-slate-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(100 116 139/1%);}",
+  ],
+  [
+    "ring-offset-slate-600/[1%]",
+    ".ring-offset-slate-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(71 85 105/1%);}",
+  ],
+  [
+    "ring-offset-slate-700/[1%]",
+    ".ring-offset-slate-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(51 65 85/1%);}",
+  ],
+  [
+    "ring-offset-slate-800/[1%]",
+    ".ring-offset-slate-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(30 41 59/1%);}",
+  ],
+  [
+    "ring-offset-slate-900/[1%]",
+    ".ring-offset-slate-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(15 23 42/1%);}",
+  ],
+  [
+    "ring-offset-gray-50/[1%]",
+    ".ring-offset-gray-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(249 250 251/1%);}",
+  ],
+  [
+    "ring-offset-gray-100/[1%]",
+    ".ring-offset-gray-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(243 244 246/1%);}",
+  ],
+  [
+    "ring-offset-gray-200/[1%]",
+    ".ring-offset-gray-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(229 231 235/1%);}",
+  ],
+  [
+    "ring-offset-gray-300/[1%]",
+    ".ring-offset-gray-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(209 213 219/1%);}",
+  ],
+  [
+    "ring-offset-gray-400/[1%]",
+    ".ring-offset-gray-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(156 163 175/1%);}",
+  ],
+  [
+    "ring-offset-gray-500/[1%]",
+    ".ring-offset-gray-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(107 114 128/1%);}",
+  ],
+  [
+    "ring-offset-gray-600/[1%]",
+    ".ring-offset-gray-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(75 85 99/1%);}",
+  ],
+  [
+    "ring-offset-gray-700/[1%]",
+    ".ring-offset-gray-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(55 65 81/1%);}",
+  ],
+  [
+    "ring-offset-gray-800/[1%]",
+    ".ring-offset-gray-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(31 41 55/1%);}",
+  ],
+  [
+    "ring-offset-gray-900/[1%]",
+    ".ring-offset-gray-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(17 24 39/1%);}",
+  ],
+  [
+    "ring-offset-zinc-50/[1%]",
+    ".ring-offset-zinc-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "ring-offset-zinc-100/[1%]",
+    ".ring-offset-zinc-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(244 244 245/1%);}",
+  ],
+  [
+    "ring-offset-zinc-200/[1%]",
+    ".ring-offset-zinc-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(228 228 231/1%);}",
+  ],
+  [
+    "ring-offset-zinc-300/[1%]",
+    ".ring-offset-zinc-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(212 212 216/1%);}",
+  ],
+  [
+    "ring-offset-zinc-400/[1%]",
+    ".ring-offset-zinc-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(161 161 170/1%);}",
+  ],
+  [
+    "ring-offset-zinc-500/[1%]",
+    ".ring-offset-zinc-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(113 113 122/1%);}",
+  ],
+  [
+    "ring-offset-zinc-600/[1%]",
+    ".ring-offset-zinc-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(82 82 91/1%);}",
+  ],
+  [
+    "ring-offset-zinc-700/[1%]",
+    ".ring-offset-zinc-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(63 63 70/1%);}",
+  ],
+  [
+    "ring-offset-zinc-800/[1%]",
+    ".ring-offset-zinc-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(39 39 42/1%);}",
+  ],
+  [
+    "ring-offset-zinc-900/[1%]",
+    ".ring-offset-zinc-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(24 24 27/1%);}",
+  ],
+  [
+    "ring-offset-neutral-50/[1%]",
+    ".ring-offset-neutral-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "ring-offset-neutral-100/[1%]",
+    ".ring-offset-neutral-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(245 245 245/1%);}",
+  ],
+  [
+    "ring-offset-neutral-200/[1%]",
+    ".ring-offset-neutral-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(229 229 229/1%);}",
+  ],
+  [
+    "ring-offset-neutral-300/[1%]",
+    ".ring-offset-neutral-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(212 212 212/1%);}",
+  ],
+  [
+    "ring-offset-neutral-400/[1%]",
+    ".ring-offset-neutral-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(163 163 163/1%);}",
+  ],
+  [
+    "ring-offset-neutral-500/[1%]",
+    ".ring-offset-neutral-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(115 115 115/1%);}",
+  ],
+  [
+    "ring-offset-neutral-600/[1%]",
+    ".ring-offset-neutral-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(82 82 82/1%);}",
+  ],
+  [
+    "ring-offset-neutral-700/[1%]",
+    ".ring-offset-neutral-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(64 64 64/1%);}",
+  ],
+  [
+    "ring-offset-neutral-800/[1%]",
+    ".ring-offset-neutral-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(38 38 38/1%);}",
+  ],
+  [
+    "ring-offset-neutral-900/[1%]",
+    ".ring-offset-neutral-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(23 23 23/1%);}",
+  ],
+  [
+    "ring-offset-stone-50/[1%]",
+    ".ring-offset-stone-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(250 250 249/1%);}",
+  ],
+  [
+    "ring-offset-stone-100/[1%]",
+    ".ring-offset-stone-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(245 245 244/1%);}",
+  ],
+  [
+    "ring-offset-stone-200/[1%]",
+    ".ring-offset-stone-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(231 229 228/1%);}",
+  ],
+  [
+    "ring-offset-stone-300/[1%]",
+    ".ring-offset-stone-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(214 211 209/1%);}",
+  ],
+  [
+    "ring-offset-stone-400/[1%]",
+    ".ring-offset-stone-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(168 162 158/1%);}",
+  ],
+  [
+    "ring-offset-stone-500/[1%]",
+    ".ring-offset-stone-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(120 113 108/1%);}",
+  ],
+  [
+    "ring-offset-stone-600/[1%]",
+    ".ring-offset-stone-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(87 83 78/1%);}",
+  ],
+  [
+    "ring-offset-stone-700/[1%]",
+    ".ring-offset-stone-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(68 64 60/1%);}",
+  ],
+  [
+    "ring-offset-stone-800/[1%]",
+    ".ring-offset-stone-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(41 37 36/1%);}",
+  ],
+  [
+    "ring-offset-stone-900/[1%]",
+    ".ring-offset-stone-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(28 25 23/1%);}",
+  ],
+  [
+    "ring-offset-red-50/[1%]",
+    ".ring-offset-red-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 242 242/1%);}",
+  ],
+  [
+    "ring-offset-red-100/[1%]",
+    ".ring-offset-red-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 226 226/1%);}",
+  ],
+  [
+    "ring-offset-red-200/[1%]",
+    ".ring-offset-red-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 202 202/1%);}",
+  ],
+  [
+    "ring-offset-red-300/[1%]",
+    ".ring-offset-red-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(252 165 165/1%);}",
+  ],
+  [
+    "ring-offset-red-400/[1%]",
+    ".ring-offset-red-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(248 113 113/1%);}",
+  ],
+  [
+    "ring-offset-red-500/[1%]",
+    ".ring-offset-red-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(239 68 68/1%);}",
+  ],
+  [
+    "ring-offset-red-600/[1%]",
+    ".ring-offset-red-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(220 38 38/1%);}",
+  ],
+  [
+    "ring-offset-red-700/[1%]",
+    ".ring-offset-red-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(185 28 28/1%);}",
+  ],
+  [
+    "ring-offset-red-800/[1%]",
+    ".ring-offset-red-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(153 27 27/1%);}",
+  ],
+  [
+    "ring-offset-red-900/[1%]",
+    ".ring-offset-red-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(127 29 29/1%);}",
+  ],
+  [
+    "ring-offset-orange-50/[1%]",
+    ".ring-offset-orange-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(255 247 237/1%);}",
+  ],
+  [
+    "ring-offset-orange-100/[1%]",
+    ".ring-offset-orange-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(255 237 213/1%);}",
+  ],
+  [
+    "ring-offset-orange-200/[1%]",
+    ".ring-offset-orange-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 215 170/1%);}",
+  ],
+  [
+    "ring-offset-orange-300/[1%]",
+    ".ring-offset-orange-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(253 186 116/1%);}",
+  ],
+  [
+    "ring-offset-orange-400/[1%]",
+    ".ring-offset-orange-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(251 146 60/1%);}",
+  ],
+  [
+    "ring-offset-orange-500/[1%]",
+    ".ring-offset-orange-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(249 115 22/1%);}",
+  ],
+  [
+    "ring-offset-orange-600/[1%]",
+    ".ring-offset-orange-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(234 88 12/1%);}",
+  ],
+  [
+    "ring-offset-orange-700/[1%]",
+    ".ring-offset-orange-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(194 65 12/1%);}",
+  ],
+  [
+    "ring-offset-orange-800/[1%]",
+    ".ring-offset-orange-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(154 52 18/1%);}",
+  ],
+  [
+    "ring-offset-orange-900/[1%]",
+    ".ring-offset-orange-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(124 45 18/1%);}",
+  ],
+  [
+    "ring-offset-amber-50/[1%]",
+    ".ring-offset-amber-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(255 251 235/1%);}",
+  ],
+  [
+    "ring-offset-amber-100/[1%]",
+    ".ring-offset-amber-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 243 199/1%);}",
+  ],
+  [
+    "ring-offset-amber-200/[1%]",
+    ".ring-offset-amber-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(253 230 138/1%);}",
+  ],
+  [
+    "ring-offset-amber-300/[1%]",
+    ".ring-offset-amber-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(252 211 77/1%);}",
+  ],
+  [
+    "ring-offset-amber-400/[1%]",
+    ".ring-offset-amber-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(251 191 36/1%);}",
+  ],
+  [
+    "ring-offset-amber-500/[1%]",
+    ".ring-offset-amber-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(245 158 11/1%);}",
+  ],
+  [
+    "ring-offset-amber-600/[1%]",
+    ".ring-offset-amber-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(217 119 6/1%);}",
+  ],
+  [
+    "ring-offset-amber-700/[1%]",
+    ".ring-offset-amber-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(180 83 9/1%);}",
+  ],
+  [
+    "ring-offset-amber-800/[1%]",
+    ".ring-offset-amber-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(146 64 14/1%);}",
+  ],
+  [
+    "ring-offset-amber-900/[1%]",
+    ".ring-offset-amber-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(120 53 15/1%);}",
+  ],
+  [
+    "ring-offset-yellow-50/[1%]",
+    ".ring-offset-yellow-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 252 232/1%);}",
+  ],
+  [
+    "ring-offset-yellow-100/[1%]",
+    ".ring-offset-yellow-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 249 195/1%);}",
+  ],
+  [
+    "ring-offset-yellow-200/[1%]",
+    ".ring-offset-yellow-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 240 138/1%);}",
+  ],
+  [
+    "ring-offset-yellow-300/[1%]",
+    ".ring-offset-yellow-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(253 224 71/1%);}",
+  ],
+  [
+    "ring-offset-yellow-400/[1%]",
+    ".ring-offset-yellow-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(250 204 21/1%);}",
+  ],
+  [
+    "ring-offset-yellow-500/[1%]",
+    ".ring-offset-yellow-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(234 179 8/1%);}",
+  ],
+  [
+    "ring-offset-yellow-600/[1%]",
+    ".ring-offset-yellow-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(202 138 4/1%);}",
+  ],
+  [
+    "ring-offset-yellow-700/[1%]",
+    ".ring-offset-yellow-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(161 98 7/1%);}",
+  ],
+  [
+    "ring-offset-yellow-800/[1%]",
+    ".ring-offset-yellow-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(133 77 14/1%);}",
+  ],
+  [
+    "ring-offset-yellow-900/[1%]",
+    ".ring-offset-yellow-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(113 63 18/1%);}",
+  ],
+  [
+    "ring-offset-lime-50/[1%]",
+    ".ring-offset-lime-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(247 254 231/1%);}",
+  ],
+  [
+    "ring-offset-lime-100/[1%]",
+    ".ring-offset-lime-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(236 252 203/1%);}",
+  ],
+  [
+    "ring-offset-lime-200/[1%]",
+    ".ring-offset-lime-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(217 249 157/1%);}",
+  ],
+  [
+    "ring-offset-lime-300/[1%]",
+    ".ring-offset-lime-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(190 242 100/1%);}",
+  ],
+  [
+    "ring-offset-lime-400/[1%]",
+    ".ring-offset-lime-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(163 230 53/1%);}",
+  ],
+  [
+    "ring-offset-lime-500/[1%]",
+    ".ring-offset-lime-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(132 204 22/1%);}",
+  ],
+  [
+    "ring-offset-lime-600/[1%]",
+    ".ring-offset-lime-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(101 163 13/1%);}",
+  ],
+  [
+    "ring-offset-lime-700/[1%]",
+    ".ring-offset-lime-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(77 124 15/1%);}",
+  ],
+  [
+    "ring-offset-lime-800/[1%]",
+    ".ring-offset-lime-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(63 98 18/1%);}",
+  ],
+  [
+    "ring-offset-lime-900/[1%]",
+    ".ring-offset-lime-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(54 83 20/1%);}",
+  ],
+  [
+    "ring-offset-green-50/[1%]",
+    ".ring-offset-green-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(240 253 244/1%);}",
+  ],
+  [
+    "ring-offset-green-100/[1%]",
+    ".ring-offset-green-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(220 252 231/1%);}",
+  ],
+  [
+    "ring-offset-green-200/[1%]",
+    ".ring-offset-green-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(187 247 208/1%);}",
+  ],
+  [
+    "ring-offset-green-300/[1%]",
+    ".ring-offset-green-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(134 239 172/1%);}",
+  ],
+  [
+    "ring-offset-green-400/[1%]",
+    ".ring-offset-green-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(74 222 128/1%);}",
+  ],
+  [
+    "ring-offset-green-500/[1%]",
+    ".ring-offset-green-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(34 197 94/1%);}",
+  ],
+  [
+    "ring-offset-green-600/[1%]",
+    ".ring-offset-green-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(22 163 74/1%);}",
+  ],
+  [
+    "ring-offset-green-700/[1%]",
+    ".ring-offset-green-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(21 128 61/1%);}",
+  ],
+  [
+    "ring-offset-green-800/[1%]",
+    ".ring-offset-green-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(22 101 52/1%);}",
+  ],
+  [
+    "ring-offset-green-900/[1%]",
+    ".ring-offset-green-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(20 83 45/1%);}",
+  ],
+  [
+    "ring-offset-emerald-50/[1%]",
+    ".ring-offset-emerald-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(236 253 245/1%);}",
+  ],
+  [
+    "ring-offset-emerald-100/[1%]",
+    ".ring-offset-emerald-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(209 250 229/1%);}",
+  ],
+  [
+    "ring-offset-emerald-200/[1%]",
+    ".ring-offset-emerald-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(167 243 208/1%);}",
+  ],
+  [
+    "ring-offset-emerald-300/[1%]",
+    ".ring-offset-emerald-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(110 231 183/1%);}",
+  ],
+  [
+    "ring-offset-emerald-400/[1%]",
+    ".ring-offset-emerald-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(52 211 153/1%);}",
+  ],
+  [
+    "ring-offset-emerald-500/[1%]",
+    ".ring-offset-emerald-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(16 185 129/1%);}",
+  ],
+  [
+    "ring-offset-emerald-600/[1%]",
+    ".ring-offset-emerald-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(5 150 105/1%);}",
+  ],
+  [
+    "ring-offset-emerald-700/[1%]",
+    ".ring-offset-emerald-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(4 120 87/1%);}",
+  ],
+  [
+    "ring-offset-emerald-800/[1%]",
+    ".ring-offset-emerald-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(6 95 70/1%);}",
+  ],
+  [
+    "ring-offset-emerald-900/[1%]",
+    ".ring-offset-emerald-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(6 78 59/1%);}",
+  ],
+  [
+    "ring-offset-teal-50/[1%]",
+    ".ring-offset-teal-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(240 253 250/1%);}",
+  ],
+  [
+    "ring-offset-teal-100/[1%]",
+    ".ring-offset-teal-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(204 251 241/1%);}",
+  ],
+  [
+    "ring-offset-teal-200/[1%]",
+    ".ring-offset-teal-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(153 246 228/1%);}",
+  ],
+  [
+    "ring-offset-teal-300/[1%]",
+    ".ring-offset-teal-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(94 234 212/1%);}",
+  ],
+  [
+    "ring-offset-teal-400/[1%]",
+    ".ring-offset-teal-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(45 212 191/1%);}",
+  ],
+  [
+    "ring-offset-teal-500/[1%]",
+    ".ring-offset-teal-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(20 184 166/1%);}",
+  ],
+  [
+    "ring-offset-teal-600/[1%]",
+    ".ring-offset-teal-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(13 148 136/1%);}",
+  ],
+  [
+    "ring-offset-teal-700/[1%]",
+    ".ring-offset-teal-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(15 118 110/1%);}",
+  ],
+  [
+    "ring-offset-teal-800/[1%]",
+    ".ring-offset-teal-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(17 94 89/1%);}",
+  ],
+  [
+    "ring-offset-teal-900/[1%]",
+    ".ring-offset-teal-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(19 78 74/1%);}",
+  ],
+  [
+    "ring-offset-cyan-50/[1%]",
+    ".ring-offset-cyan-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(236 254 255/1%);}",
+  ],
+  [
+    "ring-offset-cyan-100/[1%]",
+    ".ring-offset-cyan-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(207 250 254/1%);}",
+  ],
+  [
+    "ring-offset-cyan-200/[1%]",
+    ".ring-offset-cyan-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(165 243 252/1%);}",
+  ],
+  [
+    "ring-offset-cyan-300/[1%]",
+    ".ring-offset-cyan-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(103 232 249/1%);}",
+  ],
+  [
+    "ring-offset-cyan-400/[1%]",
+    ".ring-offset-cyan-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(34 211 238/1%);}",
+  ],
+  [
+    "ring-offset-cyan-500/[1%]",
+    ".ring-offset-cyan-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(6 182 212/1%);}",
+  ],
+  [
+    "ring-offset-cyan-600/[1%]",
+    ".ring-offset-cyan-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(8 145 178/1%);}",
+  ],
+  [
+    "ring-offset-cyan-700/[1%]",
+    ".ring-offset-cyan-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(14 116 144/1%);}",
+  ],
+  [
+    "ring-offset-cyan-800/[1%]",
+    ".ring-offset-cyan-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(21 94 117/1%);}",
+  ],
+  [
+    "ring-offset-cyan-900/[1%]",
+    ".ring-offset-cyan-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(22 78 99/1%);}",
+  ],
+  [
+    "ring-offset-sky-50/[1%]",
+    ".ring-offset-sky-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(240 249 255/1%);}",
+  ],
+  [
+    "ring-offset-sky-100/[1%]",
+    ".ring-offset-sky-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(224 242 254/1%);}",
+  ],
+  [
+    "ring-offset-sky-200/[1%]",
+    ".ring-offset-sky-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(186 230 253/1%);}",
+  ],
+  [
+    "ring-offset-sky-300/[1%]",
+    ".ring-offset-sky-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(125 211 252/1%);}",
+  ],
+  [
+    "ring-offset-sky-400/[1%]",
+    ".ring-offset-sky-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(56 189 248/1%);}",
+  ],
+  [
+    "ring-offset-sky-500/[1%]",
+    ".ring-offset-sky-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(14 165 233/1%);}",
+  ],
+  [
+    "ring-offset-sky-600/[1%]",
+    ".ring-offset-sky-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(2 132 199/1%);}",
+  ],
+  [
+    "ring-offset-sky-700/[1%]",
+    ".ring-offset-sky-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(3 105 161/1%);}",
+  ],
+  [
+    "ring-offset-sky-800/[1%]",
+    ".ring-offset-sky-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(7 89 133/1%);}",
+  ],
+  [
+    "ring-offset-sky-900/[1%]",
+    ".ring-offset-sky-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(12 74 110/1%);}",
+  ],
+  [
+    "ring-offset-blue-50/[1%]",
+    ".ring-offset-blue-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(239 246 255/1%);}",
+  ],
+  [
+    "ring-offset-blue-100/[1%]",
+    ".ring-offset-blue-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(219 234 254/1%);}",
+  ],
+  [
+    "ring-offset-blue-200/[1%]",
+    ".ring-offset-blue-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(191 219 254/1%);}",
+  ],
+  [
+    "ring-offset-blue-300/[1%]",
+    ".ring-offset-blue-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(147 197 253/1%);}",
+  ],
+  [
+    "ring-offset-blue-400/[1%]",
+    ".ring-offset-blue-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(96 165 250/1%);}",
+  ],
+  [
+    "ring-offset-blue-500/[1%]",
+    ".ring-offset-blue-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(59 130 246/1%);}",
+  ],
+  [
+    "ring-offset-blue-600/[1%]",
+    ".ring-offset-blue-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(37 99 235/1%);}",
+  ],
+  [
+    "ring-offset-blue-700/[1%]",
+    ".ring-offset-blue-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(29 78 216/1%);}",
+  ],
+  [
+    "ring-offset-blue-800/[1%]",
+    ".ring-offset-blue-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(30 64 175/1%);}",
+  ],
+  [
+    "ring-offset-blue-900/[1%]",
+    ".ring-offset-blue-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(30 58 138/1%);}",
+  ],
+  [
+    "ring-offset-indigo-50/[1%]",
+    ".ring-offset-indigo-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(238 242 255/1%);}",
+  ],
+  [
+    "ring-offset-indigo-100/[1%]",
+    ".ring-offset-indigo-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(224 231 255/1%);}",
+  ],
+  [
+    "ring-offset-indigo-200/[1%]",
+    ".ring-offset-indigo-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(199 210 254/1%);}",
+  ],
+  [
+    "ring-offset-indigo-300/[1%]",
+    ".ring-offset-indigo-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(165 180 252/1%);}",
+  ],
+  [
+    "ring-offset-indigo-400/[1%]",
+    ".ring-offset-indigo-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(129 140 248/1%);}",
+  ],
+  [
+    "ring-offset-indigo-500/[1%]",
+    ".ring-offset-indigo-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(99 102 241/1%);}",
+  ],
+  [
+    "ring-offset-indigo-600/[1%]",
+    ".ring-offset-indigo-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(79 70 229/1%);}",
+  ],
+  [
+    "ring-offset-indigo-700/[1%]",
+    ".ring-offset-indigo-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(67 56 202/1%);}",
+  ],
+  [
+    "ring-offset-indigo-800/[1%]",
+    ".ring-offset-indigo-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(55 48 163/1%);}",
+  ],
+  [
+    "ring-offset-indigo-900/[1%]",
+    ".ring-offset-indigo-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(49 46 129/1%);}",
+  ],
+  [
+    "ring-offset-violet-50/[1%]",
+    ".ring-offset-violet-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(245 243 255/1%);}",
+  ],
+  [
+    "ring-offset-violet-100/[1%]",
+    ".ring-offset-violet-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(237 233 254/1%);}",
+  ],
+  [
+    "ring-offset-violet-200/[1%]",
+    ".ring-offset-violet-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(221 214 254/1%);}",
+  ],
+  [
+    "ring-offset-violet-300/[1%]",
+    ".ring-offset-violet-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(196 181 253/1%);}",
+  ],
+  [
+    "ring-offset-violet-400/[1%]",
+    ".ring-offset-violet-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(167 139 250/1%);}",
+  ],
+  [
+    "ring-offset-violet-500/[1%]",
+    ".ring-offset-violet-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(139 92 246/1%);}",
+  ],
+  [
+    "ring-offset-violet-600/[1%]",
+    ".ring-offset-violet-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(124 58 237/1%);}",
+  ],
+  [
+    "ring-offset-violet-700/[1%]",
+    ".ring-offset-violet-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(109 40 217/1%);}",
+  ],
+  [
+    "ring-offset-violet-800/[1%]",
+    ".ring-offset-violet-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(91 33 182/1%);}",
+  ],
+  [
+    "ring-offset-violet-900/[1%]",
+    ".ring-offset-violet-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(76 29 149/1%);}",
+  ],
+  [
+    "ring-offset-purple-50/[1%]",
+    ".ring-offset-purple-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(250 245 255/1%);}",
+  ],
+  [
+    "ring-offset-purple-100/[1%]",
+    ".ring-offset-purple-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(243 232 255/1%);}",
+  ],
+  [
+    "ring-offset-purple-200/[1%]",
+    ".ring-offset-purple-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(233 213 255/1%);}",
+  ],
+  [
+    "ring-offset-purple-300/[1%]",
+    ".ring-offset-purple-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(216 180 254/1%);}",
+  ],
+  [
+    "ring-offset-purple-400/[1%]",
+    ".ring-offset-purple-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(192 132 252/1%);}",
+  ],
+  [
+    "ring-offset-purple-500/[1%]",
+    ".ring-offset-purple-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(168 85 247/1%);}",
+  ],
+  [
+    "ring-offset-purple-600/[1%]",
+    ".ring-offset-purple-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(147 51 234/1%);}",
+  ],
+  [
+    "ring-offset-purple-700/[1%]",
+    ".ring-offset-purple-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(126 34 206/1%);}",
+  ],
+  [
+    "ring-offset-purple-800/[1%]",
+    ".ring-offset-purple-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(107 33 168/1%);}",
+  ],
+  [
+    "ring-offset-purple-900/[1%]",
+    ".ring-offset-purple-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(88 28 135/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-50/[1%]",
+    ".ring-offset-fuchsia-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(253 244 255/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-100/[1%]",
+    ".ring-offset-fuchsia-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(250 232 255/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-200/[1%]",
+    ".ring-offset-fuchsia-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(245 208 254/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-300/[1%]",
+    ".ring-offset-fuchsia-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(240 171 252/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-400/[1%]",
+    ".ring-offset-fuchsia-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(232 121 249/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-500/[1%]",
+    ".ring-offset-fuchsia-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(217 70 239/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-600/[1%]",
+    ".ring-offset-fuchsia-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(192 38 211/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-700/[1%]",
+    ".ring-offset-fuchsia-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(162 28 175/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-800/[1%]",
+    ".ring-offset-fuchsia-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(134 25 143/1%);}",
+  ],
+  [
+    "ring-offset-fuchsia-900/[1%]",
+    ".ring-offset-fuchsia-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(112 26 117/1%);}",
+  ],
+  [
+    "ring-offset-pink-50/[1%]",
+    ".ring-offset-pink-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(253 242 248/1%);}",
+  ],
+  [
+    "ring-offset-pink-100/[1%]",
+    ".ring-offset-pink-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(252 231 243/1%);}",
+  ],
+  [
+    "ring-offset-pink-200/[1%]",
+    ".ring-offset-pink-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(251 207 232/1%);}",
+  ],
+  [
+    "ring-offset-pink-300/[1%]",
+    ".ring-offset-pink-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(249 168 212/1%);}",
+  ],
+  [
+    "ring-offset-pink-400/[1%]",
+    ".ring-offset-pink-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(244 114 182/1%);}",
+  ],
+  [
+    "ring-offset-pink-500/[1%]",
+    ".ring-offset-pink-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(236 72 153/1%);}",
+  ],
+  [
+    "ring-offset-pink-600/[1%]",
+    ".ring-offset-pink-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(219 39 119/1%);}",
+  ],
+  [
+    "ring-offset-pink-700/[1%]",
+    ".ring-offset-pink-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(190 24 93/1%);}",
+  ],
+  [
+    "ring-offset-pink-800/[1%]",
+    ".ring-offset-pink-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(157 23 77/1%);}",
+  ],
+  [
+    "ring-offset-pink-900/[1%]",
+    ".ring-offset-pink-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(131 24 67/1%);}",
+  ],
+  [
+    "ring-offset-rose-50/[1%]",
+    ".ring-offset-rose-50\\/\\[1\\%\\]{--map-ring-offset-color:rgb(255 241 242/1%);}",
+  ],
+  [
+    "ring-offset-rose-100/[1%]",
+    ".ring-offset-rose-100\\/\\[1\\%\\]{--map-ring-offset-color:rgb(255 228 230/1%);}",
+  ],
+  [
+    "ring-offset-rose-200/[1%]",
+    ".ring-offset-rose-200\\/\\[1\\%\\]{--map-ring-offset-color:rgb(254 205 211/1%);}",
+  ],
+  [
+    "ring-offset-rose-300/[1%]",
+    ".ring-offset-rose-300\\/\\[1\\%\\]{--map-ring-offset-color:rgb(253 164 175/1%);}",
+  ],
+  [
+    "ring-offset-rose-400/[1%]",
+    ".ring-offset-rose-400\\/\\[1\\%\\]{--map-ring-offset-color:rgb(251 113 133/1%);}",
+  ],
+  [
+    "ring-offset-rose-500/[1%]",
+    ".ring-offset-rose-500\\/\\[1\\%\\]{--map-ring-offset-color:rgb(244 63 94/1%);}",
+  ],
+  [
+    "ring-offset-rose-600/[1%]",
+    ".ring-offset-rose-600\\/\\[1\\%\\]{--map-ring-offset-color:rgb(225 29 72/1%);}",
+  ],
+  [
+    "ring-offset-rose-700/[1%]",
+    ".ring-offset-rose-700\\/\\[1\\%\\]{--map-ring-offset-color:rgb(190 18 60/1%);}",
+  ],
+  [
+    "ring-offset-rose-800/[1%]",
+    ".ring-offset-rose-800\\/\\[1\\%\\]{--map-ring-offset-color:rgb(159 18 57/1%);}",
+  ],
+  [
+    "ring-offset-rose-900/[1%]",
+    ".ring-offset-rose-900\\/\\[1\\%\\]{--map-ring-offset-color:rgb(136 19 55/1%);}",
+  ],
   ["opacity-0", ".opacity-0{opacity:0;}"],
   ["opacity-5", ".opacity-5{opacity:0.05;}"],
   ["opacity-10", ".opacity-10{opacity:0.1;}"],
