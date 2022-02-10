@@ -2,6 +2,7 @@ import { backface } from "./backface.ts";
 import {
   $static,
   absolute,
+  accent,
   antialiased,
   appearance,
   block,
@@ -134,6 +135,7 @@ import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
+  accent,
   stroke,
   snap,
   touch,

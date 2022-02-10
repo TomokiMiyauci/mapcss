@@ -24784,6 +24784,2059 @@ const expects: [string, string][] = [
   ],
   ["origin-bottom-left", ".origin-bottom-left{transform-origin:bottom left;}"],
   ["origin-top-left", ".origin-top-left{transform-origin:top left;}"],
+  ["accent-inherit", ".accent-inherit{accent-color:inherit;}"],
+  ["accent-current", ".accent-current{accent-color:currentColor;}"],
+  ["accent-transparent", ".accent-transparent{accent-color:transparent;}"],
+  ["accent-black", ".accent-black{accent-color:rgb(0 0 0/1);}"],
+  ["accent-white", ".accent-white{accent-color:rgb(255 255 255/1);}"],
+  ["accent-slate-50", ".accent-slate-50{accent-color:rgb(248 250 252/1);}"],
+  ["accent-slate-100", ".accent-slate-100{accent-color:rgb(241 245 249/1);}"],
+  ["accent-slate-200", ".accent-slate-200{accent-color:rgb(226 232 240/1);}"],
+  ["accent-slate-300", ".accent-slate-300{accent-color:rgb(203 213 225/1);}"],
+  ["accent-slate-400", ".accent-slate-400{accent-color:rgb(148 163 184/1);}"],
+  ["accent-slate-500", ".accent-slate-500{accent-color:rgb(100 116 139/1);}"],
+  ["accent-slate-600", ".accent-slate-600{accent-color:rgb(71 85 105/1);}"],
+  ["accent-slate-700", ".accent-slate-700{accent-color:rgb(51 65 85/1);}"],
+  ["accent-slate-800", ".accent-slate-800{accent-color:rgb(30 41 59/1);}"],
+  ["accent-slate-900", ".accent-slate-900{accent-color:rgb(15 23 42/1);}"],
+  ["accent-gray-50", ".accent-gray-50{accent-color:rgb(249 250 251/1);}"],
+  ["accent-gray-100", ".accent-gray-100{accent-color:rgb(243 244 246/1);}"],
+  ["accent-gray-200", ".accent-gray-200{accent-color:rgb(229 231 235/1);}"],
+  ["accent-gray-300", ".accent-gray-300{accent-color:rgb(209 213 219/1);}"],
+  ["accent-gray-400", ".accent-gray-400{accent-color:rgb(156 163 175/1);}"],
+  ["accent-gray-500", ".accent-gray-500{accent-color:rgb(107 114 128/1);}"],
+  ["accent-gray-600", ".accent-gray-600{accent-color:rgb(75 85 99/1);}"],
+  ["accent-gray-700", ".accent-gray-700{accent-color:rgb(55 65 81/1);}"],
+  ["accent-gray-800", ".accent-gray-800{accent-color:rgb(31 41 55/1);}"],
+  ["accent-gray-900", ".accent-gray-900{accent-color:rgb(17 24 39/1);}"],
+  ["accent-zinc-50", ".accent-zinc-50{accent-color:rgb(250 250 250/1);}"],
+  ["accent-zinc-100", ".accent-zinc-100{accent-color:rgb(244 244 245/1);}"],
+  ["accent-zinc-200", ".accent-zinc-200{accent-color:rgb(228 228 231/1);}"],
+  ["accent-zinc-300", ".accent-zinc-300{accent-color:rgb(212 212 216/1);}"],
+  ["accent-zinc-400", ".accent-zinc-400{accent-color:rgb(161 161 170/1);}"],
+  ["accent-zinc-500", ".accent-zinc-500{accent-color:rgb(113 113 122/1);}"],
+  ["accent-zinc-600", ".accent-zinc-600{accent-color:rgb(82 82 91/1);}"],
+  ["accent-zinc-700", ".accent-zinc-700{accent-color:rgb(63 63 70/1);}"],
+  ["accent-zinc-800", ".accent-zinc-800{accent-color:rgb(39 39 42/1);}"],
+  ["accent-zinc-900", ".accent-zinc-900{accent-color:rgb(24 24 27/1);}"],
+  ["accent-neutral-50", ".accent-neutral-50{accent-color:rgb(250 250 250/1);}"],
+  [
+    "accent-neutral-100",
+    ".accent-neutral-100{accent-color:rgb(245 245 245/1);}",
+  ],
+  [
+    "accent-neutral-200",
+    ".accent-neutral-200{accent-color:rgb(229 229 229/1);}",
+  ],
+  [
+    "accent-neutral-300",
+    ".accent-neutral-300{accent-color:rgb(212 212 212/1);}",
+  ],
+  [
+    "accent-neutral-400",
+    ".accent-neutral-400{accent-color:rgb(163 163 163/1);}",
+  ],
+  [
+    "accent-neutral-500",
+    ".accent-neutral-500{accent-color:rgb(115 115 115/1);}",
+  ],
+  ["accent-neutral-600", ".accent-neutral-600{accent-color:rgb(82 82 82/1);}"],
+  ["accent-neutral-700", ".accent-neutral-700{accent-color:rgb(64 64 64/1);}"],
+  ["accent-neutral-800", ".accent-neutral-800{accent-color:rgb(38 38 38/1);}"],
+  ["accent-neutral-900", ".accent-neutral-900{accent-color:rgb(23 23 23/1);}"],
+  ["accent-stone-50", ".accent-stone-50{accent-color:rgb(250 250 249/1);}"],
+  ["accent-stone-100", ".accent-stone-100{accent-color:rgb(245 245 244/1);}"],
+  ["accent-stone-200", ".accent-stone-200{accent-color:rgb(231 229 228/1);}"],
+  ["accent-stone-300", ".accent-stone-300{accent-color:rgb(214 211 209/1);}"],
+  ["accent-stone-400", ".accent-stone-400{accent-color:rgb(168 162 158/1);}"],
+  ["accent-stone-500", ".accent-stone-500{accent-color:rgb(120 113 108/1);}"],
+  ["accent-stone-600", ".accent-stone-600{accent-color:rgb(87 83 78/1);}"],
+  ["accent-stone-700", ".accent-stone-700{accent-color:rgb(68 64 60/1);}"],
+  ["accent-stone-800", ".accent-stone-800{accent-color:rgb(41 37 36/1);}"],
+  ["accent-stone-900", ".accent-stone-900{accent-color:rgb(28 25 23/1);}"],
+  ["accent-red-50", ".accent-red-50{accent-color:rgb(254 242 242/1);}"],
+  ["accent-red-100", ".accent-red-100{accent-color:rgb(254 226 226/1);}"],
+  ["accent-red-200", ".accent-red-200{accent-color:rgb(254 202 202/1);}"],
+  ["accent-red-300", ".accent-red-300{accent-color:rgb(252 165 165/1);}"],
+  ["accent-red-400", ".accent-red-400{accent-color:rgb(248 113 113/1);}"],
+  ["accent-red-500", ".accent-red-500{accent-color:rgb(239 68 68/1);}"],
+  ["accent-red-600", ".accent-red-600{accent-color:rgb(220 38 38/1);}"],
+  ["accent-red-700", ".accent-red-700{accent-color:rgb(185 28 28/1);}"],
+  ["accent-red-800", ".accent-red-800{accent-color:rgb(153 27 27/1);}"],
+  ["accent-red-900", ".accent-red-900{accent-color:rgb(127 29 29/1);}"],
+  ["accent-orange-50", ".accent-orange-50{accent-color:rgb(255 247 237/1);}"],
+  ["accent-orange-100", ".accent-orange-100{accent-color:rgb(255 237 213/1);}"],
+  ["accent-orange-200", ".accent-orange-200{accent-color:rgb(254 215 170/1);}"],
+  ["accent-orange-300", ".accent-orange-300{accent-color:rgb(253 186 116/1);}"],
+  ["accent-orange-400", ".accent-orange-400{accent-color:rgb(251 146 60/1);}"],
+  ["accent-orange-500", ".accent-orange-500{accent-color:rgb(249 115 22/1);}"],
+  ["accent-orange-600", ".accent-orange-600{accent-color:rgb(234 88 12/1);}"],
+  ["accent-orange-700", ".accent-orange-700{accent-color:rgb(194 65 12/1);}"],
+  ["accent-orange-800", ".accent-orange-800{accent-color:rgb(154 52 18/1);}"],
+  ["accent-orange-900", ".accent-orange-900{accent-color:rgb(124 45 18/1);}"],
+  ["accent-amber-50", ".accent-amber-50{accent-color:rgb(255 251 235/1);}"],
+  ["accent-amber-100", ".accent-amber-100{accent-color:rgb(254 243 199/1);}"],
+  ["accent-amber-200", ".accent-amber-200{accent-color:rgb(253 230 138/1);}"],
+  ["accent-amber-300", ".accent-amber-300{accent-color:rgb(252 211 77/1);}"],
+  ["accent-amber-400", ".accent-amber-400{accent-color:rgb(251 191 36/1);}"],
+  ["accent-amber-500", ".accent-amber-500{accent-color:rgb(245 158 11/1);}"],
+  ["accent-amber-600", ".accent-amber-600{accent-color:rgb(217 119 6/1);}"],
+  ["accent-amber-700", ".accent-amber-700{accent-color:rgb(180 83 9/1);}"],
+  ["accent-amber-800", ".accent-amber-800{accent-color:rgb(146 64 14/1);}"],
+  ["accent-amber-900", ".accent-amber-900{accent-color:rgb(120 53 15/1);}"],
+  ["accent-yellow-50", ".accent-yellow-50{accent-color:rgb(254 252 232/1);}"],
+  ["accent-yellow-100", ".accent-yellow-100{accent-color:rgb(254 249 195/1);}"],
+  ["accent-yellow-200", ".accent-yellow-200{accent-color:rgb(254 240 138/1);}"],
+  ["accent-yellow-300", ".accent-yellow-300{accent-color:rgb(253 224 71/1);}"],
+  ["accent-yellow-400", ".accent-yellow-400{accent-color:rgb(250 204 21/1);}"],
+  ["accent-yellow-500", ".accent-yellow-500{accent-color:rgb(234 179 8/1);}"],
+  ["accent-yellow-600", ".accent-yellow-600{accent-color:rgb(202 138 4/1);}"],
+  ["accent-yellow-700", ".accent-yellow-700{accent-color:rgb(161 98 7/1);}"],
+  ["accent-yellow-800", ".accent-yellow-800{accent-color:rgb(133 77 14/1);}"],
+  ["accent-yellow-900", ".accent-yellow-900{accent-color:rgb(113 63 18/1);}"],
+  ["accent-lime-50", ".accent-lime-50{accent-color:rgb(247 254 231/1);}"],
+  ["accent-lime-100", ".accent-lime-100{accent-color:rgb(236 252 203/1);}"],
+  ["accent-lime-200", ".accent-lime-200{accent-color:rgb(217 249 157/1);}"],
+  ["accent-lime-300", ".accent-lime-300{accent-color:rgb(190 242 100/1);}"],
+  ["accent-lime-400", ".accent-lime-400{accent-color:rgb(163 230 53/1);}"],
+  ["accent-lime-500", ".accent-lime-500{accent-color:rgb(132 204 22/1);}"],
+  ["accent-lime-600", ".accent-lime-600{accent-color:rgb(101 163 13/1);}"],
+  ["accent-lime-700", ".accent-lime-700{accent-color:rgb(77 124 15/1);}"],
+  ["accent-lime-800", ".accent-lime-800{accent-color:rgb(63 98 18/1);}"],
+  ["accent-lime-900", ".accent-lime-900{accent-color:rgb(54 83 20/1);}"],
+  ["accent-green-50", ".accent-green-50{accent-color:rgb(240 253 244/1);}"],
+  ["accent-green-100", ".accent-green-100{accent-color:rgb(220 252 231/1);}"],
+  ["accent-green-200", ".accent-green-200{accent-color:rgb(187 247 208/1);}"],
+  ["accent-green-300", ".accent-green-300{accent-color:rgb(134 239 172/1);}"],
+  ["accent-green-400", ".accent-green-400{accent-color:rgb(74 222 128/1);}"],
+  ["accent-green-500", ".accent-green-500{accent-color:rgb(34 197 94/1);}"],
+  ["accent-green-600", ".accent-green-600{accent-color:rgb(22 163 74/1);}"],
+  ["accent-green-700", ".accent-green-700{accent-color:rgb(21 128 61/1);}"],
+  ["accent-green-800", ".accent-green-800{accent-color:rgb(22 101 52/1);}"],
+  ["accent-green-900", ".accent-green-900{accent-color:rgb(20 83 45/1);}"],
+  ["accent-emerald-50", ".accent-emerald-50{accent-color:rgb(236 253 245/1);}"],
+  [
+    "accent-emerald-100",
+    ".accent-emerald-100{accent-color:rgb(209 250 229/1);}",
+  ],
+  [
+    "accent-emerald-200",
+    ".accent-emerald-200{accent-color:rgb(167 243 208/1);}",
+  ],
+  [
+    "accent-emerald-300",
+    ".accent-emerald-300{accent-color:rgb(110 231 183/1);}",
+  ],
+  [
+    "accent-emerald-400",
+    ".accent-emerald-400{accent-color:rgb(52 211 153/1);}",
+  ],
+  [
+    "accent-emerald-500",
+    ".accent-emerald-500{accent-color:rgb(16 185 129/1);}",
+  ],
+  ["accent-emerald-600", ".accent-emerald-600{accent-color:rgb(5 150 105/1);}"],
+  ["accent-emerald-700", ".accent-emerald-700{accent-color:rgb(4 120 87/1);}"],
+  ["accent-emerald-800", ".accent-emerald-800{accent-color:rgb(6 95 70/1);}"],
+  ["accent-emerald-900", ".accent-emerald-900{accent-color:rgb(6 78 59/1);}"],
+  ["accent-teal-50", ".accent-teal-50{accent-color:rgb(240 253 250/1);}"],
+  ["accent-teal-100", ".accent-teal-100{accent-color:rgb(204 251 241/1);}"],
+  ["accent-teal-200", ".accent-teal-200{accent-color:rgb(153 246 228/1);}"],
+  ["accent-teal-300", ".accent-teal-300{accent-color:rgb(94 234 212/1);}"],
+  ["accent-teal-400", ".accent-teal-400{accent-color:rgb(45 212 191/1);}"],
+  ["accent-teal-500", ".accent-teal-500{accent-color:rgb(20 184 166/1);}"],
+  ["accent-teal-600", ".accent-teal-600{accent-color:rgb(13 148 136/1);}"],
+  ["accent-teal-700", ".accent-teal-700{accent-color:rgb(15 118 110/1);}"],
+  ["accent-teal-800", ".accent-teal-800{accent-color:rgb(17 94 89/1);}"],
+  ["accent-teal-900", ".accent-teal-900{accent-color:rgb(19 78 74/1);}"],
+  ["accent-cyan-50", ".accent-cyan-50{accent-color:rgb(236 254 255/1);}"],
+  ["accent-cyan-100", ".accent-cyan-100{accent-color:rgb(207 250 254/1);}"],
+  ["accent-cyan-200", ".accent-cyan-200{accent-color:rgb(165 243 252/1);}"],
+  ["accent-cyan-300", ".accent-cyan-300{accent-color:rgb(103 232 249/1);}"],
+  ["accent-cyan-400", ".accent-cyan-400{accent-color:rgb(34 211 238/1);}"],
+  ["accent-cyan-500", ".accent-cyan-500{accent-color:rgb(6 182 212/1);}"],
+  ["accent-cyan-600", ".accent-cyan-600{accent-color:rgb(8 145 178/1);}"],
+  ["accent-cyan-700", ".accent-cyan-700{accent-color:rgb(14 116 144/1);}"],
+  ["accent-cyan-800", ".accent-cyan-800{accent-color:rgb(21 94 117/1);}"],
+  ["accent-cyan-900", ".accent-cyan-900{accent-color:rgb(22 78 99/1);}"],
+  ["accent-sky-50", ".accent-sky-50{accent-color:rgb(240 249 255/1);}"],
+  ["accent-sky-100", ".accent-sky-100{accent-color:rgb(224 242 254/1);}"],
+  ["accent-sky-200", ".accent-sky-200{accent-color:rgb(186 230 253/1);}"],
+  ["accent-sky-300", ".accent-sky-300{accent-color:rgb(125 211 252/1);}"],
+  ["accent-sky-400", ".accent-sky-400{accent-color:rgb(56 189 248/1);}"],
+  ["accent-sky-500", ".accent-sky-500{accent-color:rgb(14 165 233/1);}"],
+  ["accent-sky-600", ".accent-sky-600{accent-color:rgb(2 132 199/1);}"],
+  ["accent-sky-700", ".accent-sky-700{accent-color:rgb(3 105 161/1);}"],
+  ["accent-sky-800", ".accent-sky-800{accent-color:rgb(7 89 133/1);}"],
+  ["accent-sky-900", ".accent-sky-900{accent-color:rgb(12 74 110/1);}"],
+  ["accent-blue-50", ".accent-blue-50{accent-color:rgb(239 246 255/1);}"],
+  ["accent-blue-100", ".accent-blue-100{accent-color:rgb(219 234 254/1);}"],
+  ["accent-blue-200", ".accent-blue-200{accent-color:rgb(191 219 254/1);}"],
+  ["accent-blue-300", ".accent-blue-300{accent-color:rgb(147 197 253/1);}"],
+  ["accent-blue-400", ".accent-blue-400{accent-color:rgb(96 165 250/1);}"],
+  ["accent-blue-500", ".accent-blue-500{accent-color:rgb(59 130 246/1);}"],
+  ["accent-blue-600", ".accent-blue-600{accent-color:rgb(37 99 235/1);}"],
+  ["accent-blue-700", ".accent-blue-700{accent-color:rgb(29 78 216/1);}"],
+  ["accent-blue-800", ".accent-blue-800{accent-color:rgb(30 64 175/1);}"],
+  ["accent-blue-900", ".accent-blue-900{accent-color:rgb(30 58 138/1);}"],
+  ["accent-indigo-50", ".accent-indigo-50{accent-color:rgb(238 242 255/1);}"],
+  ["accent-indigo-100", ".accent-indigo-100{accent-color:rgb(224 231 255/1);}"],
+  ["accent-indigo-200", ".accent-indigo-200{accent-color:rgb(199 210 254/1);}"],
+  ["accent-indigo-300", ".accent-indigo-300{accent-color:rgb(165 180 252/1);}"],
+  ["accent-indigo-400", ".accent-indigo-400{accent-color:rgb(129 140 248/1);}"],
+  ["accent-indigo-500", ".accent-indigo-500{accent-color:rgb(99 102 241/1);}"],
+  ["accent-indigo-600", ".accent-indigo-600{accent-color:rgb(79 70 229/1);}"],
+  ["accent-indigo-700", ".accent-indigo-700{accent-color:rgb(67 56 202/1);}"],
+  ["accent-indigo-800", ".accent-indigo-800{accent-color:rgb(55 48 163/1);}"],
+  ["accent-indigo-900", ".accent-indigo-900{accent-color:rgb(49 46 129/1);}"],
+  ["accent-violet-50", ".accent-violet-50{accent-color:rgb(245 243 255/1);}"],
+  ["accent-violet-100", ".accent-violet-100{accent-color:rgb(237 233 254/1);}"],
+  ["accent-violet-200", ".accent-violet-200{accent-color:rgb(221 214 254/1);}"],
+  ["accent-violet-300", ".accent-violet-300{accent-color:rgb(196 181 253/1);}"],
+  ["accent-violet-400", ".accent-violet-400{accent-color:rgb(167 139 250/1);}"],
+  ["accent-violet-500", ".accent-violet-500{accent-color:rgb(139 92 246/1);}"],
+  ["accent-violet-600", ".accent-violet-600{accent-color:rgb(124 58 237/1);}"],
+  ["accent-violet-700", ".accent-violet-700{accent-color:rgb(109 40 217/1);}"],
+  ["accent-violet-800", ".accent-violet-800{accent-color:rgb(91 33 182/1);}"],
+  ["accent-violet-900", ".accent-violet-900{accent-color:rgb(76 29 149/1);}"],
+  ["accent-purple-50", ".accent-purple-50{accent-color:rgb(250 245 255/1);}"],
+  ["accent-purple-100", ".accent-purple-100{accent-color:rgb(243 232 255/1);}"],
+  ["accent-purple-200", ".accent-purple-200{accent-color:rgb(233 213 255/1);}"],
+  ["accent-purple-300", ".accent-purple-300{accent-color:rgb(216 180 254/1);}"],
+  ["accent-purple-400", ".accent-purple-400{accent-color:rgb(192 132 252/1);}"],
+  ["accent-purple-500", ".accent-purple-500{accent-color:rgb(168 85 247/1);}"],
+  ["accent-purple-600", ".accent-purple-600{accent-color:rgb(147 51 234/1);}"],
+  ["accent-purple-700", ".accent-purple-700{accent-color:rgb(126 34 206/1);}"],
+  ["accent-purple-800", ".accent-purple-800{accent-color:rgb(107 33 168/1);}"],
+  ["accent-purple-900", ".accent-purple-900{accent-color:rgb(88 28 135/1);}"],
+  ["accent-fuchsia-50", ".accent-fuchsia-50{accent-color:rgb(253 244 255/1);}"],
+  [
+    "accent-fuchsia-100",
+    ".accent-fuchsia-100{accent-color:rgb(250 232 255/1);}",
+  ],
+  [
+    "accent-fuchsia-200",
+    ".accent-fuchsia-200{accent-color:rgb(245 208 254/1);}",
+  ],
+  [
+    "accent-fuchsia-300",
+    ".accent-fuchsia-300{accent-color:rgb(240 171 252/1);}",
+  ],
+  [
+    "accent-fuchsia-400",
+    ".accent-fuchsia-400{accent-color:rgb(232 121 249/1);}",
+  ],
+  [
+    "accent-fuchsia-500",
+    ".accent-fuchsia-500{accent-color:rgb(217 70 239/1);}",
+  ],
+  [
+    "accent-fuchsia-600",
+    ".accent-fuchsia-600{accent-color:rgb(192 38 211/1);}",
+  ],
+  [
+    "accent-fuchsia-700",
+    ".accent-fuchsia-700{accent-color:rgb(162 28 175/1);}",
+  ],
+  [
+    "accent-fuchsia-800",
+    ".accent-fuchsia-800{accent-color:rgb(134 25 143/1);}",
+  ],
+  [
+    "accent-fuchsia-900",
+    ".accent-fuchsia-900{accent-color:rgb(112 26 117/1);}",
+  ],
+  ["accent-pink-50", ".accent-pink-50{accent-color:rgb(253 242 248/1);}"],
+  ["accent-pink-100", ".accent-pink-100{accent-color:rgb(252 231 243/1);}"],
+  ["accent-pink-200", ".accent-pink-200{accent-color:rgb(251 207 232/1);}"],
+  ["accent-pink-300", ".accent-pink-300{accent-color:rgb(249 168 212/1);}"],
+  ["accent-pink-400", ".accent-pink-400{accent-color:rgb(244 114 182/1);}"],
+  ["accent-pink-500", ".accent-pink-500{accent-color:rgb(236 72 153/1);}"],
+  ["accent-pink-600", ".accent-pink-600{accent-color:rgb(219 39 119/1);}"],
+  ["accent-pink-700", ".accent-pink-700{accent-color:rgb(190 24 93/1);}"],
+  ["accent-pink-800", ".accent-pink-800{accent-color:rgb(157 23 77/1);}"],
+  ["accent-pink-900", ".accent-pink-900{accent-color:rgb(131 24 67/1);}"],
+  ["accent-rose-50", ".accent-rose-50{accent-color:rgb(255 241 242/1);}"],
+  ["accent-rose-100", ".accent-rose-100{accent-color:rgb(255 228 230/1);}"],
+  ["accent-rose-200", ".accent-rose-200{accent-color:rgb(254 205 211/1);}"],
+  ["accent-rose-300", ".accent-rose-300{accent-color:rgb(253 164 175/1);}"],
+  ["accent-rose-400", ".accent-rose-400{accent-color:rgb(251 113 133/1);}"],
+  ["accent-rose-500", ".accent-rose-500{accent-color:rgb(244 63 94/1);}"],
+  ["accent-rose-600", ".accent-rose-600{accent-color:rgb(225 29 72/1);}"],
+  ["accent-rose-700", ".accent-rose-700{accent-color:rgb(190 18 60/1);}"],
+  ["accent-rose-800", ".accent-rose-800{accent-color:rgb(159 18 57/1);}"],
+  ["accent-rose-900", ".accent-rose-900{accent-color:rgb(136 19 55/1);}"],
+  ["accent-black/50", ".accent-black\\/50{accent-color:rgb(0 0 0/.5);}"],
+  ["accent-white/50", ".accent-white\\/50{accent-color:rgb(255 255 255/.5);}"],
+  [
+    "accent-slate-50/50",
+    ".accent-slate-50\\/50{accent-color:rgb(248 250 252/.5);}",
+  ],
+  [
+    "accent-slate-100/50",
+    ".accent-slate-100\\/50{accent-color:rgb(241 245 249/.5);}",
+  ],
+  [
+    "accent-slate-200/50",
+    ".accent-slate-200\\/50{accent-color:rgb(226 232 240/.5);}",
+  ],
+  [
+    "accent-slate-300/50",
+    ".accent-slate-300\\/50{accent-color:rgb(203 213 225/.5);}",
+  ],
+  [
+    "accent-slate-400/50",
+    ".accent-slate-400\\/50{accent-color:rgb(148 163 184/.5);}",
+  ],
+  [
+    "accent-slate-500/50",
+    ".accent-slate-500\\/50{accent-color:rgb(100 116 139/.5);}",
+  ],
+  [
+    "accent-slate-600/50",
+    ".accent-slate-600\\/50{accent-color:rgb(71 85 105/.5);}",
+  ],
+  [
+    "accent-slate-700/50",
+    ".accent-slate-700\\/50{accent-color:rgb(51 65 85/.5);}",
+  ],
+  [
+    "accent-slate-800/50",
+    ".accent-slate-800\\/50{accent-color:rgb(30 41 59/.5);}",
+  ],
+  [
+    "accent-slate-900/50",
+    ".accent-slate-900\\/50{accent-color:rgb(15 23 42/.5);}",
+  ],
+  [
+    "accent-gray-50/50",
+    ".accent-gray-50\\/50{accent-color:rgb(249 250 251/.5);}",
+  ],
+  [
+    "accent-gray-100/50",
+    ".accent-gray-100\\/50{accent-color:rgb(243 244 246/.5);}",
+  ],
+  [
+    "accent-gray-200/50",
+    ".accent-gray-200\\/50{accent-color:rgb(229 231 235/.5);}",
+  ],
+  [
+    "accent-gray-300/50",
+    ".accent-gray-300\\/50{accent-color:rgb(209 213 219/.5);}",
+  ],
+  [
+    "accent-gray-400/50",
+    ".accent-gray-400\\/50{accent-color:rgb(156 163 175/.5);}",
+  ],
+  [
+    "accent-gray-500/50",
+    ".accent-gray-500\\/50{accent-color:rgb(107 114 128/.5);}",
+  ],
+  [
+    "accent-gray-600/50",
+    ".accent-gray-600\\/50{accent-color:rgb(75 85 99/.5);}",
+  ],
+  [
+    "accent-gray-700/50",
+    ".accent-gray-700\\/50{accent-color:rgb(55 65 81/.5);}",
+  ],
+  [
+    "accent-gray-800/50",
+    ".accent-gray-800\\/50{accent-color:rgb(31 41 55/.5);}",
+  ],
+  [
+    "accent-gray-900/50",
+    ".accent-gray-900\\/50{accent-color:rgb(17 24 39/.5);}",
+  ],
+  [
+    "accent-zinc-50/50",
+    ".accent-zinc-50\\/50{accent-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "accent-zinc-100/50",
+    ".accent-zinc-100\\/50{accent-color:rgb(244 244 245/.5);}",
+  ],
+  [
+    "accent-zinc-200/50",
+    ".accent-zinc-200\\/50{accent-color:rgb(228 228 231/.5);}",
+  ],
+  [
+    "accent-zinc-300/50",
+    ".accent-zinc-300\\/50{accent-color:rgb(212 212 216/.5);}",
+  ],
+  [
+    "accent-zinc-400/50",
+    ".accent-zinc-400\\/50{accent-color:rgb(161 161 170/.5);}",
+  ],
+  [
+    "accent-zinc-500/50",
+    ".accent-zinc-500\\/50{accent-color:rgb(113 113 122/.5);}",
+  ],
+  [
+    "accent-zinc-600/50",
+    ".accent-zinc-600\\/50{accent-color:rgb(82 82 91/.5);}",
+  ],
+  [
+    "accent-zinc-700/50",
+    ".accent-zinc-700\\/50{accent-color:rgb(63 63 70/.5);}",
+  ],
+  [
+    "accent-zinc-800/50",
+    ".accent-zinc-800\\/50{accent-color:rgb(39 39 42/.5);}",
+  ],
+  [
+    "accent-zinc-900/50",
+    ".accent-zinc-900\\/50{accent-color:rgb(24 24 27/.5);}",
+  ],
+  [
+    "accent-neutral-50/50",
+    ".accent-neutral-50\\/50{accent-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "accent-neutral-100/50",
+    ".accent-neutral-100\\/50{accent-color:rgb(245 245 245/.5);}",
+  ],
+  [
+    "accent-neutral-200/50",
+    ".accent-neutral-200\\/50{accent-color:rgb(229 229 229/.5);}",
+  ],
+  [
+    "accent-neutral-300/50",
+    ".accent-neutral-300\\/50{accent-color:rgb(212 212 212/.5);}",
+  ],
+  [
+    "accent-neutral-400/50",
+    ".accent-neutral-400\\/50{accent-color:rgb(163 163 163/.5);}",
+  ],
+  [
+    "accent-neutral-500/50",
+    ".accent-neutral-500\\/50{accent-color:rgb(115 115 115/.5);}",
+  ],
+  [
+    "accent-neutral-600/50",
+    ".accent-neutral-600\\/50{accent-color:rgb(82 82 82/.5);}",
+  ],
+  [
+    "accent-neutral-700/50",
+    ".accent-neutral-700\\/50{accent-color:rgb(64 64 64/.5);}",
+  ],
+  [
+    "accent-neutral-800/50",
+    ".accent-neutral-800\\/50{accent-color:rgb(38 38 38/.5);}",
+  ],
+  [
+    "accent-neutral-900/50",
+    ".accent-neutral-900\\/50{accent-color:rgb(23 23 23/.5);}",
+  ],
+  [
+    "accent-stone-50/50",
+    ".accent-stone-50\\/50{accent-color:rgb(250 250 249/.5);}",
+  ],
+  [
+    "accent-stone-100/50",
+    ".accent-stone-100\\/50{accent-color:rgb(245 245 244/.5);}",
+  ],
+  [
+    "accent-stone-200/50",
+    ".accent-stone-200\\/50{accent-color:rgb(231 229 228/.5);}",
+  ],
+  [
+    "accent-stone-300/50",
+    ".accent-stone-300\\/50{accent-color:rgb(214 211 209/.5);}",
+  ],
+  [
+    "accent-stone-400/50",
+    ".accent-stone-400\\/50{accent-color:rgb(168 162 158/.5);}",
+  ],
+  [
+    "accent-stone-500/50",
+    ".accent-stone-500\\/50{accent-color:rgb(120 113 108/.5);}",
+  ],
+  [
+    "accent-stone-600/50",
+    ".accent-stone-600\\/50{accent-color:rgb(87 83 78/.5);}",
+  ],
+  [
+    "accent-stone-700/50",
+    ".accent-stone-700\\/50{accent-color:rgb(68 64 60/.5);}",
+  ],
+  [
+    "accent-stone-800/50",
+    ".accent-stone-800\\/50{accent-color:rgb(41 37 36/.5);}",
+  ],
+  [
+    "accent-stone-900/50",
+    ".accent-stone-900\\/50{accent-color:rgb(28 25 23/.5);}",
+  ],
+  [
+    "accent-red-50/50",
+    ".accent-red-50\\/50{accent-color:rgb(254 242 242/.5);}",
+  ],
+  [
+    "accent-red-100/50",
+    ".accent-red-100\\/50{accent-color:rgb(254 226 226/.5);}",
+  ],
+  [
+    "accent-red-200/50",
+    ".accent-red-200\\/50{accent-color:rgb(254 202 202/.5);}",
+  ],
+  [
+    "accent-red-300/50",
+    ".accent-red-300\\/50{accent-color:rgb(252 165 165/.5);}",
+  ],
+  [
+    "accent-red-400/50",
+    ".accent-red-400\\/50{accent-color:rgb(248 113 113/.5);}",
+  ],
+  [
+    "accent-red-500/50",
+    ".accent-red-500\\/50{accent-color:rgb(239 68 68/.5);}",
+  ],
+  [
+    "accent-red-600/50",
+    ".accent-red-600\\/50{accent-color:rgb(220 38 38/.5);}",
+  ],
+  [
+    "accent-red-700/50",
+    ".accent-red-700\\/50{accent-color:rgb(185 28 28/.5);}",
+  ],
+  [
+    "accent-red-800/50",
+    ".accent-red-800\\/50{accent-color:rgb(153 27 27/.5);}",
+  ],
+  [
+    "accent-red-900/50",
+    ".accent-red-900\\/50{accent-color:rgb(127 29 29/.5);}",
+  ],
+  [
+    "accent-orange-50/50",
+    ".accent-orange-50\\/50{accent-color:rgb(255 247 237/.5);}",
+  ],
+  [
+    "accent-orange-100/50",
+    ".accent-orange-100\\/50{accent-color:rgb(255 237 213/.5);}",
+  ],
+  [
+    "accent-orange-200/50",
+    ".accent-orange-200\\/50{accent-color:rgb(254 215 170/.5);}",
+  ],
+  [
+    "accent-orange-300/50",
+    ".accent-orange-300\\/50{accent-color:rgb(253 186 116/.5);}",
+  ],
+  [
+    "accent-orange-400/50",
+    ".accent-orange-400\\/50{accent-color:rgb(251 146 60/.5);}",
+  ],
+  [
+    "accent-orange-500/50",
+    ".accent-orange-500\\/50{accent-color:rgb(249 115 22/.5);}",
+  ],
+  [
+    "accent-orange-600/50",
+    ".accent-orange-600\\/50{accent-color:rgb(234 88 12/.5);}",
+  ],
+  [
+    "accent-orange-700/50",
+    ".accent-orange-700\\/50{accent-color:rgb(194 65 12/.5);}",
+  ],
+  [
+    "accent-orange-800/50",
+    ".accent-orange-800\\/50{accent-color:rgb(154 52 18/.5);}",
+  ],
+  [
+    "accent-orange-900/50",
+    ".accent-orange-900\\/50{accent-color:rgb(124 45 18/.5);}",
+  ],
+  [
+    "accent-amber-50/50",
+    ".accent-amber-50\\/50{accent-color:rgb(255 251 235/.5);}",
+  ],
+  [
+    "accent-amber-100/50",
+    ".accent-amber-100\\/50{accent-color:rgb(254 243 199/.5);}",
+  ],
+  [
+    "accent-amber-200/50",
+    ".accent-amber-200\\/50{accent-color:rgb(253 230 138/.5);}",
+  ],
+  [
+    "accent-amber-300/50",
+    ".accent-amber-300\\/50{accent-color:rgb(252 211 77/.5);}",
+  ],
+  [
+    "accent-amber-400/50",
+    ".accent-amber-400\\/50{accent-color:rgb(251 191 36/.5);}",
+  ],
+  [
+    "accent-amber-500/50",
+    ".accent-amber-500\\/50{accent-color:rgb(245 158 11/.5);}",
+  ],
+  [
+    "accent-amber-600/50",
+    ".accent-amber-600\\/50{accent-color:rgb(217 119 6/.5);}",
+  ],
+  [
+    "accent-amber-700/50",
+    ".accent-amber-700\\/50{accent-color:rgb(180 83 9/.5);}",
+  ],
+  [
+    "accent-amber-800/50",
+    ".accent-amber-800\\/50{accent-color:rgb(146 64 14/.5);}",
+  ],
+  [
+    "accent-amber-900/50",
+    ".accent-amber-900\\/50{accent-color:rgb(120 53 15/.5);}",
+  ],
+  [
+    "accent-yellow-50/50",
+    ".accent-yellow-50\\/50{accent-color:rgb(254 252 232/.5);}",
+  ],
+  [
+    "accent-yellow-100/50",
+    ".accent-yellow-100\\/50{accent-color:rgb(254 249 195/.5);}",
+  ],
+  [
+    "accent-yellow-200/50",
+    ".accent-yellow-200\\/50{accent-color:rgb(254 240 138/.5);}",
+  ],
+  [
+    "accent-yellow-300/50",
+    ".accent-yellow-300\\/50{accent-color:rgb(253 224 71/.5);}",
+  ],
+  [
+    "accent-yellow-400/50",
+    ".accent-yellow-400\\/50{accent-color:rgb(250 204 21/.5);}",
+  ],
+  [
+    "accent-yellow-500/50",
+    ".accent-yellow-500\\/50{accent-color:rgb(234 179 8/.5);}",
+  ],
+  [
+    "accent-yellow-600/50",
+    ".accent-yellow-600\\/50{accent-color:rgb(202 138 4/.5);}",
+  ],
+  [
+    "accent-yellow-700/50",
+    ".accent-yellow-700\\/50{accent-color:rgb(161 98 7/.5);}",
+  ],
+  [
+    "accent-yellow-800/50",
+    ".accent-yellow-800\\/50{accent-color:rgb(133 77 14/.5);}",
+  ],
+  [
+    "accent-yellow-900/50",
+    ".accent-yellow-900\\/50{accent-color:rgb(113 63 18/.5);}",
+  ],
+  [
+    "accent-lime-50/50",
+    ".accent-lime-50\\/50{accent-color:rgb(247 254 231/.5);}",
+  ],
+  [
+    "accent-lime-100/50",
+    ".accent-lime-100\\/50{accent-color:rgb(236 252 203/.5);}",
+  ],
+  [
+    "accent-lime-200/50",
+    ".accent-lime-200\\/50{accent-color:rgb(217 249 157/.5);}",
+  ],
+  [
+    "accent-lime-300/50",
+    ".accent-lime-300\\/50{accent-color:rgb(190 242 100/.5);}",
+  ],
+  [
+    "accent-lime-400/50",
+    ".accent-lime-400\\/50{accent-color:rgb(163 230 53/.5);}",
+  ],
+  [
+    "accent-lime-500/50",
+    ".accent-lime-500\\/50{accent-color:rgb(132 204 22/.5);}",
+  ],
+  [
+    "accent-lime-600/50",
+    ".accent-lime-600\\/50{accent-color:rgb(101 163 13/.5);}",
+  ],
+  [
+    "accent-lime-700/50",
+    ".accent-lime-700\\/50{accent-color:rgb(77 124 15/.5);}",
+  ],
+  [
+    "accent-lime-800/50",
+    ".accent-lime-800\\/50{accent-color:rgb(63 98 18/.5);}",
+  ],
+  [
+    "accent-lime-900/50",
+    ".accent-lime-900\\/50{accent-color:rgb(54 83 20/.5);}",
+  ],
+  [
+    "accent-green-50/50",
+    ".accent-green-50\\/50{accent-color:rgb(240 253 244/.5);}",
+  ],
+  [
+    "accent-green-100/50",
+    ".accent-green-100\\/50{accent-color:rgb(220 252 231/.5);}",
+  ],
+  [
+    "accent-green-200/50",
+    ".accent-green-200\\/50{accent-color:rgb(187 247 208/.5);}",
+  ],
+  [
+    "accent-green-300/50",
+    ".accent-green-300\\/50{accent-color:rgb(134 239 172/.5);}",
+  ],
+  [
+    "accent-green-400/50",
+    ".accent-green-400\\/50{accent-color:rgb(74 222 128/.5);}",
+  ],
+  [
+    "accent-green-500/50",
+    ".accent-green-500\\/50{accent-color:rgb(34 197 94/.5);}",
+  ],
+  [
+    "accent-green-600/50",
+    ".accent-green-600\\/50{accent-color:rgb(22 163 74/.5);}",
+  ],
+  [
+    "accent-green-700/50",
+    ".accent-green-700\\/50{accent-color:rgb(21 128 61/.5);}",
+  ],
+  [
+    "accent-green-800/50",
+    ".accent-green-800\\/50{accent-color:rgb(22 101 52/.5);}",
+  ],
+  [
+    "accent-green-900/50",
+    ".accent-green-900\\/50{accent-color:rgb(20 83 45/.5);}",
+  ],
+  [
+    "accent-emerald-50/50",
+    ".accent-emerald-50\\/50{accent-color:rgb(236 253 245/.5);}",
+  ],
+  [
+    "accent-emerald-100/50",
+    ".accent-emerald-100\\/50{accent-color:rgb(209 250 229/.5);}",
+  ],
+  [
+    "accent-emerald-200/50",
+    ".accent-emerald-200\\/50{accent-color:rgb(167 243 208/.5);}",
+  ],
+  [
+    "accent-emerald-300/50",
+    ".accent-emerald-300\\/50{accent-color:rgb(110 231 183/.5);}",
+  ],
+  [
+    "accent-emerald-400/50",
+    ".accent-emerald-400\\/50{accent-color:rgb(52 211 153/.5);}",
+  ],
+  [
+    "accent-emerald-500/50",
+    ".accent-emerald-500\\/50{accent-color:rgb(16 185 129/.5);}",
+  ],
+  [
+    "accent-emerald-600/50",
+    ".accent-emerald-600\\/50{accent-color:rgb(5 150 105/.5);}",
+  ],
+  [
+    "accent-emerald-700/50",
+    ".accent-emerald-700\\/50{accent-color:rgb(4 120 87/.5);}",
+  ],
+  [
+    "accent-emerald-800/50",
+    ".accent-emerald-800\\/50{accent-color:rgb(6 95 70/.5);}",
+  ],
+  [
+    "accent-emerald-900/50",
+    ".accent-emerald-900\\/50{accent-color:rgb(6 78 59/.5);}",
+  ],
+  [
+    "accent-teal-50/50",
+    ".accent-teal-50\\/50{accent-color:rgb(240 253 250/.5);}",
+  ],
+  [
+    "accent-teal-100/50",
+    ".accent-teal-100\\/50{accent-color:rgb(204 251 241/.5);}",
+  ],
+  [
+    "accent-teal-200/50",
+    ".accent-teal-200\\/50{accent-color:rgb(153 246 228/.5);}",
+  ],
+  [
+    "accent-teal-300/50",
+    ".accent-teal-300\\/50{accent-color:rgb(94 234 212/.5);}",
+  ],
+  [
+    "accent-teal-400/50",
+    ".accent-teal-400\\/50{accent-color:rgb(45 212 191/.5);}",
+  ],
+  [
+    "accent-teal-500/50",
+    ".accent-teal-500\\/50{accent-color:rgb(20 184 166/.5);}",
+  ],
+  [
+    "accent-teal-600/50",
+    ".accent-teal-600\\/50{accent-color:rgb(13 148 136/.5);}",
+  ],
+  [
+    "accent-teal-700/50",
+    ".accent-teal-700\\/50{accent-color:rgb(15 118 110/.5);}",
+  ],
+  [
+    "accent-teal-800/50",
+    ".accent-teal-800\\/50{accent-color:rgb(17 94 89/.5);}",
+  ],
+  [
+    "accent-teal-900/50",
+    ".accent-teal-900\\/50{accent-color:rgb(19 78 74/.5);}",
+  ],
+  [
+    "accent-cyan-50/50",
+    ".accent-cyan-50\\/50{accent-color:rgb(236 254 255/.5);}",
+  ],
+  [
+    "accent-cyan-100/50",
+    ".accent-cyan-100\\/50{accent-color:rgb(207 250 254/.5);}",
+  ],
+  [
+    "accent-cyan-200/50",
+    ".accent-cyan-200\\/50{accent-color:rgb(165 243 252/.5);}",
+  ],
+  [
+    "accent-cyan-300/50",
+    ".accent-cyan-300\\/50{accent-color:rgb(103 232 249/.5);}",
+  ],
+  [
+    "accent-cyan-400/50",
+    ".accent-cyan-400\\/50{accent-color:rgb(34 211 238/.5);}",
+  ],
+  [
+    "accent-cyan-500/50",
+    ".accent-cyan-500\\/50{accent-color:rgb(6 182 212/.5);}",
+  ],
+  [
+    "accent-cyan-600/50",
+    ".accent-cyan-600\\/50{accent-color:rgb(8 145 178/.5);}",
+  ],
+  [
+    "accent-cyan-700/50",
+    ".accent-cyan-700\\/50{accent-color:rgb(14 116 144/.5);}",
+  ],
+  [
+    "accent-cyan-800/50",
+    ".accent-cyan-800\\/50{accent-color:rgb(21 94 117/.5);}",
+  ],
+  [
+    "accent-cyan-900/50",
+    ".accent-cyan-900\\/50{accent-color:rgb(22 78 99/.5);}",
+  ],
+  [
+    "accent-sky-50/50",
+    ".accent-sky-50\\/50{accent-color:rgb(240 249 255/.5);}",
+  ],
+  [
+    "accent-sky-100/50",
+    ".accent-sky-100\\/50{accent-color:rgb(224 242 254/.5);}",
+  ],
+  [
+    "accent-sky-200/50",
+    ".accent-sky-200\\/50{accent-color:rgb(186 230 253/.5);}",
+  ],
+  [
+    "accent-sky-300/50",
+    ".accent-sky-300\\/50{accent-color:rgb(125 211 252/.5);}",
+  ],
+  [
+    "accent-sky-400/50",
+    ".accent-sky-400\\/50{accent-color:rgb(56 189 248/.5);}",
+  ],
+  [
+    "accent-sky-500/50",
+    ".accent-sky-500\\/50{accent-color:rgb(14 165 233/.5);}",
+  ],
+  [
+    "accent-sky-600/50",
+    ".accent-sky-600\\/50{accent-color:rgb(2 132 199/.5);}",
+  ],
+  [
+    "accent-sky-700/50",
+    ".accent-sky-700\\/50{accent-color:rgb(3 105 161/.5);}",
+  ],
+  ["accent-sky-800/50", ".accent-sky-800\\/50{accent-color:rgb(7 89 133/.5);}"],
+  [
+    "accent-sky-900/50",
+    ".accent-sky-900\\/50{accent-color:rgb(12 74 110/.5);}",
+  ],
+  [
+    "accent-blue-50/50",
+    ".accent-blue-50\\/50{accent-color:rgb(239 246 255/.5);}",
+  ],
+  [
+    "accent-blue-100/50",
+    ".accent-blue-100\\/50{accent-color:rgb(219 234 254/.5);}",
+  ],
+  [
+    "accent-blue-200/50",
+    ".accent-blue-200\\/50{accent-color:rgb(191 219 254/.5);}",
+  ],
+  [
+    "accent-blue-300/50",
+    ".accent-blue-300\\/50{accent-color:rgb(147 197 253/.5);}",
+  ],
+  [
+    "accent-blue-400/50",
+    ".accent-blue-400\\/50{accent-color:rgb(96 165 250/.5);}",
+  ],
+  [
+    "accent-blue-500/50",
+    ".accent-blue-500\\/50{accent-color:rgb(59 130 246/.5);}",
+  ],
+  [
+    "accent-blue-600/50",
+    ".accent-blue-600\\/50{accent-color:rgb(37 99 235/.5);}",
+  ],
+  [
+    "accent-blue-700/50",
+    ".accent-blue-700\\/50{accent-color:rgb(29 78 216/.5);}",
+  ],
+  [
+    "accent-blue-800/50",
+    ".accent-blue-800\\/50{accent-color:rgb(30 64 175/.5);}",
+  ],
+  [
+    "accent-blue-900/50",
+    ".accent-blue-900\\/50{accent-color:rgb(30 58 138/.5);}",
+  ],
+  [
+    "accent-indigo-50/50",
+    ".accent-indigo-50\\/50{accent-color:rgb(238 242 255/.5);}",
+  ],
+  [
+    "accent-indigo-100/50",
+    ".accent-indigo-100\\/50{accent-color:rgb(224 231 255/.5);}",
+  ],
+  [
+    "accent-indigo-200/50",
+    ".accent-indigo-200\\/50{accent-color:rgb(199 210 254/.5);}",
+  ],
+  [
+    "accent-indigo-300/50",
+    ".accent-indigo-300\\/50{accent-color:rgb(165 180 252/.5);}",
+  ],
+  [
+    "accent-indigo-400/50",
+    ".accent-indigo-400\\/50{accent-color:rgb(129 140 248/.5);}",
+  ],
+  [
+    "accent-indigo-500/50",
+    ".accent-indigo-500\\/50{accent-color:rgb(99 102 241/.5);}",
+  ],
+  [
+    "accent-indigo-600/50",
+    ".accent-indigo-600\\/50{accent-color:rgb(79 70 229/.5);}",
+  ],
+  [
+    "accent-indigo-700/50",
+    ".accent-indigo-700\\/50{accent-color:rgb(67 56 202/.5);}",
+  ],
+  [
+    "accent-indigo-800/50",
+    ".accent-indigo-800\\/50{accent-color:rgb(55 48 163/.5);}",
+  ],
+  [
+    "accent-indigo-900/50",
+    ".accent-indigo-900\\/50{accent-color:rgb(49 46 129/.5);}",
+  ],
+  [
+    "accent-violet-50/50",
+    ".accent-violet-50\\/50{accent-color:rgb(245 243 255/.5);}",
+  ],
+  [
+    "accent-violet-100/50",
+    ".accent-violet-100\\/50{accent-color:rgb(237 233 254/.5);}",
+  ],
+  [
+    "accent-violet-200/50",
+    ".accent-violet-200\\/50{accent-color:rgb(221 214 254/.5);}",
+  ],
+  [
+    "accent-violet-300/50",
+    ".accent-violet-300\\/50{accent-color:rgb(196 181 253/.5);}",
+  ],
+  [
+    "accent-violet-400/50",
+    ".accent-violet-400\\/50{accent-color:rgb(167 139 250/.5);}",
+  ],
+  [
+    "accent-violet-500/50",
+    ".accent-violet-500\\/50{accent-color:rgb(139 92 246/.5);}",
+  ],
+  [
+    "accent-violet-600/50",
+    ".accent-violet-600\\/50{accent-color:rgb(124 58 237/.5);}",
+  ],
+  [
+    "accent-violet-700/50",
+    ".accent-violet-700\\/50{accent-color:rgb(109 40 217/.5);}",
+  ],
+  [
+    "accent-violet-800/50",
+    ".accent-violet-800\\/50{accent-color:rgb(91 33 182/.5);}",
+  ],
+  [
+    "accent-violet-900/50",
+    ".accent-violet-900\\/50{accent-color:rgb(76 29 149/.5);}",
+  ],
+  [
+    "accent-purple-50/50",
+    ".accent-purple-50\\/50{accent-color:rgb(250 245 255/.5);}",
+  ],
+  [
+    "accent-purple-100/50",
+    ".accent-purple-100\\/50{accent-color:rgb(243 232 255/.5);}",
+  ],
+  [
+    "accent-purple-200/50",
+    ".accent-purple-200\\/50{accent-color:rgb(233 213 255/.5);}",
+  ],
+  [
+    "accent-purple-300/50",
+    ".accent-purple-300\\/50{accent-color:rgb(216 180 254/.5);}",
+  ],
+  [
+    "accent-purple-400/50",
+    ".accent-purple-400\\/50{accent-color:rgb(192 132 252/.5);}",
+  ],
+  [
+    "accent-purple-500/50",
+    ".accent-purple-500\\/50{accent-color:rgb(168 85 247/.5);}",
+  ],
+  [
+    "accent-purple-600/50",
+    ".accent-purple-600\\/50{accent-color:rgb(147 51 234/.5);}",
+  ],
+  [
+    "accent-purple-700/50",
+    ".accent-purple-700\\/50{accent-color:rgb(126 34 206/.5);}",
+  ],
+  [
+    "accent-purple-800/50",
+    ".accent-purple-800\\/50{accent-color:rgb(107 33 168/.5);}",
+  ],
+  [
+    "accent-purple-900/50",
+    ".accent-purple-900\\/50{accent-color:rgb(88 28 135/.5);}",
+  ],
+  [
+    "accent-fuchsia-50/50",
+    ".accent-fuchsia-50\\/50{accent-color:rgb(253 244 255/.5);}",
+  ],
+  [
+    "accent-fuchsia-100/50",
+    ".accent-fuchsia-100\\/50{accent-color:rgb(250 232 255/.5);}",
+  ],
+  [
+    "accent-fuchsia-200/50",
+    ".accent-fuchsia-200\\/50{accent-color:rgb(245 208 254/.5);}",
+  ],
+  [
+    "accent-fuchsia-300/50",
+    ".accent-fuchsia-300\\/50{accent-color:rgb(240 171 252/.5);}",
+  ],
+  [
+    "accent-fuchsia-400/50",
+    ".accent-fuchsia-400\\/50{accent-color:rgb(232 121 249/.5);}",
+  ],
+  [
+    "accent-fuchsia-500/50",
+    ".accent-fuchsia-500\\/50{accent-color:rgb(217 70 239/.5);}",
+  ],
+  [
+    "accent-fuchsia-600/50",
+    ".accent-fuchsia-600\\/50{accent-color:rgb(192 38 211/.5);}",
+  ],
+  [
+    "accent-fuchsia-700/50",
+    ".accent-fuchsia-700\\/50{accent-color:rgb(162 28 175/.5);}",
+  ],
+  [
+    "accent-fuchsia-800/50",
+    ".accent-fuchsia-800\\/50{accent-color:rgb(134 25 143/.5);}",
+  ],
+  [
+    "accent-fuchsia-900/50",
+    ".accent-fuchsia-900\\/50{accent-color:rgb(112 26 117/.5);}",
+  ],
+  [
+    "accent-pink-50/50",
+    ".accent-pink-50\\/50{accent-color:rgb(253 242 248/.5);}",
+  ],
+  [
+    "accent-pink-100/50",
+    ".accent-pink-100\\/50{accent-color:rgb(252 231 243/.5);}",
+  ],
+  [
+    "accent-pink-200/50",
+    ".accent-pink-200\\/50{accent-color:rgb(251 207 232/.5);}",
+  ],
+  [
+    "accent-pink-300/50",
+    ".accent-pink-300\\/50{accent-color:rgb(249 168 212/.5);}",
+  ],
+  [
+    "accent-pink-400/50",
+    ".accent-pink-400\\/50{accent-color:rgb(244 114 182/.5);}",
+  ],
+  [
+    "accent-pink-500/50",
+    ".accent-pink-500\\/50{accent-color:rgb(236 72 153/.5);}",
+  ],
+  [
+    "accent-pink-600/50",
+    ".accent-pink-600\\/50{accent-color:rgb(219 39 119/.5);}",
+  ],
+  [
+    "accent-pink-700/50",
+    ".accent-pink-700\\/50{accent-color:rgb(190 24 93/.5);}",
+  ],
+  [
+    "accent-pink-800/50",
+    ".accent-pink-800\\/50{accent-color:rgb(157 23 77/.5);}",
+  ],
+  [
+    "accent-pink-900/50",
+    ".accent-pink-900\\/50{accent-color:rgb(131 24 67/.5);}",
+  ],
+  [
+    "accent-rose-50/50",
+    ".accent-rose-50\\/50{accent-color:rgb(255 241 242/.5);}",
+  ],
+  [
+    "accent-rose-100/50",
+    ".accent-rose-100\\/50{accent-color:rgb(255 228 230/.5);}",
+  ],
+  [
+    "accent-rose-200/50",
+    ".accent-rose-200\\/50{accent-color:rgb(254 205 211/.5);}",
+  ],
+  [
+    "accent-rose-300/50",
+    ".accent-rose-300\\/50{accent-color:rgb(253 164 175/.5);}",
+  ],
+  [
+    "accent-rose-400/50",
+    ".accent-rose-400\\/50{accent-color:rgb(251 113 133/.5);}",
+  ],
+  [
+    "accent-rose-500/50",
+    ".accent-rose-500\\/50{accent-color:rgb(244 63 94/.5);}",
+  ],
+  [
+    "accent-rose-600/50",
+    ".accent-rose-600\\/50{accent-color:rgb(225 29 72/.5);}",
+  ],
+  [
+    "accent-rose-700/50",
+    ".accent-rose-700\\/50{accent-color:rgb(190 18 60/.5);}",
+  ],
+  [
+    "accent-rose-800/50",
+    ".accent-rose-800\\/50{accent-color:rgb(159 18 57/.5);}",
+  ],
+  [
+    "accent-rose-900/50",
+    ".accent-rose-900\\/50{accent-color:rgb(136 19 55/.5);}",
+  ],
+  ["accent-inherit/[1%]", ""],
+  ["accent-current/[1%]", ""],
+  ["accent-transparent/[1%]", ""],
+  [
+    "accent-black/[1%]",
+    ".accent-black\\/\\[1\\%\\]{accent-color:rgb(0 0 0/1%);}",
+  ],
+  [
+    "accent-white/[1%]",
+    ".accent-white\\/\\[1\\%\\]{accent-color:rgb(255 255 255/1%);}",
+  ],
+  [
+    "accent-slate-50/[1%]",
+    ".accent-slate-50\\/\\[1\\%\\]{accent-color:rgb(248 250 252/1%);}",
+  ],
+  [
+    "accent-slate-100/[1%]",
+    ".accent-slate-100\\/\\[1\\%\\]{accent-color:rgb(241 245 249/1%);}",
+  ],
+  [
+    "accent-slate-200/[1%]",
+    ".accent-slate-200\\/\\[1\\%\\]{accent-color:rgb(226 232 240/1%);}",
+  ],
+  [
+    "accent-slate-300/[1%]",
+    ".accent-slate-300\\/\\[1\\%\\]{accent-color:rgb(203 213 225/1%);}",
+  ],
+  [
+    "accent-slate-400/[1%]",
+    ".accent-slate-400\\/\\[1\\%\\]{accent-color:rgb(148 163 184/1%);}",
+  ],
+  [
+    "accent-slate-500/[1%]",
+    ".accent-slate-500\\/\\[1\\%\\]{accent-color:rgb(100 116 139/1%);}",
+  ],
+  [
+    "accent-slate-600/[1%]",
+    ".accent-slate-600\\/\\[1\\%\\]{accent-color:rgb(71 85 105/1%);}",
+  ],
+  [
+    "accent-slate-700/[1%]",
+    ".accent-slate-700\\/\\[1\\%\\]{accent-color:rgb(51 65 85/1%);}",
+  ],
+  [
+    "accent-slate-800/[1%]",
+    ".accent-slate-800\\/\\[1\\%\\]{accent-color:rgb(30 41 59/1%);}",
+  ],
+  [
+    "accent-slate-900/[1%]",
+    ".accent-slate-900\\/\\[1\\%\\]{accent-color:rgb(15 23 42/1%);}",
+  ],
+  [
+    "accent-gray-50/[1%]",
+    ".accent-gray-50\\/\\[1\\%\\]{accent-color:rgb(249 250 251/1%);}",
+  ],
+  [
+    "accent-gray-100/[1%]",
+    ".accent-gray-100\\/\\[1\\%\\]{accent-color:rgb(243 244 246/1%);}",
+  ],
+  [
+    "accent-gray-200/[1%]",
+    ".accent-gray-200\\/\\[1\\%\\]{accent-color:rgb(229 231 235/1%);}",
+  ],
+  [
+    "accent-gray-300/[1%]",
+    ".accent-gray-300\\/\\[1\\%\\]{accent-color:rgb(209 213 219/1%);}",
+  ],
+  [
+    "accent-gray-400/[1%]",
+    ".accent-gray-400\\/\\[1\\%\\]{accent-color:rgb(156 163 175/1%);}",
+  ],
+  [
+    "accent-gray-500/[1%]",
+    ".accent-gray-500\\/\\[1\\%\\]{accent-color:rgb(107 114 128/1%);}",
+  ],
+  [
+    "accent-gray-600/[1%]",
+    ".accent-gray-600\\/\\[1\\%\\]{accent-color:rgb(75 85 99/1%);}",
+  ],
+  [
+    "accent-gray-700/[1%]",
+    ".accent-gray-700\\/\\[1\\%\\]{accent-color:rgb(55 65 81/1%);}",
+  ],
+  [
+    "accent-gray-800/[1%]",
+    ".accent-gray-800\\/\\[1\\%\\]{accent-color:rgb(31 41 55/1%);}",
+  ],
+  [
+    "accent-gray-900/[1%]",
+    ".accent-gray-900\\/\\[1\\%\\]{accent-color:rgb(17 24 39/1%);}",
+  ],
+  [
+    "accent-zinc-50/[1%]",
+    ".accent-zinc-50\\/\\[1\\%\\]{accent-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "accent-zinc-100/[1%]",
+    ".accent-zinc-100\\/\\[1\\%\\]{accent-color:rgb(244 244 245/1%);}",
+  ],
+  [
+    "accent-zinc-200/[1%]",
+    ".accent-zinc-200\\/\\[1\\%\\]{accent-color:rgb(228 228 231/1%);}",
+  ],
+  [
+    "accent-zinc-300/[1%]",
+    ".accent-zinc-300\\/\\[1\\%\\]{accent-color:rgb(212 212 216/1%);}",
+  ],
+  [
+    "accent-zinc-400/[1%]",
+    ".accent-zinc-400\\/\\[1\\%\\]{accent-color:rgb(161 161 170/1%);}",
+  ],
+  [
+    "accent-zinc-500/[1%]",
+    ".accent-zinc-500\\/\\[1\\%\\]{accent-color:rgb(113 113 122/1%);}",
+  ],
+  [
+    "accent-zinc-600/[1%]",
+    ".accent-zinc-600\\/\\[1\\%\\]{accent-color:rgb(82 82 91/1%);}",
+  ],
+  [
+    "accent-zinc-700/[1%]",
+    ".accent-zinc-700\\/\\[1\\%\\]{accent-color:rgb(63 63 70/1%);}",
+  ],
+  [
+    "accent-zinc-800/[1%]",
+    ".accent-zinc-800\\/\\[1\\%\\]{accent-color:rgb(39 39 42/1%);}",
+  ],
+  [
+    "accent-zinc-900/[1%]",
+    ".accent-zinc-900\\/\\[1\\%\\]{accent-color:rgb(24 24 27/1%);}",
+  ],
+  [
+    "accent-neutral-50/[1%]",
+    ".accent-neutral-50\\/\\[1\\%\\]{accent-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "accent-neutral-100/[1%]",
+    ".accent-neutral-100\\/\\[1\\%\\]{accent-color:rgb(245 245 245/1%);}",
+  ],
+  [
+    "accent-neutral-200/[1%]",
+    ".accent-neutral-200\\/\\[1\\%\\]{accent-color:rgb(229 229 229/1%);}",
+  ],
+  [
+    "accent-neutral-300/[1%]",
+    ".accent-neutral-300\\/\\[1\\%\\]{accent-color:rgb(212 212 212/1%);}",
+  ],
+  [
+    "accent-neutral-400/[1%]",
+    ".accent-neutral-400\\/\\[1\\%\\]{accent-color:rgb(163 163 163/1%);}",
+  ],
+  [
+    "accent-neutral-500/[1%]",
+    ".accent-neutral-500\\/\\[1\\%\\]{accent-color:rgb(115 115 115/1%);}",
+  ],
+  [
+    "accent-neutral-600/[1%]",
+    ".accent-neutral-600\\/\\[1\\%\\]{accent-color:rgb(82 82 82/1%);}",
+  ],
+  [
+    "accent-neutral-700/[1%]",
+    ".accent-neutral-700\\/\\[1\\%\\]{accent-color:rgb(64 64 64/1%);}",
+  ],
+  [
+    "accent-neutral-800/[1%]",
+    ".accent-neutral-800\\/\\[1\\%\\]{accent-color:rgb(38 38 38/1%);}",
+  ],
+  [
+    "accent-neutral-900/[1%]",
+    ".accent-neutral-900\\/\\[1\\%\\]{accent-color:rgb(23 23 23/1%);}",
+  ],
+  [
+    "accent-stone-50/[1%]",
+    ".accent-stone-50\\/\\[1\\%\\]{accent-color:rgb(250 250 249/1%);}",
+  ],
+  [
+    "accent-stone-100/[1%]",
+    ".accent-stone-100\\/\\[1\\%\\]{accent-color:rgb(245 245 244/1%);}",
+  ],
+  [
+    "accent-stone-200/[1%]",
+    ".accent-stone-200\\/\\[1\\%\\]{accent-color:rgb(231 229 228/1%);}",
+  ],
+  [
+    "accent-stone-300/[1%]",
+    ".accent-stone-300\\/\\[1\\%\\]{accent-color:rgb(214 211 209/1%);}",
+  ],
+  [
+    "accent-stone-400/[1%]",
+    ".accent-stone-400\\/\\[1\\%\\]{accent-color:rgb(168 162 158/1%);}",
+  ],
+  [
+    "accent-stone-500/[1%]",
+    ".accent-stone-500\\/\\[1\\%\\]{accent-color:rgb(120 113 108/1%);}",
+  ],
+  [
+    "accent-stone-600/[1%]",
+    ".accent-stone-600\\/\\[1\\%\\]{accent-color:rgb(87 83 78/1%);}",
+  ],
+  [
+    "accent-stone-700/[1%]",
+    ".accent-stone-700\\/\\[1\\%\\]{accent-color:rgb(68 64 60/1%);}",
+  ],
+  [
+    "accent-stone-800/[1%]",
+    ".accent-stone-800\\/\\[1\\%\\]{accent-color:rgb(41 37 36/1%);}",
+  ],
+  [
+    "accent-stone-900/[1%]",
+    ".accent-stone-900\\/\\[1\\%\\]{accent-color:rgb(28 25 23/1%);}",
+  ],
+  [
+    "accent-red-50/[1%]",
+    ".accent-red-50\\/\\[1\\%\\]{accent-color:rgb(254 242 242/1%);}",
+  ],
+  [
+    "accent-red-100/[1%]",
+    ".accent-red-100\\/\\[1\\%\\]{accent-color:rgb(254 226 226/1%);}",
+  ],
+  [
+    "accent-red-200/[1%]",
+    ".accent-red-200\\/\\[1\\%\\]{accent-color:rgb(254 202 202/1%);}",
+  ],
+  [
+    "accent-red-300/[1%]",
+    ".accent-red-300\\/\\[1\\%\\]{accent-color:rgb(252 165 165/1%);}",
+  ],
+  [
+    "accent-red-400/[1%]",
+    ".accent-red-400\\/\\[1\\%\\]{accent-color:rgb(248 113 113/1%);}",
+  ],
+  [
+    "accent-red-500/[1%]",
+    ".accent-red-500\\/\\[1\\%\\]{accent-color:rgb(239 68 68/1%);}",
+  ],
+  [
+    "accent-red-600/[1%]",
+    ".accent-red-600\\/\\[1\\%\\]{accent-color:rgb(220 38 38/1%);}",
+  ],
+  [
+    "accent-red-700/[1%]",
+    ".accent-red-700\\/\\[1\\%\\]{accent-color:rgb(185 28 28/1%);}",
+  ],
+  [
+    "accent-red-800/[1%]",
+    ".accent-red-800\\/\\[1\\%\\]{accent-color:rgb(153 27 27/1%);}",
+  ],
+  [
+    "accent-red-900/[1%]",
+    ".accent-red-900\\/\\[1\\%\\]{accent-color:rgb(127 29 29/1%);}",
+  ],
+  [
+    "accent-orange-50/[1%]",
+    ".accent-orange-50\\/\\[1\\%\\]{accent-color:rgb(255 247 237/1%);}",
+  ],
+  [
+    "accent-orange-100/[1%]",
+    ".accent-orange-100\\/\\[1\\%\\]{accent-color:rgb(255 237 213/1%);}",
+  ],
+  [
+    "accent-orange-200/[1%]",
+    ".accent-orange-200\\/\\[1\\%\\]{accent-color:rgb(254 215 170/1%);}",
+  ],
+  [
+    "accent-orange-300/[1%]",
+    ".accent-orange-300\\/\\[1\\%\\]{accent-color:rgb(253 186 116/1%);}",
+  ],
+  [
+    "accent-orange-400/[1%]",
+    ".accent-orange-400\\/\\[1\\%\\]{accent-color:rgb(251 146 60/1%);}",
+  ],
+  [
+    "accent-orange-500/[1%]",
+    ".accent-orange-500\\/\\[1\\%\\]{accent-color:rgb(249 115 22/1%);}",
+  ],
+  [
+    "accent-orange-600/[1%]",
+    ".accent-orange-600\\/\\[1\\%\\]{accent-color:rgb(234 88 12/1%);}",
+  ],
+  [
+    "accent-orange-700/[1%]",
+    ".accent-orange-700\\/\\[1\\%\\]{accent-color:rgb(194 65 12/1%);}",
+  ],
+  [
+    "accent-orange-800/[1%]",
+    ".accent-orange-800\\/\\[1\\%\\]{accent-color:rgb(154 52 18/1%);}",
+  ],
+  [
+    "accent-orange-900/[1%]",
+    ".accent-orange-900\\/\\[1\\%\\]{accent-color:rgb(124 45 18/1%);}",
+  ],
+  [
+    "accent-amber-50/[1%]",
+    ".accent-amber-50\\/\\[1\\%\\]{accent-color:rgb(255 251 235/1%);}",
+  ],
+  [
+    "accent-amber-100/[1%]",
+    ".accent-amber-100\\/\\[1\\%\\]{accent-color:rgb(254 243 199/1%);}",
+  ],
+  [
+    "accent-amber-200/[1%]",
+    ".accent-amber-200\\/\\[1\\%\\]{accent-color:rgb(253 230 138/1%);}",
+  ],
+  [
+    "accent-amber-300/[1%]",
+    ".accent-amber-300\\/\\[1\\%\\]{accent-color:rgb(252 211 77/1%);}",
+  ],
+  [
+    "accent-amber-400/[1%]",
+    ".accent-amber-400\\/\\[1\\%\\]{accent-color:rgb(251 191 36/1%);}",
+  ],
+  [
+    "accent-amber-500/[1%]",
+    ".accent-amber-500\\/\\[1\\%\\]{accent-color:rgb(245 158 11/1%);}",
+  ],
+  [
+    "accent-amber-600/[1%]",
+    ".accent-amber-600\\/\\[1\\%\\]{accent-color:rgb(217 119 6/1%);}",
+  ],
+  [
+    "accent-amber-700/[1%]",
+    ".accent-amber-700\\/\\[1\\%\\]{accent-color:rgb(180 83 9/1%);}",
+  ],
+  [
+    "accent-amber-800/[1%]",
+    ".accent-amber-800\\/\\[1\\%\\]{accent-color:rgb(146 64 14/1%);}",
+  ],
+  [
+    "accent-amber-900/[1%]",
+    ".accent-amber-900\\/\\[1\\%\\]{accent-color:rgb(120 53 15/1%);}",
+  ],
+  [
+    "accent-yellow-50/[1%]",
+    ".accent-yellow-50\\/\\[1\\%\\]{accent-color:rgb(254 252 232/1%);}",
+  ],
+  [
+    "accent-yellow-100/[1%]",
+    ".accent-yellow-100\\/\\[1\\%\\]{accent-color:rgb(254 249 195/1%);}",
+  ],
+  [
+    "accent-yellow-200/[1%]",
+    ".accent-yellow-200\\/\\[1\\%\\]{accent-color:rgb(254 240 138/1%);}",
+  ],
+  [
+    "accent-yellow-300/[1%]",
+    ".accent-yellow-300\\/\\[1\\%\\]{accent-color:rgb(253 224 71/1%);}",
+  ],
+  [
+    "accent-yellow-400/[1%]",
+    ".accent-yellow-400\\/\\[1\\%\\]{accent-color:rgb(250 204 21/1%);}",
+  ],
+  [
+    "accent-yellow-500/[1%]",
+    ".accent-yellow-500\\/\\[1\\%\\]{accent-color:rgb(234 179 8/1%);}",
+  ],
+  [
+    "accent-yellow-600/[1%]",
+    ".accent-yellow-600\\/\\[1\\%\\]{accent-color:rgb(202 138 4/1%);}",
+  ],
+  [
+    "accent-yellow-700/[1%]",
+    ".accent-yellow-700\\/\\[1\\%\\]{accent-color:rgb(161 98 7/1%);}",
+  ],
+  [
+    "accent-yellow-800/[1%]",
+    ".accent-yellow-800\\/\\[1\\%\\]{accent-color:rgb(133 77 14/1%);}",
+  ],
+  [
+    "accent-yellow-900/[1%]",
+    ".accent-yellow-900\\/\\[1\\%\\]{accent-color:rgb(113 63 18/1%);}",
+  ],
+  [
+    "accent-lime-50/[1%]",
+    ".accent-lime-50\\/\\[1\\%\\]{accent-color:rgb(247 254 231/1%);}",
+  ],
+  [
+    "accent-lime-100/[1%]",
+    ".accent-lime-100\\/\\[1\\%\\]{accent-color:rgb(236 252 203/1%);}",
+  ],
+  [
+    "accent-lime-200/[1%]",
+    ".accent-lime-200\\/\\[1\\%\\]{accent-color:rgb(217 249 157/1%);}",
+  ],
+  [
+    "accent-lime-300/[1%]",
+    ".accent-lime-300\\/\\[1\\%\\]{accent-color:rgb(190 242 100/1%);}",
+  ],
+  [
+    "accent-lime-400/[1%]",
+    ".accent-lime-400\\/\\[1\\%\\]{accent-color:rgb(163 230 53/1%);}",
+  ],
+  [
+    "accent-lime-500/[1%]",
+    ".accent-lime-500\\/\\[1\\%\\]{accent-color:rgb(132 204 22/1%);}",
+  ],
+  [
+    "accent-lime-600/[1%]",
+    ".accent-lime-600\\/\\[1\\%\\]{accent-color:rgb(101 163 13/1%);}",
+  ],
+  [
+    "accent-lime-700/[1%]",
+    ".accent-lime-700\\/\\[1\\%\\]{accent-color:rgb(77 124 15/1%);}",
+  ],
+  [
+    "accent-lime-800/[1%]",
+    ".accent-lime-800\\/\\[1\\%\\]{accent-color:rgb(63 98 18/1%);}",
+  ],
+  [
+    "accent-lime-900/[1%]",
+    ".accent-lime-900\\/\\[1\\%\\]{accent-color:rgb(54 83 20/1%);}",
+  ],
+  [
+    "accent-green-50/[1%]",
+    ".accent-green-50\\/\\[1\\%\\]{accent-color:rgb(240 253 244/1%);}",
+  ],
+  [
+    "accent-green-100/[1%]",
+    ".accent-green-100\\/\\[1\\%\\]{accent-color:rgb(220 252 231/1%);}",
+  ],
+  [
+    "accent-green-200/[1%]",
+    ".accent-green-200\\/\\[1\\%\\]{accent-color:rgb(187 247 208/1%);}",
+  ],
+  [
+    "accent-green-300/[1%]",
+    ".accent-green-300\\/\\[1\\%\\]{accent-color:rgb(134 239 172/1%);}",
+  ],
+  [
+    "accent-green-400/[1%]",
+    ".accent-green-400\\/\\[1\\%\\]{accent-color:rgb(74 222 128/1%);}",
+  ],
+  [
+    "accent-green-500/[1%]",
+    ".accent-green-500\\/\\[1\\%\\]{accent-color:rgb(34 197 94/1%);}",
+  ],
+  [
+    "accent-green-600/[1%]",
+    ".accent-green-600\\/\\[1\\%\\]{accent-color:rgb(22 163 74/1%);}",
+  ],
+  [
+    "accent-green-700/[1%]",
+    ".accent-green-700\\/\\[1\\%\\]{accent-color:rgb(21 128 61/1%);}",
+  ],
+  [
+    "accent-green-800/[1%]",
+    ".accent-green-800\\/\\[1\\%\\]{accent-color:rgb(22 101 52/1%);}",
+  ],
+  [
+    "accent-green-900/[1%]",
+    ".accent-green-900\\/\\[1\\%\\]{accent-color:rgb(20 83 45/1%);}",
+  ],
+  [
+    "accent-emerald-50/[1%]",
+    ".accent-emerald-50\\/\\[1\\%\\]{accent-color:rgb(236 253 245/1%);}",
+  ],
+  [
+    "accent-emerald-100/[1%]",
+    ".accent-emerald-100\\/\\[1\\%\\]{accent-color:rgb(209 250 229/1%);}",
+  ],
+  [
+    "accent-emerald-200/[1%]",
+    ".accent-emerald-200\\/\\[1\\%\\]{accent-color:rgb(167 243 208/1%);}",
+  ],
+  [
+    "accent-emerald-300/[1%]",
+    ".accent-emerald-300\\/\\[1\\%\\]{accent-color:rgb(110 231 183/1%);}",
+  ],
+  [
+    "accent-emerald-400/[1%]",
+    ".accent-emerald-400\\/\\[1\\%\\]{accent-color:rgb(52 211 153/1%);}",
+  ],
+  [
+    "accent-emerald-500/[1%]",
+    ".accent-emerald-500\\/\\[1\\%\\]{accent-color:rgb(16 185 129/1%);}",
+  ],
+  [
+    "accent-emerald-600/[1%]",
+    ".accent-emerald-600\\/\\[1\\%\\]{accent-color:rgb(5 150 105/1%);}",
+  ],
+  [
+    "accent-emerald-700/[1%]",
+    ".accent-emerald-700\\/\\[1\\%\\]{accent-color:rgb(4 120 87/1%);}",
+  ],
+  [
+    "accent-emerald-800/[1%]",
+    ".accent-emerald-800\\/\\[1\\%\\]{accent-color:rgb(6 95 70/1%);}",
+  ],
+  [
+    "accent-emerald-900/[1%]",
+    ".accent-emerald-900\\/\\[1\\%\\]{accent-color:rgb(6 78 59/1%);}",
+  ],
+  [
+    "accent-teal-50/[1%]",
+    ".accent-teal-50\\/\\[1\\%\\]{accent-color:rgb(240 253 250/1%);}",
+  ],
+  [
+    "accent-teal-100/[1%]",
+    ".accent-teal-100\\/\\[1\\%\\]{accent-color:rgb(204 251 241/1%);}",
+  ],
+  [
+    "accent-teal-200/[1%]",
+    ".accent-teal-200\\/\\[1\\%\\]{accent-color:rgb(153 246 228/1%);}",
+  ],
+  [
+    "accent-teal-300/[1%]",
+    ".accent-teal-300\\/\\[1\\%\\]{accent-color:rgb(94 234 212/1%);}",
+  ],
+  [
+    "accent-teal-400/[1%]",
+    ".accent-teal-400\\/\\[1\\%\\]{accent-color:rgb(45 212 191/1%);}",
+  ],
+  [
+    "accent-teal-500/[1%]",
+    ".accent-teal-500\\/\\[1\\%\\]{accent-color:rgb(20 184 166/1%);}",
+  ],
+  [
+    "accent-teal-600/[1%]",
+    ".accent-teal-600\\/\\[1\\%\\]{accent-color:rgb(13 148 136/1%);}",
+  ],
+  [
+    "accent-teal-700/[1%]",
+    ".accent-teal-700\\/\\[1\\%\\]{accent-color:rgb(15 118 110/1%);}",
+  ],
+  [
+    "accent-teal-800/[1%]",
+    ".accent-teal-800\\/\\[1\\%\\]{accent-color:rgb(17 94 89/1%);}",
+  ],
+  [
+    "accent-teal-900/[1%]",
+    ".accent-teal-900\\/\\[1\\%\\]{accent-color:rgb(19 78 74/1%);}",
+  ],
+  [
+    "accent-cyan-50/[1%]",
+    ".accent-cyan-50\\/\\[1\\%\\]{accent-color:rgb(236 254 255/1%);}",
+  ],
+  [
+    "accent-cyan-100/[1%]",
+    ".accent-cyan-100\\/\\[1\\%\\]{accent-color:rgb(207 250 254/1%);}",
+  ],
+  [
+    "accent-cyan-200/[1%]",
+    ".accent-cyan-200\\/\\[1\\%\\]{accent-color:rgb(165 243 252/1%);}",
+  ],
+  [
+    "accent-cyan-300/[1%]",
+    ".accent-cyan-300\\/\\[1\\%\\]{accent-color:rgb(103 232 249/1%);}",
+  ],
+  [
+    "accent-cyan-400/[1%]",
+    ".accent-cyan-400\\/\\[1\\%\\]{accent-color:rgb(34 211 238/1%);}",
+  ],
+  [
+    "accent-cyan-500/[1%]",
+    ".accent-cyan-500\\/\\[1\\%\\]{accent-color:rgb(6 182 212/1%);}",
+  ],
+  [
+    "accent-cyan-600/[1%]",
+    ".accent-cyan-600\\/\\[1\\%\\]{accent-color:rgb(8 145 178/1%);}",
+  ],
+  [
+    "accent-cyan-700/[1%]",
+    ".accent-cyan-700\\/\\[1\\%\\]{accent-color:rgb(14 116 144/1%);}",
+  ],
+  [
+    "accent-cyan-800/[1%]",
+    ".accent-cyan-800\\/\\[1\\%\\]{accent-color:rgb(21 94 117/1%);}",
+  ],
+  [
+    "accent-cyan-900/[1%]",
+    ".accent-cyan-900\\/\\[1\\%\\]{accent-color:rgb(22 78 99/1%);}",
+  ],
+  [
+    "accent-sky-50/[1%]",
+    ".accent-sky-50\\/\\[1\\%\\]{accent-color:rgb(240 249 255/1%);}",
+  ],
+  [
+    "accent-sky-100/[1%]",
+    ".accent-sky-100\\/\\[1\\%\\]{accent-color:rgb(224 242 254/1%);}",
+  ],
+  [
+    "accent-sky-200/[1%]",
+    ".accent-sky-200\\/\\[1\\%\\]{accent-color:rgb(186 230 253/1%);}",
+  ],
+  [
+    "accent-sky-300/[1%]",
+    ".accent-sky-300\\/\\[1\\%\\]{accent-color:rgb(125 211 252/1%);}",
+  ],
+  [
+    "accent-sky-400/[1%]",
+    ".accent-sky-400\\/\\[1\\%\\]{accent-color:rgb(56 189 248/1%);}",
+  ],
+  [
+    "accent-sky-500/[1%]",
+    ".accent-sky-500\\/\\[1\\%\\]{accent-color:rgb(14 165 233/1%);}",
+  ],
+  [
+    "accent-sky-600/[1%]",
+    ".accent-sky-600\\/\\[1\\%\\]{accent-color:rgb(2 132 199/1%);}",
+  ],
+  [
+    "accent-sky-700/[1%]",
+    ".accent-sky-700\\/\\[1\\%\\]{accent-color:rgb(3 105 161/1%);}",
+  ],
+  [
+    "accent-sky-800/[1%]",
+    ".accent-sky-800\\/\\[1\\%\\]{accent-color:rgb(7 89 133/1%);}",
+  ],
+  [
+    "accent-sky-900/[1%]",
+    ".accent-sky-900\\/\\[1\\%\\]{accent-color:rgb(12 74 110/1%);}",
+  ],
+  [
+    "accent-blue-50/[1%]",
+    ".accent-blue-50\\/\\[1\\%\\]{accent-color:rgb(239 246 255/1%);}",
+  ],
+  [
+    "accent-blue-100/[1%]",
+    ".accent-blue-100\\/\\[1\\%\\]{accent-color:rgb(219 234 254/1%);}",
+  ],
+  [
+    "accent-blue-200/[1%]",
+    ".accent-blue-200\\/\\[1\\%\\]{accent-color:rgb(191 219 254/1%);}",
+  ],
+  [
+    "accent-blue-300/[1%]",
+    ".accent-blue-300\\/\\[1\\%\\]{accent-color:rgb(147 197 253/1%);}",
+  ],
+  [
+    "accent-blue-400/[1%]",
+    ".accent-blue-400\\/\\[1\\%\\]{accent-color:rgb(96 165 250/1%);}",
+  ],
+  [
+    "accent-blue-500/[1%]",
+    ".accent-blue-500\\/\\[1\\%\\]{accent-color:rgb(59 130 246/1%);}",
+  ],
+  [
+    "accent-blue-600/[1%]",
+    ".accent-blue-600\\/\\[1\\%\\]{accent-color:rgb(37 99 235/1%);}",
+  ],
+  [
+    "accent-blue-700/[1%]",
+    ".accent-blue-700\\/\\[1\\%\\]{accent-color:rgb(29 78 216/1%);}",
+  ],
+  [
+    "accent-blue-800/[1%]",
+    ".accent-blue-800\\/\\[1\\%\\]{accent-color:rgb(30 64 175/1%);}",
+  ],
+  [
+    "accent-blue-900/[1%]",
+    ".accent-blue-900\\/\\[1\\%\\]{accent-color:rgb(30 58 138/1%);}",
+  ],
+  [
+    "accent-indigo-50/[1%]",
+    ".accent-indigo-50\\/\\[1\\%\\]{accent-color:rgb(238 242 255/1%);}",
+  ],
+  [
+    "accent-indigo-100/[1%]",
+    ".accent-indigo-100\\/\\[1\\%\\]{accent-color:rgb(224 231 255/1%);}",
+  ],
+  [
+    "accent-indigo-200/[1%]",
+    ".accent-indigo-200\\/\\[1\\%\\]{accent-color:rgb(199 210 254/1%);}",
+  ],
+  [
+    "accent-indigo-300/[1%]",
+    ".accent-indigo-300\\/\\[1\\%\\]{accent-color:rgb(165 180 252/1%);}",
+  ],
+  [
+    "accent-indigo-400/[1%]",
+    ".accent-indigo-400\\/\\[1\\%\\]{accent-color:rgb(129 140 248/1%);}",
+  ],
+  [
+    "accent-indigo-500/[1%]",
+    ".accent-indigo-500\\/\\[1\\%\\]{accent-color:rgb(99 102 241/1%);}",
+  ],
+  [
+    "accent-indigo-600/[1%]",
+    ".accent-indigo-600\\/\\[1\\%\\]{accent-color:rgb(79 70 229/1%);}",
+  ],
+  [
+    "accent-indigo-700/[1%]",
+    ".accent-indigo-700\\/\\[1\\%\\]{accent-color:rgb(67 56 202/1%);}",
+  ],
+  [
+    "accent-indigo-800/[1%]",
+    ".accent-indigo-800\\/\\[1\\%\\]{accent-color:rgb(55 48 163/1%);}",
+  ],
+  [
+    "accent-indigo-900/[1%]",
+    ".accent-indigo-900\\/\\[1\\%\\]{accent-color:rgb(49 46 129/1%);}",
+  ],
+  [
+    "accent-violet-50/[1%]",
+    ".accent-violet-50\\/\\[1\\%\\]{accent-color:rgb(245 243 255/1%);}",
+  ],
+  [
+    "accent-violet-100/[1%]",
+    ".accent-violet-100\\/\\[1\\%\\]{accent-color:rgb(237 233 254/1%);}",
+  ],
+  [
+    "accent-violet-200/[1%]",
+    ".accent-violet-200\\/\\[1\\%\\]{accent-color:rgb(221 214 254/1%);}",
+  ],
+  [
+    "accent-violet-300/[1%]",
+    ".accent-violet-300\\/\\[1\\%\\]{accent-color:rgb(196 181 253/1%);}",
+  ],
+  [
+    "accent-violet-400/[1%]",
+    ".accent-violet-400\\/\\[1\\%\\]{accent-color:rgb(167 139 250/1%);}",
+  ],
+  [
+    "accent-violet-500/[1%]",
+    ".accent-violet-500\\/\\[1\\%\\]{accent-color:rgb(139 92 246/1%);}",
+  ],
+  [
+    "accent-violet-600/[1%]",
+    ".accent-violet-600\\/\\[1\\%\\]{accent-color:rgb(124 58 237/1%);}",
+  ],
+  [
+    "accent-violet-700/[1%]",
+    ".accent-violet-700\\/\\[1\\%\\]{accent-color:rgb(109 40 217/1%);}",
+  ],
+  [
+    "accent-violet-800/[1%]",
+    ".accent-violet-800\\/\\[1\\%\\]{accent-color:rgb(91 33 182/1%);}",
+  ],
+  [
+    "accent-violet-900/[1%]",
+    ".accent-violet-900\\/\\[1\\%\\]{accent-color:rgb(76 29 149/1%);}",
+  ],
+  [
+    "accent-purple-50/[1%]",
+    ".accent-purple-50\\/\\[1\\%\\]{accent-color:rgb(250 245 255/1%);}",
+  ],
+  [
+    "accent-purple-100/[1%]",
+    ".accent-purple-100\\/\\[1\\%\\]{accent-color:rgb(243 232 255/1%);}",
+  ],
+  [
+    "accent-purple-200/[1%]",
+    ".accent-purple-200\\/\\[1\\%\\]{accent-color:rgb(233 213 255/1%);}",
+  ],
+  [
+    "accent-purple-300/[1%]",
+    ".accent-purple-300\\/\\[1\\%\\]{accent-color:rgb(216 180 254/1%);}",
+  ],
+  [
+    "accent-purple-400/[1%]",
+    ".accent-purple-400\\/\\[1\\%\\]{accent-color:rgb(192 132 252/1%);}",
+  ],
+  [
+    "accent-purple-500/[1%]",
+    ".accent-purple-500\\/\\[1\\%\\]{accent-color:rgb(168 85 247/1%);}",
+  ],
+  [
+    "accent-purple-600/[1%]",
+    ".accent-purple-600\\/\\[1\\%\\]{accent-color:rgb(147 51 234/1%);}",
+  ],
+  [
+    "accent-purple-700/[1%]",
+    ".accent-purple-700\\/\\[1\\%\\]{accent-color:rgb(126 34 206/1%);}",
+  ],
+  [
+    "accent-purple-800/[1%]",
+    ".accent-purple-800\\/\\[1\\%\\]{accent-color:rgb(107 33 168/1%);}",
+  ],
+  [
+    "accent-purple-900/[1%]",
+    ".accent-purple-900\\/\\[1\\%\\]{accent-color:rgb(88 28 135/1%);}",
+  ],
+  [
+    "accent-fuchsia-50/[1%]",
+    ".accent-fuchsia-50\\/\\[1\\%\\]{accent-color:rgb(253 244 255/1%);}",
+  ],
+  [
+    "accent-fuchsia-100/[1%]",
+    ".accent-fuchsia-100\\/\\[1\\%\\]{accent-color:rgb(250 232 255/1%);}",
+  ],
+  [
+    "accent-fuchsia-200/[1%]",
+    ".accent-fuchsia-200\\/\\[1\\%\\]{accent-color:rgb(245 208 254/1%);}",
+  ],
+  [
+    "accent-fuchsia-300/[1%]",
+    ".accent-fuchsia-300\\/\\[1\\%\\]{accent-color:rgb(240 171 252/1%);}",
+  ],
+  [
+    "accent-fuchsia-400/[1%]",
+    ".accent-fuchsia-400\\/\\[1\\%\\]{accent-color:rgb(232 121 249/1%);}",
+  ],
+  [
+    "accent-fuchsia-500/[1%]",
+    ".accent-fuchsia-500\\/\\[1\\%\\]{accent-color:rgb(217 70 239/1%);}",
+  ],
+  [
+    "accent-fuchsia-600/[1%]",
+    ".accent-fuchsia-600\\/\\[1\\%\\]{accent-color:rgb(192 38 211/1%);}",
+  ],
+  [
+    "accent-fuchsia-700/[1%]",
+    ".accent-fuchsia-700\\/\\[1\\%\\]{accent-color:rgb(162 28 175/1%);}",
+  ],
+  [
+    "accent-fuchsia-800/[1%]",
+    ".accent-fuchsia-800\\/\\[1\\%\\]{accent-color:rgb(134 25 143/1%);}",
+  ],
+  [
+    "accent-fuchsia-900/[1%]",
+    ".accent-fuchsia-900\\/\\[1\\%\\]{accent-color:rgb(112 26 117/1%);}",
+  ],
+  [
+    "accent-pink-50/[1%]",
+    ".accent-pink-50\\/\\[1\\%\\]{accent-color:rgb(253 242 248/1%);}",
+  ],
+  [
+    "accent-pink-100/[1%]",
+    ".accent-pink-100\\/\\[1\\%\\]{accent-color:rgb(252 231 243/1%);}",
+  ],
+  [
+    "accent-pink-200/[1%]",
+    ".accent-pink-200\\/\\[1\\%\\]{accent-color:rgb(251 207 232/1%);}",
+  ],
+  [
+    "accent-pink-300/[1%]",
+    ".accent-pink-300\\/\\[1\\%\\]{accent-color:rgb(249 168 212/1%);}",
+  ],
+  [
+    "accent-pink-400/[1%]",
+    ".accent-pink-400\\/\\[1\\%\\]{accent-color:rgb(244 114 182/1%);}",
+  ],
+  [
+    "accent-pink-500/[1%]",
+    ".accent-pink-500\\/\\[1\\%\\]{accent-color:rgb(236 72 153/1%);}",
+  ],
+  [
+    "accent-pink-600/[1%]",
+    ".accent-pink-600\\/\\[1\\%\\]{accent-color:rgb(219 39 119/1%);}",
+  ],
+  [
+    "accent-pink-700/[1%]",
+    ".accent-pink-700\\/\\[1\\%\\]{accent-color:rgb(190 24 93/1%);}",
+  ],
+  [
+    "accent-pink-800/[1%]",
+    ".accent-pink-800\\/\\[1\\%\\]{accent-color:rgb(157 23 77/1%);}",
+  ],
+  [
+    "accent-pink-900/[1%]",
+    ".accent-pink-900\\/\\[1\\%\\]{accent-color:rgb(131 24 67/1%);}",
+  ],
+  [
+    "accent-rose-50/[1%]",
+    ".accent-rose-50\\/\\[1\\%\\]{accent-color:rgb(255 241 242/1%);}",
+  ],
+  [
+    "accent-rose-100/[1%]",
+    ".accent-rose-100\\/\\[1\\%\\]{accent-color:rgb(255 228 230/1%);}",
+  ],
+  [
+    "accent-rose-200/[1%]",
+    ".accent-rose-200\\/\\[1\\%\\]{accent-color:rgb(254 205 211/1%);}",
+  ],
+  [
+    "accent-rose-300/[1%]",
+    ".accent-rose-300\\/\\[1\\%\\]{accent-color:rgb(253 164 175/1%);}",
+  ],
+  [
+    "accent-rose-400/[1%]",
+    ".accent-rose-400\\/\\[1\\%\\]{accent-color:rgb(251 113 133/1%);}",
+  ],
+  [
+    "accent-rose-500/[1%]",
+    ".accent-rose-500\\/\\[1\\%\\]{accent-color:rgb(244 63 94/1%);}",
+  ],
+  [
+    "accent-rose-600/[1%]",
+    ".accent-rose-600\\/\\[1\\%\\]{accent-color:rgb(225 29 72/1%);}",
+  ],
+  [
+    "accent-rose-700/[1%]",
+    ".accent-rose-700\\/\\[1\\%\\]{accent-color:rgb(190 18 60/1%);}",
+  ],
+  [
+    "accent-rose-800/[1%]",
+    ".accent-rose-800\\/\\[1\\%\\]{accent-color:rgb(159 18 57/1%);}",
+  ],
+  [
+    "accent-rose-900/[1%]",
+    ".accent-rose-900\\/\\[1\\%\\]{accent-color:rgb(136 19 55/1%);}",
+  ],
+  ["accent-auto", ".accent-auto{accent-color:auto;}"],
   ["appearance-none", ".appearance-none{appearance:none;}"],
   ["cursor-auto", ".cursor-auto{cursor:auto;}"],
   ["cursor-default", ".cursor-default{cursor:default;}"],

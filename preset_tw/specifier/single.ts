@@ -1,9 +1,11 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
 import { filterValue, handleFilter } from "./_filter_utils.ts";
-import { parseNumeric } from "../../core/utils/monad.ts";
+import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
 import {
+  completionRGBA,
   customProperty,
   ratio,
+  rgbFn,
   shortDecimal,
   unit,
 } from "../../core/utils/format.ts";
@@ -14,6 +16,13 @@ import type {
   Specifier,
 } from "../../core/types.ts";
 import { handleTransform, transformValue } from "./_utils.ts";
+import { resolveTheme } from "../../core/utils/resolver.ts";
+import { isUndefined } from "../../deps.ts";
+import {
+  re$SlashBracket$,
+  reAll,
+  reSlashNumber,
+} from "../../core/utils/regexp.ts";
 
 export const block: CSSObject = { display: "block" };
 export const isolate: CSSObject = { isolation: "isolate" };
@@ -334,6 +343,50 @@ export const origin: RecordSpecifier = {
     left: { "transform-origin": "bottom left" },
   },
 };
+
+function toAccentColor(color: string): { "accent-color": string } {
+  return { "accent-color": color };
+}
+export const accent: EntriesSpecifier = [
+  ["auto", { "accent-color": "auto" }],
+  [reSlashNumber, ([, body, numeric], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+
+    return parseNumeric(numeric).match({
+      some: (number) =>
+        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
+          some: toAccentColor,
+          none: undefined,
+        }),
+      none: undefined,
+    });
+  }],
+  [re$SlashBracket$, ([, body, alpha], context) => {
+    const color = resolveTheme(body, "color", context);
+    if (isUndefined(color)) return;
+    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
+      rgbFn,
+    ).match({
+      some: toAccentColor,
+      none: undefined,
+    });
+  }],
+  [
+    reAll,
+    ([body], context) => {
+      const color = resolveTheme(body, "color", context);
+      if (isUndefined(color)) return;
+
+      return parseColor(color).map(completionRGBA(1, true))
+        .map(rgbFn)
+        .match({
+          some: toAccentColor,
+          none: () => toAccentColor(color),
+        });
+    },
+  ],
+];
 export const appearance: RecordSpecifier = {
   none: { appearance: "none" },
 };
