@@ -5819,6 +5819,2289 @@ const expects: [string, string][] = [
   ["outline-2", ".outline-2{outline-width:2px;}"],
   ["outline-4", ".outline-4{outline-width:4px;}"],
   ["outline-8", ".outline-8{outline-width:8px;}"],
+  ["outline-inherit", ".outline-inherit{outline-color:inherit;}"],
+  ["outline-current", ".outline-current{outline-color:currentColor;}"],
+  ["outline-transparent", ".outline-transparent{outline-color:transparent;}"],
+  ["outline-black", ".outline-black{outline-color:rgb(0 0 0/1);}"],
+  ["outline-white", ".outline-white{outline-color:rgb(255 255 255/1);}"],
+  ["outline-slate-50", ".outline-slate-50{outline-color:rgb(248 250 252/1);}"],
+  [
+    "outline-slate-100",
+    ".outline-slate-100{outline-color:rgb(241 245 249/1);}",
+  ],
+  [
+    "outline-slate-200",
+    ".outline-slate-200{outline-color:rgb(226 232 240/1);}",
+  ],
+  [
+    "outline-slate-300",
+    ".outline-slate-300{outline-color:rgb(203 213 225/1);}",
+  ],
+  [
+    "outline-slate-400",
+    ".outline-slate-400{outline-color:rgb(148 163 184/1);}",
+  ],
+  [
+    "outline-slate-500",
+    ".outline-slate-500{outline-color:rgb(100 116 139/1);}",
+  ],
+  ["outline-slate-600", ".outline-slate-600{outline-color:rgb(71 85 105/1);}"],
+  ["outline-slate-700", ".outline-slate-700{outline-color:rgb(51 65 85/1);}"],
+  ["outline-slate-800", ".outline-slate-800{outline-color:rgb(30 41 59/1);}"],
+  ["outline-slate-900", ".outline-slate-900{outline-color:rgb(15 23 42/1);}"],
+  ["outline-gray-50", ".outline-gray-50{outline-color:rgb(249 250 251/1);}"],
+  ["outline-gray-100", ".outline-gray-100{outline-color:rgb(243 244 246/1);}"],
+  ["outline-gray-200", ".outline-gray-200{outline-color:rgb(229 231 235/1);}"],
+  ["outline-gray-300", ".outline-gray-300{outline-color:rgb(209 213 219/1);}"],
+  ["outline-gray-400", ".outline-gray-400{outline-color:rgb(156 163 175/1);}"],
+  ["outline-gray-500", ".outline-gray-500{outline-color:rgb(107 114 128/1);}"],
+  ["outline-gray-600", ".outline-gray-600{outline-color:rgb(75 85 99/1);}"],
+  ["outline-gray-700", ".outline-gray-700{outline-color:rgb(55 65 81/1);}"],
+  ["outline-gray-800", ".outline-gray-800{outline-color:rgb(31 41 55/1);}"],
+  ["outline-gray-900", ".outline-gray-900{outline-color:rgb(17 24 39/1);}"],
+  ["outline-zinc-50", ".outline-zinc-50{outline-color:rgb(250 250 250/1);}"],
+  ["outline-zinc-100", ".outline-zinc-100{outline-color:rgb(244 244 245/1);}"],
+  ["outline-zinc-200", ".outline-zinc-200{outline-color:rgb(228 228 231/1);}"],
+  ["outline-zinc-300", ".outline-zinc-300{outline-color:rgb(212 212 216/1);}"],
+  ["outline-zinc-400", ".outline-zinc-400{outline-color:rgb(161 161 170/1);}"],
+  ["outline-zinc-500", ".outline-zinc-500{outline-color:rgb(113 113 122/1);}"],
+  ["outline-zinc-600", ".outline-zinc-600{outline-color:rgb(82 82 91/1);}"],
+  ["outline-zinc-700", ".outline-zinc-700{outline-color:rgb(63 63 70/1);}"],
+  ["outline-zinc-800", ".outline-zinc-800{outline-color:rgb(39 39 42/1);}"],
+  ["outline-zinc-900", ".outline-zinc-900{outline-color:rgb(24 24 27/1);}"],
+  [
+    "outline-neutral-50",
+    ".outline-neutral-50{outline-color:rgb(250 250 250/1);}",
+  ],
+  [
+    "outline-neutral-100",
+    ".outline-neutral-100{outline-color:rgb(245 245 245/1);}",
+  ],
+  [
+    "outline-neutral-200",
+    ".outline-neutral-200{outline-color:rgb(229 229 229/1);}",
+  ],
+  [
+    "outline-neutral-300",
+    ".outline-neutral-300{outline-color:rgb(212 212 212/1);}",
+  ],
+  [
+    "outline-neutral-400",
+    ".outline-neutral-400{outline-color:rgb(163 163 163/1);}",
+  ],
+  [
+    "outline-neutral-500",
+    ".outline-neutral-500{outline-color:rgb(115 115 115/1);}",
+  ],
+  [
+    "outline-neutral-600",
+    ".outline-neutral-600{outline-color:rgb(82 82 82/1);}",
+  ],
+  [
+    "outline-neutral-700",
+    ".outline-neutral-700{outline-color:rgb(64 64 64/1);}",
+  ],
+  [
+    "outline-neutral-800",
+    ".outline-neutral-800{outline-color:rgb(38 38 38/1);}",
+  ],
+  [
+    "outline-neutral-900",
+    ".outline-neutral-900{outline-color:rgb(23 23 23/1);}",
+  ],
+  ["outline-stone-50", ".outline-stone-50{outline-color:rgb(250 250 249/1);}"],
+  [
+    "outline-stone-100",
+    ".outline-stone-100{outline-color:rgb(245 245 244/1);}",
+  ],
+  [
+    "outline-stone-200",
+    ".outline-stone-200{outline-color:rgb(231 229 228/1);}",
+  ],
+  [
+    "outline-stone-300",
+    ".outline-stone-300{outline-color:rgb(214 211 209/1);}",
+  ],
+  [
+    "outline-stone-400",
+    ".outline-stone-400{outline-color:rgb(168 162 158/1);}",
+  ],
+  [
+    "outline-stone-500",
+    ".outline-stone-500{outline-color:rgb(120 113 108/1);}",
+  ],
+  ["outline-stone-600", ".outline-stone-600{outline-color:rgb(87 83 78/1);}"],
+  ["outline-stone-700", ".outline-stone-700{outline-color:rgb(68 64 60/1);}"],
+  ["outline-stone-800", ".outline-stone-800{outline-color:rgb(41 37 36/1);}"],
+  ["outline-stone-900", ".outline-stone-900{outline-color:rgb(28 25 23/1);}"],
+  ["outline-red-50", ".outline-red-50{outline-color:rgb(254 242 242/1);}"],
+  ["outline-red-100", ".outline-red-100{outline-color:rgb(254 226 226/1);}"],
+  ["outline-red-200", ".outline-red-200{outline-color:rgb(254 202 202/1);}"],
+  ["outline-red-300", ".outline-red-300{outline-color:rgb(252 165 165/1);}"],
+  ["outline-red-400", ".outline-red-400{outline-color:rgb(248 113 113/1);}"],
+  ["outline-red-500", ".outline-red-500{outline-color:rgb(239 68 68/1);}"],
+  ["outline-red-600", ".outline-red-600{outline-color:rgb(220 38 38/1);}"],
+  ["outline-red-700", ".outline-red-700{outline-color:rgb(185 28 28/1);}"],
+  ["outline-red-800", ".outline-red-800{outline-color:rgb(153 27 27/1);}"],
+  ["outline-red-900", ".outline-red-900{outline-color:rgb(127 29 29/1);}"],
+  [
+    "outline-orange-50",
+    ".outline-orange-50{outline-color:rgb(255 247 237/1);}",
+  ],
+  [
+    "outline-orange-100",
+    ".outline-orange-100{outline-color:rgb(255 237 213/1);}",
+  ],
+  [
+    "outline-orange-200",
+    ".outline-orange-200{outline-color:rgb(254 215 170/1);}",
+  ],
+  [
+    "outline-orange-300",
+    ".outline-orange-300{outline-color:rgb(253 186 116/1);}",
+  ],
+  [
+    "outline-orange-400",
+    ".outline-orange-400{outline-color:rgb(251 146 60/1);}",
+  ],
+  [
+    "outline-orange-500",
+    ".outline-orange-500{outline-color:rgb(249 115 22/1);}",
+  ],
+  [
+    "outline-orange-600",
+    ".outline-orange-600{outline-color:rgb(234 88 12/1);}",
+  ],
+  [
+    "outline-orange-700",
+    ".outline-orange-700{outline-color:rgb(194 65 12/1);}",
+  ],
+  [
+    "outline-orange-800",
+    ".outline-orange-800{outline-color:rgb(154 52 18/1);}",
+  ],
+  [
+    "outline-orange-900",
+    ".outline-orange-900{outline-color:rgb(124 45 18/1);}",
+  ],
+  ["outline-amber-50", ".outline-amber-50{outline-color:rgb(255 251 235/1);}"],
+  [
+    "outline-amber-100",
+    ".outline-amber-100{outline-color:rgb(254 243 199/1);}",
+  ],
+  [
+    "outline-amber-200",
+    ".outline-amber-200{outline-color:rgb(253 230 138/1);}",
+  ],
+  ["outline-amber-300", ".outline-amber-300{outline-color:rgb(252 211 77/1);}"],
+  ["outline-amber-400", ".outline-amber-400{outline-color:rgb(251 191 36/1);}"],
+  ["outline-amber-500", ".outline-amber-500{outline-color:rgb(245 158 11/1);}"],
+  ["outline-amber-600", ".outline-amber-600{outline-color:rgb(217 119 6/1);}"],
+  ["outline-amber-700", ".outline-amber-700{outline-color:rgb(180 83 9/1);}"],
+  ["outline-amber-800", ".outline-amber-800{outline-color:rgb(146 64 14/1);}"],
+  ["outline-amber-900", ".outline-amber-900{outline-color:rgb(120 53 15/1);}"],
+  [
+    "outline-yellow-50",
+    ".outline-yellow-50{outline-color:rgb(254 252 232/1);}",
+  ],
+  [
+    "outline-yellow-100",
+    ".outline-yellow-100{outline-color:rgb(254 249 195/1);}",
+  ],
+  [
+    "outline-yellow-200",
+    ".outline-yellow-200{outline-color:rgb(254 240 138/1);}",
+  ],
+  [
+    "outline-yellow-300",
+    ".outline-yellow-300{outline-color:rgb(253 224 71/1);}",
+  ],
+  [
+    "outline-yellow-400",
+    ".outline-yellow-400{outline-color:rgb(250 204 21/1);}",
+  ],
+  [
+    "outline-yellow-500",
+    ".outline-yellow-500{outline-color:rgb(234 179 8/1);}",
+  ],
+  [
+    "outline-yellow-600",
+    ".outline-yellow-600{outline-color:rgb(202 138 4/1);}",
+  ],
+  ["outline-yellow-700", ".outline-yellow-700{outline-color:rgb(161 98 7/1);}"],
+  [
+    "outline-yellow-800",
+    ".outline-yellow-800{outline-color:rgb(133 77 14/1);}",
+  ],
+  [
+    "outline-yellow-900",
+    ".outline-yellow-900{outline-color:rgb(113 63 18/1);}",
+  ],
+  ["outline-lime-50", ".outline-lime-50{outline-color:rgb(247 254 231/1);}"],
+  ["outline-lime-100", ".outline-lime-100{outline-color:rgb(236 252 203/1);}"],
+  ["outline-lime-200", ".outline-lime-200{outline-color:rgb(217 249 157/1);}"],
+  ["outline-lime-300", ".outline-lime-300{outline-color:rgb(190 242 100/1);}"],
+  ["outline-lime-400", ".outline-lime-400{outline-color:rgb(163 230 53/1);}"],
+  ["outline-lime-500", ".outline-lime-500{outline-color:rgb(132 204 22/1);}"],
+  ["outline-lime-600", ".outline-lime-600{outline-color:rgb(101 163 13/1);}"],
+  ["outline-lime-700", ".outline-lime-700{outline-color:rgb(77 124 15/1);}"],
+  ["outline-lime-800", ".outline-lime-800{outline-color:rgb(63 98 18/1);}"],
+  ["outline-lime-900", ".outline-lime-900{outline-color:rgb(54 83 20/1);}"],
+  ["outline-green-50", ".outline-green-50{outline-color:rgb(240 253 244/1);}"],
+  [
+    "outline-green-100",
+    ".outline-green-100{outline-color:rgb(220 252 231/1);}",
+  ],
+  [
+    "outline-green-200",
+    ".outline-green-200{outline-color:rgb(187 247 208/1);}",
+  ],
+  [
+    "outline-green-300",
+    ".outline-green-300{outline-color:rgb(134 239 172/1);}",
+  ],
+  ["outline-green-400", ".outline-green-400{outline-color:rgb(74 222 128/1);}"],
+  ["outline-green-500", ".outline-green-500{outline-color:rgb(34 197 94/1);}"],
+  ["outline-green-600", ".outline-green-600{outline-color:rgb(22 163 74/1);}"],
+  ["outline-green-700", ".outline-green-700{outline-color:rgb(21 128 61/1);}"],
+  ["outline-green-800", ".outline-green-800{outline-color:rgb(22 101 52/1);}"],
+  ["outline-green-900", ".outline-green-900{outline-color:rgb(20 83 45/1);}"],
+  [
+    "outline-emerald-50",
+    ".outline-emerald-50{outline-color:rgb(236 253 245/1);}",
+  ],
+  [
+    "outline-emerald-100",
+    ".outline-emerald-100{outline-color:rgb(209 250 229/1);}",
+  ],
+  [
+    "outline-emerald-200",
+    ".outline-emerald-200{outline-color:rgb(167 243 208/1);}",
+  ],
+  [
+    "outline-emerald-300",
+    ".outline-emerald-300{outline-color:rgb(110 231 183/1);}",
+  ],
+  [
+    "outline-emerald-400",
+    ".outline-emerald-400{outline-color:rgb(52 211 153/1);}",
+  ],
+  [
+    "outline-emerald-500",
+    ".outline-emerald-500{outline-color:rgb(16 185 129/1);}",
+  ],
+  [
+    "outline-emerald-600",
+    ".outline-emerald-600{outline-color:rgb(5 150 105/1);}",
+  ],
+  [
+    "outline-emerald-700",
+    ".outline-emerald-700{outline-color:rgb(4 120 87/1);}",
+  ],
+  [
+    "outline-emerald-800",
+    ".outline-emerald-800{outline-color:rgb(6 95 70/1);}",
+  ],
+  [
+    "outline-emerald-900",
+    ".outline-emerald-900{outline-color:rgb(6 78 59/1);}",
+  ],
+  ["outline-teal-50", ".outline-teal-50{outline-color:rgb(240 253 250/1);}"],
+  ["outline-teal-100", ".outline-teal-100{outline-color:rgb(204 251 241/1);}"],
+  ["outline-teal-200", ".outline-teal-200{outline-color:rgb(153 246 228/1);}"],
+  ["outline-teal-300", ".outline-teal-300{outline-color:rgb(94 234 212/1);}"],
+  ["outline-teal-400", ".outline-teal-400{outline-color:rgb(45 212 191/1);}"],
+  ["outline-teal-500", ".outline-teal-500{outline-color:rgb(20 184 166/1);}"],
+  ["outline-teal-600", ".outline-teal-600{outline-color:rgb(13 148 136/1);}"],
+  ["outline-teal-700", ".outline-teal-700{outline-color:rgb(15 118 110/1);}"],
+  ["outline-teal-800", ".outline-teal-800{outline-color:rgb(17 94 89/1);}"],
+  ["outline-teal-900", ".outline-teal-900{outline-color:rgb(19 78 74/1);}"],
+  ["outline-cyan-50", ".outline-cyan-50{outline-color:rgb(236 254 255/1);}"],
+  ["outline-cyan-100", ".outline-cyan-100{outline-color:rgb(207 250 254/1);}"],
+  ["outline-cyan-200", ".outline-cyan-200{outline-color:rgb(165 243 252/1);}"],
+  ["outline-cyan-300", ".outline-cyan-300{outline-color:rgb(103 232 249/1);}"],
+  ["outline-cyan-400", ".outline-cyan-400{outline-color:rgb(34 211 238/1);}"],
+  ["outline-cyan-500", ".outline-cyan-500{outline-color:rgb(6 182 212/1);}"],
+  ["outline-cyan-600", ".outline-cyan-600{outline-color:rgb(8 145 178/1);}"],
+  ["outline-cyan-700", ".outline-cyan-700{outline-color:rgb(14 116 144/1);}"],
+  ["outline-cyan-800", ".outline-cyan-800{outline-color:rgb(21 94 117/1);}"],
+  ["outline-cyan-900", ".outline-cyan-900{outline-color:rgb(22 78 99/1);}"],
+  ["outline-sky-50", ".outline-sky-50{outline-color:rgb(240 249 255/1);}"],
+  ["outline-sky-100", ".outline-sky-100{outline-color:rgb(224 242 254/1);}"],
+  ["outline-sky-200", ".outline-sky-200{outline-color:rgb(186 230 253/1);}"],
+  ["outline-sky-300", ".outline-sky-300{outline-color:rgb(125 211 252/1);}"],
+  ["outline-sky-400", ".outline-sky-400{outline-color:rgb(56 189 248/1);}"],
+  ["outline-sky-500", ".outline-sky-500{outline-color:rgb(14 165 233/1);}"],
+  ["outline-sky-600", ".outline-sky-600{outline-color:rgb(2 132 199/1);}"],
+  ["outline-sky-700", ".outline-sky-700{outline-color:rgb(3 105 161/1);}"],
+  ["outline-sky-800", ".outline-sky-800{outline-color:rgb(7 89 133/1);}"],
+  ["outline-sky-900", ".outline-sky-900{outline-color:rgb(12 74 110/1);}"],
+  ["outline-blue-50", ".outline-blue-50{outline-color:rgb(239 246 255/1);}"],
+  ["outline-blue-100", ".outline-blue-100{outline-color:rgb(219 234 254/1);}"],
+  ["outline-blue-200", ".outline-blue-200{outline-color:rgb(191 219 254/1);}"],
+  ["outline-blue-300", ".outline-blue-300{outline-color:rgb(147 197 253/1);}"],
+  ["outline-blue-400", ".outline-blue-400{outline-color:rgb(96 165 250/1);}"],
+  ["outline-blue-500", ".outline-blue-500{outline-color:rgb(59 130 246/1);}"],
+  ["outline-blue-600", ".outline-blue-600{outline-color:rgb(37 99 235/1);}"],
+  ["outline-blue-700", ".outline-blue-700{outline-color:rgb(29 78 216/1);}"],
+  ["outline-blue-800", ".outline-blue-800{outline-color:rgb(30 64 175/1);}"],
+  ["outline-blue-900", ".outline-blue-900{outline-color:rgb(30 58 138/1);}"],
+  [
+    "outline-indigo-50",
+    ".outline-indigo-50{outline-color:rgb(238 242 255/1);}",
+  ],
+  [
+    "outline-indigo-100",
+    ".outline-indigo-100{outline-color:rgb(224 231 255/1);}",
+  ],
+  [
+    "outline-indigo-200",
+    ".outline-indigo-200{outline-color:rgb(199 210 254/1);}",
+  ],
+  [
+    "outline-indigo-300",
+    ".outline-indigo-300{outline-color:rgb(165 180 252/1);}",
+  ],
+  [
+    "outline-indigo-400",
+    ".outline-indigo-400{outline-color:rgb(129 140 248/1);}",
+  ],
+  [
+    "outline-indigo-500",
+    ".outline-indigo-500{outline-color:rgb(99 102 241/1);}",
+  ],
+  [
+    "outline-indigo-600",
+    ".outline-indigo-600{outline-color:rgb(79 70 229/1);}",
+  ],
+  [
+    "outline-indigo-700",
+    ".outline-indigo-700{outline-color:rgb(67 56 202/1);}",
+  ],
+  [
+    "outline-indigo-800",
+    ".outline-indigo-800{outline-color:rgb(55 48 163/1);}",
+  ],
+  [
+    "outline-indigo-900",
+    ".outline-indigo-900{outline-color:rgb(49 46 129/1);}",
+  ],
+  [
+    "outline-violet-50",
+    ".outline-violet-50{outline-color:rgb(245 243 255/1);}",
+  ],
+  [
+    "outline-violet-100",
+    ".outline-violet-100{outline-color:rgb(237 233 254/1);}",
+  ],
+  [
+    "outline-violet-200",
+    ".outline-violet-200{outline-color:rgb(221 214 254/1);}",
+  ],
+  [
+    "outline-violet-300",
+    ".outline-violet-300{outline-color:rgb(196 181 253/1);}",
+  ],
+  [
+    "outline-violet-400",
+    ".outline-violet-400{outline-color:rgb(167 139 250/1);}",
+  ],
+  [
+    "outline-violet-500",
+    ".outline-violet-500{outline-color:rgb(139 92 246/1);}",
+  ],
+  [
+    "outline-violet-600",
+    ".outline-violet-600{outline-color:rgb(124 58 237/1);}",
+  ],
+  [
+    "outline-violet-700",
+    ".outline-violet-700{outline-color:rgb(109 40 217/1);}",
+  ],
+  [
+    "outline-violet-800",
+    ".outline-violet-800{outline-color:rgb(91 33 182/1);}",
+  ],
+  [
+    "outline-violet-900",
+    ".outline-violet-900{outline-color:rgb(76 29 149/1);}",
+  ],
+  [
+    "outline-purple-50",
+    ".outline-purple-50{outline-color:rgb(250 245 255/1);}",
+  ],
+  [
+    "outline-purple-100",
+    ".outline-purple-100{outline-color:rgb(243 232 255/1);}",
+  ],
+  [
+    "outline-purple-200",
+    ".outline-purple-200{outline-color:rgb(233 213 255/1);}",
+  ],
+  [
+    "outline-purple-300",
+    ".outline-purple-300{outline-color:rgb(216 180 254/1);}",
+  ],
+  [
+    "outline-purple-400",
+    ".outline-purple-400{outline-color:rgb(192 132 252/1);}",
+  ],
+  [
+    "outline-purple-500",
+    ".outline-purple-500{outline-color:rgb(168 85 247/1);}",
+  ],
+  [
+    "outline-purple-600",
+    ".outline-purple-600{outline-color:rgb(147 51 234/1);}",
+  ],
+  [
+    "outline-purple-700",
+    ".outline-purple-700{outline-color:rgb(126 34 206/1);}",
+  ],
+  [
+    "outline-purple-800",
+    ".outline-purple-800{outline-color:rgb(107 33 168/1);}",
+  ],
+  [
+    "outline-purple-900",
+    ".outline-purple-900{outline-color:rgb(88 28 135/1);}",
+  ],
+  [
+    "outline-fuchsia-50",
+    ".outline-fuchsia-50{outline-color:rgb(253 244 255/1);}",
+  ],
+  [
+    "outline-fuchsia-100",
+    ".outline-fuchsia-100{outline-color:rgb(250 232 255/1);}",
+  ],
+  [
+    "outline-fuchsia-200",
+    ".outline-fuchsia-200{outline-color:rgb(245 208 254/1);}",
+  ],
+  [
+    "outline-fuchsia-300",
+    ".outline-fuchsia-300{outline-color:rgb(240 171 252/1);}",
+  ],
+  [
+    "outline-fuchsia-400",
+    ".outline-fuchsia-400{outline-color:rgb(232 121 249/1);}",
+  ],
+  [
+    "outline-fuchsia-500",
+    ".outline-fuchsia-500{outline-color:rgb(217 70 239/1);}",
+  ],
+  [
+    "outline-fuchsia-600",
+    ".outline-fuchsia-600{outline-color:rgb(192 38 211/1);}",
+  ],
+  [
+    "outline-fuchsia-700",
+    ".outline-fuchsia-700{outline-color:rgb(162 28 175/1);}",
+  ],
+  [
+    "outline-fuchsia-800",
+    ".outline-fuchsia-800{outline-color:rgb(134 25 143/1);}",
+  ],
+  [
+    "outline-fuchsia-900",
+    ".outline-fuchsia-900{outline-color:rgb(112 26 117/1);}",
+  ],
+  ["outline-pink-50", ".outline-pink-50{outline-color:rgb(253 242 248/1);}"],
+  ["outline-pink-100", ".outline-pink-100{outline-color:rgb(252 231 243/1);}"],
+  ["outline-pink-200", ".outline-pink-200{outline-color:rgb(251 207 232/1);}"],
+  ["outline-pink-300", ".outline-pink-300{outline-color:rgb(249 168 212/1);}"],
+  ["outline-pink-400", ".outline-pink-400{outline-color:rgb(244 114 182/1);}"],
+  ["outline-pink-500", ".outline-pink-500{outline-color:rgb(236 72 153/1);}"],
+  ["outline-pink-600", ".outline-pink-600{outline-color:rgb(219 39 119/1);}"],
+  ["outline-pink-700", ".outline-pink-700{outline-color:rgb(190 24 93/1);}"],
+  ["outline-pink-800", ".outline-pink-800{outline-color:rgb(157 23 77/1);}"],
+  ["outline-pink-900", ".outline-pink-900{outline-color:rgb(131 24 67/1);}"],
+  ["outline-rose-50", ".outline-rose-50{outline-color:rgb(255 241 242/1);}"],
+  ["outline-rose-100", ".outline-rose-100{outline-color:rgb(255 228 230/1);}"],
+  ["outline-rose-200", ".outline-rose-200{outline-color:rgb(254 205 211/1);}"],
+  ["outline-rose-300", ".outline-rose-300{outline-color:rgb(253 164 175/1);}"],
+  ["outline-rose-400", ".outline-rose-400{outline-color:rgb(251 113 133/1);}"],
+  ["outline-rose-500", ".outline-rose-500{outline-color:rgb(244 63 94/1);}"],
+  ["outline-rose-600", ".outline-rose-600{outline-color:rgb(225 29 72/1);}"],
+  ["outline-rose-700", ".outline-rose-700{outline-color:rgb(190 18 60/1);}"],
+  ["outline-rose-800", ".outline-rose-800{outline-color:rgb(159 18 57/1);}"],
+  ["outline-rose-900", ".outline-rose-900{outline-color:rgb(136 19 55/1);}"],
+  ["outline-black/50", ".outline-black\\/50{outline-color:rgb(0 0 0/.5);}"],
+  [
+    "outline-white/50",
+    ".outline-white\\/50{outline-color:rgb(255 255 255/.5);}",
+  ],
+  [
+    "outline-slate-50/50",
+    ".outline-slate-50\\/50{outline-color:rgb(248 250 252/.5);}",
+  ],
+  [
+    "outline-slate-100/50",
+    ".outline-slate-100\\/50{outline-color:rgb(241 245 249/.5);}",
+  ],
+  [
+    "outline-slate-200/50",
+    ".outline-slate-200\\/50{outline-color:rgb(226 232 240/.5);}",
+  ],
+  [
+    "outline-slate-300/50",
+    ".outline-slate-300\\/50{outline-color:rgb(203 213 225/.5);}",
+  ],
+  [
+    "outline-slate-400/50",
+    ".outline-slate-400\\/50{outline-color:rgb(148 163 184/.5);}",
+  ],
+  [
+    "outline-slate-500/50",
+    ".outline-slate-500\\/50{outline-color:rgb(100 116 139/.5);}",
+  ],
+  [
+    "outline-slate-600/50",
+    ".outline-slate-600\\/50{outline-color:rgb(71 85 105/.5);}",
+  ],
+  [
+    "outline-slate-700/50",
+    ".outline-slate-700\\/50{outline-color:rgb(51 65 85/.5);}",
+  ],
+  [
+    "outline-slate-800/50",
+    ".outline-slate-800\\/50{outline-color:rgb(30 41 59/.5);}",
+  ],
+  [
+    "outline-slate-900/50",
+    ".outline-slate-900\\/50{outline-color:rgb(15 23 42/.5);}",
+  ],
+  [
+    "outline-gray-50/50",
+    ".outline-gray-50\\/50{outline-color:rgb(249 250 251/.5);}",
+  ],
+  [
+    "outline-gray-100/50",
+    ".outline-gray-100\\/50{outline-color:rgb(243 244 246/.5);}",
+  ],
+  [
+    "outline-gray-200/50",
+    ".outline-gray-200\\/50{outline-color:rgb(229 231 235/.5);}",
+  ],
+  [
+    "outline-gray-300/50",
+    ".outline-gray-300\\/50{outline-color:rgb(209 213 219/.5);}",
+  ],
+  [
+    "outline-gray-400/50",
+    ".outline-gray-400\\/50{outline-color:rgb(156 163 175/.5);}",
+  ],
+  [
+    "outline-gray-500/50",
+    ".outline-gray-500\\/50{outline-color:rgb(107 114 128/.5);}",
+  ],
+  [
+    "outline-gray-600/50",
+    ".outline-gray-600\\/50{outline-color:rgb(75 85 99/.5);}",
+  ],
+  [
+    "outline-gray-700/50",
+    ".outline-gray-700\\/50{outline-color:rgb(55 65 81/.5);}",
+  ],
+  [
+    "outline-gray-800/50",
+    ".outline-gray-800\\/50{outline-color:rgb(31 41 55/.5);}",
+  ],
+  [
+    "outline-gray-900/50",
+    ".outline-gray-900\\/50{outline-color:rgb(17 24 39/.5);}",
+  ],
+  [
+    "outline-zinc-50/50",
+    ".outline-zinc-50\\/50{outline-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "outline-zinc-100/50",
+    ".outline-zinc-100\\/50{outline-color:rgb(244 244 245/.5);}",
+  ],
+  [
+    "outline-zinc-200/50",
+    ".outline-zinc-200\\/50{outline-color:rgb(228 228 231/.5);}",
+  ],
+  [
+    "outline-zinc-300/50",
+    ".outline-zinc-300\\/50{outline-color:rgb(212 212 216/.5);}",
+  ],
+  [
+    "outline-zinc-400/50",
+    ".outline-zinc-400\\/50{outline-color:rgb(161 161 170/.5);}",
+  ],
+  [
+    "outline-zinc-500/50",
+    ".outline-zinc-500\\/50{outline-color:rgb(113 113 122/.5);}",
+  ],
+  [
+    "outline-zinc-600/50",
+    ".outline-zinc-600\\/50{outline-color:rgb(82 82 91/.5);}",
+  ],
+  [
+    "outline-zinc-700/50",
+    ".outline-zinc-700\\/50{outline-color:rgb(63 63 70/.5);}",
+  ],
+  [
+    "outline-zinc-800/50",
+    ".outline-zinc-800\\/50{outline-color:rgb(39 39 42/.5);}",
+  ],
+  [
+    "outline-zinc-900/50",
+    ".outline-zinc-900\\/50{outline-color:rgb(24 24 27/.5);}",
+  ],
+  [
+    "outline-neutral-50/50",
+    ".outline-neutral-50\\/50{outline-color:rgb(250 250 250/.5);}",
+  ],
+  [
+    "outline-neutral-100/50",
+    ".outline-neutral-100\\/50{outline-color:rgb(245 245 245/.5);}",
+  ],
+  [
+    "outline-neutral-200/50",
+    ".outline-neutral-200\\/50{outline-color:rgb(229 229 229/.5);}",
+  ],
+  [
+    "outline-neutral-300/50",
+    ".outline-neutral-300\\/50{outline-color:rgb(212 212 212/.5);}",
+  ],
+  [
+    "outline-neutral-400/50",
+    ".outline-neutral-400\\/50{outline-color:rgb(163 163 163/.5);}",
+  ],
+  [
+    "outline-neutral-500/50",
+    ".outline-neutral-500\\/50{outline-color:rgb(115 115 115/.5);}",
+  ],
+  [
+    "outline-neutral-600/50",
+    ".outline-neutral-600\\/50{outline-color:rgb(82 82 82/.5);}",
+  ],
+  [
+    "outline-neutral-700/50",
+    ".outline-neutral-700\\/50{outline-color:rgb(64 64 64/.5);}",
+  ],
+  [
+    "outline-neutral-800/50",
+    ".outline-neutral-800\\/50{outline-color:rgb(38 38 38/.5);}",
+  ],
+  [
+    "outline-neutral-900/50",
+    ".outline-neutral-900\\/50{outline-color:rgb(23 23 23/.5);}",
+  ],
+  [
+    "outline-stone-50/50",
+    ".outline-stone-50\\/50{outline-color:rgb(250 250 249/.5);}",
+  ],
+  [
+    "outline-stone-100/50",
+    ".outline-stone-100\\/50{outline-color:rgb(245 245 244/.5);}",
+  ],
+  [
+    "outline-stone-200/50",
+    ".outline-stone-200\\/50{outline-color:rgb(231 229 228/.5);}",
+  ],
+  [
+    "outline-stone-300/50",
+    ".outline-stone-300\\/50{outline-color:rgb(214 211 209/.5);}",
+  ],
+  [
+    "outline-stone-400/50",
+    ".outline-stone-400\\/50{outline-color:rgb(168 162 158/.5);}",
+  ],
+  [
+    "outline-stone-500/50",
+    ".outline-stone-500\\/50{outline-color:rgb(120 113 108/.5);}",
+  ],
+  [
+    "outline-stone-600/50",
+    ".outline-stone-600\\/50{outline-color:rgb(87 83 78/.5);}",
+  ],
+  [
+    "outline-stone-700/50",
+    ".outline-stone-700\\/50{outline-color:rgb(68 64 60/.5);}",
+  ],
+  [
+    "outline-stone-800/50",
+    ".outline-stone-800\\/50{outline-color:rgb(41 37 36/.5);}",
+  ],
+  [
+    "outline-stone-900/50",
+    ".outline-stone-900\\/50{outline-color:rgb(28 25 23/.5);}",
+  ],
+  [
+    "outline-red-50/50",
+    ".outline-red-50\\/50{outline-color:rgb(254 242 242/.5);}",
+  ],
+  [
+    "outline-red-100/50",
+    ".outline-red-100\\/50{outline-color:rgb(254 226 226/.5);}",
+  ],
+  [
+    "outline-red-200/50",
+    ".outline-red-200\\/50{outline-color:rgb(254 202 202/.5);}",
+  ],
+  [
+    "outline-red-300/50",
+    ".outline-red-300\\/50{outline-color:rgb(252 165 165/.5);}",
+  ],
+  [
+    "outline-red-400/50",
+    ".outline-red-400\\/50{outline-color:rgb(248 113 113/.5);}",
+  ],
+  [
+    "outline-red-500/50",
+    ".outline-red-500\\/50{outline-color:rgb(239 68 68/.5);}",
+  ],
+  [
+    "outline-red-600/50",
+    ".outline-red-600\\/50{outline-color:rgb(220 38 38/.5);}",
+  ],
+  [
+    "outline-red-700/50",
+    ".outline-red-700\\/50{outline-color:rgb(185 28 28/.5);}",
+  ],
+  [
+    "outline-red-800/50",
+    ".outline-red-800\\/50{outline-color:rgb(153 27 27/.5);}",
+  ],
+  [
+    "outline-red-900/50",
+    ".outline-red-900\\/50{outline-color:rgb(127 29 29/.5);}",
+  ],
+  [
+    "outline-orange-50/50",
+    ".outline-orange-50\\/50{outline-color:rgb(255 247 237/.5);}",
+  ],
+  [
+    "outline-orange-100/50",
+    ".outline-orange-100\\/50{outline-color:rgb(255 237 213/.5);}",
+  ],
+  [
+    "outline-orange-200/50",
+    ".outline-orange-200\\/50{outline-color:rgb(254 215 170/.5);}",
+  ],
+  [
+    "outline-orange-300/50",
+    ".outline-orange-300\\/50{outline-color:rgb(253 186 116/.5);}",
+  ],
+  [
+    "outline-orange-400/50",
+    ".outline-orange-400\\/50{outline-color:rgb(251 146 60/.5);}",
+  ],
+  [
+    "outline-orange-500/50",
+    ".outline-orange-500\\/50{outline-color:rgb(249 115 22/.5);}",
+  ],
+  [
+    "outline-orange-600/50",
+    ".outline-orange-600\\/50{outline-color:rgb(234 88 12/.5);}",
+  ],
+  [
+    "outline-orange-700/50",
+    ".outline-orange-700\\/50{outline-color:rgb(194 65 12/.5);}",
+  ],
+  [
+    "outline-orange-800/50",
+    ".outline-orange-800\\/50{outline-color:rgb(154 52 18/.5);}",
+  ],
+  [
+    "outline-orange-900/50",
+    ".outline-orange-900\\/50{outline-color:rgb(124 45 18/.5);}",
+  ],
+  [
+    "outline-amber-50/50",
+    ".outline-amber-50\\/50{outline-color:rgb(255 251 235/.5);}",
+  ],
+  [
+    "outline-amber-100/50",
+    ".outline-amber-100\\/50{outline-color:rgb(254 243 199/.5);}",
+  ],
+  [
+    "outline-amber-200/50",
+    ".outline-amber-200\\/50{outline-color:rgb(253 230 138/.5);}",
+  ],
+  [
+    "outline-amber-300/50",
+    ".outline-amber-300\\/50{outline-color:rgb(252 211 77/.5);}",
+  ],
+  [
+    "outline-amber-400/50",
+    ".outline-amber-400\\/50{outline-color:rgb(251 191 36/.5);}",
+  ],
+  [
+    "outline-amber-500/50",
+    ".outline-amber-500\\/50{outline-color:rgb(245 158 11/.5);}",
+  ],
+  [
+    "outline-amber-600/50",
+    ".outline-amber-600\\/50{outline-color:rgb(217 119 6/.5);}",
+  ],
+  [
+    "outline-amber-700/50",
+    ".outline-amber-700\\/50{outline-color:rgb(180 83 9/.5);}",
+  ],
+  [
+    "outline-amber-800/50",
+    ".outline-amber-800\\/50{outline-color:rgb(146 64 14/.5);}",
+  ],
+  [
+    "outline-amber-900/50",
+    ".outline-amber-900\\/50{outline-color:rgb(120 53 15/.5);}",
+  ],
+  [
+    "outline-yellow-50/50",
+    ".outline-yellow-50\\/50{outline-color:rgb(254 252 232/.5);}",
+  ],
+  [
+    "outline-yellow-100/50",
+    ".outline-yellow-100\\/50{outline-color:rgb(254 249 195/.5);}",
+  ],
+  [
+    "outline-yellow-200/50",
+    ".outline-yellow-200\\/50{outline-color:rgb(254 240 138/.5);}",
+  ],
+  [
+    "outline-yellow-300/50",
+    ".outline-yellow-300\\/50{outline-color:rgb(253 224 71/.5);}",
+  ],
+  [
+    "outline-yellow-400/50",
+    ".outline-yellow-400\\/50{outline-color:rgb(250 204 21/.5);}",
+  ],
+  [
+    "outline-yellow-500/50",
+    ".outline-yellow-500\\/50{outline-color:rgb(234 179 8/.5);}",
+  ],
+  [
+    "outline-yellow-600/50",
+    ".outline-yellow-600\\/50{outline-color:rgb(202 138 4/.5);}",
+  ],
+  [
+    "outline-yellow-700/50",
+    ".outline-yellow-700\\/50{outline-color:rgb(161 98 7/.5);}",
+  ],
+  [
+    "outline-yellow-800/50",
+    ".outline-yellow-800\\/50{outline-color:rgb(133 77 14/.5);}",
+  ],
+  [
+    "outline-yellow-900/50",
+    ".outline-yellow-900\\/50{outline-color:rgb(113 63 18/.5);}",
+  ],
+  [
+    "outline-lime-50/50",
+    ".outline-lime-50\\/50{outline-color:rgb(247 254 231/.5);}",
+  ],
+  [
+    "outline-lime-100/50",
+    ".outline-lime-100\\/50{outline-color:rgb(236 252 203/.5);}",
+  ],
+  [
+    "outline-lime-200/50",
+    ".outline-lime-200\\/50{outline-color:rgb(217 249 157/.5);}",
+  ],
+  [
+    "outline-lime-300/50",
+    ".outline-lime-300\\/50{outline-color:rgb(190 242 100/.5);}",
+  ],
+  [
+    "outline-lime-400/50",
+    ".outline-lime-400\\/50{outline-color:rgb(163 230 53/.5);}",
+  ],
+  [
+    "outline-lime-500/50",
+    ".outline-lime-500\\/50{outline-color:rgb(132 204 22/.5);}",
+  ],
+  [
+    "outline-lime-600/50",
+    ".outline-lime-600\\/50{outline-color:rgb(101 163 13/.5);}",
+  ],
+  [
+    "outline-lime-700/50",
+    ".outline-lime-700\\/50{outline-color:rgb(77 124 15/.5);}",
+  ],
+  [
+    "outline-lime-800/50",
+    ".outline-lime-800\\/50{outline-color:rgb(63 98 18/.5);}",
+  ],
+  [
+    "outline-lime-900/50",
+    ".outline-lime-900\\/50{outline-color:rgb(54 83 20/.5);}",
+  ],
+  [
+    "outline-green-50/50",
+    ".outline-green-50\\/50{outline-color:rgb(240 253 244/.5);}",
+  ],
+  [
+    "outline-green-100/50",
+    ".outline-green-100\\/50{outline-color:rgb(220 252 231/.5);}",
+  ],
+  [
+    "outline-green-200/50",
+    ".outline-green-200\\/50{outline-color:rgb(187 247 208/.5);}",
+  ],
+  [
+    "outline-green-300/50",
+    ".outline-green-300\\/50{outline-color:rgb(134 239 172/.5);}",
+  ],
+  [
+    "outline-green-400/50",
+    ".outline-green-400\\/50{outline-color:rgb(74 222 128/.5);}",
+  ],
+  [
+    "outline-green-500/50",
+    ".outline-green-500\\/50{outline-color:rgb(34 197 94/.5);}",
+  ],
+  [
+    "outline-green-600/50",
+    ".outline-green-600\\/50{outline-color:rgb(22 163 74/.5);}",
+  ],
+  [
+    "outline-green-700/50",
+    ".outline-green-700\\/50{outline-color:rgb(21 128 61/.5);}",
+  ],
+  [
+    "outline-green-800/50",
+    ".outline-green-800\\/50{outline-color:rgb(22 101 52/.5);}",
+  ],
+  [
+    "outline-green-900/50",
+    ".outline-green-900\\/50{outline-color:rgb(20 83 45/.5);}",
+  ],
+  [
+    "outline-emerald-50/50",
+    ".outline-emerald-50\\/50{outline-color:rgb(236 253 245/.5);}",
+  ],
+  [
+    "outline-emerald-100/50",
+    ".outline-emerald-100\\/50{outline-color:rgb(209 250 229/.5);}",
+  ],
+  [
+    "outline-emerald-200/50",
+    ".outline-emerald-200\\/50{outline-color:rgb(167 243 208/.5);}",
+  ],
+  [
+    "outline-emerald-300/50",
+    ".outline-emerald-300\\/50{outline-color:rgb(110 231 183/.5);}",
+  ],
+  [
+    "outline-emerald-400/50",
+    ".outline-emerald-400\\/50{outline-color:rgb(52 211 153/.5);}",
+  ],
+  [
+    "outline-emerald-500/50",
+    ".outline-emerald-500\\/50{outline-color:rgb(16 185 129/.5);}",
+  ],
+  [
+    "outline-emerald-600/50",
+    ".outline-emerald-600\\/50{outline-color:rgb(5 150 105/.5);}",
+  ],
+  [
+    "outline-emerald-700/50",
+    ".outline-emerald-700\\/50{outline-color:rgb(4 120 87/.5);}",
+  ],
+  [
+    "outline-emerald-800/50",
+    ".outline-emerald-800\\/50{outline-color:rgb(6 95 70/.5);}",
+  ],
+  [
+    "outline-emerald-900/50",
+    ".outline-emerald-900\\/50{outline-color:rgb(6 78 59/.5);}",
+  ],
+  [
+    "outline-teal-50/50",
+    ".outline-teal-50\\/50{outline-color:rgb(240 253 250/.5);}",
+  ],
+  [
+    "outline-teal-100/50",
+    ".outline-teal-100\\/50{outline-color:rgb(204 251 241/.5);}",
+  ],
+  [
+    "outline-teal-200/50",
+    ".outline-teal-200\\/50{outline-color:rgb(153 246 228/.5);}",
+  ],
+  [
+    "outline-teal-300/50",
+    ".outline-teal-300\\/50{outline-color:rgb(94 234 212/.5);}",
+  ],
+  [
+    "outline-teal-400/50",
+    ".outline-teal-400\\/50{outline-color:rgb(45 212 191/.5);}",
+  ],
+  [
+    "outline-teal-500/50",
+    ".outline-teal-500\\/50{outline-color:rgb(20 184 166/.5);}",
+  ],
+  [
+    "outline-teal-600/50",
+    ".outline-teal-600\\/50{outline-color:rgb(13 148 136/.5);}",
+  ],
+  [
+    "outline-teal-700/50",
+    ".outline-teal-700\\/50{outline-color:rgb(15 118 110/.5);}",
+  ],
+  [
+    "outline-teal-800/50",
+    ".outline-teal-800\\/50{outline-color:rgb(17 94 89/.5);}",
+  ],
+  [
+    "outline-teal-900/50",
+    ".outline-teal-900\\/50{outline-color:rgb(19 78 74/.5);}",
+  ],
+  [
+    "outline-cyan-50/50",
+    ".outline-cyan-50\\/50{outline-color:rgb(236 254 255/.5);}",
+  ],
+  [
+    "outline-cyan-100/50",
+    ".outline-cyan-100\\/50{outline-color:rgb(207 250 254/.5);}",
+  ],
+  [
+    "outline-cyan-200/50",
+    ".outline-cyan-200\\/50{outline-color:rgb(165 243 252/.5);}",
+  ],
+  [
+    "outline-cyan-300/50",
+    ".outline-cyan-300\\/50{outline-color:rgb(103 232 249/.5);}",
+  ],
+  [
+    "outline-cyan-400/50",
+    ".outline-cyan-400\\/50{outline-color:rgb(34 211 238/.5);}",
+  ],
+  [
+    "outline-cyan-500/50",
+    ".outline-cyan-500\\/50{outline-color:rgb(6 182 212/.5);}",
+  ],
+  [
+    "outline-cyan-600/50",
+    ".outline-cyan-600\\/50{outline-color:rgb(8 145 178/.5);}",
+  ],
+  [
+    "outline-cyan-700/50",
+    ".outline-cyan-700\\/50{outline-color:rgb(14 116 144/.5);}",
+  ],
+  [
+    "outline-cyan-800/50",
+    ".outline-cyan-800\\/50{outline-color:rgb(21 94 117/.5);}",
+  ],
+  [
+    "outline-cyan-900/50",
+    ".outline-cyan-900\\/50{outline-color:rgb(22 78 99/.5);}",
+  ],
+  [
+    "outline-sky-50/50",
+    ".outline-sky-50\\/50{outline-color:rgb(240 249 255/.5);}",
+  ],
+  [
+    "outline-sky-100/50",
+    ".outline-sky-100\\/50{outline-color:rgb(224 242 254/.5);}",
+  ],
+  [
+    "outline-sky-200/50",
+    ".outline-sky-200\\/50{outline-color:rgb(186 230 253/.5);}",
+  ],
+  [
+    "outline-sky-300/50",
+    ".outline-sky-300\\/50{outline-color:rgb(125 211 252/.5);}",
+  ],
+  [
+    "outline-sky-400/50",
+    ".outline-sky-400\\/50{outline-color:rgb(56 189 248/.5);}",
+  ],
+  [
+    "outline-sky-500/50",
+    ".outline-sky-500\\/50{outline-color:rgb(14 165 233/.5);}",
+  ],
+  [
+    "outline-sky-600/50",
+    ".outline-sky-600\\/50{outline-color:rgb(2 132 199/.5);}",
+  ],
+  [
+    "outline-sky-700/50",
+    ".outline-sky-700\\/50{outline-color:rgb(3 105 161/.5);}",
+  ],
+  [
+    "outline-sky-800/50",
+    ".outline-sky-800\\/50{outline-color:rgb(7 89 133/.5);}",
+  ],
+  [
+    "outline-sky-900/50",
+    ".outline-sky-900\\/50{outline-color:rgb(12 74 110/.5);}",
+  ],
+  [
+    "outline-blue-50/50",
+    ".outline-blue-50\\/50{outline-color:rgb(239 246 255/.5);}",
+  ],
+  [
+    "outline-blue-100/50",
+    ".outline-blue-100\\/50{outline-color:rgb(219 234 254/.5);}",
+  ],
+  [
+    "outline-blue-200/50",
+    ".outline-blue-200\\/50{outline-color:rgb(191 219 254/.5);}",
+  ],
+  [
+    "outline-blue-300/50",
+    ".outline-blue-300\\/50{outline-color:rgb(147 197 253/.5);}",
+  ],
+  [
+    "outline-blue-400/50",
+    ".outline-blue-400\\/50{outline-color:rgb(96 165 250/.5);}",
+  ],
+  [
+    "outline-blue-500/50",
+    ".outline-blue-500\\/50{outline-color:rgb(59 130 246/.5);}",
+  ],
+  [
+    "outline-blue-600/50",
+    ".outline-blue-600\\/50{outline-color:rgb(37 99 235/.5);}",
+  ],
+  [
+    "outline-blue-700/50",
+    ".outline-blue-700\\/50{outline-color:rgb(29 78 216/.5);}",
+  ],
+  [
+    "outline-blue-800/50",
+    ".outline-blue-800\\/50{outline-color:rgb(30 64 175/.5);}",
+  ],
+  [
+    "outline-blue-900/50",
+    ".outline-blue-900\\/50{outline-color:rgb(30 58 138/.5);}",
+  ],
+  [
+    "outline-indigo-50/50",
+    ".outline-indigo-50\\/50{outline-color:rgb(238 242 255/.5);}",
+  ],
+  [
+    "outline-indigo-100/50",
+    ".outline-indigo-100\\/50{outline-color:rgb(224 231 255/.5);}",
+  ],
+  [
+    "outline-indigo-200/50",
+    ".outline-indigo-200\\/50{outline-color:rgb(199 210 254/.5);}",
+  ],
+  [
+    "outline-indigo-300/50",
+    ".outline-indigo-300\\/50{outline-color:rgb(165 180 252/.5);}",
+  ],
+  [
+    "outline-indigo-400/50",
+    ".outline-indigo-400\\/50{outline-color:rgb(129 140 248/.5);}",
+  ],
+  [
+    "outline-indigo-500/50",
+    ".outline-indigo-500\\/50{outline-color:rgb(99 102 241/.5);}",
+  ],
+  [
+    "outline-indigo-600/50",
+    ".outline-indigo-600\\/50{outline-color:rgb(79 70 229/.5);}",
+  ],
+  [
+    "outline-indigo-700/50",
+    ".outline-indigo-700\\/50{outline-color:rgb(67 56 202/.5);}",
+  ],
+  [
+    "outline-indigo-800/50",
+    ".outline-indigo-800\\/50{outline-color:rgb(55 48 163/.5);}",
+  ],
+  [
+    "outline-indigo-900/50",
+    ".outline-indigo-900\\/50{outline-color:rgb(49 46 129/.5);}",
+  ],
+  [
+    "outline-violet-50/50",
+    ".outline-violet-50\\/50{outline-color:rgb(245 243 255/.5);}",
+  ],
+  [
+    "outline-violet-100/50",
+    ".outline-violet-100\\/50{outline-color:rgb(237 233 254/.5);}",
+  ],
+  [
+    "outline-violet-200/50",
+    ".outline-violet-200\\/50{outline-color:rgb(221 214 254/.5);}",
+  ],
+  [
+    "outline-violet-300/50",
+    ".outline-violet-300\\/50{outline-color:rgb(196 181 253/.5);}",
+  ],
+  [
+    "outline-violet-400/50",
+    ".outline-violet-400\\/50{outline-color:rgb(167 139 250/.5);}",
+  ],
+  [
+    "outline-violet-500/50",
+    ".outline-violet-500\\/50{outline-color:rgb(139 92 246/.5);}",
+  ],
+  [
+    "outline-violet-600/50",
+    ".outline-violet-600\\/50{outline-color:rgb(124 58 237/.5);}",
+  ],
+  [
+    "outline-violet-700/50",
+    ".outline-violet-700\\/50{outline-color:rgb(109 40 217/.5);}",
+  ],
+  [
+    "outline-violet-800/50",
+    ".outline-violet-800\\/50{outline-color:rgb(91 33 182/.5);}",
+  ],
+  [
+    "outline-violet-900/50",
+    ".outline-violet-900\\/50{outline-color:rgb(76 29 149/.5);}",
+  ],
+  [
+    "outline-purple-50/50",
+    ".outline-purple-50\\/50{outline-color:rgb(250 245 255/.5);}",
+  ],
+  [
+    "outline-purple-100/50",
+    ".outline-purple-100\\/50{outline-color:rgb(243 232 255/.5);}",
+  ],
+  [
+    "outline-purple-200/50",
+    ".outline-purple-200\\/50{outline-color:rgb(233 213 255/.5);}",
+  ],
+  [
+    "outline-purple-300/50",
+    ".outline-purple-300\\/50{outline-color:rgb(216 180 254/.5);}",
+  ],
+  [
+    "outline-purple-400/50",
+    ".outline-purple-400\\/50{outline-color:rgb(192 132 252/.5);}",
+  ],
+  [
+    "outline-purple-500/50",
+    ".outline-purple-500\\/50{outline-color:rgb(168 85 247/.5);}",
+  ],
+  [
+    "outline-purple-600/50",
+    ".outline-purple-600\\/50{outline-color:rgb(147 51 234/.5);}",
+  ],
+  [
+    "outline-purple-700/50",
+    ".outline-purple-700\\/50{outline-color:rgb(126 34 206/.5);}",
+  ],
+  [
+    "outline-purple-800/50",
+    ".outline-purple-800\\/50{outline-color:rgb(107 33 168/.5);}",
+  ],
+  [
+    "outline-purple-900/50",
+    ".outline-purple-900\\/50{outline-color:rgb(88 28 135/.5);}",
+  ],
+  [
+    "outline-fuchsia-50/50",
+    ".outline-fuchsia-50\\/50{outline-color:rgb(253 244 255/.5);}",
+  ],
+  [
+    "outline-fuchsia-100/50",
+    ".outline-fuchsia-100\\/50{outline-color:rgb(250 232 255/.5);}",
+  ],
+  [
+    "outline-fuchsia-200/50",
+    ".outline-fuchsia-200\\/50{outline-color:rgb(245 208 254/.5);}",
+  ],
+  [
+    "outline-fuchsia-300/50",
+    ".outline-fuchsia-300\\/50{outline-color:rgb(240 171 252/.5);}",
+  ],
+  [
+    "outline-fuchsia-400/50",
+    ".outline-fuchsia-400\\/50{outline-color:rgb(232 121 249/.5);}",
+  ],
+  [
+    "outline-fuchsia-500/50",
+    ".outline-fuchsia-500\\/50{outline-color:rgb(217 70 239/.5);}",
+  ],
+  [
+    "outline-fuchsia-600/50",
+    ".outline-fuchsia-600\\/50{outline-color:rgb(192 38 211/.5);}",
+  ],
+  [
+    "outline-fuchsia-700/50",
+    ".outline-fuchsia-700\\/50{outline-color:rgb(162 28 175/.5);}",
+  ],
+  [
+    "outline-fuchsia-800/50",
+    ".outline-fuchsia-800\\/50{outline-color:rgb(134 25 143/.5);}",
+  ],
+  [
+    "outline-fuchsia-900/50",
+    ".outline-fuchsia-900\\/50{outline-color:rgb(112 26 117/.5);}",
+  ],
+  [
+    "outline-pink-50/50",
+    ".outline-pink-50\\/50{outline-color:rgb(253 242 248/.5);}",
+  ],
+  [
+    "outline-pink-100/50",
+    ".outline-pink-100\\/50{outline-color:rgb(252 231 243/.5);}",
+  ],
+  [
+    "outline-pink-200/50",
+    ".outline-pink-200\\/50{outline-color:rgb(251 207 232/.5);}",
+  ],
+  [
+    "outline-pink-300/50",
+    ".outline-pink-300\\/50{outline-color:rgb(249 168 212/.5);}",
+  ],
+  [
+    "outline-pink-400/50",
+    ".outline-pink-400\\/50{outline-color:rgb(244 114 182/.5);}",
+  ],
+  [
+    "outline-pink-500/50",
+    ".outline-pink-500\\/50{outline-color:rgb(236 72 153/.5);}",
+  ],
+  [
+    "outline-pink-600/50",
+    ".outline-pink-600\\/50{outline-color:rgb(219 39 119/.5);}",
+  ],
+  [
+    "outline-pink-700/50",
+    ".outline-pink-700\\/50{outline-color:rgb(190 24 93/.5);}",
+  ],
+  [
+    "outline-pink-800/50",
+    ".outline-pink-800\\/50{outline-color:rgb(157 23 77/.5);}",
+  ],
+  [
+    "outline-pink-900/50",
+    ".outline-pink-900\\/50{outline-color:rgb(131 24 67/.5);}",
+  ],
+  [
+    "outline-rose-50/50",
+    ".outline-rose-50\\/50{outline-color:rgb(255 241 242/.5);}",
+  ],
+  [
+    "outline-rose-100/50",
+    ".outline-rose-100\\/50{outline-color:rgb(255 228 230/.5);}",
+  ],
+  [
+    "outline-rose-200/50",
+    ".outline-rose-200\\/50{outline-color:rgb(254 205 211/.5);}",
+  ],
+  [
+    "outline-rose-300/50",
+    ".outline-rose-300\\/50{outline-color:rgb(253 164 175/.5);}",
+  ],
+  [
+    "outline-rose-400/50",
+    ".outline-rose-400\\/50{outline-color:rgb(251 113 133/.5);}",
+  ],
+  [
+    "outline-rose-500/50",
+    ".outline-rose-500\\/50{outline-color:rgb(244 63 94/.5);}",
+  ],
+  [
+    "outline-rose-600/50",
+    ".outline-rose-600\\/50{outline-color:rgb(225 29 72/.5);}",
+  ],
+  [
+    "outline-rose-700/50",
+    ".outline-rose-700\\/50{outline-color:rgb(190 18 60/.5);}",
+  ],
+  [
+    "outline-rose-800/50",
+    ".outline-rose-800\\/50{outline-color:rgb(159 18 57/.5);}",
+  ],
+  [
+    "outline-rose-900/50",
+    ".outline-rose-900\\/50{outline-color:rgb(136 19 55/.5);}",
+  ],
+  ["outline-inherit/[1%]", ""],
+  ["outline-current/[1%]", ""],
+  ["outline-transparent/[1%]", ""],
+  [
+    "outline-black/[1%]",
+    ".outline-black\\/\\[1\\%\\]{outline-color:rgb(0 0 0/1%);}",
+  ],
+  [
+    "outline-white/[1%]",
+    ".outline-white\\/\\[1\\%\\]{outline-color:rgb(255 255 255/1%);}",
+  ],
+  [
+    "outline-slate-50/[1%]",
+    ".outline-slate-50\\/\\[1\\%\\]{outline-color:rgb(248 250 252/1%);}",
+  ],
+  [
+    "outline-slate-100/[1%]",
+    ".outline-slate-100\\/\\[1\\%\\]{outline-color:rgb(241 245 249/1%);}",
+  ],
+  [
+    "outline-slate-200/[1%]",
+    ".outline-slate-200\\/\\[1\\%\\]{outline-color:rgb(226 232 240/1%);}",
+  ],
+  [
+    "outline-slate-300/[1%]",
+    ".outline-slate-300\\/\\[1\\%\\]{outline-color:rgb(203 213 225/1%);}",
+  ],
+  [
+    "outline-slate-400/[1%]",
+    ".outline-slate-400\\/\\[1\\%\\]{outline-color:rgb(148 163 184/1%);}",
+  ],
+  [
+    "outline-slate-500/[1%]",
+    ".outline-slate-500\\/\\[1\\%\\]{outline-color:rgb(100 116 139/1%);}",
+  ],
+  [
+    "outline-slate-600/[1%]",
+    ".outline-slate-600\\/\\[1\\%\\]{outline-color:rgb(71 85 105/1%);}",
+  ],
+  [
+    "outline-slate-700/[1%]",
+    ".outline-slate-700\\/\\[1\\%\\]{outline-color:rgb(51 65 85/1%);}",
+  ],
+  [
+    "outline-slate-800/[1%]",
+    ".outline-slate-800\\/\\[1\\%\\]{outline-color:rgb(30 41 59/1%);}",
+  ],
+  [
+    "outline-slate-900/[1%]",
+    ".outline-slate-900\\/\\[1\\%\\]{outline-color:rgb(15 23 42/1%);}",
+  ],
+  [
+    "outline-gray-50/[1%]",
+    ".outline-gray-50\\/\\[1\\%\\]{outline-color:rgb(249 250 251/1%);}",
+  ],
+  [
+    "outline-gray-100/[1%]",
+    ".outline-gray-100\\/\\[1\\%\\]{outline-color:rgb(243 244 246/1%);}",
+  ],
+  [
+    "outline-gray-200/[1%]",
+    ".outline-gray-200\\/\\[1\\%\\]{outline-color:rgb(229 231 235/1%);}",
+  ],
+  [
+    "outline-gray-300/[1%]",
+    ".outline-gray-300\\/\\[1\\%\\]{outline-color:rgb(209 213 219/1%);}",
+  ],
+  [
+    "outline-gray-400/[1%]",
+    ".outline-gray-400\\/\\[1\\%\\]{outline-color:rgb(156 163 175/1%);}",
+  ],
+  [
+    "outline-gray-500/[1%]",
+    ".outline-gray-500\\/\\[1\\%\\]{outline-color:rgb(107 114 128/1%);}",
+  ],
+  [
+    "outline-gray-600/[1%]",
+    ".outline-gray-600\\/\\[1\\%\\]{outline-color:rgb(75 85 99/1%);}",
+  ],
+  [
+    "outline-gray-700/[1%]",
+    ".outline-gray-700\\/\\[1\\%\\]{outline-color:rgb(55 65 81/1%);}",
+  ],
+  [
+    "outline-gray-800/[1%]",
+    ".outline-gray-800\\/\\[1\\%\\]{outline-color:rgb(31 41 55/1%);}",
+  ],
+  [
+    "outline-gray-900/[1%]",
+    ".outline-gray-900\\/\\[1\\%\\]{outline-color:rgb(17 24 39/1%);}",
+  ],
+  [
+    "outline-zinc-50/[1%]",
+    ".outline-zinc-50\\/\\[1\\%\\]{outline-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "outline-zinc-100/[1%]",
+    ".outline-zinc-100\\/\\[1\\%\\]{outline-color:rgb(244 244 245/1%);}",
+  ],
+  [
+    "outline-zinc-200/[1%]",
+    ".outline-zinc-200\\/\\[1\\%\\]{outline-color:rgb(228 228 231/1%);}",
+  ],
+  [
+    "outline-zinc-300/[1%]",
+    ".outline-zinc-300\\/\\[1\\%\\]{outline-color:rgb(212 212 216/1%);}",
+  ],
+  [
+    "outline-zinc-400/[1%]",
+    ".outline-zinc-400\\/\\[1\\%\\]{outline-color:rgb(161 161 170/1%);}",
+  ],
+  [
+    "outline-zinc-500/[1%]",
+    ".outline-zinc-500\\/\\[1\\%\\]{outline-color:rgb(113 113 122/1%);}",
+  ],
+  [
+    "outline-zinc-600/[1%]",
+    ".outline-zinc-600\\/\\[1\\%\\]{outline-color:rgb(82 82 91/1%);}",
+  ],
+  [
+    "outline-zinc-700/[1%]",
+    ".outline-zinc-700\\/\\[1\\%\\]{outline-color:rgb(63 63 70/1%);}",
+  ],
+  [
+    "outline-zinc-800/[1%]",
+    ".outline-zinc-800\\/\\[1\\%\\]{outline-color:rgb(39 39 42/1%);}",
+  ],
+  [
+    "outline-zinc-900/[1%]",
+    ".outline-zinc-900\\/\\[1\\%\\]{outline-color:rgb(24 24 27/1%);}",
+  ],
+  [
+    "outline-neutral-50/[1%]",
+    ".outline-neutral-50\\/\\[1\\%\\]{outline-color:rgb(250 250 250/1%);}",
+  ],
+  [
+    "outline-neutral-100/[1%]",
+    ".outline-neutral-100\\/\\[1\\%\\]{outline-color:rgb(245 245 245/1%);}",
+  ],
+  [
+    "outline-neutral-200/[1%]",
+    ".outline-neutral-200\\/\\[1\\%\\]{outline-color:rgb(229 229 229/1%);}",
+  ],
+  [
+    "outline-neutral-300/[1%]",
+    ".outline-neutral-300\\/\\[1\\%\\]{outline-color:rgb(212 212 212/1%);}",
+  ],
+  [
+    "outline-neutral-400/[1%]",
+    ".outline-neutral-400\\/\\[1\\%\\]{outline-color:rgb(163 163 163/1%);}",
+  ],
+  [
+    "outline-neutral-500/[1%]",
+    ".outline-neutral-500\\/\\[1\\%\\]{outline-color:rgb(115 115 115/1%);}",
+  ],
+  [
+    "outline-neutral-600/[1%]",
+    ".outline-neutral-600\\/\\[1\\%\\]{outline-color:rgb(82 82 82/1%);}",
+  ],
+  [
+    "outline-neutral-700/[1%]",
+    ".outline-neutral-700\\/\\[1\\%\\]{outline-color:rgb(64 64 64/1%);}",
+  ],
+  [
+    "outline-neutral-800/[1%]",
+    ".outline-neutral-800\\/\\[1\\%\\]{outline-color:rgb(38 38 38/1%);}",
+  ],
+  [
+    "outline-neutral-900/[1%]",
+    ".outline-neutral-900\\/\\[1\\%\\]{outline-color:rgb(23 23 23/1%);}",
+  ],
+  [
+    "outline-stone-50/[1%]",
+    ".outline-stone-50\\/\\[1\\%\\]{outline-color:rgb(250 250 249/1%);}",
+  ],
+  [
+    "outline-stone-100/[1%]",
+    ".outline-stone-100\\/\\[1\\%\\]{outline-color:rgb(245 245 244/1%);}",
+  ],
+  [
+    "outline-stone-200/[1%]",
+    ".outline-stone-200\\/\\[1\\%\\]{outline-color:rgb(231 229 228/1%);}",
+  ],
+  [
+    "outline-stone-300/[1%]",
+    ".outline-stone-300\\/\\[1\\%\\]{outline-color:rgb(214 211 209/1%);}",
+  ],
+  [
+    "outline-stone-400/[1%]",
+    ".outline-stone-400\\/\\[1\\%\\]{outline-color:rgb(168 162 158/1%);}",
+  ],
+  [
+    "outline-stone-500/[1%]",
+    ".outline-stone-500\\/\\[1\\%\\]{outline-color:rgb(120 113 108/1%);}",
+  ],
+  [
+    "outline-stone-600/[1%]",
+    ".outline-stone-600\\/\\[1\\%\\]{outline-color:rgb(87 83 78/1%);}",
+  ],
+  [
+    "outline-stone-700/[1%]",
+    ".outline-stone-700\\/\\[1\\%\\]{outline-color:rgb(68 64 60/1%);}",
+  ],
+  [
+    "outline-stone-800/[1%]",
+    ".outline-stone-800\\/\\[1\\%\\]{outline-color:rgb(41 37 36/1%);}",
+  ],
+  [
+    "outline-stone-900/[1%]",
+    ".outline-stone-900\\/\\[1\\%\\]{outline-color:rgb(28 25 23/1%);}",
+  ],
+  [
+    "outline-red-50/[1%]",
+    ".outline-red-50\\/\\[1\\%\\]{outline-color:rgb(254 242 242/1%);}",
+  ],
+  [
+    "outline-red-100/[1%]",
+    ".outline-red-100\\/\\[1\\%\\]{outline-color:rgb(254 226 226/1%);}",
+  ],
+  [
+    "outline-red-200/[1%]",
+    ".outline-red-200\\/\\[1\\%\\]{outline-color:rgb(254 202 202/1%);}",
+  ],
+  [
+    "outline-red-300/[1%]",
+    ".outline-red-300\\/\\[1\\%\\]{outline-color:rgb(252 165 165/1%);}",
+  ],
+  [
+    "outline-red-400/[1%]",
+    ".outline-red-400\\/\\[1\\%\\]{outline-color:rgb(248 113 113/1%);}",
+  ],
+  [
+    "outline-red-500/[1%]",
+    ".outline-red-500\\/\\[1\\%\\]{outline-color:rgb(239 68 68/1%);}",
+  ],
+  [
+    "outline-red-600/[1%]",
+    ".outline-red-600\\/\\[1\\%\\]{outline-color:rgb(220 38 38/1%);}",
+  ],
+  [
+    "outline-red-700/[1%]",
+    ".outline-red-700\\/\\[1\\%\\]{outline-color:rgb(185 28 28/1%);}",
+  ],
+  [
+    "outline-red-800/[1%]",
+    ".outline-red-800\\/\\[1\\%\\]{outline-color:rgb(153 27 27/1%);}",
+  ],
+  [
+    "outline-red-900/[1%]",
+    ".outline-red-900\\/\\[1\\%\\]{outline-color:rgb(127 29 29/1%);}",
+  ],
+  [
+    "outline-orange-50/[1%]",
+    ".outline-orange-50\\/\\[1\\%\\]{outline-color:rgb(255 247 237/1%);}",
+  ],
+  [
+    "outline-orange-100/[1%]",
+    ".outline-orange-100\\/\\[1\\%\\]{outline-color:rgb(255 237 213/1%);}",
+  ],
+  [
+    "outline-orange-200/[1%]",
+    ".outline-orange-200\\/\\[1\\%\\]{outline-color:rgb(254 215 170/1%);}",
+  ],
+  [
+    "outline-orange-300/[1%]",
+    ".outline-orange-300\\/\\[1\\%\\]{outline-color:rgb(253 186 116/1%);}",
+  ],
+  [
+    "outline-orange-400/[1%]",
+    ".outline-orange-400\\/\\[1\\%\\]{outline-color:rgb(251 146 60/1%);}",
+  ],
+  [
+    "outline-orange-500/[1%]",
+    ".outline-orange-500\\/\\[1\\%\\]{outline-color:rgb(249 115 22/1%);}",
+  ],
+  [
+    "outline-orange-600/[1%]",
+    ".outline-orange-600\\/\\[1\\%\\]{outline-color:rgb(234 88 12/1%);}",
+  ],
+  [
+    "outline-orange-700/[1%]",
+    ".outline-orange-700\\/\\[1\\%\\]{outline-color:rgb(194 65 12/1%);}",
+  ],
+  [
+    "outline-orange-800/[1%]",
+    ".outline-orange-800\\/\\[1\\%\\]{outline-color:rgb(154 52 18/1%);}",
+  ],
+  [
+    "outline-orange-900/[1%]",
+    ".outline-orange-900\\/\\[1\\%\\]{outline-color:rgb(124 45 18/1%);}",
+  ],
+  [
+    "outline-amber-50/[1%]",
+    ".outline-amber-50\\/\\[1\\%\\]{outline-color:rgb(255 251 235/1%);}",
+  ],
+  [
+    "outline-amber-100/[1%]",
+    ".outline-amber-100\\/\\[1\\%\\]{outline-color:rgb(254 243 199/1%);}",
+  ],
+  [
+    "outline-amber-200/[1%]",
+    ".outline-amber-200\\/\\[1\\%\\]{outline-color:rgb(253 230 138/1%);}",
+  ],
+  [
+    "outline-amber-300/[1%]",
+    ".outline-amber-300\\/\\[1\\%\\]{outline-color:rgb(252 211 77/1%);}",
+  ],
+  [
+    "outline-amber-400/[1%]",
+    ".outline-amber-400\\/\\[1\\%\\]{outline-color:rgb(251 191 36/1%);}",
+  ],
+  [
+    "outline-amber-500/[1%]",
+    ".outline-amber-500\\/\\[1\\%\\]{outline-color:rgb(245 158 11/1%);}",
+  ],
+  [
+    "outline-amber-600/[1%]",
+    ".outline-amber-600\\/\\[1\\%\\]{outline-color:rgb(217 119 6/1%);}",
+  ],
+  [
+    "outline-amber-700/[1%]",
+    ".outline-amber-700\\/\\[1\\%\\]{outline-color:rgb(180 83 9/1%);}",
+  ],
+  [
+    "outline-amber-800/[1%]",
+    ".outline-amber-800\\/\\[1\\%\\]{outline-color:rgb(146 64 14/1%);}",
+  ],
+  [
+    "outline-amber-900/[1%]",
+    ".outline-amber-900\\/\\[1\\%\\]{outline-color:rgb(120 53 15/1%);}",
+  ],
+  [
+    "outline-yellow-50/[1%]",
+    ".outline-yellow-50\\/\\[1\\%\\]{outline-color:rgb(254 252 232/1%);}",
+  ],
+  [
+    "outline-yellow-100/[1%]",
+    ".outline-yellow-100\\/\\[1\\%\\]{outline-color:rgb(254 249 195/1%);}",
+  ],
+  [
+    "outline-yellow-200/[1%]",
+    ".outline-yellow-200\\/\\[1\\%\\]{outline-color:rgb(254 240 138/1%);}",
+  ],
+  [
+    "outline-yellow-300/[1%]",
+    ".outline-yellow-300\\/\\[1\\%\\]{outline-color:rgb(253 224 71/1%);}",
+  ],
+  [
+    "outline-yellow-400/[1%]",
+    ".outline-yellow-400\\/\\[1\\%\\]{outline-color:rgb(250 204 21/1%);}",
+  ],
+  [
+    "outline-yellow-500/[1%]",
+    ".outline-yellow-500\\/\\[1\\%\\]{outline-color:rgb(234 179 8/1%);}",
+  ],
+  [
+    "outline-yellow-600/[1%]",
+    ".outline-yellow-600\\/\\[1\\%\\]{outline-color:rgb(202 138 4/1%);}",
+  ],
+  [
+    "outline-yellow-700/[1%]",
+    ".outline-yellow-700\\/\\[1\\%\\]{outline-color:rgb(161 98 7/1%);}",
+  ],
+  [
+    "outline-yellow-800/[1%]",
+    ".outline-yellow-800\\/\\[1\\%\\]{outline-color:rgb(133 77 14/1%);}",
+  ],
+  [
+    "outline-yellow-900/[1%]",
+    ".outline-yellow-900\\/\\[1\\%\\]{outline-color:rgb(113 63 18/1%);}",
+  ],
+  [
+    "outline-lime-50/[1%]",
+    ".outline-lime-50\\/\\[1\\%\\]{outline-color:rgb(247 254 231/1%);}",
+  ],
+  [
+    "outline-lime-100/[1%]",
+    ".outline-lime-100\\/\\[1\\%\\]{outline-color:rgb(236 252 203/1%);}",
+  ],
+  [
+    "outline-lime-200/[1%]",
+    ".outline-lime-200\\/\\[1\\%\\]{outline-color:rgb(217 249 157/1%);}",
+  ],
+  [
+    "outline-lime-300/[1%]",
+    ".outline-lime-300\\/\\[1\\%\\]{outline-color:rgb(190 242 100/1%);}",
+  ],
+  [
+    "outline-lime-400/[1%]",
+    ".outline-lime-400\\/\\[1\\%\\]{outline-color:rgb(163 230 53/1%);}",
+  ],
+  [
+    "outline-lime-500/[1%]",
+    ".outline-lime-500\\/\\[1\\%\\]{outline-color:rgb(132 204 22/1%);}",
+  ],
+  [
+    "outline-lime-600/[1%]",
+    ".outline-lime-600\\/\\[1\\%\\]{outline-color:rgb(101 163 13/1%);}",
+  ],
+  [
+    "outline-lime-700/[1%]",
+    ".outline-lime-700\\/\\[1\\%\\]{outline-color:rgb(77 124 15/1%);}",
+  ],
+  [
+    "outline-lime-800/[1%]",
+    ".outline-lime-800\\/\\[1\\%\\]{outline-color:rgb(63 98 18/1%);}",
+  ],
+  [
+    "outline-lime-900/[1%]",
+    ".outline-lime-900\\/\\[1\\%\\]{outline-color:rgb(54 83 20/1%);}",
+  ],
+  [
+    "outline-green-50/[1%]",
+    ".outline-green-50\\/\\[1\\%\\]{outline-color:rgb(240 253 244/1%);}",
+  ],
+  [
+    "outline-green-100/[1%]",
+    ".outline-green-100\\/\\[1\\%\\]{outline-color:rgb(220 252 231/1%);}",
+  ],
+  [
+    "outline-green-200/[1%]",
+    ".outline-green-200\\/\\[1\\%\\]{outline-color:rgb(187 247 208/1%);}",
+  ],
+  [
+    "outline-green-300/[1%]",
+    ".outline-green-300\\/\\[1\\%\\]{outline-color:rgb(134 239 172/1%);}",
+  ],
+  [
+    "outline-green-400/[1%]",
+    ".outline-green-400\\/\\[1\\%\\]{outline-color:rgb(74 222 128/1%);}",
+  ],
+  [
+    "outline-green-500/[1%]",
+    ".outline-green-500\\/\\[1\\%\\]{outline-color:rgb(34 197 94/1%);}",
+  ],
+  [
+    "outline-green-600/[1%]",
+    ".outline-green-600\\/\\[1\\%\\]{outline-color:rgb(22 163 74/1%);}",
+  ],
+  [
+    "outline-green-700/[1%]",
+    ".outline-green-700\\/\\[1\\%\\]{outline-color:rgb(21 128 61/1%);}",
+  ],
+  [
+    "outline-green-800/[1%]",
+    ".outline-green-800\\/\\[1\\%\\]{outline-color:rgb(22 101 52/1%);}",
+  ],
+  [
+    "outline-green-900/[1%]",
+    ".outline-green-900\\/\\[1\\%\\]{outline-color:rgb(20 83 45/1%);}",
+  ],
+  [
+    "outline-emerald-50/[1%]",
+    ".outline-emerald-50\\/\\[1\\%\\]{outline-color:rgb(236 253 245/1%);}",
+  ],
+  [
+    "outline-emerald-100/[1%]",
+    ".outline-emerald-100\\/\\[1\\%\\]{outline-color:rgb(209 250 229/1%);}",
+  ],
+  [
+    "outline-emerald-200/[1%]",
+    ".outline-emerald-200\\/\\[1\\%\\]{outline-color:rgb(167 243 208/1%);}",
+  ],
+  [
+    "outline-emerald-300/[1%]",
+    ".outline-emerald-300\\/\\[1\\%\\]{outline-color:rgb(110 231 183/1%);}",
+  ],
+  [
+    "outline-emerald-400/[1%]",
+    ".outline-emerald-400\\/\\[1\\%\\]{outline-color:rgb(52 211 153/1%);}",
+  ],
+  [
+    "outline-emerald-500/[1%]",
+    ".outline-emerald-500\\/\\[1\\%\\]{outline-color:rgb(16 185 129/1%);}",
+  ],
+  [
+    "outline-emerald-600/[1%]",
+    ".outline-emerald-600\\/\\[1\\%\\]{outline-color:rgb(5 150 105/1%);}",
+  ],
+  [
+    "outline-emerald-700/[1%]",
+    ".outline-emerald-700\\/\\[1\\%\\]{outline-color:rgb(4 120 87/1%);}",
+  ],
+  [
+    "outline-emerald-800/[1%]",
+    ".outline-emerald-800\\/\\[1\\%\\]{outline-color:rgb(6 95 70/1%);}",
+  ],
+  [
+    "outline-emerald-900/[1%]",
+    ".outline-emerald-900\\/\\[1\\%\\]{outline-color:rgb(6 78 59/1%);}",
+  ],
+  [
+    "outline-teal-50/[1%]",
+    ".outline-teal-50\\/\\[1\\%\\]{outline-color:rgb(240 253 250/1%);}",
+  ],
+  [
+    "outline-teal-100/[1%]",
+    ".outline-teal-100\\/\\[1\\%\\]{outline-color:rgb(204 251 241/1%);}",
+  ],
+  [
+    "outline-teal-200/[1%]",
+    ".outline-teal-200\\/\\[1\\%\\]{outline-color:rgb(153 246 228/1%);}",
+  ],
+  [
+    "outline-teal-300/[1%]",
+    ".outline-teal-300\\/\\[1\\%\\]{outline-color:rgb(94 234 212/1%);}",
+  ],
+  [
+    "outline-teal-400/[1%]",
+    ".outline-teal-400\\/\\[1\\%\\]{outline-color:rgb(45 212 191/1%);}",
+  ],
+  [
+    "outline-teal-500/[1%]",
+    ".outline-teal-500\\/\\[1\\%\\]{outline-color:rgb(20 184 166/1%);}",
+  ],
+  [
+    "outline-teal-600/[1%]",
+    ".outline-teal-600\\/\\[1\\%\\]{outline-color:rgb(13 148 136/1%);}",
+  ],
+  [
+    "outline-teal-700/[1%]",
+    ".outline-teal-700\\/\\[1\\%\\]{outline-color:rgb(15 118 110/1%);}",
+  ],
+  [
+    "outline-teal-800/[1%]",
+    ".outline-teal-800\\/\\[1\\%\\]{outline-color:rgb(17 94 89/1%);}",
+  ],
+  [
+    "outline-teal-900/[1%]",
+    ".outline-teal-900\\/\\[1\\%\\]{outline-color:rgb(19 78 74/1%);}",
+  ],
+  [
+    "outline-cyan-50/[1%]",
+    ".outline-cyan-50\\/\\[1\\%\\]{outline-color:rgb(236 254 255/1%);}",
+  ],
+  [
+    "outline-cyan-100/[1%]",
+    ".outline-cyan-100\\/\\[1\\%\\]{outline-color:rgb(207 250 254/1%);}",
+  ],
+  [
+    "outline-cyan-200/[1%]",
+    ".outline-cyan-200\\/\\[1\\%\\]{outline-color:rgb(165 243 252/1%);}",
+  ],
+  [
+    "outline-cyan-300/[1%]",
+    ".outline-cyan-300\\/\\[1\\%\\]{outline-color:rgb(103 232 249/1%);}",
+  ],
+  [
+    "outline-cyan-400/[1%]",
+    ".outline-cyan-400\\/\\[1\\%\\]{outline-color:rgb(34 211 238/1%);}",
+  ],
+  [
+    "outline-cyan-500/[1%]",
+    ".outline-cyan-500\\/\\[1\\%\\]{outline-color:rgb(6 182 212/1%);}",
+  ],
+  [
+    "outline-cyan-600/[1%]",
+    ".outline-cyan-600\\/\\[1\\%\\]{outline-color:rgb(8 145 178/1%);}",
+  ],
+  [
+    "outline-cyan-700/[1%]",
+    ".outline-cyan-700\\/\\[1\\%\\]{outline-color:rgb(14 116 144/1%);}",
+  ],
+  [
+    "outline-cyan-800/[1%]",
+    ".outline-cyan-800\\/\\[1\\%\\]{outline-color:rgb(21 94 117/1%);}",
+  ],
+  [
+    "outline-cyan-900/[1%]",
+    ".outline-cyan-900\\/\\[1\\%\\]{outline-color:rgb(22 78 99/1%);}",
+  ],
+  [
+    "outline-sky-50/[1%]",
+    ".outline-sky-50\\/\\[1\\%\\]{outline-color:rgb(240 249 255/1%);}",
+  ],
+  [
+    "outline-sky-100/[1%]",
+    ".outline-sky-100\\/\\[1\\%\\]{outline-color:rgb(224 242 254/1%);}",
+  ],
+  [
+    "outline-sky-200/[1%]",
+    ".outline-sky-200\\/\\[1\\%\\]{outline-color:rgb(186 230 253/1%);}",
+  ],
+  [
+    "outline-sky-300/[1%]",
+    ".outline-sky-300\\/\\[1\\%\\]{outline-color:rgb(125 211 252/1%);}",
+  ],
+  [
+    "outline-sky-400/[1%]",
+    ".outline-sky-400\\/\\[1\\%\\]{outline-color:rgb(56 189 248/1%);}",
+  ],
+  [
+    "outline-sky-500/[1%]",
+    ".outline-sky-500\\/\\[1\\%\\]{outline-color:rgb(14 165 233/1%);}",
+  ],
+  [
+    "outline-sky-600/[1%]",
+    ".outline-sky-600\\/\\[1\\%\\]{outline-color:rgb(2 132 199/1%);}",
+  ],
+  [
+    "outline-sky-700/[1%]",
+    ".outline-sky-700\\/\\[1\\%\\]{outline-color:rgb(3 105 161/1%);}",
+  ],
+  [
+    "outline-sky-800/[1%]",
+    ".outline-sky-800\\/\\[1\\%\\]{outline-color:rgb(7 89 133/1%);}",
+  ],
+  [
+    "outline-sky-900/[1%]",
+    ".outline-sky-900\\/\\[1\\%\\]{outline-color:rgb(12 74 110/1%);}",
+  ],
+  [
+    "outline-blue-50/[1%]",
+    ".outline-blue-50\\/\\[1\\%\\]{outline-color:rgb(239 246 255/1%);}",
+  ],
+  [
+    "outline-blue-100/[1%]",
+    ".outline-blue-100\\/\\[1\\%\\]{outline-color:rgb(219 234 254/1%);}",
+  ],
+  [
+    "outline-blue-200/[1%]",
+    ".outline-blue-200\\/\\[1\\%\\]{outline-color:rgb(191 219 254/1%);}",
+  ],
+  [
+    "outline-blue-300/[1%]",
+    ".outline-blue-300\\/\\[1\\%\\]{outline-color:rgb(147 197 253/1%);}",
+  ],
+  [
+    "outline-blue-400/[1%]",
+    ".outline-blue-400\\/\\[1\\%\\]{outline-color:rgb(96 165 250/1%);}",
+  ],
+  [
+    "outline-blue-500/[1%]",
+    ".outline-blue-500\\/\\[1\\%\\]{outline-color:rgb(59 130 246/1%);}",
+  ],
+  [
+    "outline-blue-600/[1%]",
+    ".outline-blue-600\\/\\[1\\%\\]{outline-color:rgb(37 99 235/1%);}",
+  ],
+  [
+    "outline-blue-700/[1%]",
+    ".outline-blue-700\\/\\[1\\%\\]{outline-color:rgb(29 78 216/1%);}",
+  ],
+  [
+    "outline-blue-800/[1%]",
+    ".outline-blue-800\\/\\[1\\%\\]{outline-color:rgb(30 64 175/1%);}",
+  ],
+  [
+    "outline-blue-900/[1%]",
+    ".outline-blue-900\\/\\[1\\%\\]{outline-color:rgb(30 58 138/1%);}",
+  ],
+  [
+    "outline-indigo-50/[1%]",
+    ".outline-indigo-50\\/\\[1\\%\\]{outline-color:rgb(238 242 255/1%);}",
+  ],
+  [
+    "outline-indigo-100/[1%]",
+    ".outline-indigo-100\\/\\[1\\%\\]{outline-color:rgb(224 231 255/1%);}",
+  ],
+  [
+    "outline-indigo-200/[1%]",
+    ".outline-indigo-200\\/\\[1\\%\\]{outline-color:rgb(199 210 254/1%);}",
+  ],
+  [
+    "outline-indigo-300/[1%]",
+    ".outline-indigo-300\\/\\[1\\%\\]{outline-color:rgb(165 180 252/1%);}",
+  ],
+  [
+    "outline-indigo-400/[1%]",
+    ".outline-indigo-400\\/\\[1\\%\\]{outline-color:rgb(129 140 248/1%);}",
+  ],
+  [
+    "outline-indigo-500/[1%]",
+    ".outline-indigo-500\\/\\[1\\%\\]{outline-color:rgb(99 102 241/1%);}",
+  ],
+  [
+    "outline-indigo-600/[1%]",
+    ".outline-indigo-600\\/\\[1\\%\\]{outline-color:rgb(79 70 229/1%);}",
+  ],
+  [
+    "outline-indigo-700/[1%]",
+    ".outline-indigo-700\\/\\[1\\%\\]{outline-color:rgb(67 56 202/1%);}",
+  ],
+  [
+    "outline-indigo-800/[1%]",
+    ".outline-indigo-800\\/\\[1\\%\\]{outline-color:rgb(55 48 163/1%);}",
+  ],
+  [
+    "outline-indigo-900/[1%]",
+    ".outline-indigo-900\\/\\[1\\%\\]{outline-color:rgb(49 46 129/1%);}",
+  ],
+  [
+    "outline-violet-50/[1%]",
+    ".outline-violet-50\\/\\[1\\%\\]{outline-color:rgb(245 243 255/1%);}",
+  ],
+  [
+    "outline-violet-100/[1%]",
+    ".outline-violet-100\\/\\[1\\%\\]{outline-color:rgb(237 233 254/1%);}",
+  ],
+  [
+    "outline-violet-200/[1%]",
+    ".outline-violet-200\\/\\[1\\%\\]{outline-color:rgb(221 214 254/1%);}",
+  ],
+  [
+    "outline-violet-300/[1%]",
+    ".outline-violet-300\\/\\[1\\%\\]{outline-color:rgb(196 181 253/1%);}",
+  ],
+  [
+    "outline-violet-400/[1%]",
+    ".outline-violet-400\\/\\[1\\%\\]{outline-color:rgb(167 139 250/1%);}",
+  ],
+  [
+    "outline-violet-500/[1%]",
+    ".outline-violet-500\\/\\[1\\%\\]{outline-color:rgb(139 92 246/1%);}",
+  ],
+  [
+    "outline-violet-600/[1%]",
+    ".outline-violet-600\\/\\[1\\%\\]{outline-color:rgb(124 58 237/1%);}",
+  ],
+  [
+    "outline-violet-700/[1%]",
+    ".outline-violet-700\\/\\[1\\%\\]{outline-color:rgb(109 40 217/1%);}",
+  ],
+  [
+    "outline-violet-800/[1%]",
+    ".outline-violet-800\\/\\[1\\%\\]{outline-color:rgb(91 33 182/1%);}",
+  ],
+  [
+    "outline-violet-900/[1%]",
+    ".outline-violet-900\\/\\[1\\%\\]{outline-color:rgb(76 29 149/1%);}",
+  ],
+  [
+    "outline-purple-50/[1%]",
+    ".outline-purple-50\\/\\[1\\%\\]{outline-color:rgb(250 245 255/1%);}",
+  ],
+  [
+    "outline-purple-100/[1%]",
+    ".outline-purple-100\\/\\[1\\%\\]{outline-color:rgb(243 232 255/1%);}",
+  ],
+  [
+    "outline-purple-200/[1%]",
+    ".outline-purple-200\\/\\[1\\%\\]{outline-color:rgb(233 213 255/1%);}",
+  ],
+  [
+    "outline-purple-300/[1%]",
+    ".outline-purple-300\\/\\[1\\%\\]{outline-color:rgb(216 180 254/1%);}",
+  ],
+  [
+    "outline-purple-400/[1%]",
+    ".outline-purple-400\\/\\[1\\%\\]{outline-color:rgb(192 132 252/1%);}",
+  ],
+  [
+    "outline-purple-500/[1%]",
+    ".outline-purple-500\\/\\[1\\%\\]{outline-color:rgb(168 85 247/1%);}",
+  ],
+  [
+    "outline-purple-600/[1%]",
+    ".outline-purple-600\\/\\[1\\%\\]{outline-color:rgb(147 51 234/1%);}",
+  ],
+  [
+    "outline-purple-700/[1%]",
+    ".outline-purple-700\\/\\[1\\%\\]{outline-color:rgb(126 34 206/1%);}",
+  ],
+  [
+    "outline-purple-800/[1%]",
+    ".outline-purple-800\\/\\[1\\%\\]{outline-color:rgb(107 33 168/1%);}",
+  ],
+  [
+    "outline-purple-900/[1%]",
+    ".outline-purple-900\\/\\[1\\%\\]{outline-color:rgb(88 28 135/1%);}",
+  ],
+  [
+    "outline-fuchsia-50/[1%]",
+    ".outline-fuchsia-50\\/\\[1\\%\\]{outline-color:rgb(253 244 255/1%);}",
+  ],
+  [
+    "outline-fuchsia-100/[1%]",
+    ".outline-fuchsia-100\\/\\[1\\%\\]{outline-color:rgb(250 232 255/1%);}",
+  ],
+  [
+    "outline-fuchsia-200/[1%]",
+    ".outline-fuchsia-200\\/\\[1\\%\\]{outline-color:rgb(245 208 254/1%);}",
+  ],
+  [
+    "outline-fuchsia-300/[1%]",
+    ".outline-fuchsia-300\\/\\[1\\%\\]{outline-color:rgb(240 171 252/1%);}",
+  ],
+  [
+    "outline-fuchsia-400/[1%]",
+    ".outline-fuchsia-400\\/\\[1\\%\\]{outline-color:rgb(232 121 249/1%);}",
+  ],
+  [
+    "outline-fuchsia-500/[1%]",
+    ".outline-fuchsia-500\\/\\[1\\%\\]{outline-color:rgb(217 70 239/1%);}",
+  ],
+  [
+    "outline-fuchsia-600/[1%]",
+    ".outline-fuchsia-600\\/\\[1\\%\\]{outline-color:rgb(192 38 211/1%);}",
+  ],
+  [
+    "outline-fuchsia-700/[1%]",
+    ".outline-fuchsia-700\\/\\[1\\%\\]{outline-color:rgb(162 28 175/1%);}",
+  ],
+  [
+    "outline-fuchsia-800/[1%]",
+    ".outline-fuchsia-800\\/\\[1\\%\\]{outline-color:rgb(134 25 143/1%);}",
+  ],
+  [
+    "outline-fuchsia-900/[1%]",
+    ".outline-fuchsia-900\\/\\[1\\%\\]{outline-color:rgb(112 26 117/1%);}",
+  ],
+  [
+    "outline-pink-50/[1%]",
+    ".outline-pink-50\\/\\[1\\%\\]{outline-color:rgb(253 242 248/1%);}",
+  ],
+  [
+    "outline-pink-100/[1%]",
+    ".outline-pink-100\\/\\[1\\%\\]{outline-color:rgb(252 231 243/1%);}",
+  ],
+  [
+    "outline-pink-200/[1%]",
+    ".outline-pink-200\\/\\[1\\%\\]{outline-color:rgb(251 207 232/1%);}",
+  ],
+  [
+    "outline-pink-300/[1%]",
+    ".outline-pink-300\\/\\[1\\%\\]{outline-color:rgb(249 168 212/1%);}",
+  ],
+  [
+    "outline-pink-400/[1%]",
+    ".outline-pink-400\\/\\[1\\%\\]{outline-color:rgb(244 114 182/1%);}",
+  ],
+  [
+    "outline-pink-500/[1%]",
+    ".outline-pink-500\\/\\[1\\%\\]{outline-color:rgb(236 72 153/1%);}",
+  ],
+  [
+    "outline-pink-600/[1%]",
+    ".outline-pink-600\\/\\[1\\%\\]{outline-color:rgb(219 39 119/1%);}",
+  ],
+  [
+    "outline-pink-700/[1%]",
+    ".outline-pink-700\\/\\[1\\%\\]{outline-color:rgb(190 24 93/1%);}",
+  ],
+  [
+    "outline-pink-800/[1%]",
+    ".outline-pink-800\\/\\[1\\%\\]{outline-color:rgb(157 23 77/1%);}",
+  ],
+  [
+    "outline-pink-900/[1%]",
+    ".outline-pink-900\\/\\[1\\%\\]{outline-color:rgb(131 24 67/1%);}",
+  ],
+  [
+    "outline-rose-50/[1%]",
+    ".outline-rose-50\\/\\[1\\%\\]{outline-color:rgb(255 241 242/1%);}",
+  ],
+  [
+    "outline-rose-100/[1%]",
+    ".outline-rose-100\\/\\[1\\%\\]{outline-color:rgb(255 228 230/1%);}",
+  ],
+  [
+    "outline-rose-200/[1%]",
+    ".outline-rose-200\\/\\[1\\%\\]{outline-color:rgb(254 205 211/1%);}",
+  ],
+  [
+    "outline-rose-300/[1%]",
+    ".outline-rose-300\\/\\[1\\%\\]{outline-color:rgb(253 164 175/1%);}",
+  ],
+  [
+    "outline-rose-400/[1%]",
+    ".outline-rose-400\\/\\[1\\%\\]{outline-color:rgb(251 113 133/1%);}",
+  ],
+  [
+    "outline-rose-500/[1%]",
+    ".outline-rose-500\\/\\[1\\%\\]{outline-color:rgb(244 63 94/1%);}",
+  ],
+  [
+    "outline-rose-600/[1%]",
+    ".outline-rose-600\\/\\[1\\%\\]{outline-color:rgb(225 29 72/1%);}",
+  ],
+  [
+    "outline-rose-700/[1%]",
+    ".outline-rose-700\\/\\[1\\%\\]{outline-color:rgb(190 18 60/1%);}",
+  ],
+  [
+    "outline-rose-800/[1%]",
+    ".outline-rose-800\\/\\[1\\%\\]{outline-color:rgb(159 18 57/1%);}",
+  ],
+  [
+    "outline-rose-900/[1%]",
+    ".outline-rose-900\\/\\[1\\%\\]{outline-color:rgb(136 19 55/1%);}",
+  ],
   ["outline", ".outline{outline-style:solid;}"],
   [
     "outline-none",
