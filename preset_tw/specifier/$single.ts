@@ -16,25 +16,472 @@ import type {
   Specifier,
 } from "../../core/types.ts";
 import {
+  associateNumeric,
+  associatePer100,
+  associatePercent,
+  associateRem,
   customPropertySet,
+  fractionBy,
   handleTransform,
+  numericBy,
+  remBy,
   transformValue,
 } from "./_utils.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { isUndefined } from "../../deps.ts";
+import { associateWith, isNumber, isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,
   reAll,
+  reBracket$,
+  reFraction,
+  reNumeric,
   reSlashNumber,
 } from "../../core/utils/regexp.ts";
+import { AUTO, HIDDEN } from "../../constants.ts";
 
+const VERTICAL_ALIGN = "vertical-align";
+
+export const align: EntriesSpecifier = [
+  ["baseline", { [VERTICAL_ALIGN]: "baseline" }],
+  ["top", { [VERTICAL_ALIGN]: "top" }],
+  ["middle", { [VERTICAL_ALIGN]: "middle" }],
+  ["bottom", { [VERTICAL_ALIGN]: "bottom" }],
+  ["text", {
+    top: { [VERTICAL_ALIGN]: "text-top" },
+    bottom: { [VERTICAL_ALIGN]: "text-bottom" },
+  }],
+  ["sub", { [VERTICAL_ALIGN]: "sub" }],
+  ["super", { [VERTICAL_ALIGN]: "super" }],
+];
+const ASPECT_RATIO = "aspect-ratio";
+export const aspect: Specifier = [
+  ["auto", { [ASPECT_RATIO]: AUTO }],
+  ["square", { [ASPECT_RATIO]: "1 / 1" }],
+  ["video", { [ASPECT_RATIO]: "16 / 9" }],
+];
+const BACKFACE_VISIBILITY = "backface-visibility";
+
+export const backface: Specifier = {
+  visible: { [BACKFACE_VISIBILITY]: "visible" },
+  hidden: { [BACKFACE_VISIBILITY]: HIDDEN },
+};
+export const basis: EntriesSpecifier = [
+  [0, { "flex-basis": "0px" }],
+  ["px", { "flex-basis": "1px" }],
+  ["auto", { "flex-basis": "auto" }],
+  ["full", {
+    "flex-basis": "100%",
+  }],
+  [reNumeric, ([, numeric]) => associateRem(["flex-basis"], numeric)],
+  [
+    reSlashNumber,
+    ([, numerator, denominator]) =>
+      associatePercent(["flex-basis"], numerator, denominator),
+  ],
+  [reBracket$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
+];
 export const block: CSSObject = { display: "block" };
+export const bottom: EntriesSpecifier = [
+  [0, { bottom: "0px" }],
+  ["px", { bottom: "1px" }],
+  ["auto", { bottom: "auto" }],
+  ["full", { bottom: "100%" }],
+
+  [
+    reFraction,
+    ([, numerator, denominator]) =>
+      associatePercent(["bottom"], numerator, denominator),
+  ],
+  [reNumeric, ([, numeric]) => associateRem(["bottom"], numeric)],
+  [
+    reBracket$,
+    ([, attr]) => ({ bottom: attr }),
+  ],
+];
+export const clear: Specifier = {
+  right: { clear: "right" },
+  left: { clear: "left" },
+  both: { clear: "both" },
+  none: { clear: "none" },
+};
+export const columns: EntriesSpecifier = [
+  ["auto", { columns: "auto" }],
+  ["3xs", { columns: "16rem" }],
+  ["2xs", { columns: "18rem" }],
+  ["xs", { columns: "20rem" }],
+  ["sm", { columns: "24rem" }],
+  ["md", { columns: "28rem" }],
+  ["lg", { columns: "32rem" }],
+  ["xl", { columns: "36rem" }],
+  ["2xl", { columns: "42rem" }],
+  ["3xl", { columns: "48rem" }],
+  ["4xl", { columns: "56rem" }],
+  ["5xl", { columns: "64rem" }],
+  ["6xl", { columns: "72rem" }],
+  ["7xl", { columns: "80rem" }],
+  [rePositiveNumber, ([, n]) =>
+    parseNumeric(n).match({
+      some: (number) => ({ columns: number }),
+      none: undefined,
+    })],
+];
+export const float: Specifier = {
+  right: { float: "right" },
+  left: { float: "left" },
+  none: { float: "none" },
+};
+export const grow: EntriesSpecifier = [
+  ["DEFAULT", { "flex-grow": 1 }],
+  [rePositiveNumber, ([, pNumber]) => associateNumeric(["flex-grow"], pNumber)],
+];
+export const h: Specifier = [
+  [0, { height: "0px" }],
+  ["px", { height: "1px" }],
+  ["auto", { height: "auto" }],
+  ["full", { height: "100%" }],
+  ["screen", { height: "100vh" }],
+  ["min", { height: "min-content" }],
+  ["max", { height: "max-content" }],
+  ["fit", { height: "fit-content" }],
+  [reNumeric, ([, numeric]) => {
+    return remBy(numeric, (rem) => ({
+      height: rem,
+    }));
+  }],
+  [reFraction, ([, numerator, denominator]) => {
+    return fractionBy(numerator, denominator, (percent) => ({
+      height: percent,
+    }));
+  }],
+];
+export const indent: EntriesSpecifier = [
+  [0, { "text-indent": "0px" }],
+  ["px", { "text-indent": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["text-indent"], numeric)],
+];
+export const inline: Specifier = {
+  DEFAULT: { display: "inline" },
+  block: { display: "inline-block" },
+  flex: { display: "inline-flex" },
+  table: { display: "inline-table" },
+  grid: { display: "inline-grid" },
+};
 export const isolate: CSSObject = { isolation: "isolate" };
 export const isolation: Specifier = {
   auto: {
     isolation: "auto",
   },
 };
+export const items: Specifier = {
+  center: { "align-items": "center" },
+  start: { "align-items": "flex-start" },
+  end: { "align-items": "flex-end" },
+  baseline: { "align-items": "baseline" },
+  stretch: { "align-items": "stretch" },
+};
+export const leading: Specifier = [
+  ["none", { "line-height": 1 }],
+  ["tight", { "line-height": 1.25 }],
+  ["snug", { "line-height": 1.375 }],
+  ["normal", { "line-height": 1.5 }],
+  ["relaxed", { "line-height": 1.625 }],
+  ["loose", { "line-height": 2 }],
+  [rePositiveNumber, ([, number]) => {
+    return remBy(number, (rem) => ({ "line-height": rem }));
+  }],
+];
+export const left: EntriesSpecifier = [
+  [0, { left: "0px" }],
+  ["px", { left: "1px" }],
+  ["auto", { left: "auto" }],
+  ["full", { left: "100%" }],
+
+  [
+    reFraction,
+    ([, numerator, denominator]) =>
+      associatePercent(["left"], numerator, denominator),
+  ],
+  [reNumeric, ([, numeric]) => associateRem(["left"], numeric)],
+  [
+    reBracket$,
+    ([, attr]) => ({ left: attr }),
+  ],
+];
+export const m: Specifier = [
+  ["0", { margin: "0px" }],
+  ["auto", { margin: "auto" }],
+  ["px", { margin: "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["margin"], numeric)],
+  [reBracket$, ([, arbitrary]) => ({ margin: arbitrary })],
+];
+export const mb: Specifier = [
+  ["0", { "margin-bottom": "0px" }],
+  ["auto", { "margin-bottom": "auto" }],
+  ["px", { "margin-bottom": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["margin-bottom"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "margin-bottom": arbitrary }),
+  ],
+];
+export const mix: EntriesSpecifier = [
+  ["blend", {
+    normal: { "mix-blend-mode": "normal" },
+    multiply: { "mix-blend-mode": "multiply" },
+    screen: { "mix-blend-mode": "screen" },
+    overlay: { "mix-blend-mode": "overlay" },
+    darken: { "mix-blend-mode": "darken" },
+    lighten: { "mix-blend-mode": "lighten" },
+    hue: { "mix-blend-mode": "hue" },
+    saturation: { "mix-blend-mode": "saturation" },
+    luminosity: { "mix-blend-mode": "luminosity" },
+    difference: { "mix-blend-mode": "difference" },
+    exclusion: { "mix-blend-mode": "exclusion" },
+    color: {
+      DEFAULT: { "mix-blend-mode": "color" },
+      dodge: { "mix-blend-mode": "color-dodge" },
+      burn: { "mix-blend-mode": "color-burn" },
+    },
+    hard: {
+      light: { "mix-blend-mode": "hard-light" },
+    },
+    soft: {
+      light: { "mix-blend-mode": "soft-light" },
+    },
+  }],
+];
+export const ml: Specifier = [
+  ["0", { "margin-left": "0px" }],
+  ["auto", { "margin-left": "auto" }],
+  ["px", { "margin-left": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["margin-left"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "margin-left": arbitrary }),
+  ],
+];
+export const mr: Specifier = [
+  ["0", { "margin-right": "0px" }],
+  ["auto", { "margin-right": "auto" }],
+  ["px", { "margin-right": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["margin-right"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "margin-right": arbitrary }),
+  ],
+];
+export const mt: Specifier = [
+  ["0", { "margin-top": "0px" }],
+  ["auto", { "margin-top": "auto" }],
+  ["px", { "margin-top": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["margin-top"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "margin-top": arbitrary }),
+  ],
+];
+export const mx: Specifier = [
+  ["0", { "margin-left": "0px", "margin-right": "0px" }],
+  ["auto", { "margin-left": "auto", "margin-right": "auto" }],
+  ["px", { "margin-left": "1px", "margin-right": "1px" }],
+  [
+    reNumeric,
+    ([, numeric]) => associateRem(["margin-left", "margin-right"], numeric),
+  ],
+  [
+    reBracket$,
+    ([, arbitrary]) =>
+      associateWith(["margin-left", "margin-right"], () => arbitrary),
+  ],
+];
+export const my: Specifier = [
+  ["0", { "margin-top": "0px", "margin-bottom": "0px" }],
+  ["auto", { "margin-top": "auto", "margin-bottom": "auto" }],
+  ["px", { "margin-top": "1px", "margin-bottom": "1px" }],
+  [
+    reNumeric,
+    ([, numeric]) => associateRem(["margin-top", "margin-bottom"], numeric),
+  ],
+  [
+    reBracket$,
+    ([, arbitrary]) =>
+      associateWith(["margin-top", "margin-bottom"], () => arbitrary),
+  ],
+];
+export const opacity: EntriesSpecifier = [
+  [rePositiveNumber, ([, pNumber]) => associatePer100(["opacity"], pNumber)],
+];
+export const order: EntriesSpecifier = [
+  ["first", { order: -9999 }],
+  ["last", { order: 9999 }],
+  ["none", { order: 0 }],
+  [
+    rePositiveNumber,
+    ([, pNumber]) => associateNumeric(["order"], pNumber),
+  ],
+];
+export const p: Specifier = [
+  ["0", { padding: "0px" }],
+  ["auto", { padding: "auto" }],
+  ["px", { padding: "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["padding"], numeric)],
+  [reBracket$, ([, arbitrary]) => ({ padding: arbitrary })],
+];
+export const pb: Specifier = [
+  ["0", { "padding-bottom": "0px" }],
+  ["auto", { "padding-bottom": "auto" }],
+  ["px", { "padding-bottom": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["padding-bottom"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "padding-bottom": arbitrary }),
+  ],
+];
+export const pl: Specifier = [
+  ["0", { "padding-left": "0px" }],
+  ["auto", { "padding-left": "auto" }],
+  ["px", { "padding-left": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["padding-left"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "padding-left": arbitrary }),
+  ],
+];
+export const pr: Specifier = [
+  ["0", { "padding-right": "0px" }],
+  ["auto", { "padding-right": "auto" }],
+  ["px", { "padding-right": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["padding-right"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "padding-right": arbitrary }),
+  ],
+];
+export const pt: Specifier = [
+  ["0", { "padding-top": "0px" }],
+  ["auto", { "padding-top": "auto" }],
+  ["px", { "padding-top": "1px" }],
+  [reNumeric, ([, numeric]) => associateRem(["padding-top"], numeric)],
+  [
+    reBracket$,
+    ([, arbitrary]) => ({ "padding-top": arbitrary }),
+  ],
+];
+export const px: Specifier = [
+  ["0", { "padding-left": "0px", "padding-right": "0px" }],
+  ["auto", { "padding-left": "auto", "padding-right": "auto" }],
+  ["px", { "padding-left": "1px", "padding-right": "1px" }],
+  [
+    reNumeric,
+    ([, numeric]) => associateRem(["padding-left", "padding-right"], numeric),
+  ],
+  [
+    reBracket$,
+    ([, arbitrary]) =>
+      associateWith(["padding-left", "padding-right"], () => arbitrary),
+  ],
+];
+export const py: Specifier = [
+  ["0", { "padding-top": "0px", "padding-bottom": "0px" }],
+  ["auto", { "padding-top": "auto", "padding-bottom": "auto" }],
+  ["px", { "padding-top": "1px", "padding-bottom": "1px" }],
+  [
+    reNumeric,
+    ([, numeric]) => associateRem(["padding-top", "padding-bottom"], numeric),
+  ],
+  [
+    reBracket$,
+    ([, arbitrary]) =>
+      associateWith(["padding-top", "padding-bottom"], () => arbitrary),
+  ],
+];
+export const right: EntriesSpecifier = [
+  [0, { right: "0px" }],
+  ["px", { right: "1px" }],
+  ["auto", { right: "auto" }],
+  ["full", { right: "100%" }],
+
+  [
+    reFraction,
+    ([, numerator, denominator]) =>
+      associatePercent(["right"], numerator, denominator),
+  ],
+  [reNumeric, ([, numeric]) => associateRem(["right"], numeric)],
+  [
+    reBracket$,
+    ([, attr]) => ({ right: attr }),
+  ],
+];
+export const shrink: EntriesSpecifier = [
+  ["DEFAULT", { "flex-shrink": 1 }],
+  [
+    rePositiveNumber,
+    ([, pNumber]) => associateNumeric(["flex-shrink"], pNumber),
+  ],
+];
+export const top: EntriesSpecifier = [
+  [0, { top: "0px" }],
+  ["px", { top: "1px" }],
+  ["auto", { top: "auto" }],
+  ["full", { top: "100%" }],
+
+  [
+    reFraction,
+    ([, numerator, denominator]) =>
+      associatePercent(["top"], numerator, denominator),
+  ],
+  [reNumeric, ([, numeric]) => associateRem(["top"], numeric)],
+  [reBracket$, ([, attr]) => ({ "top": attr })],
+];
+const LETTER_SPACING = "letter-spacing";
+
+export const tracking: Specifier = [
+  ["tighter", { [LETTER_SPACING]: "-0.05em" }],
+  ["tight", { [LETTER_SPACING]: "-0.025em" }],
+  ["normal", { [LETTER_SPACING]: "0em" }],
+  ["wide", { [LETTER_SPACING]: "0.025em" }],
+  ["wider", { [LETTER_SPACING]: "0.05em" }],
+  ["widest", { [LETTER_SPACING]: "0.1em" }],
+];
+export const w: Specifier = [
+  [0, { width: "0px" }],
+  ["px", { width: "1px" }],
+  ["full", { width: "100%" }],
+  ["auto", { width: "auto" }],
+  ["screen", { width: "100vw" }],
+  ["min", { width: "min-content" }],
+  ["max", { width: "max-content" }],
+  ["fit", { width: "fit-content" }],
+  [reNumeric, ([, numeric]) => {
+    return remBy(numeric, (rem) => ({
+      width: rem,
+    }));
+  }],
+  [reFraction, ([, numerator, denominator]) => {
+    return fractionBy(numerator, denominator, (percent) => ({
+      width: percent,
+    }));
+  }],
+  [reBracket$, ([, arbitrary]) => ({ width: arbitrary })],
+];
+const WHITE_SPACE = "white-space";
+
+export const whitespace: Specifier = [
+  ["normal", { [WHITE_SPACE]: "normal" }],
+  ["nowrap", { [WHITE_SPACE]: "nowrap" }],
+  ["pre", {
+    DEFAULT: { [WHITE_SPACE]: "pre" },
+    line: { [WHITE_SPACE]: "pre-line" },
+    wrap: { [WHITE_SPACE]: "pre-wrap" },
+  }],
+];
+export const z: Specifier = [["auto", {
+  "z-index": "auto",
+}], [rePositiveNumber, ([, positiveNumber]) => {
+  return numericBy(positiveNumber, (number) => ({
+    "z-index": number,
+  }));
+}]];
 export const $static: CSSObject = {
   position: "static",
 };
