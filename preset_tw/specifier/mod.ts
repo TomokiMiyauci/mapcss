@@ -58,7 +58,7 @@ import {
   via,
   visible,
   will,
-} from "./single.ts";
+} from "./$single.ts";
 import { normal } from "./normal.ts";
 import { align } from "./align.ts";
 import { table } from "./table.ts";
