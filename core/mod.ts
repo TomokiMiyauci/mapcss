@@ -1,18 +1,15 @@
-import { cssDeclarationBlock } from "./_utils.ts";
-import {
-  filterValues,
-  has,
-  head,
-  isLength0,
-  isString,
-  sortBy,
-} from "../deps.ts";
+import { filterValues, has, isLength0, isString } from "../deps.ts";
 import { resolveSpecifierMap } from "./utils/resolver.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { extractSplit } from "./extractor.ts";
+import {
+  cssStatements2CSSNestedModule,
+  stringifyCSSNestedModule,
+} from "./utils/format.ts";
 import type {
   Config,
   CSSObject,
+  CSSStatement,
   GlobalModifier,
   GlobalModifierHandler,
   LocalModifier,
@@ -21,6 +18,7 @@ import type {
   Theme,
 } from "./types.ts";
 import { resolveConfig } from "./config.ts";
+import { statementOrderProcessor } from "./post_process.ts";
 export * from "./types.ts";
 
 export interface GenerateResult {
@@ -29,10 +27,7 @@ export interface GenerateResult {
   unmatched: Set<string>;
 }
 
-type ExecuteResult = {
-  cssObject: CSSObject;
-  combinator: string;
-  selector: string;
+type ExecuteResult = CSSStatement & {
   globalModifierHandlers: [string, GlobalModifierHandler][];
   localModifierHandlers: [string, LocalModifierHandler][];
   specifier: string;
@@ -70,13 +65,13 @@ function execute(
     has(modifier, localModifierMap)
   );
   if (!hasDefinedGlobalModifiers || !hasDefinedLocalModifiers) return;
-  const maybeCSSObject = resolveSpecifierMap(specifier, specifierMap, {
+  const partialCSSStatement = resolveSpecifierMap(specifier, specifierMap, {
     theme,
     separator,
     variablePrefix,
   });
 
-  if (!maybeCSSObject) return;
+  if (!partialCSSStatement) return;
 
   const globalModifierHandlers = globalModifiers.map((modifier) =>
     [modifier, globalModifierMap[modifier].fn] as [
@@ -90,12 +85,12 @@ function execute(
       LocalModifierHandler,
     ]
   );
-  const [cssObject, { combinator }] = maybeCSSObject;
+  const { cssObject, combinator } = partialCSSStatement;
 
   return {
     cssObject,
     combinator,
-    selector: specifier,
+    basicSelector: specifier,
     globalModifierHandlers,
     localModifierHandlers,
     specifier,
@@ -103,11 +98,21 @@ function execute(
   };
 }
 
-/** Generate CSS Sheet as string */
-export function generate(
+function asc(a: string, b: string): number {
+  if (a > b) {
+    return 1;
+  } else if (a < b) {
+    return -1;
+  }
+  return 0;
+}
+
+/** Generate CSS Style Sheet as string */
+export function generateStyleSheet(
   {
     separator = "-",
     variablePrefix = "map-",
+    postProcess = [],
     ...config
   }: Partial<
     Config
@@ -162,15 +167,13 @@ export function generate(
     return executeResults;
   }).flat();
 
-  const styles = sortBy(
-    results,
-    ({ globalModifierHandlers }) => globalModifierHandlers.length,
-  ).map(
+  const cssStatements = results.map(
     (
       {
         cssObject,
         globalModifierHandlers,
         localModifierHandlers,
+        pseudo,
         token,
         combinator,
       },
@@ -184,29 +187,47 @@ export function generate(
       );
       if (!maybeCSSObject) return;
 
-      const declaration = cssDeclarationBlock(maybeCSSObject);
+      const basicSelector = `.${escapeRegExp(token)}`;
 
-      const escapedSelector = `.${escapeRegExp(token)}`;
+      const orderedCSSObject = Object.entries(maybeCSSObject).sort((
+        [property],
+        [nextProperty],
+      ) => asc(property, nextProperty));
 
-      const _head = head(globalModifierHandlers);
-      if (!_head) {
-        return `${escapedSelector}${combinator}${declaration}`;
-      }
-      const [modifier, handler] = _head;
+      const cssStatement = globalModifierHandlers.reduce(
+        (acc, [name, handler]) => {
+          const { atRule, ...rest } = handler(acc, { theme, modifier: name });
+          if (atRule) {
+            acc.atRules?.push(atRule);
+          }
+          return {
+            ...acc,
+            ...rest,
+          };
+        },
+        {
+          cssObject: Object.fromEntries(orderedCSSObject),
+          pseudo,
+          basicSelector,
+          combinator,
+          atRules: [],
+        } as Required<CSSStatement>,
+      );
 
-      const {
-        declaration: _declaration = declaration,
-        selector: _selector = escapedSelector,
-        ruleSet: _ruleSet,
-      } = handler({
-        selector: escapedSelector,
-        declaration,
-      }, { theme, modifier });
+      matched.add(token);
 
-      const serialized = `${_selector}${combinator}${_declaration}`;
-      return _ruleSet?.(serialized) ?? serialized;
+      return cssStatement;
     },
-  ).filter(Boolean) as string[];
+  ).filter(Boolean) as Required<CSSStatement>[];
 
-  return { css: styles.join("\n"), matched, unmatched };
+  postProcess.unshift(statementOrderProcessor);
+
+  const final = postProcess.reduce((acc, cur) => {
+    return cur.fn(acc);
+  }, cssStatements);
+
+  const cssNestedModule = cssStatements2CSSNestedModule(final);
+  const css = stringifyCSSNestedModule(cssNestedModule);
+
+  return { css, matched, unmatched };
 }

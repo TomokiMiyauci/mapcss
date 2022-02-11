@@ -26,13 +26,16 @@ mapcss provides several preset.
 ### tailwind classes
 
 ```ts
-import { generate, presetTw } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import {
+  generateStyleSheet,
+  presetTw,
+} from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
 const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
 </div>
 `;
-const result = generate({ presets: [presetTw()] }, code);
+const result = generateStyleSheet({ presets: [presetTw()] }, code);
 console.log(result.css);
 /*
   .relative{position:relative;}

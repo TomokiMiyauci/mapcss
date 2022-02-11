@@ -10,9 +10,9 @@ export function resolveConfig(
     theme: _theme = {},
     modifierMap: _modifierMap = {},
   }: Readonly<
-    Partial<Omit<Config, "separator" | "variablePrefix">>
+    Partial<Omit<Config, "separator" | "variablePrefix" | "postProcess">>
   >,
-): Omit<Config, "separator" | "presets" | "variablePrefix"> {
+): Omit<Config, "separator" | "presets" | "variablePrefix" | "postProcess"> {
   const modifierMap = presets.map(({ modifierMap }) => modifierMap).flat()
     .reduce((acc, cur) => {
       return deepMerge(acc, cur);

@@ -2,28 +2,28 @@ import type { GlobalModifier } from "./../../core/types.ts";
 
 export const pseudo: GlobalModifier = {
   type: "global",
-  fn: ({ selector }, { modifier }) => ({
-    selector: `${selector}:${modifier}`,
+  fn: (_, { modifier }) => ({
+    pseudo: `:${modifier}`,
   }),
 };
 
 export const scrollbar: GlobalModifier = {
   type: "global",
-  fn: ({ selector }) => ({
-    selector: `${selector}::-webkit-scrollbar`,
+  fn: () => ({
+    pseudo: `::-webkit-scrollbar`,
   }),
 };
 
 export const scrollbarTrack: GlobalModifier = {
   type: "global",
-  fn: ({ selector }) => ({
-    selector: `${selector}::-webkit-scrollbar-track`,
+  fn: () => ({
+    pseudo: `::-webkit-scrollbar-track`,
   }),
 };
 
 export const scrollbarThumb: GlobalModifier = {
   type: "global",
-  fn: ({ selector }) => ({
-    selector: `${selector}::-webkit-scrollbar-thumb`,
+  fn: () => ({
+    pseudo: `::-webkit-scrollbar-thumb`,
   }),
 };

@@ -1,3 +1,5 @@
+import { isCSSObject } from "./assert.ts";
+import type { CSSNestedModule, CSSObject, CSSStatement } from "../types.ts";
 import type { FilledRGBA, RGBA } from "./parse.ts";
 
 /** format numeric to `#.##`
@@ -67,4 +69,75 @@ export function completionRGBA(
     const _a = asDefault ? a ?? alpha : alpha;
     return { r, g, b, a: _a };
   };
+}
+
+export function cssStatements2CSSNestedModule(
+  cssStatements: CSSStatement[],
+): CSSNestedModule {
+  return cssStatements.reduce(
+    (
+      acc,
+      { basicSelector, pseudo = "", combinator = "", atRules = [], cssObject },
+    ) => {
+      const selector = `${basicSelector}${pseudo}${combinator}`;
+      const nestedModule = atRules.reduceRight((acc, atRule) => {
+        return { [atRule]: acc };
+      }, { [selector]: cssObject } as CSSNestedModule);
+      return { ...acc, ...nestedModule };
+    },
+    {},
+  );
+}
+
+export function stringifyCSSNestedModule(
+  cssNestedModule: CSSNestedModule,
+  compress = true,
+  _selectors: string[] = [],
+): string {
+  const result = Object.entries(cssNestedModule).map(
+    ([selector, nestedModuleOrCSSObject]) => {
+      const selectors = [..._selectors, selector];
+
+      if (isCSSObject(nestedModuleOrCSSObject)) {
+        const dec = stringifyDeclaration(nestedModuleOrCSSObject);
+        return selectors.reduceRight(
+          (acc, cur) => {
+            return `${cur}{${acc}}`;
+          },
+          dec,
+        );
+      }
+      return stringifyCSSNestedModule(
+        nestedModuleOrCSSObject,
+        compress,
+        selectors,
+      );
+    },
+  );
+
+  return result.join("\n");
+}
+
+export function stringifyDeclaration(
+  cssObject: Readonly<CSSObject>,
+  compress = true,
+): string {
+  const content = Object.entries(cssObject).reduce(
+    (acc, [property, value]) =>
+      `${acc}${withJoin(property, value, { middleOf: compress ? `:` : ": " })}`,
+    "",
+  );
+  return content;
+}
+
+export function withJoin(
+  a: string | number,
+  b: string | number,
+  { startOf = "", middleOf = ":", endOf = ";" }: Partial<{
+    startOf: string;
+    middleOf: string;
+    endOf: string;
+  }> = { startOf: "", middleOf: ":", endOf: ";" },
+): string {
+  return `${startOf}${a}${middleOf}${b}${endOf}`;
 }

@@ -1,5 +1,5 @@
 import { expect, test } from "../dev_deps.ts";
-import { generate, presetTw } from "../mod.ts";
+import { generateStyleSheet, presetTw } from "../mod.ts";
 
 const expects: [string, string][] = [
   ["aspect-auto", ".aspect-auto{aspect-ratio:auto;}"],
@@ -34607,6 +34607,11 @@ const expects: [string, string][] = [
     "not-sr-only",
     ".not-sr-only{clip:auto;height:auto;margin:0;overflow:visible;padding:0;position:static;white-space:normal;width:auto;}",
   ],
+  ["sm:block", "@media (min-width: 640px){.sm\\:block{display:block;}}"],
+  ["md:block", "@media (min-width: 768px){.md\\:block{display:block;}}"],
+  ["lg:block", "@media (min-width: 1024px){.lg\\:block{display:block;}}"],
+  ["xl:block", "@media (min-width: 1280px){.xl\\:block{display:block;}}"],
+  ["2xl:block", "@media (min-width: 1536px){.2xl\\:block{display:block;}}"],
   ["dark:block", ".dark .dark\\:block{display:block;}"],
   ["hover:block", ".hover\\:block:hover{display:block;}"],
   ["focus:block", ".focus\\:block:focus{display:block;}"],
@@ -34631,7 +34636,7 @@ const config = { presets: [presetTw()] };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
-    expect(generate(config, new Set([className])).css).toBe(
+    expect(generateStyleSheet(config, new Set([className])).css).toBe(
       result,
     );
   });

@@ -1,6 +1,6 @@
 export type CSSObject = Record<string, string | number>;
 
-export type PartialCSSStatement = Option<CSSStatement, "selector">;
+export type PartialCSSStatement = Option<CSSStatement, "basicSelector">;
 
 type Option<T extends Record<PropertyKey, unknown>, K extends PropertyKey> =
   & {
@@ -9,9 +9,15 @@ type Option<T extends Record<PropertyKey, unknown>, K extends PropertyKey> =
   & { [k in keyof Omit<T, K>]: T[k] };
 
 export type CSSStatement = {
-  selector: string;
+  basicSelector: string;
   combinator?: string;
+  pseudo?: string;
+  atRules?: string[];
   cssObject: CSSObject;
+};
+
+export type CSSNestedModule = {
+  [k: string]: CSSNestedModule | CSSObject;
 };
 
 export interface SpecifierContext {
@@ -82,23 +88,27 @@ export interface Config {
   separator: string;
   syntaxes: Syntax[];
 
+  postProcess: {
+    name: string;
+    fn: (cssStatements: Required<CSSStatement>[]) => Required<CSSStatement>[];
+  }[];
+
   /**
    * @default 'map-'
    */
   variablePrefix: string;
 }
 
-export type RuleSet = {
-  selector: string;
-  declaration: CSSObject;
+type OverrideCSSStatement = {
+  atRule: string;
+  basicSelector: string;
+  pseudo: string;
 };
 
-export type SerializedRuleSet = Record<keyof RuleSet, string>;
-
 export type GlobalModifierHandler = (
-  serializedRuleSet: SerializedRuleSet,
+  cssStatement: PartialCSSStatement,
   context: ModifierContext,
-) => Partial<SerializedRuleSet & { ruleSet: (ruleSet: string) => string }>;
+) => Partial<OverrideCSSStatement>;
 
 export type LocalModifierHandler = (
   cssObject: CSSObject,
@@ -135,4 +145,11 @@ type ParseResult = {
 export type Syntax = {
   name: string;
   fn: (context: SyntaxContext) => ParseResult | undefined;
+};
+
+export type PostProcessor = {
+  name: string;
+  fn: (
+    cssStatements: Required<CSSStatement>[],
+  ) => Required<CSSStatement>[];
 };
