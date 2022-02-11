@@ -28,7 +28,7 @@ import {
   transformValue,
 } from "./_utils.ts";
 import { resolveTheme } from "../../core/utils/resolver.ts";
-import { associateWith, isNumber, isUndefined } from "../../deps.ts";
+import { associateWith, isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,
   reAll,

@@ -18,7 +18,7 @@ import {
   stringifyRGBA,
   stringifyVarFunction,
 } from "../../core/utils/stringify.ts";
-import type { CSSObject, CSSObjectSet } from "../../core/types.ts";
+import type { CSSObject, PartialCSSStatement } from "../../core/types.ts";
 
 export function fillRGBA(
   { a, ...rest }: RGBA,
@@ -32,9 +32,9 @@ export function fillRGBA(
 
 export function colorByRGBA(
   value: string,
-  onValid: (rgba: RGBA) => CSSObject | CSSObjectSet | undefined,
-  onError?: (value: string) => CSSObject | CSSObjectSet | undefined,
-): CSSObject | CSSObjectSet | undefined {
+  onValid: (rgba: RGBA) => CSSObject | PartialCSSStatement | undefined,
+  onError?: (value: string) => CSSObject | PartialCSSStatement | undefined,
+): CSSObject | PartialCSSStatement | undefined {
   const maybeRGBA = hex2RGBA(value);
   if (isUndefined(maybeRGBA)) {
     return onError?.(value);
@@ -54,8 +54,8 @@ export function remByProp(property: string, value: string): {
 
 export function remBy(
   value: string,
-  onValid: (rem: string) => CSSObject | CSSObjectSet,
-): CSSObject | CSSObjectSet | undefined {
+  onValid: (rem: string) => CSSObject | PartialCSSStatement,
+): CSSObject | PartialCSSStatement | undefined {
   const number = parseNumeric(value);
   if (isUndefined(number)) return;
 
@@ -75,8 +75,8 @@ export function fractionBy(
 
 export function pxBy(
   value: string,
-  onValid: (px: string) => CSSObject | CSSObjectSet,
-): CSSObject | CSSObjectSet | undefined {
+  onValid: (px: string) => CSSObject | PartialCSSStatement,
+): CSSObject | PartialCSSStatement | undefined {
   const number = parseNumeric(value);
   if (isUndefined(number)) return;
 
@@ -85,8 +85,8 @@ export function pxBy(
 
 export function numericBy(
   value: string,
-  onValid: (number: number) => CSSObject | CSSObjectSet | undefined,
-): CSSObject | CSSObjectSet | undefined {
+  onValid: (number: number) => CSSObject | PartialCSSStatement | undefined,
+): CSSObject | PartialCSSStatement | undefined {
   const number = parseNumeric(value);
   if (isUndefined(number)) return;
   return onValid(number);
@@ -96,7 +96,7 @@ export function associateRGBA(
   color: string,
   array: string[],
   alpha?: string,
-): CSSObject | CSSObjectSet | undefined {
+): CSSObject | PartialCSSStatement | undefined {
   const maybeColor = colorByStrRGBA(color, alpha);
   if (isUndefined(maybeColor)) return associateWith(array, () => color);
 
@@ -123,7 +123,7 @@ export function colorByStrRGBA(
 export function associatePx(
   value: string,
   array: string[],
-): CSSObject | CSSObjectSet | undefined {
+): CSSObject | PartialCSSStatement | undefined {
   return pxBy(
     value,
     (px) => associateWith(array, () => px),
@@ -133,7 +133,7 @@ export function associatePx(
 export function associateRem(
   array: string[],
   numeric: string,
-): CSSObject | CSSObjectSet | undefined {
+): CSSObject | PartialCSSStatement | undefined {
   return remBy(numeric, (rem) => associateWith(array, () => rem));
 }
 
@@ -152,7 +152,7 @@ export function associatePercent(
 export function associatePer100(
   array: string[],
   numeric: string,
-): CSSObject | CSSObjectSet | undefined {
+): CSSObject | PartialCSSStatement | undefined {
   return numericBy(
     numeric,
     (number) => associateWith(array, () => number / 100),
@@ -162,7 +162,7 @@ export function associatePer100(
 export function associateNumeric(
   array: string[],
   numeric: string,
-): CSSObject | CSSObjectSet | undefined {
+): CSSObject | PartialCSSStatement | undefined {
   return numericBy(numeric, (number) => associateWith(array, () => number));
 }
 

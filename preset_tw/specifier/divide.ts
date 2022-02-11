@@ -15,11 +15,11 @@ import type { EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
 export const divide: EntriesSpecifier = [
-  ["solid", [{ "border-style": "solid" }, combinator]],
-  ["dashed", [{ "border-style": "dashed" }, combinator]],
-  ["dotted", [{ "border-style": "dotted" }, combinator]],
-  ["double", [{ "border-style": "double" }, combinator]],
-  ["none", [{ "border-style": "none" }, combinator]],
+  ["solid", { cssObject: { "border-style": "solid" }, combinator }],
+  ["dashed", { combinator, cssObject: { "border-style": "dashed" } }],
+  ["dotted", { combinator, cssObject: { "border-style": "dotted" } }],
+  ["double", { combinator, cssObject: { "border-style": "double" } }],
+  ["none", { combinator, cssObject: { "border-style": "none" } }],
   ["x", [
     ["DEFAULT", (_, { variablePrefix }) => {
       const [variable, varFn] = customPropertySet(
@@ -27,17 +27,23 @@ export const divide: EntriesSpecifier = [
         variablePrefix,
       );
 
-      return [{
-        [variable]: 0,
-        "border-right-width": `calc(1px * ${varFn})`,
-        "border-left-width": `calc(1px * calc(1 - ${varFn}))`,
-      }, combinator];
+      return {
+        combinator,
+        cssObject: {
+          [variable]: 0,
+          "border-right-width": `calc(1px * ${varFn})`,
+          "border-left-width": `calc(1px * calc(1 - ${varFn}))`,
+        },
+      };
     }],
     [
       "reverse",
-      (_, { variablePrefix }) => [{
-        [stringifyCustomProperty("divide-x-reverse", variablePrefix)]: 1,
-      }, combinator],
+      (_, { variablePrefix }) => ({
+        combinator,
+        cssObject: {
+          [stringifyCustomProperty("divide-x-reverse", variablePrefix)]: 1,
+        },
+      }),
     ],
     [
       rePositiveNumber,
@@ -47,11 +53,14 @@ export const divide: EntriesSpecifier = [
             "divide-x-reverse",
             variablePrefix,
           );
-          return [{
-            [variable]: 0,
-            "border-right-width": `calc(${number} * ${varFn})`,
-            "border-left-width": `calc(${number} * calc(1 - ${varFn}))`,
-          }, combinator];
+          return {
+            combinator,
+            cssObject: {
+              [variable]: 0,
+              "border-right-width": `calc(${number} * ${varFn})`,
+              "border-left-width": `calc(${number} * calc(1 - ${varFn}))`,
+            },
+          };
         }),
     ],
   ]],
@@ -62,17 +71,23 @@ export const divide: EntriesSpecifier = [
         variablePrefix,
       );
 
-      return [{
-        [variable]: 0,
-        "border-top-width": `calc(1px * calc(1 - ${varFn}))`,
-        "border-bottom-width": `calc(1px * ${varFn})`,
-      }, combinator];
+      return {
+        combinator,
+        cssObject: {
+          [variable]: 0,
+          "border-top-width": `calc(1px * calc(1 - ${varFn}))`,
+          "border-bottom-width": `calc(1px * ${varFn})`,
+        },
+      };
     }],
     [
       "reverse",
-      (_, { variablePrefix }) => [{
-        [stringifyCustomProperty("divide-y-reverse", variablePrefix)]: 1,
-      }, combinator],
+      (_, { variablePrefix }) => ({
+        combinator,
+        cssObject: {
+          [stringifyCustomProperty("divide-y-reverse", variablePrefix)]: 1,
+        },
+      }),
     ],
     [
       rePositiveNumber,
@@ -82,11 +97,14 @@ export const divide: EntriesSpecifier = [
             "divide-y-reverse",
             variablePrefix,
           );
-          return [{
-            [variable]: 0,
-            "border-top-width": `calc(${px} * calc(1 - ${varFn}))`,
-            "border-bottom-width": `calc(${px} * ${varFn})`,
-          }, combinator];
+          return {
+            combinator,
+            cssObject: {
+              [variable]: 0,
+              "border-top-width": `calc(${px} * calc(1 - ${varFn}))`,
+              "border-bottom-width": `calc(${px} * ${varFn})`,
+            },
+          };
         }),
     ],
   ]],
@@ -97,7 +115,10 @@ export const divide: EntriesSpecifier = [
     return parseNumeric(numeric).match({
       some: (number) =>
         parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
-          some: (color) => [{ "border-color": color }, combinator],
+          some: (color) => ({
+            combinator,
+            cssObject: { "border-color": color },
+          }),
           none: undefined,
         }),
       none: undefined,
@@ -109,7 +130,7 @@ export const divide: EntriesSpecifier = [
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
       rgbFn,
     ).match({
-      some: (color) => [{ "border-color": color }, combinator],
+      some: (color) => ({ combinator, cssObject: { "border-color": color } }),
       none: undefined,
     });
   }],
@@ -122,8 +143,11 @@ export const divide: EntriesSpecifier = [
       return parseColor(color).map(completionRGBA(1, true))
         .map(rgbFn)
         .match({
-          some: (color) => [{ "border-color": color }, combinator],
-          none: [{ "border-color": color }, combinator],
+          some: (color) => ({
+            combinator,
+            cssObject: { "border-color": color },
+          }),
+          none: { combinator, cssObject: { "border-color": color } },
         });
     },
   ],

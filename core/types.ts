@@ -1,6 +1,18 @@
 export type CSSObject = Record<string, string | number>;
 
-export type CSSObjectSet = [CSSObject, string];
+export type PartialCSSStatement = Option<CSSStatement, "selector">;
+
+type Option<T extends Record<PropertyKey, unknown>, K extends PropertyKey> =
+  & {
+    [k in K]?: T[k];
+  }
+  & { [k in keyof Omit<T, K>]: T[k] };
+
+export type CSSStatement = {
+  selector: string;
+  combinator?: string;
+  cssObject: CSSObject;
+};
 
 export interface SpecifierContext {
   theme: Theme;
@@ -13,7 +25,7 @@ export type Specifier = RecordSpecifier | EntriesSpecifier;
 export type RecordSpecifier = {
   [k: string]:
     | CSSObject
-    | CSSObjectSet
+    | PartialCSSStatement
     | SpecifierHandler
     | Specifier;
 };
@@ -21,7 +33,7 @@ export type RecordSpecifier = {
 export type SpecifierHandler = (
   arr: RegExpExecArray,
   context: SpecifierContext,
-) => CSSObject | CSSObjectSet | undefined;
+) => CSSObject | PartialCSSStatement | undefined;
 
 export type EntriesSpecifier = (StaticSpecifierSet | DynamicSpecifierSet)[];
 export type DynamicSpecifierSet = [
@@ -31,7 +43,7 @@ export type DynamicSpecifierSet = [
 export type StaticSpecifierSet = [
   string | number,
   | CSSObject
-  | CSSObjectSet
+  | PartialCSSStatement
   | Specifier,
 ];
 
@@ -82,12 +94,6 @@ export type RuleSet = {
 };
 
 export type SerializedRuleSet = Record<keyof RuleSet, string>;
-
-export type AtRule = Partial<ModifierResult> & {
-  children: RuleSet;
-};
-
-export type CSSStatement = RuleSet | AtRule;
 
 export type GlobalModifierHandler = (
   serializedRuleSet: SerializedRuleSet,

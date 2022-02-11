@@ -1,26 +1,31 @@
 import type {
-  AtRule,
   CSSObject,
-  CSSObjectSet,
+  CSSStatement,
   DynamicSpecifierSet,
   EntriesSpecifier,
+  PartialCSSStatement,
   RecordSpecifier,
-  RuleSet,
   Specifier,
   StaticSpecifierSet,
 } from "./../types.ts";
-import { isFunction, isObject, isRegExp, isString } from "../../deps.ts";
+import { isNumber, isObject, isRegExp, isString, prop } from "../../deps.ts";
 
 export function isCSSObject(value: unknown): value is CSSObject {
   if (!isObject(value)) return false;
 
-  return Object.values(value).every((v) => !isObject(v) && !isFunction(v));
+  return Object.values(value).every((v) => isString(v) || isNumber(v));
 }
 
-export function isCSSObjectSet(value: unknown): value is CSSObjectSet {
+export function isPartialCSSStatement(
+  value: unknown,
+): value is PartialCSSStatement {
   if (!isObject(value)) return false;
+  return "cssObject" in value && isCSSObject(prop("cssObject", value));
+}
 
-  return Array.isArray(value) && isCSSObject(value[0]) && isString(value[1]);
+export function isCSSStatement(value: unknown): value is CSSStatement {
+  return isPartialCSSStatement(value) && "selector" in value &&
+    isString(prop("selector", value));
 }
 
 export function isEntriesSpecifier(
@@ -45,18 +50,6 @@ export function isStringSpecifierSet(
   set: StaticSpecifierSet | DynamicSpecifierSet,
 ): set is StaticSpecifierSet {
   return isString(set[0]);
-}
-
-export function isAtRule(
-  cssStatement: AtRule | RuleSet,
-): cssStatement is AtRule {
-  return "identifier" in cssStatement;
-}
-
-export function isRuleSet(
-  cssStatement: AtRule | RuleSet,
-): cssStatement is RuleSet {
-  return "declarationBlock" in cssStatement;
 }
 
 const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
