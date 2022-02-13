@@ -196,9 +196,15 @@ export function generateStyleSheet(
 
       const cssStatement = globalModifierHandlers.reduce(
         (acc, [name, handler]) => {
-          const { atRule, ...rest } = handler(acc, { theme, modifier: name });
+          const { atRule, order, ...rest } = handler(acc, {
+            theme,
+            modifier: name,
+          });
           if (atRule) {
-            acc.atRules?.push(atRule);
+            acc.atRules.push(atRule);
+          }
+          if (order) {
+            acc.orders.push(order);
           }
           return {
             ...acc,
@@ -211,6 +217,7 @@ export function generateStyleSheet(
           basicSelector,
           combinator,
           atRules: [],
+          orders: [],
         } as Required<CSSStatement>,
       );
 

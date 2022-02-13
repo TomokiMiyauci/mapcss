@@ -13,6 +13,7 @@ export type CSSStatement = {
   combinator?: string;
   pseudo?: string;
   atRules?: string[];
+  orders?: number[];
   cssObject: CSSObject;
 };
 
@@ -66,14 +67,6 @@ export interface ModifierContext {
   modifier: string;
 }
 
-export interface ModifierResult {
-  identifier: string;
-
-  rule: string;
-
-  selector: (selector: string) => string;
-}
-
 export type SpecifierMap = Record<string | number, Specifier | CSSObject>;
 
 export interface Theme {
@@ -99,11 +92,15 @@ export interface Config {
   variablePrefix: string;
 }
 
-type OverrideCSSStatement = {
-  atRule: string;
-  basicSelector: string;
-  pseudo: string;
-};
+type OverrideCSSStatement =
+  & Pick<
+    Required<CSSStatement>,
+    "basicSelector" | "cssObject" | "pseudo"
+  >
+  & {
+    atRule: string;
+    order: number;
+  };
 
 export type GlobalModifierHandler = (
   cssStatement: PartialCSSStatement,
