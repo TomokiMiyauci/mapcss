@@ -1,4 +1,5 @@
 import { isCSSObject } from "./assert.ts";
+import { deepMerge } from "../../deps.ts";
 import type { CSSNestedModule, CSSObject, CSSStatement } from "../types.ts";
 import type { FilledRGBA, RGBA } from "./parse.ts";
 
@@ -83,7 +84,7 @@ export function cssStatements2CSSNestedModule(
       const nestedModule = atRules.reduceRight((acc, atRule) => {
         return { [atRule]: acc };
       }, { [selector]: cssObject } as CSSNestedModule);
-      return { ...acc, ...nestedModule };
+      return deepMerge(acc, nestedModule);
     },
     {},
   );
