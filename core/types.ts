@@ -21,11 +21,16 @@ export type CSSNestedModule = {
   [k: string]: CSSNestedModule | CSSObject;
 };
 
-export interface SpecifierContext {
+export type SpecifierContext =
+  & ThemeContext
+  & {
+    variablePrefix: string;
+  };
+
+export type ThemeContext = {
   theme: Theme;
   separator: string;
-  variablePrefix: string;
-}
+};
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
@@ -62,10 +67,9 @@ export type Preset = {
   syntaxes: Syntax[];
 };
 
-export interface ModifierContext {
-  theme: Theme;
+export type ModifierContext = ThemeContext & {
   modifier: string;
-}
+};
 
 export type SpecifierMap = Record<string | number, Specifier | CSSObject>;
 
@@ -105,7 +109,7 @@ type OverrideCSSStatement =
 export type GlobalModifierHandler = (
   cssStatement: PartialCSSStatement,
   context: ModifierContext,
-) => Partial<OverrideCSSStatement>;
+) => Partial<OverrideCSSStatement> | undefined;
 
 export type LocalModifierHandler = (
   cssObject: CSSObject,

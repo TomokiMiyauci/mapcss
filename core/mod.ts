@@ -181,7 +181,7 @@ export function generateStyleSheet(
       const maybeCSSObject = localModifierHandlers.reduce(
         (acc, [key, handler]) => {
           if (!acc) return;
-          return handler(acc, { theme, modifier: key });
+          return handler(acc, { theme, modifier: key, separator });
         },
         cssObject as CSSObject | undefined,
       );
@@ -196,20 +196,25 @@ export function generateStyleSheet(
 
       const cssStatement = globalModifierHandlers.reduce(
         (acc, [name, handler]) => {
-          const { atRule, order, ...rest } = handler(acc, {
+          const result = handler(acc, {
             theme,
             modifier: name,
+            separator,
           });
-          if (atRule) {
-            acc.atRules.push(atRule);
+          if (result) {
+            const { atRule, order, ...rest } = result;
+            if (atRule) {
+              acc.atRules.push(atRule);
+            }
+            if (order) {
+              acc.orders.push(order);
+            }
+            return {
+              ...acc,
+              ...rest,
+            };
           }
-          if (order) {
-            acc.orders.push(order);
-          }
-          return {
-            ...acc,
-            ...rest,
-          };
+          return acc;
         },
         {
           cssObject: Object.fromEntries(orderedCSSObject),

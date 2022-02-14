@@ -27,13 +27,14 @@ import type {
   SpecifierContext,
   SpecifierHandler,
   SpecifierMap,
+  ThemeContext,
 } from "../types.ts";
 
 /** resolve theme via propPath safety */
 export function resolveTheme(
   identifier: string,
   themeRoot: string,
-  { separator, theme }: SpecifierContext,
+  { separator, theme }: ThemeContext,
 ): string | undefined {
   const paths = leftSplit(identifier, separator);
   for (const path of paths) {

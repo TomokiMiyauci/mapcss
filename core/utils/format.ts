@@ -142,3 +142,16 @@ export function withJoin(
 ): string {
   return `${startOf}${a}${middleOf}${b}${endOf}`;
 }
+
+export function atRule(
+  identifier: string,
+  rule: string,
+  { raw }: { raw: boolean } = { raw: false },
+): string {
+  const rawRule = raw ? rule : `(${rule})`;
+  return `@${identifier} ${rawRule}`;
+}
+
+export function cssMediaRule(rule: string): string {
+  return atRule("media", rule);
+}
