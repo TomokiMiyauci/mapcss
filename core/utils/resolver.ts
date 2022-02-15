@@ -2,33 +2,59 @@ import {
   head,
   init,
   isFunction,
-  isLength0,
   isRegExp,
   isString,
   isUndefined,
   last,
   prop,
   propPath,
+  Some,
   tail,
 } from "../../deps.ts";
-import { cornerMap } from "./mapping.ts";
 import {
   isCSSObject,
-  isPartialCSSStatement,
   isRecordSpecifier,
   isRegExpSpecifierSet,
+  isSpecifierDefinition,
 } from "./assert.ts";
-import type { Corner } from "./types.ts";
 import type {
   CSSObject,
   EntriesSpecifier,
   PartialCSSStatement,
   Specifier,
   SpecifierContext,
-  SpecifierHandler,
+  SpecifierDefinition,
   SpecifierMap,
   ThemeContext,
 } from "../types.ts";
+
+function constructCSSStatement(
+  value: CSSObject | PartialCSSStatement,
+): PartialCSSStatement {
+  if (isCSSObject(value)) {
+    return { cssObject: value };
+  }
+  return value;
+}
+
+function resolveSpecifierDefinition(
+  specifierDefinition: SpecifierDefinition,
+  { regExpExecArray, context }: {
+    regExpExecArray: RegExpExecArray;
+    context: SpecifierContext;
+  },
+): PartialCSSStatement | PartialCSSStatement[] | undefined {
+  if (isFunction(specifierDefinition)) {
+    const result = specifierDefinition(regExpExecArray, context);
+    if (result) {
+      return resolveSpecifierDefinition(result, { regExpExecArray, context });
+    }
+    return;
+  } else if (Array.isArray(specifierDefinition)) {
+    return specifierDefinition.map(constructCSSStatement);
+  }
+  return constructCSSStatement(specifierDefinition);
+}
 
 /** resolve theme via propPath safety */
 export function resolveTheme(
@@ -57,10 +83,6 @@ function firstSplit(
   return rest;
 }
 
-export function resolveCorner(key: Corner): string[] {
-  return cornerMap[key];
-}
-
 function leftSplit(value: string[] | string, separator: string): string[][] {
   const _value = isString(value) ? [value] : value;
 
@@ -77,47 +99,29 @@ function resolveSpecifier(
   paths: string[],
   specifier: Specifier,
   context: SpecifierContext,
-): PartialCSSStatement | undefined {
+): PartialCSSStatement | PartialCSSStatement[] | undefined {
   const first = head(paths);
 
   const FALLBACK = "DEFAULT";
 
   if (isRecordSpecifier(specifier)) {
-    if (isUndefined(first)) {
-      const maybeCSSObject = prop(FALLBACK, specifier);
-      if (isCSSObject(maybeCSSObject)) {
-        return { cssObject: maybeCSSObject };
-      }
-      if (isPartialCSSStatement(maybeCSSObject)) {
-        return maybeCSSObject;
-      }
-
-      if (isFunction(maybeCSSObject)) {
-        return cssObjectOrStatement(
-          maybeCSSObject(new MockRegExpExecArray(""), context),
-        );
-      }
-      return;
-    }
-    const result = prop(first, specifier);
-    if (isCSSObject(result)) {
-      return { cssObject: result };
-    }
-    if (isPartialCSSStatement(result)) {
-      return result;
-    }
+    const key = isUndefined(first) ? FALLBACK : first;
+    const result = prop(key, specifier);
     if (isUndefined(result)) {
       return;
     }
-    if (isFunction(result)) {
-      return cssObjectOrStatement(result(new MockRegExpExecArray(""), context));
+    if (isSpecifierDefinition(result)) {
+      return resolveSpecifierDefinition(result, {
+        regExpExecArray: new MockRegExpExecArray(""),
+        context,
+      });
     }
 
     return resolveSpecifier(tail(paths), result, context);
   } else {
     const map = new Map<
       string | RegExp,
-      Specifier | CSSObject | PartialCSSStatement | SpecifierHandler
+      Specifier | SpecifierDefinition
     >(specifier.map(([identifier, handler]) => {
       const _identifier = isRegExp(identifier)
         ? identifier
@@ -126,25 +130,14 @@ function resolveSpecifier(
     }));
     const _first = first ?? FALLBACK;
     if (map.has(_first)) {
-      const specifierOrCSSObject = map.get(_first)! as
-        | Specifier
-        | CSSObject
-        | PartialCSSStatement
-        | SpecifierHandler;
-      if (isCSSObject(specifierOrCSSObject)) {
-        return { cssObject: specifierOrCSSObject };
-      }
-      if (isPartialCSSStatement(specifierOrCSSObject)) {
-        return specifierOrCSSObject;
-      }
-      if (isFunction(specifierOrCSSObject)) {
-        const result = specifierOrCSSObject(
-          new MockRegExpExecArray(""),
+      const result = map.get(_first)!;
+      if (isSpecifierDefinition(result)) {
+        return resolveSpecifierDefinition(result, {
+          regExpExecArray: new MockRegExpExecArray(""),
           context,
-        );
-        return cssObjectOrStatement(result);
+        });
       }
-      return resolveSpecifier(tail(paths), specifierOrCSSObject, context);
+      return resolveSpecifier(tail(paths), result, context);
     }
 
     const regExpSpecifierSets = (Array.from(map) as EntriesSpecifier).filter(
@@ -160,22 +153,15 @@ function resolveSpecifier(
           if (isUndefined(result)) {
             continue;
           }
-          return cssObjectOrStatement(result);
+          return resolveSpecifierDefinition(result, {
+            regExpExecArray,
+            context,
+          });
         }
         return resolveSpecifier(tail(paths), handler, context);
       }
     }
   }
-}
-
-function cssObjectOrStatement(
-  value: CSSObject | PartialCSSStatement | undefined,
-): PartialCSSStatement | undefined {
-  if (isUndefined(value)) return;
-  if (isCSSObject(value)) {
-    return { cssObject: value };
-  }
-  return value;
 }
 
 class MockRegExpExecArray extends Array<string> {
@@ -188,28 +174,40 @@ class MockRegExpExecArray extends Array<string> {
 
 export function resolveDeep(
   paths: string[],
-  specifierMap: Record<string, Specifier | CSSObject>,
+  specifierMap: SpecifierMap,
   context: SpecifierContext,
-): PartialCSSStatement | undefined {
+): PartialCSSStatement[] | undefined {
   const [first, ...rest] = paths;
 
   const maybeSpecifier = prop(first, specifierMap);
-  if (isUndefined(maybeSpecifier)) return;
-  if (isCSSObject(maybeSpecifier)) {
-    if (isLength0(rest)) {
-      return { cssObject: maybeSpecifier };
-    }
-    return;
+  if (isUndefined(maybeSpecifier)) return [];
+  if (isSpecifierDefinition(maybeSpecifier)) {
+    const result = resolveSpecifierDefinition(maybeSpecifier, {
+      regExpExecArray: new MockRegExpExecArray(""),
+      context,
+    });
+    return Some(result).map(wrap).match({
+      some: (v) => v,
+      none: undefined,
+    });
   }
 
-  return resolveSpecifier(rest, maybeSpecifier, context);
+  const result = resolveSpecifier(rest, maybeSpecifier, context);
+  return Some(result).map(wrap).match({
+    some: (v) => v,
+    none: undefined,
+  });
+}
+
+function wrap<T>(value: T): T extends any[] ? T : T[] {
+  return Array.isArray(value) ? value : [value] as any;
 }
 
 export function resolveSpecifierMap(
   value: string,
   specifierMap: SpecifierMap,
   { separator, ...rest }: SpecifierContext,
-): PartialCSSStatement | undefined {
+): PartialCSSStatement[] | undefined {
   const paths = leftSplit(value, separator);
 
   for (const path of paths) {
@@ -218,7 +216,7 @@ export function resolveSpecifierMap(
       ...rest,
     });
 
-    if (maybeCSSObject) {
+    if (maybeCSSObject && maybeCSSObject.length) {
       return maybeCSSObject;
     }
   }

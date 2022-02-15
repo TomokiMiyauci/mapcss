@@ -27,12 +27,12 @@ export interface GenerateResult {
   unmatched: Set<string>;
 }
 
-type ExecuteResult = CSSStatement & {
+type ExecuteResult = [CSSStatement, {
   globalModifierHandlers: [string, GlobalModifierHandler][];
   localModifierHandlers: [string, LocalModifierHandler][];
   specifier: string;
   token: string;
-};
+}][];
 
 function execute(
   { specifier, globalModifiers, localModifiers }: {
@@ -85,17 +85,16 @@ function execute(
       LocalModifierHandler,
     ]
   );
-  const { cssObject, combinator } = partialCSSStatement;
 
-  return {
-    cssObject,
-    combinator,
-    basicSelector: specifier,
-    globalModifierHandlers,
-    localModifierHandlers,
-    specifier,
-    token,
-  };
+  return partialCSSStatement.map((partialCSSStatement) => [
+    { basicSelector: specifier, ...partialCSSStatement },
+    {
+      globalModifierHandlers,
+      localModifierHandlers,
+      specifier,
+      token,
+    },
+  ]);
 }
 
 function asc(a: string, b: string): number {
@@ -157,26 +156,23 @@ export function generateStyleSheet(
           variablePrefix,
         },
       );
-
       return result;
-    }).filter(Boolean) as ExecuteResult[];
-
-    if (isLength0(executeResults)) {
-      unmatched.add(token);
-    }
+    }).filter(Boolean).flat() as ExecuteResult;
     return executeResults;
   }).flat();
 
   const cssStatements = results.map(
     (
-      {
+      [{
         cssObject,
+        pseudo,
+        combinator,
+        atRules = [],
+      }, {
         globalModifierHandlers,
         localModifierHandlers,
-        pseudo,
         token,
-        combinator,
-      },
+      }],
     ) => {
       const maybeCSSObject = localModifierHandlers.reduce(
         (acc, [key, handler]) => {
@@ -194,7 +190,7 @@ export function generateStyleSheet(
         [nextProperty],
       ) => asc(property, nextProperty));
 
-      const cssStatement = globalModifierHandlers.reduce(
+      const cssStatement = globalModifierHandlers.reduceRight(
         (acc, [name, handler]) => {
           const result = handler(acc, {
             theme,
@@ -204,10 +200,10 @@ export function generateStyleSheet(
           if (result) {
             const { atRule, order, ...rest } = result;
             if (atRule) {
-              acc.atRules.push(atRule);
+              acc.atRules.unshift(atRule);
             }
             if (order) {
-              acc.orders.push(order);
+              acc.orders.unshift(order);
             }
             return {
               ...acc,
@@ -221,7 +217,7 @@ export function generateStyleSheet(
           pseudo,
           basicSelector,
           combinator,
-          atRules: [],
+          atRules,
           orders: [],
         } as Required<CSSStatement>,
       );
@@ -237,7 +233,6 @@ export function generateStyleSheet(
   const final = postProcess.reduce((acc, cur) => {
     return cur.fn(acc);
   }, cssStatements);
-
   const cssNestedModule = cssStatements2CSSNestedModule(final);
   const css = stringifyCSSNestedModule(cssNestedModule);
 

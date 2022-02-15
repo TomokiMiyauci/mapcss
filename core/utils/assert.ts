@@ -6,9 +6,17 @@ import type {
   PartialCSSStatement,
   RecordSpecifier,
   Specifier,
+  SpecifierDefinition,
   StaticSpecifierSet,
 } from "./../types.ts";
-import { isNumber, isObject, isRegExp, isString, prop } from "../../deps.ts";
+import {
+  isFunction,
+  isNumber,
+  isObject,
+  isRegExp,
+  isString,
+  prop,
+} from "../../deps.ts";
 
 export function isCSSObject(value: unknown): value is CSSObject {
   if (!isObject(value)) return false;
@@ -38,6 +46,20 @@ export function isRecordSpecifier(
   specifier: Specifier,
 ): specifier is RecordSpecifier {
   return !Array.isArray(specifier);
+}
+
+export function isSpecifierDefinition(
+  value: unknown,
+): value is SpecifierDefinition {
+  if (isCSSObject(value) || isPartialCSSStatement(value) || isFunction(value)) {
+    return true;
+  }
+  if (Array.isArray(value)) {
+    if (value.every(isCSSObject) || value.every(isPartialCSSStatement)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export function isRegExpSpecifierSet(

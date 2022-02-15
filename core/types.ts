@@ -1,3 +1,4 @@
+import type { Arrayable } from "../deps.ts";
 export type CSSObject = Record<string, string | number>;
 
 export type PartialCSSStatement = Option<CSSStatement, "basicSelector">;
@@ -34,18 +35,21 @@ export type ThemeContext = {
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
+export type SpecifierDefinition =
+  | Arrayable<CSSObject>
+  | Arrayable<PartialCSSStatement>
+  | SpecifierHandler;
+
 export type RecordSpecifier = {
   [k: string]:
-    | CSSObject
-    | PartialCSSStatement
-    | SpecifierHandler
+    | SpecifierDefinition
     | Specifier;
 };
 
 export type SpecifierHandler = (
   arr: RegExpExecArray,
   context: SpecifierContext,
-) => CSSObject | PartialCSSStatement | undefined;
+) => SpecifierDefinition | undefined;
 
 export type EntriesSpecifier = (StaticSpecifierSet | DynamicSpecifierSet)[];
 export type DynamicSpecifierSet = [
@@ -54,8 +58,7 @@ export type DynamicSpecifierSet = [
 ];
 export type StaticSpecifierSet = [
   string | number,
-  | CSSObject
-  | PartialCSSStatement
+  | SpecifierDefinition
   | Specifier,
 ];
 
@@ -71,7 +74,10 @@ export type ModifierContext = ThemeContext & {
   modifier: string;
 };
 
-export type SpecifierMap = Record<string | number, Specifier | CSSObject>;
+export type SpecifierMap = Record<
+  string | number,
+  Specifier | SpecifierDefinition
+>;
 
 export interface Theme {
   [k: string | number]: string | Theme;
