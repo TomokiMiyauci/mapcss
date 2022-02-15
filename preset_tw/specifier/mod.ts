@@ -15,6 +15,7 @@ import {
   caret,
   clear,
   columns,
+  container,
   contents,
   contrast,
   cursor,
@@ -140,6 +141,7 @@ import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
+  container,
   to,
   via,
   from,
