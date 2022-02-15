@@ -12,6 +12,7 @@ import {
 import type {
   CSSObject,
   EntriesSpecifier,
+  PartialCSSStatement,
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
@@ -38,6 +39,7 @@ import {
   reSlashNumber,
 } from "../../core/utils/regexp.ts";
 import { AUTO, HIDDEN } from "../../constants.ts";
+import { minWidthMediaQuery } from "../modifiers/breakpoint.ts";
 
 const VERTICAL_ALIGN = "vertical-align";
 
@@ -100,32 +102,50 @@ export const bottom: EntriesSpecifier = [
 ];
 
 export const container: EntriesSpecifier = [
-  ["DEFAULT", [{ "cssObject": { width: "100%" } }, {
-    atRules: ["@media (min-width: 640px)"],
-    cssObject: {
-      "max-width": "640px",
-    },
-  }, {
-    atRules: ["@media (min-width: 720px)"],
-    cssObject: {
-      "max-width": "720px",
-    },
-  }, {
-    atRules: ["@media (min-width: 1024px)"],
-    cssObject: {
-      "max-width": "1024px",
-    },
-  }, {
-    atRules: ["@media (min-width: 1280px)"],
-    cssObject: {
-      "max-width": "1280px",
-    },
-  }, {
-    atRules: ["@media (min-width: 1536px)"],
-    cssObject: {
-      "max-width": "1536px",
-    },
-  }]],
+  ["DEFAULT", (_, context) => {
+    const SCREEN = "screen";
+    const sm = resolveTheme("sm", SCREEN, context);
+    const md = resolveTheme("md", SCREEN, context);
+    const lg = resolveTheme("lg", SCREEN, context);
+    const xl = resolveTheme("xl", SCREEN, context);
+    const $2xl = resolveTheme("2xl", SCREEN, context);
+    if (sm && md && lg && xl && $2xl) {
+      const specifier = [
+        { cssObject: { width: "100%" } },
+        {
+          atRules: [minWidthMediaQuery(sm)],
+          cssObject: {
+            "max-width": sm,
+          },
+        },
+        {
+          atRules: [minWidthMediaQuery(md)],
+          cssObject: {
+            "max-width": md,
+          },
+        },
+        {
+          atRules: [minWidthMediaQuery(lg)],
+          cssObject: {
+            "max-width": lg,
+          },
+        },
+        {
+          atRules: [minWidthMediaQuery(xl)],
+          cssObject: {
+            "max-width": xl,
+          },
+        },
+        {
+          atRules: [minWidthMediaQuery($2xl)],
+          cssObject: {
+            "max-width": $2xl,
+          },
+        },
+      ] as PartialCSSStatement[];
+      return specifier;
+    }
+  }],
 ];
 export const clear: Specifier = {
   right: { clear: "right" },

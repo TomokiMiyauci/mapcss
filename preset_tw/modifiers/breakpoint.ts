@@ -7,7 +7,7 @@ import type {
   ModifierContext,
 } from "./../../core/types.ts";
 
-function minWidthMediaQuery(value: string): string {
+export function minWidthMediaQuery(value: string): string {
   return cssMediaRule(`min-width: ${value}`);
 }
 

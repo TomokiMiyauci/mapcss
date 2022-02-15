@@ -49,7 +49,7 @@ export type RecordSpecifier = {
 export type SpecifierHandler = (
   arr: RegExpExecArray,
   context: SpecifierContext,
-) => SpecifierDefinition | undefined;
+) => Arrayable<CSSObject> | Arrayable<PartialCSSStatement> | undefined;
 
 export type EntriesSpecifier = (StaticSpecifierSet | DynamicSpecifierSet)[];
 export type DynamicSpecifierSet = [
