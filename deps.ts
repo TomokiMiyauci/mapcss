@@ -119,3 +119,5 @@ export type PropPath<
 export function roundTo(num: number, digit: number): number {
   return +(Math.round(Number(num + `e+${digit}`)) + `e-${digit}`);
 }
+
+export type Arrayable<T> = T | T[];
