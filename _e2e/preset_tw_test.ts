@@ -1479,6 +1479,7 @@ const expects: [string, string][] = [
   ["h-min", ".h-min{height:min-content;}"],
   ["h-max", ".h-max{height:max-content;}"],
   ["h-fit", ".h-fit{height:fit-content;}"],
+  ["h-[32rem]", ".h-\\[32rem\\]{height:32rem;}"],
   ["max-h-0.5", ".max-h-0\\.5{max-height:0.125rem;}"],
   ["max-h-1.5", ".max-h-1\\.5{max-height:0.375rem;}"],
   ["max-h-2.5", ".max-h-2\\.5{max-height:0.625rem;}"],

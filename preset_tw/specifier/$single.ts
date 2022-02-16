@@ -202,6 +202,9 @@ export const h: Specifier = [
       height: percent,
     }));
   }],
+  [reBracket$, ([, body]) => ({
+    height: body,
+  })],
 ];
 export const indent: EntriesSpecifier = [
   [0, { "text-indent": "0px" }],
