@@ -1,3 +1,20 @@
+# [1.0.0-beta.10](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2022-02-16)
+
+
+### Bug Fixes
+
+* **core:** deep marge duplicated selector ([1d17cb2](https://github.com/TomokiMiyauci/mapcss/commit/1d17cb29d91f0360e8944cddf9416a81e990e40c))
+* **preset_tw:** specifier of container use screen theme ([b3a18c1](https://github.com/TomokiMiyauci/mapcss/commit/b3a18c16fc85009da9f9332d4864ceb4c904dd5a))
+
+
+### Features
+
+* **core:** add order system for css statement ([90e22ff](https://github.com/TomokiMiyauci/mapcss/commit/90e22ff6f3fa7223dfad857e4344215c1fa8f9b9))
+* **core:** extend interface of specifier ([2ffc270](https://github.com/TomokiMiyauci/mapcss/commit/2ffc270d7ea89074022fb1b147dc0a8fa49bde3f))
+* **core:** rename `generate` to `generateStyleSheet`, add postProcessor ([750fac7](https://github.com/TomokiMiyauci/mapcss/commit/750fac79491a4a6df910ee406fd3e56e579e64fa))
+* **preset_tw:** add arbitrary rule for `h` ([8c1f0c5](https://github.com/TomokiMiyauci/mapcss/commit/8c1f0c5ffd4d151c89a89cf0791440e366afad02))
+* **preset_tw:** add specifier of `container` ([6cddf43](https://github.com/TomokiMiyauci/mapcss/commit/6cddf436f141b5a41a4c476f01da52cbecc062cb))
+
 # [1.0.0-beta.9](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2022-02-10)
 
 
