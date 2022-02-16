@@ -1,4 +1,4 @@
-import { filterValues, has, isLength0, isString } from "../deps.ts";
+import { filterValues, has, isString } from "../deps.ts";
 import { resolveSpecifierMap } from "./utils/resolver.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { extractSplit } from "./extractor.ts";
