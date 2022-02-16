@@ -34607,6 +34607,10 @@ const expects: [string, string][] = [
     "not-sr-only",
     ".not-sr-only{clip:auto;height:auto;margin:0;overflow:visible;padding:0;position:static;white-space:normal;width:auto;}",
   ],
+  [
+    "container",
+    ".container{width:100%;}\n@media (min-width: 640px){.container{max-width:640px;}}\n@media (min-width: 768px){.container{max-width:768px;}}\n@media (min-width: 1024px){.container{max-width:1024px;}}\n@media (min-width: 1280px){.container{max-width:1280px;}}\n@media (min-width: 1536px){.container{max-width:1536px;}}",
+  ],
   ["sm:block", "@media (min-width: 640px){.sm\\:block{display:block;}}"],
   ["md:block", "@media (min-width: 768px){.md\\:block{display:block;}}"],
   ["lg:block", "@media (min-width: 1024px){.lg\\:block{display:block;}}"],
