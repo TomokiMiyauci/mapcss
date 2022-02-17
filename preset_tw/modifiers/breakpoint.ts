@@ -1,26 +1,28 @@
-import { resolveTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/resolve.ts";
 import { Some } from "../../deps.ts";
-import { cssMediaRule } from "../../core/utils/format.ts";
 import type {
+  CSSStatement,
   GlobalModifier,
-  GlobalModifierHandler,
   ModifierContext,
 } from "./../../core/types.ts";
 
 export function minWidthMediaQuery(value: string): string {
-  return cssMediaRule(`min-width: ${value}`);
+  return `(min-width: ${value})`;
 }
 
 function breakPointHandler(
+  cssStatement: Required<CSSStatement>,
   order: number,
   context: ModifierContext,
-): ReturnType<GlobalModifierHandler> {
+): Required<CSSStatement> | undefined {
   return Some(resolveTheme(context.modifier, "screen", context)).map(
     minWidthMediaQuery,
   ).match({
-    some: (atRule) => ({
-      atRule,
-      order,
+    some: (rule) => ({
+      type: "groupAtRule",
+      identifier: "media",
+      rule,
+      children: cssStatement,
     }),
     none: undefined,
   });
@@ -28,25 +30,25 @@ function breakPointHandler(
 
 export const sm: GlobalModifier = {
   type: "global",
-  fn: (_, context) => breakPointHandler(1, context),
+  fn: (cssStatement, context) => breakPointHandler(cssStatement, 1, context),
 };
 
 export const md: GlobalModifier = {
   type: "global",
-  fn: (_, context) => breakPointHandler(2, context),
+  fn: (cssStatement, context) => breakPointHandler(cssStatement, 2, context),
 };
 
 export const lg: GlobalModifier = {
   type: "global",
-  fn: (_, context) => breakPointHandler(3, context),
+  fn: (cssStatement, context) => breakPointHandler(cssStatement, 3, context),
 };
 
 export const xl: GlobalModifier = {
   type: "global",
-  fn: (_, context) => breakPointHandler(4, context),
+  fn: (cssStatement, context) => breakPointHandler(cssStatement, 4, context),
 };
 
 export const $2xl: GlobalModifier = {
   type: "global",
-  fn: (_, context) => breakPointHandler(5, context),
+  fn: (cssStatement, context) => breakPointHandler(cssStatement, 5, context),
 };

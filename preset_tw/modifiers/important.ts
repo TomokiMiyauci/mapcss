@@ -3,9 +3,9 @@ import type { LocalModifier } from "../../core/types.ts";
 
 export const $important: LocalModifier = {
   type: "local",
-  fn: (cssObject) => {
+  fn: (declaration) => {
     return mapEntries(
-      cssObject,
+      declaration,
       ([key, value]) => [key, `${value} !important`],
     );
   },

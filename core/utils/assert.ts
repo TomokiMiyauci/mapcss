@@ -1,6 +1,7 @@
 import type {
   CSSObject,
   CSSStatement,
+  Declaration,
   DynamicSpecifierSet,
   EntriesSpecifier,
   PartialCSSStatement,
@@ -31,11 +32,6 @@ export function isPartialCSSStatement(
   return "cssObject" in value && isCSSObject(prop("cssObject", value));
 }
 
-export function isCSSStatement(value: unknown): value is CSSStatement {
-  return isPartialCSSStatement(value) && "selector" in value &&
-    isString(prop("selector", value));
-}
-
 export function isEntriesSpecifier(
   specifier: Specifier,
 ): specifier is EntriesSpecifier {
@@ -46,20 +42,6 @@ export function isRecordSpecifier(
   specifier: Specifier,
 ): specifier is RecordSpecifier {
   return !Array.isArray(specifier);
-}
-
-export function isSpecifierDefinition(
-  value: unknown,
-): value is SpecifierDefinition {
-  if (isCSSObject(value) || isPartialCSSStatement(value) || isFunction(value)) {
-    return true;
-  }
-  if (Array.isArray(value)) {
-    if (value.every(isCSSObject) || value.every(isPartialCSSStatement)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 export function isRegExpSpecifierSet(
@@ -77,4 +59,31 @@ export function isStringSpecifierSet(
 const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
 export function isValidSelector(selector: string): selector is string {
   return reValidSelector.test(selector);
+}
+
+export function isDeclaration(value: unknown): value is Declaration {
+  if (!isObject(value)) return false;
+
+  return Object.values(value).every((v) => isString(v) || isNumber(v));
+}
+
+export function isCSSStatement(value: unknown): value is CSSStatement {
+  if (!isObject(value)) return false;
+  const type = prop("type", value);
+
+  return isString(type) && ["ruleset", "groupAtRule"].includes(type);
+}
+
+export function isSpecifierDefinition(
+  value: unknown,
+): value is SpecifierDefinition {
+  if (isDeclaration(value) || isCSSStatement(value) || isFunction(value)) {
+    return true;
+  }
+  if (Array.isArray(value)) {
+    if (value.every(isDeclaration) || value.every(isCSSStatement)) {
+      return true;
+    }
+  }
+  return false;
 }

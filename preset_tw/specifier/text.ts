@@ -1,4 +1,4 @@
-import { resolveTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,

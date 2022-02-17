@@ -1,6 +1,6 @@
 import { customPropertySet, pxBy } from "./_utils.ts";
 import { reNumeric } from "../../core/utils/regexp.ts";
-import { resolveTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,

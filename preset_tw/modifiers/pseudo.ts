@@ -2,28 +2,40 @@ import type { GlobalModifier } from "./../../core/types.ts";
 
 export const pseudo: GlobalModifier = {
   type: "global",
-  fn: (_, { modifier }) => ({
-    pseudo: `:${modifier}`,
-  }),
+  fn: (cssStatement, { modifier }) => {
+    if (cssStatement.type === "ruleset") {
+      cssStatement.selector.pseudo = `:${modifier}`;
+    }
+    return cssStatement;
+  },
 };
 
 export const scrollbar: GlobalModifier = {
   type: "global",
-  fn: () => ({
-    pseudo: `::-webkit-scrollbar`,
-  }),
+  fn: (cssStatement) => {
+    if (cssStatement.type === "ruleset") {
+      cssStatement.selector.pseudo = "::-webkit-scrollbar";
+    }
+    return cssStatement;
+  },
 };
 
 export const scrollbarTrack: GlobalModifier = {
   type: "global",
-  fn: () => ({
-    pseudo: `::-webkit-scrollbar-track`,
-  }),
+  fn: (cssStatement) => {
+    if (cssStatement.type === "ruleset") {
+      cssStatement.selector.pseudo = "::-webkit-scrollbar-track";
+    }
+    return cssStatement;
+  },
 };
 
 export const scrollbarThumb: GlobalModifier = {
   type: "global",
-  fn: () => ({
-    pseudo: `::-webkit-scrollbar-thumb`,
-  }),
+  fn: (cssStatement) => {
+    if (cssStatement.type === "ruleset") {
+      cssStatement.selector.pseudo = "::-webkit-scrollbar-thumb";
+    }
+    return cssStatement;
+  },
 };

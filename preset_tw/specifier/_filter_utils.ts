@@ -1,7 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
 import { numericBy } from "./_utils.ts";
 import { shortDecimal } from "../../core/utils/format.ts";
-import type { CSSObject, PartialCSSStatement } from "../../core/types.ts";
+import type { CSSStatement, Declaration } from "../../core/types.ts";
 export function filterValue(variablePrefix: string): string {
   const [, varFnBlur] = customPropertySet("blur", variablePrefix);
   const [, varFnBrightness] = customPropertySet("brightness", variablePrefix);
@@ -23,7 +23,7 @@ export function handleFilter(
   propertyName: string,
   value: string,
   variablePrefix: string,
-): CSSObject | PartialCSSStatement | undefined {
+): Declaration | CSSStatement | undefined {
   return numericBy(value, (number) => {
     const [varName] = customPropertySet(propertyName, variablePrefix);
     return {

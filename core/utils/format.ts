@@ -78,16 +78,32 @@ export function cssStatements2CSSNestedModule(
   return cssStatements.reduce(
     (
       acc,
-      { basicSelector, pseudo = "", combinator = "", atRules = [], cssObject },
+      cur,
     ) => {
-      const selector = `${basicSelector}${pseudo}${combinator}`;
-      const nestedModule = atRules.reduceRight((acc, atRule) => {
-        return { [atRule]: acc };
-      }, { [selector]: cssObject } as CSSNestedModule);
-      return deepMerge(acc, nestedModule);
+      return deepMerge(acc, constructCSS(cur));
     },
     {},
   );
+}
+
+function constructCSS(cssStatement: CSSStatement): CSSNestedModule {
+  if (cssStatement.type === "ruleset") {
+    const {
+      selector: { basic = "", pseudo = "", combinator = "" } = {
+        basic: "",
+        pseudo: "",
+        combinator: "",
+      },
+      declaration,
+    } = cssStatement;
+    const selector = `${basic}${pseudo}${combinator}`;
+
+    return { [selector]: declaration };
+  }
+
+  const { identifier, rule, children } = cssStatement;
+  const selector = `@${identifier} ${rule}`;
+  return { [selector]: constructCSS(children) };
 }
 
 export function stringifyCSSNestedModule(

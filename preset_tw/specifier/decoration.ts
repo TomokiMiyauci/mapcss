@@ -1,6 +1,6 @@
 import { reNumeric } from "../../core/utils/regexp.ts";
 import { associatePx } from "./_utils.ts";
-import { resolveTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,

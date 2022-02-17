@@ -9,23 +9,15 @@ type Option<T extends Record<PropertyKey, unknown>, K extends PropertyKey> =
   }
   & { [k in keyof Omit<T, K>]: T[k] };
 
-export type CSSStatement = {
-  basicSelector: string;
-  combinator?: string;
-  pseudo?: string;
-  atRules?: string[];
-  orders?: number[];
-  cssObject: CSSObject;
-};
-
 export type CSSNestedModule = {
-  [k: string]: CSSNestedModule | CSSObject;
+  [k: string]: CSSNestedModule | Declaration;
 };
 
 export type SpecifierContext =
   & ThemeContext
   & {
     variablePrefix: string;
+    token: string;
   };
 
 export type ThemeContext = {
@@ -33,25 +25,11 @@ export type ThemeContext = {
   separator: string;
 };
 
-export type Specifier = RecordSpecifier | EntriesSpecifier;
-
-export type SpecifierDefinition =
-  | Arrayable<CSSObject>
-  | Arrayable<PartialCSSStatement>
-  | SpecifierHandler;
-
-export type RecordSpecifier = {
-  [k: string]:
-    | SpecifierDefinition
-    | Specifier;
-};
-
 export type SpecifierHandler = (
   arr: RegExpExecArray,
   context: SpecifierContext,
 ) => Arrayable<CSSObject> | Arrayable<PartialCSSStatement> | undefined;
 
-export type EntriesSpecifier = (StaticSpecifierSet | DynamicSpecifierSet)[];
 export type DynamicSpecifierSet = [
   RegExp | string | number,
   SpecifierHandler,
@@ -74,11 +52,6 @@ export type ModifierContext = ThemeContext & {
   modifier: string;
 };
 
-export type SpecifierMap = Record<
-  string | number,
-  Specifier | SpecifierDefinition
->;
-
 export interface Theme {
   [k: string | number]: string | Theme;
 }
@@ -93,7 +66,7 @@ export interface Config {
 
   postProcess: {
     name: string;
-    fn: (cssStatements: Required<CSSStatement>[]) => Required<CSSStatement>[];
+    fn: (cssStatements: CSSStatement[]) => CSSStatement[];
   }[];
 
   /**
@@ -103,24 +76,21 @@ export interface Config {
 }
 
 type OverrideCSSStatement =
-  & Pick<
-    Required<CSSStatement>,
-    "basicSelector" | "cssObject" | "pseudo"
-  >
+  & Required<CSSStatement>
   & {
     atRule: string;
     order: number;
   };
 
 export type GlobalModifierHandler = (
-  cssStatement: PartialCSSStatement,
+  cssStatement: Required<CSSStatement>,
   context: ModifierContext,
-) => Partial<OverrideCSSStatement> | undefined;
+) => Required<CSSStatement> | undefined;
 
 export type LocalModifierHandler = (
-  cssObject: CSSObject,
+  declaration: RuleSet["declaration"],
   context: ModifierContext,
-) => CSSObject | undefined;
+) => RuleSet["declaration"] | undefined;
 
 export type GlobalModifier = {
   type: "global";
@@ -157,6 +127,66 @@ export type Syntax = {
 export type PostProcessor = {
   name: string;
   fn: (
-    cssStatements: Required<CSSStatement>[],
-  ) => Required<CSSStatement>[];
+    cssStatements: CSSStatement[],
+  ) => CSSStatement[];
 };
+
+export type Declaration = Record<string, string | number>;
+export type CSSStatement = GroupAtRule | RuleSet;
+
+export type AtRule = {
+  type: "atRule";
+  identifier: string;
+  rule?: string;
+  children?: NestedRecord;
+};
+
+type NestedRecord = {
+  [k: string]: string | NestedRecord;
+};
+
+export type GroupAtRule = {
+  type: "groupAtRule";
+  identifier: string;
+  rule: string;
+  children: GroupAtRule | RuleSet;
+};
+
+export type Selector = {
+  basic: string;
+  combinator: string;
+  pseudo: `:${string}` | `::${string}`;
+};
+
+export type RuleSet = {
+  type: "ruleset";
+  selector?: Partial<Selector>;
+  declaration: Declaration;
+};
+
+export type SpecifierMap = {
+  [k in string | number]:
+    | SpecifierDefinition
+    | Specifier;
+};
+
+export type RecordSpecifier = {
+  [k: string | number]:
+    | SpecifierDefinition
+    | Specifier;
+};
+export type EntriesSpecifier = [
+  string | number | RegExp,
+  | SpecifierDefinition
+  | Specifier,
+][];
+
+export type Specifier = RecordSpecifier | EntriesSpecifier;
+
+export type SpecifierDefinition =
+  | Arrayable<Declaration>
+  | Arrayable<CSSStatement>
+  | ((regExpExecArray: RegExpExecArray, context: SpecifierContext) =>
+    | Arrayable<Declaration>
+    | Arrayable<CSSStatement>
+    | undefined);

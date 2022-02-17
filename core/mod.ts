@@ -1,24 +1,24 @@
 import { filterValues, has, isString } from "../deps.ts";
-import { resolveSpecifierMap } from "./utils/resolver.ts";
-import { escapeRegExp } from "./utils/escape.ts";
 import { extractSplit } from "./extractor.ts";
+import { resolveSpecifierMap } from "./resolve.ts";
 import {
   cssStatements2CSSNestedModule,
   stringifyCSSNestedModule,
 } from "./utils/format.ts";
 import type {
   Config,
-  CSSObject,
   CSSStatement,
   GlobalModifier,
-  GlobalModifierHandler,
   LocalModifier,
-  LocalModifierHandler,
+  RuleSet,
   SpecifierMap,
   Theme,
 } from "./types.ts";
 import { resolveConfig } from "./config.ts";
-import { statementOrderProcessor } from "./post_process.ts";
+import {
+  declarationOrderProcessor,
+  statementOrderProcessor,
+} from "./post_process.ts";
 export * from "./types.ts";
 
 export interface GenerateResult {
@@ -26,13 +26,6 @@ export interface GenerateResult {
   matched: Set<string>;
   unmatched: Set<string>;
 }
-
-type ExecuteResult = [CSSStatement, {
-  globalModifierHandlers: [string, GlobalModifierHandler][];
-  localModifierHandlers: [string, LocalModifierHandler][];
-  specifier: string;
-  token: string;
-}][];
 
 function execute(
   { specifier, globalModifiers, localModifiers }: {
@@ -57,53 +50,52 @@ function execute(
     token: string;
     variablePrefix: string;
   },
-): ExecuteResult | undefined {
-  const hasDefinedGlobalModifiers = globalModifiers.every((modifier) =>
-    has(modifier, globalModifierMap)
-  );
-  const hasDefinedLocalModifiers = localModifiers.every((modifier) =>
-    has(modifier, localModifierMap)
-  );
-  if (!hasDefinedGlobalModifiers || !hasDefinedLocalModifiers) return;
-  const partialCSSStatement = resolveSpecifierMap(specifier, specifierMap, {
+): Required<CSSStatement>[] | undefined {
+  const CSSStatements = resolveSpecifierMap(specifier, specifierMap, {
     theme,
     separator,
     variablePrefix,
+    token,
   });
+  if (!CSSStatements) return;
 
-  if (!partialCSSStatement) return;
+  const maybe = CSSStatements.map((cssStatement) => {
+    if (cssStatement.type === "groupAtRule") return cssStatement;
+    return localModifiers.reduce(
+      (acc, cur) => {
+        if (!acc) return;
 
-  const globalModifierHandlers = globalModifiers.map((modifier) =>
-    [modifier, globalModifierMap[modifier].fn] as [
-      string,
-      GlobalModifierHandler,
-    ]
-  );
-  const localModifierHandlers = localModifiers.map((modifier) =>
-    [modifier, localModifierMap[modifier].fn] as [
-      string,
-      LocalModifierHandler,
-    ]
-  );
+        const handler = localModifierMap[cur];
+        const declaration = handler.fn(acc.declaration, {
+          theme,
+          modifier: cur,
+          separator,
+        });
+        if (!declaration) return;
+        return {
+          ...acc,
+          declaration,
+        };
+      },
+      cssStatement as RuleSet | undefined,
+    );
+  }).filter(Boolean) as Required<CSSStatement>[];
 
-  return partialCSSStatement.map((partialCSSStatement) => [
-    { basicSelector: specifier, ...partialCSSStatement },
-    {
-      globalModifierHandlers,
-      localModifierHandlers,
-      specifier,
-      token,
-    },
-  ]);
-}
+  const statement = maybe.map((cssStatement) => {
+    return globalModifiers.reduce((acc, cur) => {
+      if (!acc) return;
+      const handler = globalModifierMap[cur];
+      const result = handler.fn(acc, {
+        theme,
+        modifier: cur,
+        separator,
+      });
+      if (!result) return;
+      return result;
+    }, cssStatement as Required<CSSStatement> | undefined);
+  }).filter(Boolean) as Required<CSSStatement>[];
 
-function asc(a: string, b: string): number {
-  if (a > b) {
-    return 1;
-  } else if (a < b) {
-    return -1;
-  }
-  return 0;
+  return statement;
 }
 
 /** Generate CSS Style Sheet as string */
@@ -144,6 +136,14 @@ export function generateStyleSheet(
       const { specifier, globalModifiers = [], localModifiers = [] } =
         parseResult;
 
+      const hasDefinedGlobalModifiers = globalModifiers.every((modifier) =>
+        has(modifier, globalModifierMap)
+      );
+      const hasDefinedLocalModifiers = localModifiers.every((modifier) =>
+        has(modifier, localModifierMap)
+      );
+      if (!hasDefinedGlobalModifiers || !hasDefinedLocalModifiers) return;
+
       const result = execute(
         { specifier, globalModifiers, localModifiers },
         {
@@ -157,82 +157,16 @@ export function generateStyleSheet(
         },
       );
       return result;
-    }).filter(Boolean).flat() as ExecuteResult;
+    }).filter(Boolean).flat() as CSSStatement[];
     return executeResults;
   }).flat();
 
-  const cssStatements = results.map(
-    (
-      [{
-        cssObject,
-        pseudo,
-        combinator,
-        atRules = [],
-      }, {
-        globalModifierHandlers,
-        localModifierHandlers,
-        token,
-      }],
-    ) => {
-      const maybeCSSObject = localModifierHandlers.reduce(
-        (acc, [key, handler]) => {
-          if (!acc) return;
-          return handler(acc, { theme, modifier: key, separator });
-        },
-        cssObject as CSSObject | undefined,
-      );
-      if (!maybeCSSObject) return;
-
-      const basicSelector = `.${escapeRegExp(token)}`;
-
-      const orderedCSSObject = Object.entries(maybeCSSObject).sort((
-        [property],
-        [nextProperty],
-      ) => asc(property, nextProperty));
-
-      const cssStatement = globalModifierHandlers.reduceRight(
-        (acc, [name, handler]) => {
-          const result = handler(acc, {
-            theme,
-            modifier: name,
-            separator,
-          });
-          if (result) {
-            const { atRule, order, ...rest } = result;
-            if (atRule) {
-              acc.atRules.unshift(atRule);
-            }
-            if (order) {
-              acc.orders.unshift(order);
-            }
-            return {
-              ...acc,
-              ...rest,
-            };
-          }
-          return acc;
-        },
-        {
-          cssObject: Object.fromEntries(orderedCSSObject),
-          pseudo,
-          basicSelector,
-          combinator,
-          atRules,
-          orders: [],
-        } as Required<CSSStatement>,
-      );
-
-      matched.add(token);
-
-      return cssStatement;
-    },
-  ).filter(Boolean) as Required<CSSStatement>[];
-
   postProcess.unshift(statementOrderProcessor);
+  postProcess.unshift(declarationOrderProcessor);
 
   const final = postProcess.reduce((acc, cur) => {
     return cur.fn(acc);
-  }, cssStatements);
+  }, results);
   const cssNestedModule = cssStatements2CSSNestedModule(final);
   const css = stringifyCSSNestedModule(cssNestedModule);
 

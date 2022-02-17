@@ -1,5 +1,5 @@
-import { associatePx, associateRGBA, pxBy } from "./_utils.ts";
-import { resolveTheme } from "../../core/utils/resolver.ts";
+import { associatePx, pxBy } from "./_utils.ts";
+import { resolveTheme } from "../../core/resolve.ts";
 import { associateWith, isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,
@@ -99,11 +99,20 @@ export const border: Specifier = [
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
-      return associateRGBA(
-        color,
-        ["border-top-color", "border-bottom-color"],
-        alpha,
-      );
+      return parseNumeric(alpha).match({
+        some: (number) =>
+          parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match(
+            {
+              some: (color) =>
+                associateWith(
+                  ["border-top-color", "border-bottom-color"],
+                  () => color,
+                ),
+              none: undefined,
+            },
+          ),
+        none: undefined,
+      });
     }],
     [
       reNumeric,

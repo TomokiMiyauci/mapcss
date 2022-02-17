@@ -11,8 +11,8 @@ import {
 } from "../../core/utils/format.ts";
 import type {
   CSSObject,
+  CSSStatement,
   EntriesSpecifier,
-  PartialCSSStatement,
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
@@ -28,7 +28,7 @@ import {
   remBy,
   transformValue,
 } from "./_utils.ts";
-import { resolveTheme } from "../../core/utils/resolver.ts";
+import { resolveTheme } from "../../core/resolve.ts";
 import { associateWith, isUndefined } from "../../deps.ts";
 import {
   re$SlashBracket$,
@@ -110,39 +110,64 @@ export const container: EntriesSpecifier = [
     const xl = resolveTheme("xl", SCREEN, context);
     const $2xl = resolveTheme("2xl", SCREEN, context);
     if (sm && md && lg && xl && $2xl) {
-      const specifier = [
-        { cssObject: { width: "100%" } },
+      const specifier: CSSStatement[] = [
+        { type: "ruleset", declaration: { width: "100%" } },
         {
-          atRules: [minWidthMediaQuery(sm)],
-          cssObject: {
-            "max-width": sm,
+          type: "groupAtRule",
+          identifier: "media",
+          rule: minWidthMediaQuery(sm),
+          children: {
+            type: "ruleset",
+            declaration: {
+              "max-width": sm,
+            },
           },
         },
         {
-          atRules: [minWidthMediaQuery(md)],
-          cssObject: {
-            "max-width": md,
+          type: "groupAtRule",
+          identifier: "media",
+          rule: minWidthMediaQuery(md),
+          children: {
+            type: "ruleset",
+            declaration: {
+              "max-width": md,
+            },
           },
         },
         {
-          atRules: [minWidthMediaQuery(lg)],
-          cssObject: {
-            "max-width": lg,
+          type: "groupAtRule",
+          identifier: "media",
+          rule: minWidthMediaQuery(lg),
+          children: {
+            type: "ruleset",
+            declaration: {
+              "max-width": lg,
+            },
           },
         },
         {
-          atRules: [minWidthMediaQuery(xl)],
-          cssObject: {
-            "max-width": xl,
+          type: "groupAtRule",
+          identifier: "media",
+          rule: minWidthMediaQuery(xl),
+          children: {
+            type: "ruleset",
+            declaration: {
+              "max-width": xl,
+            },
           },
         },
         {
-          atRules: [minWidthMediaQuery($2xl)],
-          cssObject: {
-            "max-width": $2xl,
+          type: "groupAtRule",
+          identifier: "media",
+          rule: minWidthMediaQuery($2xl),
+          children: {
+            type: "ruleset",
+            declaration: {
+              "max-width": $2xl,
+            },
           },
         },
-      ] as PartialCSSStatement[];
+      ];
       return specifier;
     }
   }],
