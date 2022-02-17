@@ -21,6 +21,7 @@ function breakPointHandler(
     some: (rule) => ({
       type: "groupAtRule",
       identifier: "media",
+      order,
       rule,
       children: cssStatement,
     }),

@@ -180,6 +180,7 @@ function constructCSSStatement(
   if (isDeclaration(value)) {
     const selector = escapeRegExp(basic);
     return {
+      order: 0,
       declaration: value,
       type: "ruleset",
       selector: { basic: selector ? `.${selector}` : "" },
@@ -190,6 +191,7 @@ function constructCSSStatement(
     const _selector = escapeRegExp(basic);
 
     return {
+      order: 0,
       ...rest,
       selector: {
         basic: _selector ? `.${_selector}` : "",
@@ -199,6 +201,7 @@ function constructCSSStatement(
   }
   if (value.type === "groupAtRule") {
     return {
+      order: 0,
       ...value,
       children: constructCSSStatement(value.children, basic),
     };

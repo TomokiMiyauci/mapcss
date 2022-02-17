@@ -128,6 +128,7 @@ export const container: EntriesSpecifier = [
         {
           type: "groupAtRule",
           identifier: "media",
+          order: 1,
           rule: minWidthMediaQuery(sm),
           children: {
             type: "ruleset",
@@ -139,6 +140,7 @@ export const container: EntriesSpecifier = [
         {
           type: "groupAtRule",
           identifier: "media",
+          order: 2,
           rule: minWidthMediaQuery(md),
           children: {
             type: "ruleset",
@@ -150,6 +152,7 @@ export const container: EntriesSpecifier = [
         {
           type: "groupAtRule",
           identifier: "media",
+          order: 3,
           rule: minWidthMediaQuery(lg),
           children: {
             type: "ruleset",
@@ -161,6 +164,7 @@ export const container: EntriesSpecifier = [
         {
           type: "groupAtRule",
           identifier: "media",
+          order: 4,
           rule: minWidthMediaQuery(xl),
           children: {
             type: "ruleset",
@@ -172,6 +176,7 @@ export const container: EntriesSpecifier = [
         {
           type: "groupAtRule",
           identifier: "media",
+          order: 5,
           rule: minWidthMediaQuery($2xl),
           children: {
             type: "ruleset",
