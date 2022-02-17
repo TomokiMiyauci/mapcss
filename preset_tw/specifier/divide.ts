@@ -1,4 +1,3 @@
-import { stringifyCustomProperty } from "../../core/utils/stringify.ts";
 import { customPropertySet, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
@@ -9,7 +8,12 @@ import {
   reSlashNumber,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
-import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
+import {
+  completionRGBA,
+  ratio,
+  rgbFn,
+  stringifyCustomProperty,
+} from "../../core/utils/format.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";

@@ -1,5 +1,5 @@
 import { reNumeric } from "../../core/utils/regexp.ts";
-import { stringifyCustomProperty } from "../../core/utils/stringify.ts";
+import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 

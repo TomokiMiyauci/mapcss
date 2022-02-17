@@ -1,5 +1,5 @@
 import { customPropertySet } from "./_utils.ts";
-import { stringifyVarFunction } from "../../core/utils/stringify.ts";
+import { stringifyVarFunction } from "../../core/utils/format.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 function genVariableSet(variablePrefix: string) {

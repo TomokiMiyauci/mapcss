@@ -7,12 +7,6 @@ export type RGBA = {
 
 export type FilledRGBA = Record<keyof RGBA, number>;
 
-export function parseNumeric(value: string): number | undefined {
-  const number = Number(value);
-  if (Number.isNaN(number)) return;
-  return number;
-}
-
 export function hex2RGBA(str: string): RGBA | undefined {
   const [, body] = str.match(/^#?([\da-f]+)$/i) || [];
   if (!body) {
@@ -52,14 +46,4 @@ export function hex2RGBA(str: string): RGBA | undefined {
       };
     }
   }
-}
-
-export function parseFraction(
-  numerator: string,
-  denominator: string,
-): number | undefined {
-  const result = Number(numerator) / Number(denominator);
-
-  if (!Number.isFinite(result)) return;
-  return result;
 }

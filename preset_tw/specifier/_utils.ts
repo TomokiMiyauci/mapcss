@@ -2,8 +2,6 @@ import {
   type Arrayable,
   associateWith,
   isNumber,
-  isString,
-  isUndefined,
   type Option,
 } from "../../deps.ts";
 import {
@@ -11,16 +9,13 @@ import {
   multiple,
   roundN,
   shortDecimal,
+  stringifyCustomProperty,
+  stringifyVarFunction,
   unit,
 } from "../../core/utils/format.ts";
-import { hex2RGBA, parseNumeric, RGBA } from "../../core/utils/parse.ts";
-import {
-  stringifyCustomProperty,
-  stringifyRGBA,
-  stringifyVarFunction,
-} from "../../core/utils/stringify.ts";
+import { RGBA } from "../../core/utils/parse.ts";
 import { per } from "../../core/utils/monad.ts";
-import type { CSSStatement, Declaration } from "../../core/types.ts";
+import type { Declaration } from "../../core/types.ts";
 
 export function fillRGBA(
   { a, ...rest }: RGBA,
@@ -30,34 +25,6 @@ export function fillRGBA(
     ...rest,
     a: isNumber(alpha) ? alpha : isNumber(a) ? a / 100 : 1,
   };
-}
-
-export function associateRGBA(
-  color: string,
-  array: string[],
-  alpha?: string,
-): Declaration | CSSStatement | undefined {
-  const maybeColor = colorByStrRGBA(color, alpha);
-  if (isUndefined(maybeColor)) return associateWith(array, () => color);
-
-  return associateWith(array, () => maybeColor);
-}
-
-export function colorByStrRGBA(
-  color: string,
-  alpha?: string,
-): string | undefined {
-  const maybeRGBA = hex2RGBA(color);
-  if (isUndefined(maybeRGBA)) return color;
-
-  let a: number | undefined;
-  if (isString(alpha)) {
-    const _alpha = parseNumeric(alpha);
-    if (isUndefined(_alpha)) return;
-    a = _alpha / 100;
-  }
-
-  return stringifyRGBA(fillRGBA(maybeRGBA, a));
 }
 
 export function percentize(value: number): string {
