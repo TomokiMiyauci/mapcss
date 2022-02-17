@@ -47,13 +47,19 @@ export interface Config {
 
   postProcess: {
     name: string;
-    fn: (cssStatements: CSSStatement[]) => CSSStatement[];
+    fn: (cssStatements: Required<CSSStatement>[]) => Required<CSSStatement>[];
   }[];
 
   /**
    * @default 'map-'
    */
   variablePrefix: string;
+
+  /** Specifies a map of strings.
+   * It is mainly used to reassign special characters.
+   * @default charMap: { "_": " " }
+   */
+  charMap: Record<string, string>;
 }
 
 export type GlobalModifierHandler = (
@@ -101,19 +107,23 @@ export type Syntax = {
 export type PostProcessor = {
   name: string;
   fn: (
-    cssStatements: CSSStatement[],
-  ) => CSSStatement[];
+    cssStatements: Required<CSSStatement>[],
+  ) => Required<CSSStatement>[];
 };
 
 export type Declaration = Record<string, string | number>;
 export type CSSStatement = GroupAtRule | RuleSet;
+
+type BaseRule = {
+  order?: number;
+};
 
 export type AtRule = {
   type: "atRule";
   identifier: string;
   rule?: string;
   children?: NestedRecord;
-};
+} & BaseRule;
 
 type NestedRecord = {
   [k: string]: string | NestedRecord;
@@ -124,7 +134,7 @@ export type GroupAtRule = {
   identifier: string;
   rule: string;
   children: GroupAtRule | RuleSet;
-};
+} & BaseRule;
 
 export type Selector = {
   basic: string;
@@ -136,7 +146,7 @@ export type RuleSet = {
   type: "ruleset";
   selector?: Partial<Selector>;
   declaration: Declaration;
-};
+} & BaseRule;
 
 export type SpecifierMap = {
   [k in string | number]:

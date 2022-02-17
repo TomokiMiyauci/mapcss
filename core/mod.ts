@@ -1,4 +1,4 @@
-import { filterValues, has, isString } from "../deps.ts";
+import { filterValues, has, isString, prop } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
 import { resolveSpecifierMap } from "./resolve.ts";
 import {
@@ -104,6 +104,7 @@ export function generateStyleSheet(
     separator = "-",
     variablePrefix = "map-",
     postProcess = [],
+    charMap = { "_": " " },
     ...config
   }: Partial<
     Config
@@ -125,9 +126,10 @@ export function generateStyleSheet(
   ) as Record<string, LocalModifier>;
 
   const results = Array.from(tokens).map((token) => {
+    const mappedToken = mapChar(token, charMap);
     const executeResults = syntaxes.map(({ fn }) => {
       const parseResult = fn({
-        token,
+        token: mappedToken,
         globalModifierNames: Object.keys(globalModifierMap),
         localModifierNames: Object.keys(localModifierMap),
         specifierRoots: Object.keys(specifierMap),
@@ -156,8 +158,11 @@ export function generateStyleSheet(
           variablePrefix,
         },
       );
+      if (result) {
+        matched.add(token);
+      }
       return result;
-    }).filter(Boolean).flat() as CSSStatement[];
+    }).filter(Boolean).flat() as Required<CSSStatement>[];
     return executeResults;
   }).flat();
 
@@ -171,4 +176,20 @@ export function generateStyleSheet(
   const css = stringifyCSSNestedModule(cssNestedModule);
 
   return { css, matched, unmatched };
+}
+
+export function mapChar(
+  character: string,
+  charMap: Record<string, string>,
+): string {
+  let value = "";
+  for (const char of character) {
+    const c = prop(char, charMap);
+    if (isString(c)) {
+      value += c;
+    } else {
+      value += char;
+    }
+  }
+  return value;
 }
