@@ -5,7 +5,7 @@ import util from "https://deno.land/x/aleph@v0.3.0-beta.19/shared/util.ts";
 import { safeLoadFront } from "https://esm.sh/yaml-front-matter@4.1.1";
 import { walkSync } from "https://deno.land/std@0.122.0/fs/mod.ts";
 import { join } from "https://deno.land/std@0.122.0/path/mod.ts";
-import { compile } from "https://esm.sh/xdm@1.12.2?deps=unist-util-stringify-position@3.0.0,unist-util-visit@3.0.0";
+import { compile } from "https://esm.sh/@mdx-js/mdx@2.0.0?pin=v66";
 
 export type CompileOptions = Parameters<typeof compile>[1];
 
@@ -152,7 +152,7 @@ export function mdxPlugin(options: CompileOptions): Plugin {
           source,
         );
 
-        const { contents } = await compile(source, options);
+        const { value } = await compile(source, options);
 
         if (framework !== "react") {
           throw new Error(
@@ -162,7 +162,7 @@ export function mdxPlugin(options: CompileOptions): Plugin {
 
         return {
           code: [
-            contents.toString(),
+            value.toString(),
             `MDXContent.meta = ${JSON.stringify(meta)}`,
             `MDXContent.nav = ${JSON.stringify(navMenu)}`,
           ].join("\n"),
