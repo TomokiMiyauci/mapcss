@@ -1,5 +1,6 @@
 import { reNumeric } from "../../core/utils/regexp.ts";
-import { associatePx } from "./_utils.ts";
+import { matcher, pxify } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
 
 export const underline: Specifier = {
@@ -8,7 +9,10 @@ export const underline: Specifier = {
     ["auto", { "text-underline-offset": "auto" }],
     [
       reNumeric,
-      ([, numeric]) => associatePx(numeric, ["text-underline-offset"]),
+      ([, numeric]) =>
+        parseNumeric(numeric).map(pxify).match(
+          matcher("text-underline-offset"),
+        ),
     ],
   ],
 };

@@ -1,6 +1,11 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
 import { filterValue, handleFilter } from "./_filter_utils.ts";
-import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
+import {
+  parseColor,
+  parseFraction,
+  parseNumeric,
+  per,
+} from "../../core/utils/monad.ts";
 import {
   completionRGBA,
   customProperty,
@@ -10,22 +15,18 @@ import {
   unit,
 } from "../../core/utils/format.ts";
 import type {
-  CSSObject,
   CSSStatement,
+  Declaration,
   EntriesSpecifier,
   RecordSpecifier,
   Specifier,
 } from "../../core/types.ts";
 import {
-  associateNumeric,
-  associatePer100,
-  associatePercent,
-  associateRem,
   customPropertySet,
-  fractionBy,
   handleTransform,
-  numericBy,
-  remBy,
+  matcher,
+  percentize,
+  remify,
   transformValue,
 } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
@@ -74,15 +75,21 @@ export const basis: EntriesSpecifier = [
   ["full", {
     "flex-basis": "100%",
   }],
-  [reNumeric, ([, numeric]) => associateRem(["flex-basis"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("flex-basis")),
+  ],
   [
     reSlashNumber,
     ([, numerator, denominator]) =>
-      associatePercent(["flex-basis"], numerator, denominator),
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher(["flex-basis"]),
+      ),
   ],
   [reBracket$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
 ];
-export const block: CSSObject = { display: "block" };
+export const block: Declaration = { display: "block" };
 export const bottom: EntriesSpecifier = [
   [0, { bottom: "0px" }],
   ["px", { bottom: "1px" }],
@@ -92,9 +99,15 @@ export const bottom: EntriesSpecifier = [
   [
     reFraction,
     ([, numerator, denominator]) =>
-      associatePercent(["bottom"], numerator, denominator),
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher(["bottom"]),
+      ),
   ],
-  [reNumeric, ([, numeric]) => associateRem(["bottom"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher(["bottom"])),
+  ],
   [
     reBracket$,
     ([, attr]) => ({ bottom: attr }),
@@ -206,7 +219,10 @@ export const float: Specifier = {
 };
 export const grow: EntriesSpecifier = [
   ["DEFAULT", { "flex-grow": 1 }],
-  [rePositiveNumber, ([, pNumber]) => associateNumeric(["flex-grow"], pNumber)],
+  [
+    rePositiveNumber,
+    ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-grow")),
+  ],
 ];
 export const h: Specifier = [
   [0, { height: "0px" }],
@@ -217,16 +233,20 @@ export const h: Specifier = [
   ["min", { height: "min-content" }],
   ["max", { height: "max-content" }],
   ["fit", { height: "fit-content" }],
-  [reNumeric, ([, numeric]) => {
-    return remBy(numeric, (rem) => ({
-      height: rem,
-    }));
-  }],
-  [reFraction, ([, numerator, denominator]) => {
-    return fractionBy(numerator, denominator, (percent) => ({
-      height: percent,
-    }));
-  }],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify)
+        .match(
+          matcher(["height"]),
+        ),
+  ],
+  [
+    reFraction,
+    ([, numerator, denominator]) =>
+      parseFraction(numerator, denominator).map(percentize)
+        .match(matcher(["height"])),
+  ],
   [reBracket$, ([, body]) => ({
     height: body,
   })],
@@ -234,7 +254,11 @@ export const h: Specifier = [
 export const indent: EntriesSpecifier = [
   [0, { "text-indent": "0px" }],
   ["px", { "text-indent": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["text-indent"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("text-indent")),
+  ],
 ];
 export const inline: Specifier = {
   DEFAULT: { display: "inline" },
@@ -243,7 +267,7 @@ export const inline: Specifier = {
   table: { display: "inline-table" },
   grid: { display: "inline-grid" },
 };
-export const isolate: CSSObject = { isolation: "isolate" };
+export const isolate: Declaration = { isolation: "isolate" };
 export const isolation: Specifier = {
   auto: {
     isolation: "auto",
@@ -263,9 +287,11 @@ export const leading: Specifier = [
   ["normal", { "line-height": 1.5 }],
   ["relaxed", { "line-height": 1.625 }],
   ["loose", { "line-height": 2 }],
-  [rePositiveNumber, ([, number]) => {
-    return remBy(number, (rem) => ({ "line-height": rem }));
-  }],
+  [
+    rePositiveNumber,
+    ([, number]) =>
+      parseNumeric(number).andThen(remify).match(matcher("line-height")),
+  ],
 ];
 export const left: EntriesSpecifier = [
   [0, { left: "0px" }],
@@ -276,9 +302,15 @@ export const left: EntriesSpecifier = [
   [
     reFraction,
     ([, numerator, denominator]) =>
-      associatePercent(["left"], numerator, denominator),
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher("left"),
+      ),
   ],
-  [reNumeric, ([, numeric]) => associateRem(["left"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("left")),
+  ],
   [
     reBracket$,
     ([, attr]) => ({ left: attr }),
@@ -288,14 +320,22 @@ export const m: Specifier = [
   ["0", { margin: "0px" }],
   ["auto", { margin: "auto" }],
   ["px", { margin: "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["margin"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("margin")),
+  ],
   [reBracket$, ([, arbitrary]) => ({ margin: arbitrary })],
 ];
 export const mb: Specifier = [
   ["0", { "margin-bottom": "0px" }],
   ["auto", { "margin-bottom": "auto" }],
   ["px", { "margin-bottom": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["margin-bottom"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("margin-bottom")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "margin-bottom": arbitrary }),
@@ -331,7 +371,11 @@ export const ml: Specifier = [
   ["0", { "margin-left": "0px" }],
   ["auto", { "margin-left": "auto" }],
   ["px", { "margin-left": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["margin-left"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("margin-left")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "margin-left": arbitrary }),
@@ -341,7 +385,11 @@ export const mr: Specifier = [
   ["0", { "margin-right": "0px" }],
   ["auto", { "margin-right": "auto" }],
   ["px", { "margin-right": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["margin-right"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("margin-right")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "margin-right": arbitrary }),
@@ -351,7 +399,11 @@ export const mt: Specifier = [
   ["0", { "margin-top": "0px" }],
   ["auto", { "margin-top": "auto" }],
   ["px", { "margin-top": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["margin-top"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("margin-top")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "margin-top": arbitrary }),
@@ -363,7 +415,10 @@ export const mx: Specifier = [
   ["px", { "margin-left": "1px", "margin-right": "1px" }],
   [
     reNumeric,
-    ([, numeric]) => associateRem(["margin-left", "margin-right"], numeric),
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(
+        matcher(["margin-left", "margin-right"]),
+      ),
   ],
   [
     reBracket$,
@@ -377,7 +432,10 @@ export const my: Specifier = [
   ["px", { "margin-top": "1px", "margin-bottom": "1px" }],
   [
     reNumeric,
-    ([, numeric]) => associateRem(["margin-top", "margin-bottom"], numeric),
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(
+        matcher(["margin-top", "margin-bottom"]),
+      ),
   ],
   [
     reBracket$,
@@ -386,7 +444,13 @@ export const my: Specifier = [
   ],
 ];
 export const opacity: EntriesSpecifier = [
-  [rePositiveNumber, ([, pNumber]) => associatePer100(["opacity"], pNumber)],
+  [
+    rePositiveNumber,
+    ([, pNumber]) =>
+      parseNumeric(pNumber).andThen(per(100)).map(shortDecimal).match(
+        matcher("opacity"),
+      ),
+  ],
 ];
 export const order: EntriesSpecifier = [
   ["first", { order: -9999 }],
@@ -394,21 +458,29 @@ export const order: EntriesSpecifier = [
   ["none", { order: 0 }],
   [
     rePositiveNumber,
-    ([, pNumber]) => associateNumeric(["order"], pNumber),
+    ([, pNumber]) => parseNumeric(pNumber).match(matcher("order")),
   ],
 ];
 export const p: Specifier = [
   ["0", { padding: "0px" }],
   ["auto", { padding: "auto" }],
   ["px", { padding: "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["padding"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("padding")),
+  ],
   [reBracket$, ([, arbitrary]) => ({ padding: arbitrary })],
 ];
 export const pb: Specifier = [
   ["0", { "padding-bottom": "0px" }],
   ["auto", { "padding-bottom": "auto" }],
   ["px", { "padding-bottom": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["padding-bottom"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("padding-bottom")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "padding-bottom": arbitrary }),
@@ -418,7 +490,11 @@ export const pl: Specifier = [
   ["0", { "padding-left": "0px" }],
   ["auto", { "padding-left": "auto" }],
   ["px", { "padding-left": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["padding-left"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("padding-left")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "padding-left": arbitrary }),
@@ -428,7 +504,11 @@ export const pr: Specifier = [
   ["0", { "padding-right": "0px" }],
   ["auto", { "padding-right": "auto" }],
   ["px", { "padding-right": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["padding-right"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("padding-right")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "padding-right": arbitrary }),
@@ -438,7 +518,11 @@ export const pt: Specifier = [
   ["0", { "padding-top": "0px" }],
   ["auto", { "padding-top": "auto" }],
   ["px", { "padding-top": "1px" }],
-  [reNumeric, ([, numeric]) => associateRem(["padding-top"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("padding-top")),
+  ],
   [
     reBracket$,
     ([, arbitrary]) => ({ "padding-top": arbitrary }),
@@ -450,7 +534,10 @@ export const px: Specifier = [
   ["px", { "padding-left": "1px", "padding-right": "1px" }],
   [
     reNumeric,
-    ([, numeric]) => associateRem(["padding-left", "padding-right"], numeric),
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(
+        matcher(["padding-left", "padding-right"]),
+      ),
   ],
   [
     reBracket$,
@@ -464,7 +551,10 @@ export const py: Specifier = [
   ["px", { "padding-top": "1px", "padding-bottom": "1px" }],
   [
     reNumeric,
-    ([, numeric]) => associateRem(["padding-top", "padding-bottom"], numeric),
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(
+        matcher(["padding-top", "padding-bottom"]),
+      ),
   ],
   [
     reBracket$,
@@ -472,6 +562,7 @@ export const py: Specifier = [
       associateWith(["padding-top", "padding-bottom"], () => arbitrary),
   ],
 ];
+
 export const right: EntriesSpecifier = [
   [0, { right: "0px" }],
   ["px", { right: "1px" }],
@@ -481,9 +572,15 @@ export const right: EntriesSpecifier = [
   [
     reFraction,
     ([, numerator, denominator]) =>
-      associatePercent(["right"], numerator, denominator),
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher(["right"]),
+      ),
   ],
-  [reNumeric, ([, numeric]) => associateRem(["right"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("right")),
+  ],
   [
     reBracket$,
     ([, attr]) => ({ right: attr }),
@@ -493,7 +590,7 @@ export const shrink: EntriesSpecifier = [
   ["DEFAULT", { "flex-shrink": 1 }],
   [
     rePositiveNumber,
-    ([, pNumber]) => associateNumeric(["flex-shrink"], pNumber),
+    ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-shrink")),
   ],
 ];
 export const top: EntriesSpecifier = [
@@ -505,9 +602,15 @@ export const top: EntriesSpecifier = [
   [
     reFraction,
     ([, numerator, denominator]) =>
-      associatePercent(["top"], numerator, denominator),
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher(["top"]),
+      ),
   ],
-  [reNumeric, ([, numeric]) => associateRem(["top"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("top")),
+  ],
   [reBracket$, ([, attr]) => ({ "top": attr })],
 ];
 const LETTER_SPACING = "letter-spacing";
@@ -529,16 +632,18 @@ export const w: Specifier = [
   ["min", { width: "min-content" }],
   ["max", { width: "max-content" }],
   ["fit", { width: "fit-content" }],
-  [reNumeric, ([, numeric]) => {
-    return remBy(numeric, (rem) => ({
-      width: rem,
-    }));
-  }],
-  [reFraction, ([, numerator, denominator]) => {
-    return fractionBy(numerator, denominator, (percent) => ({
-      width: percent,
-    }));
-  }],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("width")),
+  ],
+  [
+    reFraction,
+    ([, numerator, denominator]) =>
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher(["width"]),
+      ),
+  ],
   [reBracket$, ([, arbitrary]) => ({ width: arbitrary })],
 ];
 const WHITE_SPACE = "white-space";
@@ -552,35 +657,38 @@ export const whitespace: Specifier = [
     wrap: { [WHITE_SPACE]: "pre-wrap" },
   }],
 ];
-export const z: Specifier = [["auto", {
-  "z-index": "auto",
-}], [rePositiveNumber, ([, positiveNumber]) => {
-  return numericBy(positiveNumber, (number) => ({
-    "z-index": number,
-  }));
-}]];
-export const $static: CSSObject = {
+export const z: Specifier = [
+  ["auto", {
+    "z-index": "auto",
+  }],
+  [
+    rePositiveNumber,
+    ([, positiveNumber]) =>
+      parseNumeric(positiveNumber).match(matcher("z-index")),
+  ],
+];
+export const $static: Declaration = {
   position: "static",
 };
-export const fixed: CSSObject = {
+export const fixed: Declaration = {
   position: "fixed",
 };
-export const absolute: CSSObject = {
+export const absolute: Declaration = {
   position: "absolute",
 };
-export const relative: CSSObject = {
+export const relative: Declaration = {
   position: "relative",
 };
-export const sticky: CSSObject = {
+export const sticky: Declaration = {
   position: "sticky",
 };
-export const visible: CSSObject = {
+export const visible: Declaration = {
   visibility: "visible",
 };
-export const invisible: CSSObject = {
+export const invisible: Declaration = {
   visibility: "hidden",
 };
-export const antialiased: CSSObject = {
+export const antialiased: Declaration = {
   "-webkit-font-smoothing": "antialiased",
   "-moz-osx-font-smoothing": "grayscale",
 };
@@ -590,16 +698,16 @@ export const subpixel: Specifier = {
     "-moz-osx-font-smoothing": "auto",
   },
 };
-export const italic: CSSObject = {
+export const italic: Declaration = {
   "font-style": "italic",
 };
-export const contents: CSSObject = {
+export const contents: Declaration = {
   display: "contents",
 };
-export const hidden: CSSObject = {
+export const hidden: Declaration = {
   display: "none",
 };
-export const overline: CSSObject = {
+export const overline: Declaration = {
   "text-decoration-line": "overline",
 };
 export const line: Specifier = {
@@ -621,7 +729,7 @@ export const sr: Specifier = {
     "border-width": 0,
   },
 };
-export const ordinal: CSSObject = { "font-variant-numeric": "ordinal" };
+export const ordinal: Declaration = { "font-variant-numeric": "ordinal" };
 export const slashed: RecordSpecifier = {
   zero: { "font-variant-numeric": "slashed-zero" },
 };
@@ -643,10 +751,10 @@ export const diagonal: RecordSpecifier = {
 export const stacked: RecordSpecifier = {
   fractions: { "font-variant-numeric": "stacked-fractions" },
 };
-export const uppercase: CSSObject = { "text-transform": "uppercase" };
-export const lowercase: CSSObject = { "text-transform": "lowercase" };
-export const capitalize: CSSObject = { "text-transform": "capitalize" };
-export const truncate: CSSObject = {
+export const uppercase: Declaration = { "text-transform": "uppercase" };
+export const lowercase: Declaration = { "text-transform": "lowercase" };
+export const capitalize: Declaration = { "text-transform": "capitalize" };
+export const truncate: Declaration = {
   overflow: "hidden",
   "text-overflow": "ellipsis",
   "white-space": "nowrap",
@@ -671,7 +779,7 @@ export const contrast: EntriesSpecifier = [
   ],
 ];
 
-function handleDrop(value: string, varPrefix: string): CSSObject {
+function handleDrop(value: string, varPrefix: string): Declaration {
   return {
     [customProperty("drop-shadow", varPrefix)]: value,
     filter: filterValue(varPrefix),
@@ -732,7 +840,7 @@ function handleSingleFilter(
   propertyName: string,
   value: string | number,
   varPrefix: string,
-): CSSObject {
+): Declaration {
   return {
     [customProperty(propertyName, varPrefix)]: `${propertyName}(${value})`,
     filter: filterValue(varPrefix),

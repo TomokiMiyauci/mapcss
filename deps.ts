@@ -25,6 +25,11 @@ export {
   type Option,
   Some,
 } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
+export {
+  type Either,
+  Left,
+  Right,
+} from "https://deno.land/x/monads@v0.5.10/either/either.ts";
 export { isUndefined };
 
 export function isStringOrNumber(value: unknown): value is string | number {
@@ -121,3 +126,12 @@ export function roundTo(num: number, digit: number): number {
 }
 
 export type Arrayable<T> = T | T[];
+
+export type Optional<
+  T extends Record<PropertyKey, unknown>,
+  K extends PropertyKey,
+> =
+  & {
+    [k in K]?: T[k];
+  }
+  & { [k in keyof Omit<T, K>]: T[k] };

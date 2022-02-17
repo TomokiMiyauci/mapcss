@@ -1,6 +1,8 @@
-import { associatePercent, associateRem } from "./_utils.ts";
+import { matcher, percentize, remify } from "./_utils.ts";
+import { parseFraction } from "../../core/utils/monad.ts";
 import { associateWith } from "../../deps.ts";
 import { reBracket$, reFraction, reNumeric } from "../../core/utils/regexp.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
 
 export const inset: Specifier = [
@@ -35,12 +37,17 @@ export const inset: Specifier = [
     ["full", { right: "100%", left: "100%" }],
     [
       reNumeric,
-      ([, numeric]) => associateRem(["right", "left"], numeric),
+      ([, numeric]) =>
+        parseNumeric(numeric).andThen(remify).match(
+          matcher(["right", "left"]),
+        ),
     ],
     [
       reFraction,
       ([, numerator, denominator]) =>
-        associatePercent(["right", "left"], numerator, denominator),
+        parseFraction(numerator, denominator).map(percentize).match(
+          matcher(["right", "left"]),
+        ),
     ],
     [
       reBracket$,
@@ -52,11 +59,16 @@ export const inset: Specifier = [
     ["auto", { top: "auto", bottom: "auto" }],
     ["full", { top: "100%", bottom: "100%" }],
     [0, { top: "0px", bottom: "0px" }],
-    [reNumeric, ([, numeric]) => associateRem(["top", "bottom"], numeric)],
+    [reNumeric, ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(
+        matcher(["top", "bottom"]),
+      )],
     [
       reFraction,
       ([, numerator, denominator]) =>
-        associatePercent(["top", "bottom"], numerator, denominator),
+        parseFraction(numerator, denominator).map(percentize).match(
+          matcher(["top", "bottom"]),
+        ),
     ],
     [
       reBracket$,
@@ -65,15 +77,16 @@ export const inset: Specifier = [
   ]],
   [
     reNumeric,
-    ([, numeric]) => associateRem(["top", "bottom", "right", "left"], numeric),
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(
+        matcher(["top", "bottom", "right", "left"]),
+      ),
   ],
   [
     reFraction,
     ([, numerator, denominator]) =>
-      associatePercent(
-        ["top", "bottom", "right", "left"],
-        numerator,
-        denominator,
+      parseFraction(numerator, denominator).map(percentize).match(
+        matcher(["top", "bottom", "right", "left"]),
       ),
   ],
   [

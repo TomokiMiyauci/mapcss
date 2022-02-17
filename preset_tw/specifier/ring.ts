@@ -1,4 +1,4 @@
-import { customPropertySet, pxBy } from "./_utils.ts";
+import { customPropertySet, matcher, pxify } from "./_utils.ts";
 import { reNumeric } from "../../core/utils/regexp.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
@@ -14,20 +14,20 @@ import {
   ratio,
   rgbFn,
 } from "../../core/utils/format.ts";
-import type { CSSObject, EntriesSpecifier } from "../../core/types.ts";
+import type { Declaration, EntriesSpecifier } from "../../core/types.ts";
 
 function toRingColor(varPrefix: string) {
-  return (value: string): CSSObject => ({
+  return (value: string): Declaration => ({
     [customProperty("ring-color", varPrefix)]: value,
   });
 }
 function toRingOffsetColor(varPrefix: string) {
-  return (value: string): CSSObject => ({
+  return (value: string): Declaration => ({
     [customProperty("ring-offset-color", varPrefix)]: value,
   });
 }
 
-function handleRingWidth(value: string, variablePrefix: string): CSSObject {
+function handleRingWidth(value: string, variablePrefix: string): Declaration {
   const [varRingOffsetShadow, varFnRingOffsetShadow] = customPropertySet(
     "ring-offset-shadow",
     variablePrefix,
@@ -75,16 +75,16 @@ export const ring: EntriesSpecifier = [
     };
   }],
   ["offset", [
-    [reNumeric, ([, numeric], { variablePrefix }) =>
-      pxBy(numeric, (px) => {
-        const [varRingOffsetWidth] = customPropertySet(
-          "ring-offset-width",
-          variablePrefix,
-        );
-        return {
-          [varRingOffsetWidth]: px,
-        };
-      })],
+    [reNumeric, ([, numeric], { variablePrefix }) => {
+      const [varRingOffsetWidth] = customPropertySet(
+        "ring-offset-width",
+        variablePrefix,
+      );
+      return parseNumeric(numeric).map(pxify).match(
+        matcher(varRingOffsetWidth),
+      );
+    }],
+
     [reSlashNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
@@ -129,7 +129,10 @@ export const ring: EntriesSpecifier = [
   [
     reNumeric,
     ([, numeric], { variablePrefix }) =>
-      pxBy(numeric, (px) => handleRingWidth(px, variablePrefix)),
+      parseNumeric(numeric).map(pxify).match({
+        some: (px) => handleRingWidth(px, variablePrefix),
+        none: undefined,
+      }),
   ],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);

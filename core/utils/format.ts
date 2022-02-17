@@ -1,6 +1,6 @@
-import { isCSSObject } from "./assert.ts";
+import { isDeclaration } from "./assert.ts";
 import { deepMerge } from "../../deps.ts";
-import type { CSSNestedModule, CSSObject, CSSStatement } from "../types.ts";
+import type { CSSNestedModule, CSSStatement, Declaration } from "../types.ts";
 import type { FilledRGBA, RGBA } from "./parse.ts";
 
 /** format numeric to `#.##`
@@ -35,7 +35,7 @@ export function varFn(customPropertyName: string): string {
   return `var(${customPropertyName})`;
 }
 
-export function unit(unit: "%" | "deg" | "ms" | "rem") {
+export function unit(unit: "%" | "deg" | "ms" | "rem" | "px") {
   return (value: string | number): string => `${value}${unit}`;
 }
 
@@ -115,7 +115,7 @@ export function stringifyCSSNestedModule(
     ([selector, nestedModuleOrCSSObject]) => {
       const selectors = [..._selectors, selector];
 
-      if (isCSSObject(nestedModuleOrCSSObject)) {
+      if (isDeclaration(nestedModuleOrCSSObject)) {
         const dec = stringifyDeclaration(nestedModuleOrCSSObject);
         return selectors.reduceRight(
           (acc, cur) => {
@@ -136,7 +136,7 @@ export function stringifyCSSNestedModule(
 }
 
 export function stringifyDeclaration(
-  cssObject: Readonly<CSSObject>,
+  cssObject: Readonly<Declaration>,
   compress = true,
 ): string {
   const content = Object.entries(cssObject).reduce(

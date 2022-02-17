@@ -1,5 +1,6 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
-import { associateNumeric, numericBy } from "./_utils.ts";
+import { matcher } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
 
 export const col: Specifier = [
@@ -9,24 +10,23 @@ export const col: Specifier = [
     [
       rePositiveNumber,
       ([, pNumber]) =>
-        numericBy(
-          pNumber,
-          (number) => ({ "grid-column": `span ${number}/span ${number}` }),
-        ),
+        parseNumeric(pNumber).map((number) => `span ${number}/span ${number}`)
+          .match(matcher("grid-column")),
     ],
   ]],
   ["start", [
     ["auto", { "grid-column-start": "auto" }],
     [
       rePositiveNumber,
-      ([, pNumber]) => associateNumeric(["grid-column-start"], pNumber),
+      ([, pNumber]) =>
+        parseNumeric(pNumber).match(matcher("grid-column-start")),
     ],
   ]],
   ["end", [
     ["auto", { "grid-column-end": "auto" }],
     [
       rePositiveNumber,
-      ([, pNumber]) => associateNumeric(["grid-column-end"], pNumber),
+      ([, pNumber]) => parseNumeric(pNumber).match(matcher("grid-column-end")),
     ],
   ]],
 ];

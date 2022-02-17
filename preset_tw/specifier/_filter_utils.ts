@@ -1,6 +1,6 @@
 import { customPropertySet } from "./_utils.ts";
-import { numericBy } from "./_utils.ts";
 import { shortDecimal } from "../../core/utils/format.ts";
+import { parseNumeric, per } from "../../core/utils/monad.ts";
 import type { CSSStatement, Declaration } from "../../core/types.ts";
 export function filterValue(variablePrefix: string): string {
   const [, varFnBlur] = customPropertySet("blur", variablePrefix);
@@ -24,11 +24,14 @@ export function handleFilter(
   value: string,
   variablePrefix: string,
 ): Declaration | CSSStatement | undefined {
-  return numericBy(value, (number) => {
-    const [varName] = customPropertySet(propertyName, variablePrefix);
-    return {
-      [varName]: `${propertyName}(${shortDecimal(number / 100)})`,
-      filter: filterValue(variablePrefix),
-    };
+  return parseNumeric(value).andThen(per(100)).map(shortDecimal).match({
+    some: (number) => {
+      const [varName] = customPropertySet(propertyName, variablePrefix);
+      return {
+        [varName]: `${propertyName}(${number})`,
+        filter: filterValue(variablePrefix),
+      };
+    },
+    none: undefined,
   });
 }

@@ -1,5 +1,6 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
-import { numericBy } from "./_utils.ts";
+import { matcher } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
 
 export const grid: Specifier = [
@@ -16,22 +17,22 @@ export const grid: Specifier = [
   }],
   ["cols", [
     ["none", { "grid-template-columns": "none" }],
-    [rePositiveNumber, ([, pNumber]) =>
-      numericBy(
-        pNumber,
-        (number) => ({
-          "grid-template-columns": `repeat(${number}, minmax(0, 1fr))`,
-        }),
-      )],
+    [
+      rePositiveNumber,
+      ([, pNumber]) =>
+        parseNumeric(pNumber).map((number) =>
+          `repeat(${number}, minmax(0, 1fr))`
+        ).match(matcher("grid-template-columns")),
+    ],
   ]],
   ["rows", [
     ["none", { "grid-template-rows": "none" }],
-    [rePositiveNumber, ([, pNumber]) =>
-      numericBy(
-        pNumber,
-        (number) => ({
-          "grid-template-rows": `repeat(${number}, minmax(0, 1fr))`,
-        }),
-      )],
+    [
+      rePositiveNumber,
+      ([, pNumber]) =>
+        parseNumeric(pNumber).map((number) =>
+          `repeat(${number}, minmax(0, 1fr))`
+        ).match(matcher("grid-template-rows")),
+    ],
   ]],
 ];

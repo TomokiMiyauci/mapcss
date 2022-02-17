@@ -1,13 +1,4 @@
 import type { Arrayable } from "../deps.ts";
-export type CSSObject = Record<string, string | number>;
-
-export type PartialCSSStatement = Option<CSSStatement, "basicSelector">;
-
-type Option<T extends Record<PropertyKey, unknown>, K extends PropertyKey> =
-  & {
-    [k in K]?: T[k];
-  }
-  & { [k in keyof Omit<T, K>]: T[k] };
 
 export type CSSNestedModule = {
   [k: string]: CSSNestedModule | Declaration;
@@ -28,17 +19,7 @@ export type ThemeContext = {
 export type SpecifierHandler = (
   arr: RegExpExecArray,
   context: SpecifierContext,
-) => Arrayable<CSSObject> | Arrayable<PartialCSSStatement> | undefined;
-
-export type DynamicSpecifierSet = [
-  RegExp | string | number,
-  SpecifierHandler,
-];
-export type StaticSpecifierSet = [
-  string | number,
-  | SpecifierDefinition
-  | Specifier,
-];
+) => Arrayable<Declaration> | Arrayable<CSSStatement> | undefined;
 
 export type Preset = {
   name: string;
@@ -74,13 +55,6 @@ export interface Config {
    */
   variablePrefix: string;
 }
-
-type OverrideCSSStatement =
-  & Required<CSSStatement>
-  & {
-    atRule: string;
-    order: number;
-  };
 
 export type GlobalModifierHandler = (
   cssStatement: Required<CSSStatement>,

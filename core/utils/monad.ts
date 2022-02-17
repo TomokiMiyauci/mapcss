@@ -21,3 +21,13 @@ export function parseColor(value: string): Option<RGBA> {
   if (maybeRGBA) return Some(maybeRGBA);
   return None;
 }
+
+export function divide(a: number, b: number): Option<number> {
+  const result = a / b;
+  if (Number.isFinite(result)) return Some(result);
+  return None;
+}
+
+export function per(b: number): (a: number) => Option<number> {
+  return (a: number) => divide(a, b);
+}

@@ -1,5 +1,6 @@
 import { rePositiveNumber } from "../../core/utils/regexp.ts";
-import { associateNumeric, numericBy } from "./_utils.ts";
+import { matcher } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
 
 export const row: Specifier = [
@@ -9,24 +10,22 @@ export const row: Specifier = [
     [
       rePositiveNumber,
       ([, pNumber]) =>
-        numericBy(
-          pNumber,
-          (number) => ({ "grid-row": `span ${number}/span ${number}` }),
-        ),
+        parseNumeric(pNumber).map((number) => `span ${number}/span ${number}`)
+          .match(matcher("grid-row")),
     ],
   ]],
   ["start", [
     ["auto", { "grid-row-start": "auto" }],
     [
       rePositiveNumber,
-      ([, pNumber]) => associateNumeric(["grid-row-start"], pNumber),
+      ([, pNumber]) => parseNumeric(pNumber).match(matcher("grid-row-start")),
     ],
   ]],
   ["end", [
     ["auto", { "grid-row-end": "auto" }],
     [
       rePositiveNumber,
-      ([, pNumber]) => associateNumeric(["grid-row-end"], pNumber),
+      ([, pNumber]) => parseNumeric(pNumber).match(matcher("grid-row-end")),
     ],
   ]],
 ];

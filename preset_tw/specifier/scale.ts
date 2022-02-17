@@ -7,13 +7,13 @@ import {
   shortDecimal,
 } from "../../core/utils/format.ts";
 import { associateWith } from "../../deps.ts";
-import type { CSSObject, EntriesSpecifier } from "../../core/types.ts";
+import type { Declaration, EntriesSpecifier } from "../../core/types.ts";
 
 function handleScale(
   properties: string[],
   value: string,
   varPrefix: string,
-): CSSObject | undefined {
+): Declaration | undefined {
   return parseNumeric(value).map(ratio).map(shortDecimal).match({
     some: (v) => ({
       ...associateWith(

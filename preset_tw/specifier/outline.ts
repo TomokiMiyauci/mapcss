@@ -1,4 +1,4 @@
-import { associatePx } from "./_utils.ts";
+import { matcher, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
@@ -24,10 +24,15 @@ export const outline: Specifier = [
   ["hidden", { "outline-style": "hidden" }],
   ["offset", [[
     reNumeric,
-    ([, numeric]) => associatePx(numeric, ["outline-offset"]),
+    ([, numeric]) =>
+      parseNumeric(numeric).map(pxify).match(matcher("outline-offset")),
   ]]],
 
-  [reNumeric, ([, numeric]) => associatePx(numeric, ["outline-width"])],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).map(pxify).match(matcher("outline-width")),
+  ],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;

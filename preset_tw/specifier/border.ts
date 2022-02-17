@@ -1,4 +1,4 @@
-import { associatePx, pxBy } from "./_utils.ts";
+import { matcher, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { associateWith, isUndefined } from "../../deps.ts";
 import {
@@ -8,7 +8,13 @@ import {
   reSlashNumber,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
-import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
+import {
+  completionRGBA,
+  ratio,
+  rgbFn,
+  shortDecimal,
+  unit,
+} from "../../core/utils/format.ts";
 import type { Specifier } from "../../core/types.ts";
 
 const BORDER_WIDTH = "border-width";
@@ -31,7 +37,9 @@ export const border: Specifier = [
     [
       reNumeric,
       ([, numeric]) =>
-        associatePx(numeric, ["border-left-width", "border-right-width"]),
+        parseNumeric(numeric).map(pxify).match(
+          matcher(["border-left-width", "border-right-width"]),
+        ),
     ],
     [reSlashNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
@@ -117,7 +125,9 @@ export const border: Specifier = [
     [
       reNumeric,
       ([, numeric]) =>
-        associatePx(numeric, ["border-top-width", "border-bottom-width"]),
+        parseNumeric(numeric).map(pxify).match(
+          matcher(["border-top-width", "border-bottom-width"]),
+        ),
     ],
     [reSlashNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
@@ -180,7 +190,8 @@ export const border: Specifier = [
     ["DEFAULT", { "border-top-width": "1px" }],
     [
       reNumeric,
-      ([, numeric]) => associatePx(numeric, ["border-top-width"]),
+      ([, numeric]) =>
+        parseNumeric(numeric).map(pxify).match(matcher("border-top-width")),
     ],
     [reSlashNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
@@ -227,7 +238,8 @@ export const border: Specifier = [
     ["DEFAULT", { "border-right-width": "1px" }],
     [
       reNumeric,
-      ([, numeric]) => associatePx(numeric, ["border-right-width"]),
+      ([, numeric]) =>
+        parseNumeric(numeric).map(pxify).match(matcher("border-right-width")),
     ],
     [reSlashNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
@@ -274,7 +286,8 @@ export const border: Specifier = [
     ["DEFAULT", { "border-bottom-width": "1px" }],
     [
       reNumeric,
-      ([, numeric]) => associatePx(numeric, ["border-bottom-width"]),
+      ([, numeric]) =>
+        parseNumeric(numeric).map(pxify).match(matcher("border-bottom-width")),
     ],
     [re$SlashBracket$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
@@ -321,7 +334,8 @@ export const border: Specifier = [
     ["DEFAULT", { "border-left-width": "1px" }],
     [
       reNumeric,
-      ([, numeric]) => associatePx(numeric, ["border-left-width"]),
+      ([, numeric]) =>
+        parseNumeric(numeric).map(pxify).match(matcher("border-left-width")),
     ],
     [reSlashNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
@@ -366,7 +380,10 @@ export const border: Specifier = [
   ]],
   [
     reNumeric,
-    ([, numeric]) => pxBy(numeric, (number) => ({ [BORDER_WIDTH]: number })),
+    ([, numeric]) =>
+      parseNumeric(numeric).map(shortDecimal).map(unit("px")).match(
+        matcher(BORDER_WIDTH),
+      ),
   ],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);

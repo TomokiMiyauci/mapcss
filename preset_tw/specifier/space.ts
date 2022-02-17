@@ -1,6 +1,8 @@
 import { reNumeric } from "../../core/utils/regexp.ts";
 import { stringifyCustomProperty } from "../../core/utils/stringify.ts";
-import { customPropertySet, remBy } from "./_utils.ts";
+import { customPropertySet, remify } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
+
 import type { CSSStatement, EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
@@ -60,7 +62,10 @@ export const space: EntriesSpecifier = [
     [
       reNumeric,
       ([, numeric], { variablePrefix }) =>
-        remBy(numeric, (rem) => handleSpaceX(variablePrefix, rem)),
+        parseNumeric(numeric).andThen(remify).match({
+          some: (rem) => handleSpaceX(variablePrefix, rem),
+          none: undefined,
+        }),
     ],
   ]],
   ["y", [
@@ -80,7 +85,10 @@ export const space: EntriesSpecifier = [
     [
       reNumeric,
       ([, numeric], { variablePrefix }) =>
-        remBy(numeric, (rem) => handleSpaceY(variablePrefix, rem)),
+        parseNumeric(numeric).andThen(remify).match({
+          some: (rem) => handleSpaceY(variablePrefix, rem),
+          none: undefined,
+        }),
     ],
   ]],
 ];

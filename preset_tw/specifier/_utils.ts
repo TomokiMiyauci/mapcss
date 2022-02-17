@@ -1,23 +1,25 @@
 import {
+  type Arrayable,
   associateWith,
   isNumber,
   isString,
   isUndefined,
-  roundTo,
+  type Option,
 } from "../../deps.ts";
-import { percent, px, rem } from "../../core/utils/unit.ts";
-import { customProperty } from "../../core/utils/format.ts";
 import {
-  hex2RGBA,
-  parseFraction,
-  parseNumeric,
-  RGBA,
-} from "../../core/utils/parse.ts";
+  customProperty,
+  multiple,
+  roundN,
+  shortDecimal,
+  unit,
+} from "../../core/utils/format.ts";
+import { hex2RGBA, parseNumeric, RGBA } from "../../core/utils/parse.ts";
 import {
   stringifyCustomProperty,
   stringifyRGBA,
   stringifyVarFunction,
 } from "../../core/utils/stringify.ts";
+import { per } from "../../core/utils/monad.ts";
 import type { CSSStatement, Declaration } from "../../core/types.ts";
 
 export function fillRGBA(
@@ -28,68 +30,6 @@ export function fillRGBA(
     ...rest,
     a: isNumber(alpha) ? alpha : isNumber(a) ? a / 100 : 1,
   };
-}
-
-export function colorByRGBA(
-  value: string,
-  onValid: (rgba: RGBA) => Declaration | CSSStatement | undefined,
-  onError?: (value: string) => Declaration | CSSStatement | undefined,
-): Declaration | CSSStatement | undefined {
-  const maybeRGBA = hex2RGBA(value);
-  if (isUndefined(maybeRGBA)) {
-    return onError?.(value);
-  }
-  return onValid(maybeRGBA);
-}
-
-export function remByProp(property: string, value: string): {
-  [x: string]: string;
-} | undefined {
-  const number = parseNumeric(value);
-  if (isUndefined(number)) return;
-  return {
-    [property]: rem(number / 4),
-  };
-}
-
-export function remBy(
-  value: string,
-  onValid: (rem: string) => Declaration | CSSStatement,
-): Declaration | CSSStatement | undefined {
-  const number = parseNumeric(value);
-  if (isUndefined(number)) return;
-
-  return onValid(rem(number / 4));
-}
-
-export function fractionBy(
-  numerator: string,
-  denominator: string,
-  onValid: (percent: string) => Declaration,
-): Declaration | undefined {
-  const fraction = parseFraction(numerator, denominator);
-  if (isUndefined(fraction)) return;
-
-  return onValid(percent(roundTo(fraction * 100, 6)));
-}
-
-export function pxBy(
-  value: string,
-  onValid: (px: string) => Declaration | CSSStatement,
-): Declaration | CSSStatement | undefined {
-  const number = parseNumeric(value);
-  if (isUndefined(number)) return;
-
-  return onValid(px(number));
-}
-
-export function numericBy(
-  value: string,
-  onValid: (number: number) => Declaration | CSSStatement | undefined,
-): Declaration | CSSStatement | undefined {
-  const number = parseNumeric(value);
-  if (isUndefined(number)) return;
-  return onValid(number);
 }
 
 export function associateRGBA(
@@ -120,50 +60,27 @@ export function colorByStrRGBA(
   return stringifyRGBA(fillRGBA(maybeRGBA, a));
 }
 
-export function associatePx(
-  value: string,
-  array: string[],
-): Declaration | CSSStatement | undefined {
-  return pxBy(
-    value,
-    (px) => associateWith(array, () => px),
-  );
+export function percentize(value: number): string {
+  return unit("%")(roundN(6)(multiple(100)(value)));
 }
 
-export function associateRem(
-  array: string[],
-  numeric: string,
-): Declaration | CSSStatement | undefined {
-  return remBy(numeric, (rem) => associateWith(array, () => rem));
+export function remify(value: number): Option<string> {
+  return per(4)(value).map(roundN(6)).map(unit("rem"));
 }
 
-export function associatePercent(
-  array: string[],
-  numerator: string,
-  denominator: string,
-): Declaration | undefined {
-  return fractionBy(
-    numerator,
-    denominator,
-    (percent) => associateWith(array, () => percent),
-  );
+export function pxify(value: number): string {
+  return unit("px")(shortDecimal(value));
 }
 
-export function associatePer100(
-  array: string[],
-  numeric: string,
-): Declaration | CSSStatement | undefined {
-  return numericBy(
-    numeric,
-    (number) => associateWith(array, () => number / 100),
-  );
-}
-
-export function associateNumeric(
-  array: string[],
-  numeric: string,
-): Declaration | CSSStatement | undefined {
-  return numericBy(numeric, (number) => associateWith(array, () => number));
+export function matcher(maybeArray: Arrayable<string>) {
+  return {
+    some: (value: string | number) =>
+      associateWith(
+        Array.isArray(maybeArray) ? maybeArray : [maybeArray],
+        () => value,
+      ),
+    none: undefined,
+  };
 }
 
 /** Return [`variable`, `varFunction`] */

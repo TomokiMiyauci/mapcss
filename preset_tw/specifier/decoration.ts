@@ -1,5 +1,5 @@
 import { reNumeric } from "../../core/utils/regexp.ts";
-import { associatePx } from "./_utils.ts";
+import { matcher, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
@@ -29,7 +29,10 @@ export const decoration: EntriesSpecifier = [
   }],
   [
     reNumeric,
-    ([, numeric]) => associatePx(numeric, ["text-decoration-thickness"]),
+    ([, numeric]) =>
+      parseNumeric(numeric).map(pxify).match(
+        matcher("text-decoration-thickness"),
+      ),
   ],
   [reSlashNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);

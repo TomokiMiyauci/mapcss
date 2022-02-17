@@ -1,6 +1,5 @@
 import { stringifyCustomProperty } from "../../core/utils/stringify.ts";
-import { customPropertySet } from "./_utils.ts";
-import { pxBy } from "./_utils.ts";
+import { customPropertySet, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
@@ -76,20 +75,23 @@ export const divide: EntriesSpecifier = [
     [
       rePositiveNumber,
       ([, pNumber], { variablePrefix }) =>
-        pxBy(pNumber, (number) => {
+        parseNumeric(pNumber).map(pxify).map((px) => {
           const [variable, varFn] = customPropertySet(
             "divide-x-reverse",
             variablePrefix,
           );
           return {
-            type: "ruleset",
+            type: "ruleset" as const,
             selector: { combinator },
             declaration: {
               [variable]: 0,
-              "border-right-width": `calc(${number} * ${varFn})`,
-              "border-left-width": `calc(${number} * calc(1 - ${varFn}))`,
+              "border-right-width": `calc(${px} * ${varFn})`,
+              "border-left-width": `calc(${px} * calc(1 - ${varFn}))`,
             },
           };
+        }).match({
+          some: (v) => v,
+          none: undefined,
         }),
     ],
   ]],
@@ -127,22 +129,25 @@ export const divide: EntriesSpecifier = [
     [
       rePositiveNumber,
       ([, pNumber], { variablePrefix }) =>
-        pxBy(pNumber, (px) => {
-          const [variable, varFn] = customPropertySet(
-            "divide-y-reverse",
-            variablePrefix,
-          );
-          return {
-            type: "ruleset",
-            selector: {
-              combinator,
-            },
-            declaration: {
-              [variable]: 0,
-              "border-top-width": `calc(${px} * calc(1 - ${varFn}))`,
-              "border-bottom-width": `calc(${px} * ${varFn})`,
-            },
-          };
+        parseNumeric(pNumber).map(pxify).match({
+          some: (px) => {
+            const [variable, varFn] = customPropertySet(
+              "divide-y-reverse",
+              variablePrefix,
+            );
+            return {
+              type: "ruleset",
+              selector: {
+                combinator,
+              },
+              declaration: {
+                [variable]: 0,
+                "border-top-width": `calc(${px} * calc(1 - ${varFn}))`,
+                "border-bottom-width": `calc(${px} * ${varFn})`,
+              },
+            };
+          },
+          none: undefined,
         }),
     ],
   ]],

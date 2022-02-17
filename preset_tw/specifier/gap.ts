@@ -1,5 +1,6 @@
 import { reNumeric } from "../../core/utils/regexp.ts";
-import { associateRem } from "./_utils.ts";
+import { matcher, remify } from "./_utils.ts";
+import { parseNumeric } from "../../core/utils/monad.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 export const gap: EntriesSpecifier = [
@@ -8,12 +9,24 @@ export const gap: EntriesSpecifier = [
   ["x", [
     [0, { "column-gap": "0px" }],
     ["px", { "column-gap": "1px" }],
-    [reNumeric, ([, numeric]) => associateRem(["column-gap"], numeric)],
+    [
+      reNumeric,
+      ([, numeric]) =>
+        parseNumeric(numeric).andThen(remify).match(matcher("column-gap")),
+    ],
   ]],
   ["y", [
     [0, { "row-gap": "0px" }],
     ["px", { "row-gap": "1px" }],
-    [reNumeric, ([, numeric]) => associateRem(["row-gap"], numeric)],
+    [
+      reNumeric,
+      ([, numeric]) =>
+        parseNumeric(numeric).andThen(remify).match(matcher("row-gap")),
+    ],
   ]],
-  [reNumeric, ([, numeric]) => associateRem(["gap"], numeric)],
+  [
+    reNumeric,
+    ([, numeric]) =>
+      parseNumeric(numeric).andThen(remify).match(matcher("gap")),
+  ],
 ];
