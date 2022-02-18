@@ -1,25 +1,27 @@
-import type { Specifier } from "../../core/types.ts";
+import { reBracket_$ } from "../../core/utils/regexp.ts";
+import type { EntriesSpecifier } from "../../core/types.ts";
 
-export const font: Specifier = {
-  thin: { "font-weight": 100 },
-  extralight: { "font-weight": 200 },
-  light: { "font-weight": 300 },
-  normal: { "font-weight": 400 },
-  medium: { "font-weight": 500 },
-  semibold: { "font-weight": 600 },
-  bold: { "font-weight": 700 },
-  extrabold: { "font-weight": 800 },
-  black: { "font-weight": 900 },
-  sans: {
+export const font: EntriesSpecifier = [
+  ["thin", { "font-weight": 100 }],
+  ["extralight", { "font-weight": 200 }],
+  ["light", { "font-weight": 300 }],
+  ["normal", { "font-weight": 400 }],
+  ["medium", { "font-weight": 500 }],
+  ["semibold", { "font-weight": 600 }],
+  ["bold", { "font-weight": 700 }],
+  ["extrabold", { "font-weight": 800 }],
+  ["black", { "font-weight": 900 }],
+  ["sans", {
     "font-family":
       `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
-  },
-  serif: {
+  }],
+  ["serif", {
     "font-family":
       `ui-serif, Georgia, Cambria, "Times New Roman", Times, serif`,
-  },
-  mono: {
+  }],
+  ["mono", {
     "font-family":
       `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
-  },
-};
+  }],
+  [reBracket_$, ([, arbitrary]) => ({ "font-family": arbitrary })],
+];

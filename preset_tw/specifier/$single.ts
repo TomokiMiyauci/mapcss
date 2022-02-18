@@ -1,4 +1,3 @@
-import { re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { filterValue, handleFilter } from "./_filter_utils.ts";
 import {
   parseColor,
@@ -36,6 +35,7 @@ import {
   re$AllPer$PositiveNumber,
   re$AllPerBracket_$,
   re$Numeric,
+  re$PositiveNumber,
   re$PositiveNumberPer$PositiveNumber,
   reBracket_$,
 } from "../../core/utils/regexp.ts";
@@ -61,6 +61,7 @@ export const aspect: EntriesSpecifier = [
   ["auto", { [ASPECT_RATIO]: AUTO }],
   ["square", { [ASPECT_RATIO]: "1/1" }],
   ["video", { [ASPECT_RATIO]: "16/9" }],
+  [reBracket_$, ([, arbitrary]) => ({ [ASPECT_RATIO]: arbitrary })],
 ];
 const BACKFACE_VISIBILITY = "backface-visibility";
 
@@ -211,11 +212,8 @@ export const columns: EntriesSpecifier = [
   ["5xl", { columns: "64rem" }],
   ["6xl", { columns: "72rem" }],
   ["7xl", { columns: "80rem" }],
-  [re$PositiveNumber, ([, n]) =>
-    parseNumeric(n).match({
-      some: (number) => ({ columns: number }),
-      none: undefined,
-    })],
+  [re$PositiveNumber, ([, n]) => parseNumeric(n).match(matcher("columns"))],
+  [reBracket_$, ([, arbitrary]) => ({ "columns": arbitrary })],
 ];
 export const float: Specifier = {
   right: { float: "right" },
@@ -228,6 +226,7 @@ export const grow: EntriesSpecifier = [
     re$PositiveNumber,
     ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-grow")),
   ],
+  [reBracket_$, ([, arbitrary]) => ({ "flex-grow": arbitrary })],
 ];
 export const h: Specifier = [
   [0, { height: "0px" }],
@@ -252,9 +251,7 @@ export const h: Specifier = [
       parseFraction(numerator, denominator).map(percentize)
         .match(matcher(["height"])),
   ],
-  [reBracket_$, ([, body]) => ({
-    height: body,
-  })],
+  [reBracket_$, ([, body]) => ({ height: body })],
 ];
 export const indent: EntriesSpecifier = [
   [0, { "text-indent": "0px" }],
@@ -264,6 +261,7 @@ export const indent: EntriesSpecifier = [
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("text-indent")),
   ],
+  [reBracket_$, ([, attr]) => ({ "text-indent": attr })],
 ];
 export const inline: Specifier = {
   DEFAULT: { display: "inline" },
@@ -297,6 +295,7 @@ export const leading: Specifier = [
     ([, number]) =>
       parseNumeric(number).andThen(remify).match(matcher("line-height")),
   ],
+  [reBracket_$, ([, attr]) => ({ "line-height": attr })],
 ];
 export const left: EntriesSpecifier = [
   [0, { left: "0px" }],
@@ -316,10 +315,7 @@ export const left: EntriesSpecifier = [
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("left")),
   ],
-  [
-    reBracket_$,
-    ([, attr]) => ({ left: attr }),
-  ],
+  [reBracket_$, ([, attr]) => ({ left: attr })],
 ];
 export const m: Specifier = [
   ["0", { margin: "0px" }],
@@ -465,6 +461,7 @@ export const order: EntriesSpecifier = [
     re$PositiveNumber,
     ([, pNumber]) => parseNumeric(pNumber).match(matcher("order")),
   ],
+  [reBracket_$, ([, order]) => ({ order })],
 ];
 export const p: Specifier = [
   ["0", { padding: "0px" }],
@@ -597,6 +594,7 @@ export const shrink: EntriesSpecifier = [
     re$PositiveNumber,
     ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-shrink")),
   ],
+  [reBracket_$, ([, arbitrary]) => ({ "flex-shrink": arbitrary })],
 ];
 export const top: EntriesSpecifier = [
   [0, { top: "0px" }],
@@ -627,6 +625,7 @@ export const tracking: Specifier = [
   ["wide", { [LETTER_SPACING]: "0.025em" }],
   ["wider", { [LETTER_SPACING]: "0.05em" }],
   ["widest", { [LETTER_SPACING]: "0.1em" }],
+  [reBracket_$, ([, attr]) => ({ [LETTER_SPACING]: attr })],
 ];
 export const w: Specifier = [
   [0, { width: "0px" }],
@@ -671,6 +670,7 @@ export const z: Specifier = [
     ([, positiveNumber]) =>
       parseNumeric(positiveNumber).match(matcher("z-index")),
   ],
+  [reBracket_$, ([, arbitrary]) => ({ "z-index": arbitrary })],
 ];
 export const $static: Declaration = {
   position: "static",

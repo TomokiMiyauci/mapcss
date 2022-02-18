@@ -1,4 +1,4 @@
-import { re$PositiveNumber } from "../../core/utils/regexp.ts";
+import { re$PositiveNumber, reBracket_$ } from "../../core/utils/regexp.ts";
 import { matcher } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
@@ -24,6 +24,7 @@ export const grid: Specifier = [
           `repeat(${number}, minmax(0, 1fr))`
         ).match(matcher("grid-template-columns")),
     ],
+    [reBracket_$, ([, arbitrary]) => ({ "grid-template-columns": arbitrary })],
   ]],
   ["rows", [
     ["none", { "grid-template-rows": "none" }],
@@ -34,5 +35,6 @@ export const grid: Specifier = [
           `repeat(${number}, minmax(0, 1fr))`
         ).match(matcher("grid-template-rows")),
     ],
+    [reBracket_$, ([, arbitrary]) => ({ "grid-template-rows": arbitrary })],
   ]],
 ];

@@ -1,4 +1,4 @@
-import { re$Numeric } from "../../core/utils/regexp.ts";
+import { re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { matcher, pxify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
@@ -14,5 +14,6 @@ export const underline: Specifier = {
           matcher("text-underline-offset"),
         ),
     ],
+    [reBracket_$, ([, attr]) => ({ "text-underline-offset": attr })],
   ],
 };

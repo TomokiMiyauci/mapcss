@@ -1,4 +1,4 @@
-import { re$Numeric } from "../../core/utils/regexp.ts";
+import { re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
@@ -67,6 +67,11 @@ export const space: EntriesSpecifier = [
           none: undefined,
         }),
     ],
+    [
+      reBracket_$,
+      ([, arbitrary], { variablePrefix }) =>
+        handleSpaceX(variablePrefix, arbitrary),
+    ],
   ]],
   ["y", [
     [0, (_, { variablePrefix }) => handleSpaceY(variablePrefix, "0px")],
@@ -89,6 +94,11 @@ export const space: EntriesSpecifier = [
           some: (rem) => handleSpaceY(variablePrefix, rem),
           none: undefined,
         }),
+    ],
+    [
+      reBracket_$,
+      ([, arbitrary], { variablePrefix }) =>
+        handleSpaceY(variablePrefix, arbitrary),
     ],
   ]],
 ];

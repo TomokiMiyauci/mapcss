@@ -1,4 +1,4 @@
-import { re$Numeric } from "../../core/utils/regexp.ts";
+import { re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { matcher, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
@@ -14,6 +14,7 @@ export const gap: EntriesSpecifier = [
       ([, numeric]) =>
         parseNumeric(numeric).andThen(remify).match(matcher("column-gap")),
     ],
+    [reBracket_$, ([, arbitrary]) => ({ "column-gap": arbitrary })],
   ]],
   ["y", [
     [0, { "row-gap": "0px" }],
@@ -23,10 +24,12 @@ export const gap: EntriesSpecifier = [
       ([, numeric]) =>
         parseNumeric(numeric).andThen(remify).match(matcher("row-gap")),
     ],
+    [reBracket_$, ([, arbitrary]) => ({ "row-gap": arbitrary })],
   ]],
   [
     re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("gap")),
   ],
+  [reBracket_$, ([, gap]) => ({ gap })],
 ];
