@@ -1,4 +1,4 @@
-import { rePositiveNumber } from "../../core/utils/regexp.ts";
+import { re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { filterValue, handleFilter } from "./_filter_utils.ts";
 import {
   parseColor,
@@ -32,12 +32,12 @@ import {
 import { resolveTheme } from "../../core/resolve.ts";
 import { associateWith, isUndefined } from "../../deps.ts";
 import {
-  re$SlashBracket$,
-  reAll,
-  reBracket$,
-  reFraction,
-  reNumeric,
-  reSlashNumber,
+  re$All,
+  re$AllPer$PositiveNumber,
+  re$AllPerBracket_$,
+  re$Numeric,
+  re$PositiveNumberPer$PositiveNumber,
+  reBracket_$,
 } from "../../core/utils/regexp.ts";
 import { AUTO, HIDDEN } from "../../constants.ts";
 import { minWidthMediaQuery } from "../modifiers/breakpoint.ts";
@@ -57,10 +57,10 @@ export const align: EntriesSpecifier = [
   ["super", { [VERTICAL_ALIGN]: "super" }],
 ];
 const ASPECT_RATIO = "aspect-ratio";
-export const aspect: Specifier = [
+export const aspect: EntriesSpecifier = [
   ["auto", { [ASPECT_RATIO]: AUTO }],
-  ["square", { [ASPECT_RATIO]: "1 / 1" }],
-  ["video", { [ASPECT_RATIO]: "16 / 9" }],
+  ["square", { [ASPECT_RATIO]: "1/1" }],
+  ["video", { [ASPECT_RATIO]: "16/9" }],
 ];
 const BACKFACE_VISIBILITY = "backface-visibility";
 
@@ -76,18 +76,18 @@ export const basis: EntriesSpecifier = [
     "flex-basis": "100%",
   }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("flex-basis")),
   ],
   [
-    reSlashNumber,
+    re$AllPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher(["flex-basis"]),
       ),
   ],
-  [reBracket$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
+  [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
 ];
 export const block: Declaration = { display: "block" };
 export const bottom: EntriesSpecifier = [
@@ -97,19 +97,19 @@ export const bottom: EntriesSpecifier = [
   ["full", { bottom: "100%" }],
 
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher(["bottom"]),
       ),
   ],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher(["bottom"])),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, attr]) => ({ bottom: attr }),
   ],
 ];
@@ -211,7 +211,7 @@ export const columns: EntriesSpecifier = [
   ["5xl", { columns: "64rem" }],
   ["6xl", { columns: "72rem" }],
   ["7xl", { columns: "80rem" }],
-  [rePositiveNumber, ([, n]) =>
+  [re$PositiveNumber, ([, n]) =>
     parseNumeric(n).match({
       some: (number) => ({ columns: number }),
       none: undefined,
@@ -225,7 +225,7 @@ export const float: Specifier = {
 export const grow: EntriesSpecifier = [
   ["DEFAULT", { "flex-grow": 1 }],
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-grow")),
   ],
 ];
@@ -239,7 +239,7 @@ export const h: Specifier = [
   ["max", { height: "max-content" }],
   ["fit", { height: "fit-content" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify)
         .match(
@@ -247,12 +247,12 @@ export const h: Specifier = [
         ),
   ],
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize)
         .match(matcher(["height"])),
   ],
-  [reBracket$, ([, body]) => ({
+  [reBracket_$, ([, body]) => ({
     height: body,
   })],
 ];
@@ -260,7 +260,7 @@ export const indent: EntriesSpecifier = [
   [0, { "text-indent": "0px" }],
   ["px", { "text-indent": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("text-indent")),
   ],
@@ -293,7 +293,7 @@ export const leading: Specifier = [
   ["relaxed", { "line-height": 1.625 }],
   ["loose", { "line-height": 2 }],
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, number]) =>
       parseNumeric(number).andThen(remify).match(matcher("line-height")),
   ],
@@ -305,19 +305,19 @@ export const left: EntriesSpecifier = [
   ["full", { left: "100%" }],
 
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher("left"),
       ),
   ],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("left")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, attr]) => ({ left: attr }),
   ],
 ];
@@ -326,23 +326,23 @@ export const m: Specifier = [
   ["auto", { margin: "auto" }],
   ["px", { margin: "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("margin")),
   ],
-  [reBracket$, ([, arbitrary]) => ({ margin: arbitrary })],
+  [reBracket_$, ([, arbitrary]) => ({ margin: arbitrary })],
 ];
 export const mb: Specifier = [
   ["0", { "margin-bottom": "0px" }],
   ["auto", { "margin-bottom": "auto" }],
   ["px", { "margin-bottom": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("margin-bottom")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "margin-bottom": arbitrary }),
   ],
 ];
@@ -377,12 +377,12 @@ export const ml: Specifier = [
   ["auto", { "margin-left": "auto" }],
   ["px", { "margin-left": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("margin-left")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "margin-left": arbitrary }),
   ],
 ];
@@ -391,12 +391,12 @@ export const mr: Specifier = [
   ["auto", { "margin-right": "auto" }],
   ["px", { "margin-right": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("margin-right")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "margin-right": arbitrary }),
   ],
 ];
@@ -405,12 +405,12 @@ export const mt: Specifier = [
   ["auto", { "margin-top": "auto" }],
   ["px", { "margin-top": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("margin-top")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "margin-top": arbitrary }),
   ],
 ];
@@ -419,14 +419,14 @@ export const mx: Specifier = [
   ["auto", { "margin-left": "auto", "margin-right": "auto" }],
   ["px", { "margin-left": "1px", "margin-right": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(
         matcher(["margin-left", "margin-right"]),
       ),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) =>
       associateWith(["margin-left", "margin-right"], () => arbitrary),
   ],
@@ -436,21 +436,21 @@ export const my: Specifier = [
   ["auto", { "margin-top": "auto", "margin-bottom": "auto" }],
   ["px", { "margin-top": "1px", "margin-bottom": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(
         matcher(["margin-top", "margin-bottom"]),
       ),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) =>
       associateWith(["margin-top", "margin-bottom"], () => arbitrary),
   ],
 ];
 export const opacity: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber]) =>
       parseNumeric(pNumber).andThen(per(100)).map(shortDecimal).match(
         matcher("opacity"),
@@ -462,7 +462,7 @@ export const order: EntriesSpecifier = [
   ["last", { order: 9999 }],
   ["none", { order: 0 }],
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber]) => parseNumeric(pNumber).match(matcher("order")),
   ],
 ];
@@ -471,23 +471,23 @@ export const p: Specifier = [
   ["auto", { padding: "auto" }],
   ["px", { padding: "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("padding")),
   ],
-  [reBracket$, ([, arbitrary]) => ({ padding: arbitrary })],
+  [reBracket_$, ([, arbitrary]) => ({ padding: arbitrary })],
 ];
 export const pb: Specifier = [
   ["0", { "padding-bottom": "0px" }],
   ["auto", { "padding-bottom": "auto" }],
   ["px", { "padding-bottom": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("padding-bottom")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "padding-bottom": arbitrary }),
   ],
 ];
@@ -496,12 +496,12 @@ export const pl: Specifier = [
   ["auto", { "padding-left": "auto" }],
   ["px", { "padding-left": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("padding-left")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "padding-left": arbitrary }),
   ],
 ];
@@ -510,12 +510,12 @@ export const pr: Specifier = [
   ["auto", { "padding-right": "auto" }],
   ["px", { "padding-right": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("padding-right")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "padding-right": arbitrary }),
   ],
 ];
@@ -524,12 +524,12 @@ export const pt: Specifier = [
   ["auto", { "padding-top": "auto" }],
   ["px", { "padding-top": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("padding-top")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) => ({ "padding-top": arbitrary }),
   ],
 ];
@@ -538,14 +538,14 @@ export const px: Specifier = [
   ["auto", { "padding-left": "auto", "padding-right": "auto" }],
   ["px", { "padding-left": "1px", "padding-right": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(
         matcher(["padding-left", "padding-right"]),
       ),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) =>
       associateWith(["padding-left", "padding-right"], () => arbitrary),
   ],
@@ -555,14 +555,14 @@ export const py: Specifier = [
   ["auto", { "padding-top": "auto", "padding-bottom": "auto" }],
   ["px", { "padding-top": "1px", "padding-bottom": "1px" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(
         matcher(["padding-top", "padding-bottom"]),
       ),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, arbitrary]) =>
       associateWith(["padding-top", "padding-bottom"], () => arbitrary),
   ],
@@ -575,26 +575,26 @@ export const right: EntriesSpecifier = [
   ["full", { right: "100%" }],
 
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher(["right"]),
       ),
   ],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("right")),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, attr]) => ({ right: attr }),
   ],
 ];
 export const shrink: EntriesSpecifier = [
   ["DEFAULT", { "flex-shrink": 1 }],
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-shrink")),
   ],
 ];
@@ -605,18 +605,18 @@ export const top: EntriesSpecifier = [
   ["full", { top: "100%" }],
 
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher(["top"]),
       ),
   ],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("top")),
   ],
-  [reBracket$, ([, attr]) => ({ "top": attr })],
+  [reBracket_$, ([, attr]) => ({ "top": attr })],
 ];
 const LETTER_SPACING = "letter-spacing";
 
@@ -638,18 +638,18 @@ export const w: Specifier = [
   ["max", { width: "max-content" }],
   ["fit", { width: "fit-content" }],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(matcher("width")),
   ],
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher(["width"]),
       ),
   ],
-  [reBracket$, ([, arbitrary]) => ({ width: arbitrary })],
+  [reBracket_$, ([, arbitrary]) => ({ width: arbitrary })],
 ];
 const WHITE_SPACE = "white-space";
 
@@ -667,7 +667,7 @@ export const z: Specifier = [
     "z-index": "auto",
   }],
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, positiveNumber]) =>
       parseNumeric(positiveNumber).match(matcher("z-index")),
   ],
@@ -766,7 +766,7 @@ export const truncate: Declaration = {
 };
 export const brightness: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber], { variablePrefix }) =>
       parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
         some: (value) =>
@@ -778,7 +778,7 @@ export const brightness: EntriesSpecifier = [
 
 export const contrast: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber], { variablePrefix }) =>
       handleFilter("contrast", pNumber, variablePrefix),
   ],
@@ -855,7 +855,7 @@ function handleSingleFilter(
 export const hue: RecordSpecifier = {
   rotate: [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(unit("deg")).match({
           some: (deg) => handleSingleFilter("hue-rotate", deg, variablePrefix),
@@ -879,7 +879,7 @@ export const invert: EntriesSpecifier = [
 
 export const saturate: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber], { variablePrefix }) =>
       parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
         some: (saturate) =>
@@ -903,7 +903,7 @@ export const sepia: EntriesSpecifier = [
 
 export const duration: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber]) =>
       parseNumeric(pNumber).map(unit("ms")).match({
         some: (ms) => ({ "transition-duration": ms }),
@@ -923,7 +923,7 @@ export const ease: RecordSpecifier = {
 
 export const delay: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber]) =>
       parseNumeric(pNumber).map(unit("ms")).match({
         some: (ms) => ({ "transition-delay": ms }),
@@ -934,7 +934,7 @@ export const delay: EntriesSpecifier = [
 
 export const rotate: EntriesSpecifier = [
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber], { variablePrefix }) =>
       parseNumeric(pNumber).map(unit("deg")).match({
         some: (deg) => ({
@@ -949,7 +949,7 @@ export const rotate: EntriesSpecifier = [
 export const skew: RecordSpecifier = {
   x: [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(unit("deg")).match({
           some: (deg) => handleTransform(["skew-x"], deg, variablePrefix),
@@ -959,7 +959,7 @@ export const skew: RecordSpecifier = {
   ],
   y: [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(unit("deg")).match({
           some: (deg) => handleTransform(["skew-y"], deg, variablePrefix),
@@ -990,7 +990,7 @@ function toAccentColor(color: string): { "accent-color": string } {
 }
 export const accent: EntriesSpecifier = [
   ["auto", { "accent-color": "auto" }],
-  [reSlashNumber, ([, body, numeric], context) => {
+  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
@@ -1003,7 +1003,7 @@ export const accent: EntriesSpecifier = [
       none: undefined,
     });
   }],
-  [re$SlashBracket$, ([, body, alpha], context) => {
+  [re$AllPerBracket_$, ([, body, alpha], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
@@ -1014,7 +1014,7 @@ export const accent: EntriesSpecifier = [
     });
   }],
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
@@ -1113,7 +1113,7 @@ function toCaretColor(color: string) {
   return { "caret-color": color };
 }
 export const caret: EntriesSpecifier = [
-  [reSlashNumber, ([, body, numeric], context) => {
+  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
@@ -1126,7 +1126,7 @@ export const caret: EntriesSpecifier = [
       none: undefined,
     });
   }],
-  [re$SlashBracket$, ([, body, alpha], context) => {
+  [re$AllPerBracket_$, ([, body, alpha], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
@@ -1137,7 +1137,7 @@ export const caret: EntriesSpecifier = [
     });
   }],
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
@@ -1198,7 +1198,7 @@ function toFill(color: string) {
   return { fill: color };
 }
 export const fill: EntriesSpecifier = [
-  [reSlashNumber, ([, body, numeric], context) => {
+  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
@@ -1211,7 +1211,7 @@ export const fill: EntriesSpecifier = [
       none: undefined,
     });
   }],
-  [re$SlashBracket$, ([, body, alpha], context) => {
+  [re$AllPerBracket_$, ([, body, alpha], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
@@ -1222,7 +1222,7 @@ export const fill: EntriesSpecifier = [
     });
   }],
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
@@ -1268,7 +1268,7 @@ function defaultGradientColor(isRGB: boolean, color: string): string {
 
 export const from: EntriesSpecifier = [
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
@@ -1299,7 +1299,7 @@ export const from: EntriesSpecifier = [
 ];
 export const via: EntriesSpecifier = [
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
@@ -1329,7 +1329,7 @@ export const via: EntriesSpecifier = [
 ];
 export const to: EntriesSpecifier = [
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;

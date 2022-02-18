@@ -1,4 +1,4 @@
-import { reNumeric } from "../../core/utils/regexp.ts";
+import { re$Numeric } from "../../core/utils/regexp.ts";
 import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
@@ -60,7 +60,7 @@ export const space: EntriesSpecifier = [
       };
     }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric], { variablePrefix }) =>
         parseNumeric(numeric).andThen(remify).match({
           some: (rem) => handleSpaceX(variablePrefix, rem),
@@ -83,7 +83,7 @@ export const space: EntriesSpecifier = [
       };
     }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric], { variablePrefix }) =>
         parseNumeric(numeric).andThen(remify).match({
           some: (rem) => handleSpaceY(variablePrefix, rem),

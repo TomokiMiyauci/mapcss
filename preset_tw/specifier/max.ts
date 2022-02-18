@@ -1,4 +1,4 @@
-import { reNumeric } from "../../core/utils/regexp.ts";
+import { re$Numeric } from "../../core/utils/regexp.ts";
 import { matcher, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
@@ -33,7 +33,7 @@ export const max: Specifier = {
   },
   h: [
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).andThen(remify).match(matcher("max-height")),
     ],

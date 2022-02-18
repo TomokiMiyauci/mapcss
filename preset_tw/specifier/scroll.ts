@@ -1,4 +1,4 @@
-import { reNumeric } from "../../core/utils/regexp.ts";
+import { re$Numeric } from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { quoter, unit } from "../../core/utils/format.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
@@ -22,7 +22,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN]: "0px" }],
     ["px", { [SCROLL_MARGIN]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_MARGIN]: rem }),
@@ -34,7 +34,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN_LEFT]: "0px", [SCROLL_MARGIN_RIGHT]: "0px" }],
     ["px", { [SCROLL_MARGIN_LEFT]: "1px", [SCROLL_MARGIN_RIGHT]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) =>
@@ -50,7 +50,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN_TOP]: "0px", [SCROLL_MARGIN_BOTTOM]: "0px" }],
     ["px", { [SCROLL_MARGIN_TOP]: "1px", [SCROLL_MARGIN_BOTTOM]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) =>
@@ -66,7 +66,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN_TOP]: "0px" }],
     ["px", { [SCROLL_MARGIN_TOP]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_MARGIN_TOP]: rem }),
@@ -78,7 +78,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN_RIGHT]: "0px" }],
     ["px", { [SCROLL_MARGIN_RIGHT]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_MARGIN_RIGHT]: rem }),
@@ -90,7 +90,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN_BOTTOM]: "0px" }],
     ["px", { [SCROLL_MARGIN_BOTTOM]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_MARGIN_BOTTOM]: rem }),
@@ -102,7 +102,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_MARGIN_LEFT]: "0px" }],
     ["px", { [SCROLL_MARGIN_LEFT]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_MARGIN_LEFT]: rem }),
@@ -114,7 +114,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING]: "0px" }],
     ["px", { [SCROLL_PADDING]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_PADDING]: rem }),
@@ -126,7 +126,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING_LEFT]: "0px", [SCROLL_PADDING_RIGHT]: "0px" }],
     ["px", { [SCROLL_PADDING_LEFT]: "1px", [SCROLL_PADDING_RIGHT]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) =>
@@ -142,7 +142,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING_TOP]: "0px", [SCROLL_PADDING_BOTTOM]: "0px" }],
     ["px", { [SCROLL_PADDING_TOP]: "1px", [SCROLL_PADDING_BOTTOM]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) =>
@@ -158,7 +158,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING_TOP]: "0px" }],
     ["px", { [SCROLL_PADDING_TOP]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_PADDING_TOP]: rem }),
@@ -170,7 +170,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING_RIGHT]: "0px" }],
     ["px", { [SCROLL_PADDING_RIGHT]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_PADDING_RIGHT]: rem }),
@@ -182,7 +182,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING_BOTTOM]: "0px" }],
     ["px", { [SCROLL_PADDING_BOTTOM]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_PADDING_BOTTOM]: rem }),
@@ -194,7 +194,7 @@ export const scroll: EntriesSpecifier = [
     [0, { [SCROLL_PADDING_LEFT]: "0px" }],
     ["px", { [SCROLL_PADDING_LEFT]: "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(quoter).map(unit("rem")).match({
           some: (rem) => ({ [SCROLL_PADDING_LEFT]: rem }),

@@ -1,4 +1,7 @@
-import { reNumeric, reSlashNumber } from "../../core/utils/regexp.ts";
+import {
+  re$AllPer$PositiveNumber,
+  re$Numeric,
+} from "../../core/utils/regexp.ts";
 import { parseFraction, parseNumeric } from "../../core/utils/monad.ts";
 import {
   multiple,
@@ -28,7 +31,7 @@ export const translate: RecordSpecifier = {
         handleTransform(["translate-x"], "100%", variablePrefix),
     ],
     [
-      reNumeric,
+      re$Numeric,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(quoter).map(shortDecimal).map(unit("rem"))
           .match({
@@ -38,7 +41,7 @@ export const translate: RecordSpecifier = {
           }),
     ],
     [
-      reSlashNumber,
+      re$AllPer$PositiveNumber,
       ([, numerator, denominator], { variablePrefix }) =>
         parseFraction(numerator, denominator).map(multiple(100)).map(roundN(6))
           .map(unit("%")).match({
@@ -64,7 +67,7 @@ export const translate: RecordSpecifier = {
         handleTransform(["translate-y"], "100%", variablePrefix),
     ],
     [
-      reSlashNumber,
+      re$AllPer$PositiveNumber,
       ([, numerator, denominator], { variablePrefix }) =>
         parseFraction(numerator, denominator).map(multiple(100)).map(roundN(6))
           .map(unit("%")).match({
@@ -73,7 +76,7 @@ export const translate: RecordSpecifier = {
           }),
     ],
     [
-      reNumeric,
+      re$Numeric,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(quoter).map(shortDecimal).map(unit("rem"))
           .match({

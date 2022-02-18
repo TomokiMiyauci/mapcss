@@ -1,4 +1,4 @@
-import { rePositiveNumber } from "../../core/utils/regexp.ts";
+import { re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { transformValue } from "./_utils.ts";
 import {
@@ -29,20 +29,20 @@ function handleScale(
 export const scale: EntriesSpecifier = [
   ["x", [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         handleScale(["scale-x"], pNumber, variablePrefix),
     ],
   ]],
   ["y", [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         handleScale(["scale-y"], pNumber, variablePrefix),
     ],
   ]],
   [
-    rePositiveNumber,
+    re$PositiveNumber,
     ([, pNumber], { variablePrefix }) =>
       handleScale(["scale-x", "scale-y"], pNumber, variablePrefix),
   ],

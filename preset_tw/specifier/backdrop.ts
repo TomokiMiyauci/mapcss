@@ -1,7 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { ratio, shortDecimal, unit } from "../../core/utils/format.ts";
-import { rePositiveNumber } from "../../core/utils/regexp.ts";
+import { re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { customProperty } from "../../core/utils/format.ts";
 import type { Declaration, EntriesSpecifier } from "../../core/types.ts";
 
@@ -98,7 +98,7 @@ export const backdrop: EntriesSpecifier = [
   ]],
   ["brightness", [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
           some: (v) =>
@@ -113,7 +113,7 @@ export const backdrop: EntriesSpecifier = [
   ]],
   ["contrast", [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
           some: (v) =>
@@ -141,7 +141,7 @@ export const backdrop: EntriesSpecifier = [
   ["hue", {
     rotate: [
       [
-        rePositiveNumber,
+        re$PositiveNumber,
         ([, pNumber], { variablePrefix }) =>
           parseNumeric(pNumber).map(unit("deg")).match({
             some: (deg) =>
@@ -169,7 +169,7 @@ export const backdrop: EntriesSpecifier = [
   ]],
   ["opacity", [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
           some: (v) =>
@@ -184,7 +184,7 @@ export const backdrop: EntriesSpecifier = [
   ]],
   ["saturate", [
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber], { variablePrefix }) =>
         parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
           some: (v) =>

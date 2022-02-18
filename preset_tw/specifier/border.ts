@@ -2,10 +2,10 @@ import { matcher, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { associateWith, isUndefined } from "../../deps.ts";
 import {
-  re$SlashBracket$,
-  reAll,
-  reNumeric,
-  reSlashNumber,
+  re$All,
+  re$AllPer$PositiveNumber,
+  re$AllPerBracket_$,
+  re$Numeric,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
 import {
@@ -35,13 +35,13 @@ export const border: Specifier = [
       "border-right-width": "1px",
     }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(pxify).match(
           matcher(["border-left-width", "border-right-width"]),
         ),
     ],
-    [reSlashNumber, ([, body, numeric], context) => {
+    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -60,7 +60,7 @@ export const border: Specifier = [
         none: undefined,
       });
     }],
-    [re$SlashBracket$, ([, body, alpha], context) => {
+    [re$AllPerBracket_$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
       return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
@@ -76,7 +76,7 @@ export const border: Specifier = [
         });
     }],
     [
-      reAll,
+      re$All,
       ([body], context) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -103,7 +103,7 @@ export const border: Specifier = [
       "border-top-width": "1px",
       "border-bottom-width": "1px",
     }],
-    [reSlashNumber, ([, body, alpha], context) => {
+    [re$AllPer$PositiveNumber, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -123,13 +123,13 @@ export const border: Specifier = [
       });
     }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(pxify).match(
           matcher(["border-top-width", "border-bottom-width"]),
         ),
     ],
-    [reSlashNumber, ([, body, numeric], context) => {
+    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -148,7 +148,7 @@ export const border: Specifier = [
         none: undefined,
       });
     }],
-    [re$SlashBracket$, ([, body, alpha], context) => {
+    [re$AllPerBracket_$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
       return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
@@ -164,7 +164,7 @@ export const border: Specifier = [
         });
     }],
     [
-      reAll,
+      re$All,
       ([body], context) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -189,11 +189,11 @@ export const border: Specifier = [
   ["t", [
     ["DEFAULT", { "border-top-width": "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(pxify).match(matcher("border-top-width")),
     ],
-    [reSlashNumber, ([, body, numeric], context) => {
+    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -208,7 +208,7 @@ export const border: Specifier = [
         none: undefined,
       });
     }],
-    [re$SlashBracket$, ([, body, alpha], context) => {
+    [re$AllPerBracket_$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
       return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
@@ -220,7 +220,7 @@ export const border: Specifier = [
         });
     }],
     [
-      reAll,
+      re$All,
       ([body], context) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -237,11 +237,11 @@ export const border: Specifier = [
   ["r", [
     ["DEFAULT", { "border-right-width": "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(pxify).match(matcher("border-right-width")),
     ],
-    [reSlashNumber, ([, body, numeric], context) => {
+    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -256,7 +256,7 @@ export const border: Specifier = [
         none: undefined,
       });
     }],
-    [re$SlashBracket$, ([, body, alpha], context) => {
+    [re$AllPerBracket_$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
       return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
@@ -268,7 +268,7 @@ export const border: Specifier = [
         });
     }],
     [
-      reAll,
+      re$All,
       ([body], context) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -285,11 +285,11 @@ export const border: Specifier = [
   ["b", [
     ["DEFAULT", { "border-bottom-width": "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(pxify).match(matcher("border-bottom-width")),
     ],
-    [re$SlashBracket$, ([, body, alpha], context) => {
+    [re$AllPerBracket_$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
       return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
@@ -300,7 +300,7 @@ export const border: Specifier = [
           none: undefined,
         });
     }],
-    [reSlashNumber, ([, body, numeric], context) => {
+    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -316,7 +316,7 @@ export const border: Specifier = [
       });
     }],
     [
-      reAll,
+      re$All,
       ([body], context) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -333,11 +333,11 @@ export const border: Specifier = [
   ["l", [
     ["DEFAULT", { "border-left-width": "1px" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).map(pxify).match(matcher("border-left-width")),
     ],
-    [reSlashNumber, ([, body, numeric], context) => {
+    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
 
@@ -352,7 +352,7 @@ export const border: Specifier = [
         none: undefined,
       });
     }],
-    [re$SlashBracket$, ([, body, alpha], context) => {
+    [re$AllPerBracket_$, ([, body, alpha], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;
       return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
@@ -364,7 +364,7 @@ export const border: Specifier = [
         });
     }],
     [
-      reAll,
+      re$All,
       ([body], context) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -379,13 +379,13 @@ export const border: Specifier = [
     ],
   ]],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).map(shortDecimal).map(unit("px")).match(
         matcher(BORDER_WIDTH),
       ),
   ],
-  [reSlashNumber, ([, body, numeric], context) => {
+  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
@@ -398,7 +398,7 @@ export const border: Specifier = [
       none: undefined,
     });
   }],
-  [re$SlashBracket$, ([, body, alpha], context) => {
+  [re$AllPerBracket_$, ([, body, alpha], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
@@ -409,7 +409,7 @@ export const border: Specifier = [
     });
   }],
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;

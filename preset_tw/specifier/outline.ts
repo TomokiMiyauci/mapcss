@@ -2,10 +2,10 @@ import { matcher, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
-  re$SlashBracket$,
-  reAll,
-  reNumeric,
-  reSlashNumber,
+  re$All,
+  re$AllPer$PositiveNumber,
+  re$AllPerBracket_$,
+  re$Numeric,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
 import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
@@ -23,17 +23,17 @@ export const outline: Specifier = [
   ["double", { "outline-style": "double" }],
   ["hidden", { "outline-style": "hidden" }],
   ["offset", [[
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).map(pxify).match(matcher("outline-offset")),
   ]]],
 
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).map(pxify).match(matcher("outline-width")),
   ],
-  [reSlashNumber, ([, body, numeric], context) => {
+  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
@@ -46,7 +46,7 @@ export const outline: Specifier = [
       none: undefined,
     });
   }],
-  [re$SlashBracket$, ([, body, alpha], context) => {
+  [re$AllPerBracket_$, ([, body, alpha], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
@@ -57,7 +57,7 @@ export const outline: Specifier = [
     });
   }],
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;

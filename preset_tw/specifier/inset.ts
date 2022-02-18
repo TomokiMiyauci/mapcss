@@ -1,7 +1,11 @@
 import { matcher, percentize, remify } from "./_utils.ts";
 import { parseFraction } from "../../core/utils/monad.ts";
 import { associateWith } from "../../deps.ts";
-import { reBracket$, reFraction, reNumeric } from "../../core/utils/regexp.ts";
+import {
+  re$Numeric,
+  re$PositiveNumberPer$PositiveNumber,
+  reBracket_$,
+} from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
 
@@ -36,21 +40,21 @@ export const inset: Specifier = [
     ["auto", { left: "auto", right: "auto" }],
     ["full", { right: "100%", left: "100%" }],
     [
-      reNumeric,
+      re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).andThen(remify).match(
           matcher(["right", "left"]),
         ),
     ],
     [
-      reFraction,
+      re$PositiveNumberPer$PositiveNumber,
       ([, numerator, denominator]) =>
         parseFraction(numerator, denominator).map(percentize).match(
           matcher(["right", "left"]),
         ),
     ],
     [
-      reBracket$,
+      reBracket_$,
       ([, attr]) => associateWith(["right", "left"], () => attr),
     ],
   ]],
@@ -59,38 +63,38 @@ export const inset: Specifier = [
     ["auto", { top: "auto", bottom: "auto" }],
     ["full", { top: "100%", bottom: "100%" }],
     [0, { top: "0px", bottom: "0px" }],
-    [reNumeric, ([, numeric]) =>
+    [re$Numeric, ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(
         matcher(["top", "bottom"]),
       )],
     [
-      reFraction,
+      re$PositiveNumberPer$PositiveNumber,
       ([, numerator, denominator]) =>
         parseFraction(numerator, denominator).map(percentize).match(
           matcher(["top", "bottom"]),
         ),
     ],
     [
-      reBracket$,
+      reBracket_$,
       ([, attr]) => associateWith(["top", "bottom"], () => attr),
     ],
   ]],
   [
-    reNumeric,
+    re$Numeric,
     ([, numeric]) =>
       parseNumeric(numeric).andThen(remify).match(
         matcher(["top", "bottom", "right", "left"]),
       ),
   ],
   [
-    reFraction,
+    re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
       parseFraction(numerator, denominator).map(percentize).match(
         matcher(["top", "bottom", "right", "left"]),
       ),
   ],
   [
-    reBracket$,
+    reBracket_$,
     ([, attr]) => associateWith(["top", "bottom", "right", "left"], () => attr),
   ],
 ];

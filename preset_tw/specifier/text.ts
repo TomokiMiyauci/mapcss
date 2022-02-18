@@ -1,9 +1,9 @@
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
-  re$SlashBracket$,
-  reAll,
-  reSlashNumber,
+  re$All,
+  re$AllPer$PositiveNumber,
+  re$AllPerBracket_$,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
 import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
@@ -80,7 +80,7 @@ export const text: Specifier = [
   }],
   ["ellipsis", { "text-overflow": "ellipsis" }],
   ["clip", { "text-overflow": "clip" }],
-  [reSlashNumber, ([, body, numeric], context) => {
+  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
 
@@ -93,7 +93,7 @@ export const text: Specifier = [
       none: undefined,
     });
   }],
-  [re$SlashBracket$, ([, body, alpha], context) => {
+  [re$AllPerBracket_$, ([, body, alpha], context) => {
     const color = resolveTheme(body, "color", context);
     if (isUndefined(color)) return;
     return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
@@ -104,7 +104,7 @@ export const text: Specifier = [
     });
   }],
   [
-    reAll,
+    re$All,
     ([body], context) => {
       const color = resolveTheme(body, "color", context);
       if (isUndefined(color)) return;

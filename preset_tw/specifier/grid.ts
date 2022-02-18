@@ -1,4 +1,4 @@
-import { rePositiveNumber } from "../../core/utils/regexp.ts";
+import { re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { matcher } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import type { Specifier } from "../../core/types.ts";
@@ -18,7 +18,7 @@ export const grid: Specifier = [
   ["cols", [
     ["none", { "grid-template-columns": "none" }],
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber]) =>
         parseNumeric(pNumber).map((number) =>
           `repeat(${number}, minmax(0, 1fr))`
@@ -28,7 +28,7 @@ export const grid: Specifier = [
   ["rows", [
     ["none", { "grid-template-rows": "none" }],
     [
-      rePositiveNumber,
+      re$PositiveNumber,
       ([, pNumber]) =>
         parseNumeric(pNumber).map((number) =>
           `repeat(${number}, minmax(0, 1fr))`
