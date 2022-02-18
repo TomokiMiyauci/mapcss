@@ -4,7 +4,7 @@ description: Utilities for optimizing upcoming animations of elements that are e
 category: Interactivity
 ---
 
-import Example from "~/components/example.tsx"
+import Example from "~/components/example.tsx";
 
 ## Basic usage
 
@@ -13,7 +13,7 @@ import Example from "~/components/example.tsx"
 Use `will-change-scroll`, `will-change-contents` and `will-change-transform` to optimize an element that's expected to change in the near future by instructing the browser to prepare the necessary animation before it actually begins.
 
 ```html
-<div class="overflow-auto **will-change-scroll**">
+<div className="overflow-auto **will-change-scroll**">
   <!-- ... -->
 </div>
 ```

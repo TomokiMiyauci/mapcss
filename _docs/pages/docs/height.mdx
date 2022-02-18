@@ -3,3 +3,85 @@ title: Height
 description: Utilities for setting the height of an element.
 category: Sizing
 ---
+
+import Example from "~/components/example.tsx";
+
+## Basic usage
+
+### Fixed heights
+
+Use `h-{number}` or `h-px` to set an element to a fixed height.
+
+<Example>
+  <div className="flex justify-center items-end space-x-4 font-mono font-bold text-xs text-center text-white">
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-96 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-96</div>
+      </div>
+    </div>
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-80 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-80</div>
+      </div>
+    </div>
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-64 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-64</div>
+      </div>
+    </div>
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-48 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-48</div>
+      </div>
+    </div>
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-40 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-40</div>
+      </div>
+    </div>
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-32 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-32</div>
+      </div>
+    </div>
+    <div className="w-8 bg-blue-500 rounded-lg shadow-lg h-24 relative">
+      <div className="absolute w-8 bottom-6">
+        <div className="-rotate-90">h-24</div>
+      </div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**h-96** ...">h-96</div>
+<div className="**h-80** ...">h-80</div>
+<div className="**h-64** ...">h-64</div>
+<div className="**h-48** ...">h-48</div>
+<div className="**h-40** ...">h-40</div>
+<div className="**h-32** ...">h-32</div>
+<div className="**h-24** ...">h-24</div>
+```
+
+### Full height
+
+Use `h-full` to set an element's height to 100% of its parent, as long as the parent has a defined height.
+
+```html
+<div className="h-48">
+  <div className="**h-full** ...">
+    <!-- This element will have a height of `12rem` (h-48) -->
+  </div>
+</div>
+```
+
+### Viewport height
+
+Use `h-screen` to make an element span the entire height of the viewport.
+
+```html
+<div className="**h-screen**">
+  <!-- ... -->
+</div>
+```
+
+---

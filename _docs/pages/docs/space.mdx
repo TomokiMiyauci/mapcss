@@ -4,7 +4,7 @@ description: Utilities for controlling the space between child elements.
 category: Spacing
 ---
 
-import Example from '~/components/example.tsx'
+import Example from "~/components/example.tsx";
 
 ## Basic usage
 
@@ -15,9 +15,15 @@ Control the horizontal space between elements using the `space-x-{amount}` utili
 <Example>
   <div className="flex justify-start font-mono text-white text-sm font-bold leading-6">
     <div className="flex space-x-4 bg-stripes-fuchsia rounded-lg">
-      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-fuchsia-500">01</div>
-      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-fuchsia-500">02</div>
-      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-fuchsia-500">03</div>
+      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-fuchsia-500">
+        01
+      </div>
+      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-fuchsia-500">
+        02
+      </div>
+      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-fuchsia-500">
+        03
+      </div>
     </div>
   </div>
 </Example>
@@ -37,9 +43,15 @@ Control the vertical space between elements using the `space-y-{amount}` utiliti
 <Example>
   <div className="flex flex-col justify-center text-center w-full font-mono text-white text-sm font-bold leading-6">
     <div className="flex flex-col space-y-4 bg-stripes-indigo rounded-lg">
-      <div className="p-4 flex items-center justify-center shadow-lg rounded-lg bg-indigo-500">01</div>
-      <div className="p-4 flex items-center justify-center shadow-lg rounded-lg bg-indigo-500">02</div>
-      <div className="p-4 flex items-center justify-center shadow-lg rounded-lg bg-indigo-500">03</div>
+      <div className="p-4 flex items-center justify-center shadow-lg rounded-lg bg-indigo-500">
+        01
+      </div>
+      <div className="p-4 flex items-center justify-center shadow-lg rounded-lg bg-indigo-500">
+        02
+      </div>
+      <div className="p-4 flex items-center justify-center shadow-lg rounded-lg bg-indigo-500">
+        03
+      </div>
     </div>
   </div>
 </Example>
@@ -59,9 +71,15 @@ If your elements are in reverse order (using say `flex-row-reverse` or `flex-col
 <Example>
   <div className="flex justify-end font-mono text-white text-sm font-bold leading-6">
     <div className="flex flex-row-reverse space-x-4 space-x-reverse bg-stripes-cyan rounded-lg">
-      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-cyan-500">01</div>
-      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-cyan-500">02</div>
-      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-cyan-500">03</div>
+      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-cyan-500">
+        01
+      </div>
+      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-cyan-500">
+        02
+      </div>
+      <div className="w-14 h-14 flex items-center justify-center shadow-lg rounded-lg bg-cyan-500">
+        03
+      </div>
     </div>
   </div>
 </Example>
@@ -76,7 +94,7 @@ If your elements are in reverse order (using say `flex-row-reverse` or `flex-col
 
 ### Using negative values
 
-To use a negative space value, prefix the class name with a dash to convert it to a negative value.
+To use a negative space value, prefix the className name with a dash to convert it to a negative value.
 
 ```html
 <div className="flex **-space-x-4** ...">

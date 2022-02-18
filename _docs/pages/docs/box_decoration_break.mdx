@@ -3,3 +3,45 @@ title: Box Decoration Break
 description: Utilities for controlling how element fragments should be rendered across multiple lines, columns, or pages.
 category: Layout
 ---
+
+import Example from "~/components/example.tsx";
+
+## Basic usage
+
+### Setting the box decoration break
+
+Use the `box-decoration-slice` and `box-decoration-clone` utilities to control whether properties like background, border, border-image, box-shadow, clip-page, margin, and padding should be rendered as if the element were one continuous fragment, or distinct blocks.
+
+<Example>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 px-10 font-mono font-bold">
+    <div className="flex flex-col">
+      <p className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">box-decoration-slice</p>
+      <div className="text-5xl font-extrabold leading-none tracking-tight font-sans">
+        <span className="box-decoration-slice text-white bg-gradient-to-r from-indigo-600 to-pink-500 leading-[3.5rem] px-2">Hello<br />World</span>
+      </div>
+    </div>
+    <div className="flex flex-col">
+      <p className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">box-decoration-clone</p>
+      <div className="text-5xl font-extrabold leading-none tracking-tight font-sans">
+        <span className="box-decoration-clone text-white bg-gradient-to-r from-indigo-600 to-pink-500 leading-[3.5rem] px-2">Hello<br />World</span>
+      </div>
+    </div>
+  </div>
+</Example>
+
+```html
+<span
+  className="**box-decoration-slice** bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ..."
+>
+  Hello<br />
+  World
+</span>
+<span
+  className="**box-decoration-clone** bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 ..."
+>
+  Hello<br />
+  World
+</span>
+```
+
+---
