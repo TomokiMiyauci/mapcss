@@ -63,12 +63,6 @@ export const aspect: EntriesSpecifier = [
   ["video", { [ASPECT_RATIO]: "16/9" }],
   [reBracket_$, ([, arbitrary]) => ({ [ASPECT_RATIO]: arbitrary })],
 ];
-const BACKFACE_VISIBILITY = "backface-visibility";
-
-export const backface: Specifier = {
-  visible: { [BACKFACE_VISIBILITY]: "visible" },
-  hidden: { [BACKFACE_VISIBILITY]: HIDDEN },
-};
 export const basis: EntriesSpecifier = [
   [0, { "flex-basis": "0px" }],
   ["px", { "flex-basis": "1px" }],
@@ -191,7 +185,7 @@ export const container: EntriesSpecifier = [
     }
   }],
 ];
-export const clear: Specifier = {
+export const clear: RecordSpecifier = {
   right: { clear: "right" },
   left: { clear: "left" },
   both: { clear: "both" },
