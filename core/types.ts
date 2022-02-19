@@ -145,7 +145,7 @@ export type GroupAtRule = {
 export type Selector = {
   basic: string;
   combinator: string;
-  pseudo: `:${string}` | `::${string}`;
+  pseudo: string;
 };
 
 export type RuleSet = {

@@ -4,7 +4,6 @@ import {
   re$All,
   re$AllPer$PositiveNumber,
   re$AllPerBracket_$,
-  reBracket_$,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
 import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
