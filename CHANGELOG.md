@@ -1,3 +1,24 @@
+# [1.0.0-beta.11](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2022-02-19)
+
+
+### Bug Fixes
+
+* **core:** improve marging config logic ([8d60906](https://github.com/TomokiMiyauci/mapcss/commit/8d60906277d2b18b906f6dc031b87de5beed62f1))
+* **preset_tw:** remove specifier of `backface` what is not support tailwindcss ([9ce0a68](https://github.com/TomokiMiyauci/mapcss/commit/9ce0a688d68e6e498dcfc9841c661dcdc9db4ca4))
+
+
+### Features
+
+* **core:** add charMap feature what is mapping char to token ([45bde47](https://github.com/TomokiMiyauci/mapcss/commit/45bde4766c4ebf7e706f0ee353af771277b96dd1))
+* **core:** add declaration order processor as default ([c66321e](https://github.com/TomokiMiyauci/mapcss/commit/c66321ee23269dfd073fef7b658ef26c83414ee8))
+* **core:** change `CSSStatement` interface ([25bac55](https://github.com/TomokiMiyauci/mapcss/commit/25bac5534081325f39c46cadb6193e016170ae9a))
+* **core:** change selector interface of specifier definition ([6fdc2cc](https://github.com/TomokiMiyauci/mapcss/commit/6fdc2ccc99d2406c5e146014f9fb935ac0348031))
+* **core:** improve selector escape function ([f496c63](https://github.com/TomokiMiyauci/mapcss/commit/f496c638fb34b16c674deeddeb0f2af2e8b3e59c))
+* **preset_tw:** add injecting custom variable as post processor ([adceb52](https://github.com/TomokiMiyauci/mapcss/commit/adceb524b1bf14f9dd25e5c4725c96b5e61df8e9))
+* **preset_tw:** add specifier of `flow` ([a7a8e0f](https://github.com/TomokiMiyauci/mapcss/commit/a7a8e0fae2808160b1765109f954502579a8af33))
+* **preset_tw:** add specifier of arbitrary rule ([a027dd8](https://github.com/TomokiMiyauci/mapcss/commit/a027dd84b4d638acdf1271bfaa919c9035db3808))
+* **preset_typography:** add basic preset of typography ([888efe5](https://github.com/TomokiMiyauci/mapcss/commit/888efe5142ca7efb9371cc765a68cb3f69486aa4))
+
 # [1.0.0-beta.10](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2022-02-16)
 
 
