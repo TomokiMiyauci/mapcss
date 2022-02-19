@@ -1,0 +1,71 @@
+---
+title: Divide Width
+description: Utilities for controlling the border width between elements.
+category: Border
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Add borders between horizontal children
+
+Add borders between horizontal elements using the `divide-x-{width}` utilities.
+
+<Example>
+  <div className="grid grid-cols-3 divide-x font-mono text-sm text-center font-bold leading-6 rounded-lg shadow-lg overflow-hidden dark:divide-slate-700">
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">01</div>
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">02</div>
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">03</div>
+  </div>
+</Example>
+
+```html
+<div className="grid grid-cols-3 **divide-x**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+### Add borders between stacked children
+
+Add borders between stacked elements using the `divide-y-{width}` utilities.
+
+<Example p="none">
+  <div className="grid grid-cols-1 divide-y font-mono text-sm text-center font-bold leading-6 shadow-lg overflow-hidden max-w-sm mx-auto dark:divide-slate-700">
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">01</div>
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">02</div>
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">03</div>
+  </div>
+</Example>
+
+```html
+<div className="grid grid-cols-1 **divide-y**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+### Reversing children order
+
+If your elements are in reverse order (using say `flex-row-reverse` or `flex-col-reverse`), use the `divide-x-reverse` or `divide-y-reverse` utilities to ensure the border is added to the correct side of each element.
+
+<Example p="none">
+  <div className="flex flex-col-reverse divide-y divide-y-reverse font-mono text-sm text-center font-bold leading-6 shadow-lg overflow-hidden max-w-sm mx-auto dark:divide-slate-700">
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">01</div>
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">02</div>
+    <div className="p-4 text-slate-400 bg-white dark:bg-slate-800">03</div>
+  </div>
+</Example>
+
+```html
+<div className="flex **flex-col-reverse divide-y divide-y-reverse**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+---

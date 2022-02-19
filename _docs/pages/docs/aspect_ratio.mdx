@@ -4,8 +4,35 @@ description: Utilities for controlling the aspect ratio of an element.
 category: Layout
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { aspectRatios } from "@tw/rules/layout.ts"
-import { aspects } from "@tw/samples/mod.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={aspectRatios} samples={aspects} />
+## Basic usage
+
+### Setting the aspect ratio
+
+Use the `aspect-{ratio}` utilities to set the desired aspect ratio of an element.
+
+<Example resizable>
+  <iframe
+    className="w-full aspect-video rounded-lg shadow-lg"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</Example>
+
+```html
+<iframe
+  className="w-full **aspect-video** ..."
+  src="https://www.youtube.com/..."
+></iframe>
+```
+
+Tailwind doesn't include a large set of aspect ratio values out of the box since it's easier to just use arbitrary values. See the [arbitrary values](#arbitrary-values) section for more information.
+
+### Browser support
+
+The `aspect-{ratio}` utilities use the native `aspect-ratio` CSS property, which was not supported in Safari until version 15. Until Safari 15 is popularized, Tailwind's [aspect-ratio](https://github.com/tailwindlabs/tailwindcss-aspect-ratio) plugin is a good alternative.
+
+---

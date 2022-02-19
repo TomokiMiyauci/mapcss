@@ -4,7 +4,106 @@ description: Utilities for controlling an element's padding.
 category: Spacing
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { paddings } from "@tw/rules/spacing.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={paddings} />
+## Basic usage
+
+### Add padding to a single side
+
+Control the padding on one side of an element using the `p{t|r|b|l}-{size}` utilities.
+
+For example, `pt-6` would add `1.5rem` of padding to the top of an element, `pr-4` would add `1rem` of padding to the right of an element, `pb-8` would add `2rem` of padding to the bottom of an element, and `pl-2` would add `0.5rem` of padding to the left of an element.
+
+<Example>
+  <div className="flex flex-wrap items-start justify-center font-mono text-white text-sm font-bold leading-6 -mx-5">
+    <div className="flex items-start">
+      <div className="flex-none px-5">
+        <div className="bg-purple-500 shadow-lg rounded-lg overflow-hidden">
+          <div className="h-6 bg-stripes-white rounded-t-lg"></div>
+          <div className="p-4">pt-6</div>
+        </div>
+      </div>
+      <div className="flex-none px-5 pt-6">
+        <div className="flex bg-purple-500 shadow-lg rounded-lg overflow-hidden">
+          <div className="flex-none p-4">pr-4</div>
+          <div className="flex-none w-4 bg-stripes-white"></div>
+        </div>
+      </div>
+    </div>
+    <div className="flex items-start">
+      <div className="flex-none px-5 pt-6">
+        <div className="bg-purple-500 shadow-lg rounded-lg overflow-hidden">
+          <div className="p-4">pb-8</div>
+          <div className="h-8 bg-stripes-white"></div>
+        </div>
+      </div>
+      <div className="flex-none flex px-5 pt-6">
+        <div className="flex bg-purple-500 shadow-lg rounded-lg overflow-hidden">
+          <div className="flex-none w-2 bg-stripes-white"></div>
+          <div className="flex-none p-4">pl-2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**pt-6** ...">pt-6</div>
+<div className="**pr-4** ...">pr-4</div>
+<div className="**pb-8** ...">pb-8</div>
+<div className="**pl-2** ...">pl-2</div>
+```
+
+### Add horizontal padding
+
+Control the horizontal padding of an element using the `px-{size}` utilities.
+
+<Example>
+  <div className="flex justify-center font-mono text-white text-sm font-bold leading-6">
+    <div className="bg-indigo-500 rounded-lg shadow-lg overflow-hidden flex">
+      <div className="w-8 bg-stripes-white"></div>
+      <div className="p-4">px-8</div>
+      <div className="w-8 bg-stripes-white"></div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**px-8** ...">px-8</div>
+```
+
+### Add vertical padding
+
+Control the vertical padding of an element using the `py-{size}` utilities.
+
+<Example>
+  <div className="flex justify-center font-mono text-white text-sm font-bold leading-6">
+    <div className="bg-pink-500 rounded-lg shadow-lg overflow-hidden">
+      <div className="h-8 bg-stripes-white"></div>
+      <div className="p-4">py-8</div>
+      <div className="h-8 bg-stripes-white"></div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**py-8** ...">py-8</div>
+```
+
+### Add padding to all sides
+
+Control the padding on all sides of an element using the `p-{size}` utilities.
+
+<Example>
+  <div className="flex justify-center font-mono text-white text-sm font-bold leading-6">
+    <div className="bg-violet-500 bg-stripes-white rounded-lg shadow-lg p-8">
+      <div className="bg-violet-500 p-4">p-8</div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**p-8** ...">p-8</div>
+```
+
+---

@@ -1,0 +1,38 @@
+---
+title: Text Decoration Thickness
+description: Utilities for controlling the thickness of text decorations.
+category: Typography
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the text decoration thickness
+
+Use the `decoration-{width}` utilities to change the thickness of an element's [text decoration](/docs/text-decoration).
+
+<Example>
+  <div className="flex flex-col gap-8 text-slate-900 dark:text-slate-200">
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-1</div>
+      <p className="text-lg font-medium underline decoration-1">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-2</div>
+      <p className="text-lg font-medium underline decoration-2">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+    <div>
+      <div className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">decoration-4</div>
+      <p className="text-lg font-medium underline decoration-4">The quick brown fox jumps over the lazy dog.</p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="underline **decoration-1** ...">The quick brown fox...</p>
+<p className="underline **decoration-2** ...">The quick brown fox...</p>
+<p className="underline **decoration-4** ...">The quick brown fox...</p>
+```
+
+---

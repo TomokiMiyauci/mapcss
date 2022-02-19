@@ -1,0 +1,38 @@
+---
+title: Transition Timing Function
+description: Utilities for controlling the easing of CSS transitions.
+category: Transition & Animation
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Controlling the easing curve
+
+Use the `ease-{timing}` utilities to control an element's easing curve.
+
+<Example hint="Hover each button to see the expected behaviour">
+  <div className="flex flex-col sm:flex-row gap-8 sm:gap-0 justify-around text-white text-sm font-bold leading-6">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">ease-in</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-md shadow-sm hover:scale-125 ease-in duration-300">Button A</button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">ease-out</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-md shadow-sm hover:scale-125 ease-out duration-300">Button B</button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">ease-in-out</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-sky-500 text-white rounded-md shadow-sm hover:scale-125 ease-in-out duration-300">Button C</button>
+    </div>
+  </div>
+</Example>
+
+```html
+<button className="**ease-in** duration-300 ...">Button A</button>
+<button className="**ease-out** duration-300 ...">Button B</button>
+<button className="**ease-in-out** duration-300 ...">Button C</button>
+```
+
+---

@@ -3,7 +3,7 @@ import React from "react";
 export default function Home() {
   return (
     <>
-      <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">
+      <h1 className="text-slate-900 lg:block font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">
         Rapidly build modern websites without ever leaving your HTML.
       </h1>
       <p className="mt-6 text-lg text-slate-600 text-center max-w-3xl mx-auto dark:text-slate-400">

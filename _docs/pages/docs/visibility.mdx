@@ -4,7 +4,60 @@ description: Utilities for controlling the visibility of an element.
 category: Layout
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { visibilities } from "@tw/rules/layout.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={visibilities} />
+## Basic usage
+
+### Making elements invisible
+
+Use `invisible` to hide an element, but still maintain its place in the DOM, affecting the layout of other elements (compare with `.hidden` from the [display](/docs/display#hidden) documentation).
+
+<Example>
+  <div className="grid grid-cols-3 gap-4 font-mono text-white text-sm font-bold leading-6">
+    <div className="p-4 flex items-center justify-center bg-cyan-500 shadow-lg rounded-lg">
+      01
+    </div>
+    <div className="invisible p-4 flex items-center justify-center bg-cyan-500 shadow-lg rounded-lg">
+      02
+    </div>
+    <div className="p-4 flex items-center justify-center bg-cyan-500 shadow-lg rounded-lg">
+      03
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="grid grid-cols-3 gap-4">
+  <div>01</div>
+  <div className="**invisible** ...">02</div>
+  <div>03</div>
+</div>
+```
+
+### Making elements visible
+
+Use `visible` to make an element visible. This is mostly useful for undoing the `invisible` utility at different screen sizes.
+
+<Example>
+  <div className="grid grid-cols-3 gap-4 font-mono text-white text-sm font-bold leading-6">
+    <div className="p-4 flex items-center justify-center bg-fuchsia-500 shadow-lg rounded-lg">
+      01
+    </div>
+    <div className="visible p-4 flex items-center justify-center bg-fuchsia-500 shadow-lg rounded-lg">
+      02
+    </div>
+    <div className="p-4 flex items-center justify-center bg-fuchsia-500 shadow-lg rounded-lg">
+      03
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="grid grid-cols-3 gap-4">
+  <div>01</div>
+  <div className="**visible** ...">02</div>
+  <div>03</div>
+</div>
+```
+
+---

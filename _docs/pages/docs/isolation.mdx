@@ -4,7 +4,16 @@ description: Utilities for controlling whether an element should explicitly crea
 category: Layout
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { isolations } from "@tw/rules/layout.ts"
+## Basic usage
 
-<ClassTable rules={isolations} />
+### Setting the stacking context
+
+Use the `isolate` and `isolation-auto` utilities to control whether an element should explicitly create a new stacking context.
+
+```html
+<div className="isolate ...">
+  <!-- ... -->
+</div>
+```
+
+---

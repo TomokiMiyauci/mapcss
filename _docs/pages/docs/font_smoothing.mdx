@@ -4,7 +4,38 @@ description: Utilities for controlling the font smoothing of an element.
 category: Typography
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { fontSmoothings } from "@tw/rules/mod.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={fontSmoothings} />
+## Basic usage
+
+### Applying font smoothing
+
+Use the `subpixel-antialiased` utility to render text using subpixel antialiasing and the `antialiased` utility to render text using grayscale antialiasing.
+
+<Example>
+  <div className="flex flex-col gap-8">
+    <div>
+      <span className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">
+        subpixel-antialiased
+      </span>
+      <p className="subpixel-antialiased text-lg font-medium text-slate-900 dark:text-slate-200">
+        The quick brown fox jumps over the lazy dog.
+      </p>
+    </div>
+    <div>
+      <span className="font-medium text-sm text-slate-500 font-mono mb-3 dark:text-slate-400">
+        antialiased
+      </span>
+      <p className="antialiased text-lg font-medium text-slate-900 dark:text-slate-200">
+        The quick brown fox jumps over the lazy dog.
+      </p>
+    </div>
+  </div>
+</Example>
+
+```html
+<p className="**subpixel-antialiased** ...">The quick brown fox ...</p>
+<p className="**antialiased** ...">The quick brown fox ...</p>
+```
+
+---

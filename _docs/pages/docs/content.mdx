@@ -4,7 +4,96 @@ description: Utilities for controlling the content of the before and after pseud
 category: Typography
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { contents } from "@tw/rules/mod.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={contents} />
+## Basic usage
+
+### Setting a pseudo-element's content
+
+Use the `content-{value}` utilities along with the `before` and `after` variant modifiers to set the contents of the `::before` and `::after` pseudo-elements.
+
+Out of the box, `content-none` is the only available preconfigured content utility. And while you can add additional utilities by [customizing your theme](#customizing-your-theme), it generally makes more sense to just use an arbitrary value.
+
+Use the square bracket notation to define any arbitrary content value on the fly.
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="p-8 w-full max-w-xl mx-auto bg-white shadow-lg text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+      Higher resolution means more than just a better-quality image. With a Retina 6K display,
+      <a
+        href="https://www.apple.com/pro-display-xdr/"
+        className="text-blue-600 dark:text-sky-400 font-medium after:content-['_↗'] after:text-sm after:font-bold"
+        target="_blank"
+      >Pro Display XDR</a>
+      gives you nearly 40 percent more screen real estate than a 5K display.
+    </div>
+  </div>
+</Example>
+
+```html
+Higher resolution means more than just a better-quality image. With a Retina 6K
+display,
+<a
+  className="text-blue-600 **after:content-['_↗']** ..."
+  dark-className="text-sky-400 **after:content-['_↗']** ..."
+  href="https://www.
+apple.com/pro-display-xdr/"
+  target="_blank"
+  >Pro Display XDR</a
+>
+gives you nearly 40 percent more screen real estate than a 5K display.
+```
+
+### Referencing an attribute value
+
+These content utilities even support CSS features like the `attr()` function, which you can use to reference a value stored in an attribute:
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="font-semibold text-slate-900 p-8 w-full max-w-xl mx-auto bg-white shadow-lg flex items-center justify-center dark:bg-slate-800 dark:text-slate-200">
+      <div before="Hello World" className="before:content-[attr(before)]"></div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div before="Hello World" className="before:content-[attr(before)]">
+  <!-- ... -->
+</div>
+```
+
+### Using spaces and underscores
+
+Since whitespace denotes the end of a className in HTML, replace any spaces in an arbitrary value with an underscore:
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="font-semibold text-slate-900 p-8 w-full max-w-xl mx-auto bg-white shadow-lg flex items-center justify-center dark:bg-slate-800 dark:text-slate-200">
+      <div className="before:content-['Hello_World']"></div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="before:content-['Hello_World']">
+  <!-- ... -->
+</div>
+```
+
+If you need to include an actual underscore, you can do this by escaping it with a backslash:
+
+<Example p="none">
+  <div className="px-4 sm:px-0">
+    <div className="font-semibold text-slate-900 p-8 w-full max-w-xl mx-auto bg-white shadow-lg flex items-center justify-center dark:bg-slate-800 dark:text-slate-200">
+      <div className="before:content-['Hello\_World']"></div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="before:content-['Hello\_World']">
+  <!-- ... -->
+</div>
+```
+
+---

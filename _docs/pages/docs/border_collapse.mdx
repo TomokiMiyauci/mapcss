@@ -4,7 +4,238 @@ description: Utilities for controlling whether table borders should collapse or 
 category: Table
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { borderCollapses } from "@tw/rules/mod.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={borderCollapses} />
+## Basic usage
+
+### Collapse
+
+Use `border-collapse` to combine adjacent cell borders into a single border when possible. Note that this includes collapsing borders on the top-level `<table>` tag.
+
+<Example p="none">
+  <div className="px-4 py-8 sm:px-8">
+    <table className="border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm">
+      <thead className="bg-slate-50 dark:bg-slate-700">
+        <tr>
+          <th className="w-1/2 border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">
+            State
+          </th>
+          <th className="w-1/2 border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">
+            City
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Indiana
+          </td>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Indianapolis
+          </td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Ohio
+          </td>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Columbus
+          </td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Michigan
+          </td>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Detroit
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</Example>
+
+```html
+<table
+  className="**border-collapse** border border-slate-400 ..."
+  dark-className="**border-collapse** border border-slate-500 ..."
+>
+  <thead>
+    <tr>
+      <th
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-600 ..."
+      >
+        State
+      </th>
+      <th
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-600 ..."
+      >
+        City
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Indiana
+      </td>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Indianapolis
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Ohio
+      </td>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Columbus
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Michigan
+      </td>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Detroit
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Separate
+
+Use `border-separate` to force each cell to display its own separate borders.
+
+<Example p="none">
+  <div className="px-4 py-8 sm:px-8">
+    <table className="border-separate w-full border border-slate-400 dark:border-slate-500 bg-white dark:bg-slate-800 text-sm shadow-sm">
+      <thead className="bg-slate-50 dark:bg-slate-700">
+        <tr>
+          <th className="w-1/2 border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">
+            State
+          </th>
+          <th className="w-1/2 border border-slate-300 dark:border-slate-600 font-semibold p-4 text-slate-900 dark:text-slate-200 text-left">
+            City
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Indiana
+          </td>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Indianapolis
+          </td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Ohio
+          </td>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Columbus
+          </td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Michigan
+          </td>
+          <td className="border border-slate-300 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+            Detroit
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</Example>
+
+```html
+<table
+  className="**border-separate** border border-slate-400 ..."
+  dark-className="**border-separate** border border-slate-500 ..."
+>
+  <thead>
+    <tr>
+      <th
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-600 ..."
+      >
+        State
+      </th>
+      <th
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-600 ..."
+      >
+        City
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Indiana
+      </td>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Indianapolis
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Ohio
+      </td>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Columbus
+      </td>
+    </tr>
+    <tr>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Michigan
+      </td>
+      <td
+        className="border border-slate-300 ..."
+        dark-className="border border-slate-700 ..."
+      >
+        Detroit
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+---

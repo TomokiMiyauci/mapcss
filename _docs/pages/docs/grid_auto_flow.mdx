@@ -1,0 +1,35 @@
+---
+title: Grid Auto Flow
+description: Utilities for controlling how elements in a grid are auto-placed.
+category: Flexbox & Grid
+---
+
+import Example from '~/components/example.tsx'
+
+## Basic usage
+
+### Controlling grid element placement
+
+Use the `grid-flow-{keyword}` utilities to control how the auto-placement algorithm works for a grid layout.
+
+<Example>
+  <div className="grid grid-cols-3 grid-rows-3 grid-flow-row-dense gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-purple rounded-lg">
+    <div className="p-4 col-span-2 rounded-lg bg-purple-300 dark:bg-purple-800 dark:text-purple-400">01</div>
+    <div className="p-4 col-span-2 rounded-lg bg-purple-300 dark:bg-purple-800 dark:text-purple-400">02</div>
+    <div className="p-4 rounded-lg shadow-lg bg-purple-500">03</div>
+    <div className="p-4 rounded-lg bg-purple-300 dark:bg-purple-800 dark:text-purple-400">04</div>
+    <div className="p-4 rounded-lg bg-purple-300 dark:bg-purple-800 dark:text-purple-400">05</div>
+  </div>
+</Example>
+
+```html
+<div className="grid **grid-flow-row-dense** grid-cols-3 grid-rows-3 ...">
+  <div className="col-span-2">01</div>
+  <div className="col-span-2">02</div>
+  <div>03</div>
+  <div>04</div>
+  <div>05</div>
+</div>
+```
+
+---

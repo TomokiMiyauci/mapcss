@@ -1,13 +1,21 @@
-import { breakpoints } from "./breakpoint.ts";
-import { colorSchemes } from "./color_scheme.ts";
-import { hovers } from "./hover.ts";
-import { focuses } from "./focus.ts";
+import { $2xl, lg, md, sm, xl } from "./breakpoint.ts";
+import { dark } from "./color_scheme.ts";
+import { pseudo, scrollbar, scrollbarThumb, scrollbarTrack } from "./pseudo.ts";
+import { $important } from "./important.ts";
+import { $minus } from "./minus.ts";
 
-export const nestedModifiers = [
-  breakpoints,
-  colorSchemes,
-  hovers,
-  focuses,
-];
-
-export { breakpoints, colorSchemes, focuses, hovers };
+export const modifierMap = {
+  sm,
+  md,
+  lg,
+  xl,
+  "2xl": $2xl,
+  dark,
+  hover: pseudo,
+  focus: pseudo,
+  "!": $important,
+  "-": $minus,
+  scrollbar,
+  "scrollbar-track": scrollbarTrack,
+  "scrollbar-thumb": scrollbarThumb,
+};

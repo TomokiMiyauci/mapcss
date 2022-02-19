@@ -1,0 +1,63 @@
+---
+title: Background Repeat
+description: Utilities for controlling the repetition of an element's background image.
+category: Background
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Repeat
+
+Use `bg-repeat` to repeat the background image both vertically and horizontally.
+
+<Example>
+  <div className="w-full mx-auto max-w-xl bg-white dark:bg-slate-800 dark:ring-1 dark:ring-slate-200/20 h-80 bg-repeat bg-center shadow-xl rounded-lg" style={{backgroundImage:"url('/img/background_pattern.svg')"}}>
+  </div>
+</Example>
+
+```html
+<div className="**bg-repeat** ..." style="background-image: url(...)"></div>
+```
+
+### No Repeat
+
+Use `bg-no-repeat` when you don't want to repeat the background image.
+
+<Example>
+  <div className="w-full mx-auto max-w-xl bg-white dark:bg-slate-800 dark:ring-1 dark:ring-slate-200/20 h-64 bg-no-repeat bg-center shadow-xl rounded-lg" style={{backgroundImage:"url('/img/background_pattern.svg')"}}>
+  </div>
+</Example>
+
+```html
+<div className="**bg-no-repeat** bg-center ..." style="background-image: url(...)"></div>
+```
+
+### Repeat Horizontally
+
+Use `bg-repeat-x` to repeat the background image only horizontally.
+
+<Example>
+  <div className="w-full mx-auto max-w-xl bg-white dark:bg-slate-800 dark:ring-1 dark:ring-slate-200/20 h-64 bg-repeat-x bg-center shadow-xl rounded-lg" style={{backgroundImage:"url('/img/background_pattern.svg')"}}>
+  </div>
+</Example>
+
+```html
+<div className="**bg-repeat-x** bg-center ..." style="background-image: url(...)"></div>
+```
+
+### Repeat Vertically
+
+Use `bg-repeat-y` to repeat the background image only vertically.
+
+<Example>
+  <div className="w-full mx-auto max-w-xl bg-white dark:bg-slate-800 dark:ring-1 dark:ring-slate-200/20 h-64 bg-repeat-y bg-center shadow-xl rounded-lg" style={{backgroundImage:"url('/img/background_pattern.svg')"}}>
+  </div>
+</Example>
+
+```html
+<div className="**bg-repeat-y** bg-center ..." style="background-image: url(...)"></div>
+```
+
+---

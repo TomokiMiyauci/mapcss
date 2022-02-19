@@ -4,7 +4,19 @@ description: Utilities for controlling how a column or page should break within 
 category: Layout
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { breakInsides } from "@tw/rules/layout.ts"
+## Basic usage
 
-<ClassTable rules={breakInsides} />
+### Setting the break-inside behavior
+
+Use the `break-inside-{value}` utilities to control how a column or page break should behave within an element. For example, use the `break-inside-avoid-column` utility to avoid a column break within an element.
+
+```html
+<div className="columns-2">
+  <p>Well, let me tell you something, ...</p>
+  <p className="**break-inside-avoid-column**">Sure, go ahead, laugh...</p>
+  <p>Maybe we can live without...</p>
+  <p>Look. If you think this is...</p>
+</div>
+```
+
+---

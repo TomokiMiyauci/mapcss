@@ -1,0 +1,59 @@
+---
+title: Ring Offset Width
+description: Utilities for simulating an offset when adding outline rings.
+category: Border
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Setting the ring offset width
+
+Use the `ring-offset-{width}` utilities to simulate an offset by adding solid white box-shadow and increasing the thickness of the accompanying outline ring to accommodate the offset.
+
+<Example>
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm font-mono text-slate-500 text-center mb-3 dark:text-slate-400">ring-offset-0</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm ring-2 ring-offset-slate-50 ring-pink-500 ring-offset-0 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent dark:ring-offset-slate-900">Button A</button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm font-mono text-slate-500 text-center mb-3 dark:text-slate-400">ring-offset-2</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm ring-2 ring-offset-slate-50 ring-pink-500 ring-offset-2 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent dark:ring-offset-slate-900">Button B</button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm font-mono text-slate-500 text-center mb-3 dark:text-slate-400">ring-offset-4</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm ring-2 ring-offset-slate-50 ring-pink-500 ring-offset-4 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent dark:ring-offset-slate-900">Button C</button>
+    </div>
+  </div>
+</Example>
+
+```html
+<button className="... ring ring-pink-500 **ring-offset-0**">ring-offet-0</button>
+<button className="... ring ring-pink-500 **ring-offset-2**">ring-offset-2</button>
+<button className="... ring ring-pink-500 **ring-offset-4**">ring-offset-4</button>
+```
+
+### Changing the offset color
+
+You can't actually offset a box-shadow in CSS, so we have to fake it using a solid color shadow that matches the parent background color. We use white by default, but if you are adding a ring offset over a different background color, you should use the `ring-offset-{color}` utilities to match the parent background color:
+
+<Example>
+  <div className="grid place-content-center text-white text-sm text-center font-bold leading-6">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm font-mono text-slate-500 text-center mb-3 dark:text-slate-400">ring-offset-pink-500</p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm ring-2 ring-offset-4 ring-offset-pink-100 ring-pink-500 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent">Save Changes</button>
+    </div>
+  </div>
+</Example>
+
+```html
+<button className="... ring ring-pink-500 **ring-offset-2** **ring-offset-pink-100**">
+  Save Changes
+</button>
+```
+
+For more information, see the [ring offset color](/docs/ring-offset-color) documentation.
+
+---

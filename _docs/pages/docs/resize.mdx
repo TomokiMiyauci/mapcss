@@ -1,0 +1,37 @@
+---
+title: Resize
+description: Utilities for controlling how an element can be resized.
+category: Interactivity
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Resizing in all directions
+
+Use `resize` to make an element horizontally and vertically resizable.
+
+<Example hint="Drag the textarea handle in the demo to see the expected behaviour">
+  <div className="w-full flex items-center justify-center">
+    <textarea className="resize text-sm p-2 w-80 ring-1 ring-slate-900/10 shadow-sm rounded-md dark:bg-slate-800 dark:ring-0 dark:highlight-white/5" rows="3"></textarea>
+  </div>
+</Example>
+
+```html
+<textarea className="**resize** rounded-md"></textarea>
+```
+
+### Resizing vertically
+
+Use `resize-y` to make an element vertically resizable.
+
+<Example hint="Drag the textarea handle in the demo to see the expected behaviour">
+  <div className="w-full flex items-center justify-center">
+    <textarea className="resize-y text-sm p-2 w-80 ring-1 ring-slate-900/10 shadow-sm rounded-md dark:bg-slate-800 dark:ring-0 dark:highlight-white/5" rows="3"></textarea>
+  </div>
+</Example>
+
+```html
+<textarea className="**resize-y** rounded-md"></textarea>
+```

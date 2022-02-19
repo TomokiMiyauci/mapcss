@@ -4,7 +4,97 @@ description: Utilities for controlling the style of an element's outline.
 category: Border
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { outlineStyles } from "@tw/rules/border.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={outlineStyles} />
+## Basic usage
+
+### Setting the outline style
+
+Use the `outline-{style}` utilities to change the style of an element's outline.
+
+<Example>
+  <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-white text-sm font-semibold text-center">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">
+        outline
+      </p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm outline outline-2 outline-offset-2 outline-indigo-500 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent">
+        Button A
+      </button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">
+        outline-dashed
+      </p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm outline-dashed outline-2 outline-offset-2 outline-indigo-500 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent">
+        Button B
+      </button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">
+        outline-dotted
+      </p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm outline-dotted outline-2 outline-offset-2 outline-indigo-500 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent">
+        Button C
+      </button>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">
+        outline-double
+      </p>
+      <button className="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm outline-double outline-3 outline-offset-2 outline-indigo-500 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent">
+        Button D
+      </button>
+    </div>
+  </div>
+</Example>
+
+```html
+<button className="**outline** outline-2  outline-offset-2 ...">
+  Button A
+</button>
+<button className="**outline-dashed** outline-2 outline-offset-2 ...">
+  Button B
+</button>
+<button className="**outline-dotted** outline-2 outline-offset-2 ...">
+  Button C
+</button>
+<button className="**outline-double** outline-3 outline-offset-2 ...">
+  Button D
+</button>
+```
+
+### Removing outlines
+
+Use `outline-none` to hide the default browser outline on focused elements.
+
+It is highly recommended to apply your own focus styling for accessibility when using this utility.
+
+<Example hint="Focus the input to see the expected behaviour">
+  <div className="flex flex-col sm:flex-row items-center justify-center gap-x-16 gap-y-8 px-0 sm:px-10 font-mono font-bold">
+    <input
+      type="text"
+      placeholder="Default focus styles"
+      className="font-sans block text-sm w-full py-2 px-3 ring-1 ring-slate-900/10 text-slate-500 rounded-lg shadow-sm dark:bg-slate-800 dark:ring-0 dark:highlight-white/5 dark:text-slate-400"
+    />
+    <input
+      type="text"
+      placeholder="Custom focus styles"
+      className="font-sans block text-sm w-full py-2 px-3 ring-1 ring-slate-900/10 text-slate-500 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-500 dark:bg-slate-800 dark:ring-0 dark:highlight-white/5 dark:text-slate-400 dark:focus:ring dark:focus:ring-blue-300"
+    />
+  </div>
+</Example>
+
+```html
+<input type="text" placeholder="Default focus style" className="..." />
+
+<input
+  type="text"
+  placeholder="Custom focus style"
+  className="**focus:outline-none focus:ring focus:border-blue-500** ..."
+/>
+```
+
+The `outline-none` utility is implemented using a transparent outline under the hood to ensure elements are still visibly focused to [Windows high contrast mode](https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/) users.
+
+---

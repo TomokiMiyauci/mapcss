@@ -4,7 +4,50 @@ description: Utilities for controlling the stack order of an element.
 category: Layout
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { zIndexes } from "@tw/rules/layout.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={zIndexes} />
+## Basic usage
+
+### Setting the z-index
+
+Control the stack order (or three-dimensional positioning) of an element in Tailwind, regardless of order it has been displayed, using the `z-{index}` utilities.
+
+<Example>
+  <div className="flex justify-center -space-x-3 font-mono text-white text-sm font-bold leading-6">
+    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-pink-500 shadow-lg ring-2 ring-white z-40 dark:ring-slate-900">
+      05
+    </div>
+    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-pink-500 shadow-lg ring-2 ring-white z-30 dark:ring-slate-900">
+      04
+    </div>
+    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-pink-500 shadow-lg ring-2 ring-white z-20 dark:ring-slate-900">
+      03
+    </div>
+    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-pink-500 shadow-lg ring-2 ring-white z-10 dark:ring-slate-900">
+      02
+    </div>
+    <div className="w-16 h-16 rounded-full flex items-center justify-center bg-pink-500 shadow-lg ring-2 ring-white z-0 dark:ring-slate-900">
+      01
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**z-40** ...">05</div>
+<div className="**z-30** ...">04</div>
+<div className="**z-20** ...">03</div>
+<div className="**z-10** ...">02</div>
+<div className="**z-0** ...">01</div>
+```
+
+### Using negative values
+
+To use a negative z-index value, prefix the className name with a dash to convert it to a negative value.
+
+```html
+<div className="**-z-50**">
+  <!-- ... -->
+</div>
+```
+
+---

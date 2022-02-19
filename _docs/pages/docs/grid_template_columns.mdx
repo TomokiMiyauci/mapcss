@@ -1,0 +1,37 @@
+---
+title: Grid Template Columns
+description: Utilities for specifying the columns in a grid layout.
+category: Flexbox & Grid
+---
+
+import Example from '~/components/example.tsx'
+
+## Basic usage
+
+### Specifying the columns in a grid
+
+Use the `grid-cols-{n}` utilities to create grids with _n_ equally sized columns.
+
+<Example>
+  <div className="grid grid-cols-4 gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg">
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">01</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">02</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">03</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">04</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">05</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">06</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">07</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">08</div>
+    <div className="p-4 rounded-lg shadow-lg bg-fuchsia-500">09</div>
+  </div>
+</Example>
+
+```html
+<div className="grid **grid-cols-4** gap-4">
+  <div>01</div>
+  <!-- ... -->
+  <div>09</div>
+</div>
+```
+
+---

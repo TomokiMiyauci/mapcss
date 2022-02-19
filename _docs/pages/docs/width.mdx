@@ -4,7 +4,158 @@ description: Utilities for setting the width of an element.
 category: Sizing
 ---
 
-import ClassTable from '../../components/class_table.tsx'
-import { widths } from "@tw/rules/sizing.ts"
+import Example from "~/components/example.tsx";
 
-<ClassTable rules={widths} />
+## Basic usage
+
+### Fixed widths
+
+Use `w-{number}` or `w-px` to set an element to a fixed width.
+
+<Example>
+  <div className="flex justify-center">
+    <div className="space-y-4 font-mono font-bold text-xs text-center text-white">
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-96 hidden sm:block">
+        w-96
+      </div>
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-80 hidden sm:block">
+        w-80
+      </div>
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-64 hidden sm:block">
+        w-64
+      </div>
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-48">
+        w-48
+      </div>
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-40">
+        w-40
+      </div>
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-32">
+        w-32
+      </div>
+      <div className="px-4 py-2 bg-blue-500 rounded-lg shadow-lg w-24">
+        w-24
+      </div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="**w-96** ..."></div>
+<div className="**w-80** ..."></div>
+<div className="**w-64** ..."></div>
+<div className="**w-48** ..."></div>
+<div className="**w-40** ..."></div>
+<div className="**w-32** ..."></div>
+<div className="**w-24** ..."></div>
+```
+
+### Percentage widths
+
+Use `w-{fraction}` or `w-full` to set an element to a percentage based width.
+
+<Example>
+  <div className="space-y-4 font-mono font-bold text-xs text-white">
+    <div className="flex space-x-4">
+      <div className="w-1/2 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-1/2
+      </div>
+      <div className="w-1/2 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-1/2
+      </div>
+    </div>
+    <div className="flex space-x-4">
+      <div className="w-2/5 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-2/5
+      </div>
+      <div className="w-3/5 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-3/5
+      </div>
+    </div>
+    <div className="flex space-x-4">
+      <div className="w-1/3 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-1/3
+      </div>
+      <div className="w-2/3 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-2/3
+      </div>
+    </div>
+    <div className="space-x-4 hidden sm:flex">
+      <div className="w-1/4 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-1/4
+      </div>
+      <div className="w-3/4 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-3/4
+      </div>
+    </div>
+    <div className="space-x-4 hidden sm:flex">
+      <div className="w-1/5 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-1/5
+      </div>
+      <div className="w-4/5 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-4/5
+      </div>
+    </div>
+    <div className="space-x-4 hidden sm:flex">
+      <div className="w-1/6 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-1/6
+      </div>
+      <div className="w-5/6 px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center">
+        w-5/6
+      </div>
+    </div>
+    <div className="w-full px-4 py-2 bg-violet-500 rounded-lg shadow-lg text-center text-white font-mono">
+      w-full
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="flex ...">
+  <div className="**w-1/2** ... ">w-1/2</div>
+  <div className="**w-1/2** ... ">w-1/2</div>
+</div>
+<div className="flex ...">
+  <div className="**w-2/5** ...">w-2/5</div>
+  <div className="**w-3/5** ...">w-3/5</div>
+</div>
+<div className="flex ...">
+  <div className="**w-1/3** ...">w-1/3</div>
+  <div className="**w-2/3** ...">w-2/3</div>
+</div>
+<div className="flex ...">
+  <div className="**w-1/4** ...">w-1/4</div>
+  <div className="**w-3/4** ...">w-3/4</div>
+</div>
+<div className="flex ...">
+  <div className="**w-1/5** ...">w-1/5</div>
+  <div className="**w-4/5** ...">w-4/5</div>
+</div>
+<div className="flex ...">
+  <div className="**w-1/6** ...">w-1/6</div>
+  <div className="**w-5/6** ...">w-5/6</div>
+</div>
+<div className="**w-full** ...">w-full</div>
+```
+
+### Viewport width
+
+Use `w-screen` to make an element span the entire width of the viewport.
+
+```html
+<div className="**w-screen**">
+  <!-- ... -->
+</div>
+```
+
+### Resetting the width
+
+The `w-auto` utility can be useful if you need to remove an element's assigned width under a specific condition, like at a particular breakpoint:
+
+```html
+<div className="w-full md:w-auto">
+  <!-- ... -->
+</div>
+```
+
+---

@@ -1,0 +1,67 @@
+---
+title: Grid Column Start / End
+description: Utilities for controlling how elements are sized and placed across grid columns.
+category: Flexbox & Grid
+---
+
+import Example from '~/components/example.tsx'
+
+## Basic usage
+
+### Spanning columns
+
+Use the `col-span-{n}` utilities to make an element span _n_ columns.
+
+<Example>
+  <div className="grid grid-cols-3 gap-4 font-mono text-white text-sm text-center font-bold leading-6">
+    <div className="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-400">01</div>
+    <div className="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-400">02</div>
+    <div className="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-400">03</div>
+    <div className="p-4 rounded-lg shadow-lg bg-indigo-500 col-span-2">04</div>
+    <div className="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-400">05</div>
+    <div className="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-400">06</div>
+    <div className="p-4 rounded-lg shadow-lg bg-indigo-500 col-span-2">07</div>
+  </div>
+</Example>
+
+```html
+<div className="grid grid-cols-3 gap-4">
+  <div className="...">01</div>
+  <div className="...">02</div>
+  <div className="...">03</div>
+  <div className="**col-span-2** ...">04</div>
+  <div className="...">05</div>
+  <div className="...">06</div>
+  <div className="**col-span-2** ...">07</div>
+</div>
+```
+
+### Starting and ending lines
+
+Use the `col-start-{n}` and `col-end-{n}` utilities to make an element start or end at the _nth_ grid line. These can also be combined with the `col-span-{n}` utilities to span a specific number of columns.
+
+Note that CSS grid lines start at 1, not 0, so a full-width element in a 6-column grid would start at line 1 and end at line 7.
+
+<Example>
+  <div className="grid grid-cols-6 gap-4 font-mono text-white text-sm text-center font-bold leading-6">
+    <div className="p-4 rounded-lg bg-stripes-sky"></div>
+    <div className="p-4 rounded-lg shadow-lg bg-sky-500 col-start-2 col-span-4">01</div>
+    <div className="p-4 rounded-lg bg-stripes-sky"></div>
+    <div className="p-4 rounded-lg shadow-lg bg-sky-500 col-start-1 col-end-3">02</div>
+    <div className="p-4 rounded-lg bg-stripes-sky"></div>
+    <div className="p-4 rounded-lg bg-stripes-sky"></div>
+    <div className="p-4 rounded-lg shadow-lg bg-sky-500 col-end-7 col-span-2">03</div>
+    <div className="p-4 rounded-lg shadow-lg bg-sky-500 col-start-1 col-end-7">04</div>
+  </div>
+</Example>
+
+```html
+<div className="grid grid-cols-6 gap-4">
+  <div className="**col-start-2** col-span-4 ...">01</div>
+  <div className="**col-start-1 col-end-3** ...">02</div>
+  <div className="**col-end-7 col-span-2** ...">03</div>
+  <div className="**col-start-1 col-end-7** ...">04</div>
+</div>
+```
+
+---

@@ -1,0 +1,77 @@
+---
+title: Flex Wrap
+description: Utilities for controlling how flex items wrap.
+category: Flexbox & Grid
+---
+
+import Example from '~/components/example.tsx'
+
+## Basic usage
+
+### Don't wrap
+
+Use `flex-nowrap` to prevent flex items from wrapping, causing inflexible items to overflow the container if necessary:
+
+<Example>
+  <div className="flex flex-nowrap gap-4 font-mono text-white text-sm font-bold leading-6 bg-stripes-sky rounded-lg">
+    <div className="w-2/5 flex-none last:pr-8">
+      <div className="p-4 w-full rounded-lg flex items-center justify-center bg-sky-500 shadow-lg">01</div>
+    </div>
+    <div className="w-2/5 flex-none last:pr-8">
+      <div className="p-4 w-full rounded-lg flex items-center justify-center bg-sky-500 shadow-lg">02</div>
+    </div>
+    <div className="w-2/5 flex-none last:pr-8">
+      <div className="p-4 w-full rounded-lg flex items-center justify-center bg-sky-500 shadow-lg">03</div>
+    </div>
+  </div>
+</Example>
+
+```html
+<div className="flex **flex-nowrap**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+### Wrap normally
+
+Use `flex-wrap` to allow flex items to wrap:
+
+<Example>
+  <div className="flex flex-wrap gap-4 font-mono text-white text-sm font-bold leading-6 bg-stripes-indigo rounded-lg">
+    <div className="p-4 w-2/5 rounded-lg flex items-center justify-center bg-indigo-500 shadow-lg">01</div>
+    <div className="p-4 w-2/5 rounded-lg flex items-center justify-center bg-indigo-500 shadow-lg">02</div>
+    <div className="p-4 w-2/5 rounded-lg flex items-center justify-center bg-indigo-500 shadow-lg">03</div>
+  </div>
+</Example>
+
+```html
+<div className="flex **flex-wrap**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+### Wrap reversed
+
+Use `flex-wrap-reverse` to wrap flex items in the reverse direction:
+
+<Example>
+  <div className="flex flex-wrap-reverse gap-4 font-mono text-white text-sm font-bold leading-6 bg-stripes-fuchsia rounded-lg">
+    <div className="p-4 w-2/5 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">01</div>
+    <div className="p-4 w-2/5 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">02</div>
+    <div className="p-4 w-2/5 rounded-lg flex items-center justify-center bg-fuchsia-500 shadow-lg">03</div>
+  </div>
+</Example>
+
+```html
+<div className="flex **flex-wrap-reverse**">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+---

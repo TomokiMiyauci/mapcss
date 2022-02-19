@@ -1,0 +1,19 @@
+---
+title: Will Change
+description: Utilities for optimizing upcoming animations of elements that are expected to change.
+category: Interactivity
+---
+
+import Example from "~/components/example.tsx";
+
+## Basic usage
+
+### Optimizing with will change
+
+Use `will-change-scroll`, `will-change-contents` and `will-change-transform` to optimize an element that's expected to change in the near future by instructing the browser to prepare the necessary animation before it actually begins.
+
+```html
+<div className="overflow-auto **will-change-scroll**">
+  <!-- ... -->
+</div>
+```

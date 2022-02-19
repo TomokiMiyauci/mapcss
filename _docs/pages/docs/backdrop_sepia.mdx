@@ -1,0 +1,45 @@
+---
+title: Backdrop Sepia
+description: Utilities for applying backdrop sepia filters to an element.
+category: Filter
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Adding backdrop sepia filters
+
+Use the `backdrop-sepia` and `backdrop-sepia-0` utilities to control whether an element's backdrop should be rendered as sepia or in full color.
+
+<Example p="none">
+  <div className="flex justify-start sm:block overflow-scroll sm:overflow-visible scroll-p-8">
+  <div className="flex items-center justify-around gap-6 sm:gap-4 font-mono font-bold shrink-0 p-8">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">backdrop-sepia-0</p>
+      <div className="relative">
+        <div className="absolute inset-6 backdrop-sepia-0 h-20 w-20 bg-white/30"></div>
+        <img className="w-32 h-32 object-cover rounded-lg shadow-xl" src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=320&h=320&q=80" />
+        <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-lg"></div>
+      </div>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3 dark:text-slate-400">backdrop-sepia</p>
+      <div className="relative">
+        <div className="absolute inset-6 backdrop-sepia h-20 w-20 bg-white/30"></div>
+        <img className="w-32 h-32 object-cover rounded-lg shadow-xl" src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=320&h=320&q=80" />
+        <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-lg"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</Example>
+
+```html
+<div className="**backdrop-sepia-0** bg-white/30 ...">
+  <!-- ... -->
+</div>
+<div className="**backdrop-sepia** bg-white/30 ...">
+  <!-- ... -->
+</div>
+```

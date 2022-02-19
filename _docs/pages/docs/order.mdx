@@ -1,0 +1,41 @@
+---
+title: Order
+description: Utilities for controlling the order of flex and grid items.
+category: Flexbox & Grid
+---
+
+import Example from '~/components/example.tsx'
+
+## Basic usage
+
+### Ordering flex and grid items
+
+Use `order-{order}` to render flex and grid items in a different order than they appear in the DOM.
+
+<Example>
+  <div className="flex justify-between font-mono text-white text-sm font-bold leading-6">
+    <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-sky-500 shadow-lg order-last">01</div>
+    <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-sky-500 shadow-lg">02</div>
+    <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-sky-500 shadow-lg">03</div>
+  </div>
+</Example>
+
+```html
+<div className="flex justify-between ...">
+  <div className="**order-last**">01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+### Using negative values
+
+To use a negative order value, prefix the className name with a dash to convert it to a negative value.
+
+```html
+<div className="**-order-1**">
+  <!-- ... -->
+</div>
+```
+
+---

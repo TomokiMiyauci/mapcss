@@ -1,0 +1,52 @@
+---
+title: Appearance
+description: Utilities for suppressing native form control styling.
+category: Transform
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Removing default element appearance
+
+Use `appearance-none` to reset any browser specific styling on an element. This utility is often used when creating [custom form components](/docs/examples/forms).
+
+<Example>
+  <div className="max-w-sm mx-auto items-center">
+    <div className="flex my-6">
+      <select className="w-16">
+        <option>Yes</option>
+        <option>No</option>
+        <option>Maybe</option>
+      </select>
+      <div className="mx-6 text-slate-900 text-sm font-semibold dark:text-slate-200">
+        Default browser styles applied
+      </div>
+    </div>
+    <div className="flex my-6 items-center">
+      <select className="appearance-none w-16">
+        <option>Yes</option>
+        <option>No</option>
+        <option>Maybe</option>
+      </select>
+      <div className="mx-6 text-slate-900 text-sm font-semibold dark:text-slate-200">
+        Default styles removed
+      </div>
+    </div>
+  </div>
+</Example>
+
+```html
+<select>
+  <option>Yes</option>
+  <option>No</option>
+  <option>Maybe</option>
+</select>
+
+<select className="appearance-none">
+  <option>Yes</option>
+  <option>No</option>
+  <option>Maybe</option>
+</select>
+```

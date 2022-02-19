@@ -8,6 +8,14 @@ export default function App(
     <>
       <head>
         <meta name="viewport" content="width=device-width" />
+        <style>
+          {`
+          body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        `}
+        </style>
       </head>
       <Page {...pageProps} />
     </>

@@ -1,0 +1,59 @@
+---
+title: Drop Shadow
+description: Utilities for applying drop-shadow filters to an element.
+category: Filter
+---
+
+import Example from "~/components/example.tsx"
+
+## Basic usage
+
+### Adding a drop shadow
+
+Use the `drop-shadow-{amount}` utilities to add a drop shadow to an element.
+
+<Example p="none" lightOnly={true}>
+  <div className="flex justify-start sm:block overflow-scroll sm:overflow-visible scroll-p-8">
+  <div className="flex items-center justify-around gap-6 sm:gap-4 font-mono font-bold shrink-0 p-8">
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3">drop-shadow-md</p>
+      <div className="drop-shadow-md">
+        <div className="w-24 h-24 bg-white rounded-lg"></div>
+      </div>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3">drop-shadow-lg</p>
+      <div className="drop-shadow-lg">
+        <div className="w-24 h-24 bg-white rounded-lg"></div>
+      </div>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3">drop-shadow-xl</p>
+      <div className="drop-shadow-xl">
+        <div className="w-24 h-24 bg-white rounded-lg"></div>
+      </div>
+    </div>
+    <div className="flex flex-col items-center shrink-0">
+      <p className="font-medium text-sm text-slate-500 font-mono text-center mb-3">drop-shadow-2xl</p>
+      <div className="drop-shadow-2xl">
+        <div className="w-24 h-24 bg-white rounded-lg"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</Example>
+
+```html
+<div className="**drop-shadow-md** ...">
+  <!-- ... -->
+</div>
+<div className="**drop-shadow-lg** ...">
+  <!-- ... -->
+</div>
+<div className="**drop-shadow-xl** ...">
+  <!-- ... -->
+</div>
+<div className="**drop-shadow-2xl** ...">
+  <!-- ... -->
+</div>
+```

@@ -1,3 +1,214 @@
+# [1.0.0-beta.11](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2022-02-19)
+
+
+### Bug Fixes
+
+* **core:** improve marging config logic ([8d60906](https://github.com/TomokiMiyauci/mapcss/commit/8d60906277d2b18b906f6dc031b87de5beed62f1))
+* **preset_tw:** remove specifier of `backface` what is not support tailwindcss ([9ce0a68](https://github.com/TomokiMiyauci/mapcss/commit/9ce0a688d68e6e498dcfc9841c661dcdc9db4ca4))
+
+
+### Features
+
+* **core:** add charMap feature what is mapping char to token ([45bde47](https://github.com/TomokiMiyauci/mapcss/commit/45bde4766c4ebf7e706f0ee353af771277b96dd1))
+* **core:** add declaration order processor as default ([c66321e](https://github.com/TomokiMiyauci/mapcss/commit/c66321ee23269dfd073fef7b658ef26c83414ee8))
+* **core:** change `CSSStatement` interface ([25bac55](https://github.com/TomokiMiyauci/mapcss/commit/25bac5534081325f39c46cadb6193e016170ae9a))
+* **core:** change selector interface of specifier definition ([6fdc2cc](https://github.com/TomokiMiyauci/mapcss/commit/6fdc2ccc99d2406c5e146014f9fb935ac0348031))
+* **core:** improve selector escape function ([f496c63](https://github.com/TomokiMiyauci/mapcss/commit/f496c638fb34b16c674deeddeb0f2af2e8b3e59c))
+* **preset_tw:** add injecting custom variable as post processor ([adceb52](https://github.com/TomokiMiyauci/mapcss/commit/adceb524b1bf14f9dd25e5c4725c96b5e61df8e9))
+* **preset_tw:** add specifier of `flow` ([a7a8e0f](https://github.com/TomokiMiyauci/mapcss/commit/a7a8e0fae2808160b1765109f954502579a8af33))
+* **preset_tw:** add specifier of arbitrary rule ([a027dd8](https://github.com/TomokiMiyauci/mapcss/commit/a027dd84b4d638acdf1271bfaa919c9035db3808))
+* **preset_typography:** add basic preset of typography ([888efe5](https://github.com/TomokiMiyauci/mapcss/commit/888efe5142ca7efb9371cc765a68cb3f69486aa4))
+
+# [1.0.0-beta.10](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2022-02-16)
+
+
+### Bug Fixes
+
+* **core:** deep marge duplicated selector ([1d17cb2](https://github.com/TomokiMiyauci/mapcss/commit/1d17cb29d91f0360e8944cddf9416a81e990e40c))
+* **preset_tw:** specifier of container use screen theme ([b3a18c1](https://github.com/TomokiMiyauci/mapcss/commit/b3a18c16fc85009da9f9332d4864ceb4c904dd5a))
+
+
+### Features
+
+* **core:** add order system for css statement ([90e22ff](https://github.com/TomokiMiyauci/mapcss/commit/90e22ff6f3fa7223dfad857e4344215c1fa8f9b9))
+* **core:** extend interface of specifier ([2ffc270](https://github.com/TomokiMiyauci/mapcss/commit/2ffc270d7ea89074022fb1b147dc0a8fa49bde3f))
+* **core:** rename `generate` to `generateStyleSheet`, add postProcessor ([750fac7](https://github.com/TomokiMiyauci/mapcss/commit/750fac79491a4a6df910ee406fd3e56e579e64fa))
+* **preset_tw:** add arbitrary rule for `h` ([8c1f0c5](https://github.com/TomokiMiyauci/mapcss/commit/8c1f0c5ffd4d151c89a89cf0791440e366afad02))
+* **preset_tw:** add specifier of `container` ([6cddf43](https://github.com/TomokiMiyauci/mapcss/commit/6cddf436f141b5a41a4c476f01da52cbecc062cb))
+
+# [1.0.0-beta.9](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2022-02-10)
+
+
+### Features
+
+* **preset_tw:** add arbitary rule to `border-color` ([426c6a0](https://github.com/TomokiMiyauci/mapcss/commit/426c6a0e014f2136e4115daf51b3d9378ab9d250))
+* **preset_tw:** add arbitrary rule for `divide` ([a8e8277](https://github.com/TomokiMiyauci/mapcss/commit/a8e82772b7c0217e96d3133bb4fff41b0d185097))
+* **preset_tw:** add arbitrary rule of `outline` ([37a9937](https://github.com/TomokiMiyauci/mapcss/commit/37a993795094ff734194214b838817e763a222e3))
+* **preset_tw:** add specifier for `gradient-color-steps` ([eda7df8](https://github.com/TomokiMiyauci/mapcss/commit/eda7df81a72602cd6172eced292674e59acd5c57))
+* **preset_tw:** add specifier for `ring-color` ([9f1d16e](https://github.com/TomokiMiyauci/mapcss/commit/9f1d16e89172a1aafc22e8350c81185b2af8c16b))
+* **preset_tw:** add specifier for `ring-offset-color` ([6a5be57](https://github.com/TomokiMiyauci/mapcss/commit/6a5be578048b69994916d86a9b8250859f27bed6))
+* **preset_tw:** add specifier for `scroll-behavior` ([f94bf1b](https://github.com/TomokiMiyauci/mapcss/commit/f94bf1b2180d48807437a5403eec5180cf9f36c3))
+* **preset_tw:** add specifier for `scroll-margin` ([617aac6](https://github.com/TomokiMiyauci/mapcss/commit/617aac6d0f3b0e6c59e1ff26746b6efba1a6047a))
+* **preset_tw:** add specifier for `scroll-padding` ([32a7836](https://github.com/TomokiMiyauci/mapcss/commit/32a78361fe747443e3ad7aa675b3cbe9d23706bd))
+* **preset_tw:** add specifier for `scroll-snap-align` ([b64d705](https://github.com/TomokiMiyauci/mapcss/commit/b64d7050680abe830f90c557b78aa84063bd04cd))
+* **preset_tw:** add specifier for `scroll-snap-stop` ([dddee5c](https://github.com/TomokiMiyauci/mapcss/commit/dddee5ccc20f5ca7297c42bb9331921bfb0cc8a6))
+* **preset_tw:** add specifier for `scroll-snap-type` ([cf26590](https://github.com/TomokiMiyauci/mapcss/commit/cf26590001e88101dac1d3fd742fd6f6caed068b))
+* **preset_tw:** add specifier for `stroke-width` ([3485bd0](https://github.com/TomokiMiyauci/mapcss/commit/3485bd07ccab77f459acb08e14f61c39a51bda66))
+* **preset_tw:** add specifier for `stroke` ([a5ffbb0](https://github.com/TomokiMiyauci/mapcss/commit/a5ffbb0f9dc3aeb01ebdf9167eb07c851fb2f99c))
+* **preset_tw:** add specifier for `text-decoration-color` ([d5854d3](https://github.com/TomokiMiyauci/mapcss/commit/d5854d3020f70319bc5e8575cfebeb24beaaed11))
+* **preset_tw:** add specifier of `accent` ([ce3b437](https://github.com/TomokiMiyauci/mapcss/commit/ce3b4374841ee665b09ed7bb121d5c7ab950fcaf))
+* **preset_tw:** add specifier of `appearance` ([09801bb](https://github.com/TomokiMiyauci/mapcss/commit/09801bb0a6c0a0406615aef6957ac3a2480f5290))
+* **preset_tw:** add specifier of `carret` ([8519ef5](https://github.com/TomokiMiyauci/mapcss/commit/8519ef5164eae8a45daa0f269c600254e377e6ae))
+* **preset_tw:** add specifier of `cursor` ([7effd08](https://github.com/TomokiMiyauci/mapcss/commit/7effd08755cc4ddb2e4e06ba633e9e936267d9ac))
+* **preset_tw:** add specifier of `fill` ([37cc3b2](https://github.com/TomokiMiyauci/mapcss/commit/37cc3b258fd4c46781aaefbc96ea6ebdb7c9eac5))
+* **preset_tw:** add specifier of `pointer` ([c5b2744](https://github.com/TomokiMiyauci/mapcss/commit/c5b2744134e7ae296b7129e3173396864ef9a44a))
+* **preset_tw:** add specifier of `resize` ([b1a9729](https://github.com/TomokiMiyauci/mapcss/commit/b1a9729afc7017fc6e0c8748a764c0ccbfc686b0))
+* **preset_tw:** add specifier of `touch` ([c861e49](https://github.com/TomokiMiyauci/mapcss/commit/c861e49cf354ad93a2d409b1a63291c410422da2))
+* **preset_tw:** add specifier of `user` ([96e661a](https://github.com/TomokiMiyauci/mapcss/commit/96e661a9fc38326464c88d4f7ab7cf72ebad0565))
+* **preset_tw:** add specifier of `will` ([4c7068a](https://github.com/TomokiMiyauci/mapcss/commit/4c7068a571bfac3f4cf50d18490ebf4205f073b0))
+* **preset_tw:** change color number format to rgb ([5592491](https://github.com/TomokiMiyauci/mapcss/commit/55924914a856d2a24b4aa3e2ef567c1b5750bf0e))
+* **preset_tw:** change color style to rgb, add arbitaray rule ([166f110](https://github.com/TomokiMiyauci/mapcss/commit/166f1105c5bd82c912193ede9e8038cdaacf16b7))
+
+# [1.0.0-beta.8](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2022-02-09)
+
+
+### Features
+
+* **preset_tw:** add specifier of `delay` ([d62204d](https://github.com/TomokiMiyauci/mapcss/commit/d62204d7d5f0d3da24ece85102a808af75de920d))
+* **preset_tw:** add specifier of `duration` ([f7716ec](https://github.com/TomokiMiyauci/mapcss/commit/f7716ec718a101892c02f97d5a8e25c1cc554763))
+* **preset_tw:** add specifier of `ease` ([3596a94](https://github.com/TomokiMiyauci/mapcss/commit/3596a9455e1ba2f8974aa707f6d0340e6fd136e1))
+* **preset_tw:** add specifier of `origin` ([ec68b7b](https://github.com/TomokiMiyauci/mapcss/commit/ec68b7b1f8acbd5d6af54549adb9bfa268f04e60))
+* **preset_tw:** add specifier of `rotate` ([1348467](https://github.com/TomokiMiyauci/mapcss/commit/1348467aff8a2033b5771cad1c579f7aec7935c0))
+* **preset_tw:** add specifier of `scale` ([02b5f50](https://github.com/TomokiMiyauci/mapcss/commit/02b5f50f8cabd2d8bd731cde7ea8a5dd3b4903b7))
+* **preset_tw:** add specifier of `skew` ([e78253e](https://github.com/TomokiMiyauci/mapcss/commit/e78253ebf29409811d8aeff75cf9af9835040604))
+* **preset_tw:** add specifier of `transition` ([558bf83](https://github.com/TomokiMiyauci/mapcss/commit/558bf8353b3361e1f6e935056727b4fba5c90a0e))
+* **preset_tw:** add specifier of `translate` ([7b5c347](https://github.com/TomokiMiyauci/mapcss/commit/7b5c3474684e9ffeca39270445447b4e37597c63))
+
+# [1.0.0-beta.7](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2022-02-08)
+
+
+### Bug Fixes
+
+* **core:** add checking if return value is function or not ([6bbda2e](https://github.com/TomokiMiyauci/mapcss/commit/6bbda2e9856be646f4f3d171e173de0aa2d7a05c))
+
+
+### Features
+
+* **preset_tw:** add sepecifier of `sepia` ([1033ae1](https://github.com/TomokiMiyauci/mapcss/commit/1033ae1c24635036397255d062bb359e29fc3138))
+* **preset_tw:** add specifier for `backdrop-brightness` ([a8b0c23](https://github.com/TomokiMiyauci/mapcss/commit/a8b0c23530ce39c0fee6ef2895435984df9a65ae))
+* **preset_tw:** add specifier for `backdrop-contrast` ([0be6bc4](https://github.com/TomokiMiyauci/mapcss/commit/0be6bc433ad2d3906f10d43243e24c821814a2b7))
+* **preset_tw:** add specifier for `backdrop-filter` ([8c32b7d](https://github.com/TomokiMiyauci/mapcss/commit/8c32b7dc2c2f04efa2da353e8c3ac84e7b185f0b))
+* **preset_tw:** add specifier for `backdrop-grayscale` ([f4df15d](https://github.com/TomokiMiyauci/mapcss/commit/f4df15d3d9ef80aa876481a635060b0c7b79860b))
+* **preset_tw:** add specifier for `backdrop-hue-rotate` ([fdd541f](https://github.com/TomokiMiyauci/mapcss/commit/fdd541fbce58b9b94eb0a2cdc860067a9f97d997))
+* **preset_tw:** add specifier for `backdrop-invert` ([96fa191](https://github.com/TomokiMiyauci/mapcss/commit/96fa191fa2fe7dd4f329e2201d842c7670068dc0))
+* **preset_tw:** add specifier for `backdrop-saturate` ([45b0838](https://github.com/TomokiMiyauci/mapcss/commit/45b0838882ca77846739b1589f90538af1d19ab5))
+* **preset_tw:** add specifier for `backdrop-sepia` ([c6c82fe](https://github.com/TomokiMiyauci/mapcss/commit/c6c82fe19ed057a4949efa958bb40aac2929dba0))
+* **preset_tw:** add specifier of `backdrop-opacity` ([4d7d1c2](https://github.com/TomokiMiyauci/mapcss/commit/4d7d1c234656badb7dc894a7216213f8d4d5a4db))
+* **preset_tw:** add specifier of `brightness` ([19cb875](https://github.com/TomokiMiyauci/mapcss/commit/19cb875d348abfe3457655c18d67ee561c450688))
+* **preset_tw:** add specifier of `contrast` ([59eec4d](https://github.com/TomokiMiyauci/mapcss/commit/59eec4d6d9c0defb27bd403436b813f96f688387))
+* **preset_tw:** add specifier of `drop-shadow` ([7f6a215](https://github.com/TomokiMiyauci/mapcss/commit/7f6a215a77d2ef2a4abc606fac2d6bb6cec0ef2d))
+* **preset_tw:** add specifier of `grayscale` ([9000ebe](https://github.com/TomokiMiyauci/mapcss/commit/9000ebe32e31c6b8eda60e5e1163b9ca54fb7d30))
+* **preset_tw:** add specifier of `hue-rotate` ([a91a017](https://github.com/TomokiMiyauci/mapcss/commit/a91a017829f5e2b66b4b167686bb26aa75c075d2))
+* **preset_tw:** add specifier of `invert` ([2f20103](https://github.com/TomokiMiyauci/mapcss/commit/2f20103572f0479663392a9bf3d8d6acbb923f1b))
+* **preset_tw:** add specifier of `saturate` ([382a1f1](https://github.com/TomokiMiyauci/mapcss/commit/382a1f12a8414eb2233314756e8da0a43d19ef2b))
+
+# [1.0.0-beta.6](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2022-02-07)
+
+
+### Features
+
+* **core:** expand interface of specifier what accept function ([6e65d82](https://github.com/TomokiMiyauci/mapcss/commit/6e65d82a3a06b574c4899e4e18f4fc2e145ca36e))
+* **preset_tw:** add specifier for `background-attachment` ([9707323](https://github.com/TomokiMiyauci/mapcss/commit/9707323eb44d2a8a24fe8f8c9c7fbecb032a0f8d))
+* **preset_tw:** add specifier for `background-blend-mode` ([5537331](https://github.com/TomokiMiyauci/mapcss/commit/5537331ff75f0e395bb4438db0b95cda7273b7b0))
+* **preset_tw:** add specifier for `background-image` ([3ca87ca](https://github.com/TomokiMiyauci/mapcss/commit/3ca87ca8effb085d37073906430c3084b422c069))
+* **preset_tw:** add specifier for `background-origin` ([96e6cd5](https://github.com/TomokiMiyauci/mapcss/commit/96e6cd5d34aac16037a829d1178fc6d0563d6110))
+* **preset_tw:** add specifier for `background-position` ([b184b58](https://github.com/TomokiMiyauci/mapcss/commit/b184b58bd460a1c89b08aa21cdec0a24738691e0))
+* **preset_tw:** add specifier for `background-repeat` ([ad01911](https://github.com/TomokiMiyauci/mapcss/commit/ad019117bcc6052949b6d97d1c32ba23f8ee4e28))
+* **preset_tw:** add specifier for `background-size` ([f82f9ce](https://github.com/TomokiMiyauci/mapcss/commit/f82f9ce2e10f387e4765766dc3e8ecf9db22b449))
+* **preset_tw:** add specifier for `font-variant-numeric` ([3aa2870](https://github.com/TomokiMiyauci/mapcss/commit/3aa2870563673075d7ed6b14d22f2c923b4d355b))
+* **preset_tw:** add specifier for `list-style-position` ([68f5b71](https://github.com/TomokiMiyauci/mapcss/commit/68f5b71229c8ec32f87f45d1bf3373d983b8e713))
+* **preset_tw:** add specifier for `list-style-type` ([cf5ffdc](https://github.com/TomokiMiyauci/mapcss/commit/cf5ffdc55cbedac4af96e584bce81f80673d2d1b))
+* **preset_tw:** add specifier for `place-content` ([b8243db](https://github.com/TomokiMiyauci/mapcss/commit/b8243db2a6097a9fa02724b1a9d9250abc465247))
+* **preset_tw:** add specifier for `place-items` ([c9469e3](https://github.com/TomokiMiyauci/mapcss/commit/c9469e34c7ac266e22a33654823a1e9526502b53))
+* **preset_tw:** add specifier for `place-self` ([59a5d15](https://github.com/TomokiMiyauci/mapcss/commit/59a5d150cf295c1d495839d3e235232e12b8217c))
+* **preset_tw:** add specifier for `text-decoration-style` ([4bad1f0](https://github.com/TomokiMiyauci/mapcss/commit/4bad1f0926b9d05d6bebd11f8638952260136ab4))
+* **preset_tw:** add specifier for `text-decoration-thickness` ([c5467c8](https://github.com/TomokiMiyauci/mapcss/commit/c5467c80d2e1ed1846d3a45597398c3de9d350a6))
+* **preset_tw:** add specifier for `text-overflow` ([363afd4](https://github.com/TomokiMiyauci/mapcss/commit/363afd4f788f734f1b5aa935e9ac9b80431e0cdf))
+* **preset_tw:** add specifier for `text-transform` ([f9ec9b1](https://github.com/TomokiMiyauci/mapcss/commit/f9ec9b16a4b8bc3d0a6448303c128a004fa5ec0c))
+* **preset_tw:** add specifier for `text-underline-offset` ([c1b7a2a](https://github.com/TomokiMiyauci/mapcss/commit/c1b7a2ad5a3dd553727b44c7ca4352ed41a02384))
+* **preset_tw:** add specifier of `background-clip` ([f2df6d1](https://github.com/TomokiMiyauci/mapcss/commit/f2df6d1b67cb911736e5b365deebb280bb0e0c85))
+* **preset_tw:** add specifier of `blur` ([6406eb5](https://github.com/TomokiMiyauci/mapcss/commit/6406eb5cef0cc98eb361706adc92020b5dffab30))
+* **preset_tw:** add specifier of `indent` ([8ff5723](https://github.com/TomokiMiyauci/mapcss/commit/8ff5723d130f911c54dcbb3b045231c4c151c1a1))
+* **preset_tw:** add specifier of `mix` ([ca44680](https://github.com/TomokiMiyauci/mapcss/commit/ca44680ddc2e6339d276552bc1863fa7960bbc0d))
+* **preset_tw:** add specifier of `ring-offset-*` ([5a33a77](https://github.com/TomokiMiyauci/mapcss/commit/5a33a7717a68dfb1546f8266c38a0e1ebbcbfea1))
+* **preset_tw:** add specifier of `ring` ([2bbf5ed](https://github.com/TomokiMiyauci/mapcss/commit/2bbf5ed258412b7d69fc017eb9ddc49df29bf13c))
+
+# [1.0.0-beta.5](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2022-02-07)
+
+
+### Features
+
+* **core:** change specifier object to define combinator ([de10ae0](https://github.com/TomokiMiyauci/mapcss/commit/de10ae0e996fdf65c193580385a627188a75897c))
+* **core:** expand specifier interface that accept function ([1c2f4a2](https://github.com/TomokiMiyauci/mapcss/commit/1c2f4a216043989e7c24d19af63511135b004d81))
+* **core:** pass variablePrefix as context ([fbc34d8](https://github.com/TomokiMiyauci/mapcss/commit/fbc34d8b8f54675cdcac9091f3d02ff42003ee00))
+* **preset_tw:** add specifier for `border-color` ([1cd5fb9](https://github.com/TomokiMiyauci/mapcss/commit/1cd5fb9f2c65cc39f4dc3b7a8c791d586ea2c75c))
+* **preset_tw:** add specifier for `border-left/right-width` ([999da1d](https://github.com/TomokiMiyauci/mapcss/commit/999da1d3ffd03f69d7c746330322db1fb5c70239))
+* **preset_tw:** add specifier for `border-style` ([3049f91](https://github.com/TomokiMiyauci/mapcss/commit/3049f91d7dc9db64529574a510147d42901bdd08))
+* **preset_tw:** add specifier for `border-top/bottom-width` ([36f4f64](https://github.com/TomokiMiyauci/mapcss/commit/36f4f6478eed6ad743c05cb092dca356a9e94d0b))
+* **preset_tw:** add specifier for `grid-auto-flow` ([2f94176](https://github.com/TomokiMiyauci/mapcss/commit/2f941763b570eaf8f76b56c3a90a4a71a956ceca))
+* **preset_tw:** add specifier for `grid-auto-rows` ([e6e8d04](https://github.com/TomokiMiyauci/mapcss/commit/e6e8d043164d247f8be25ad55ad4f9a6bf921ebc))
+* **preset_tw:** add specifier for `grid-template-columns` ([9892301](https://github.com/TomokiMiyauci/mapcss/commit/9892301c3b43cffec0d1cdbfcdc05593176c51ae))
+* **preset_tw:** add specifier for `grid-template-rows` ([b6f75dd](https://github.com/TomokiMiyauci/mapcss/commit/b6f75dd74b96acba545df7e81e27dc125dbf821b))
+* **preset_tw:** add specifier for flex-direction ([1cab29a](https://github.com/TomokiMiyauci/mapcss/commit/1cab29a379409c2f205f7831771523490d45efda))
+* **preset_tw:** add specifier for flex-wrap ([94cecd2](https://github.com/TomokiMiyauci/mapcss/commit/94cecd2265d92fb6c1687c45b91f3b94e3f00941))
+* **preset_tw:** add specifier of `auto` ([726fe1f](https://github.com/TomokiMiyauci/mapcss/commit/726fe1f5158b71fff993f824f35c989dde39f741))
+* **preset_tw:** add specifier of `basis` ([684a5b9](https://github.com/TomokiMiyauci/mapcss/commit/684a5b9187c092ce1aaddeed1109113a401101c4))
+* **preset_tw:** add specifier of `col` ([61172e9](https://github.com/TomokiMiyauci/mapcss/commit/61172e958019423390766d80cbafa92d06933fd6))
+* **preset_tw:** add specifier of `gap` ([2e44404](https://github.com/TomokiMiyauci/mapcss/commit/2e444042d7816b62a451e117f88bd466f6ca2c82))
+* **preset_tw:** add specifier of `grow` ([7c25bff](https://github.com/TomokiMiyauci/mapcss/commit/7c25bffb8fe766f3f57d86f9d86784523187794c))
+* **preset_tw:** add specifier of `order` ([f214b68](https://github.com/TomokiMiyauci/mapcss/commit/f214b6856d71af7c897801cf276a1209e527ecfb))
+* **preset_tw:** add specifier of `row` ([5fc16b2](https://github.com/TomokiMiyauci/mapcss/commit/5fc16b2aa56409fd7f98802e01b87bdd307b2e78))
+* **preset_tw:** add specifier of `shadow` ([7363922](https://github.com/TomokiMiyauci/mapcss/commit/7363922d06b50b1d7554f4f3519079eba5dc10a8))
+* **preset_tw:** add specifier of `shrink` ([ccbbf0e](https://github.com/TomokiMiyauci/mapcss/commit/ccbbf0e8d50332f736c4f97ddc1c345e19b385fa))
+* **preset_tw:** add specifier of `space` ([c23faab](https://github.com/TomokiMiyauci/mapcss/commit/c23faabc5c8c186ac8c4f54fa1de49d4fb196d82))
+
+# [1.0.0-beta.4](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2022-02-05)
+
+
+### Bug Fixes
+
+* **preset_tw:** change syntax interface ([7c34c3e](https://github.com/TomokiMiyauci/mapcss/commit/7c34c3e20d665996672d4d7bd816ecb1927559ed))
+
+
+### Features
+
+* **core:** `generate` function accept string, when give string, extractor will extract tokens ([59c42a2](https://github.com/TomokiMiyauci/mapcss/commit/59c42a29af07ae4d833c9ccc6f2bd05eb5b41517))
+* **core:** add local modifier resolution ([9228815](https://github.com/TomokiMiyauci/mapcss/commit/922881509b0a74c592ca8407dc015a3b201cb4fc))
+* **core:** add resolver of config ([5c1f08c](https://github.com/TomokiMiyauci/mapcss/commit/5c1f08cedf8902a3a8454e715e8d8751f496348a))
+* **preset_tw:** add arbitary rule to `inset` ([05225d2](https://github.com/TomokiMiyauci/mapcss/commit/05225d292e7de4901678315cd4257889bf9d330f))
+* **preset_tw:** add arbitrary rule to `w` ([c6ae493](https://github.com/TomokiMiyauci/mapcss/commit/c6ae4939af0b427b39d440324ef2317ce00cf8ef))
+* **preset_tw:** add generic modifier for pseudo ([335dba6](https://github.com/TomokiMiyauci/mapcss/commit/335dba6258eeabe0e765b3e2fa7b0c824179eab8))
+* **preset_tw:** add global modifier of `webkit-scrollbar-thumb` ([7c06a35](https://github.com/TomokiMiyauci/mapcss/commit/7c06a35fa963094905f6e25c2c7bc1c036224544))
+* **preset_tw:** add global modifier of `webkit-scrollbar-track` ([a46bbcb](https://github.com/TomokiMiyauci/mapcss/commit/a46bbcb72ca39984a2633981830c127239cc1243))
+* **preset_tw:** add global modifier of `webkit-scrollbar` ([bb8bccd](https://github.com/TomokiMiyauci/mapcss/commit/bb8bccdbcd1a9b754eb1b644dc42dce9287bc884))
+* **preset_tw:** add inset mapper ([1ed572e](https://github.com/TomokiMiyauci/mapcss/commit/1ed572ef3cdf88f6f24c23ee1603823f6fecc4ab))
+* **preset_tw:** add local modifier of `-` ([999529b](https://github.com/TomokiMiyauci/mapcss/commit/999529bffc58c4697dc8a57c952a299e8a38a9df))
+* **preset_tw:** add local modifier of important ([2df2527](https://github.com/TomokiMiyauci/mapcss/commit/2df25275072b879a7569c0d90008bd00627a3fc2))
+* **preset_tw:** add mapper for `opacity` ([37c4a64](https://github.com/TomokiMiyauci/mapcss/commit/37c4a6496bb7cee6ce01609678eafa7a2b3601af))
+* **preset_tw:** add mapper for font-family ([275b577](https://github.com/TomokiMiyauci/mapcss/commit/275b57704b1154be9fd8e7eb34df8a3b2a65c480))
+* **preset_tw:** add mapper for screen reader ([018b735](https://github.com/TomokiMiyauci/mapcss/commit/018b7353ad1d895f651f9f5cae0037703d17bf0c))
+* **preset_tw:** add mapper of margin set ([6b3e5d1](https://github.com/TomokiMiyauci/mapcss/commit/6b3e5d1f2b8a72ed809c3fb03a31a97d3de206a6))
+* **preset_tw:** add mapper of padding ([b6d7765](https://github.com/TomokiMiyauci/mapcss/commit/b6d77651f509d56b08a0ab646f0d5841e5bbb71b))
+* **preset_tw:** add modifier for breakpoints ([64fe105](https://github.com/TomokiMiyauci/mapcss/commit/64fe1057adc57cafb0df2859f63096912e7a90b4))
+* **preset_tw:** add modifier for media query ([f6ad68b](https://github.com/TomokiMiyauci/mapcss/commit/f6ad68bc62af85d4842cb9ff211ae25d5e39adb7))
+* **preset_tw:** add modifier of `dark` ([ce74f74](https://github.com/TomokiMiyauci/mapcss/commit/ce74f74167ab9b4695c47dfe749090ea2c75ce77))
+* **preset_tw:** add modifier of color theme `dark` ([c459ef4](https://github.com/TomokiMiyauci/mapcss/commit/c459ef42e74e0c10a58befa255666af4bb203c75))
+* **preset_tw:** add modifier of pseudo of `focus` and `hover` ([2ab83be](https://github.com/TomokiMiyauci/mapcss/commit/2ab83be2b78285c28ba4165e8f3861fff5472774))
+* **preset_tw:** add opacity of `border-color` ([7e052ca](https://github.com/TomokiMiyauci/mapcss/commit/7e052ca4a2b44f1d1d488fc5fe3101023d6c57ef))
+* **preset_tw:** add syntax for tailwind basic ([7f9ffea](https://github.com/TomokiMiyauci/mapcss/commit/7f9ffea528ca41f48c24b699833293cda1c82005))
+* **preset_tw:** change core engine to deep map accessor ([02fc1ef](https://github.com/TomokiMiyauci/mapcss/commit/02fc1efa4c33f77ed0b39c6425aab32ef4d4538e))
+* rename mapper to specifier ([5680a2e](https://github.com/TomokiMiyauci/mapcss/commit/5680a2e75e440597cf47e0f057f24a7efb9354c9))
+
 # [1.0.0-beta.3](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2022-01-31)
 
 
