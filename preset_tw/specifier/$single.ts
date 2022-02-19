@@ -827,6 +827,9 @@ export const drop: RecordSpecifier = {
       ),
   },
 };
+export const flow: RecordSpecifier = {
+  root: { display: "flow-root" },
+};
 
 export const grayscale: EntriesSpecifier = [
   [

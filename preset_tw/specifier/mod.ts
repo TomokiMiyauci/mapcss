@@ -27,6 +27,7 @@ import {
   fill,
   fixed,
   float,
+  flow,
   from,
   grayscale,
   grow,
@@ -142,6 +143,7 @@ import { stroke } from "./stroke.ts";
 
 export const specifierMap = {
   container,
+  flow,
   to,
   via,
   from,

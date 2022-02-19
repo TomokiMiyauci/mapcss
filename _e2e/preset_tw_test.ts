@@ -1,6 +1,10 @@
 import { expect, test } from "../dev_deps.ts";
 import { min } from "./preset_tw/min.ts";
-import { generateStyleSheet, presetTw } from "../mod.ts";
+import { specifierMap } from "../preset_tw/specifier/mod.ts";
+import { theme } from "../preset_tw/theme/mod.ts";
+import { modifierMap } from "../preset_tw/modifiers/mod.ts";
+import { twBasicSyntax } from "../preset_tw/syntax.ts";
+import { generateStyleSheet } from "../mod.ts";
 
 const expects: [string, string][] = [
   ...min,
@@ -75,16 +79,16 @@ const expects: [string, string][] = [
   ["table", ".table{display:table;}"],
   ["inline-table", ".inline-table{display:inline-table;}"],
   ["table-caption", ".table-caption{display:table-caption;}"],
-  // ["table-cell", ".table-cell{display:table-cell;}"],
-  // ["table-column", ".table-column{display:table-column;}"],
-  // ["table-column-group", ".table-column-group{display:table-column-group;}"],
-  // ["table-footer-group", ".table-footer-group{display:table-footer-group;}"],
-  // ["table-header-group", ".table-header-group{display:table-header-group;}"],
-  // ["table-row-group", ".table-row-group{display:table-row-group;}"],
-  // ["table-row", ".table-row{display:table-row;}"],
-  // ["flow-root", ".flow-root{display:flow-root;}"],
+  ["table-cell", ".table-cell{display:table-cell;}"],
+  ["table-column", ".table-column{display:table-column;}"],
+  ["table-column-group", ".table-column-group{display:table-column-group;}"],
+  ["table-footer-group", ".table-footer-group{display:table-footer-group;}"],
+  ["table-header-group", ".table-header-group{display:table-header-group;}"],
+  ["table-row-group", ".table-row-group{display:table-row-group;}"],
+  ["table-row", ".table-row{display:table-row;}"],
+  ["flow-root", ".flow-root{display:flow-root;}"],
   ["grid", ".grid{display:grid;}"],
-  // ["inline-grid", ".inline-grid{display:inline-grid;}"],
+  ["inline-grid", ".inline-grid{display:inline-grid;}"],
   ["contents", ".contents{display:contents;}"],
   ["list-item", ".list-item{display:list-item;}"],
   ["hidden", ".hidden{display:none;}"],
@@ -5611,7 +5615,10 @@ const expects: [string, string][] = [
   ["break-words", ".break-words{overflow-wrap:break-word;}"],
   ["break-all", ".break-all{word-break:break-all;}"],
   ["content-none", ".content-none{content:none;}"],
-  [`content-['Hello_World']`, `.content-\\[\\'Hello_World\\'\\]{content:'Hello World';}`],
+  [
+    `content-['Hello_World']`,
+    `.content-\\[\\'Hello_World\\'\\]{content:'Hello World';}`,
+  ],
   ["rounded", ".rounded{border-radius:0.25rem;}"],
   ["rounded-none", ".rounded-none{border-radius:0px;}"],
   ["rounded-sm", ".rounded-sm{border-radius:0.125rem;}"],
@@ -34719,7 +34726,16 @@ const expects: [string, string][] = [
   ],
 ];
 
-const config = { presets: [presetTw()] };
+const config = {
+  presets: [{
+    theme,
+    modifierMap,
+    specifierMap,
+    name: "tw",
+    syntaxes: [twBasicSyntax],
+    postProcessor: [],
+  }],
+};
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
