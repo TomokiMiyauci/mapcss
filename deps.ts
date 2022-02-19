@@ -135,3 +135,9 @@ export type Optional<
     [k in K]?: T[k];
   }
   & { [k in keyof Omit<T, K>]: T[k] };
+
+export type ReplaceKeys<U, T, Y> = {
+  [k in keyof U]: k extends keyof Y ? Y[k]
+    : k extends Exclude<keyof U, T> ? U[k]
+    : never;
+};

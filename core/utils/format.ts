@@ -88,15 +88,7 @@ export function cssStatements2CSSNestedModule(
 
 function constructCSS(cssStatement: CSSStatement): CSSNestedModule {
   if (cssStatement.type === "ruleset") {
-    const {
-      selector: { basic = "", pseudo = "", combinator = "" } = {
-        basic: "",
-        pseudo: "",
-        combinator: "",
-      },
-      declaration,
-    } = cssStatement;
-    const selector = `${basic}${pseudo}${combinator}`;
+    const { selector, declaration } = cssStatement;
 
     return { [selector]: declaration };
   }

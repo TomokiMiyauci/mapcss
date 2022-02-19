@@ -1,4 +1,4 @@
-import type { Arrayable } from "../deps.ts";
+import type { Arrayable, ReplaceKeys } from "../deps.ts";
 
 export type CSSNestedModule = {
   [k: string]: CSSNestedModule | Declaration;
@@ -109,9 +109,9 @@ export type Syntax = {
 export type PostProcessor = {
   name: string;
   fn: (
-    cssStatements: Required<CSSStatement>[],
+    cssStatements: CSSStatement[],
     context: Context,
-  ) => Required<CSSStatement>[];
+  ) => CSSStatement[];
 
   /** order of processor */
   order?: number;
@@ -135,22 +135,30 @@ type NestedRecord = {
   [k: string]: string | NestedRecord;
 };
 
-export type GroupAtRule = {
+export type GroupAtRule = Required<
+  ReplaceKeys<
+    SpecifierGroupAtRule,
+    "children",
+    { children: GroupAtRule | RuleSet }
+  >
+>;
+
+export type SpecifierGroupAtRule = {
   type: "groupAtRule";
   identifier: string;
   rule: string;
-  children: GroupAtRule | RuleSet;
+  children: SpecifierGroupAtRule | SpecifierRuleSet;
 } & BaseRule;
 
-export type Selector = {
-  basic: string;
-  combinator: string;
-  pseudo: string;
-};
+export type RuleSet = ReplaceKeys<
+  Required<SpecifierRuleSet>,
+  "selector",
+  { selector: string }
+>;
 
-export type RuleSet = {
+export type SpecifierRuleSet = {
   type: "ruleset";
-  selector?: Partial<Selector>;
+  selector?: (selector: string) => string;
   declaration: Declaration;
 } & BaseRule;
 
@@ -171,12 +179,14 @@ export type EntriesSpecifier = [
   | Specifier,
 ][];
 
+export type SpecifierCSSStatement = SpecifierGroupAtRule | SpecifierRuleSet;
+
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
 export type SpecifierDefinition =
   | Arrayable<Declaration>
-  | Arrayable<CSSStatement>
+  | Arrayable<SpecifierCSSStatement>
   | ((regExpExecArray: RegExpExecArray, context: SpecifierContext) =>
     | Arrayable<Declaration>
-    | Arrayable<CSSStatement>
+    | Arrayable<SpecifierCSSStatement>
     | undefined);

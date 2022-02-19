@@ -100,9 +100,7 @@ export const twCustomPropertyInjector: PostProcessor = {
     cssStatement.unshift({
       "type": "ruleset",
       "order": -1,
-      "selector": {
-        basic: "*, ::before, ::after",
-      },
+      selector: "*, ::before, ::after",
       declaration,
     });
 

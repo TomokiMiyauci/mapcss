@@ -14,6 +14,7 @@ import {
   prop,
   propPath,
   Right,
+  Some,
   sortBy,
 } from "../deps.ts";
 import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
@@ -25,6 +26,7 @@ import type {
   PostProcessor,
   Specifier,
   SpecifierContext,
+  SpecifierCSSStatement,
   SpecifierDefinition,
   SpecifierMap,
   Syntax,
@@ -72,8 +74,10 @@ export function resolveSpecifierMap(
   value: string,
   specifierMap: SpecifierMap,
   context: SpecifierContext,
-): Required<CSSStatement>[] | undefined {
+): CSSStatement[] | undefined {
   const { separator } = context;
+  const classSelector = `.${escapeRegExp(context.token)}`;
+
   const paths = leftSplit(value, separator);
 
   for (const path of paths) {
@@ -81,14 +85,25 @@ export function resolveSpecifierMap(
     const _declaration = prop(first, specifierMap);
 
     if (isUndefined(_declaration)) continue;
-    const result = EitherSpec(_declaration).mapLeft(
+    const resolved = EitherSpec(_declaration).mapLeft(
       execSpecifierDeclaration(new MockRegExpExecArray(), context),
-    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context)).map(
-      resolveDeclaration(context.token),
-    ).unwrap();
+    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
+      .unwrap();
+
+    const result = Some(resolved).map(wrap).map((cssStatement) =>
+      cssStatement.map((definition) =>
+        EitherDefinition(definition).mapLeft(declaration2Statement).map((
+          v,
+        ) => toCSSStatement(v, classSelector))
+          .unwrap()
+      )
+    ).match({
+      some: (v) => v,
+      none: undefined,
+    });
 
     if (isUndefined(result)) continue;
-    return wrap(result);
+    return result;
   }
 }
 
@@ -96,7 +111,7 @@ function resolveSpecifier(
   path: string[],
   specifier: Specifier,
   context: SpecifierContext,
-): Arrayable<Required<CSSStatement>> | undefined {
+): Arrayable<SpecifierCSSStatement> | Arrayable<Declaration> | undefined {
   const [_, ...rest] = path;
   const first = head(path) ?? "DEFAULT";
   if (Array.isArray(specifier)) {
@@ -115,9 +130,7 @@ function resolveSpecifier(
         const result = EitherSpec(specifierOrDefinition).mapLeft(
           execSpecifierDeclaration(regExpExecArray, context),
         ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-          .map(
-            resolveDeclaration(context.token),
-          ).unwrap();
+          .unwrap();
         if (isUndefined(result)) continue;
         return result;
       }
@@ -125,9 +138,7 @@ function resolveSpecifier(
     }
     return EitherSpec(maybeSpec).mapLeft(
       execSpecifierDeclaration(new MockRegExpExecArray(), context),
-    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context)).map(
-      resolveDeclaration(context.token),
-    )
+    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
       .unwrap();
   }
   const _declaration = prop(first, specifier);
@@ -137,9 +148,7 @@ function resolveSpecifier(
     execSpecifierDeclaration(new MockRegExpExecArray(), context),
   ).mapRight((
     specifier,
-  ) => resolveSpecifier(rest, specifier, context)).map(
-    resolveDeclaration(context.token),
-  )
+  ) => resolveSpecifier(rest, specifier, context))
     .unwrap();
 }
 
@@ -153,7 +162,9 @@ function execSpecifierDeclaration(
   regExpExecArray: RegExpExecArray,
   context: SpecifierContext,
 ) {
-  return (specifierDeclaration: SpecifierDefinition) =>
+  return (
+    specifierDeclaration: SpecifierDefinition,
+  ): Arrayable<Declaration> | Arrayable<SpecifierCSSStatement> | undefined =>
     isFunction(specifierDeclaration)
       ? specifierDeclaration(regExpExecArray, context)
       : specifierDeclaration;
@@ -166,54 +177,37 @@ function EitherSpec(
   return Right(value);
 }
 
-function resolveDeclaration(
-  selector: string,
-) {
-  return (
-    declaration: Arrayable<Declaration> | Arrayable<CSSStatement> | undefined,
-  ) => {
-    if (isUndefined(declaration)) return;
-    if (Array.isArray(declaration)) {
-      return declaration.map((decl) => constructCSSStatement(decl, selector));
-    }
-    return constructCSSStatement(declaration, selector);
-  };
+function EitherDefinition(
+  value: Declaration | SpecifierCSSStatement,
+): Either<Declaration, SpecifierCSSStatement> {
+  if (isDeclaration(value)) return Left(value);
+  return Right(value);
 }
 
-function constructCSSStatement(
-  value: Declaration | CSSStatement,
-  basic: string,
-): Required<CSSStatement> {
-  if (isDeclaration(value)) {
-    const selector = escapeRegExp(basic);
+function toCSSStatement(
+  definition: SpecifierCSSStatement,
+  classSelector: string,
+): CSSStatement {
+  if (definition.type === "ruleset") {
+    const { selector, order = 0, ...rest } = definition;
+    const _ = selector?.(classSelector) ?? classSelector;
     return {
-      order: 0,
-      declaration: value,
-      type: "ruleset",
-      selector: { basic: selector ? `.${selector}` : "" },
-    };
-  }
-  if (value.type === "ruleset") {
-    const { selector, ...rest } = value;
-    const _selector = escapeRegExp(basic);
-
-    return {
-      order: 0,
+      order,
+      selector: _,
       ...rest,
-      selector: {
-        basic: _selector ? `.${_selector}` : "",
-        ...selector,
-      },
     };
   }
-  if (value.type === "groupAtRule") {
-    return {
-      order: 0,
-      ...value,
-      children: constructCSSStatement(value.children, basic),
-    };
-  }
-  return value;
+  const { children, order = 0, ...rest } = definition;
+  return { order, ...rest, children: toCSSStatement(children, classSelector) };
+}
+
+function declaration2Statement(
+  declaration: Declaration,
+): SpecifierCSSStatement {
+  return {
+    type: "ruleset",
+    declaration,
+  };
 }
 
 /** resolve theme via propPath safety */

@@ -14,11 +14,11 @@ import {
   unit,
 } from "../../core/utils/format.ts";
 import type {
-  CSSStatement,
   Declaration,
   EntriesSpecifier,
   RecordSpecifier,
   Specifier,
+  SpecifierCSSStatement,
 } from "../../core/types.ts";
 import {
   customPropertySet,
@@ -118,7 +118,7 @@ export const container: EntriesSpecifier = [
     const xl = resolveTheme("xl", SCREEN, context);
     const $2xl = resolveTheme("2xl", SCREEN, context);
     if (sm && md && lg && xl && $2xl) {
-      const specifier: CSSStatement[] = [
+      const specifier: SpecifierCSSStatement[] = [
         { type: "ruleset", declaration: { width: "100%" } },
         {
           type: "groupAtRule",

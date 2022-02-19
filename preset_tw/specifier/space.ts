@@ -3,21 +3,27 @@ import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 
-import type { CSSStatement, EntriesSpecifier } from "../../core/types.ts";
+import type {
+  EntriesSpecifier,
+  SpecifierCSSStatement,
+} from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
 const SPACE_X_REVERSE = "space-x-reverse";
 const SPACE_Y_REVERSE = "space-y-reverse";
+
+function combine(selector: string): string {
+  return `${selector}${combinator}`;
+}
+
 function handleSpaceX(
   variablePrefix: string,
   value: string,
-): CSSStatement {
+): SpecifierCSSStatement {
   const [variable, varFn] = customPropertySet(SPACE_X_REVERSE, variablePrefix);
   return {
     type: "ruleset",
-    selector: {
-      combinator,
-    },
+    selector: combine,
     declaration: {
       [variable]: 0,
       "margin-right": `calc(${value} * ${varFn})`,
@@ -29,13 +35,11 @@ function handleSpaceX(
 function handleSpaceY(
   variablePrefix: string,
   value: string,
-): CSSStatement {
+): SpecifierCSSStatement {
   const [variable, varFn] = customPropertySet(SPACE_Y_REVERSE, variablePrefix);
   return {
     type: "ruleset",
-    selector: {
-      combinator,
-    },
+    selector: combine,
     declaration: {
       [variable]: 0,
       "margin-top": `calc(${value} * calc(1 - ${varFn}))`,
@@ -51,9 +55,7 @@ export const space: EntriesSpecifier = [
     ["reverse", (_, { variablePrefix }) => {
       return {
         type: "ruleset",
-        selector: {
-          combinator,
-        },
+        selector: combine,
         declaration: {
           [stringifyCustomProperty(SPACE_X_REVERSE, variablePrefix)]: 1,
         },
@@ -79,9 +81,7 @@ export const space: EntriesSpecifier = [
     ["reverse", (_, { variablePrefix }) => {
       return {
         type: "ruleset",
-        selector: {
-          combinator,
-        },
+        selector: combine,
         declaration: {
           [stringifyCustomProperty(SPACE_Y_REVERSE, variablePrefix)]: 1,
         },

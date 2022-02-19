@@ -1,5 +1,5 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
-import type { EntriesSpecifier, RuleSet } from "../../core/types.ts";
+import type { EntriesSpecifier, SpecifierRuleSet } from "../../core/types.ts";
 
 export const prose: EntriesSpecifier = [
   ["DEFAULT", (_, { variablePrefix }) => {
@@ -122,11 +122,9 @@ export const prose: EntriesSpecifier = [
     };
 
     const ruleSets = Object.entries(DEFAULT).map(([key, value]) => {
-      const ruleSet: RuleSet = {
+      const ruleSet: SpecifierRuleSet = {
         type: "ruleset",
-        selector: {
-          pseudo: ` :where(${key})`,
-        },
+        selector: (selector) => `${selector}:where(${key})`,
         declaration: value,
       };
       return ruleSet;

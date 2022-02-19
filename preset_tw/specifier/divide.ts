@@ -17,32 +17,34 @@ import {
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
+
+function combine(selector: string): string {
+  return `${selector}${combinator}`;
+}
 export const divide: EntriesSpecifier = [
   ["solid", {
     declaration: { "border-style": "solid" },
-    selector: { combinator },
+    selector: combine,
     type: "ruleset",
   }],
   ["dashed", {
     type: "ruleset",
-    selector: { combinator },
+    selector: combine,
     declaration: { "border-style": "dashed" },
   }],
   ["dotted", {
     type: "ruleset",
-    selector: { combinator },
+    selector: combine,
     declaration: { "border-style": "dotted" },
   }],
   ["double", {
     type: "ruleset",
-    selector: {
-      combinator,
-    },
+    selector: combine,
     declaration: { "border-style": "double" },
   }],
   ["none", {
     type: "ruleset",
-    selector: { combinator },
+    selector: combine,
     declaration: { "border-style": "none" },
   }],
   ["x", [
@@ -54,9 +56,7 @@ export const divide: EntriesSpecifier = [
 
       return {
         type: "ruleset",
-        selector: {
-          combinator,
-        },
+        selector: combine,
         declaration: {
           [variable]: 0,
           "border-right-width": `calc(1px * ${varFn})`,
@@ -68,9 +68,7 @@ export const divide: EntriesSpecifier = [
       "reverse",
       (_, { variablePrefix }) => ({
         type: "ruleset",
-        selector: {
-          combinator,
-        },
+        selector: combine,
         declaration: {
           [stringifyCustomProperty("divide-x-reverse", variablePrefix)]: 1,
         },
@@ -86,7 +84,7 @@ export const divide: EntriesSpecifier = [
           );
           return {
             type: "ruleset" as const,
-            selector: { combinator },
+            selector: combine,
             declaration: {
               [variable]: 0,
               "border-right-width": `calc(${px} * ${varFn})`,
@@ -108,9 +106,7 @@ export const divide: EntriesSpecifier = [
 
       return {
         type: "ruleset",
-        selector: {
-          combinator,
-        },
+        selector: combine,
         declaration: {
           [variable]: 0,
           "border-top-width": `calc(1px * calc(1 - ${varFn}))`,
@@ -122,9 +118,7 @@ export const divide: EntriesSpecifier = [
       "reverse",
       (_, { variablePrefix }) => ({
         type: "ruleset",
-        selector: {
-          combinator,
-        },
+        selector: combine,
         declaration: {
           [stringifyCustomProperty("divide-y-reverse", variablePrefix)]: 1,
         },
@@ -141,9 +135,7 @@ export const divide: EntriesSpecifier = [
             );
             return {
               type: "ruleset",
-              selector: {
-                combinator,
-              },
+              selector: combine,
               declaration: {
                 [variable]: 0,
                 "border-top-width": `calc(${px} * calc(1 - ${varFn}))`,
@@ -164,9 +156,7 @@ export const divide: EntriesSpecifier = [
         parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
           some: (color) => ({
             type: "ruleset",
-            selector: {
-              combinator,
-            },
+            selector: combine,
             declaration: { "border-color": color },
           }),
           none: undefined,
@@ -182,7 +172,7 @@ export const divide: EntriesSpecifier = [
     ).match({
       some: (color) => ({
         type: "ruleset",
-        selector: { combinator },
+        selector: combine,
         declaration: { "border-color": color },
       }),
       none: undefined,
@@ -199,16 +189,12 @@ export const divide: EntriesSpecifier = [
         .match({
           some: (color) => ({
             type: "ruleset",
-            selector: {
-              combinator,
-            },
+            selector: combine,
             declaration: { "border-color": color },
           }),
           none: {
             type: "ruleset",
-            selector: {
-              combinator,
-            },
+            selector: combine,
             declaration: { "border-color": color },
           },
         });
