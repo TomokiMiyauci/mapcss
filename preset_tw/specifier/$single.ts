@@ -39,7 +39,7 @@ import {
   re$PositiveNumberPer$PositiveNumber,
   reBracket_$,
 } from "../../core/utils/regexp.ts";
-import { AUTO, HIDDEN } from "../../constants.ts";
+import { AUTO } from "../../constants.ts";
 import { minWidthMediaQuery } from "../modifiers/breakpoint.ts";
 
 const VERTICAL_ALIGN = "vertical-align";
