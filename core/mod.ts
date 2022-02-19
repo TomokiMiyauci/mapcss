@@ -1,6 +1,6 @@
 import { filterValues, has, isString, prop } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
-import { resolvePostProcessor, resolveSpecifierMap } from "./resolve.ts";
+import { resolveConfig, resolveSpecifierMap } from "./resolve.ts";
 import {
   cssStatements2CSSNestedModule,
   stringifyCSSNestedModule,
@@ -14,7 +14,6 @@ import type {
   SpecifierMap,
   Theme,
 } from "./types.ts";
-import { resolveConfig } from "./config.ts";
 import {
   declarationOrderProcessor,
   statementOrderProcessor,
@@ -103,7 +102,6 @@ export function generateStyleSheet(
   {
     separator = "-",
     variablePrefix = "map-",
-    postProcess = [],
     charMap = { "_": " " },
     ...config
   }: Partial<
@@ -111,15 +109,18 @@ export function generateStyleSheet(
   >,
   input: Set<string> | string,
 ): GenerateResult {
-  postProcess.unshift(statementOrderProcessor);
-  postProcess.unshift(declarationOrderProcessor);
+  const { postProcess: _postProcess = [], ...rest } = config;
+  _postProcess.push(statementOrderProcessor);
+  _postProcess.push(declarationOrderProcessor);
 
-  const { syntaxes, modifierMap, theme, specifierMap } = resolveConfig(config);
-  const _processors = (config.presets ?? []).map(({ postProcessor }) =>
-    postProcessor
-  )
-    .flat();
-  const processors = resolvePostProcessor(...postProcess, ..._processors);
+  const {
+    syntaxes,
+    modifierMap,
+    theme,
+    specifierMap,
+    postProcess: processors,
+  } = resolveConfig({ ...rest, postProcess: _postProcess });
+
   const tokens = isString(input) ? extractSplit(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();

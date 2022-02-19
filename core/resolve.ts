@@ -1,5 +1,6 @@
 import {
   Arrayable,
+  deepMerge,
   distinctBy,
   Either,
   head,
@@ -18,6 +19,7 @@ import {
 import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import type {
+  Config,
   CSSStatement,
   Declaration,
   PostProcessor,
@@ -25,6 +27,8 @@ import type {
   SpecifierContext,
   SpecifierDefinition,
   SpecifierMap,
+  Syntax,
+  Theme,
   ThemeContext,
 } from "./types.ts";
 
@@ -227,9 +231,78 @@ export function resolveTheme(
   }
 }
 
+function pickByName({ name }: { name: string }): string {
+  return name;
+}
+
 export function resolvePostProcessor(
   ...postProcessors: PostProcessor[]
 ): PostProcessor[] {
-  const processor = distinctBy(postProcessors, ({ name }) => name);
+  const processor = distinctBy(postProcessors, pickByName);
   return sortBy(processor, ({ order }) => order ?? 0);
+}
+
+export function resolveSyntax(...syntaxes: Syntax[]): Syntax[] {
+  return distinctBy(syntaxes, pickByName);
+}
+
+/** resolve config to deep merge */
+export function resolveConfig(
+  {
+    syntaxes: _syntaxes = [],
+    presets = [],
+    specifierMap: _specifierMap = {},
+    theme: _theme = {},
+    postProcess: _postProcess = [],
+    modifierMap: _modifierMap = {},
+  }: Readonly<
+    Partial<
+      Pick<
+        Config,
+        | "specifierMap"
+        | "modifierMap"
+        | "theme"
+        | "presets"
+        | "syntaxes"
+        | "postProcess"
+      >
+    >
+  >,
+): Pick<
+  Config,
+  "specifierMap" | "modifierMap" | "theme" | "syntaxes" | "postProcess"
+> {
+  const _presets = distinctBy(presets, pickByName);
+  const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
+    .reduce((acc, cur) => {
+      return deepMerge(acc, cur);
+    }, _modifierMap);
+  const theme = _presets.map(({ theme }) => theme).reduce(
+    (acc, cur) => {
+      return deepMerge(acc as any, cur as any) as Theme;
+    },
+    _theme,
+  );
+  const syntaxes = resolveSyntax(
+    ..._syntaxes,
+    ..._presets.map(({ syntaxes }) => syntaxes).flat(),
+  );
+  const specifierMap = _presets.map(({ specifierMap }) => specifierMap).reduce(
+    (acc, cur) => {
+      return deepMerge(acc, cur);
+    },
+    _specifierMap,
+  );
+  const postProcess = resolvePostProcessor(
+    ..._postProcess,
+    ..._presets.map(({ postProcessor }) => postProcessor).flat(),
+  );
+
+  return {
+    specifierMap,
+    theme,
+    modifierMap,
+    syntaxes,
+    postProcess,
+  };
 }
