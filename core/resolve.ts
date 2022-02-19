@@ -1,5 +1,6 @@
 import {
   Arrayable,
+  distinctBy,
   Either,
   head,
   init,
@@ -12,12 +13,14 @@ import {
   prop,
   propPath,
   Right,
+  sortBy,
 } from "../deps.ts";
 import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import type {
   CSSStatement,
   Declaration,
+  PostProcessor,
   Specifier,
   SpecifierContext,
   SpecifierDefinition,
@@ -222,4 +225,11 @@ export function resolveTheme(
       return result;
     }
   }
+}
+
+export function resolvePostProcessor(
+  ...postProcessors: PostProcessor[]
+): PostProcessor[] {
+  const processor = distinctBy(postProcessors, ({ name }) => name);
+  return sortBy(processor, ({ order }) => order ?? 0);
 }

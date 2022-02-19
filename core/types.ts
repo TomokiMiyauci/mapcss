@@ -27,6 +27,7 @@ export type Preset = {
   theme: Theme;
   modifierMap: ModifierMap;
   syntaxes: Syntax[];
+  postProcessor: PostProcessor[];
 };
 
 export type ModifierContext = ThemeContext & {
@@ -45,10 +46,7 @@ export interface Config {
   separator: string;
   syntaxes: Syntax[];
 
-  postProcess: {
-    name: string;
-    fn: (cssStatements: Required<CSSStatement>[]) => Required<CSSStatement>[];
-  }[];
+  postProcess: PostProcessor[];
 
   /**
    * @default 'map-'
@@ -99,6 +97,10 @@ type ParseResult = {
   localModifiers?: string[];
 };
 
+type Context = {
+  variablePrefix: string;
+};
+
 export type Syntax = {
   name: string;
   fn: (context: SyntaxContext) => ParseResult | undefined;
@@ -108,7 +110,11 @@ export type PostProcessor = {
   name: string;
   fn: (
     cssStatements: Required<CSSStatement>[],
+    context: Context,
   ) => Required<CSSStatement>[];
+
+  /** order of processor */
+  order?: number;
 };
 
 export type Declaration = Record<string, string | number>;

@@ -1,6 +1,6 @@
 import { filterValues, has, isString, prop } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
-import { resolveSpecifierMap } from "./resolve.ts";
+import { resolvePostProcessor, resolveSpecifierMap } from "./resolve.ts";
 import {
   cssStatements2CSSNestedModule,
   stringifyCSSNestedModule,
@@ -111,7 +111,15 @@ export function generateStyleSheet(
   >,
   input: Set<string> | string,
 ): GenerateResult {
+  postProcess.unshift(statementOrderProcessor);
+  postProcess.unshift(declarationOrderProcessor);
+
   const { syntaxes, modifierMap, theme, specifierMap } = resolveConfig(config);
+  const _processors = (config.presets ?? []).map(({ postProcessor }) =>
+    postProcessor
+  )
+    .flat();
+  const processors = resolvePostProcessor(...postProcess, ..._processors);
   const tokens = isString(input) ? extractSplit(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();
@@ -160,17 +168,16 @@ export function generateStyleSheet(
       );
       if (result) {
         matched.add(token);
+      } else {
+        unmatched.add(token);
       }
       return result;
     }).filter(Boolean).flat() as Required<CSSStatement>[];
     return executeResults;
   }).flat();
 
-  postProcess.unshift(statementOrderProcessor);
-  postProcess.unshift(declarationOrderProcessor);
-
-  const final = postProcess.reduce((acc, cur) => {
-    return cur.fn(acc);
+  const final = processors.reduce((acc, cur) => {
+    return cur.fn(acc, { variablePrefix });
   }, results);
   const cssNestedModule = cssStatements2CSSNestedModule(final);
   const css = stringifyCSSNestedModule(cssNestedModule);
