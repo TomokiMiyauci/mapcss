@@ -403,7 +403,7 @@ const m: TestCase = [
   ["m-1.5", ".m-1\\.5{margin:0.375rem;}"],
   ["m-2.5", ".m-2\\.5{margin:0.625rem;}"],
   ["m-3.5", ".m-3\\.5{margin:0.875rem;}"],
-  ["m-[1px]", ".m-\\[1px\\]{margin:1px;}"]
+  ["m-[1px]", ".m-\\[1px\\]{margin:1px;}"],
 ];
 
 export const $single: TestCase = [
@@ -425,5 +425,5 @@ export const $single: TestCase = [
   ...items,
   ...leading,
   ...left,
-  ...m
+  ...m,
 ];
