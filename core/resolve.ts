@@ -76,7 +76,7 @@ export function resolveSpecifierMap(
   context: SpecifierContext,
 ): CSSStatement[] | undefined {
   const { separator } = context;
-  const classSelector = `.${escapeRegExp(context.token)}`;
+  const classSelector = context.token ? `.${escapeRegExp(context.token)}` : "";
 
   const paths = leftSplit(value, separator);
 
