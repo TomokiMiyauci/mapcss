@@ -12,51 +12,45 @@ test("resolveSpecifierMap", () => {
       type: "ruleset",
       selector: "",
       order: 0,
-      declaration: { display: "block" },
+      declarations: [{ property: "display", value: "block" }],
     }]],
     ["test", [{
       type: "ruleset",
       selector: "",
       order: 0,
-      declaration: { display: "abc" },
+      declarations: [{ property: "display", value: "abc" }],
     }]],
     ["container", [{
-      declaration: { width: "100%" },
+      declarations: [{ property: "width", value: "100%" }],
       type: "ruleset",
       selector: "",
       order: 0,
     }, {
-      declaration: { height: "100%" },
+      declarations: [{ property: "height", value: "100%" }],
       type: "ruleset",
       selector: "",
       order: 0,
     }]],
     ["test1", [{
-      declaration: {
-        display: "none",
-      },
+      declarations: [{ property: "display", value: "none" }],
       type: "ruleset",
       selector: "",
       order: 0,
     }, {
-      declaration: {
-        "--map-test": 1,
-      },
+      declarations: [{ property: "--map-test", value: 1 }],
       type: "ruleset",
       selector: "",
       order: 0,
     }]],
     ["test2", [{
-      declaration: {
-        display: "none",
-      },
+      declarations: [{ property: "display", value: "none" }],
       type: "ruleset",
       selector: "",
       order: 0,
     }]],
     ["container2", [{
       type: "ruleset",
-      declaration: { width: "100%" },
+      declarations: [{ property: "width", value: "100%" }],
       selector: "",
       order: 0,
     }]],
@@ -64,17 +58,17 @@ test("resolveSpecifierMap", () => {
       selector: "",
       order: 0,
       type: "ruleset",
-      declaration: { display: "inline" },
+      declarations: [{ property: "display", value: "inline" }],
     }]],
     ["inline-block", [{
       type: "ruleset",
-      declaration: { display: "inline-block" },
+      declarations: [{ property: "display", value: "inline-block" }],
       selector: "",
       order: 0,
     }]],
     ["inline-flex", [{
       type: "ruleset",
-      declaration: { display: "inline-flex" },
+      declarations: [{ property: "display", value: "inline-flex" }],
       selector: "",
       order: 0,
     }]],
@@ -82,75 +76,75 @@ test("resolveSpecifierMap", () => {
       selector: "",
       order: 0,
       type: "ruleset",
-      declaration: { "z-index": "auto" },
+      declarations: [{ property: "z-index", value: "auto" }],
     }]],
     ["z-0", [{
       type: "ruleset",
-      declaration: { "z-index": 0 },
+      declarations: [{ property: "z-index", value: 0 }],
       selector: "",
       order: 0,
     }]],
     ["z-1", [{
       type: "ruleset",
-      declaration: { "z-index": 1 },
+      declarations: [{ property: "z-index", value: 1 }],
       selector: "",
       order: 0,
     }, {
       type: "ruleset",
-      declaration: { "--test": 1 },
+      declarations: [{ property: "--test", value: 1 }],
       selector: "",
       order: 0,
     }]],
     ["z-2", [{
       type: "ruleset",
-      declaration: { "z-index": 2 },
+      declarations: [{ property: "z-index", value: 2 }],
       selector: "",
       order: 0,
     }, {
       type: "ruleset",
-      declaration: { "--test": 2 },
+      declarations: [{ property: "--test", value: 2 }],
       selector: "",
       order: 0,
     }]],
     ["z-3", [{
       type: "ruleset",
-      declaration: { "z-index": 3 },
+      declarations: [{ property: "z-index", value: 3 }],
       selector: "",
       order: 0,
     }]],
     ["z-4", [{
       type: "ruleset",
-      declaration: { "z-index": 4 },
+      declarations: [{ property: "z-index", value: 4 }],
       selector: "",
       order: 0,
     }]],
     ["z-5", [{
       type: "ruleset",
-      declaration: { "z-index": 5 },
+      declarations: [{ property: "z-index", value: 5 }],
       selector: "",
       order: 0,
     }]],
     ["z-6", [{
       type: "ruleset",
-      declaration: { "z-index": 6 },
+      declarations: [{ property: "z-index", value: 6 }],
       selector: "",
       order: 0,
     }, {
       type: "ruleset",
-      declaration: { "--test": 6 },
+      declarations: [{ property: "--test", value: 6 }],
       selector: "",
       order: 0,
     }]],
     ["z-7", [{
       type: "ruleset",
-      declaration: { "z-index": "7" },
+      declarations: [{ property: "z-index", value: "7" }],
       selector: "",
       order: 0,
     }]],
     ["z-full", [
       {
         type: "ruleset",
-        declaration: { "z-index": 0 },
+        declarations: [{ property: "z-index", value: 0 }],
         selector: "",
         order: 0,
       },
@@ -158,7 +152,7 @@ test("resolveSpecifierMap", () => {
     ["z-[100]", [
       {
         type: "ruleset",
-        declaration: { "z-index": "100" },
+        declarations: [{ property: "z-index", value: "100" }],
         selector: "",
         order: 0,
       },
@@ -166,7 +160,7 @@ test("resolveSpecifierMap", () => {
     ["container3", [
       {
         type: "ruleset",
-        declaration: { width: "100%" },
+        declarations: [{ property: "width", value: "100%" }],
         selector: "",
         order: 0,
       },
@@ -177,7 +171,7 @@ test("resolveSpecifierMap", () => {
         order: 1,
         children: {
           type: "ruleset",
-          declaration: { "max-width": "640px" },
+          declarations: [{ property: "max-width", value: "640px" }],
           selector: "",
           order: 0,
         },
@@ -189,7 +183,7 @@ test("resolveSpecifierMap", () => {
         order: 2,
         children: {
           type: "ruleset",
-          declaration: { "max-width": "768px" },
+          declarations: [{ property: "max-width", value: "768px" }],
           selector: "",
           order: 0,
         },
@@ -201,7 +195,7 @@ test("resolveSpecifierMap", () => {
         order: 3,
         children: {
           type: "ruleset",
-          declaration: { "max-width": "1024px" },
+          declarations: [{ property: "max-width", value: "1024px" }],
           selector: "",
           order: 0,
         },
@@ -213,7 +207,7 @@ test("resolveSpecifierMap", () => {
         order: 4,
         children: {
           type: "ruleset",
-          declaration: { "max-width": "1280px" },
+          declarations: [{ property: "max-width", value: "1280px" }],
           selector: "",
           order: 0,
         },
@@ -225,7 +219,7 @@ test("resolveSpecifierMap", () => {
         order: 5,
         children: {
           type: "ruleset",
-          declaration: { "max-width": "1536px" },
+          declarations: [{ property: "max-width", value: "1536px" }],
           selector: "",
           order: 0,
         },
@@ -238,7 +232,7 @@ test("resolveSpecifierMap", () => {
       container: [{ width: "100%" }, { height: "100%" }],
       container2: {
         type: "ruleset",
-        "declaration": {
+        declaration: {
           width: "100%",
         },
       },

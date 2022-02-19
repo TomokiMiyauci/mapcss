@@ -19,6 +19,7 @@ import {
 } from "../deps.ts";
 import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
+import { propertyValue } from "./utils/format.ts";
 import type {
   Config,
   CSSStatement,
@@ -189,11 +190,12 @@ function toCSSStatement(
   classSelector: string,
 ): CSSStatement {
   if (definition.type === "ruleset") {
-    const { selector, order = 0, ...rest } = definition;
+    const { selector, order = 0, declaration, ...rest } = definition;
     const _ = selector?.(classSelector) ?? classSelector;
     return {
       order,
       selector: _,
+      declarations: Object.entries(declaration).map(propertyValue),
       ...rest,
     };
   }

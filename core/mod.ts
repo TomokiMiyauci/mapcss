@@ -65,15 +65,15 @@ function execute(
         if (!acc) return;
 
         const handler = localModifierMap[cur];
-        const declaration = handler.fn(acc.declaration, {
+        const declarations = handler.fn(acc.declarations, {
           theme,
           modifier: cur,
           separator,
         });
-        if (!declaration) return;
+        if (!declarations) return;
         return {
           ...acc,
-          declaration,
+          declarations,
         };
       },
       cssStatement as RuleSet | undefined,

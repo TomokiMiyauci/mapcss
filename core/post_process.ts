@@ -1,3 +1,4 @@
+import { sortBy } from "../deps.ts";
 import type { PostProcessor } from "./types.ts";
 
 export const statementOrderProcessor: PostProcessor = {
@@ -28,14 +29,11 @@ export const declarationOrderProcessor: PostProcessor = {
   fn: (cssStatements) => {
     return cssStatements.map((statement) => {
       if (statement.type === "ruleset") {
-        const declaration = Object.entries(statement.declaration).sort(
-          ([keyA], [keyB]) => {
-            if (keyA > keyB) return 1;
-            if (keyA < keyB) return -1;
-            return 0;
-          },
+        const declarations = sortBy(
+          statement.declarations,
+          ({ property }) => property,
         );
-        return { ...statement, declaration: Object.fromEntries(declaration) };
+        return { ...statement, declarations };
       }
       return statement;
     });

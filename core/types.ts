@@ -1,7 +1,7 @@
 import type { Arrayable, ReplaceKeys } from "../deps.ts";
 
 export type CSSNestedModule = {
-  [k: string]: CSSNestedModule | Declaration;
+  [k: string]: CSSNestedModule | OrderedDeclarations;
 };
 
 export type SpecifierContext =
@@ -66,9 +66,9 @@ export type GlobalModifierHandler = (
 ) => Required<CSSStatement> | undefined;
 
 export type LocalModifierHandler = (
-  declaration: RuleSet["declaration"],
+  declarations: RuleSet["declarations"],
   context: ModifierContext,
-) => RuleSet["declaration"] | undefined;
+) => RuleSet["declarations"] | undefined;
 
 export type GlobalModifier = {
   type: "global";
@@ -118,6 +118,10 @@ export type PostProcessor = {
 };
 
 export type Declaration = Record<string, string | number>;
+export type OrderedDeclarations = {
+  property: string;
+  value: string | number;
+}[];
 export type CSSStatement = GroupAtRule | RuleSet;
 
 type BaseRule = {
@@ -150,11 +154,13 @@ export type SpecifierGroupAtRule = {
   children: SpecifierGroupAtRule | SpecifierRuleSet;
 } & BaseRule;
 
-export type RuleSet = ReplaceKeys<
-  Required<SpecifierRuleSet>,
-  "selector",
-  { selector: string }
->;
+export type RuleSet =
+  & ReplaceKeys<
+    Required<Omit<SpecifierRuleSet, "declaration">>,
+    "selector",
+    { selector: string }
+  >
+  & { declarations: OrderedDeclarations };
 
 export type SpecifierRuleSet = {
   type: "ruleset";

@@ -1,4 +1,4 @@
-import { customProperty } from "../core/utils/format.ts";
+import { customProperty, propertyValue } from "../core/utils/format.ts";
 import type { PostProcessor } from "../core/types.ts";
 
 export const twCustomPropertyInjector: PostProcessor = {
@@ -101,7 +101,7 @@ export const twCustomPropertyInjector: PostProcessor = {
       "type": "ruleset",
       "order": -1,
       selector: "*, ::before, ::after",
-      declaration,
+      declarations: Object.entries(declaration).map(propertyValue),
     });
 
     return cssStatement;

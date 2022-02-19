@@ -1,6 +1,7 @@
 import type {
   CSSStatement,
   Declaration,
+  OrderedDeclarations,
   SpecifierDefinition,
 } from "./../types.ts";
 import { isFunction, isNumber, isObject, isString, prop } from "../../deps.ts";
@@ -35,4 +36,18 @@ export function isSpecifierDefinition(
     }
   }
   return false;
+}
+
+export function isOrderedDeclarations(
+  value: unknown,
+): value is OrderedDeclarations {
+  return Array.isArray(value) &&
+    value.every((obj) => {
+      if (isObject(obj)) {
+        const property = prop("property", obj);
+        const value = prop("value", obj);
+        return isString(property) && isString(value) || isNumber(value);
+      }
+      return false;
+    });
 }
