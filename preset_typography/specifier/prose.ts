@@ -1,4 +1,5 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
+import { parseSelector, SelectorType, stringifySelector } from "../../deps.ts";
 import type { EntriesSpecifier, SpecifierRuleSet } from "../../core/types.ts";
 
 export const prose: EntriesSpecifier = [
@@ -7,6 +8,11 @@ export const prose: EntriesSpecifier = [
       varFn(customProperty(property, variablePrefix));
 
     const DEFAULT: Record<string, Record<string, string | number>> = {
+      "h1,h2,h3,h4,h5,h6": {
+        "color": varFnProperty("prose-headings"),
+        "font-weight": 600,
+        "line-height": 1.25,
+      },
       "a": {
         "color": varFnProperty("prose-links"),
         "text-decoration": "underline",
@@ -121,14 +127,50 @@ export const prose: EntriesSpecifier = [
       },
     };
 
-    const ruleSets = Object.entries(DEFAULT).map(([key, value]) => {
-      const ruleSet: SpecifierRuleSet = {
-        type: "ruleset",
-        selector: (selector) => `${selector}:where(${key})`,
+    const selectorListed = Object.entries(DEFAULT).map(([selector, value]) => {
+      return {
+        selectorList: parseSelector(selector),
         declaration: value,
       };
-      return ruleSet;
     });
+
+    const selectorSplitted = selectorListed.map(
+      ({ selectorList: _selectorList, ...rest }) => {
+        const selectorList = _selectorList.map((selectors) => {
+          const i = selectors.findIndex((selector) =>
+            (selector.type === SelectorType.Pseudo &&
+              selector.name !== "not") ||
+            selector.type === SelectorType.PseudoElement
+          );
+          if (i < 0) return { where: selectors, pseudo: [] };
+          const where = selectors.slice(0, i);
+          const pseudo = selectors.slice(i);
+          return {
+            where,
+            pseudo,
+          };
+        });
+        return { selectorList, ...rest };
+      },
+    );
+
+    const ruleSets = selectorSplitted.map(({ declaration, selectorList }) => {
+      const selectors = selectorList.map(({ where, pseudo }) => {
+        return ` :where(${stringifySelector([where])}):not(.not-prose)${
+          stringifySelector([pseudo])
+        }`;
+      });
+
+      const specifierRuleSet: SpecifierRuleSet[] = selectors.map((selector) => {
+        return {
+          type: "ruleset" as const,
+          selector: (t) => `${t}${selector}`,
+          declaration,
+        };
+      });
+
+      return specifierRuleSet;
+    }).flat();
 
     return ruleSets;
   }],
