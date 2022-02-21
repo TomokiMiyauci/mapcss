@@ -1,3 +1,18 @@
+# [1.0.0-beta.12](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-02-21)
+
+
+### Bug Fixes
+
+* **preset_typography:** fix selector format with pseudo ([40fd062](https://github.com/TomokiMiyauci/mapcss/commit/40fd06232be89c8a639c1440eb2fa00ae256a810))
+
+
+### Features
+
+* **core:** change declaration data type to ordered array object ([4c6eef8](https://github.com/TomokiMiyauci/mapcss/commit/4c6eef80b214ddf08043a7269943ec300ac53ed8))
+* **core:** change modifier types to accept record style ([c044aba](https://github.com/TomokiMiyauci/mapcss/commit/c044aba5d45f83d4eb47aa6bc693c86f374120b9))
+* **core:** merge localModifire and globalModifier interface ([1a23111](https://github.com/TomokiMiyauci/mapcss/commit/1a23111ac63099ec0d57917346205a8c4bd43063))
+* **preset_tw:** add modifier of `group-hover` ([d5ffad1](https://github.com/TomokiMiyauci/mapcss/commit/d5ffad1594df4df27c1e8c5489eb4994facc034e))
+
 # [1.0.0-beta.11](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2022-02-19)
 
 
