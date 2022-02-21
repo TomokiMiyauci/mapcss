@@ -9,7 +9,6 @@ import {
   remarkFrontmatterProps,
   remarkTocProps,
 } from "https://deno.land/x/aleph_plugin_mdx@v1.3.0-beta.1/mod.ts";
-import { preserveReact } from "./plugins/inject.ts";
 import type { Config } from "aleph/types";
 
 export default <Config> {
