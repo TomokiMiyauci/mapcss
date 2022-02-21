@@ -60,41 +60,19 @@ export interface Config {
   charMap: Record<string, string>;
 }
 
-export type GlobalModifierHandler = (
-  cssStatement: Required<CSSStatement>,
-  context: ModifierContext,
-) => Required<CSSStatement> | undefined;
-
-export type LocalModifierHandler = (
-  declarations: RuleSet["declarations"],
-  context: ModifierContext,
-) => RuleSet["declarations"] | undefined;
-
-export type GlobalModifier = {
-  type: "global";
-  fn: GlobalModifierHandler;
-};
-
-export type LocalModifier = {
-  type: "local";
-  fn: LocalModifierHandler;
-};
-
 export type ModifierMap = Record<
   string | number,
-  GlobalModifier | LocalModifier
+  Modifier
 >;
 
-type SyntaxContext = {
+export type SyntaxContext = {
   token: string;
-  globalModifierNames: string[];
-  localModifierNames: string[];
+  modifierRoots: string[];
   specifierRoots: string[];
 };
-type ParseResult = {
+export type ParseResult = {
   specifier: string;
-  globalModifiers?: string[];
-  localModifiers?: string[];
+  modifiers?: string[];
 };
 
 type Context = {
@@ -188,6 +166,11 @@ export type EntriesSpecifier = [
 export type SpecifierCSSStatement = SpecifierGroupAtRule | SpecifierRuleSet;
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
+
+export type Modifier = (
+  cssStatement: CSSStatement,
+  context: ModifierContext,
+) => CSSStatement | undefined;
 
 export type SpecifierDefinition =
   | Arrayable<Declaration>

@@ -3,20 +3,23 @@ import { Syntax } from "../core/types.ts";
 export const twBasicSyntax: Syntax = {
   name: "tw-basic-syntax",
   fn: (
-    { token, localModifierNames },
+    { token },
   ) => {
     const regExpExecArray = RegExp(
-      `(?:(.+)\:)?(${localModifierNames.join("|")})?(.+)`,
+      `(?:(.+)\:)?(!|-)?(.+)`,
     ).exec(token);
     if (!regExpExecArray) return;
-    const [, globalModifier, localModifier, specifier] = regExpExecArray;
+    const [, stmtModifier, declModifier, specifier] = regExpExecArray;
+
+    const _stmtModifier = (stmtModifier as string | undefined)?.split(":") ??
+      [];
+    const _declModifier = (declModifier as string | undefined)
+      ? [declModifier]
+      : [];
 
     return {
-      globalModifiers: (globalModifier as string | undefined)?.split(":") ?? [],
       specifier,
-      localModifiers: (localModifier as string | undefined)
-        ? [localModifier]
-        : undefined,
+      modifiers: _stmtModifier.concat(_declModifier),
     };
   },
 };

@@ -2,7 +2,7 @@ import { resolveTheme } from "../../core/resolve.ts";
 import { Some } from "../../deps.ts";
 import type {
   CSSStatement,
-  GlobalModifier,
+  Modifier,
   ModifierContext,
 } from "./../../core/types.ts";
 
@@ -11,10 +11,10 @@ export function minWidthMediaQuery(value: string): string {
 }
 
 function breakPointHandler(
-  cssStatement: Required<CSSStatement>,
+  cssStatement: CSSStatement,
   order: number,
   context: ModifierContext,
-): Required<CSSStatement> | undefined {
+): CSSStatement | undefined {
   return Some(resolveTheme(context.modifier, "screen", context)).map(
     minWidthMediaQuery,
   ).match({
@@ -29,27 +29,17 @@ function breakPointHandler(
   });
 }
 
-export const sm: GlobalModifier = {
-  type: "global",
-  fn: (cssStatement, context) => breakPointHandler(cssStatement, 1, context),
-};
+export const sm: Modifier = (cssStatement, context) =>
+  breakPointHandler(cssStatement, 1, context);
 
-export const md: GlobalModifier = {
-  type: "global",
-  fn: (cssStatement, context) => breakPointHandler(cssStatement, 2, context),
-};
+export const md: Modifier = (cssStatement, context) =>
+  breakPointHandler(cssStatement, 2, context);
 
-export const lg: GlobalModifier = {
-  type: "global",
-  fn: (cssStatement, context) => breakPointHandler(cssStatement, 3, context),
-};
+export const lg: Modifier = (cssStatement, context) =>
+  breakPointHandler(cssStatement, 3, context);
 
-export const xl: GlobalModifier = {
-  type: "global",
-  fn: (cssStatement, context) => breakPointHandler(cssStatement, 4, context),
-};
+export const xl: Modifier = (cssStatement, context) =>
+  breakPointHandler(cssStatement, 4, context);
 
-export const $2xl: GlobalModifier = {
-  type: "global",
-  fn: (cssStatement, context) => breakPointHandler(cssStatement, 5, context),
-};
+export const $2xl: Modifier = (cssStatement, context) =>
+  breakPointHandler(cssStatement, 5, context);

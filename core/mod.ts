@@ -1,4 +1,4 @@
-import { filterValues, has, isString, prop } from "../deps.ts";
+import { isString, prop } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
 import { resolveConfig, resolveSpecifierMap } from "./resolve.ts";
 import {
@@ -8,9 +8,8 @@ import {
 import type {
   Config,
   CSSStatement,
-  GlobalModifier,
-  LocalModifier,
-  RuleSet,
+  ModifierMap,
+  ParseResult,
   SpecifierMap,
   Theme,
 } from "./types.ts";
@@ -27,29 +26,23 @@ export interface GenerateResult {
 }
 
 function execute(
-  { specifier, globalModifiers, localModifiers }: {
-    specifier: string;
-    globalModifiers: string[];
-    localModifiers: string[];
-  },
+  { specifier, modifiers }: Required<ParseResult>,
   {
     theme,
     specifierMap,
     separator,
     token,
-    globalModifierMap,
-    localModifierMap,
+    modifierMap,
     variablePrefix,
   }: {
     theme: Theme;
     specifierMap: SpecifierMap;
-    globalModifierMap: Record<string, GlobalModifier>;
-    localModifierMap: Record<string, LocalModifier>;
+    modifierMap: ModifierMap;
     separator: string;
     token: string;
     variablePrefix: string;
   },
-): Required<CSSStatement>[] | undefined {
+): CSSStatement[] | undefined {
   const CSSStatements = resolveSpecifierMap(specifier, specifierMap, {
     theme,
     separator,
@@ -58,41 +51,19 @@ function execute(
   });
   if (!CSSStatements) return;
 
-  const maybe = CSSStatements.map((cssStatement) => {
-    if (cssStatement.type === "groupAtRule") return cssStatement;
-    return localModifiers.reduce(
-      (acc, cur) => {
-        if (!acc) return;
-
-        const handler = localModifierMap[cur];
-        const declarations = handler.fn(acc.declarations, {
-          theme,
-          modifier: cur,
-          separator,
-        });
-        if (!declarations) return;
-        return {
-          ...acc,
-          declarations,
-        };
-      },
-      cssStatement as RuleSet | undefined,
-    );
-  }).filter(Boolean) as Required<CSSStatement>[];
-
-  const statement = maybe.map((cssStatement) => {
-    return globalModifiers.reduce((acc, cur) => {
+  const statement = CSSStatements.map((cssStatement) => {
+    return modifiers.reduce((acc, cur) => {
       if (!acc) return;
-      const handler = globalModifierMap[cur];
-      const result = handler.fn(acc, {
+      const handler = modifierMap[cur];
+      const result = handler(acc, {
         theme,
         modifier: cur,
         separator,
       });
       if (!result) return;
       return result;
-    }, cssStatement as Required<CSSStatement> | undefined);
-  }).filter(Boolean) as Required<CSSStatement>[];
+    }, cssStatement as CSSStatement | undefined);
+  }).filter(Boolean) as CSSStatement[];
 
   return statement;
 }
@@ -125,43 +96,23 @@ export function generateStyleSheet(
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
-  const globalModifierMap = filterValues(
-    modifierMap,
-    ({ type }) => type === "global",
-  ) as Record<string, GlobalModifier>;
-  const localModifierMap = filterValues(
-    modifierMap,
-    ({ type }) => type === "local",
-  ) as Record<string, LocalModifier>;
-
   const results = Array.from(tokens).map((token) => {
     const mappedToken = mapChar(token, charMap);
     const executeResults = syntaxes.map(({ fn }) => {
       const parseResult = fn({
         token: mappedToken,
-        globalModifierNames: Object.keys(globalModifierMap),
-        localModifierNames: Object.keys(localModifierMap),
+        modifierRoots: Object.keys(modifierMap),
         specifierRoots: Object.keys(specifierMap),
       });
       if (!parseResult) return;
-      const { specifier, globalModifiers = [], localModifiers = [] } =
-        parseResult;
-
-      const hasDefinedGlobalModifiers = globalModifiers.every((modifier) =>
-        has(modifier, globalModifierMap)
-      );
-      const hasDefinedLocalModifiers = localModifiers.every((modifier) =>
-        has(modifier, localModifierMap)
-      );
-      if (!hasDefinedGlobalModifiers || !hasDefinedLocalModifiers) return;
+      const { specifier, modifiers = [] } = parseResult;
 
       const result = execute(
-        { specifier, globalModifiers, localModifiers },
+        { specifier, modifiers },
         {
           theme,
           specifierMap,
-          globalModifierMap,
-          localModifierMap,
+          modifierMap,
           separator,
           token,
           variablePrefix,
@@ -173,7 +124,7 @@ export function generateStyleSheet(
         unmatched.add(token);
       }
       return result;
-    }).filter(Boolean).flat() as Required<CSSStatement>[];
+    }).filter(Boolean).flat() as CSSStatement[];
     return executeResults;
   }).flat();
 

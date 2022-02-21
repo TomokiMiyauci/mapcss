@@ -3,7 +3,7 @@ import { min } from "./preset_tw/min.ts";
 import { $single } from "./preset_tw/$single.ts";
 import { specifierMap } from "../preset_tw/specifier/mod.ts";
 import { theme } from "../preset_tw/theme/mod.ts";
-import { modifierMap } from "../preset_tw/modifiers/mod.ts";
+import { modifierMap } from "../preset_tw/modifier/mod.ts";
 import { twBasicSyntax } from "../preset_tw/syntax.ts";
 import { generateStyleSheet } from "../mod.ts";
 

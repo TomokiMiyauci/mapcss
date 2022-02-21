@@ -1,11 +1,8 @@
-import type { GlobalModifier } from "./../../core/types.ts";
+import type { Modifier } from "./../../core/types.ts";
 
-export const dark: GlobalModifier = {
-  type: "global",
-  fn: (cssStatement, { modifier }) => {
-    if (cssStatement.type === "ruleset") {
-      cssStatement.selector = `.${modifier} ${cssStatement.selector}`;
-    }
-    return cssStatement;
-  },
+export const dark: Modifier = (cssStatement, { modifier }) => {
+  if (cssStatement.type === "ruleset") {
+    cssStatement.selector = `.${modifier} ${cssStatement.selector}`;
+  }
+  return cssStatement;
 };
