@@ -24,6 +24,8 @@ import type {
   Config,
   CSSStatement,
   Declaration,
+  ModifierContext,
+  ModifierMap,
   PostProcessor,
   Specifier,
   SpecifierContext,
@@ -301,4 +303,25 @@ export function resolveConfig(
     syntaxes,
     postProcess,
   };
+}
+
+export function resolveModifierMap(
+  modifier: string,
+  modifierMap: ModifierMap,
+  cssStatements: CSSStatement,
+  context: ModifierContext,
+): CSSStatement | undefined {
+  const { separator } = context;
+  const paths = leftSplit(modifier, separator);
+
+  for (const path of paths) {
+    const [first] = path;
+    const modifier = prop(first, modifierMap);
+
+    if (isUndefined(modifier)) continue;
+    const result = modifier(cssStatements, context);
+    if (result) {
+      return result;
+    }
+  }
 }

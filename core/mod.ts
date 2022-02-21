@@ -1,18 +1,15 @@
-import { isString, prop } from "../deps.ts";
+import { isString, isUndefined, prop } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
-import { resolveConfig, resolveSpecifierMap } from "./resolve.ts";
+import {
+  resolveConfig,
+  resolveModifierMap,
+  resolveSpecifierMap,
+} from "./resolve.ts";
 import {
   cssStatements2CSSNestedModule,
   stringifyCSSNestedModule,
 } from "./utils/format.ts";
-import type {
-  Config,
-  CSSStatement,
-  ModifierMap,
-  ParseResult,
-  SpecifierMap,
-  Theme,
-} from "./types.ts";
+import type { Config, CSSStatement } from "./types.ts";
 import {
   declarationOrderProcessor,
   statementOrderProcessor,
@@ -23,49 +20,6 @@ export interface GenerateResult {
   css: string;
   matched: Set<string>;
   unmatched: Set<string>;
-}
-
-function execute(
-  { specifier, modifiers }: Required<ParseResult>,
-  {
-    theme,
-    specifierMap,
-    separator,
-    token,
-    modifierMap,
-    variablePrefix,
-  }: {
-    theme: Theme;
-    specifierMap: SpecifierMap;
-    modifierMap: ModifierMap;
-    separator: string;
-    token: string;
-    variablePrefix: string;
-  },
-): CSSStatement[] | undefined {
-  const CSSStatements = resolveSpecifierMap(specifier, specifierMap, {
-    theme,
-    separator,
-    variablePrefix,
-    token,
-  });
-  if (!CSSStatements) return;
-
-  const statement = CSSStatements.map((cssStatement) => {
-    return modifiers.reduce((acc, cur) => {
-      if (!acc) return;
-      const handler = modifierMap[cur];
-      const result = handler(acc, {
-        theme,
-        modifier: cur,
-        separator,
-      });
-      if (!result) return;
-      return result;
-    }, cssStatement as CSSStatement | undefined);
-  }).filter(Boolean) as CSSStatement[];
-
-  return statement;
 }
 
 /** Generate CSS Style Sheet as string */
@@ -107,23 +61,32 @@ export function generateStyleSheet(
       if (!parseResult) return;
       const { specifier, modifiers = [] } = parseResult;
 
-      const result = execute(
-        { specifier, modifiers },
-        {
-          theme,
-          specifierMap,
-          modifierMap,
-          separator,
-          token,
-          variablePrefix,
-        },
+      const cssStatements = resolveSpecifierMap(specifier, specifierMap, {
+        theme,
+        variablePrefix,
+        separator,
+        token,
+      });
+      if (isUndefined(cssStatements)) return;
+
+      const results = modifiers.reduce(
+        (acc, modifier) =>
+          acc.map((cssStatement) =>
+            resolveModifierMap(modifier, modifierMap, cssStatement, {
+              theme,
+              separator,
+              modifier,
+            })
+          ).filter(Boolean) as CSSStatement[],
+        cssStatements,
       );
-      if (result) {
+
+      if (results.length) {
         matched.add(token);
       } else {
         unmatched.add(token);
       }
-      return result;
+      return results;
     }).filter(Boolean).flat() as CSSStatement[];
     return executeResults;
   }).flat();
