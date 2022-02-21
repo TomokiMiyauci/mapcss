@@ -32,6 +32,7 @@ export type Preset = {
 
 export type ModifierContext = ThemeContext & {
   modifier: string;
+  path: string[];
 };
 
 export interface Theme {
@@ -62,7 +63,7 @@ export interface Config {
 
 export type ModifierMap = Record<
   string | number,
-  Modifier
+  Modifier | ModifierDefinition
 >;
 
 export type SyntaxContext = {
@@ -167,7 +168,21 @@ export type SpecifierCSSStatement = SpecifierGroupAtRule | SpecifierRuleSet;
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
-export type Modifier = (
+export type EntriesModifier = [
+  RegExp,
+  (
+    regExpExecArray: RegExpExecArray,
+    cssStatement: CSSStatement,
+    context: ModifierContext,
+  ) => CSSStatement | undefined,
+][];
+
+export type RecordModifier = {
+  [k: string]: ModifierDefinition;
+};
+
+export type Modifier = RecordModifier;
+export type ModifierDefinition = (
   cssStatement: CSSStatement,
   context: ModifierContext,
 ) => CSSStatement | undefined;

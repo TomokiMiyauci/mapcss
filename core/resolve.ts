@@ -309,19 +309,21 @@ export function resolveModifierMap(
   modifier: string,
   modifierMap: ModifierMap,
   cssStatements: CSSStatement,
-  context: ModifierContext,
+  context: Omit<ModifierContext, "path">,
 ): CSSStatement | undefined {
   const { separator } = context;
   const paths = leftSplit(modifier, separator);
 
   for (const path of paths) {
-    const [first] = path;
+    const ctx = { ...context, path };
+    const [first, second] = path;
     const modifier = prop(first, modifierMap);
 
     if (isUndefined(modifier)) continue;
-    const result = modifier(cssStatements, context);
-    if (result) {
-      return result;
+    if (isFunction(modifier)) {
+      return modifier(cssStatements, ctx);
     }
+    const modifierDefinition = prop(second, modifier);
+    return modifierDefinition?.(cssStatements, ctx);
   }
 }
