@@ -3,13 +3,15 @@ import { min } from "./preset_tw/min.ts";
 import { $single } from "./preset_tw/$single.ts";
 import { specifierMap } from "../preset_tw/specifier/mod.ts";
 import { theme } from "../preset_tw/theme/mod.ts";
-import { modifierMap } from "../preset_tw/modifiers/mod.ts";
+import { modifierMap } from "../preset_tw/modifier/mod.ts";
 import { twBasicSyntax } from "../preset_tw/syntax.ts";
+import { modifier } from "./preset_tw/modifier.ts";
 import { generateStyleSheet } from "../mod.ts";
 
 const expects: [string, string][] = [
   ...min,
   ...$single,
+  ...modifier,
   ["break-after-auto", ".break-after-auto{break-after:auto;}"],
   ["break-after-avoid", ".break-after-avoid{break-after:avoid;}"],
   ["break-after-all", ".break-after-all{break-after:all;}"],
@@ -34395,29 +34397,6 @@ const expects: [string, string][] = [
   [
     "not-sr-only",
     ".not-sr-only{clip:auto;height:auto;margin:0;overflow:visible;padding:0;position:static;white-space:normal;width:auto;}",
-  ],
-  ["sm:block", "@media (min-width: 640px){.sm\\:block{display:block;}}"],
-  ["md:block", "@media (min-width: 768px){.md\\:block{display:block;}}"],
-  ["lg:block", "@media (min-width: 1024px){.lg\\:block{display:block;}}"],
-  ["xl:block", "@media (min-width: 1280px){.xl\\:block{display:block;}}"],
-  ["2xl:block", "@media (min-width: 1536px){.2xl\\:block{display:block;}}"],
-  ["dark:block", ".dark .dark\\:block{display:block;}"],
-  ["hover:block", ".hover\\:block:hover{display:block;}"],
-  ["focus:block", ".focus\\:block:focus{display:block;}"],
-  ["!w-1", ".\\!w-1{width:0.25rem !important;}"],
-  ["-w-1", ".-w-1{width:-0.25rem;}"],
-  ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem;}"],
-  [
-    "scrollbar:!w-1",
-    ".scrollbar\\:\\!w-1::-webkit-scrollbar{width:0.25rem !important;}",
-  ],
-  [
-    "scrollbar-track:rounded",
-    ".scrollbar-track\\:rounded::-webkit-scrollbar-track{border-radius:0.25rem;}",
-  ],
-  [
-    "scrollbar-thumb:rounded",
-    ".scrollbar-thumb\\:rounded::-webkit-scrollbar-thumb{border-radius:0.25rem;}",
   ],
 ];
 

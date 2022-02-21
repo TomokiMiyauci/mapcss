@@ -31,6 +31,12 @@ export {
   Right,
 } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
 export { isUndefined };
+export {
+  parse as parseSelector,
+  type Selector,
+  SelectorType,
+  stringify as stringifySelector,
+} from "https://esm.sh/css-what";
 
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
@@ -141,3 +147,15 @@ export type ReplaceKeys<U, T, Y> = {
     : k extends Exclude<keyof U, T> ? U[k]
     : never;
 };
+
+interface Chain<T> {
+  map<U>(fn: (val: T) => U): Chain<U>;
+  unwrap(): T | never;
+}
+
+export function chain<T>(val: T): Chain<T> {
+  return {
+    map: <U>(fn: (val: T) => U) => chain(fn(val)),
+    unwrap: (): T => val,
+  };
+}

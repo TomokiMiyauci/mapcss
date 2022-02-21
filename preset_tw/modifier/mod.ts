@@ -3,8 +3,9 @@ import { dark } from "./color_scheme.ts";
 import { pseudo, scrollbar, scrollbarThumb, scrollbarTrack } from "./pseudo.ts";
 import { $important } from "./important.ts";
 import { $minus } from "./minus.ts";
-
-export const modifierMap = {
+import { group } from "./group.ts";
+import type { ModifierMap } from "./../../core/types.ts";
+export const modifierMap: ModifierMap = {
   sm,
   md,
   lg,
@@ -18,4 +19,5 @@ export const modifierMap = {
   scrollbar,
   "scrollbar-track": scrollbarTrack,
   "scrollbar-thumb": scrollbarThumb,
+  group,
 };

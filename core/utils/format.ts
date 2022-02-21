@@ -1,6 +1,10 @@
-import { isDeclaration } from "./assert.ts";
+import { isOrderedDeclarations } from "./assert.ts";
 import { deepMerge } from "../../deps.ts";
-import type { CSSNestedModule, CSSStatement, Declaration } from "../types.ts";
+import type {
+  CSSNestedModule,
+  CSSStatement,
+  OrderedDeclarations,
+} from "../types.ts";
 import type { FilledRGBA, RGBA } from "./parse.ts";
 
 /** format numeric to `#.##`
@@ -88,9 +92,9 @@ export function cssStatements2CSSNestedModule(
 
 function constructCSS(cssStatement: CSSStatement): CSSNestedModule {
   if (cssStatement.type === "ruleset") {
-    const { selector, declaration } = cssStatement;
+    const { selector, declarations } = cssStatement;
 
-    return { [selector]: declaration };
+    return { [selector]: declarations };
   }
 
   const { identifier, rule, children } = cssStatement;
@@ -107,7 +111,7 @@ export function stringifyCSSNestedModule(
     ([selector, nestedModuleOrCSSObject]) => {
       const selectors = [..._selectors, selector];
 
-      if (isDeclaration(nestedModuleOrCSSObject)) {
+      if (isOrderedDeclarations(nestedModuleOrCSSObject)) {
         const dec = stringifyDeclaration(nestedModuleOrCSSObject);
         return selectors.reduceRight(
           (acc, cur) => {
@@ -128,11 +132,11 @@ export function stringifyCSSNestedModule(
 }
 
 export function stringifyDeclaration(
-  cssObject: Readonly<Declaration>,
+  orderedDeclarations: Readonly<OrderedDeclarations>,
   compress = true,
 ): string {
-  const content = Object.entries(cssObject).reduce(
-    (acc, [property, value]) =>
+  const content = orderedDeclarations.reduce(
+    (acc, { property, value }) =>
       `${acc}${withJoin(property, value, { middleOf: compress ? `:` : ": " })}`,
     "",
   );
@@ -173,4 +177,14 @@ export function stringifyCustomProperty(
 
 export function stringifyVarFunction(...value: string[]) {
   return `var(${value.join(" ")})`;
+}
+
+export function propertyValue([property, value]: [string, string | number]): {
+  property: string;
+  value: string | number;
+} {
+  return {
+    property,
+    value,
+  };
 }

@@ -1,7 +1,7 @@
 import type { Arrayable, ReplaceKeys } from "../deps.ts";
 
 export type CSSNestedModule = {
-  [k: string]: CSSNestedModule | Declaration;
+  [k: string]: CSSNestedModule | OrderedDeclarations;
 };
 
 export type SpecifierContext =
@@ -32,6 +32,7 @@ export type Preset = {
 
 export type ModifierContext = ThemeContext & {
   modifier: string;
+  path: string[];
 };
 
 export interface Theme {
@@ -60,41 +61,19 @@ export interface Config {
   charMap: Record<string, string>;
 }
 
-export type GlobalModifierHandler = (
-  cssStatement: Required<CSSStatement>,
-  context: ModifierContext,
-) => Required<CSSStatement> | undefined;
-
-export type LocalModifierHandler = (
-  declaration: RuleSet["declaration"],
-  context: ModifierContext,
-) => RuleSet["declaration"] | undefined;
-
-export type GlobalModifier = {
-  type: "global";
-  fn: GlobalModifierHandler;
-};
-
-export type LocalModifier = {
-  type: "local";
-  fn: LocalModifierHandler;
-};
-
 export type ModifierMap = Record<
   string | number,
-  GlobalModifier | LocalModifier
+  Modifier | ModifierDefinition
 >;
 
-type SyntaxContext = {
+export type SyntaxContext = {
   token: string;
-  globalModifierNames: string[];
-  localModifierNames: string[];
+  modifierRoots: string[];
   specifierRoots: string[];
 };
-type ParseResult = {
+export type ParseResult = {
   specifier: string;
-  globalModifiers?: string[];
-  localModifiers?: string[];
+  modifiers?: string[];
 };
 
 type Context = {
@@ -118,6 +97,10 @@ export type PostProcessor = {
 };
 
 export type Declaration = Record<string, string | number>;
+export type OrderedDeclarations = {
+  property: string;
+  value: string | number;
+}[];
 export type CSSStatement = GroupAtRule | RuleSet;
 
 type BaseRule = {
@@ -150,11 +133,13 @@ export type SpecifierGroupAtRule = {
   children: SpecifierGroupAtRule | SpecifierRuleSet;
 } & BaseRule;
 
-export type RuleSet = ReplaceKeys<
-  Required<SpecifierRuleSet>,
-  "selector",
-  { selector: string }
->;
+export type RuleSet =
+  & ReplaceKeys<
+    Required<Omit<SpecifierRuleSet, "declaration">>,
+    "selector",
+    { selector: string }
+  >
+  & { declarations: OrderedDeclarations };
 
 export type SpecifierRuleSet = {
   type: "ruleset";
@@ -182,6 +167,25 @@ export type EntriesSpecifier = [
 export type SpecifierCSSStatement = SpecifierGroupAtRule | SpecifierRuleSet;
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
+
+export type EntriesModifier = [
+  RegExp,
+  (
+    regExpExecArray: RegExpExecArray,
+    cssStatement: CSSStatement,
+    context: ModifierContext,
+  ) => CSSStatement | undefined,
+][];
+
+export type RecordModifier = {
+  [k: string]: ModifierDefinition;
+};
+
+export type Modifier = RecordModifier;
+export type ModifierDefinition = (
+  cssStatement: CSSStatement,
+  context: ModifierContext,
+) => CSSStatement | undefined;
 
 export type SpecifierDefinition =
   | Arrayable<Declaration>

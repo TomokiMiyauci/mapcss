@@ -19,10 +19,13 @@ import {
 } from "../deps.ts";
 import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
+import { propertyValue } from "./utils/format.ts";
 import type {
   Config,
   CSSStatement,
   Declaration,
+  ModifierContext,
+  ModifierMap,
   PostProcessor,
   Specifier,
   SpecifierContext,
@@ -189,11 +192,12 @@ function toCSSStatement(
   classSelector: string,
 ): CSSStatement {
   if (definition.type === "ruleset") {
-    const { selector, order = 0, ...rest } = definition;
+    const { selector, order = 0, declaration, ...rest } = definition;
     const _ = selector?.(classSelector) ?? classSelector;
     return {
       order,
       selector: _,
+      declarations: Object.entries(declaration).map(propertyValue),
       ...rest,
     };
   }
@@ -299,4 +303,27 @@ export function resolveConfig(
     syntaxes,
     postProcess,
   };
+}
+
+export function resolveModifierMap(
+  modifier: string,
+  modifierMap: ModifierMap,
+  cssStatements: CSSStatement,
+  context: Omit<ModifierContext, "path">,
+): CSSStatement | undefined {
+  const { separator } = context;
+  const paths = leftSplit(modifier, separator);
+
+  for (const path of paths) {
+    const ctx = { ...context, path };
+    const [first, second] = path;
+    const modifier = prop(first, modifierMap);
+
+    if (isUndefined(modifier)) continue;
+    if (isFunction(modifier)) {
+      return modifier(cssStatements, ctx);
+    }
+    const modifierDefinition = prop(second, modifier);
+    return modifierDefinition?.(cssStatements, ctx);
+  }
 }

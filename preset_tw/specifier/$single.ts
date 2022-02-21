@@ -40,7 +40,7 @@ import {
   reBracket_$,
 } from "../../core/utils/regexp.ts";
 import { AUTO } from "../../constants.ts";
-import { minWidthMediaQuery } from "../modifiers/breakpoint.ts";
+import { minWidthMediaQuery } from "../modifier/breakpoint.ts";
 
 const VERTICAL_ALIGN = "vertical-align";
 
