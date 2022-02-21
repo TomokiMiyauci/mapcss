@@ -1,6 +1,6 @@
-import type { Modifier } from "../../core/types.ts";
+import type { ModifierDefinition } from "../../core/types.ts";
 
-export const $important: Modifier = (cssStatement) => {
+export const $important: ModifierDefinition = (cssStatement) => {
   if (cssStatement.type === "ruleset") {
     const { declarations, ...rest } = cssStatement;
     const decl = declarations.map(({ property, value }) => ({

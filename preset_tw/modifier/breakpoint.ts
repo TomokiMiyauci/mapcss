@@ -2,8 +2,8 @@ import { resolveTheme } from "../../core/resolve.ts";
 import { Some } from "../../deps.ts";
 import type {
   CSSStatement,
-  Modifier,
   ModifierContext,
+  ModifierDefinition,
 } from "./../../core/types.ts";
 
 export function minWidthMediaQuery(value: string): string {
@@ -29,17 +29,17 @@ function breakPointHandler(
   });
 }
 
-export const sm: Modifier = (cssStatement, context) =>
+export const sm: ModifierDefinition = (cssStatement, context) =>
   breakPointHandler(cssStatement, 1, context);
 
-export const md: Modifier = (cssStatement, context) =>
+export const md: ModifierDefinition = (cssStatement, context) =>
   breakPointHandler(cssStatement, 2, context);
 
-export const lg: Modifier = (cssStatement, context) =>
+export const lg: ModifierDefinition = (cssStatement, context) =>
   breakPointHandler(cssStatement, 3, context);
 
-export const xl: Modifier = (cssStatement, context) =>
+export const xl: ModifierDefinition = (cssStatement, context) =>
   breakPointHandler(cssStatement, 4, context);
 
-export const $2xl: Modifier = (cssStatement, context) =>
+export const $2xl: ModifierDefinition = (cssStatement, context) =>
   breakPointHandler(cssStatement, 5, context);

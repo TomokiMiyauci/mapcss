@@ -1,6 +1,6 @@
-import type { Modifier } from "./../../core/types.ts";
+import type { ModifierDefinition } from "./../../core/types.ts";
 
-export const dark: Modifier = (cssStatement, { modifier }) => {
+export const dark: ModifierDefinition = (cssStatement, { modifier }) => {
   if (cssStatement.type === "ruleset") {
     cssStatement.selector = `.${modifier} ${cssStatement.selector}`;
   }
