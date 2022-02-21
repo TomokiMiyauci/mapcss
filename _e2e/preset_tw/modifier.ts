@@ -22,6 +22,8 @@ const simple: [string, string][] = [
     "scrollbar-thumb:rounded",
     ".scrollbar-thumb\\:rounded::-webkit-scrollbar-thumb{border-radius:0.25rem;}",
   ],
+  ["group:block", ""],
+  ["group-hover:block", ".group:hover .group-hover\\:block{display:block;}"],
 ];
 
 const complex: [string, string][] = [
