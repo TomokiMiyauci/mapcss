@@ -1,5 +1,9 @@
 import type { Arrayable, ReplaceKeys } from "../deps.ts";
 
+export type Tree<L, P extends PropertyKey = PropertyKey> = {
+  [k in P]: L | Tree<L>;
+};
+
 export type CSSNestedModule = {
   [k: string]: CSSNestedModule | OrderedDeclarations;
 };
@@ -101,6 +105,10 @@ export type OrderedDeclarations = {
   property: string;
   value: string | number;
 }[];
+
+/** User definition of CSS Block Declaration */
+export type BlockDefinition = Record<string, string>;
+
 export type CSSStatement = GroupAtRule | RuleSet;
 
 type BaseRule = {
@@ -188,9 +196,9 @@ export type ModifierDefinition = (
 ) => CSSStatement | undefined;
 
 export type SpecifierDefinition =
-  | Arrayable<Declaration>
+  | Arrayable<BlockDefinition>
   | Arrayable<SpecifierCSSStatement>
   | ((regExpExecArray: RegExpExecArray, context: SpecifierContext) =>
-    | Arrayable<Declaration>
+    | Arrayable<BlockDefinition>
     | Arrayable<SpecifierCSSStatement>
     | undefined);
