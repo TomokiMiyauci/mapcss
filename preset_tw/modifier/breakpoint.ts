@@ -12,7 +12,6 @@ export function minWidthMediaQuery(value: string): string {
 
 function breakPointHandler(
   parentNode: Root,
-  _: number,
   context: ModifierContext,
 ): Root | undefined {
   return Some(resolveTheme(context.modifier, "screen", context)).map(
@@ -33,16 +32,16 @@ function breakPointHandler(
 }
 
 export const sm: ModifierDefinition = (childNodes, context) =>
-  breakPointHandler(childNodes, 1, context);
+  breakPointHandler(childNodes, context);
 
 export const md: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 2, context);
+  breakPointHandler(cssStatement, context);
 
 export const lg: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 3, context);
+  breakPointHandler(cssStatement, context);
 
 export const xl: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 4, context);
+  breakPointHandler(cssStatement, context);
 
 export const $2xl: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 5, context);
+  breakPointHandler(cssStatement, context);
