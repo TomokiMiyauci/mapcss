@@ -1,7 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
 import { shortDecimal } from "../../core/utils/format.ts";
 import { parseNumeric, per } from "../../core/utils/monad.ts";
-import type { Declaration } from "../../core/types.ts";
+import type { BlockDefinition } from "../../core/types.ts";
 export function filterValue(variablePrefix: string): string {
   const [, varFnBlur] = customPropertySet("blur", variablePrefix);
   const [, varFnBrightness] = customPropertySet("brightness", variablePrefix);
@@ -23,7 +23,7 @@ export function handleFilter(
   propertyName: string,
   value: string,
   variablePrefix: string,
-): Declaration | undefined {
+): BlockDefinition | undefined {
   return parseNumeric(value).andThen(per(100)).map(shortDecimal).match({
     some: (number) => {
       const [varName] = customPropertySet(propertyName, variablePrefix);

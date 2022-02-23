@@ -79,13 +79,3 @@ export function stringifyCustomProperty(
 export function stringifyVarFunction(...value: string[]) {
   return `var(${value.join(" ")})`;
 }
-
-export function propertyValue([property, value]: [string, string | number]): {
-  property: string;
-  value: string | number;
-} {
-  return {
-    property,
-    value,
-  };
-}

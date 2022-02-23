@@ -110,8 +110,6 @@ export type PostProcessor = {
   order?: number;
 };
 
-export type Declaration = Record<string, string | number>;
-
 /** User definition of CSS Block Declaration */
 export type BlockDefinition = Record<string, string | number>;
 

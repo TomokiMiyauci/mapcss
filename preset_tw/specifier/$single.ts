@@ -14,7 +14,7 @@ import {
   unit,
 } from "../../core/utils/format.ts";
 import type {
-  Declaration,
+  BlockDefinition,
   EntriesSpecifier,
   RecordSpecifier,
   Specifier,
@@ -82,7 +82,7 @@ export const basis: EntriesSpecifier = [
   ],
   [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
 ];
-export const block: Declaration = { display: "block" };
+export const block: BlockDefinition = { display: "block" };
 export const bottom: EntriesSpecifier = [
   [0, { bottom: "0px" }],
   ["px", { bottom: "1px" }],
@@ -218,7 +218,7 @@ export const inline: Specifier = {
   table: { display: "inline-table" },
   grid: { display: "inline-grid" },
 };
-export const isolate: Declaration = { isolation: "isolate" };
+export const isolate: BlockDefinition = { isolation: "isolate" };
 export const isolation: Specifier = {
   auto: {
     isolation: "auto",
@@ -620,28 +620,28 @@ export const z: Specifier = [
   ],
   [reBracket_$, ([, arbitrary]) => ({ "z-index": arbitrary })],
 ];
-export const $static: Declaration = {
+export const $static: BlockDefinition = {
   position: "static",
 };
-export const fixed: Declaration = {
+export const fixed: BlockDefinition = {
   position: "fixed",
 };
-export const absolute: Declaration = {
+export const absolute: BlockDefinition = {
   position: "absolute",
 };
-export const relative: Declaration = {
+export const relative: BlockDefinition = {
   position: "relative",
 };
-export const sticky: Declaration = {
+export const sticky: BlockDefinition = {
   position: "sticky",
 };
-export const visible: Declaration = {
+export const visible: BlockDefinition = {
   visibility: "visible",
 };
-export const invisible: Declaration = {
+export const invisible: BlockDefinition = {
   visibility: "hidden",
 };
-export const antialiased: Declaration = {
+export const antialiased: BlockDefinition = {
   "-webkit-font-smoothing": "antialiased",
   "-moz-osx-font-smoothing": "grayscale",
 };
@@ -651,16 +651,16 @@ export const subpixel: Specifier = {
     "-moz-osx-font-smoothing": "auto",
   },
 };
-export const italic: Declaration = {
+export const italic: BlockDefinition = {
   "font-style": "italic",
 };
-export const contents: Declaration = {
+export const contents: BlockDefinition = {
   display: "contents",
 };
-export const hidden: Declaration = {
+export const hidden: BlockDefinition = {
   display: "none",
 };
-export const overline: Declaration = {
+export const overline: BlockDefinition = {
   "text-decoration-line": "overline",
 };
 export const line: Specifier = {
@@ -682,7 +682,7 @@ export const sr: Specifier = {
     "border-width": 0,
   },
 };
-export const ordinal: Declaration = { "font-variant-numeric": "ordinal" };
+export const ordinal: BlockDefinition = { "font-variant-numeric": "ordinal" };
 export const slashed: RecordSpecifier = {
   zero: { "font-variant-numeric": "slashed-zero" },
 };
@@ -704,10 +704,10 @@ export const diagonal: RecordSpecifier = {
 export const stacked: RecordSpecifier = {
   fractions: { "font-variant-numeric": "stacked-fractions" },
 };
-export const uppercase: Declaration = { "text-transform": "uppercase" };
-export const lowercase: Declaration = { "text-transform": "lowercase" };
-export const capitalize: Declaration = { "text-transform": "capitalize" };
-export const truncate: Declaration = {
+export const uppercase: BlockDefinition = { "text-transform": "uppercase" };
+export const lowercase: BlockDefinition = { "text-transform": "lowercase" };
+export const capitalize: BlockDefinition = { "text-transform": "capitalize" };
+export const truncate: BlockDefinition = {
   overflow: "hidden",
   "text-overflow": "ellipsis",
   "white-space": "nowrap",
@@ -732,7 +732,7 @@ export const contrast: EntriesSpecifier = [
   ],
 ];
 
-function handleDrop(value: string, varPrefix: string): Declaration {
+function handleDrop(value: string, varPrefix: string): BlockDefinition {
   return {
     [customProperty("drop-shadow", varPrefix)]: value,
     filter: filterValue(varPrefix),
@@ -796,7 +796,7 @@ function handleSingleFilter(
   propertyName: string,
   value: string | number,
   varPrefix: string,
-): Declaration {
+): BlockDefinition {
   return {
     [customProperty(propertyName, varPrefix)]: `${propertyName}(${value})`,
     filter: filterValue(varPrefix),
