@@ -16,16 +16,14 @@ export type SpecifierContext =
     variablePrefix: string;
 
     /** The token as it
-     * ```ts
-     * sm:text-red-500 -> sm:text-red-500
-     * ```
+     *
+     * example: `sm:text-red-500` -> `sm:text-red-500`
      */
     token: string;
 
-    /** The token with `.` and escaped for selector
-     * ```ts
-     * text-red-500/[10] -> .text-red-500\\[10\\]
-     * ```
+    /** The token with `.` and escaped for selector.
+     *
+     * example: `text-red-500/[10]` -> `.text-red-500\\[10\\]`
      */
     className: string;
   };
