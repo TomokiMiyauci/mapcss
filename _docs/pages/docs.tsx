@@ -1,6 +1,6 @@
-import React from "react";
-import { useDeno } from "aleph/react";
-import { getNavMenu, NavMenu } from "../_utils.ts";
+import React, { useMemo } from "react";
+import { useDeno, useRouter } from "aleph/react";
+import { getNavMenu, Nav, NavMenu } from "../_utils.ts";
 import { Header } from "../components/header.tsx";
 import { MDXContent } from "https://esm.sh/@types/mdx/types.d.ts";
 import { components } from "~/components/mdx_component.tsx";
@@ -44,10 +44,18 @@ function Toc({ tableOfContents }: { tableOfContents?: TableOfContents }) {
 
 export default function Docs({ Page, pageProps }: DocsProps) {
   if (!Page) return <></>;
+  const { routePath } = useRouter();
 
   const navMenu = useDeno(async () => {
     return await getNavMenu();
   });
+  const { prev, next } = useMemo(() => {
+    const flatNav = navMenu.map(({ items }) => items).flat();
+    const currentIndex = flatNav.findIndex(({ href }) => href === routePath);
+    const prev = flatNav[currentIndex - 1] as Nav | undefined;
+    const next = flatNav[currentIndex + 1] as Nav | undefined;
+    return { prev, next };
+  }, [navMenu]);
 
   const { title, description, category } = pageProps?.meta ??
     { title: "", description: "", category: "" };
@@ -111,6 +119,22 @@ export default function Docs({ Page, pageProps }: DocsProps) {
                 />
               </section>
             </article>
+            <aside className="my-10">
+              <nav>
+                <ul className="flex justify-between">
+                  {prev && (
+                    <li className="justify-self-start">
+                      <a href={prev.href}>{prev.title}</a>
+                    </li>
+                  )}
+                  {next && (
+                    <li className="justify-self-end">
+                      <a href={next.href}>{next.title}</a>
+                    </li>
+                  )}
+                </ul>
+              </nav>
+            </aside>
           </main>
         </div>
       </div>
