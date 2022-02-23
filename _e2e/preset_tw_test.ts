@@ -6,12 +6,14 @@ import { theme } from "../preset_tw/theme/mod.ts";
 import { modifierMap } from "../preset_tw/modifier/mod.ts";
 import { twBasicSyntax } from "../preset_tw/syntax.ts";
 import { modifier } from "./preset_tw/modifier.ts";
+import { animate } from "./preset_tw/animate.ts";
 import { generateStyleSheet } from "../mod.ts";
 
 const expects: [string, string][] = [
   ...min,
   ...$single,
   ...modifier,
+  ...animate,
   ["break-after-auto", ".break-after-auto{break-after:auto}"],
   ["break-after-avoid", ".break-after-avoid{break-after:avoid}"],
   ["break-after-all", ".break-after-all{break-after:all}"],
