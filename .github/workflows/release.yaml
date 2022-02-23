@@ -46,7 +46,7 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Test
-        run: deno test --ignore=node_modules,_docs,_examples --import-map=test_import_map.json --doc --coverage=coverage
+        run: deno test --unstable --ignore=node_modules,_docs,_examples --import-map=test_import_map.json --doc --coverage=coverage
 
       - name: Generate coverage
         if: ${{ matrix.deno == 'v1.x' }}
