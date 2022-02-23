@@ -1,6 +1,5 @@
 import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
-import { escapeRegExp } from "./utils/escape.ts";
 import {
   resolveConfig,
   resolveModifierMap,
@@ -58,7 +57,6 @@ export function generateStyleSheet(
         variablePrefix,
         separator,
         token,
-        className: `.${escapeRegExp(token)}`,
       });
       if (isUndefined(cssStatements)) return;
 

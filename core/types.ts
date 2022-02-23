@@ -26,6 +26,22 @@ export type SpecifierContext =
      * example: `text-red-500/[10]` -> `.text-red-500\\[10\\]`
      */
     className: string;
+
+    /** The matched object key
+     *
+     * example: text-`red`-500 -> `red`
+     */
+    key: string;
+
+    /** Current search path
+     *
+     * example: `text-red-500`
+     *
+     * 1st: `["text-red-500"]`
+     * 2nd: `["text-red", "500"]`
+     * 3rd: `["text", "red", "500"]`
+     */
+    path: string[];
   };
 
 export type ThemeContext = {
@@ -112,11 +128,11 @@ export type PostProcessor = {
 export type BlockDefinition = Record<string, string | number>;
 
 export type SpecifierMap = {
-  [k in string | number]: Specifier | CSSObject;
+  [k in string | number]: Specifier | BlockDefinition;
 };
 
 export type RecordSpecifier = {
-  [k: string | number]: CSSObject | SpecifierHandler | Specifier;
+  [k: string | number]: BlockDefinition | SpecifierHandler | Specifier;
 };
 
 export type EntriesSpecifier = [

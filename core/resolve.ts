@@ -18,6 +18,7 @@ import {
   Root,
   Rule,
   sortBy,
+  tail,
 } from "../deps.ts";
 import { fromPlainObject } from "./ast.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
@@ -78,32 +79,35 @@ function wrap<T>(value: T): T extends any[] ? T : T[] {
 export function resolveSpecifierMap(
   value: string,
   specifierMap: SpecifierMap,
-  context: SpecifierContext,
+  context: Omit<SpecifierContext, "className" | "key" | "path">,
 ): ChildNode[] | undefined {
-  const { separator } = context;
-  const classSelector = context.token ? `.${escapeRegExp(context.token)}` : "";
-
-  const paths = leftSplit(value, separator);
+  const className = `.${escapeRegExp(context.token)}`;
+  const paths = leftSplit(value, context.separator);
 
   for (const path of paths) {
-    const [first, ...rest] = path;
-    const applySpecifier = (specifier: Specifier) => {
-      const r = resolveSpecifier(rest, specifier, context);
-      return r;
-    };
+    const first = head(path);
+    const rest = tail(path);
+    if (isUndefined(first)) continue;
+
     const _BlockDefinition = prop(first, specifierMap);
 
     if (isUndefined(_BlockDefinition)) continue;
+    const specifierContext: SpecifierContext = {
+      ...context,
+      className,
+      key: first,
+      path,
+    };
+    const applySpecifier = (specifier: Specifier) =>
+      resolveSpecifier(rest, specifier, specifierContext);
 
     const resolved = EitherSpec(_BlockDefinition).mapLeft((cssObject) => {
       return eitherCSSDefinition(cssObject).mapLeft(fromPlainObject)
         .mapLeft(
-          constructRule(classSelector),
+          constructRule(className),
         ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
         .unwrap();
-    }).mapRight(applySpecifier).mapRight((r) => {
-      return r;
-    }).unwrap();
+    }).mapRight(applySpecifier).unwrap();
 
     if (isUndefined(resolved)) continue;
 
@@ -121,11 +125,12 @@ function resolveSpecifier(
   specifier: Specifier,
   context: SpecifierContext,
 ): ChildNode[] | undefined {
-  const [_, ...rest] = path;
+  const rest = tail(path);
   const applySpecifier = (specifier: Specifier) =>
     resolveSpecifier(rest, specifier, context);
 
   const first = head(path) ?? "DEFAULT";
+  context.key = first;
   if (Array.isArray(specifier)) {
     const map = new Map(specifier.map(([key, value]) => [String(key), value]));
     const maybeSpec = map.get(first);
