@@ -1,3 +1,10 @@
+# [1.0.0-beta.13](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2022-02-23)
+
+
+### Features
+
+* **core:** change to generate postcss AST from specifier ([6d85763](https://github.com/TomokiMiyauci/mapcss/commit/6d8576311f550052bf16ad73a3c72a88d1eee688)), closes [#4](https://github.com/TomokiMiyauci/mapcss/issues/4)
+
 # [1.0.0-beta.12](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-02-21)
 
 
