@@ -1,19 +1,13 @@
-import { isString, isUndefined, prop } from "../deps.ts";
+import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
+import { escapeRegExp } from "./utils/escape.ts";
 import {
   resolveConfig,
   resolveModifierMap,
   resolveSpecifierMap,
 } from "./resolve.ts";
-import {
-  cssStatements2CSSNestedModule,
-  stringifyCSSNestedModule,
-} from "./utils/format.ts";
-import type { Config, CSSStatement } from "./types.ts";
-import {
-  declarationOrderProcessor,
-  statementOrderProcessor,
-} from "./post_process.ts";
+import type { Config } from "./types.ts";
+import { minify, orderProp } from "./postcss/mod.ts";
 export * from "./types.ts";
 
 export interface GenerateResult {
@@ -35,8 +29,6 @@ export function generateStyleSheet(
   input: Set<string> | string,
 ): GenerateResult {
   const { postProcess: _postProcess = [], ...rest } = config;
-  _postProcess.push(statementOrderProcessor);
-  _postProcess.push(declarationOrderProcessor);
 
   const {
     syntaxes,
@@ -66,36 +58,40 @@ export function generateStyleSheet(
         variablePrefix,
         separator,
         token,
+        className: `.${escapeRegExp(token)}`,
       });
       if (isUndefined(cssStatements)) return;
 
-      const results = modifiers.reduce(
-        (acc, modifier) =>
-          acc.map((cssStatement) =>
-            resolveModifierMap(modifier, modifierMap, cssStatement, {
-              theme,
-              separator,
-              modifier,
-            })
-          ).filter(Boolean) as CSSStatement[],
-        cssStatements,
-      );
+      const results = modifiers.reduce((acc, cur) => {
+        if (isUndefined(acc)) return;
 
-      if (results.length) {
+        return resolveModifierMap(cur, modifierMap, acc, {
+          theme,
+          separator,
+          modifier: cur,
+        });
+      }, new Root({ nodes: cssStatements }) as Root | undefined);
+
+      if (!isUndefined(results)) {
         matched.add(token);
       } else {
         unmatched.add(token);
       }
       return results;
-    }).filter(Boolean).flat() as CSSStatement[];
+    }).filter(Boolean) as Root[];
     return executeResults;
   }).flat();
 
+  const rootNode = results.reduce((acc, cur) => {
+    acc.append(cur.nodes);
+    return acc;
+  }, new Root());
+
   const final = processors.reduce((acc, cur) => {
     return cur.fn(acc, { variablePrefix });
-  }, results);
-  const cssNestedModule = cssStatements2CSSNestedModule(final);
-  const css = stringifyCSSNestedModule(cssNestedModule);
+  }, rootNode);
+
+  const css = postcss([orderProp(), minify()]).process(final).toString();
 
   return { css, matched, unmatched };
 }

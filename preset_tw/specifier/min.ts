@@ -19,4 +19,18 @@ export const min: RecordSpecifier = {
     ["fit", { "min-height": "fit-content" }],
     [reBracket_$, ([, arbitrary]) => ({ "min-height": arbitrary })],
   ],
+
+  a: () => ({
+    type: "css",
+    value: {
+      "@media a": {
+        sss: {
+          fsffs: "fsf",
+        },
+      },
+      b: {
+        dispalyL: "ff",
+      },
+    },
+  }),
 };

@@ -1,10 +1,11 @@
-import { customProperty, propertyValue } from "../core/utils/format.ts";
+import { customProperty } from "../core/utils/format.ts";
+import { fromPlainObject } from "../core/ast.ts";
 import type { PostProcessor } from "../core/types.ts";
 
 export const twCustomPropertyInjector: PostProcessor = {
   name: "tw-custom-property-injector",
   order: -1,
-  fn: (cssStatement, { variablePrefix }) => {
+  fn: (root, { variablePrefix }) => {
     function customPropertyWith(property: string) {
       return customProperty(property, variablePrefix);
     }
@@ -97,13 +98,14 @@ export const twCustomPropertyInjector: PostProcessor = {
       [varBackdropSepia]: " ",
     };
 
-    cssStatement.unshift({
-      "type": "ruleset",
-      "order": -1,
-      selector: "*, ::before, ::after",
-      declarations: Object.entries(declaration).map(propertyValue),
+    const nodes = fromPlainObject({
+      "*, ::before, ::after": declaration,
     });
 
-    return cssStatement;
+    nodes.forEach((node) => {
+      root.push(node);
+    });
+
+    return root;
   },
 };

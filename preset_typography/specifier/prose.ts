@@ -1,13 +1,13 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import { parseSelector, SelectorType, stringifySelector } from "../../deps.ts";
-import type { EntriesSpecifier, SpecifierRuleSet } from "../../core/types.ts";
+import type { EntriesSpecifier } from "../../core/types.ts";
 
 export const prose: EntriesSpecifier = [
   ["DEFAULT", (_, { variablePrefix }) => {
     const varFnProperty = (property: string) =>
       varFn(customProperty(property, variablePrefix));
 
-    const DEFAULT: Record<string, Record<string, string | number>> = {
+    const DEFAULT = {
       "h1,h2,h3,h4,h5,h6": {
         "color": varFnProperty("prose-headings"),
         "font-weight": 600,
@@ -154,24 +154,22 @@ export const prose: EntriesSpecifier = [
       },
     );
 
-    const ruleSets = selectorSplitted.map(({ declaration, selectorList }) => {
-      const selectors = selectorList.map(({ where, pseudo }) => {
-        return ` :where(${stringifySelector([where])}):not(.not-prose)${
-          stringifySelector([pseudo])
-        }`;
-      });
+    const css = selectorSplitted.reduce(
+      (acc, { declaration, selectorList }) => {
+        const selectors = selectorList.map(({ where, pseudo }) => {
+          return `.prose :where(${stringifySelector([where])}):not(.not-prose)${
+            stringifySelector([pseudo])
+          }`;
+        });
 
-      const specifierRuleSet: SpecifierRuleSet[] = selectors.map((selector) => {
-        return {
-          type: "ruleset" as const,
-          selector: (t) => `${t}${selector}`,
-          declaration,
-        };
-      });
+        return { ...acc, [selectors.join(",")]: declaration };
+      },
+      {},
+    );
 
-      return specifierRuleSet;
-    }).flat();
-
-    return ruleSets;
+    return {
+      type: "css",
+      value: css,
+    };
   }],
 ];

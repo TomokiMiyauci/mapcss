@@ -18,7 +18,6 @@ import type {
   EntriesSpecifier,
   RecordSpecifier,
   Specifier,
-  SpecifierCSSStatement,
 } from "../../core/types.ts";
 import {
   customPropertySet,
@@ -40,7 +39,6 @@ import {
   reBracket_$,
 } from "../../core/utils/regexp.ts";
 import { AUTO } from "../../constants.ts";
-import { minWidthMediaQuery } from "../modifier/breakpoint.ts";
 
 const VERTICAL_ALIGN = "vertical-align";
 
@@ -90,7 +88,7 @@ export const bottom: EntriesSpecifier = [
   ["px", { bottom: "1px" }],
   ["auto", { bottom: "auto" }],
   ["full", { bottom: "100%" }],
-
+  ["f", { "$css": { "ff": "ff" } }],
   [
     re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
@@ -117,71 +115,27 @@ export const container: EntriesSpecifier = [
     const lg = resolveTheme("lg", SCREEN, context);
     const xl = resolveTheme("xl", SCREEN, context);
     const $2xl = resolveTheme("2xl", SCREEN, context);
+
+    const { className } = context;
+
+    const media = (size: string) => ({
+      [`@media (min-width: ${size})`]: { [className]: { "max-width": size } },
+    });
+
     if (sm && md && lg && xl && $2xl) {
-      const specifier: SpecifierCSSStatement[] = [
-        { type: "ruleset", declaration: { width: "100%" } },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 1,
-          rule: minWidthMediaQuery(sm),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": sm,
-            },
+      return {
+        type: "css",
+        value: {
+          [className]: {
+            width: "100%",
           },
+          ...media(sm),
+          ...media(md),
+          ...media(lg),
+          ...media(xl),
+          ...media($2xl),
         },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 2,
-          rule: minWidthMediaQuery(md),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": md,
-            },
-          },
-        },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 3,
-          rule: minWidthMediaQuery(lg),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": lg,
-            },
-          },
-        },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 4,
-          rule: minWidthMediaQuery(xl),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": xl,
-            },
-          },
-        },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 5,
-          rule: minWidthMediaQuery($2xl),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": $2xl,
-            },
-          },
-        },
-      ];
-      return specifier;
+      };
     }
   }],
 ];

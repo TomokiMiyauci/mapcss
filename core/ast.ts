@@ -4,6 +4,7 @@ import {
   ChildNode,
   Declaration,
   Either,
+  isNumber,
   isString,
   Left,
   Right,
@@ -41,7 +42,7 @@ function decl(name: string, value: string): Declaration {
 
 function atRule(
   name: string,
-  value: Tree<string> | string,
+  value: Tree<string | number> | string | number,
   params?: string,
 ) {
   const atRule = new AtRule({ name, params });
@@ -52,13 +53,15 @@ function atRule(
 }
 
 function treatTree(
-  mayBeLeaf: string | Tree<string>,
-): Either<string, Tree<string>> {
-  if (isString(mayBeLeaf)) return Left(mayBeLeaf);
+  mayBeLeaf: string | number | Tree<string | number>,
+): Either<string | number, Tree<string | number>> {
+  if (isString(mayBeLeaf) || isNumber(mayBeLeaf)) return Left(mayBeLeaf);
   return Right(mayBeLeaf);
 }
 
-export function fromPlainObject<T extends Tree<string> = Tree<string>>(
+export function fromPlainObject<
+  T extends Tree<string | number> = Tree<string | number>,
+>(
   obj: T,
 ): ChildNode[] {
   return Object.entries(obj).map(([prop, maybeNestedObject]) => {
@@ -71,7 +74,9 @@ export function fromPlainObject<T extends Tree<string> = Tree<string>>(
       }
     }
 
-    return treatTree(maybeNestedObject).mapLeft((value) => decl(prop, value))
+    return treatTree(maybeNestedObject).mapLeft((value) =>
+      decl(prop, value.toString())
+    )
       .mapRight((nestedObject) =>
         new Rule({
           selector: prop,

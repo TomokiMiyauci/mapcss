@@ -139,8 +139,9 @@ import { translate } from "./translate.ts";
 import { scroll } from "./scroll.ts";
 import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
+import type { SpecifierMap } from "../../core/types.ts";
 
-export const specifierMap = {
+export const specifierMap: SpecifierMap = {
   container,
   flow,
   to,

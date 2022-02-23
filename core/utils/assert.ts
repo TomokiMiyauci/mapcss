@@ -1,53 +1,24 @@
-import type {
-  CSSStatement,
-  Declaration,
-  OrderedDeclarations,
-  SpecifierDefinition,
-} from "./../types.ts";
-import { isFunction, isNumber, isObject, isString, prop } from "../../deps.ts";
+import type { BlockDefinition, CSSDefinition, CSSObject } from "./../types.ts";
+import { isNumber, isObject, isString, prop } from "../../deps.ts";
 
 const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
 export function isValidSelector(selector: string): selector is string {
   return reValidSelector.test(selector);
 }
 
-export function isDeclaration(value: unknown): value is Declaration {
+export function isBlockDefinition(value: unknown): value is BlockDefinition {
   if (!isObject(value)) return false;
 
   return Object.values(value).every((v) => isString(v) || isNumber(v));
 }
 
-export function isCSSStatement(value: unknown): value is CSSStatement {
-  if (!isObject(value)) return false;
-  const type = prop("type", value);
-
-  return isString(type) && ["ruleset", "groupAtRule"].includes(type);
+export function isCSSObject(value: unknown): value is CSSObject {
+  return isCSSDefinition(value) || isBlockDefinition(value);
 }
 
-export function isSpecifierDefinition(
+export function isCSSDefinition(
   value: unknown,
-): value is SpecifierDefinition {
-  if (isDeclaration(value) || isCSSStatement(value) || isFunction(value)) {
-    return true;
-  }
-  if (Array.isArray(value)) {
-    if (value.every(isDeclaration) || value.every(isCSSStatement)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-export function isOrderedDeclarations(
-  value: unknown,
-): value is OrderedDeclarations {
-  return Array.isArray(value) &&
-    value.every((obj) => {
-      if (isObject(obj)) {
-        const property = prop("property", obj);
-        const value = prop("value", obj);
-        return isString(property) && isString(value) || isNumber(value);
-      }
-      return false;
-    });
+): value is CSSDefinition {
+  return isObject(value) && prop("type", value) === "css" &&
+    isObject(prop("value", value));
 }

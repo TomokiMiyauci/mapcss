@@ -37,6 +37,18 @@ export {
   SelectorType,
   stringify as stringifySelector,
 } from "https://esm.sh/css-what";
+export type {
+  ChildNode,
+  ChildProps,
+  DeclarationProps,
+  Plugin as PostcssPlugin,
+} from "https://deno.land/x/postcss@8.4.6/lib/postcss.d.ts";
+import Rule from "https://deno.land/x/postcss@8.4.6/lib/rule.js";
+import Declaration from "https://deno.land/x/postcss@8.4.6/lib/declaration.js";
+import AtRule from "https://deno.land/x/postcss@8.4.6/lib/at-rule.js";
+import Root from "https://deno.land/x/postcss@8.4.6/lib/root.js";
+import postcss from "https://deno.land/x/postcss@8.4.6/lib/postcss.js";
+export { AtRule, Declaration, postcss, Root, Rule };
 
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);

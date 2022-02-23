@@ -1,5 +1,6 @@
 import {
-  Arrayable,
+  ChildNode,
+  ChildProps,
   deepMerge,
   distinctBy,
   Either,
@@ -14,23 +15,24 @@ import {
   prop,
   propPath,
   Right,
-  Some,
+  Root,
+  Rule,
   sortBy,
 } from "../deps.ts";
-import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
+import { fromPlainObject } from "./ast.ts";
+import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
-import { propertyValue } from "./utils/format.ts";
 import type {
+  BlockDefinition,
   Config,
-  CSSStatement,
-  Declaration,
+  CSSDefinition,
+  CSSObject,
   ModifierContext,
   ModifierMap,
   PostProcessor,
   Specifier,
   SpecifierContext,
-  SpecifierCSSStatement,
-  SpecifierDefinition,
+  SpecifierHandler,
   SpecifierMap,
   Syntax,
   Theme,
@@ -77,7 +79,7 @@ export function resolveSpecifierMap(
   value: string,
   specifierMap: SpecifierMap,
   context: SpecifierContext,
-): CSSStatement[] | undefined {
+): ChildNode[] | undefined {
   const { separator } = context;
   const classSelector = context.token ? `.${escapeRegExp(context.token)}` : "";
 
@@ -85,37 +87,44 @@ export function resolveSpecifierMap(
 
   for (const path of paths) {
     const [first, ...rest] = path;
-    const _declaration = prop(first, specifierMap);
+    const applySpecifier = (specifier: Specifier) => {
+      const r = resolveSpecifier(rest, specifier, context);
+      return r;
+    };
+    const _BlockDefinition = prop(first, specifierMap);
 
-    if (isUndefined(_declaration)) continue;
-    const resolved = EitherSpec(_declaration).mapLeft(
-      execSpecifierDeclaration(new MockRegExpExecArray(), context),
-    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-      .unwrap();
+    if (isUndefined(_BlockDefinition)) continue;
 
-    const result = Some(resolved).map(wrap).map((cssStatement) =>
-      cssStatement.map((definition) =>
-        EitherDefinition(definition).mapLeft(declaration2Statement).map((
-          v,
-        ) => toCSSStatement(v, classSelector))
-          .unwrap()
-      )
-    ).match({
-      some: (v) => v,
-      none: undefined,
-    });
+    const resolved = EitherSpec(_BlockDefinition).mapLeft((cssObject) => {
+      return eitherCSSDefinition(cssObject).mapLeft(fromPlainObject)
+        .mapLeft(
+          constructRule(classSelector),
+        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
+        .unwrap();
+    }).mapRight(applySpecifier).mapRight((r) => {
+      return r;
+    }).unwrap();
 
-    if (isUndefined(result)) continue;
-    return result;
+    if (isUndefined(resolved)) continue;
+
+    return resolved;
   }
+}
+
+function constructRule(selector: string) {
+  return ((nodes?: (ChildNode | ChildProps)[]): Rule =>
+    new Rule({ selector, nodes }));
 }
 
 function resolveSpecifier(
   path: string[],
   specifier: Specifier,
   context: SpecifierContext,
-): Arrayable<SpecifierCSSStatement> | Arrayable<Declaration> | undefined {
+): ChildNode[] | undefined {
   const [_, ...rest] = path;
+  const applySpecifier = (specifier: Specifier) =>
+    resolveSpecifier(rest, specifier, context);
+
   const first = head(path) ?? "DEFAULT";
   if (Array.isArray(specifier)) {
     const map = new Map(specifier.map(([key, value]) => [String(key), value]));
@@ -124,94 +133,96 @@ function resolveSpecifier(
     if (!maybeSpec) {
       const filteredSpecifier = specifier.filter(filterRegExp) as [
         RegExp,
-        Specifier | SpecifierDefinition,
+        Specifier | CSSObject | SpecifierHandler,
       ][];
       for (const [regExp, specifierOrDefinition] of filteredSpecifier) {
         const regExpExecArray = regExp.exec(first);
         if (!regExpExecArray) continue;
 
-        const result = EitherSpec(specifierOrDefinition).mapLeft(
-          execSpecifierDeclaration(regExpExecArray, context),
-        ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-          .unwrap();
+        const result = eitherSpecifier(specifierOrDefinition).mapLeft(
+          eitherHandler,
+        ).mapLeft((e) => {
+          const maybeCSSObjet = e.mapRight((fn) => fn(regExpExecArray, context))
+            .unwrap();
+          if (!maybeCSSObjet) return;
+          return eitherCSSDefinition(maybeCSSObjet).mapLeft(fromPlainObject)
+            .mapLeft(
+              constructRule(context.className),
+            ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(
+              fromPlainObject,
+            ).unwrap();
+        })
+          .mapRight(applySpecifier).unwrap();
+
         if (isUndefined(result)) continue;
         return result;
       }
+
       return;
     }
-    return EitherSpec(maybeSpec).mapLeft(
-      execSpecifierDeclaration(new MockRegExpExecArray(), context),
-    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-      .unwrap();
-  }
-  const _declaration = prop(first, specifier);
-  if (isUndefined(_declaration)) return;
 
-  return EitherSpec(_declaration).mapLeft(
-    execSpecifierDeclaration(new MockRegExpExecArray(), context),
-  ).mapRight((
-    specifier,
-  ) => resolveSpecifier(rest, specifier, context))
-    .unwrap();
+    return eitherSpecifier(maybeSpec).mapLeft(eitherHandler).mapLeft((e) => {
+      const maybeCSSObjet = e.mapRight((fn) =>
+        fn(new MockRegExpExecArray(), context)
+      ).unwrap();
+      if (!maybeCSSObjet) return;
+      return eitherCSSDefinition(maybeCSSObjet).mapLeft(fromPlainObject)
+        .mapLeft(
+          constructRule(context.className),
+        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
+        .unwrap();
+    })
+      .mapRight(applySpecifier).unwrap();
+  }
+
+  const _BlockDefinition = prop(first, specifier);
+  if (isUndefined(_BlockDefinition)) return;
+
+  return eitherSpecifier(_BlockDefinition).mapLeft(eitherHandler).mapLeft(
+    (e) => {
+      const maybeCSSObjet = e.mapRight((fn) =>
+        fn(new MockRegExpExecArray(), context)
+      ).unwrap();
+      if (!maybeCSSObjet) return;
+      return eitherCSSDefinition(maybeCSSObjet).mapLeft(fromPlainObject)
+        .mapLeft(
+          constructRule(context.className),
+        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
+        .unwrap();
+    },
+  )
+    .mapRight(applySpecifier).unwrap();
 }
 
 function filterRegExp(
-  [key]: [string | number | RegExp, Specifier | SpecifierDefinition],
+  [key]: [string | number | RegExp, Specifier | CSSObject | SpecifierHandler],
 ): boolean {
   return isRegExp(key);
 }
 
-function execSpecifierDeclaration(
-  regExpExecArray: RegExpExecArray,
-  context: SpecifierContext,
-) {
-  return (
-    specifierDeclaration: SpecifierDefinition,
-  ): Arrayable<Declaration> | Arrayable<SpecifierCSSStatement> | undefined =>
-    isFunction(specifierDeclaration)
-      ? specifierDeclaration(regExpExecArray, context)
-      : specifierDeclaration;
-}
-
 function EitherSpec(
-  value: Specifier | SpecifierDefinition,
-): Either<SpecifierDefinition, Specifier> {
-  if (isSpecifierDefinition(value)) return Left(value);
+  value: Specifier | CSSObject,
+): Either<CSSObject, Specifier> {
+  if (isCSSObject(value)) return Left(value);
   return Right(value);
 }
 
-function EitherDefinition(
-  value: Declaration | SpecifierCSSStatement,
-): Either<Declaration, SpecifierCSSStatement> {
-  if (isDeclaration(value)) return Left(value);
-  return Right(value);
+function eitherSpecifier(
+  value: CSSObject | SpecifierHandler | Specifier,
+): Either<CSSObject | SpecifierHandler, Specifier> {
+  return isFunction(value) || isCSSObject(value) ? Left(value) : Right(value);
 }
 
-function toCSSStatement(
-  definition: SpecifierCSSStatement,
-  classSelector: string,
-): CSSStatement {
-  if (definition.type === "ruleset") {
-    const { selector, order = 0, declaration, ...rest } = definition;
-    const _ = selector?.(classSelector) ?? classSelector;
-    return {
-      order,
-      selector: _,
-      declarations: Object.entries(declaration).map(propertyValue),
-      ...rest,
-    };
-  }
-  const { children, order = 0, ...rest } = definition;
-  return { order, ...rest, children: toCSSStatement(children, classSelector) };
+function eitherHandler(
+  value: CSSObject | SpecifierHandler,
+): Either<CSSObject, SpecifierHandler> {
+  return isFunction(value) ? Right(value) : Left(value);
 }
 
-function declaration2Statement(
-  declaration: Declaration,
-): SpecifierCSSStatement {
-  return {
-    type: "ruleset",
-    declaration,
-  };
+function eitherCSSDefinition(
+  cssObject: CSSObject,
+): Either<BlockDefinition, CSSDefinition> {
+  return isCSSDefinition(cssObject) ? Right(cssObject) : Left(cssObject);
 }
 
 /** resolve theme via propPath safety */
@@ -308,9 +319,9 @@ export function resolveConfig(
 export function resolveModifierMap(
   modifier: string,
   modifierMap: ModifierMap,
-  cssStatements: CSSStatement,
+  parentNode: Root,
   context: Omit<ModifierContext, "path">,
-): CSSStatement | undefined {
+): Root | undefined {
   const { separator } = context;
   const paths = leftSplit(modifier, separator);
 
@@ -321,9 +332,9 @@ export function resolveModifierMap(
 
     if (isUndefined(modifier)) continue;
     if (isFunction(modifier)) {
-      return modifier(cssStatements, ctx);
+      return modifier(parentNode, ctx);
     }
     const modifierDefinition = prop(second, modifier);
-    return modifierDefinition?.(cssStatements, ctx);
+    return modifierDefinition?.(parentNode, ctx);
   }
 }
