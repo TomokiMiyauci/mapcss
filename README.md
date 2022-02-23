@@ -9,14 +9,22 @@ subject to change.
 
 mapcss is an Atomic-oriented CSS generator.
 
+The essence of mapcss is a mapping of CSS to a JavaScript Object (often referred
+to as CSS in JS. We'll call it `JSS` for simplicity).
+
+The mapping can be defined as a hierarchy of Objects, and is a generic data
+structure that allows the use of regular expressions.
+
+If the mapped JSS is hit, the JSS will be converted to CSS AST. Currently,
+conversion to postcss AST is performed.
+
+After that, the free world of AST will expand.
+
 It is strongly influenced by
 [tailwindcss](https://github.com/tailwindlabs/tailwindcss) and
 [unocss](https://github.com/antfu/unocss), but with the following differences.
 
-- There are no dependencies like postcss.
-- There are no large classes, and it is written with functional types in mind.
-  As a result, there are no unnecessary bundles, and the browser can be used
-  comfortably.
+- Mapping is free. And you can define a very flexible mapping syntax.
 - Deno is fully supported.
 
 ## Usage
