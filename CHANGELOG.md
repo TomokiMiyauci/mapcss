@@ -1,3 +1,11 @@
+# [1.0.0-beta.14](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2022-02-23)
+
+
+### Features
+
+* **core:** add path and key as specifier context ([6459eef](https://github.com/TomokiMiyauci/mapcss/commit/6459eefa2393a10159d8844249d592c3f2389d27))
+* **preset_tw:** add specifier of `animation` ([21b9aa7](https://github.com/TomokiMiyauci/mapcss/commit/21b9aa734e6e786622d3314c4c704a0a282f4a7b))
+
 # [1.0.0-beta.13](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2022-02-23)
 
 
