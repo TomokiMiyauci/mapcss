@@ -1,6 +1,6 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import { astify } from "../../core/ast.ts";
-import { Root } from "../../deps.ts";
+import { chain, isUndefined, Root } from "../../deps.ts";
 import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
@@ -159,6 +159,49 @@ export const prose: EntriesSpecifier = [
     root.append(widthNodes);
 
     return root;
+  }],
+  ["invert", (_, { key, path, variablePrefix, className }) => {
+    const i = path.findIndex((k) => k === key);
+    if (i < 0) return;
+    const parent = path[i - 1] as string | undefined;
+    if (isUndefined(parent)) return;
+
+    const varProperty = (property: string) =>
+      customProperty(property, variablePrefix);
+    const join = (value: string[]) => value.join("-");
+    const makeVarFnSet = (
+      property: string,
+    ): [string, string] => [
+      chain([parent, property]).map(join).map(varProperty).unwrap(),
+      chain([parent, key, property]).map(join).map(varProperty).map(varFn)
+        .unwrap(),
+    ];
+    const [varBody, varFnBody] = makeVarFnSet("body");
+    const [varHeadings, varFnHeadings] = makeVarFnSet("headings");
+    const [varLinks, varFnLinks] = makeVarFnSet("links");
+    const [varLists, varFnLists] = makeVarFnSet("lists");
+    const [varHr, varFnHr] = makeVarFnSet("hr");
+    const [varCaptions, varFnCaptions] = makeVarFnSet("captions");
+    const [varCode, varFnCode] = makeVarFnSet("code");
+    const [varBorders, varFnBorders] = makeVarFnSet("borders");
+    const [varBgSoft, varFnBgSoft] = makeVarFnSet("bg-soft");
+
+    return {
+      type: "css",
+      value: {
+        [className]: {
+          [varBody]: varFnBody,
+          [varHeadings]: varFnHeadings,
+          [varLinks]: varFnLinks,
+          [varLists]: varFnLists,
+          [varHr]: varFnHr,
+          [varCaptions]: varFnCaptions,
+          [varCode]: varFnCode,
+          [varBorders]: varFnBorders,
+          [varBgSoft]: varFnBgSoft,
+        },
+      },
+    };
   }],
 ];
 
