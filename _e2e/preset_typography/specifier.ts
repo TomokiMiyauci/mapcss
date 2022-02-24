@@ -10,6 +10,15 @@ test("generated Style Sheet", () => {
       "prose-invert",
       ".prose-invert{--map-prose-bg-soft:var(--map-prose-invert-bg-soft);--map-prose-body:var(--map-prose-invert-body);--map-prose-borders:var(--map-prose-invert-borders);--map-prose-captions:var(--map-prose-invert-captions);--map-prose-code:var(--map-prose-invert-code);--map-prose-headings:var(--map-prose-invert-headings);--map-prose-hr:var(--map-prose-invert-hr);--map-prose-links:var(--map-prose-invert-links);--map-prose-lists:var(--map-prose-invert-lists)}",
     ],
+    [
+      "prose-red",
+      ".prose-red{--map-prose-bg-soft:#fee2e2;--map-prose-body:#b91c1c;--map-prose-borders:#fecaca;--map-prose-captions:#ef4444;--map-prose-code:#7f1d1d;--map-prose-headings:#7f1d1d;--map-prose-hr:#fecaca;--map-prose-invert-bg-soft:#991b1b;--map-prose-invert-body:#fecaca;--map-prose-invert-borders:#b91c1c;--map-prose-invert-captions:#f87171;--map-prose-invert-code:#fee2e2;--map-prose-invert-headings:#fee2e2;--map-prose-invert-hr:#b91c1c;--map-prose-invert-links:#fee2e2;--map-prose-invert-lists:#ef4444;--map-prose-links:#7f1d1d;--map-prose-lists:#f87171}",
+    ],
+    [
+      "prose-blue-500",
+      ".prose-blue-500{--map-prose-bg-soft:#3b82f6;--map-prose-body:#3b82f6;--map-prose-borders:#3b82f6;--map-prose-captions:#3b82f6;--map-prose-code:#3b82f6;--map-prose-headings:#3b82f6;--map-prose-hr:#3b82f6;--map-prose-invert-bg-soft:#3b82f6;--map-prose-invert-body:#3b82f6;--map-prose-invert-borders:#3b82f6;--map-prose-invert-captions:#3b82f6;--map-prose-invert-code:#3b82f6;--map-prose-invert-headings:#3b82f6;--map-prose-invert-hr:#3b82f6;--map-prose-invert-links:#3b82f6;--map-prose-invert-lists:#3b82f6;--map-prose-links:#3b82f6;--map-prose-lists:#3b82f6}",
+    ],
+    ["prose-unknown", ""],
   ];
 
   table.forEach(([token, result]) =>

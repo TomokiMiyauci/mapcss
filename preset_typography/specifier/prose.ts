@@ -1,6 +1,8 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import { astify } from "../../core/ast.ts";
-import { chain, isUndefined, Root } from "../../deps.ts";
+import { chain, isString, isUndefined, prop, Root } from "../../deps.ts";
+import { $resolveTheme } from "../../core/resolve.ts";
+import { re$All } from "../../core/utils/regexp.ts";
 import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
@@ -139,6 +141,8 @@ function generateDefault(varPrefix: string) {
   return DEFAULT;
 }
 
+const join = (value: string[]): string => value.join("-");
+
 export const prose: EntriesSpecifier = [
   ["DEFAULT", (_, { variablePrefix, className, key }) => {
     const maxWidth = {
@@ -166,9 +170,8 @@ export const prose: EntriesSpecifier = [
     const parent = path[i - 1] as string | undefined;
     if (isUndefined(parent)) return;
 
-    const varProperty = (property: string) =>
+    const varProperty = (property: string): string =>
       customProperty(property, variablePrefix);
-    const join = (value: string[]) => value.join("-");
     const makeVarFnSet = (
       property: string,
     ): [string, string] => [
@@ -199,6 +202,66 @@ export const prose: EntriesSpecifier = [
           [varCode]: varFnCode,
           [varBorders]: varFnBorders,
           [varBgSoft]: varFnBgSoft,
+        },
+      },
+    };
+  }],
+  [re$All, ([, body], context) => {
+    const maybeColor = $resolveTheme(body, "color", context);
+    const { parentKey, variablePrefix } = context;
+    if (isUndefined(parentKey) || isUndefined(maybeColor)) return;
+    const _isString = isString(maybeColor);
+    const colorBy = (colorWeight: number): string =>
+      _isString ? maybeColor : (() => {
+        const _color = prop(colorWeight, maybeColor);
+        return isString(_color) ? _color : " ";
+      })();
+
+    const varProperty = (property: string): string =>
+      customProperty(property, variablePrefix);
+
+    const makeProperty = (...properties: string[]): string =>
+      chain(properties).map(join).map(varProperty).unwrap();
+
+    const makePropertySet = (
+      property: string,
+    ): [string, string] => [
+      makeProperty(parentKey, property),
+      makeProperty(parentKey, "invert", property),
+    ];
+
+    const [varBody, varInvertBody] = makePropertySet("body");
+    const [varHeadings, varInvertHeadings] = makePropertySet("headings");
+    const [varLinks, varInvertLinks] = makePropertySet("links");
+    const [varLists, varInvertLists] = makePropertySet("lists");
+    const [varHr, varInvertHr] = makePropertySet("hr");
+    const [varCaptions, varInvertCaptions] = makePropertySet("captions");
+    const [varCode, varInvertCode] = makePropertySet("code");
+    const [varBorders, varInvertBorders] = makePropertySet("borders");
+    const [varBgSoft, varInvertBgSoft] = makePropertySet("bg-soft");
+
+    return {
+      type: "css",
+      value: {
+        [context.className]: {
+          [varBody]: colorBy(700),
+          [varInvertBody]: colorBy(200),
+          [varHeadings]: colorBy(900),
+          [varInvertHeadings]: colorBy(100),
+          [varLinks]: colorBy(900),
+          [varInvertLinks]: colorBy(100),
+          [varLists]: colorBy(400),
+          [varInvertLists]: colorBy(500),
+          [varHr]: colorBy(200),
+          [varInvertHr]: colorBy(700),
+          [varCaptions]: colorBy(500),
+          [varInvertCaptions]: colorBy(400),
+          [varCode]: colorBy(900),
+          [varInvertCode]: colorBy(100),
+          [varBorders]: colorBy(200),
+          [varInvertBorders]: colorBy(700),
+          [varBgSoft]: colorBy(100),
+          [varInvertBgSoft]: colorBy(800),
         },
       },
     };
