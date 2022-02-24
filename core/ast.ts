@@ -47,7 +47,7 @@ function atRule(
 ): AtRule {
   const atRule = new AtRule({ name, params });
   if (typeof value === "object") {
-    return atRule.append(fromPlainObject(value));
+    return atRule.append(astify(value));
   }
   return atRule;
 }
@@ -59,7 +59,20 @@ function treatTree(
   return Right(mayBeLeaf);
 }
 
-export function fromPlainObject<
+/** JavaScript Object to postcss AST
+ * ```ts
+ * import { astify } from "https://deno.land/x/mapcss@$VERSION/core/ast.ts"
+ * const css = {
+ *    h1: { display: "block" },
+ *    "h2, h3": { color: "red" },
+ *    "@media (min-width 640px)": {
+ *      ".block": { display: "block" }
+ *    }
+ * }
+ * astify(css)
+ * ```
+ */
+export function astify<
   T extends Tree<string | number> = Tree<string | number>,
 >(
   obj: T,
@@ -78,7 +91,7 @@ export function fromPlainObject<
       .mapRight((nestedObject) =>
         new Rule({
           selector: prop,
-          nodes: fromPlainObject(nestedObject),
+          nodes: astify(nestedObject),
         })
       ).unwrap();
   }).filter(Boolean) as ChildNode[];

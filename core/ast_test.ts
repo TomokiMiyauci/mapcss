@@ -1,4 +1,4 @@
-import { fromPlainObject } from "./ast.ts";
+import { astify } from "./ast.ts";
 import { expect, test } from "../dev_deps.ts";
 import { AtRule, Declaration, Root, Rule } from "../deps.ts";
 
@@ -7,8 +7,8 @@ type ParamReturn<T extends (...args: any[]) => unknown> = [
   ReturnType<T>,
 ];
 
-test("fromPlainObject", () => {
-  const table: ParamReturn<typeof fromPlainObject>[] = [
+test("astify", () => {
+  const table: ParamReturn<typeof astify>[] = [
     [{ display: "block" }, [
       new Declaration({ "prop": "display", value: "block" }),
     ]],
@@ -70,7 +70,7 @@ test("fromPlainObject", () => {
   ];
 
   table.forEach(([object, result]) =>
-    expect(new Root({ nodes: fromPlainObject(object) }).toJSON()).toEqual(
+    expect(new Root({ nodes: astify(object) }).toJSON()).toEqual(
       new Root({ nodes: result }).toJSON(),
     )
   );

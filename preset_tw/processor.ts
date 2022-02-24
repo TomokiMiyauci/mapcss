@@ -1,5 +1,5 @@
 import { customProperty } from "../core/utils/format.ts";
-import { fromPlainObject } from "../core/ast.ts";
+import { astify } from "../core/ast.ts";
 import type { PostProcessor } from "../core/types.ts";
 
 export const twCustomPropertyInjector: PostProcessor = {
@@ -98,7 +98,7 @@ export const twCustomPropertyInjector: PostProcessor = {
       [varBackdropSepia]: " ",
     };
 
-    const nodes = fromPlainObject({
+    const nodes = astify({
       "*, ::before, ::after": declaration,
     });
 

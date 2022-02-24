@@ -20,7 +20,7 @@ import {
   sortBy,
   tail,
 } from "../deps.ts";
-import { fromPlainObject } from "./ast.ts";
+import { astify } from "./ast.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import type {
@@ -102,10 +102,10 @@ export function resolveSpecifierMap(
       resolveSpecifier(rest, specifier, specifierContext);
 
     const resolved = EitherSpec(_BlockDefinition).mapLeft((cssObject) => {
-      return eitherCSSDefinition(cssObject).mapLeft(fromPlainObject)
+      return eitherCSSDefinition(cssObject).mapLeft(astify)
         .mapLeft(
           constructRule(className),
-        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
+        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(astify)
         .unwrap();
     }).mapRight(applySpecifier).unwrap();
 
@@ -150,11 +150,11 @@ function resolveSpecifier(
           const maybeCSSObjet = e.mapRight((fn) => fn(regExpExecArray, context))
             .unwrap();
           if (!maybeCSSObjet) return;
-          return eitherCSSDefinition(maybeCSSObjet).mapLeft(fromPlainObject)
+          return eitherCSSDefinition(maybeCSSObjet).mapLeft(astify)
             .mapLeft(
               constructRule(context.className),
             ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(
-              fromPlainObject,
+              astify,
             ).unwrap();
         })
           .mapRight(applySpecifier).unwrap();
@@ -171,10 +171,10 @@ function resolveSpecifier(
         fn(new MockRegExpExecArray(), context)
       ).unwrap();
       if (!maybeCSSObjet) return;
-      return eitherCSSDefinition(maybeCSSObjet).mapLeft(fromPlainObject)
+      return eitherCSSDefinition(maybeCSSObjet).mapLeft(astify)
         .mapLeft(
           constructRule(context.className),
-        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
+        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(astify)
         .unwrap();
     })
       .mapRight(applySpecifier).unwrap();
@@ -189,10 +189,10 @@ function resolveSpecifier(
         fn(new MockRegExpExecArray(), context)
       ).unwrap();
       if (!maybeCSSObjet) return;
-      return eitherCSSDefinition(maybeCSSObjet).mapLeft(fromPlainObject)
+      return eitherCSSDefinition(maybeCSSObjet).mapLeft(astify)
         .mapLeft(
           constructRule(context.className),
-        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(fromPlainObject)
+        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(astify)
         .unwrap();
     },
   )
