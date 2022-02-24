@@ -75,7 +75,7 @@ function wrap<T>(value: T): T extends any[] ? T : T[] {
 export function resolveSpecifierMap(
   value: string,
   specifierMap: SpecifierMap,
-  context: Omit<SpecifierContext, "className" | "key" | "path">,
+  context: Omit<SpecifierContext, "className" | "key" | "parentKey" | "path">,
 ): Root | undefined {
   const className = `.${escapeRegExp(context.token)}`;
   const paths = leftSplit(value, context.separator);
@@ -92,6 +92,7 @@ export function resolveSpecifierMap(
       ...context,
       className,
       key: first,
+      parentKey: first,
       path,
     };
     const applySpecifier = (specifier: Specifier) =>
@@ -144,13 +145,14 @@ function resolveSpecifier(
         })
           .mapRight(applySpecifier).unwrap();
 
+        context.parentKey = _head;
         if (isUndefined(result)) continue;
         return result;
       }
-
+      context.parentKey = _head;
       return;
     }
-
+    context.parentKey = _head;
     return eitherSpecifier(maybeSpec).mapLeft(eitherHandler).mapLeft((e) => {
       const maybeCSSObjet = e.mapRight((fn) =>
         fn(new MockRegExpExecArray(), context)
@@ -161,7 +163,7 @@ function resolveSpecifier(
     })
       .mapRight(applySpecifier).unwrap();
   }
-
+  context.parentKey = _head;
   const _BlockDefinition = prop(first, specifier);
   if (isUndefined(_BlockDefinition)) return;
 
@@ -229,6 +231,34 @@ export function resolveTheme(
   }
 }
 
+/** new version for theme resolver */
+export function $resolveTheme(
+  identifier: string,
+  themeRoot: string,
+  { separator, theme }: ThemeContext,
+): Theme | string | undefined {
+  const recursive = (
+    path: string[],
+    theme: Theme,
+  ): Theme | string | undefined => {
+    const first = head(path);
+    if (isUndefined(first)) return theme;
+    const result = prop(first, theme);
+    if (isString(result) || isUndefined(result)) return result;
+    return recursive(tail(path), result);
+  };
+
+  const paths = leftSplit(identifier, separator);
+  for (const path of paths) {
+    const rootResult = prop(themeRoot, theme);
+    if (isUndefined(rootResult)) continue;
+    if (isString(rootResult)) return rootResult;
+    const result = recursive(path, rootResult);
+    if (!isUndefined(result)) {
+      return result;
+    }
+  }
+}
 function pickByName({ name }: { name: string }): string {
   return name;
 }

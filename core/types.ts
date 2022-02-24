@@ -37,6 +37,12 @@ export type SpecifierContext =
      */
     key: string;
 
+    /** The matched parent key
+     *
+     * example: text-`red`-500 -> `text`
+     */
+    parentKey: string | undefined;
+
     /** Current search path
      *
      * example: `text-red-500`
