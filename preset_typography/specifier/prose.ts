@@ -1,5 +1,7 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
-import { parseSelector, SelectorType, stringifySelector } from "../../deps.ts";
+import { astify } from "../../core/ast.ts";
+import { Root } from "../../deps.ts";
+import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string) {
@@ -138,52 +140,60 @@ function generateDefault(varPrefix: string) {
 }
 
 export const prose: EntriesSpecifier = [
-  ["DEFAULT", (_, { variablePrefix }) => {
+  ["DEFAULT", (_, { variablePrefix, className, key }) => {
+    const maxWidth = {
+      [className]: {
+        color: customProperty(`${key}-body`, variablePrefix),
+        "max-width": "65ch",
+      },
+    };
     const DEFAULT = generateDefault(variablePrefix);
 
-    const selectorListed = Object.entries(DEFAULT).map(([selector, value]) => {
-      return {
-        selectorList: parseSelector(selector),
-        declaration: value,
-      };
+    const nodes = astify(DEFAULT);
+    const widthNodes = astify(maxWidth);
+
+    const root = new Root({ nodes });
+    root.walkRules((rule) => {
+      rule.selector = transformSelector(rule.selector, key);
     });
+    root.append(widthNodes);
 
-    const selectorSplitted = selectorListed.map(
-      ({ selectorList: _selectorList, ...rest }) => {
-        const selectorList = _selectorList.map((selectors) => {
-          const i = selectors.findIndex((selector) =>
-            (selector.type === SelectorType.Pseudo &&
-              selector.name !== "not") ||
-            selector.type === SelectorType.PseudoElement
-          );
-          if (i < 0) return { where: selectors, pseudo: [] };
-          const where = selectors.slice(0, i);
-          const pseudo = selectors.slice(i);
-          return {
-            where,
-            pseudo,
-          };
-        });
-        return { selectorList, ...rest };
-      },
-    );
-
-    const css = selectorSplitted.reduce(
-      (acc, { declaration, selectorList }) => {
-        const selectors = selectorList.map(({ where, pseudo }) => {
-          return `.prose :where(${stringifySelector([where])}):not(.not-prose)${
-            stringifySelector([pseudo])
-          }`;
-        });
-
-        return { ...acc, [selectors.join(",")]: declaration };
-      },
-      {},
-    );
-
-    return {
-      type: "css",
-      value: css,
-    };
+    return root;
   }],
 ];
+
+function isWhereableNode(node: Node): boolean {
+  return node.type !== "pseudo" ||
+    node.type === "pseudo" && node.value === ":not";
+}
+
+export function transformSelector(selector: string, className: string): string {
+  const result = parse((root) => {
+    root.nodes.forEach((selector) => {
+      const pseudos = selector.filter((v) => !isWhereableNode(v));
+
+      const where = parse.pseudo({
+        "value": ":where",
+        nodes: [
+          parse.selector({
+            value: "",
+            nodes: selector.filter(isWhereableNode),
+          }),
+        ],
+      });
+
+      const classNameNode = parse.className({ value: className });
+      const combinator = parse.combinator({ value: " " });
+      const NOT = "not";
+      const notClassName = parse.className({ value: `${NOT}-${className}` });
+      const not = parse.pseudo({ value: ":not", nodes: [notClassName] });
+      const newSelector = parse.selector({
+        value: "",
+        nodes: [classNameNode, combinator, where, not, ...pseudos],
+      });
+
+      selector.replaceWith(newSelector);
+    });
+  }).processSync(selector, { lossless: false });
+  return result;
+}
