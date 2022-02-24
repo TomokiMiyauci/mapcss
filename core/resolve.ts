@@ -1,6 +1,4 @@
 import {
-  ChildNode,
-  ChildProps,
   deepMerge,
   distinctBy,
   Either,
@@ -24,9 +22,7 @@ import { astify } from "./ast.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import type {
-  BlockDefinition,
   Config,
-  CSSDefinition,
   CSSObject,
   ModifierContext,
   ModifierMap,
@@ -80,7 +76,7 @@ export function resolveSpecifierMap(
   value: string,
   specifierMap: SpecifierMap,
   context: Omit<SpecifierContext, "className" | "key" | "path">,
-): ChildNode[] | undefined {
+): Root | undefined {
   const className = `.${escapeRegExp(context.token)}`;
   const paths = leftSplit(value, context.separator);
 
@@ -102,11 +98,7 @@ export function resolveSpecifierMap(
       resolveSpecifier(rest, specifier, specifierContext);
 
     const resolved = EitherSpec(_BlockDefinition).mapLeft((cssObject) => {
-      return eitherCSSDefinition(cssObject).mapLeft(astify)
-        .mapLeft(
-          constructRule(className),
-        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(astify)
-        .unwrap();
+      return handleCSSObject(cssObject, className);
     }).mapRight(applySpecifier).unwrap();
 
     if (isUndefined(resolved)) continue;
@@ -115,22 +107,20 @@ export function resolveSpecifierMap(
   }
 }
 
-function constructRule(selector: string) {
-  return ((nodes?: (ChildNode | ChildProps)[]): Rule =>
-    new Rule({ selector, nodes }));
-}
-
 function resolveSpecifier(
   path: string[],
   specifier: Specifier,
   context: SpecifierContext,
-): ChildNode[] | undefined {
+): Root | undefined {
   const rest = tail(path);
   const applySpecifier = (specifier: Specifier) =>
     resolveSpecifier(rest, specifier, context);
 
-  const first = head(path) ?? "DEFAULT";
-  context.key = first;
+  const _head = head(path);
+  if (isString(_head)) {
+    context.key = _head;
+  }
+  const first = _head ?? "DEFAULT";
   if (Array.isArray(specifier)) {
     const map = new Map(specifier.map(([key, value]) => [String(key), value]));
     const maybeSpec = map.get(first);
@@ -150,12 +140,7 @@ function resolveSpecifier(
           const maybeCSSObjet = e.mapRight((fn) => fn(regExpExecArray, context))
             .unwrap();
           if (!maybeCSSObjet) return;
-          return eitherCSSDefinition(maybeCSSObjet).mapLeft(astify)
-            .mapLeft(
-              constructRule(context.className),
-            ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(
-              astify,
-            ).unwrap();
+          return handleCSSObject(maybeCSSObjet, context.className);
         })
           .mapRight(applySpecifier).unwrap();
 
@@ -171,11 +156,8 @@ function resolveSpecifier(
         fn(new MockRegExpExecArray(), context)
       ).unwrap();
       if (!maybeCSSObjet) return;
-      return eitherCSSDefinition(maybeCSSObjet).mapLeft(astify)
-        .mapLeft(
-          constructRule(context.className),
-        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(astify)
-        .unwrap();
+
+      return handleCSSObject(maybeCSSObjet, context.className);
     })
       .mapRight(applySpecifier).unwrap();
   }
@@ -189,11 +171,7 @@ function resolveSpecifier(
         fn(new MockRegExpExecArray(), context)
       ).unwrap();
       if (!maybeCSSObjet) return;
-      return eitherCSSDefinition(maybeCSSObjet).mapLeft(astify)
-        .mapLeft(
-          constructRule(context.className),
-        ).mapLeft(wrap).mapRight(({ value }) => value).mapRight(astify)
-        .unwrap();
+      return handleCSSObject(maybeCSSObjet, context.className);
     },
   )
     .mapRight(applySpecifier).unwrap();
@@ -224,10 +202,16 @@ function eitherHandler(
   return isFunction(value) ? Right(value) : Left(value);
 }
 
-function eitherCSSDefinition(
-  cssObject: CSSObject,
-): Either<BlockDefinition, CSSDefinition> {
-  return isCSSDefinition(cssObject) ? Right(cssObject) : Left(cssObject);
+function handleCSSObject(cssObject: CSSObject, selector: string): Root {
+  if (cssObject instanceof Root) {
+    return cssObject;
+  } else if (isCSSDefinition(cssObject)) {
+    return new Root({ nodes: astify(cssObject.value) });
+  } else {
+    return new Root({
+      nodes: [new Rule({ selector, nodes: astify(cssObject) })],
+    });
+  }
 }
 
 /** resolve theme via propPath safety */

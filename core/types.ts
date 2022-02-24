@@ -4,10 +4,14 @@ export type Tree<L, P extends PropertyKey = string | number> = {
   [k in P]: L | Tree<L>;
 };
 
-export type CSSDefinition = { type: "css"; value: Tree<string | number> };
+export type CSSDefinition = {
+  type: "css";
+  value: Tree<string | number>;
+};
 
 export type CSSObject =
   | CSSDefinition
+  | Root
   | BlockDefinition;
 
 export type SpecifierContext =

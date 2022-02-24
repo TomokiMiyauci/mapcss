@@ -52,13 +52,13 @@ export function generateStyleSheet(
       if (!parseResult) return;
       const { specifier, modifiers = [] } = parseResult;
 
-      const cssStatements = resolveSpecifierMap(specifier, specifierMap, {
+      const specifierRoot = resolveSpecifierMap(specifier, specifierMap, {
         theme,
         variablePrefix,
         separator,
         token,
       });
-      if (isUndefined(cssStatements)) return;
+      if (isUndefined(specifierRoot)) return;
 
       const results = modifiers.reduce((acc, cur) => {
         if (isUndefined(acc)) return;
@@ -68,7 +68,7 @@ export function generateStyleSheet(
           separator,
           modifier: cur,
         });
-      }, new Root({ nodes: cssStatements }) as Root | undefined);
+      }, specifierRoot as Root | undefined);
 
       if (!isUndefined(results)) {
         matched.add(token);
