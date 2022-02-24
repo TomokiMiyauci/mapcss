@@ -44,7 +44,7 @@ function atRule(
   name: string,
   value: Tree<string | number> | string | number,
   params?: string,
-) {
+): AtRule {
   const atRule = new AtRule({ name, params });
   if (typeof value === "object") {
     return atRule.append(fromPlainObject(value));
@@ -69,9 +69,7 @@ export function fromPlainObject<
       const parts = prop.match(/@(\S+)(?:\s+([\W\w]*)\s*)?/);
       if (!parts) return;
       const [_, name, params] = parts;
-      if (parts) {
-        return atRule(name, maybeNestedObject, params);
-      }
+      return atRule(name, maybeNestedObject, params);
     }
 
     return treatTree(maybeNestedObject).mapLeft((value) =>

@@ -40,6 +40,33 @@ test("fromPlainObject", () => {
         params: "(min-width: 640px)",
       }),
     ]],
+    [{
+      "h1,h2": {
+        display: "block",
+      },
+    }, [
+      new Rule({
+        selector: "h1,h2",
+        nodes: [new Declaration({ prop: "display", value: "block" })],
+      }),
+    ]],
+    [{
+      "h1,h2": {
+        display: "block",
+      },
+      "h1": {
+        display: "inline",
+      },
+    }, [
+      new Rule({
+        selector: "h1,h2",
+        nodes: [new Declaration({ prop: "display", value: "block" })],
+      }),
+      new Rule({
+        selector: "h1",
+        nodes: [new Declaration({ prop: "display", value: "inline" })],
+      }),
+    ]],
   ];
 
   table.forEach(([object, result]) =>
