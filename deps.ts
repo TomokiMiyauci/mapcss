@@ -31,12 +31,6 @@ export {
   Right,
 } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
 export { isUndefined };
-export {
-  parse as parseSelector,
-  type Selector,
-  SelectorType,
-  stringify as stringifySelector,
-} from "https://esm.sh/css-what";
 export type {
   ChildNode,
   ChildProps,
