@@ -1,3 +1,19 @@
+# [1.0.0-beta.15](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2022-02-25)
+
+
+### Bug Fixes
+
+* **preset_typography:** use parentKey instread of key ([437089d](https://github.com/TomokiMiyauci/mapcss/commit/437089dd8bf31bc9d8d1a16f16addb42e25c9ced))
+
+
+### Features
+
+* **core:** add pre process that each specifierMap merge to deep Map ([33107c4](https://github.com/TomokiMiyauci/mapcss/commit/33107c45e47ab822242b2acf34c4851610099718))
+* **core:** change specifier context to include `parentKey` ([9ce1f26](https://github.com/TomokiMiyauci/mapcss/commit/9ce1f268b818f8e1827d29772f2eb8cdf0119363))
+* **core:** extend cssObject interface for define root AST ([d470ced](https://github.com/TomokiMiyauci/mapcss/commit/d470cedbc0831205f9d1e25c29bca47170dcb11d))
+* **preset_typography:** add specifier of `prose.invert` ([d3e54cd](https://github.com/TomokiMiyauci/mapcss/commit/d3e54cdbded77bf542e3365eab402192f94a95a1))
+* **preset_typography:** add specifier of `prose.invert` and `prose.theme.color` ([30b78c7](https://github.com/TomokiMiyauci/mapcss/commit/30b78c755f926e4ff5dad41c4c259b9ce1c429e0))
+
 # [1.0.0-beta.14](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2022-02-23)
 
 
