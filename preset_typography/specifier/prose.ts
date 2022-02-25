@@ -3,6 +3,8 @@ import { astify } from "../../core/ast.ts";
 import {
   chain,
   deepMerge,
+  isEmptyObject,
+  isObject,
   isString,
   isUndefined,
   prop,
@@ -13,7 +15,7 @@ import { re$All } from "../../core/utils/regexp.ts";
 import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import type { PresetOptions } from "../types.ts";
-import type { EntriesSpecifier } from "../../core/types.ts";
+import type { EntriesSpecifier, Tree } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string) {
   const varFnProperty = (property: string) =>
@@ -46,7 +48,7 @@ function generateDefault(varPrefix: string) {
       margin: "1em 0",
       "line-height": 1.75,
     },
-    "blockquote": {
+    blockquote: {
       margin: "1em 0",
       "padding-left": "1em",
       "font-style": "italic",
@@ -163,10 +165,19 @@ export function depsProse({ css }: Required<PresetOptions>) {
         },
       };
       const DEFAULT = generateDefault(variablePrefix);
-      const nodes = astify(deepMerge(css, DEFAULT));
-      const widthNodes = astify(maxWidth);
 
-      const root = removeDuplicatedDecl(new Root({ nodes }));
+      const [_css, disabledMap] = isolateEntries<
+        Tree<string | number>,
+        Record<string, false>
+      >(
+        css,
+      );
+
+      const nodes = astify(deepMerge(_css, DEFAULT));
+      const widthNodes = astify(maxWidth);
+      const root = chain(new Root({ nodes })).map((root) =>
+        removeRuleOrDecl(root, disabledMap)
+      ).map(removeDuplicatedDecl).unwrap();
 
       root.walkRules((rule) => {
         rule.selector = transformSelector(rule.selector, parentKey);
@@ -276,6 +287,50 @@ export function depsProse({ css }: Required<PresetOptions>) {
     }],
   ];
   return prose;
+}
+
+export function removeRuleOrDecl(
+  root: Root,
+  removeMap: Record<PropertyKey, false | Record<PropertyKey, false>>,
+): Readonly<Root> {
+  const newRoot = root.clone();
+
+  Object.entries(removeMap).forEach(([key, value]) => {
+    newRoot.walkRules(key, (node) => {
+      if (value === false) {
+        node.remove();
+      } else {
+        Object.keys(value).forEach((prop) => {
+          node.walkDecls(prop, (decl) => {
+            decl.remove();
+          });
+        });
+      }
+    });
+  });
+
+  return newRoot;
+}
+
+export function isolateEntries<
+  U extends Record<PropertyKey, unknown>,
+  K extends Record<PropertyKey, unknown>,
+>(
+  value: Record<PropertyKey, any>,
+): [U, K] {
+  return Object.entries(value).reduce((acc, [key, value]) => {
+    if (value === false) {
+      return [acc[0], { ...acc[1], [key]: value }];
+    }
+
+    if (isObject(value)) {
+      const [a, b] = isolateEntries(value);
+      const _a = isEmptyObject(a) ? {} : { [key]: { ...a } };
+      const _b = isEmptyObject(b) ? {} : { [key]: { ...b } };
+      return [{ ...acc[0], ..._a }, { ...acc[1], ..._b }];
+    }
+    return [{ ...acc[0], [key]: value }, acc[1]];
+  }, [{}, {}] as [U, K]);
 }
 
 function isWhereableNode(node: Node): boolean {

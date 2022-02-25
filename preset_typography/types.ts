@@ -6,5 +6,5 @@ export interface PresetOptions {
    *
    * @default undefined
    */
-  css?: Tree<string | number>;
+  css?: Tree<string | number | false>;
 }

@@ -1,4 +1,10 @@
-import { transformSelector } from "./prose.ts";
+import {
+  isolateEntries,
+  removeRuleOrDecl,
+  transformSelector,
+} from "./prose.ts";
+import { Declaration, Root, Rule } from "../../deps.ts";
+import { astify } from "../../core/ast.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
 
 test("transformWhere", () => {
@@ -45,5 +51,184 @@ test("transformWhere", () => {
 
   table.forEach(([selector, className, result]) =>
     expect(transformSelector(selector, className)).toBe(result)
+  );
+});
+
+test("isolateEntries", () => {
+  const table: ParamReturn<typeof isolateEntries>[] = [
+    [{}, [{}, {}]],
+    [{ a: 1 }, [{ a: 1 }, {}]],
+    [{ a: 1, b: false }, [{
+      a: 1,
+    }, { b: false }]],
+    [
+      { a: 1, b: false, c: { a: false } },
+      [{
+        a: 1,
+      }, {
+        b: false,
+        c: { a: false },
+      }],
+    ],
+    [
+      { a: 1, b: false, c: { a: false }, d: { a: "a", b: "b", c: false } },
+      [{
+        a: 1,
+        d: {
+          a: "a",
+          b: "b",
+        },
+      }, {
+        b: false,
+        c: { a: false },
+        d: {
+          c: false,
+        },
+      }],
+    ],
+    [
+      {
+        a: 1,
+        b: false,
+        c: { a: false, b: "b", c: { d: "d", e: false } },
+        d: { a: "a", b: "b", c: false },
+      },
+      [{
+        a: 1,
+        c: { b: "b", c: { d: "d" } },
+        d: {
+          a: "a",
+          b: "b",
+        },
+      }, {
+        b: false,
+        c: { a: false, c: { e: false } },
+        d: {
+          c: false,
+        },
+      }],
+    ],
+  ];
+
+  table.forEach(([value, result]) =>
+    expect(isolateEntries(value)).toEqual(result)
+  );
+});
+
+test("removeRuleOrDecl", () => {
+  const table: ParamReturn<typeof removeRuleOrDecl>[] = [
+    [new Root(), {}, new Root()],
+    [
+      new Root({ nodes: [new Rule({ selector: "a", nodes: [] })] }),
+      {},
+      new Root({ nodes: [new Rule({ selector: "a", nodes: [] })] }),
+    ],
+    [
+      new Root({ nodes: [new Rule({ selector: "a", nodes: [] })] }),
+      { a: false },
+      new Root(),
+    ],
+    [
+      new Root({
+        nodes: [
+          new Rule({
+            selector: "a",
+            nodes: [new Declaration({ prop: "display", value: "" })],
+          }),
+        ],
+      }),
+      { a: false },
+      new Root(),
+    ],
+    [
+      new Root({
+        nodes: [
+          new Rule({
+            selector: "a",
+          }),
+        ],
+      }),
+      {
+        a: {
+          block: false,
+        },
+      },
+      new Root({ nodes: [new Rule({ selector: "a" })] }),
+    ],
+    [
+      new Root({
+        nodes: [
+          new Rule({
+            selector: "a",
+            nodes: [
+              new Declaration({
+                prop: "a",
+                value: "",
+              }),
+              new Declaration({
+                prop: "b",
+                value: "",
+              }),
+            ],
+          }),
+        ],
+      }),
+      {
+        a: {
+          b: false,
+        },
+      },
+      new Root({
+        nodes: [
+          new Rule({
+            selector: "a",
+            nodes: [
+              new Declaration({
+                prop: "a",
+                value: "",
+              }),
+            ],
+          }),
+        ],
+      }),
+    ],
+    [
+      new Root({
+        nodes: astify({
+          a: {
+            color: "red",
+            fontWeight: "1.6em",
+          },
+          h1: {
+            color: "blue",
+            "line-height": "1",
+          },
+          pre: {
+            content: `"'"`,
+          },
+        }),
+      }),
+      {
+        pre: {
+          content: false,
+        },
+        a: {
+          "font-weight": false,
+        },
+        h1: false,
+      },
+      new Root({
+        nodes: astify({
+          a: {
+            color: "red",
+          },
+          pre: {},
+        }),
+      }),
+    ],
+  ];
+
+  table.forEach(([root, removeMap, result]) =>
+    expect(removeRuleOrDecl(root, removeMap).toString()).toBe(result.toString())
   );
 });
