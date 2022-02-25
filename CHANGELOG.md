@@ -1,3 +1,13 @@
+# [1.0.0-beta.16](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2022-02-25)
+
+
+### Features
+
+* **preset_typography:** add `css` interface for preset typography, that extend or override default ([47f4835](https://github.com/TomokiMiyauci/mapcss/commit/47f4835cc2cdcf8a0b9821e529b6ef3334f272c1))
+* **preset_typography:** add disable default style with JSS style ([0dccfe2](https://github.com/TomokiMiyauci/mapcss/commit/0dccfe2a0063c95c106e2ad27ef77e1eeee7e8d3))
+* **preset_typography:** add filtering selector with splitted selector list ([b586376](https://github.com/TomokiMiyauci/mapcss/commit/b586376e8d3cca013aa3d0f0847b20f07e750900))
+* **preset_typography:** override css regardless of selector shifts ([62f94e9](https://github.com/TomokiMiyauci/mapcss/commit/62f94e9eab730106f95ca736caa07836915062f0))
+
 # [1.0.0-beta.15](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2022-02-25)
 
 
