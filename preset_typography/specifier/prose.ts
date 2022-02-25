@@ -9,6 +9,7 @@ import {
   isUndefined,
   prop,
   Root,
+  Rule,
 } from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { re$All } from "../../core/utils/regexp.ts";
@@ -31,7 +32,7 @@ function generateDefault(varPrefix: string) {
   const varBgSoft = varFnProperty("prose-bg-soft");
 
   const DEFAULT = {
-    "h1, h2, h3, h4, h5, h6": {
+    "h1, h2": {
       color: varHeadings,
       "font-weight": 600,
       "line-height": 1.25,
@@ -164,6 +165,7 @@ export function depsProse({ css }: Required<PresetOptions>) {
           maxWidth: "65ch",
         },
       };
+
       const DEFAULT = generateDefault(variablePrefix);
 
       const [_css, disabledMap] = isolateEntries<
@@ -172,12 +174,8 @@ export function depsProse({ css }: Required<PresetOptions>) {
       >(
         css,
       );
-
-      const nodes = astify(deepMerge(_css, DEFAULT));
+      const root = toAst(deepMerge(_css, DEFAULT), disabledMap);
       const widthNodes = astify(maxWidth);
-      const root = chain(new Root({ nodes })).map((root) =>
-        removeRuleOrDecl(root, disabledMap)
-      ).map(removeDuplicatedDecl).unwrap();
 
       root.walkRules((rule) => {
         rule.selector = transformSelector(rule.selector, parentKey);
@@ -291,7 +289,7 @@ export function depsProse({ css }: Required<PresetOptions>) {
 
 export function removeRuleOrDecl(
   root: Root,
-  removeMap: Record<PropertyKey, false | Record<PropertyKey, false>>,
+  removeMap: Tree<false>,
 ): Readonly<Root> {
   const newRoot = root.clone();
 
@@ -310,6 +308,17 @@ export function removeRuleOrDecl(
   });
 
   return newRoot;
+}
+
+export function toAst(
+  css: Tree<string | number>,
+  disableMap: Tree<false>,
+): Root {
+  const nodes = astify(css);
+  return chain(new Root({ nodes })).map(splitSelectorList).map((
+    root,
+  ) => removeRuleOrDecl(root, disableMap)).map(removeDuplicatedDecl)
+    .unwrap();
 }
 
 export function isolateEntries<
@@ -367,4 +376,16 @@ export function transformSelector(selector: string, className: string): string {
     });
   }).processSync(selector, { lossless: false });
   return result;
+}
+
+export function splitSelectorList(root: Readonly<Root>): Root {
+  const newRoot = root.clone();
+  newRoot.walkRules((rule) => {
+    const rules = rule.selectors.map((selector) => {
+      return new Rule({ selector, nodes: rule.nodes });
+    });
+
+    rule.replaceWith(rules);
+  });
+  return newRoot;
 }

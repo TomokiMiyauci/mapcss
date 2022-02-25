@@ -1,11 +1,13 @@
 import {
   isolateEntries,
   removeRuleOrDecl,
+  toAst,
   transformSelector,
 } from "./prose.ts";
 import { Declaration, Root, Rule } from "../../deps.ts";
 import { astify } from "../../core/ast.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
+import type { Tree } from "../../core/types.ts";
 
 test("transformWhere", () => {
   const table: [...ParamReturn<typeof transformSelector>][] = [
@@ -226,9 +228,150 @@ test("removeRuleOrDecl", () => {
         }),
       }),
     ],
+    [
+      new Root({
+        nodes: astify({
+          "pre, code": {
+            color: "red",
+            fontWeight: "1.6em",
+          },
+        }),
+      }),
+      {
+        pre: false,
+      },
+      new Root({
+        nodes: astify({
+          "pre, code": {
+            color: "red",
+            fontWeight: "1.6em",
+          },
+        }),
+      }),
+    ],
   ];
 
   table.forEach(([root, removeMap, result]) =>
     expect(removeRuleOrDecl(root, removeMap).toString()).toBe(result.toString())
+  );
+});
+
+test("toAst", () => {
+  const table: [...Parameters<typeof toAst>, Tree<string | number>][] = [
+    [{}, {}, {}],
+    [
+      {
+        a: {
+          color: "red",
+        },
+      },
+      {
+        a: {
+          color: false,
+        },
+      },
+      {
+        a: {},
+      },
+    ],
+    [
+      {
+        a: {
+          color: "red",
+          "font-weight": 600,
+        },
+      },
+      {
+        a: {
+          "font-weight": false,
+        },
+      },
+      {
+        a: {
+          color: "red",
+        },
+      },
+    ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+          "font-weight": 600,
+        },
+      },
+      {},
+      {
+        h1: {
+          color: "red",
+          "font-weight": 600,
+        },
+        h2: {
+          color: "red",
+          "font-weight": 600,
+        },
+      },
+    ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+          "font-weight": 600,
+        },
+      },
+      { h1: false },
+      {
+        h2: {
+          color: "red",
+          "font-weight": 600,
+        },
+      },
+    ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+          "font-weight": 600,
+        },
+      },
+      {
+        h1: false,
+        h2: {
+          color: false,
+        },
+      },
+      {
+        h2: {
+          "font-weight": 600,
+        },
+      },
+    ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+          "font-weight": 600,
+        },
+        h1: {
+          display: "block",
+        },
+      },
+      {
+        h1: false,
+        h2: {
+          color: false,
+        },
+      },
+      {
+        h2: {
+          "font-weight": 600,
+        },
+      },
+    ],
+  ];
+
+  table.forEach(([css, disableMap, result]) =>
+    expect(toAst(css, disableMap).toString()).toEqual(
+      new Root({ nodes: astify(result) }).toString(),
+    )
   );
 });
