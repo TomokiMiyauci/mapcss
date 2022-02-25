@@ -1,7 +1,6 @@
 import {
   deepMerge,
   distinctBy,
-  Either,
   head,
   init,
   isFunction,
@@ -9,10 +8,8 @@ import {
   isString,
   isUndefined,
   last,
-  Left,
   prop,
   propPath,
-  Right,
   Root,
   Rule,
   sortBy,
@@ -68,140 +65,61 @@ class MockRegExpExecArray extends Array<string> {
   }
 }
 
-function wrap<T>(value: T): T extends any[] ? T : T[] {
-  return Array.isArray(value) ? value : [value] as any;
-}
-
-export function resolveSpecifierMap(
-  value: string,
-  specifierMap: SpecifierMap,
-  context: Omit<SpecifierContext, "className" | "key" | "parentKey" | "path">,
+export function resolveMappedSpecifier(
+  value: string | string[],
+  mappedSpecifier: MappedSpecifier,
+  context:
+    & Omit<SpecifierContext, "className" | "key" | "parentKey" | "path">
+    & { parentKey?: string; key?: string },
 ): Root | undefined {
   const className = `.${escapeRegExp(context.token)}`;
   const paths = leftSplit(value, context.separator);
 
   for (const path of paths) {
-    const first = head(path);
+    const first = head(path) ?? "DEFAULT";
     const rest = tail(path);
-    if (isUndefined(first)) continue;
 
-    const _BlockDefinition = prop(first, specifierMap);
-
-    if (isUndefined(_BlockDefinition)) continue;
     const specifierContext: SpecifierContext = {
       ...context,
+      parentKey: context.key,
       className,
       key: first,
-      parentKey: first,
       path,
     };
-    const applySpecifier = (specifier: Specifier) =>
-      resolveSpecifier(rest, specifier, specifierContext);
-
-    const resolved = EitherSpec(_BlockDefinition).mapLeft((cssObject) => {
-      return handleCSSObject(cssObject, className);
-    }).mapRight(applySpecifier).unwrap();
-
-    if (isUndefined(resolved)) continue;
-
-    return resolved;
-  }
-}
-
-function resolveSpecifier(
-  path: string[],
-  specifier: Specifier,
-  context: SpecifierContext,
-): Root | undefined {
-  const rest = tail(path);
-  const applySpecifier = (specifier: Specifier) =>
-    resolveSpecifier(rest, specifier, context);
-
-  const _head = head(path);
-  if (isString(_head)) {
-    context.key = _head;
-  }
-  const first = _head ?? "DEFAULT";
-  if (Array.isArray(specifier)) {
-    const map = new Map(specifier.map(([key, value]) => [String(key), value]));
-    const maybeSpec = map.get(first);
-
-    if (!maybeSpec) {
-      const filteredSpecifier = specifier.filter(filterRegExp) as [
-        RegExp,
-        Specifier | CSSObject | SpecifierHandler,
-      ][];
-      for (const [regExp, specifierOrDefinition] of filteredSpecifier) {
-        const regExpExecArray = regExp.exec(first);
-        if (!regExpExecArray) continue;
-
-        const result = eitherSpecifier(specifierOrDefinition).mapLeft(
-          eitherHandler,
-        ).mapLeft((e) => {
-          const maybeCSSObjet = e.mapRight((fn) => fn(regExpExecArray, context))
-            .unwrap();
-          if (!maybeCSSObjet) return;
-          return handleCSSObject(maybeCSSObjet, context.className);
-        })
-          .mapRight(applySpecifier).unwrap();
-
-        context.parentKey = _head;
+    const has = mappedSpecifier.has(first);
+    if (has) {
+      const definition = mappedSpecifier.get(first)!;
+      if (isFunction(definition)) {
+        const result = definition(new MockRegExpExecArray(), specifierContext);
+        specifierContext.parentKey = first;
         if (isUndefined(result)) continue;
-        return result;
+        return handleCSSObject(result, className);
       }
-      context.parentKey = _head;
-      return;
+
+      if (definition instanceof Map) {
+        return resolveMappedSpecifier(rest, definition, specifierContext);
+      }
+      return handleCSSObject(definition, className);
     }
-    context.parentKey = _head;
-    return eitherSpecifier(maybeSpec).mapLeft(eitherHandler).mapLeft((e) => {
-      const maybeCSSObjet = e.mapRight((fn) =>
-        fn(new MockRegExpExecArray(), context)
-      ).unwrap();
-      if (!maybeCSSObjet) return;
 
-      return handleCSSObject(maybeCSSObjet, context.className);
-    })
-      .mapRight(applySpecifier).unwrap();
+    for (const [key, m] of mappedSpecifier) {
+      if (isRegExp(key)) {
+        const regExpExecResult = key.exec(first);
+        if (!regExpExecResult) continue;
+
+        if (isFunction(m)) {
+          const result = m(regExpExecResult, specifierContext);
+          if (isUndefined(result)) continue;
+
+          return handleCSSObject(result, className);
+        }
+        if (m instanceof Map) {
+          return resolveMappedSpecifier(rest, m, specifierContext);
+        }
+        return handleCSSObject(m, className);
+      }
+    }
   }
-  context.parentKey = _head;
-  const _BlockDefinition = prop(first, specifier);
-  if (isUndefined(_BlockDefinition)) return;
-
-  return eitherSpecifier(_BlockDefinition).mapLeft(eitherHandler).mapLeft(
-    (e) => {
-      const maybeCSSObjet = e.mapRight((fn) =>
-        fn(new MockRegExpExecArray(), context)
-      ).unwrap();
-      if (!maybeCSSObjet) return;
-      return handleCSSObject(maybeCSSObjet, context.className);
-    },
-  )
-    .mapRight(applySpecifier).unwrap();
-}
-
-function filterRegExp(
-  [key]: [string | number | RegExp, Specifier | CSSObject | SpecifierHandler],
-): boolean {
-  return isRegExp(key);
-}
-
-function EitherSpec(
-  value: Specifier | CSSObject,
-): Either<CSSObject, Specifier> {
-  if (isCSSObject(value)) return Left(value);
-  return Right(value);
-}
-
-function eitherSpecifier(
-  value: CSSObject | SpecifierHandler | Specifier,
-): Either<CSSObject | SpecifierHandler, Specifier> {
-  return isFunction(value) || isCSSObject(value) ? Left(value) : Right(value);
-}
-
-function eitherHandler(
-  value: CSSObject | SpecifierHandler,
-): Either<CSSObject, SpecifierHandler> {
-  return isFunction(value) ? Right(value) : Left(value);
 }
 
 function handleCSSObject(cssObject: CSSObject, selector: string): Root {
@@ -296,10 +214,12 @@ export function resolveConfig(
       >
     >
   >,
-): Pick<
-  Config,
-  "specifierMap" | "modifierMap" | "theme" | "syntaxes" | "postProcess"
-> {
+):
+  & Pick<
+    Config,
+    "modifierMap" | "theme" | "syntaxes" | "postProcess"
+  >
+  & { mappedSpecifier: MappedSpecifier } {
   const _presets = distinctBy(presets, pickByName);
   const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
     .reduce((acc, cur) => {
@@ -315,24 +235,58 @@ export function resolveConfig(
     ..._syntaxes,
     ..._presets.map(({ syntaxes }) => syntaxes).flat(),
   );
-  const specifierMap = _presets.map(({ specifierMap }) => specifierMap).reduce(
-    (acc, cur) => {
-      return deepMerge(acc, cur);
-    },
-    _specifierMap,
+  const mappedSpecifier = mergeSpecifierMap(
+    _presets.map(({ specifierMap }) => specifierMap),
   );
+
   const postProcess = resolvePostProcessor(
     ..._postProcess,
     ..._presets.map(({ postProcessor }) => postProcessor).flat(),
   );
 
   return {
-    specifierMap,
+    mappedSpecifier,
     theme,
     modifierMap,
     syntaxes,
     postProcess,
   };
+}
+
+type TreeMap<Leaf, P> = Map<P, Leaf | TreeMap<Leaf, P>>;
+
+type MappedSpecifier = TreeMap<SpecifierHandler | CSSObject, string | RegExp>;
+
+export function mergeSpecifierMap(
+  specifierMaps: SpecifierMap[],
+): MappedSpecifier {
+  const recursive = (
+    m: Specifier,
+    map: Map<string | RegExp, any>,
+  ): Map<string | RegExp, SpecifierHandler | CSSObject> => {
+    const entries = Array.isArray(m) ? m : Object.entries(m);
+
+    entries.forEach(([key, value]) => {
+      const _key = isRegExp(key) ? key : String(key);
+      if (isFunction(value) || isCSSObject(value)) {
+        map.set(_key, value);
+      } else {
+        map.set(
+          _key,
+          recursive(
+            value,
+            new Map<string | RegExp, SpecifierHandler | CSSObject>(),
+          ),
+        );
+      }
+    });
+    return map;
+  };
+
+  return specifierMaps.reduce(
+    (acc, cur) => recursive(cur, acc),
+    new Map<string | RegExp, SpecifierHandler | CSSObject>(),
+  );
 }
 
 export function resolveModifierMap(

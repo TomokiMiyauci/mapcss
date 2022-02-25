@@ -2,8 +2,8 @@ import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
 import {
   resolveConfig,
+  resolveMappedSpecifier,
   resolveModifierMap,
-  resolveSpecifierMap,
 } from "./resolve.ts";
 import type { Config } from "./types.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
@@ -33,7 +33,7 @@ export function generateStyleSheet(
     syntaxes,
     modifierMap,
     theme,
-    specifierMap,
+    mappedSpecifier,
     postProcess: processors,
   } = resolveConfig({ ...rest, postProcess: _postProcess });
 
@@ -47,12 +47,12 @@ export function generateStyleSheet(
       const parseResult = fn({
         token: mappedToken,
         modifierRoots: Object.keys(modifierMap),
-        specifierRoots: Object.keys(specifierMap),
+        specifierRoots: Array.from(mappedSpecifier.keys()) as string[],
       });
       if (!parseResult) return;
       const { specifier, modifiers = [] } = parseResult;
 
-      const specifierRoot = resolveSpecifierMap(specifier, specifierMap, {
+      const specifierRoot = resolveMappedSpecifier(specifier, mappedSpecifier, {
         theme,
         variablePrefix,
         separator,
