@@ -4,9 +4,11 @@ import {
   chain,
   deepMerge,
   isEmptyObject,
+  isLength0,
   isObject,
   isString,
   isUndefined,
+  mapEntries,
   prop,
   Root,
   Rule,
@@ -15,6 +17,7 @@ import { $resolveTheme } from "../../core/resolve.ts";
 import { re$All } from "../../core/utils/regexp.ts";
 import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
+import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOptions } from "../types.ts";
 import type { EntriesSpecifier, Tree } from "../../core/types.ts";
 
@@ -170,10 +173,11 @@ export function depsProse({ css }: Required<PresetOptions>) {
 
       const [_css, disabledMap] = isolateEntries<
         Tree<string | number>,
-        Record<string, false>
+        Tree<false>
       >(
         css,
       );
+
       const root = toAst(deepMerge(_css, DEFAULT), disabledMap);
       const widthNodes = astify(maxWidth);
 
@@ -289,20 +293,32 @@ export function depsProse({ css }: Required<PresetOptions>) {
 
 export function removeRuleOrDecl(
   root: Root,
-  removeMap: Tree<false>,
+  removeMap: Tree<string>,
 ): Readonly<Root> {
   const newRoot = root.clone();
 
-  Object.entries(removeMap).forEach(([key, value]) => {
-    newRoot.walkRules(key, (node) => {
-      if (value === false) {
-        node.remove();
-      } else {
-        Object.keys(value).forEach((prop) => {
-          node.walkDecls(prop, (decl) => {
-            decl.remove();
+  const childs = new Root({ nodes: astify(removeMap) });
+  // lift up for non parent declaration to rule with no nodes
+  childs.walkDecls((node) => {
+    if (node.parent?.type !== "rule") {
+      node.replaceWith(new Rule({ selector: minifySelector(node.prop) }));
+    }
+  });
+
+  const targetNodes = splitSelectorList(childs);
+
+  targetNodes.walkRules((rule) => {
+    newRoot.walkRules((node) => {
+      if (minifySelector(node.selector) === rule.selector) {
+        if (isLength0(rule.nodes)) {
+          node.remove();
+        } else {
+          rule.walkDecls((decl) => {
+            node.walkDecls(decl.prop, (node) => {
+              node.remove();
+            });
           });
-        });
+        }
       }
     });
   });
@@ -312,12 +328,14 @@ export function removeRuleOrDecl(
 
 export function toAst(
   css: Tree<string | number>,
-  disableMap: Tree<false>,
+  disableMap: Tree<string | number | false>,
 ): Root {
   const nodes = astify(css);
+  const map = recTransform(disableMap, () => "");
+
   return chain(new Root({ nodes })).map(splitSelectorList).map((
     root,
-  ) => removeRuleOrDecl(root, disableMap)).map(removeDuplicatedDecl)
+  ) => removeRuleOrDecl(root, map)).map(removeDuplicatedDecl)
     .unwrap();
 }
 
@@ -388,4 +406,24 @@ export function splitSelectorList(root: Readonly<Root>): Root {
     rule.replaceWith(rules);
   });
   return newRoot;
+}
+
+export function recTransform<T, U>(
+  object: Readonly<Record<PropertyKey, T>>,
+  transformer: (
+    value: T extends Record<PropertyKey, any> ? T[keyof T]
+      : T,
+  ) => U,
+): Tree<U, string> {
+  return mapEntries(
+    object,
+    (
+      [key, value],
+    ) => [
+      key,
+      isObject(value)
+        ? recTransform(value as never, transformer)
+        : transformer(value as never),
+    ],
+  );
 }

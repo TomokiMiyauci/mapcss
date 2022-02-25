@@ -1,10 +1,10 @@
 import {
   isolateEntries,
-  removeRuleOrDecl,
+  recTransform,
   toAst,
   transformSelector,
 } from "./prose.ts";
-import { Declaration, Root, Rule } from "../../deps.ts";
+import { Root } from "../../deps.ts";
 import { astify } from "../../core/ast.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
 import type { Tree } from "../../core/types.ts";
@@ -117,148 +117,21 @@ test("isolateEntries", () => {
   );
 });
 
-test("removeRuleOrDecl", () => {
-  const table: ParamReturn<typeof removeRuleOrDecl>[] = [
-    [new Root(), {}, new Root()],
-    [
-      new Root({ nodes: [new Rule({ selector: "a", nodes: [] })] }),
-      {},
-      new Root({ nodes: [new Rule({ selector: "a", nodes: [] })] }),
-    ],
-    [
-      new Root({ nodes: [new Rule({ selector: "a", nodes: [] })] }),
-      { a: false },
-      new Root(),
-    ],
-    [
-      new Root({
-        nodes: [
-          new Rule({
-            selector: "a",
-            nodes: [new Declaration({ prop: "display", value: "" })],
-          }),
-        ],
-      }),
-      { a: false },
-      new Root(),
-    ],
-    [
-      new Root({
-        nodes: [
-          new Rule({
-            selector: "a",
-          }),
-        ],
-      }),
-      {
-        a: {
-          block: false,
-        },
-      },
-      new Root({ nodes: [new Rule({ selector: "a" })] }),
-    ],
-    [
-      new Root({
-        nodes: [
-          new Rule({
-            selector: "a",
-            nodes: [
-              new Declaration({
-                prop: "a",
-                value: "",
-              }),
-              new Declaration({
-                prop: "b",
-                value: "",
-              }),
-            ],
-          }),
-        ],
-      }),
-      {
-        a: {
-          b: false,
-        },
-      },
-      new Root({
-        nodes: [
-          new Rule({
-            selector: "a",
-            nodes: [
-              new Declaration({
-                prop: "a",
-                value: "",
-              }),
-            ],
-          }),
-        ],
-      }),
-    ],
-    [
-      new Root({
-        nodes: astify({
-          a: {
-            color: "red",
-            fontWeight: "1.6em",
-          },
-          h1: {
-            color: "blue",
-            "line-height": "1",
-          },
-          pre: {
-            content: `"'"`,
-          },
-        }),
-      }),
-      {
-        pre: {
-          content: false,
-        },
-        a: {
-          "font-weight": false,
-        },
-        h1: false,
-      },
-      new Root({
-        nodes: astify({
-          a: {
-            color: "red",
-          },
-          pre: {},
-        }),
-      }),
-    ],
-    [
-      new Root({
-        nodes: astify({
-          "pre, code": {
-            color: "red",
-            fontWeight: "1.6em",
-          },
-        }),
-      }),
-      {
-        pre: false,
-      },
-      new Root({
-        nodes: astify({
-          "pre, code": {
-            color: "red",
-            fontWeight: "1.6em",
-          },
-        }),
-      }),
-    ],
-  ];
-
-  table.forEach(([root, removeMap, result]) =>
-    expect(removeRuleOrDecl(root, removeMap).toString()).toBe(result.toString())
-  );
-});
-
 test("toAst", () => {
   const table: [...Parameters<typeof toAst>, Tree<string | number>][] = [
     [{}, {}, {}],
+    [{ a: { color: "red" } }, { a: false }, {}],
+    [{ a: { fontWeight: 600 } }, { a: { fontWeight: false } }, { a: {} }],
+    [{ a: { fontWeight: 600 } }, { a: { "font-weight": false } }, { a: {} }],
+    [{ a: { "font-weight": 600 } }, { a: { fontWeight: false } }, { a: {} }],
+    [{ a: { "font-weight": 600 } }, { a: { "font-weight": false } }, { a: {} }],
+    [{
+      "a:not(h1,h2 ,h3,   h4)": {
+        color: "red",
+      },
+    }, {
+      "a:not(h1,h2,h3,h4)": false,
+    }, {}],
     [
       {
         a: {
@@ -367,11 +240,152 @@ test("toAst", () => {
         },
       },
     ],
+    [
+      {
+        "h1:hover": {
+          color: "red",
+        },
+      },
+      {
+        h1: false,
+      },
+      {
+        "h1:hover": {
+          color: "red",
+        },
+      },
+    ],
+    [
+      {
+        "h1:hover": {
+          color: "red",
+        },
+      },
+      {
+        "h1:hover": false,
+      },
+      {},
+    ],
+    [
+      {
+        "h1:hover": {
+          color: "red",
+        },
+      },
+      {
+        "h1:hover": {
+          color: false,
+        },
+      },
+      { "h1:hover": {} },
+    ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+        },
+      },
+      {
+        "h1, h2": false,
+      },
+      {},
+    ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+        },
+        h1: {
+          fontWeight: 600,
+        },
+      },
+      {
+        "h1, h2": false,
+      },
+      {},
+    ],
+    [
+      {
+        ":not(pre) > code::before, :not(pre) > code::after": {
+          content: '"`"',
+        },
+      },
+      {
+        ":not(pre) > code::before,:not(pre) > code::after": false,
+      },
+      {},
+    ],
+    [
+      {
+        ":not(pre) > code::before, :not(pre) > code::after": {
+          content: '"`"',
+        },
+      },
+      {
+        ":not(pre)>code::before": {
+          content: false,
+        },
+      },
+      {
+        ":not(pre) > code::before": {},
+        ":not(pre) > code::after": {
+          content: '"`"',
+        },
+      },
+    ],
+    // OK but can't test it because distribute object.
+    // [
+    //   {
+    //     "h1, h2": {
+    //       color: "red",
+    //     },
+    //     h1: {
+    //       fontWeight: 600,
+    //     },
+    //   },
+    //   {
+    //     "h1, h2": {
+    //       color: false,
+    //     },
+    //   },
+    //   {
+    //     ...{ h1: {} },
+    //     "h1": {
+    //       fontWeight: 600,
+    //     },
+    //     h2: {},
+    //   },
+    // ],
   ];
 
   table.forEach(([css, disableMap, result]) =>
     expect(toAst(css, disableMap).toString()).toEqual(
       new Root({ nodes: astify(result) }).toString(),
     )
+  );
+});
+
+test("recTransform", () => {
+  const fn = () => "";
+  const table: ParamReturn<typeof recTransform>[] = [
+    [{}, fn, {}],
+    [{ a: false }, fn, { a: "" }],
+    [{ a: false, b: { c: false } }, fn, {
+      a: "",
+      b: { c: "" },
+    }],
+    [{ a: false, b: { c: false, d: "d", e: { f: "f" } } }, () => 1, {
+      a: 1,
+      b: {
+        c: 1,
+        d: 1,
+        e: {
+          f: 1,
+        },
+      },
+    }],
+  ];
+  table.forEach(([object, fn, result]) =>
+    expect(recTransform(object, fn)).toEqual(result)
   );
 });

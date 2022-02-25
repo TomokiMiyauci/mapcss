@@ -1,4 +1,5 @@
 export {
+  isEmptyObject,
   isFunction,
   isLength0,
   isNumber,

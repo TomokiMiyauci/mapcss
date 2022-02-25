@@ -8,7 +8,7 @@ const selectorProcessor = selectorParser((selectors) => {
   });
 });
 
-function minifySelector(value: string): string {
+export function minifySelector(value: string): string {
   return selectorProcessor.processSync(value);
 }
 
