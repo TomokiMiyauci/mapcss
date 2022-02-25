@@ -144,10 +144,11 @@ function generateDefault(varPrefix: string) {
 const join = (value: string[]): string => value.join("-");
 
 export const prose: EntriesSpecifier = [
-  ["DEFAULT", (_, { variablePrefix, className, key }) => {
+  ["DEFAULT", (_, { variablePrefix, className, parentKey }) => {
+    if (isUndefined(parentKey)) return;
     const maxWidth = {
       [className]: {
-        color: customProperty(`${key}-body`, variablePrefix),
+        color: customProperty(`${parentKey}-body`, variablePrefix),
         "max-width": "65ch",
       },
     };
@@ -158,25 +159,22 @@ export const prose: EntriesSpecifier = [
 
     const root = new Root({ nodes });
     root.walkRules((rule) => {
-      rule.selector = transformSelector(rule.selector, key);
+      rule.selector = transformSelector(rule.selector, parentKey);
     });
     root.append(widthNodes);
 
     return root;
   }],
-  ["invert", (_, { key, path, variablePrefix, className }) => {
-    const i = path.findIndex((k) => k === key);
-    if (i < 0) return;
-    const parent = path[i - 1] as string | undefined;
-    if (isUndefined(parent)) return;
+  ["invert", (_, { parentKey, key, variablePrefix, className }) => {
+    if (isUndefined(parentKey)) return;
 
     const varProperty = (property: string): string =>
       customProperty(property, variablePrefix);
     const makeVarFnSet = (
       property: string,
     ): [string, string] => [
-      chain([parent, property]).map(join).map(varProperty).unwrap(),
-      chain([parent, key, property]).map(join).map(varProperty).map(varFn)
+      chain([parentKey, property]).map(join).map(varProperty).unwrap(),
+      chain([parentKey, key, property]).map(join).map(varProperty).map(varFn)
         .unwrap(),
     ];
     const [varBody, varFnBody] = makeVarFnSet("body");
