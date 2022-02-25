@@ -9,9 +9,9 @@ import {
   type Config,
   generateStyleSheet,
   presetTypography,
-} from "https://deno.land/x/mapcss@$VERSION.mod.ts";
+} from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
-const config: Config = {
+const config: Partial<Config> = {
   presets: [presetTypography()],
 };
 
