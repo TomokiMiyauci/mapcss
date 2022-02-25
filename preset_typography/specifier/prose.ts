@@ -1,9 +1,18 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import { astify } from "../../core/ast.ts";
-import { chain, isString, isUndefined, prop, Root } from "../../deps.ts";
+import {
+  chain,
+  deepMerge,
+  isString,
+  isUndefined,
+  prop,
+  Root,
+} from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { re$All } from "../../core/utils/regexp.ts";
 import parse, { Node } from "https://esm.sh/postcss-selector-parser";
+import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
+import type { PresetOptions } from "../types.ts";
 import type { EntriesSpecifier } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string) {
@@ -143,128 +152,131 @@ function generateDefault(varPrefix: string) {
 
 const join = (value: string[]): string => value.join("-");
 
-export const prose: EntriesSpecifier = [
-  ["DEFAULT", (_, { variablePrefix, className, parentKey }) => {
-    if (isUndefined(parentKey)) return;
-    const maxWidth = {
-      [className]: {
-        color: customProperty(`${parentKey}-body`, variablePrefix),
-        "max-width": "65ch",
-      },
-    };
-    const DEFAULT = generateDefault(variablePrefix);
-
-    const nodes = astify(DEFAULT);
-    const widthNodes = astify(maxWidth);
-
-    const root = new Root({ nodes });
-    root.walkRules((rule) => {
-      rule.selector = transformSelector(rule.selector, parentKey);
-    });
-    root.append(widthNodes);
-
-    return root;
-  }],
-  ["invert", (_, { parentKey, key, variablePrefix, className }) => {
-    if (isUndefined(parentKey)) return;
-
-    const varProperty = (property: string): string =>
-      customProperty(property, variablePrefix);
-    const makeVarFnSet = (
-      property: string,
-    ): [string, string] => [
-      chain([parentKey, property]).map(join).map(varProperty).unwrap(),
-      chain([parentKey, key, property]).map(join).map(varProperty).map(varFn)
-        .unwrap(),
-    ];
-    const [varBody, varFnBody] = makeVarFnSet("body");
-    const [varHeadings, varFnHeadings] = makeVarFnSet("headings");
-    const [varLinks, varFnLinks] = makeVarFnSet("links");
-    const [varLists, varFnLists] = makeVarFnSet("lists");
-    const [varHr, varFnHr] = makeVarFnSet("hr");
-    const [varCaptions, varFnCaptions] = makeVarFnSet("captions");
-    const [varCode, varFnCode] = makeVarFnSet("code");
-    const [varBorders, varFnBorders] = makeVarFnSet("borders");
-    const [varBgSoft, varFnBgSoft] = makeVarFnSet("bg-soft");
-
-    return {
-      type: "css",
-      value: {
+export function depsProse({ css }: Required<PresetOptions>) {
+  const prose: EntriesSpecifier = [
+    ["DEFAULT", (_, { variablePrefix, className, parentKey }) => {
+      if (isUndefined(parentKey)) return;
+      const maxWidth = {
         [className]: {
-          [varBody]: varFnBody,
-          [varHeadings]: varFnHeadings,
-          [varLinks]: varFnLinks,
-          [varLists]: varFnLists,
-          [varHr]: varFnHr,
-          [varCaptions]: varFnCaptions,
-          [varCode]: varFnCode,
-          [varBorders]: varFnBorders,
-          [varBgSoft]: varFnBgSoft,
+          color: customProperty(`${parentKey}-body`, variablePrefix),
+          maxWidth: "65ch",
         },
-      },
-    };
-  }],
-  [re$All, ([, body], context) => {
-    const maybeColor = $resolveTheme(body, "color", context);
-    const { parentKey, variablePrefix } = context;
-    if (isUndefined(parentKey) || isUndefined(maybeColor)) return;
-    const _isString = isString(maybeColor);
-    const colorBy = (colorWeight: number): string =>
-      _isString ? maybeColor : (() => {
-        const _color = prop(colorWeight, maybeColor);
-        return isString(_color) ? _color : " ";
-      })();
+      };
+      const DEFAULT = generateDefault(variablePrefix);
+      const nodes = astify(deepMerge(css, DEFAULT));
+      const widthNodes = astify(maxWidth);
 
-    const varProperty = (property: string): string =>
-      customProperty(property, variablePrefix);
+      const root = removeDuplicatedDecl(new Root({ nodes }));
 
-    const makeProperty = (...properties: string[]): string =>
-      chain(properties).map(join).map(varProperty).unwrap();
+      root.walkRules((rule) => {
+        rule.selector = transformSelector(rule.selector, parentKey);
+      });
+      root.append(widthNodes);
 
-    const makePropertySet = (
-      property: string,
-    ): [string, string] => [
-      makeProperty(parentKey, property),
-      makeProperty(parentKey, "invert", property),
-    ];
+      return root;
+    }],
+    ["invert", (_, { parentKey, key, variablePrefix, className }) => {
+      if (isUndefined(parentKey)) return;
 
-    const [varBody, varInvertBody] = makePropertySet("body");
-    const [varHeadings, varInvertHeadings] = makePropertySet("headings");
-    const [varLinks, varInvertLinks] = makePropertySet("links");
-    const [varLists, varInvertLists] = makePropertySet("lists");
-    const [varHr, varInvertHr] = makePropertySet("hr");
-    const [varCaptions, varInvertCaptions] = makePropertySet("captions");
-    const [varCode, varInvertCode] = makePropertySet("code");
-    const [varBorders, varInvertBorders] = makePropertySet("borders");
-    const [varBgSoft, varInvertBgSoft] = makePropertySet("bg-soft");
+      const varProperty = (property: string): string =>
+        customProperty(property, variablePrefix);
+      const makeVarFnSet = (
+        property: string,
+      ): [string, string] => [
+        chain([parentKey, property]).map(join).map(varProperty).unwrap(),
+        chain([parentKey, key, property]).map(join).map(varProperty).map(varFn)
+          .unwrap(),
+      ];
+      const [varBody, varFnBody] = makeVarFnSet("body");
+      const [varHeadings, varFnHeadings] = makeVarFnSet("headings");
+      const [varLinks, varFnLinks] = makeVarFnSet("links");
+      const [varLists, varFnLists] = makeVarFnSet("lists");
+      const [varHr, varFnHr] = makeVarFnSet("hr");
+      const [varCaptions, varFnCaptions] = makeVarFnSet("captions");
+      const [varCode, varFnCode] = makeVarFnSet("code");
+      const [varBorders, varFnBorders] = makeVarFnSet("borders");
+      const [varBgSoft, varFnBgSoft] = makeVarFnSet("bg-soft");
 
-    return {
-      type: "css",
-      value: {
-        [context.className]: {
-          [varBody]: colorBy(700),
-          [varInvertBody]: colorBy(200),
-          [varHeadings]: colorBy(900),
-          [varInvertHeadings]: colorBy(100),
-          [varLinks]: colorBy(900),
-          [varInvertLinks]: colorBy(100),
-          [varLists]: colorBy(400),
-          [varInvertLists]: colorBy(500),
-          [varHr]: colorBy(200),
-          [varInvertHr]: colorBy(700),
-          [varCaptions]: colorBy(500),
-          [varInvertCaptions]: colorBy(400),
-          [varCode]: colorBy(900),
-          [varInvertCode]: colorBy(100),
-          [varBorders]: colorBy(200),
-          [varInvertBorders]: colorBy(700),
-          [varBgSoft]: colorBy(100),
-          [varInvertBgSoft]: colorBy(800),
+      return {
+        type: "css",
+        value: {
+          [className]: {
+            [varBody]: varFnBody,
+            [varHeadings]: varFnHeadings,
+            [varLinks]: varFnLinks,
+            [varLists]: varFnLists,
+            [varHr]: varFnHr,
+            [varCaptions]: varFnCaptions,
+            [varCode]: varFnCode,
+            [varBorders]: varFnBorders,
+            [varBgSoft]: varFnBgSoft,
+          },
         },
-      },
-    };
-  }],
-];
+      };
+    }],
+    [re$All, ([, body], context) => {
+      const maybeColor = $resolveTheme(body, "color", context);
+      const { parentKey, variablePrefix } = context;
+      if (isUndefined(parentKey) || isUndefined(maybeColor)) return;
+      const _isString = isString(maybeColor);
+      const colorBy = (colorWeight: number): string =>
+        _isString ? maybeColor : (() => {
+          const _color = prop(colorWeight, maybeColor);
+          return isString(_color) ? _color : " ";
+        })();
+
+      const varProperty = (property: string): string =>
+        customProperty(property, variablePrefix);
+
+      const makeProperty = (...properties: string[]): string =>
+        chain(properties).map(join).map(varProperty).unwrap();
+
+      const makePropertySet = (
+        property: string,
+      ): [string, string] => [
+        makeProperty(parentKey, property),
+        makeProperty(parentKey, "invert", property),
+      ];
+
+      const [varBody, varInvertBody] = makePropertySet("body");
+      const [varHeadings, varInvertHeadings] = makePropertySet("headings");
+      const [varLinks, varInvertLinks] = makePropertySet("links");
+      const [varLists, varInvertLists] = makePropertySet("lists");
+      const [varHr, varInvertHr] = makePropertySet("hr");
+      const [varCaptions, varInvertCaptions] = makePropertySet("captions");
+      const [varCode, varInvertCode] = makePropertySet("code");
+      const [varBorders, varInvertBorders] = makePropertySet("borders");
+      const [varBgSoft, varInvertBgSoft] = makePropertySet("bg-soft");
+
+      return {
+        type: "css",
+        value: {
+          [context.className]: {
+            [varBody]: colorBy(700),
+            [varInvertBody]: colorBy(200),
+            [varHeadings]: colorBy(900),
+            [varInvertHeadings]: colorBy(100),
+            [varLinks]: colorBy(900),
+            [varInvertLinks]: colorBy(100),
+            [varLists]: colorBy(400),
+            [varInvertLists]: colorBy(500),
+            [varHr]: colorBy(200),
+            [varInvertHr]: colorBy(700),
+            [varCaptions]: colorBy(500),
+            [varInvertCaptions]: colorBy(400),
+            [varCode]: colorBy(900),
+            [varInvertCode]: colorBy(100),
+            [varBorders]: colorBy(200),
+            [varInvertBorders]: colorBy(700),
+            [varBgSoft]: colorBy(100),
+            [varInvertBgSoft]: colorBy(800),
+          },
+        },
+      };
+    }],
+  ];
+  return prose;
+}
 
 function isWhereableNode(node: Node): boolean {
   return node.type !== "pseudo" ||
