@@ -1,8 +1,6 @@
 import {
-  Arrayable,
   deepMerge,
   distinctBy,
-  Either,
   head,
   init,
   isFunction,
@@ -10,27 +8,25 @@ import {
   isString,
   isUndefined,
   last,
-  Left,
   prop,
   propPath,
-  Right,
-  Some,
+  Root,
+  Rule,
   sortBy,
+  tail,
 } from "../deps.ts";
-import { isDeclaration, isSpecifierDefinition } from "./utils/assert.ts";
+import { astify } from "./ast.ts";
+import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import { escapeRegExp } from "./utils/escape.ts";
-import { propertyValue } from "./utils/format.ts";
 import type {
   Config,
-  CSSStatement,
-  Declaration,
+  CSSObject,
   ModifierContext,
   ModifierMap,
   PostProcessor,
   Specifier,
   SpecifierContext,
-  SpecifierCSSStatement,
-  SpecifierDefinition,
+  SpecifierHandler,
   SpecifierMap,
   Syntax,
   Theme,
@@ -69,149 +65,73 @@ class MockRegExpExecArray extends Array<string> {
   }
 }
 
-function wrap<T>(value: T): T extends any[] ? T : T[] {
-  return Array.isArray(value) ? value : [value] as any;
-}
-
-export function resolveSpecifierMap(
-  value: string,
-  specifierMap: SpecifierMap,
-  context: SpecifierContext,
-): CSSStatement[] | undefined {
-  const { separator } = context;
-  const classSelector = context.token ? `.${escapeRegExp(context.token)}` : "";
-
-  const paths = leftSplit(value, separator);
+export function resolveMappedSpecifier(
+  value: string | string[],
+  mappedSpecifier: MappedSpecifier,
+  context:
+    & Omit<SpecifierContext, "className" | "key" | "parentKey" | "path">
+    & { parentKey?: string; key?: string },
+): Root | undefined {
+  const className = `.${escapeRegExp(context.token)}`;
+  const paths = leftSplit(value, context.separator);
 
   for (const path of paths) {
-    const [first, ...rest] = path;
-    const _declaration = prop(first, specifierMap);
+    const first = head(path) ?? "DEFAULT";
+    const rest = tail(path);
 
-    if (isUndefined(_declaration)) continue;
-    const resolved = EitherSpec(_declaration).mapLeft(
-      execSpecifierDeclaration(new MockRegExpExecArray(), context),
-    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-      .unwrap();
-
-    const result = Some(resolved).map(wrap).map((cssStatement) =>
-      cssStatement.map((definition) =>
-        EitherDefinition(definition).mapLeft(declaration2Statement).map((
-          v,
-        ) => toCSSStatement(v, classSelector))
-          .unwrap()
-      )
-    ).match({
-      some: (v) => v,
-      none: undefined,
-    });
-
-    if (isUndefined(result)) continue;
-    return result;
-  }
-}
-
-function resolveSpecifier(
-  path: string[],
-  specifier: Specifier,
-  context: SpecifierContext,
-): Arrayable<SpecifierCSSStatement> | Arrayable<Declaration> | undefined {
-  const [_, ...rest] = path;
-  const first = head(path) ?? "DEFAULT";
-  if (Array.isArray(specifier)) {
-    const map = new Map(specifier.map(([key, value]) => [String(key), value]));
-    const maybeSpec = map.get(first);
-
-    if (!maybeSpec) {
-      const filteredSpecifier = specifier.filter(filterRegExp) as [
-        RegExp,
-        Specifier | SpecifierDefinition,
-      ][];
-      for (const [regExp, specifierOrDefinition] of filteredSpecifier) {
-        const regExpExecArray = regExp.exec(first);
-        if (!regExpExecArray) continue;
-
-        const result = EitherSpec(specifierOrDefinition).mapLeft(
-          execSpecifierDeclaration(regExpExecArray, context),
-        ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-          .unwrap();
-        if (isUndefined(result)) continue;
-        return result;
-      }
-      return;
-    }
-    return EitherSpec(maybeSpec).mapLeft(
-      execSpecifierDeclaration(new MockRegExpExecArray(), context),
-    ).mapRight((specifier) => resolveSpecifier(rest, specifier, context))
-      .unwrap();
-  }
-  const _declaration = prop(first, specifier);
-  if (isUndefined(_declaration)) return;
-
-  return EitherSpec(_declaration).mapLeft(
-    execSpecifierDeclaration(new MockRegExpExecArray(), context),
-  ).mapRight((
-    specifier,
-  ) => resolveSpecifier(rest, specifier, context))
-    .unwrap();
-}
-
-function filterRegExp(
-  [key]: [string | number | RegExp, Specifier | SpecifierDefinition],
-): boolean {
-  return isRegExp(key);
-}
-
-function execSpecifierDeclaration(
-  regExpExecArray: RegExpExecArray,
-  context: SpecifierContext,
-) {
-  return (
-    specifierDeclaration: SpecifierDefinition,
-  ): Arrayable<Declaration> | Arrayable<SpecifierCSSStatement> | undefined =>
-    isFunction(specifierDeclaration)
-      ? specifierDeclaration(regExpExecArray, context)
-      : specifierDeclaration;
-}
-
-function EitherSpec(
-  value: Specifier | SpecifierDefinition,
-): Either<SpecifierDefinition, Specifier> {
-  if (isSpecifierDefinition(value)) return Left(value);
-  return Right(value);
-}
-
-function EitherDefinition(
-  value: Declaration | SpecifierCSSStatement,
-): Either<Declaration, SpecifierCSSStatement> {
-  if (isDeclaration(value)) return Left(value);
-  return Right(value);
-}
-
-function toCSSStatement(
-  definition: SpecifierCSSStatement,
-  classSelector: string,
-): CSSStatement {
-  if (definition.type === "ruleset") {
-    const { selector, order = 0, declaration, ...rest } = definition;
-    const _ = selector?.(classSelector) ?? classSelector;
-    return {
-      order,
-      selector: _,
-      declarations: Object.entries(declaration).map(propertyValue),
-      ...rest,
+    const specifierContext: SpecifierContext = {
+      ...context,
+      parentKey: context.key,
+      className,
+      key: first,
+      path,
     };
+    const has = mappedSpecifier.has(first);
+    if (has) {
+      const definition = mappedSpecifier.get(first)!;
+      if (isFunction(definition)) {
+        const result = definition(new MockRegExpExecArray(), specifierContext);
+        specifierContext.parentKey = first;
+        if (isUndefined(result)) continue;
+        return handleCSSObject(result, className);
+      }
+
+      if (definition instanceof Map) {
+        return resolveMappedSpecifier(rest, definition, specifierContext);
+      }
+      return handleCSSObject(definition, className);
+    }
+
+    for (const [key, m] of mappedSpecifier) {
+      if (isRegExp(key)) {
+        const regExpExecResult = key.exec(first);
+        if (!regExpExecResult) continue;
+
+        if (isFunction(m)) {
+          const result = m(regExpExecResult, specifierContext);
+          if (isUndefined(result)) continue;
+
+          return handleCSSObject(result, className);
+        }
+        if (m instanceof Map) {
+          return resolveMappedSpecifier(rest, m, specifierContext);
+        }
+        return handleCSSObject(m, className);
+      }
+    }
   }
-  const { children, order = 0, ...rest } = definition;
-  return { order, ...rest, children: toCSSStatement(children, classSelector) };
 }
 
-function declaration2Statement(
-  declaration: Declaration,
-): SpecifierCSSStatement {
-  return {
-    type: "ruleset",
-    declaration,
-  };
+function handleCSSObject(cssObject: CSSObject, selector: string): Root {
+  if (cssObject instanceof Root) {
+    return cssObject;
+  } else if (isCSSDefinition(cssObject)) {
+    return new Root({ nodes: astify(cssObject.value) });
+  } else {
+    return new Root({
+      nodes: [new Rule({ selector, nodes: astify(cssObject) })],
+    });
+  }
 }
 
 /** resolve theme via propPath safety */
@@ -229,6 +149,34 @@ export function resolveTheme(
   }
 }
 
+/** new version for theme resolver */
+export function $resolveTheme(
+  identifier: string,
+  themeRoot: string,
+  { separator, theme }: ThemeContext,
+): Theme | string | undefined {
+  const recursive = (
+    path: string[],
+    theme: Theme,
+  ): Theme | string | undefined => {
+    const first = head(path);
+    if (isUndefined(first)) return theme;
+    const result = prop(first, theme);
+    if (isString(result) || isUndefined(result)) return result;
+    return recursive(tail(path), result);
+  };
+
+  const paths = leftSplit(identifier, separator);
+  for (const path of paths) {
+    const rootResult = prop(themeRoot, theme);
+    if (isUndefined(rootResult)) continue;
+    if (isString(rootResult)) return rootResult;
+    const result = recursive(path, rootResult);
+    if (!isUndefined(result)) {
+      return result;
+    }
+  }
+}
 function pickByName({ name }: { name: string }): string {
   return name;
 }
@@ -266,10 +214,12 @@ export function resolveConfig(
       >
     >
   >,
-): Pick<
-  Config,
-  "specifierMap" | "modifierMap" | "theme" | "syntaxes" | "postProcess"
-> {
+):
+  & Pick<
+    Config,
+    "modifierMap" | "theme" | "syntaxes" | "postProcess"
+  >
+  & { mappedSpecifier: MappedSpecifier } {
   const _presets = distinctBy(presets, pickByName);
   const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
     .reduce((acc, cur) => {
@@ -285,19 +235,17 @@ export function resolveConfig(
     ..._syntaxes,
     ..._presets.map(({ syntaxes }) => syntaxes).flat(),
   );
-  const specifierMap = _presets.map(({ specifierMap }) => specifierMap).reduce(
-    (acc, cur) => {
-      return deepMerge(acc, cur);
-    },
-    _specifierMap,
+  const mappedSpecifier = mergeSpecifierMap(
+    _presets.map(({ specifierMap }) => specifierMap),
   );
+
   const postProcess = resolvePostProcessor(
     ..._postProcess,
     ..._presets.map(({ postProcessor }) => postProcessor).flat(),
   );
 
   return {
-    specifierMap,
+    mappedSpecifier,
     theme,
     modifierMap,
     syntaxes,
@@ -305,12 +253,48 @@ export function resolveConfig(
   };
 }
 
+type TreeMap<Leaf, P> = Map<P, Leaf | TreeMap<Leaf, P>>;
+
+type MappedSpecifier = TreeMap<SpecifierHandler | CSSObject, string | RegExp>;
+
+export function mergeSpecifierMap(
+  specifierMaps: SpecifierMap[],
+): MappedSpecifier {
+  const recursive = (
+    m: Specifier,
+    map: Map<string | RegExp, any>,
+  ): Map<string | RegExp, SpecifierHandler | CSSObject> => {
+    const entries = Array.isArray(m) ? m : Object.entries(m);
+
+    entries.forEach(([key, value]) => {
+      const _key = isRegExp(key) ? key : String(key);
+      if (isFunction(value) || isCSSObject(value)) {
+        map.set(_key, value);
+      } else {
+        map.set(
+          _key,
+          recursive(
+            value,
+            new Map<string | RegExp, SpecifierHandler | CSSObject>(),
+          ),
+        );
+      }
+    });
+    return map;
+  };
+
+  return specifierMaps.reduce(
+    (acc, cur) => recursive(cur, acc),
+    new Map<string | RegExp, SpecifierHandler | CSSObject>(),
+  );
+}
+
 export function resolveModifierMap(
   modifier: string,
   modifierMap: ModifierMap,
-  cssStatements: CSSStatement,
+  parentNode: Root,
   context: Omit<ModifierContext, "path">,
-): CSSStatement | undefined {
+): Root | undefined {
   const { separator } = context;
   const paths = leftSplit(modifier, separator);
 
@@ -321,9 +305,9 @@ export function resolveModifierMap(
 
     if (isUndefined(modifier)) continue;
     if (isFunction(modifier)) {
-      return modifier(cssStatements, ctx);
+      return modifier(parentNode, ctx);
     }
     const modifierDefinition = prop(second, modifier);
-    return modifierDefinition?.(cssStatements, ctx);
+    return modifierDefinition?.(parentNode, ctx);
   }
 }

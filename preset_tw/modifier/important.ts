@@ -1,16 +1,9 @@
 import type { ModifierDefinition } from "../../core/types.ts";
 
-export const $important: ModifierDefinition = (cssStatement) => {
-  if (cssStatement.type === "ruleset") {
-    const { declarations, ...rest } = cssStatement;
-    const decl = declarations.map(({ property, value }) => ({
-      property,
-      value: `${value} !important`,
-    }));
-    return {
-      ...rest,
-      declarations: decl,
-    };
-  }
-  return cssStatement;
+export const $important: ModifierDefinition = (parentNode) => {
+  parentNode.walkDecls((decl) => {
+    decl.important = true;
+  });
+
+  return parentNode;
 };

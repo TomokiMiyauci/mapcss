@@ -1,3 +1,44 @@
+# [1.0.0-beta.16](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2022-02-25)
+
+
+### Features
+
+* **preset_typography:** add `css` interface for preset typography, that extend or override default ([47f4835](https://github.com/TomokiMiyauci/mapcss/commit/47f4835cc2cdcf8a0b9821e529b6ef3334f272c1))
+* **preset_typography:** add disable default style with JSS style ([0dccfe2](https://github.com/TomokiMiyauci/mapcss/commit/0dccfe2a0063c95c106e2ad27ef77e1eeee7e8d3))
+* **preset_typography:** add filtering selector with splitted selector list ([b586376](https://github.com/TomokiMiyauci/mapcss/commit/b586376e8d3cca013aa3d0f0847b20f07e750900))
+* **preset_typography:** override css regardless of selector shifts ([62f94e9](https://github.com/TomokiMiyauci/mapcss/commit/62f94e9eab730106f95ca736caa07836915062f0))
+
+# [1.0.0-beta.15](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2022-02-25)
+
+
+### Bug Fixes
+
+* **preset_typography:** use parentKey instread of key ([437089d](https://github.com/TomokiMiyauci/mapcss/commit/437089dd8bf31bc9d8d1a16f16addb42e25c9ced))
+
+
+### Features
+
+* **core:** add pre process that each specifierMap merge to deep Map ([33107c4](https://github.com/TomokiMiyauci/mapcss/commit/33107c45e47ab822242b2acf34c4851610099718))
+* **core:** change specifier context to include `parentKey` ([9ce1f26](https://github.com/TomokiMiyauci/mapcss/commit/9ce1f268b818f8e1827d29772f2eb8cdf0119363))
+* **core:** extend cssObject interface for define root AST ([d470ced](https://github.com/TomokiMiyauci/mapcss/commit/d470cedbc0831205f9d1e25c29bca47170dcb11d))
+* **preset_typography:** add specifier of `prose.invert` ([d3e54cd](https://github.com/TomokiMiyauci/mapcss/commit/d3e54cdbded77bf542e3365eab402192f94a95a1))
+* **preset_typography:** add specifier of `prose.invert` and `prose.theme.color` ([30b78c7](https://github.com/TomokiMiyauci/mapcss/commit/30b78c755f926e4ff5dad41c4c259b9ce1c429e0))
+
+# [1.0.0-beta.14](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2022-02-23)
+
+
+### Features
+
+* **core:** add path and key as specifier context ([6459eef](https://github.com/TomokiMiyauci/mapcss/commit/6459eefa2393a10159d8844249d592c3f2389d27))
+* **preset_tw:** add specifier of `animation` ([21b9aa7](https://github.com/TomokiMiyauci/mapcss/commit/21b9aa734e6e786622d3314c4c704a0a282f4a7b))
+
+# [1.0.0-beta.13](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2022-02-23)
+
+
+### Features
+
+* **core:** change to generate postcss AST from specifier ([6d85763](https://github.com/TomokiMiyauci/mapcss/commit/6d8576311f550052bf16ad73a3c72a88d1eee688)), closes [#4](https://github.com/TomokiMiyauci/mapcss/issues/4)
+
 # [1.0.0-beta.12](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2022-02-21)
 
 

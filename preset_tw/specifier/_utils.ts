@@ -15,7 +15,7 @@ import {
 } from "../../core/utils/format.ts";
 import { RGBA } from "../../core/utils/parse.ts";
 import { per } from "../../core/utils/monad.ts";
-import type { Declaration } from "../../core/types.ts";
+import type { BlockDefinition } from "../../core/types.ts";
 
 export function fillRGBA(
   { a, ...rest }: RGBA,
@@ -78,7 +78,7 @@ export function handleTransform(
   properties: string[],
   value: string,
   varPrefix: string,
-): Declaration {
+): BlockDefinition {
   return {
     ...associateWith(
       properties.map((property) => customProperty(property, varPrefix)),

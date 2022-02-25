@@ -1,7 +1,7 @@
 import { resolveTheme } from "../../core/resolve.ts";
-import { Some } from "../../deps.ts";
+
+import { AtRule, Root, Some } from "../../deps.ts";
 import type {
-  CSSStatement,
   ModifierContext,
   ModifierDefinition,
 } from "./../../core/types.ts";
@@ -11,35 +11,37 @@ export function minWidthMediaQuery(value: string): string {
 }
 
 function breakPointHandler(
-  cssStatement: CSSStatement,
-  order: number,
+  parentNode: Root,
   context: ModifierContext,
-): CSSStatement | undefined {
+): Root | undefined {
   return Some(resolveTheme(context.modifier, "screen", context)).map(
     minWidthMediaQuery,
   ).match({
-    some: (rule) => ({
-      type: "groupAtRule",
-      identifier: "media",
-      order,
-      rule,
-      children: cssStatement,
-    }),
+    some: (rule) => {
+      parentNode.nodes = parentNode.nodes.map((childNode) =>
+        new AtRule({
+          name: "media",
+          params: rule,
+          nodes: [childNode],
+        })
+      );
+      return parentNode;
+    },
     none: undefined,
   });
 }
 
-export const sm: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 1, context);
+export const sm: ModifierDefinition = (childNodes, context) =>
+  breakPointHandler(childNodes, context);
 
 export const md: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 2, context);
+  breakPointHandler(cssStatement, context);
 
 export const lg: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 3, context);
+  breakPointHandler(cssStatement, context);
 
 export const xl: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 4, context);
+  breakPointHandler(cssStatement, context);
 
 export const $2xl: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, 5, context);
+  breakPointHandler(cssStatement, context);

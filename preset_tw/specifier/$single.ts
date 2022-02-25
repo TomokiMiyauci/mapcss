@@ -14,11 +14,10 @@ import {
   unit,
 } from "../../core/utils/format.ts";
 import type {
-  Declaration,
+  BlockDefinition,
   EntriesSpecifier,
   RecordSpecifier,
   Specifier,
-  SpecifierCSSStatement,
 } from "../../core/types.ts";
 import {
   customPropertySet,
@@ -40,7 +39,6 @@ import {
   reBracket_$,
 } from "../../core/utils/regexp.ts";
 import { AUTO } from "../../constants.ts";
-import { minWidthMediaQuery } from "../modifier/breakpoint.ts";
 
 const VERTICAL_ALIGN = "vertical-align";
 
@@ -84,13 +82,13 @@ export const basis: EntriesSpecifier = [
   ],
   [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
 ];
-export const block: Declaration = { display: "block" };
+export const block: BlockDefinition = { display: "block" };
 export const bottom: EntriesSpecifier = [
   [0, { bottom: "0px" }],
   ["px", { bottom: "1px" }],
   ["auto", { bottom: "auto" }],
   ["full", { bottom: "100%" }],
-
+  ["f", { "$css": { "ff": "ff" } }],
   [
     re$PositiveNumberPer$PositiveNumber,
     ([, numerator, denominator]) =>
@@ -117,71 +115,27 @@ export const container: EntriesSpecifier = [
     const lg = resolveTheme("lg", SCREEN, context);
     const xl = resolveTheme("xl", SCREEN, context);
     const $2xl = resolveTheme("2xl", SCREEN, context);
+
+    const { className } = context;
+
+    const media = (size: string) => ({
+      [`@media (min-width: ${size})`]: { [className]: { "max-width": size } },
+    });
+
     if (sm && md && lg && xl && $2xl) {
-      const specifier: SpecifierCSSStatement[] = [
-        { type: "ruleset", declaration: { width: "100%" } },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 1,
-          rule: minWidthMediaQuery(sm),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": sm,
-            },
+      return {
+        type: "css",
+        value: {
+          [className]: {
+            width: "100%",
           },
+          ...media(sm),
+          ...media(md),
+          ...media(lg),
+          ...media(xl),
+          ...media($2xl),
         },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 2,
-          rule: minWidthMediaQuery(md),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": md,
-            },
-          },
-        },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 3,
-          rule: minWidthMediaQuery(lg),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": lg,
-            },
-          },
-        },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 4,
-          rule: minWidthMediaQuery(xl),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": xl,
-            },
-          },
-        },
-        {
-          type: "groupAtRule",
-          identifier: "media",
-          order: 5,
-          rule: minWidthMediaQuery($2xl),
-          children: {
-            type: "ruleset",
-            declaration: {
-              "max-width": $2xl,
-            },
-          },
-        },
-      ];
-      return specifier;
+      };
     }
   }],
 ];
@@ -264,7 +218,7 @@ export const inline: Specifier = {
   table: { display: "inline-table" },
   grid: { display: "inline-grid" },
 };
-export const isolate: Declaration = { isolation: "isolate" };
+export const isolate: BlockDefinition = { isolation: "isolate" };
 export const isolation: Specifier = {
   auto: {
     isolation: "auto",
@@ -666,28 +620,28 @@ export const z: Specifier = [
   ],
   [reBracket_$, ([, arbitrary]) => ({ "z-index": arbitrary })],
 ];
-export const $static: Declaration = {
+export const $static: BlockDefinition = {
   position: "static",
 };
-export const fixed: Declaration = {
+export const fixed: BlockDefinition = {
   position: "fixed",
 };
-export const absolute: Declaration = {
+export const absolute: BlockDefinition = {
   position: "absolute",
 };
-export const relative: Declaration = {
+export const relative: BlockDefinition = {
   position: "relative",
 };
-export const sticky: Declaration = {
+export const sticky: BlockDefinition = {
   position: "sticky",
 };
-export const visible: Declaration = {
+export const visible: BlockDefinition = {
   visibility: "visible",
 };
-export const invisible: Declaration = {
+export const invisible: BlockDefinition = {
   visibility: "hidden",
 };
-export const antialiased: Declaration = {
+export const antialiased: BlockDefinition = {
   "-webkit-font-smoothing": "antialiased",
   "-moz-osx-font-smoothing": "grayscale",
 };
@@ -697,16 +651,16 @@ export const subpixel: Specifier = {
     "-moz-osx-font-smoothing": "auto",
   },
 };
-export const italic: Declaration = {
+export const italic: BlockDefinition = {
   "font-style": "italic",
 };
-export const contents: Declaration = {
+export const contents: BlockDefinition = {
   display: "contents",
 };
-export const hidden: Declaration = {
+export const hidden: BlockDefinition = {
   display: "none",
 };
-export const overline: Declaration = {
+export const overline: BlockDefinition = {
   "text-decoration-line": "overline",
 };
 export const line: Specifier = {
@@ -728,7 +682,7 @@ export const sr: Specifier = {
     "border-width": 0,
   },
 };
-export const ordinal: Declaration = { "font-variant-numeric": "ordinal" };
+export const ordinal: BlockDefinition = { "font-variant-numeric": "ordinal" };
 export const slashed: RecordSpecifier = {
   zero: { "font-variant-numeric": "slashed-zero" },
 };
@@ -750,10 +704,10 @@ export const diagonal: RecordSpecifier = {
 export const stacked: RecordSpecifier = {
   fractions: { "font-variant-numeric": "stacked-fractions" },
 };
-export const uppercase: Declaration = { "text-transform": "uppercase" };
-export const lowercase: Declaration = { "text-transform": "lowercase" };
-export const capitalize: Declaration = { "text-transform": "capitalize" };
-export const truncate: Declaration = {
+export const uppercase: BlockDefinition = { "text-transform": "uppercase" };
+export const lowercase: BlockDefinition = { "text-transform": "lowercase" };
+export const capitalize: BlockDefinition = { "text-transform": "capitalize" };
+export const truncate: BlockDefinition = {
   overflow: "hidden",
   "text-overflow": "ellipsis",
   "white-space": "nowrap",
@@ -778,7 +732,7 @@ export const contrast: EntriesSpecifier = [
   ],
 ];
 
-function handleDrop(value: string, varPrefix: string): Declaration {
+function handleDrop(value: string, varPrefix: string): BlockDefinition {
   return {
     [customProperty("drop-shadow", varPrefix)]: value,
     filter: filterValue(varPrefix),
@@ -842,7 +796,7 @@ function handleSingleFilter(
   propertyName: string,
   value: string | number,
   varPrefix: string,
-): Declaration {
+): BlockDefinition {
   return {
     [customProperty(propertyName, varPrefix)]: `${propertyName}(${value})`,
     filter: filterValue(varPrefix),

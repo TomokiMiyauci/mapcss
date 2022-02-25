@@ -2,7 +2,7 @@ import { walkSync } from "https://deno.land/std@0.122.0/fs/mod.ts";
 import { join } from "https://deno.land/std@0.122.0/path/mod.ts";
 import { safeLoadFront } from "https://esm.sh/yaml-front-matter@4.1.1";
 
-type Nav = {
+export type Nav = {
   title: string;
   href: string;
 };

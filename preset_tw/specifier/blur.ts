@@ -1,7 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
-import type { Declaration, EntriesSpecifier } from "../../core/types.ts";
+import type { BlockDefinition, EntriesSpecifier } from "../../core/types.ts";
 
-function handleBlur(value: string, variablePrefix: string): Declaration {
+function handleBlur(value: string, variablePrefix: string): BlockDefinition {
   const [varBlur, varFnBlur] = customPropertySet("blur", variablePrefix);
   const [, varFnBrightness] = customPropertySet("brightness", variablePrefix);
   const [, varFnContract] = customPropertySet("contrast", variablePrefix);

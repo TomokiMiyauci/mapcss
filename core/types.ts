@@ -1,25 +1,63 @@
-import type { Arrayable, ReplaceKeys } from "../deps.ts";
+import type { Root } from "../deps.ts";
 
-export type CSSNestedModule = {
-  [k: string]: CSSNestedModule | OrderedDeclarations;
+export type Tree<L, P extends PropertyKey = string | number> = {
+  [k in P]: L | Tree<L>;
 };
+
+export type CSSDefinition = {
+  type: "css";
+  value: Tree<string | number>;
+};
+
+export type CSSObject =
+  | CSSDefinition
+  | Root
+  | BlockDefinition;
 
 export type SpecifierContext =
   & ThemeContext
   & {
     variablePrefix: string;
+
+    /** The token as it
+     *
+     * example: `sm:text-red-500` -> `sm:text-red-500`
+     */
     token: string;
+
+    /** The token with `.` and escaped for selector.
+     *
+     * example: `text-red-500/[10]` -> `.text-red-500\\[10\\]`
+     */
+    className: string;
+
+    /** The matched object key
+     *
+     * example: text-`red`-500 -> `red`
+     */
+    key: string;
+
+    /** The matched parent key
+     *
+     * example: text-`red`-500 -> `text`
+     */
+    parentKey: string | undefined;
+
+    /** Current search path
+     *
+     * example: `text-red-500`
+     *
+     * 1st: `["text-red-500"]`
+     * 2nd: `["text-red", "500"]`
+     * 3rd: `["text", "red", "500"]`
+     */
+    path: string[];
   };
 
 export type ThemeContext = {
   theme: Theme;
   separator: string;
 };
-
-export type SpecifierHandler = (
-  arr: RegExpExecArray,
-  context: SpecifierContext,
-) => Arrayable<Declaration> | Arrayable<CSSStatement> | undefined;
 
 export type Preset = {
   name: string;
@@ -88,83 +126,31 @@ export type Syntax = {
 export type PostProcessor = {
   name: string;
   fn: (
-    cssStatements: CSSStatement[],
+    rootNode: Root,
     context: Context,
-  ) => CSSStatement[];
+  ) => Root;
 
   /** order of processor */
   order?: number;
 };
 
-export type Declaration = Record<string, string | number>;
-export type OrderedDeclarations = {
-  property: string;
-  value: string | number;
-}[];
-export type CSSStatement = GroupAtRule | RuleSet;
-
-type BaseRule = {
-  order?: number;
-};
-
-export type AtRule = {
-  type: "atRule";
-  identifier: string;
-  rule?: string;
-  children?: NestedRecord;
-} & BaseRule;
-
-type NestedRecord = {
-  [k: string]: string | NestedRecord;
-};
-
-export type GroupAtRule = Required<
-  ReplaceKeys<
-    SpecifierGroupAtRule,
-    "children",
-    { children: GroupAtRule | RuleSet }
-  >
->;
-
-export type SpecifierGroupAtRule = {
-  type: "groupAtRule";
-  identifier: string;
-  rule: string;
-  children: SpecifierGroupAtRule | SpecifierRuleSet;
-} & BaseRule;
-
-export type RuleSet =
-  & ReplaceKeys<
-    Required<Omit<SpecifierRuleSet, "declaration">>,
-    "selector",
-    { selector: string }
-  >
-  & { declarations: OrderedDeclarations };
-
-export type SpecifierRuleSet = {
-  type: "ruleset";
-  selector?: (selector: string) => string;
-  declaration: Declaration;
-} & BaseRule;
+/** User definition of CSS Block Declaration */
+export type BlockDefinition = Record<string, string | number>;
 
 export type SpecifierMap = {
-  [k in string | number]:
-    | SpecifierDefinition
-    | Specifier;
+  [k in string | number]: Specifier | BlockDefinition;
 };
 
 export type RecordSpecifier = {
-  [k: string | number]:
-    | SpecifierDefinition
-    | Specifier;
+  [k: string | number]: BlockDefinition | SpecifierHandler | Specifier;
 };
+
 export type EntriesSpecifier = [
   string | number | RegExp,
-  | SpecifierDefinition
+  | CSSObject
+  | SpecifierHandler
   | Specifier,
 ][];
-
-export type SpecifierCSSStatement = SpecifierGroupAtRule | SpecifierRuleSet;
 
 export type Specifier = RecordSpecifier | EntriesSpecifier;
 
@@ -172,9 +158,9 @@ export type EntriesModifier = [
   RegExp,
   (
     regExpExecArray: RegExpExecArray,
-    cssStatement: CSSStatement,
+    parentNode: Root,
     context: ModifierContext,
-  ) => CSSStatement | undefined,
+  ) => Root | undefined,
 ][];
 
 export type RecordModifier = {
@@ -183,14 +169,13 @@ export type RecordModifier = {
 
 export type Modifier = RecordModifier;
 export type ModifierDefinition = (
-  cssStatement: CSSStatement,
+  parentNode: Root,
   context: ModifierContext,
-) => CSSStatement | undefined;
+) => Root | undefined;
 
-export type SpecifierDefinition =
-  | Arrayable<Declaration>
-  | Arrayable<SpecifierCSSStatement>
-  | ((regExpExecArray: RegExpExecArray, context: SpecifierContext) =>
-    | Arrayable<Declaration>
-    | Arrayable<SpecifierCSSStatement>
-    | undefined);
+export type SpecifierHandler = (
+  regExpExecArray: RegExpExecArray,
+  context: SpecifierContext,
+) =>
+  | CSSObject
+  | undefined;

@@ -1,10 +1,3 @@
-import { isOrderedDeclarations } from "./assert.ts";
-import { deepMerge } from "../../deps.ts";
-import type {
-  CSSNestedModule,
-  CSSStatement,
-  OrderedDeclarations,
-} from "../types.ts";
 import type { FilledRGBA, RGBA } from "./parse.ts";
 
 /** format numeric to `#.##`
@@ -76,98 +69,6 @@ export function completionRGBA(
   };
 }
 
-export function cssStatements2CSSNestedModule(
-  cssStatements: CSSStatement[],
-): CSSNestedModule {
-  return cssStatements.reduce(
-    (
-      acc,
-      cur,
-    ) => {
-      return deepMerge(acc, constructCSS(cur));
-    },
-    {},
-  );
-}
-
-function constructCSS(cssStatement: CSSStatement): CSSNestedModule {
-  if (cssStatement.type === "ruleset") {
-    const { selector, declarations } = cssStatement;
-
-    return { [selector]: declarations };
-  }
-
-  const { identifier, rule, children } = cssStatement;
-  const selector = `@${identifier} ${rule}`;
-  return { [selector]: constructCSS(children) };
-}
-
-export function stringifyCSSNestedModule(
-  cssNestedModule: CSSNestedModule,
-  compress = true,
-  _selectors: string[] = [],
-): string {
-  const result = Object.entries(cssNestedModule).map(
-    ([selector, nestedModuleOrCSSObject]) => {
-      const selectors = [..._selectors, selector];
-
-      if (isOrderedDeclarations(nestedModuleOrCSSObject)) {
-        const dec = stringifyDeclaration(nestedModuleOrCSSObject);
-        return selectors.reduceRight(
-          (acc, cur) => {
-            return `${cur}{${acc}}`;
-          },
-          dec,
-        );
-      }
-      return stringifyCSSNestedModule(
-        nestedModuleOrCSSObject,
-        compress,
-        selectors,
-      );
-    },
-  );
-
-  return result.join("\n");
-}
-
-export function stringifyDeclaration(
-  orderedDeclarations: Readonly<OrderedDeclarations>,
-  compress = true,
-): string {
-  const content = orderedDeclarations.reduce(
-    (acc, { property, value }) =>
-      `${acc}${withJoin(property, value, { middleOf: compress ? `:` : ": " })}`,
-    "",
-  );
-  return content;
-}
-
-export function withJoin(
-  a: string | number,
-  b: string | number,
-  { startOf = "", middleOf = ":", endOf = ";" }: Partial<{
-    startOf: string;
-    middleOf: string;
-    endOf: string;
-  }> = { startOf: "", middleOf: ":", endOf: ";" },
-): string {
-  return `${startOf}${a}${middleOf}${b}${endOf}`;
-}
-
-export function atRule(
-  identifier: string,
-  rule: string,
-  { raw }: { raw: boolean } = { raw: false },
-): string {
-  const rawRule = raw ? rule : `(${rule})`;
-  return `@${identifier} ${rawRule}`;
-}
-
-export function cssMediaRule(rule: string): string {
-  return atRule("media", rule);
-}
-
 export function stringifyCustomProperty(
   property: string,
   prefix = "",
@@ -177,14 +78,4 @@ export function stringifyCustomProperty(
 
 export function stringifyVarFunction(...value: string[]) {
   return `var(${value.join(" ")})`;
-}
-
-export function propertyValue([property, value]: [string, string | number]): {
-  property: string;
-  value: string | number;
-} {
-  return {
-    property,
-    value,
-  };
 }

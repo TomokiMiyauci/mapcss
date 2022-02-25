@@ -1,8 +1,10 @@
 import type { ModifierDefinition } from "./../../core/types.ts";
 
-export const dark: ModifierDefinition = (cssStatement, { modifier }) => {
-  if (cssStatement.type === "ruleset") {
-    cssStatement.selector = `.${modifier} ${cssStatement.selector}`;
-  }
-  return cssStatement;
+export const dark: ModifierDefinition = (parentNode, { modifier }) => {
+  parentNode.walkRules((node) => {
+    node.selectors = node.selectors.map((selector) =>
+      `.${modifier} ${selector}`
+    );
+  });
+  return parentNode;
 };

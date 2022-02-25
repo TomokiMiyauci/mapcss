@@ -2,11 +2,7 @@ import { re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
-
-import type {
-  EntriesSpecifier,
-  SpecifierCSSStatement,
-} from "../../core/types.ts";
+import type { CSSDefinition, EntriesSpecifier } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
 const SPACE_X_REVERSE = "space-x-reverse";
@@ -19,15 +15,17 @@ function combine(selector: string): string {
 function handleSpaceX(
   variablePrefix: string,
   value: string,
-): SpecifierCSSStatement {
+  className: string,
+): CSSDefinition {
   const [variable, varFn] = customPropertySet(SPACE_X_REVERSE, variablePrefix);
   return {
-    type: "ruleset",
-    selector: combine,
-    declaration: {
-      [variable]: 0,
-      "margin-right": `calc(${value} * ${varFn})`,
-      "margin-left": `calc(${value} * calc(1 - ${varFn}))`,
+    type: "css",
+    value: {
+      [className]: {
+        [variable]: 0,
+        "margin-right": `calc(${value} * ${varFn})`,
+        "margin-left": `calc(${value} * calc(1 - ${varFn}))`,
+      },
     },
   };
 }
@@ -35,70 +33,90 @@ function handleSpaceX(
 function handleSpaceY(
   variablePrefix: string,
   value: string,
-): SpecifierCSSStatement {
+  className: string,
+): CSSDefinition {
   const [variable, varFn] = customPropertySet(SPACE_Y_REVERSE, variablePrefix);
   return {
-    type: "ruleset",
-    selector: combine,
-    declaration: {
-      [variable]: 0,
-      "margin-top": `calc(${value} * calc(1 - ${varFn}))`,
-      "margin-bottom": `calc(${value} * ${varFn})`,
+    type: "css",
+    value: {
+      [className]: {
+        [variable]: 0,
+        "margin-top": `calc(${value} * calc(1 - ${varFn}))`,
+        "margin-bottom": `calc(${value} * ${varFn})`,
+      },
     },
   };
 }
 
 export const space: EntriesSpecifier = [
   ["x", [
-    [0, (_, { variablePrefix }) => handleSpaceX(variablePrefix, "0px")],
-    ["px", (_, { variablePrefix }) => handleSpaceX(variablePrefix, "1px")],
-    ["reverse", (_, { variablePrefix }) => {
+    [
+      0,
+      (_, { variablePrefix, className }) =>
+        handleSpaceX(variablePrefix, "0px", combine(className)),
+    ],
+    [
+      "px",
+      (_, { variablePrefix, className }) =>
+        handleSpaceX(variablePrefix, "1px", combine(className)),
+    ],
+    ["reverse", (_, { variablePrefix, className }) => {
       return {
-        type: "ruleset",
-        selector: combine,
-        declaration: {
-          [stringifyCustomProperty(SPACE_X_REVERSE, variablePrefix)]: 1,
+        type: "css",
+        value: {
+          [combine(className)]: {
+            [stringifyCustomProperty(SPACE_X_REVERSE, variablePrefix)]: 1,
+          },
         },
       };
     }],
     [
       re$Numeric,
-      ([, numeric], { variablePrefix }) =>
+      ([, numeric], { variablePrefix, className }) =>
         parseNumeric(numeric).andThen(remify).match({
-          some: (rem) => handleSpaceX(variablePrefix, rem),
+          some: (rem) => handleSpaceX(variablePrefix, rem, combine(className)),
           none: undefined,
         }),
     ],
     [
       reBracket_$,
-      ([, arbitrary], { variablePrefix }) =>
-        handleSpaceX(variablePrefix, arbitrary),
+      ([, arbitrary], { variablePrefix, className }) =>
+        handleSpaceX(variablePrefix, arbitrary, combine(className)),
     ],
   ]],
   ["y", [
-    [0, (_, { variablePrefix }) => handleSpaceY(variablePrefix, "0px")],
-    ["px", (_, { variablePrefix }) => handleSpaceY(variablePrefix, "1px")],
-    ["reverse", (_, { variablePrefix }) => {
+    [
+      0,
+      (_, { variablePrefix, className }) =>
+        handleSpaceY(variablePrefix, "0px", combine(className)),
+    ],
+    [
+      "px",
+      (_, { variablePrefix, className }) =>
+        handleSpaceY(variablePrefix, "1px", combine(className)),
+    ],
+    ["reverse", (_, { variablePrefix, className }) => {
       return {
-        type: "ruleset",
-        selector: combine,
-        declaration: {
-          [stringifyCustomProperty(SPACE_Y_REVERSE, variablePrefix)]: 1,
+        type: "css",
+        value: {
+          [combine(className)]: {
+            [stringifyCustomProperty(SPACE_Y_REVERSE, variablePrefix)]: 1,
+          },
         },
       };
     }],
     [
       re$Numeric,
-      ([, numeric], { variablePrefix }) =>
+      ([, numeric], { variablePrefix, className }) =>
         parseNumeric(numeric).andThen(remify).match({
-          some: (rem) => handleSpaceY(variablePrefix, rem),
+          some: (rem) => handleSpaceY(variablePrefix, rem, combine(className)),
           none: undefined,
         }),
     ],
     [
       reBracket_$,
-      ([, arbitrary], { variablePrefix }) =>
-        handleSpaceY(variablePrefix, arbitrary),
+      ([, arbitrary], { variablePrefix, className }) =>
+        handleSpaceY(variablePrefix, arbitrary, combine(className)),
     ],
   ]],
 ];
