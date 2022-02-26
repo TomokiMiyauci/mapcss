@@ -79,3 +79,13 @@ export function stringifyCustomProperty(
 export function stringifyVarFunction(...value: string[]) {
   return `var(${value.join(" ")})`;
 }
+
+/** CSS functional-notation
+ * ```ts
+ * import { cssFn } from "https://deno.land/x/mapcss@$VERSION/core/utils/format.ts"
+ * cssFn("var", "--map-css") // var(--map-css)
+ * ```
+ */
+export function cssFn(funcName: string, argument: string): string {
+  return `${funcName}(${argument})`;
+}
