@@ -21,6 +21,7 @@ export { filterValues } from "https://deno.land/std@0.123.0/collections/filter_v
 export { distinctBy } from "https://deno.land/std@0.125.0/collections/distinct_by.ts";
 export { union } from "https://deno.land/std@0.125.0/collections/union.ts";
 export { sortBy } from "https://deno.land/std@0.125.0/collections/sort_by.ts";
+export { curry } from "https://deno.land/x/curry@v1.0.0/mod.ts";
 export {
   None,
   type Option,
