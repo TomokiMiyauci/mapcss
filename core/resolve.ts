@@ -3,6 +3,7 @@ import {
   distinctBy,
   head,
   init,
+  isEmptyObject,
   isFunction,
   isRegExp,
   isString,
@@ -96,6 +97,7 @@ export function resolveMappedSpecifier(
       if (definition instanceof Map) {
         return resolveMappedSpecifier(rest, definition, specifierContext);
       }
+      if (isEmptyObject(definition)) return;
       return handleCSSObject(definition, specifierContext.className);
     }
 
@@ -113,6 +115,7 @@ export function resolveMappedSpecifier(
         if (m instanceof Map) {
           return resolveMappedSpecifier(rest, m, specifierContext);
         }
+        if (isEmptyObject(m)) return;
         return handleCSSObject(m, specifierContext.className);
       }
     }
