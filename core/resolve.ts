@@ -5,6 +5,7 @@ import {
   init,
   isEmptyObject,
   isFunction,
+  isLength0,
   isRegExp,
   isString,
   isUndefined,
@@ -88,8 +89,8 @@ export function resolveMappedSpecifier(
     if (has) {
       const definition = mappedSpecifier.get(first)!;
       if (isFunction(definition)) {
+        if (!isLength0(rest)) continue;
         const result = definition(new MockRegExpExecArray(), specifierContext);
-        specifierContext.parentKey = first;
         if (isUndefined(result)) continue;
         return handleCSSObject(result, specifierContext.className);
       }
