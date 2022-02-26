@@ -37,50 +37,50 @@ function generateDefault(varPrefix: string) {
   const DEFAULT = {
     "h1, h2": {
       color: varHeadings,
-      "font-weight": 600,
-      "line-height": 1.25,
+      fontWeight: 600,
+      lineHeight: 1.25,
     },
     a: {
       color: varLinks,
-      "text-decoration": "underline",
-      "font-weight": "500",
+      textDecoration: "underline",
+      fontWeight: "500",
     },
     "a code": {
       color: varLinks,
     },
     "p, ul, ol, pre": {
       margin: "1em 0",
-      "line-height": 1.75,
+      lineHeight: 1.75,
     },
     blockquote: {
       margin: "1em 0",
-      "padding-left": "1em",
-      "font-style": "italic",
-      "border-left": `.25em solid ${varBorders}`,
+      paddingLeft: "1em",
+      fontStyle: "italic",
+      borderLeft: `.25em solid ${varBorders}`,
     },
     h3: {
       margin: "1.5em 0 .5em",
-      "font-size": "1.375em",
+      fontSize: "1.375em",
     },
     h4: {
       margin: "1em 0",
-      "font-size": "1.125em",
+      fontSize: "1.125em",
     },
     "img, video": {
-      "max-width": "100%",
+      maxWidth: "100%",
     },
     "figure, picture": {
       margin: "1em 0",
     },
     figcaption: {
       color: varCaptions,
-      "font-size": ".875em",
+      fontSize: ".875em",
     },
     code: {
       color: varCode,
-      "font-size": ".875em",
-      "font-weight": 600,
-      "font-family":
+      fontSize: ".875em",
+      fontWeight: 600,
+      fontFamily:
         "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation-Mono, Courier-New, monospace",
     },
     ":not(pre) > code::before, :not(pre) > code::after": {
@@ -88,30 +88,30 @@ function generateDefault(varPrefix: string) {
     },
     pre: {
       padding: "1.25rem 1.5rem",
-      "overflow-x": "auto",
-      "border-radius": ".375rem",
+      overflowX: "auto",
+      borderRadius: ".375rem",
     },
     "pre, code": {
-      "white-space": "pre",
-      "word-spacing": "normal",
-      "word-break": "normal",
-      "word-wrap": "normal",
+      whiteSpace: "pre",
+      wordSpacing: "normal",
+      wordBreak: "normal",
+      wordWrap: "normal",
+      tabSize: 4,
       "-moz-tab-size": 4,
       "-o-tab-size": 4,
-      "tab-size": 4,
       "-webkit-hyphens": "none",
       "-moz-hyphens": "none",
       hyphens: "none",
       background: "transparent",
     },
     "pre code": {
-      "font-weight": "inherit",
+      fontWeight: "inherit",
     },
     "ol, ul": {
-      "padding-left": "1.25em",
+      paddingLeft: "1.25em",
     },
     ul: {
-      "list-style-type": "disc",
+      listStyleType: "disc",
     },
     "ol > li::marker, ul > li::marker, summary::marker": {
       color: varLists,
@@ -123,8 +123,8 @@ function generateDefault(varPrefix: string) {
     table: {
       display: "block",
       margin: "1em 0",
-      "border-collapse": "collapse",
-      "overflow-x": "auto",
+      borderCollapse: "collapse",
+      overflowX: "auto",
     },
     "tr:nth-child(2n)": {
       background: varBgSoft,
@@ -140,8 +140,8 @@ function generateDefault(varPrefix: string) {
       color: varCode,
       border: "1px solid",
       padding: ".25rem .5rem",
-      "font-size": ".875em",
-      "border-radius": ".25rem",
+      fontSize: ".875em",
+      borderRadius: ".25rem",
     },
     details: {
       margin: "1em 0",
@@ -150,7 +150,7 @@ function generateDefault(varPrefix: string) {
     },
     summary: {
       cursor: "pointer",
-      "font-weight": "600",
+      fontWeight: "600",
     },
   };
   return DEFAULT;
