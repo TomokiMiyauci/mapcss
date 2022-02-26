@@ -4,7 +4,6 @@ import {
   toAst,
   transformSelector,
 } from "./prose.ts";
-import { Root } from "../../deps.ts";
 import { astify } from "../../core/ast.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
 import type { BinaryTree } from "../../core/types.ts";
@@ -357,7 +356,7 @@ test("toAst", () => {
 
   table.forEach(([css, disableMap, result]) =>
     expect(toAst(css, disableMap).toString()).toEqual(
-      new Root({ nodes: astify(result) }).toString(),
+      astify(result).toString(),
     )
   );
 });

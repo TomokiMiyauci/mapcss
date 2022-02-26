@@ -297,15 +297,15 @@ export function removeRuleOrDecl(
 ): Readonly<Root> {
   const newRoot = root.clone();
 
-  const childs = new Root({ nodes: astify(removeMap) });
+  const childRoot = astify(removeMap);
   // lift up for non parent declaration to rule with no nodes
-  childs.walkDecls((node) => {
+  childRoot.walkDecls((node) => {
     if (node.parent?.type !== "rule") {
       node.replaceWith(new Rule({ selector: minifySelector(node.prop) }));
     }
   });
 
-  const targetNodes = splitSelectorList(childs);
+  const targetNodes = splitSelectorList(childRoot);
 
   targetNodes.walkRules((rule) => {
     newRoot.walkRules((node) => {
@@ -337,10 +337,10 @@ export function toAst(
   css: BinaryTree<string | number>,
   disableMap: BinaryTree<string | number | false>,
 ): Root {
-  const nodes = astify(css);
+  const root = astify(css);
   const map = recTransform(disableMap, () => "");
 
-  return chain(new Root({ nodes })).map(splitSelectorList).map((
+  return chain(splitSelectorList(root)).map((
     root,
   ) => removeRuleOrDecl(root, map)).map(removeDuplicatedDecl)
     .unwrap();

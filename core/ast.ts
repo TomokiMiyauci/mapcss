@@ -8,6 +8,7 @@ import {
   isString,
   Left,
   Right,
+  Root,
   Rule,
 } from "../deps.ts";
 import type { BinaryTree } from "./types.ts";
@@ -78,8 +79,8 @@ function isAtRule(value: string): boolean {
  */
 export function astify(
   object: BinaryTree<string | number>,
-): ChildNode[] {
-  return Object.entries(object).map(([prop, maybeNestedObject]) => {
+): Root {
+  const nodes = Object.entries(object).map(([prop, maybeNestedObject]) => {
     if (isAtRule(prop)) {
       const parts = prop.match(/@(\S+)(?:\s+([\W\w]*)\s*)?/);
       if (!parts) return;
@@ -93,8 +94,9 @@ export function astify(
       .mapRight((nestedObject) =>
         new Rule({
           selector: prop,
-          nodes: astify(nestedObject),
+          nodes: astify(nestedObject).nodes,
         })
       ).unwrap();
   }).filter(Boolean) as ChildNode[];
+  return new Root({ nodes });
 }

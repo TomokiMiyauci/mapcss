@@ -97,13 +97,11 @@ export const twCustomPropertyInjector: PreProcessor = {
       [varBackdropSepia]: " ",
     };
 
-    const nodes = astify({
+    const newRoot = astify({
       "*, ::before, ::after": declaration,
     });
 
-    nodes.forEach((node) => {
-      root.push(node);
-    });
+    root.prepend(newRoot);
 
     return root;
   },

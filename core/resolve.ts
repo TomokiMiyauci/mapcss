@@ -127,10 +127,10 @@ function handleCSSObject(cssObject: CSSObject, selector: string): Root {
   if (cssObject instanceof Root) {
     return cssObject;
   } else if (isCSSDefinition(cssObject)) {
-    return new Root({ nodes: astify(cssObject.value) });
+    return astify(cssObject.value);
   } else {
     return new Root({
-      nodes: [new Rule({ selector, nodes: astify(cssObject) })],
+      nodes: [new Rule({ selector, nodes: astify(cssObject).nodes })],
     });
   }
 }
