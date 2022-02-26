@@ -314,8 +314,15 @@ export function removeRuleOrDecl(
           node.remove();
         } else {
           rule.walkDecls((decl) => {
-            node.walkDecls(decl.prop, (node) => {
-              node.remove();
+            node.walkDecls(decl.prop, (child) => {
+              // If the declaration block becomes empty, the parent rule is deleted.
+              if (
+                child.parent?.type === "rule" && child.parent.nodes.length === 1
+              ) {
+                child.parent.remove();
+              } else {
+                child.remove();
+              }
             });
           });
         }

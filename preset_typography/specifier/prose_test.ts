@@ -121,10 +121,13 @@ test("toAst", () => {
   const table: [...Parameters<typeof toAst>, Tree<string | number>][] = [
     [{}, {}, {}],
     [{ a: { color: "red" } }, { a: false }, {}],
-    [{ a: { fontWeight: 600 } }, { a: { fontWeight: false } }, { a: {} }],
-    [{ a: { fontWeight: 600 } }, { a: { "font-weight": false } }, { a: {} }],
-    [{ a: { "font-weight": 600 } }, { a: { fontWeight: false } }, { a: {} }],
-    [{ a: { "font-weight": 600 } }, { a: { "font-weight": false } }, { a: {} }],
+    [{ a: { fontWeight: 600 } }, { a: { fontWeight: false } }, {}],
+    [{ a: {} }, {}, { a: {} }],
+    [{ a: {}, b: {} }, { a: false }, { b: {} }],
+    [{ a: {}, b: {} }, { a: false, b: { empty: false } }, { b: {} }],
+    [{ a: { fontWeight: 600 } }, { a: { "font-weight": false } }, {}],
+    [{ a: { "font-weight": 600 } }, { a: { fontWeight: false } }, {}],
+    [{ a: { "font-weight": 600 } }, { a: { "font-weight": false } }, {}],
     [{
       "a:not(h1,h2 ,h3,   h4)": {
         color: "red",
@@ -143,9 +146,7 @@ test("toAst", () => {
           color: false,
         },
       },
-      {
-        a: {},
-      },
+      {},
     ],
     [
       {
@@ -277,7 +278,7 @@ test("toAst", () => {
           color: false,
         },
       },
-      { "h1:hover": {} },
+      {},
     ],
     [
       {
@@ -327,35 +328,31 @@ test("toAst", () => {
         },
       },
       {
-        ":not(pre) > code::before": {},
         ":not(pre) > code::after": {
           content: '"`"',
         },
       },
     ],
-    // OK but can't test it because distribute object.
-    // [
-    //   {
-    //     "h1, h2": {
-    //       color: "red",
-    //     },
-    //     h1: {
-    //       fontWeight: 600,
-    //     },
-    //   },
-    //   {
-    //     "h1, h2": {
-    //       color: false,
-    //     },
-    //   },
-    //   {
-    //     ...{ h1: {} },
-    //     "h1": {
-    //       fontWeight: 600,
-    //     },
-    //     h2: {},
-    //   },
-    // ],
+    [
+      {
+        "h1, h2": {
+          color: "red",
+        },
+        h1: {
+          fontWeight: 600,
+        },
+      },
+      {
+        "h1, h2": {
+          color: false,
+        },
+      },
+      {
+        "h1": {
+          fontWeight: 600,
+        },
+      },
+    ],
   ];
 
   table.forEach(([css, disableMap, result]) =>
