@@ -7,7 +7,7 @@ import {
 import { Root } from "../../deps.ts";
 import { astify } from "../../core/ast.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
-import type { Tree } from "../../core/types.ts";
+import type { BinaryTree } from "../../core/types.ts";
 
 test("transformWhere", () => {
   const table: [...ParamReturn<typeof transformSelector>][] = [
@@ -118,7 +118,7 @@ test("isolateEntries", () => {
 });
 
 test("toAst", () => {
-  const table: [...Parameters<typeof toAst>, Tree<string | number>][] = [
+  const table: [...Parameters<typeof toAst>, BinaryTree<string | number>][] = [
     [{}, {}, {}],
     [{ a: { color: "red" } }, { a: false }, {}],
     [{ a: { fontWeight: 600 } }, { a: { fontWeight: false } }, {}],

@@ -43,7 +43,7 @@ const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
 </div>
 `;
-const result = generateStyleSheet({ presets: [presetTw()] }, code);
+const result = generateStyleSheet({ preset: [presetTw()] }, code);
 console.log(result.css);
 /*
   .relative{position:relative;}

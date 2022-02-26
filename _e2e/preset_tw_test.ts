@@ -34403,13 +34403,14 @@ const expects: [string, string][] = [
 ];
 
 const config = {
-  presets: [{
-    theme,
-    modifierMap,
-    specifierMap,
+  preset: [{
     name: "tw",
-    syntaxes: [twBasicSyntax],
-    postProcessor: [],
+    fn: () => ({
+      theme,
+      modifierMap,
+      specifierMap,
+      syntax: [twBasicSyntax],
+    }),
   }],
 };
 

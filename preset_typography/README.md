@@ -12,7 +12,7 @@ import {
 } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
 const config: Partial<Config> = {
-  presets: [presetTypography()],
+  preset: [presetTypography()],
 };
 
 // generateStyleSheet(config, "prose").css;

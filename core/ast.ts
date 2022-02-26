@@ -10,7 +10,7 @@ import {
   Right,
   Rule,
 } from "../deps.ts";
-import type { Tree } from "./types.ts";
+import type { BinaryTree } from "./types.ts";
 
 const IMPORTANT = /\s*!important\s*$/i;
 
@@ -42,7 +42,7 @@ function decl(name: string, value: string): Declaration {
 
 function atRule(
   name: string,
-  value: Tree<string | number> | string | number,
+  value: BinaryTree<string | number> | string | number,
   params?: string,
 ): AtRule {
   const atRule = new AtRule({ name, params });
@@ -53,8 +53,8 @@ function atRule(
 }
 
 function treatTree(
-  mayBeLeaf: string | number | Tree<string | number>,
-): Either<string | number, Tree<string | number>> {
+  mayBeLeaf: string | number | BinaryTree<string | number>,
+): Either<string | number, BinaryTree<string | number>> {
   if (isString(mayBeLeaf) || isNumber(mayBeLeaf)) return Left(mayBeLeaf);
   return Right(mayBeLeaf);
 }
@@ -73,7 +73,7 @@ function treatTree(
  * ```
  */
 export function astify<
-  T extends Tree<string | number> = Tree<string | number>,
+  T extends BinaryTree<string | number> = BinaryTree<string | number>,
 >(
   obj: T,
 ): ChildNode[] {

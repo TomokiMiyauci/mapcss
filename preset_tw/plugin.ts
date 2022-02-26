@@ -15,10 +15,12 @@ export interface PresetMiniOptions {
 export function presetTw(_: PresetMiniOptions = {}): Preset {
   return {
     name: "mapcss/preset_tw",
-    specifierMap,
-    theme,
-    modifierMap,
-    syntaxes: [twBasicSyntax],
-    postProcessor: [twCustomPropertyInjector],
+    fn: () => ({
+      specifierMap,
+      theme,
+      modifierMap,
+      syntaxes: [twBasicSyntax],
+      preProcess: [twCustomPropertyInjector],
+    }),
   };
 }

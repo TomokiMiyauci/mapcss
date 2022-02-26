@@ -1,12 +1,12 @@
 import type { Root } from "../deps.ts";
 
-export type Tree<L, P extends PropertyKey = string | number> = {
-  [k in P]: L | Tree<L>;
+export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
+  [k in P]: Leaf | BinaryTree<Leaf>;
 };
 
 export type CSSDefinition = {
   type: "css";
-  value: Tree<string | number>;
+  value: BinaryTree<string | number>;
 };
 
 export type CSSObject =
@@ -15,21 +15,11 @@ export type CSSObject =
   | BlockDefinition;
 
 export type SpecifierContext =
-  & ThemeContext
+  & StaticContext
+  & RuntimeContext
   & {
-    variablePrefix: string;
-
-    /** The token as it
-     *
-     * example: `sm:text-red-500` -> `sm:text-red-500`
-     */
-    token: string;
-
-    /** The token with `.` and escaped for selector.
-     *
-     * example: `text-red-500/[10]` -> `.text-red-500\\[10\\]`
-     */
-    className: string;
+    /** Full specifier */
+    specifier: string;
 
     /** The matched object key
      *
@@ -54,38 +44,44 @@ export type SpecifierContext =
     path: string[];
   };
 
-export type ThemeContext = {
-  theme: Theme;
-  separator: string;
+export type Preset = Labeled & {
+  fn: (
+    context: Readonly<Omit<StaticContext, "theme">>,
+  ) => Partial<Omit<StaticConfig, "preset">>;
 };
 
-export type Preset = {
-  name: string;
-  specifierMap: SpecifierMap;
-  theme: Theme;
-  modifierMap: ModifierMap;
-  syntaxes: Syntax[];
-  postProcessor: PostProcessor[];
-};
-
-export type ModifierContext = ThemeContext & {
+export type ModifierContext = StaticContext & RuntimeContext & {
+  /** Full modifier */
   modifier: string;
-  path: string[];
+
+  /** Current search path
+   *
+   * example: `group-hover`
+   *
+   * 1st: `["group-hover"]`
+   * 2nd: `["group", "hover"]`
+   */
+  path: Readonly<string[]>;
 };
 
-export interface Theme {
-  [k: string | number]: string | Theme;
-}
+export type Theme = BinaryTree<string>;
 
-export interface Config {
+export type StaticConfig = {
   specifierMap: SpecifierMap;
   modifierMap: ModifierMap;
   theme: Theme;
-  presets: Preset[];
-  separator: string;
-  syntaxes: Syntax[];
+  preset: Preset[];
+  syntax: Syntax[];
+  preProcess: PreProcessor[];
+};
 
-  postProcess: PostProcessor[];
+export type StaticContext = {
+  theme: Readonly<Theme>;
+
+  /** The token separator
+   * @default `-`
+   */
+  separator: string;
 
   /**
    * @default 'map-'
@@ -96,16 +92,43 @@ export interface Config {
    * It is mainly used to reassign special characters.
    * @default charMap: { "_": " " }
    */
-  charMap: Record<string, string>;
-}
+  charMap: Readonly<Record<string, string>>;
+};
+
+export type RuntimeContext = {
+  /** The token as it
+   *
+   * example: `sm:text-red-500` -> `sm:text-red-500`
+   */
+  token: string;
+
+  /** The token after conversion with char map
+   *
+   * example:
+   *
+   * token: `content-['hello_world']`
+   *
+   * charMap: `{ "_": " " }`
+   *
+   * mappedToken: `content-['hello world']`
+   */
+  mappedToken: string;
+
+  /** The token with `.` and escaped for selector.
+   *
+   * example: `text-red-500/[10]` -> `.text-red-500\\[10\\]`
+   */
+  className: string;
+};
+
+export type Config = StaticConfig & StaticContext;
 
 export type ModifierMap = Record<
   string | number,
   Modifier | ModifierDefinition
 >;
 
-export type SyntaxContext = {
-  token: string;
+export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
   specifierRoots: string[];
 };
@@ -114,24 +137,20 @@ export type ParseResult = {
   modifiers?: string[];
 };
 
-type Context = {
-  variablePrefix: string;
-};
-
-export type Syntax = {
-  name: string;
-  fn: (context: SyntaxContext) => ParseResult | undefined;
-};
-
-export type PostProcessor = {
-  name: string;
+export type Syntax = Labeled & {
   fn: (
-    rootNode: Root,
-    context: Context,
-  ) => Root;
+    token: RuntimeContext["token"],
+    context: Readonly<SyntaxContext>,
+  ) => ParseResult | undefined;
+};
 
-  /** order of processor */
-  order?: number;
+type Labeled = {
+  /** The name will probably be used to remove duplicates. */
+  name: string;
+};
+
+export type PreProcessor = Labeled & {
+  fn: (root: Readonly<Root>, context: Readonly<StaticContext>) => Root;
 };
 
 /** User definition of CSS Block Declaration */

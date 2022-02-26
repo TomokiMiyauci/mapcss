@@ -24,7 +24,7 @@ test("generated Style Sheet", () => {
   table.forEach(([token, result]) =>
     expect(
       generateStyleSheet({
-        presets: [presetTypography()],
+        preset: [presetTypography()],
       }, token).css,
     ).toBe(result)
   );

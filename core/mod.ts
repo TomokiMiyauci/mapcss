@@ -5,7 +5,8 @@ import {
   resolveMappedSpecifier,
   resolveModifierMap,
 } from "./resolve.ts";
-import type { Config } from "./types.ts";
+import { escapeRegExp } from "./utils/escape.ts";
+import type { Config, RuntimeContext, StaticContext } from "./types.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
 export * from "./types.ts";
 
@@ -21,42 +22,53 @@ export function generateStyleSheet(
     separator = "-",
     variablePrefix = "map-",
     charMap = { "_": " " },
-    ...config
+    ...staticConfig
   }: Partial<
     Config
   >,
   input: Set<string> | string,
 ): GenerateResult {
-  const { postProcess: _postProcess = [], ...rest } = config;
-
+  const ctx = {
+    separator,
+    variablePrefix,
+    charMap,
+  };
   const {
-    syntaxes,
+    syntax,
     modifierMap,
     theme,
     mappedSpecifier,
-    postProcess: processors,
-  } = resolveConfig({ ...rest, postProcess: _postProcess });
-
+    preProcess,
+  } = resolveConfig(staticConfig, ctx);
+  const staticContext: StaticContext = {
+    ...ctx,
+    theme,
+  };
   const tokens = isString(input) ? extractSplit(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
   const results = Array.from(tokens).map((token) => {
     const mappedToken = mapChar(token, charMap);
-    const executeResults = syntaxes.map(({ fn }) => {
-      const parseResult = fn({
-        token: mappedToken,
+    const executeResults = syntax.map(({ fn }) => {
+      const parseResult = fn(mappedToken, {
+        ...staticContext,
         modifierRoots: Object.keys(modifierMap),
         specifierRoots: Array.from(mappedSpecifier.keys()) as string[],
       });
       if (!parseResult) return;
       const { specifier, modifiers = [] } = parseResult;
+      const className = `.${escapeRegExp(token)}`;
+      const runtimeContext: RuntimeContext = {
+        token,
+        mappedToken,
+        className,
+      };
 
       const specifierRoot = resolveMappedSpecifier(specifier, mappedSpecifier, {
-        theme,
-        variablePrefix,
-        separator,
-        token,
+        ...staticContext,
+        ...runtimeContext,
+        specifier,
       });
       if (isUndefined(specifierRoot)) return;
 
@@ -64,8 +76,8 @@ export function generateStyleSheet(
         if (isUndefined(acc)) return;
 
         return resolveModifierMap(cur, modifierMap, acc, {
-          theme,
-          separator,
+          ...staticContext,
+          ...runtimeContext,
           modifier: cur,
         });
       }, specifierRoot as Root | undefined);
@@ -85,8 +97,8 @@ export function generateStyleSheet(
     return acc;
   }, new Root());
 
-  const final = processors.reduce((acc, cur) => {
-    return cur.fn(acc, { variablePrefix });
+  const final = preProcess.reduce((acc, cur) => {
+    return cur.fn(acc, staticContext);
   }, rootNode);
 
   const css = postcss([orderProp(), minify()]).process(final).toString();

@@ -1,4 +1,4 @@
-import type { Tree } from "../core/types.ts";
+import type { BinaryTree } from "../core/types.ts";
 
 export interface PresetOptions {
   /**
@@ -6,5 +6,5 @@ export interface PresetOptions {
    *
    * @default undefined
    */
-  css?: Tree<string | number | false>;
+  css?: BinaryTree<string | number | false>;
 }

@@ -19,7 +19,7 @@ import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOptions } from "../types.ts";
-import type { EntriesSpecifier, Tree } from "../../core/types.ts";
+import type { BinaryTree, EntriesSpecifier } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string) {
   const varFnProperty = (property: string) =>
@@ -172,8 +172,8 @@ export function depsProse({ css }: Required<PresetOptions>) {
       const DEFAULT = generateDefault(variablePrefix);
 
       const [_css, disabledMap] = isolateEntries<
-        Tree<string | number>,
-        Tree<false>
+        BinaryTree<string | number>,
+        BinaryTree<false>
       >(
         css,
       );
@@ -293,7 +293,7 @@ export function depsProse({ css }: Required<PresetOptions>) {
 
 export function removeRuleOrDecl(
   root: Root,
-  removeMap: Tree<string>,
+  removeMap: BinaryTree<string>,
 ): Readonly<Root> {
   const newRoot = root.clone();
 
@@ -334,8 +334,8 @@ export function removeRuleOrDecl(
 }
 
 export function toAst(
-  css: Tree<string | number>,
-  disableMap: Tree<string | number | false>,
+  css: BinaryTree<string | number>,
+  disableMap: BinaryTree<string | number | false>,
 ): Root {
   const nodes = astify(css);
   const map = recTransform(disableMap, () => "");
@@ -421,7 +421,7 @@ export function recTransform<T, U>(
     value: T extends Record<PropertyKey, any> ? T[keyof T]
       : T,
   ) => U,
-): Tree<U, string> {
+): BinaryTree<U, string> {
   return mapEntries(
     object,
     (

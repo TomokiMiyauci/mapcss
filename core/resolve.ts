@@ -12,25 +12,24 @@ import {
   propPath,
   Root,
   Rule,
-  sortBy,
   tail,
 } from "../deps.ts";
 import { astify } from "./ast.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
-import { escapeRegExp } from "./utils/escape.ts";
 import type {
-  Config,
   CSSObject,
   ModifierContext,
   ModifierMap,
-  PostProcessor,
+  PreProcessor,
+  Preset,
   Specifier,
   SpecifierContext,
   SpecifierHandler,
   SpecifierMap,
+  StaticConfig,
+  StaticContext,
   Syntax,
   Theme,
-  ThemeContext,
 } from "./types.ts";
 
 function firstSplit(
@@ -69,10 +68,9 @@ export function resolveMappedSpecifier(
   value: string | string[],
   mappedSpecifier: MappedSpecifier,
   context:
-    & Omit<SpecifierContext, "className" | "key" | "parentKey" | "path">
+    & Omit<SpecifierContext, "key" | "parentKey" | "path">
     & { parentKey?: string; key?: string },
 ): Root | undefined {
-  const className = `.${escapeRegExp(context.token)}`;
   const paths = leftSplit(value, context.separator);
 
   for (const path of paths) {
@@ -82,7 +80,6 @@ export function resolveMappedSpecifier(
     const specifierContext: SpecifierContext = {
       ...context,
       parentKey: context.key,
-      className,
       key: first,
       path,
     };
@@ -93,13 +90,13 @@ export function resolveMappedSpecifier(
         const result = definition(new MockRegExpExecArray(), specifierContext);
         specifierContext.parentKey = first;
         if (isUndefined(result)) continue;
-        return handleCSSObject(result, className);
+        return handleCSSObject(result, specifierContext.className);
       }
 
       if (definition instanceof Map) {
         return resolveMappedSpecifier(rest, definition, specifierContext);
       }
-      return handleCSSObject(definition, className);
+      return handleCSSObject(definition, specifierContext.className);
     }
 
     for (const [key, m] of mappedSpecifier) {
@@ -111,12 +108,12 @@ export function resolveMappedSpecifier(
           const result = m(regExpExecResult, specifierContext);
           if (isUndefined(result)) continue;
 
-          return handleCSSObject(result, className);
+          return handleCSSObject(result, specifierContext.className);
         }
         if (m instanceof Map) {
           return resolveMappedSpecifier(rest, m, specifierContext);
         }
-        return handleCSSObject(m, className);
+        return handleCSSObject(m, specifierContext.className);
       }
     }
   }
@@ -138,7 +135,7 @@ function handleCSSObject(cssObject: CSSObject, selector: string): Root {
 export function resolveTheme(
   identifier: string,
   themeRoot: string,
-  { separator, theme }: ThemeContext,
+  { separator, theme }: Pick<StaticContext, "theme" | "separator">,
 ): string | undefined {
   const paths = leftSplit(identifier, separator);
   for (const path of paths) {
@@ -153,7 +150,7 @@ export function resolveTheme(
 export function $resolveTheme(
   identifier: string,
   themeRoot: string,
-  { separator, theme }: ThemeContext,
+  { separator, theme }: Pick<StaticContext, "theme" | "separator">,
 ): Theme | string | undefined {
   const recursive = (
     path: string[],
@@ -181,46 +178,57 @@ function pickByName({ name }: { name: string }): string {
   return name;
 }
 
-export function resolvePostProcessor(
-  ...postProcessors: PostProcessor[]
-): PostProcessor[] {
-  const processor = distinctBy(postProcessors, pickByName);
-  return sortBy(processor, ({ order }) => order ?? 0);
+export function resolvePreProcessor(
+  ...postProcessors: PreProcessor[]
+): PreProcessor[] {
+  return distinctBy(postProcessors, pickByName);
 }
 
 export function resolveSyntax(...syntaxes: Syntax[]): Syntax[] {
   return distinctBy(syntaxes, pickByName);
 }
 
+export function resolvePreset(
+  preset: Readonly<Readonly<Preset>[]>,
+  context: Readonly<Omit<StaticContext, "theme">>,
+): Omit<StaticConfig, "preset">[] {
+  return distinctBy(preset, pickByName).map(({ fn }) => {
+    const {
+      syntax = [],
+      specifierMap = {},
+      modifierMap = {},
+      theme = {},
+      preProcess = [],
+    } = fn(context);
+    return {
+      syntax,
+      specifierMap,
+      modifierMap,
+      theme,
+      preProcess,
+    };
+  });
+}
+
 /** resolve config to deep merge */
 export function resolveConfig(
   {
-    syntaxes: _syntaxes = [],
-    presets = [],
+    syntax: _syntax = [],
+    preset = [],
     specifierMap: _specifierMap = {},
     theme: _theme = {},
-    postProcess: _postProcess = [],
+    preProcess: _postProcess = [],
     modifierMap: _modifierMap = {},
   }: Readonly<
     Partial<
-      Pick<
-        Config,
-        | "specifierMap"
-        | "modifierMap"
-        | "theme"
-        | "presets"
-        | "syntaxes"
-        | "postProcess"
-      >
+      StaticConfig
     >
   >,
+  context: Readonly<Omit<StaticContext, "theme">>,
 ):
-  & Pick<
-    Config,
-    "modifierMap" | "theme" | "syntaxes" | "postProcess"
-  >
+  & Omit<StaticConfig, "specifierMap" | "preset">
   & { mappedSpecifier: MappedSpecifier } {
-  const _presets = distinctBy(presets, pickByName);
+  const _presets = resolvePreset(preset, context);
   const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
     .reduce((acc, cur) => {
       return deepMerge(acc, cur);
@@ -231,25 +239,25 @@ export function resolveConfig(
     },
     _theme,
   );
-  const syntaxes = resolveSyntax(
-    ..._syntaxes,
-    ..._presets.map(({ syntaxes }) => syntaxes).flat(),
+  const syntax = resolveSyntax(
+    ..._syntax,
+    ..._presets.map(({ syntax }) => syntax).flat(),
   );
   const mappedSpecifier = mergeSpecifierMap(
     _presets.map(({ specifierMap }) => specifierMap),
   );
 
-  const postProcess = resolvePostProcessor(
+  const preProcess = resolvePreProcessor(
     ..._postProcess,
-    ..._presets.map(({ postProcessor }) => postProcessor).flat(),
+    ..._presets.map(({ preProcess }) => preProcess).flat(),
   );
 
   return {
     mappedSpecifier,
     theme,
     modifierMap,
-    syntaxes,
-    postProcess,
+    syntax,
+    preProcess,
   };
 }
 

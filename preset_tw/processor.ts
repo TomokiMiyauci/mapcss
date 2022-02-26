@@ -1,10 +1,9 @@
 import { customProperty } from "../core/utils/format.ts";
 import { astify } from "../core/ast.ts";
-import type { PostProcessor } from "../core/types.ts";
+import type { PreProcessor } from "../core/types.ts";
 
-export const twCustomPropertyInjector: PostProcessor = {
+export const twCustomPropertyInjector: PreProcessor = {
   name: "tw-custom-property-injector",
-  order: -1,
   fn: (root, { variablePrefix }) => {
     function customPropertyWith(property: string) {
       return customProperty(property, variablePrefix);
