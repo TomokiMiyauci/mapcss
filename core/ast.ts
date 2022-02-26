@@ -59,6 +59,10 @@ function treatTree(
   return Right(mayBeLeaf);
 }
 
+function isAtRule(value: string): boolean {
+  return value.charAt(0) === "@";
+}
+
 /** JavaScript Object to postcss AST
  * ```ts
  * import { astify } from "https://deno.land/x/mapcss@$VERSION/core/ast.ts"
@@ -72,13 +76,11 @@ function treatTree(
  * astify(css)
  * ```
  */
-export function astify<
-  T extends BinaryTree<string | number> = BinaryTree<string | number>,
->(
-  obj: T,
+export function astify(
+  object: BinaryTree<string | number>,
 ): ChildNode[] {
-  return Object.entries(obj).map(([prop, maybeNestedObject]) => {
-    if (prop.charAt(0) === "@") {
+  return Object.entries(object).map(([prop, maybeNestedObject]) => {
+    if (isAtRule(prop)) {
       const parts = prop.match(/@(\S+)(?:\s+([\W\w]*)\s*)?/);
       if (!parts) return;
       const [_, name, params] = parts;
