@@ -83,7 +83,7 @@ export type StaticContext = {
    */
   separator: string;
 
-  /**
+  /** Prefix for CSS custom property (variable)
    * @default 'map-'
    */
   variablePrefix: string;
