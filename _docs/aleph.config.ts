@@ -1,5 +1,5 @@
 import mapcssPlugin from "./plugins/mapcss.ts";
-import { presetTw } from "../mod.ts";
+import { presetTw, presetTypography } from "../mod.ts";
 import remarkFrontmatter from "https://cdn.skypack.dev/remark-frontmatter";
 import { remarkMdxFrontmatter } from "https://esm.sh/remark-mdx-frontmatter";
 import rehypeSlug from "https://esm.sh/rehype-slug@5";
@@ -14,7 +14,26 @@ import type { Config } from "aleph/types";
 export default <Config> {
   plugins: [
     mapcssPlugin({
-      presets: [presetTw()],
+      preset: [
+        presetTw(),
+        presetTypography({
+          css: {
+            h2: {
+              lineHeight: false,
+            },
+            pre: {
+              padding: false,
+            },
+            "code, pre": {
+              background: false,
+            },
+            code: {
+              color: false,
+            },
+            ":not(pre) > code::before, :not(pre) > code::after": false,
+          },
+        }),
+      ],
       ext: ["tsx", "mdx"],
     }),
     mdx({
