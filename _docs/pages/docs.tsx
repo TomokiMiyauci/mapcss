@@ -103,7 +103,7 @@ export default function Docs({ Page, pageProps }: DocsProps) {
         </aside>
         <div className="lg:ml-80 xl:mr-80">
           <main className="max-w-3xl mx-auto pt-10 xl:max-w-none xl:ml-0 xl:pr-16">
-            <article>
+            <article className="prose prose-slate">
               <p className="mb-2 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
                 {category}
               </p>
