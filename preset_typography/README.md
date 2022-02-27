@@ -134,7 +134,7 @@ a code {
 
 ## Default style
 
-@see [DEFAULT](./specifier/prose.ts)
+@see [DEFAULT](./specifier/prose.ts#L37)
 
 ```css
 // $variablePrefix = "map-"
