@@ -73,6 +73,9 @@ export type StaticConfig = {
   preset: Preset[];
   syntax: Syntax[];
   preProcess: PreProcessor[];
+
+  /** Inject raw CSS Statement with CSS-in-JS style */
+  css: BinaryTree<string | number>;
 };
 
 export type StaticContext = {

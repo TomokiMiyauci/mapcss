@@ -8,6 +8,7 @@ import {
 import { escapeRegExp } from "./utils/escape.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
 import { objectify } from "./ast.ts";
+import { createInjectCSS } from "./preprocess.ts";
 import type {
   BinaryTree,
   Config,
@@ -81,6 +82,7 @@ export function generate(
     theme,
     deepMapSpecifier,
     preProcess,
+    css,
   } = resolveConfig(staticConfig, ctx);
   const staticContext: StaticContext = {
     ...ctx,
@@ -146,9 +148,10 @@ export function generate(
     return acc;
   }, new Root());
 
-  const final = preProcess.reduce((acc, cur) => {
-    return cur.fn(acc, staticContext);
-  }, rootNode);
+  const final = [createInjectCSS(css), ...preProcess].reduce(
+    (acc, cur) => cur.fn(acc, staticContext),
+    rootNode,
+  );
 
   const plugins = compress ? [orderProp(), minify()] : [];
   const ast = postcss(plugins).process(final).root;
