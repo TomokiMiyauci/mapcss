@@ -1,3 +1,11 @@
+# [1.0.0-beta.17](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2022-02-26)
+
+
+### Features
+
+* **core:** change types of config, pass static context and runtime context ([0e1487c](https://github.com/TomokiMiyauci/mapcss/commit/0e1487ca6d1aa952b90107a40d5759e73c5972e9))
+* **preset_typography:** clean up rule if the declaration block becomes empty ([437ee0a](https://github.com/TomokiMiyauci/mapcss/commit/437ee0aa2bb4adadf87ec37f20f92c0d236a74c2))
+
 # [1.0.0-beta.16](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2022-02-25)
 
 
