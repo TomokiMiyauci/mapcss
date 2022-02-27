@@ -7,7 +7,14 @@ import {
 } from "./resolve.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
-import type { Config, RuntimeContext, StaticContext, Syntax } from "./types.ts";
+import { objectify } from "./ast.ts";
+import type {
+  BinaryTree,
+  Config,
+  RuntimeContext,
+  StaticContext,
+  Syntax,
+} from "./types.ts";
 
 const SEPARATOR = "-";
 const VARIABLE_PREFIX = "map-";
@@ -28,11 +35,18 @@ export type Option = {
 };
 
 export type Result = {
-  /** Style Sheet */
+  /** The `string` of CSS Style Sheet.
+   * The AST is converted to `string` when the property is accessed.
+   */
   css: string;
 
   /** PostCSS AST */
   ast: Root;
+
+  /** JavaScript Object with CSS-in-JS notation.
+   * The AST is converted to JavaScript Object when the property is accessed.
+   */
+  js: BinaryTree<string | number>;
 
   /** The matched tokens */
   matched: Set<string>;
@@ -143,6 +157,9 @@ export function generate(
     ast,
     get css(): string {
       return ast.toString();
+    },
+    get js() {
+      return objectify(ast);
     },
     matched,
     unmatched,
