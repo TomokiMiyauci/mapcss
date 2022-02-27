@@ -1,4 +1,4 @@
-import { mapChar } from "./mod.ts";
+import { mapChar } from "./generate.ts";
 import { expect, test } from "../dev_deps.ts";
 
 test("mapChar", () => {

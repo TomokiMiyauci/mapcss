@@ -7,7 +7,7 @@
 ```ts
 import {
   type Config,
-  generateStyleSheet,
+  generate,
   presetTypography,
 } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
@@ -15,7 +15,7 @@ const config: Partial<Config> = {
   preset: [presetTypography()],
 };
 
-// generateStyleSheet(config, "prose").css;
+// generate(config, "prose").css;
 ```
 
 ## Feature

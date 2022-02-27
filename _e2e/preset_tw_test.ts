@@ -1,13 +1,9 @@
 import { expect, test } from "../dev_deps.ts";
 import { min } from "./preset_tw/min.ts";
 import { $single } from "./preset_tw/$single.ts";
-import { specifierMap } from "../preset_tw/specifier/mod.ts";
-import { theme } from "../preset_tw/theme/mod.ts";
-import { modifierMap } from "../preset_tw/modifier/mod.ts";
-import { twBasicSyntax } from "../preset_tw/syntax.ts";
 import { modifier } from "./preset_tw/modifier.ts";
 import { animate } from "./preset_tw/animate.ts";
-import { generateStyleSheet } from "../mod.ts";
+import { generate, presetTw } from "../mod.ts";
 
 const expects: [string, string][] = [
   ...min,
@@ -34402,21 +34398,15 @@ const expects: [string, string][] = [
   ],
 ];
 
-const config = {
-  preset: [{
-    name: "tw",
-    fn: () => ({
-      theme,
-      modifierMap,
-      specifierMap,
-      syntax: [twBasicSyntax],
-    }),
-  }],
-};
+const config = { preset: [presetTw()] };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
-    expect(generateStyleSheet(config, new Set([className])).css).toBe(
+    expect(
+      generate(config, new Set([className]), {
+        compress: true,
+      }).css,
+    ).toBe(
       result,
     );
   });
