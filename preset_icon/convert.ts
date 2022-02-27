@@ -8,7 +8,7 @@ import { iconToSVG } from "https://esm.sh/@iconify/utils/lib/svg/build";
 export function iconifyJSON(
   icon: IconifyJSON,
 ): PresetOptions["svgMap"] {
-  const specifier: PresetOptions["svgMap"] = {};
+  const identifier: PresetOptions["svgMap"] = {};
   parseIconSet(icon, (name: string, iconData: string) => {
     if (!iconData) {
       throw Error(iconData);
@@ -27,7 +27,7 @@ export function iconifyJSON(
       .join(" ");
 
     const svg = `<svg ${svgAttributesStr}>${renderData.body}</svg>`;
-    specifier[name] = svg;
+    identifier[name] = svg;
   });
-  return specifier;
+  return identifier;
 }

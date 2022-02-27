@@ -14,12 +14,12 @@ export type CSSObject =
   | Root
   | BlockDefinition;
 
-export type SpecifierContext =
+export type IdentifierContext =
   & StaticContext
   & RuntimeContext
   & {
-    /** Full specifier */
-    specifier: string;
+    /** Full identifier */
+    identifier: string;
 
     /** The matched object key
      *
@@ -67,7 +67,7 @@ export type ModifierContext = StaticContext & RuntimeContext & {
 export type Theme = BinaryTree<string>;
 
 export type StaticConfig = {
-  specifierMap: SpecifierMap;
+  identifierMap: IdentifierMap;
   modifierMap: ModifierMap;
   theme: Theme;
   preset: Preset[];
@@ -133,10 +133,10 @@ export type ModifierMap = Record<
 
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
-  specifierRoots: string[];
+  identifierRoots: string[];
 };
 export type ParseResult = {
-  specifier: string;
+  identifier: string;
   modifiers?: string[];
 };
 
@@ -159,22 +159,22 @@ export type PreProcessor = Labeled & {
 /** User definition of CSS Block Declaration */
 export type BlockDefinition = Record<string, string | number>;
 
-export type SpecifierMap = {
-  [k in string | number]: Specifier | BlockDefinition;
+export type IdentifierMap = {
+  [k in string | number]: Identifier | BlockDefinition;
 };
 
-export type RecordSpecifier = {
-  [k: string | number]: BlockDefinition | SpecifierHandler | Specifier;
+export type RecordIdentifier = {
+  [k: string | number]: BlockDefinition | IdentifierHandler | Identifier;
 };
 
-export type EntriesSpecifier = [
+export type EntriesIdentifier = [
   string | number | RegExp,
   | CSSObject
-  | SpecifierHandler
-  | Specifier,
+  | IdentifierHandler
+  | Identifier,
 ][];
 
-export type Specifier = RecordSpecifier | EntriesSpecifier;
+export type Identifier = RecordIdentifier | EntriesIdentifier;
 
 export type EntriesModifier = [
   RegExp,
@@ -195,9 +195,9 @@ export type ModifierDefinition = (
   context: ModifierContext,
 ) => Root | undefined;
 
-export type SpecifierHandler = (
+export type IdentifierHandler = (
   regExpExecArray: RegExpExecArray,
-  context: SpecifierContext,
+  context: IdentifierContext,
 ) =>
   | CSSObject
   | undefined;

@@ -2,7 +2,7 @@ import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
 import {
   resolveConfig,
-  resolveDeepMapSpecifier,
+  resolveDeepMapIdentifier,
   resolveModifierMap,
 } from "./resolve.ts";
 import { escapeRegExp } from "./utils/escape.ts";
@@ -23,7 +23,7 @@ const CHAR_MAP = { "_": " " };
 
 const defaultSyntax: Syntax = {
   name: "mapcss/default-syntax",
-  fn: (specifier) => ({ specifier }),
+  fn: (identifier) => ({ identifier }),
 };
 
 export type Option = {
@@ -80,7 +80,7 @@ export function generate(
     syntax,
     modifierMap,
     theme,
-    deepMapSpecifier,
+    deepMapIdentifier,
     preProcess,
     css,
   } = resolveConfig(staticConfig, ctx);
@@ -100,10 +100,10 @@ export function generate(
       const parseResult = fn(mappedToken, {
         ...staticContext,
         modifierRoots: Object.keys(modifierMap),
-        specifierRoots: Array.from(deepMapSpecifier.keys()) as string[],
+        identifierRoots: Array.from(deepMapIdentifier.keys()) as string[],
       });
       if (!parseResult) return;
-      const { specifier, modifiers = [] } = parseResult;
+      const { identifier, modifiers = [] } = parseResult;
       const className = `.${escapeRegExp(token)}`;
       const runtimeContext: RuntimeContext = {
         token,
@@ -111,16 +111,16 @@ export function generate(
         className,
       };
 
-      const specifierRoot = resolveDeepMapSpecifier(
-        specifier,
-        deepMapSpecifier,
+      const identifierRoot = resolveDeepMapIdentifier(
+        identifier,
+        deepMapIdentifier,
         {
           ...staticContext,
           ...runtimeContext,
-          specifier,
+          identifier,
         },
       );
-      if (isUndefined(specifierRoot)) continue;
+      if (isUndefined(identifierRoot)) continue;
       const results = modifiers.reduce((acc, cur) => {
         if (isUndefined(acc)) return;
 
@@ -129,7 +129,7 @@ export function generate(
           ...runtimeContext,
           modifier: cur,
         });
-      }, specifierRoot as Root | undefined);
+      }, identifierRoot as Root | undefined);
 
       if (results instanceof Root) {
         unmatched.delete(token);
