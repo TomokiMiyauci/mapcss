@@ -99,7 +99,7 @@ a code {
 ```ts
 import { presetTypography } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
-PresetTypography({
+presetTypography({
   css: {
     h1: false,
     a: {
