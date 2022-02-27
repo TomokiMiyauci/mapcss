@@ -19,11 +19,11 @@ import {
 import { astify } from "./ast.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import type {
+  CSSMap,
   CSSObject,
   Identifier,
   IdentifierContext,
   IdentifierHandler,
-  IdentifierMap,
   ModifierContext,
   ModifierMap,
   PreProcessor,
@@ -68,7 +68,7 @@ class MockRegExpExecArray extends Array<string> {
 
 export function resolveDeepMapIdentifier(
   value: string | string[],
-  deepMapIdentifier: DeepMapIdentifier,
+  deepMapCSS: DeepMapCSS,
   context:
     & Omit<IdentifierContext, "key" | "parentKey" | "path">
     & { parentKey?: string; key?: string },
@@ -84,9 +84,9 @@ export function resolveDeepMapIdentifier(
       key: first,
       path,
     };
-    const has = deepMapIdentifier.has(first);
+    const has = deepMapCSS.has(first);
     if (has) {
-      const definition = deepMapIdentifier.get(first)!;
+      const definition = deepMapCSS.get(first)!;
       if (isFunction(definition)) {
         if (!isLength0(rest)) continue;
         const result = definition(new MockRegExpExecArray(), identifierContext);
@@ -101,7 +101,7 @@ export function resolveDeepMapIdentifier(
       return handleCSSObject(definition, identifierContext.className);
     }
 
-    for (const [key, m] of deepMapIdentifier) {
+    for (const [key, m] of deepMapCSS) {
       if (isRegExp(key)) {
         const regExpExecResult = key.exec(first);
         if (!regExpExecResult) continue;
@@ -198,7 +198,7 @@ export function resolvePreset(
   return distinctBy(preset, pickByName).map(({ fn }) => {
     const {
       syntax = [],
-      identifierMap = {},
+      cssMap = {},
       modifierMap = {},
       theme = {},
       preProcess = [],
@@ -206,7 +206,7 @@ export function resolvePreset(
     } = fn(context);
     return {
       syntax,
-      identifierMap,
+      cssMap,
       modifierMap,
       theme,
       preProcess,
@@ -220,7 +220,7 @@ export function resolveConfig(
   {
     syntax: _syntax = [],
     preset = [],
-    identifierMap: _identifierMap = {},
+    cssMap: _cssMap = {},
     theme: _theme = {},
     preProcess: _postProcess = [],
     modifierMap: _modifierMap = {},
@@ -232,8 +232,8 @@ export function resolveConfig(
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
 ):
-  & Omit<StaticConfig, "identifierMap" | "preset">
-  & { deepMapIdentifier: DeepMapIdentifier } {
+  & Omit<StaticConfig, "cssMap" | "preset">
+  & { deepMapCSS: DeepMapCSS } {
   const _presets = resolvePreset(preset, context);
   const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
     .reduce((acc, cur) => {
@@ -249,8 +249,8 @@ export function resolveConfig(
     ..._syntax,
     ..._presets.map(({ syntax }) => syntax).flat(),
   );
-  const deepMapIdentifier = mergeIdentifierMap(
-    [..._presets.map(({ identifierMap }) => identifierMap), _identifierMap],
+  const deepMapCSS = mergeCSSMap(
+    [..._presets.map(({ cssMap }) => cssMap), _cssMap],
   );
 
   const preProcess = resolvePreProcessor(
@@ -263,7 +263,7 @@ export function resolveConfig(
   );
 
   return {
-    deepMapIdentifier,
+    deepMapCSS,
     theme,
     modifierMap,
     syntax,
@@ -274,19 +274,19 @@ export function resolveConfig(
 
 type TreeMap<Leaf, P> = Map<P, Leaf | TreeMap<Leaf, P>>;
 
-type DeepMapIdentifier = TreeMap<
+type DeepMapCSS = TreeMap<
   IdentifierHandler | CSSObject,
   string | RegExp
 >;
 
-export function mergeIdentifierMap(
-  identifierMaps: IdentifierMap[],
-): DeepMapIdentifier {
+export function mergeCSSMap(
+  cssMaps: CSSMap[],
+): DeepMapCSS {
   const recursive = (
-    m: Identifier,
+    id: Identifier,
     map: Map<string | RegExp, any>,
   ): Map<string | RegExp, IdentifierHandler | CSSObject> => {
-    const entries = Array.isArray(m) ? m : Object.entries(m);
+    const entries = Array.isArray(id) ? id : Object.entries(id);
 
     entries.forEach(([key, value]) => {
       const _key = isRegExp(key) ? key : String(key);
@@ -305,7 +305,7 @@ export function mergeIdentifierMap(
     return map;
   };
 
-  return identifierMaps.reduce(
+  return cssMaps.reduce(
     (acc, cur) => recursive(cur, acc),
     new Map<string | RegExp, IdentifierHandler | CSSObject>(),
   );

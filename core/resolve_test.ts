@@ -1,8 +1,8 @@
-import { mergeIdentifierMap } from "./resolve.ts";
+import { mergeCSSMap } from "./resolve.ts";
 import { expect, ParamReturn, test } from "../dev_deps.ts";
 
-test("mergeIdentifierMap", () => {
-  const table: ParamReturn<typeof mergeIdentifierMap>[] = [
+test("mergeCSSMap", () => {
+  const table: ParamReturn<typeof mergeCSSMap>[] = [
     [[{}], new Map()],
     [[{ block: { a: "b" } }], new Map([["block", { a: "b" }]])],
     [
@@ -52,7 +52,7 @@ test("mergeIdentifierMap", () => {
     // [[{ block: [] }], new Map([["block", {}]])],
   ];
 
-  table.forEach(([identifierMap, result]) =>
-    expect(mergeIdentifierMap(identifierMap)).toEqual(result)
+  table.forEach(([cssMap, result]) =>
+    expect(mergeCSSMap(cssMap)).toEqual(result)
   );
 });

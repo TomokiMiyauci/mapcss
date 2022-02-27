@@ -1,4 +1,4 @@
-import { identifierMap } from "./identifier/mod.ts";
+import { cssMap } from "./identifier/mod.ts";
 import { theme } from "./theme/mod.ts";
 import { modifierMap } from "./modifier/mod.ts";
 import { twBasicSyntax } from "./syntax.ts";
@@ -27,7 +27,7 @@ export function presetTw(
   return {
     name: "mapcss/preset_tw",
     fn: () => ({
-      identifierMap,
+      cssMap,
       theme,
       modifierMap,
       syntax: [twBasicSyntax],

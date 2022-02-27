@@ -1,5 +1,5 @@
 import { generate } from "../../core/generate.ts";
-import { identifierMap } from "./mod.ts";
+import { cssMap } from "./mod.ts";
 import { expect, test } from "../../dev_deps.ts";
 import { box } from "./box_test.ts";
 
@@ -12,6 +12,6 @@ export const table: TestCase = [
 
 test("identifier mapping test", () => {
   table.forEach(([input, result]) =>
-    expect(generate({ identifierMap }, input).js).toEqual(result)
+    expect(generate({ cssMap }, input).js).toEqual(result)
   );
 });

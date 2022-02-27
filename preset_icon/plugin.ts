@@ -1,5 +1,5 @@
 import { recTransform } from "../preset_typography/identifier/prose.ts";
-import type { BinaryTree, IdentifierMap, Preset } from "../core/types.ts";
+import type { BinaryTree, CSSMap, Preset } from "../core/types.ts";
 import { createCSSObject } from "./identifier.ts";
 
 export type PresetOptions = {
@@ -11,11 +11,11 @@ export function preset({ svgMap }: PresetOptions): Preset {
     svgMap,
     (svg) => createCSSObject(svg as string),
   );
-  const identifierMap: IdentifierMap = { i: identifier };
+  const cssMap: CSSMap = { i: identifier };
   const preset: Preset = {
     name: "mapcss/preset-icon",
     fn: () => ({
-      identifierMap,
+      cssMap,
     }),
   };
   return preset;

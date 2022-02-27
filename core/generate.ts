@@ -80,7 +80,7 @@ export function generate(
     syntax,
     modifierMap,
     theme,
-    deepMapIdentifier,
+    deepMapCSS,
     preProcess,
     css,
   } = resolveConfig(staticConfig, ctx);
@@ -100,7 +100,7 @@ export function generate(
       const parseResult = fn(mappedToken, {
         ...staticContext,
         modifierRoots: Object.keys(modifierMap),
-        identifierRoots: Array.from(deepMapIdentifier.keys()) as string[],
+        identifierRoots: Array.from(deepMapCSS.keys()) as string[],
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
@@ -113,7 +113,7 @@ export function generate(
 
       const identifierRoot = resolveDeepMapIdentifier(
         identifier,
-        deepMapIdentifier,
+        deepMapCSS,
         {
           ...staticContext,
           ...runtimeContext,

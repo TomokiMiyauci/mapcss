@@ -140,9 +140,9 @@ import { scroll } from "./scroll.ts";
 import { snap } from "./snap.ts";
 import { stroke } from "./stroke.ts";
 import { animate } from "./animate.ts";
-import type { IdentifierMap } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const identifierMap: IdentifierMap = {
+export const cssMap: CSSMap = {
   animate,
   container,
   flow,

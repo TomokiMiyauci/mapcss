@@ -67,7 +67,10 @@ export type ModifierContext = StaticContext & RuntimeContext & {
 export type Theme = BinaryTree<string>;
 
 export type StaticConfig = {
-  identifierMap: IdentifierMap;
+  /** Hierarchy of CSS-in-JS  */
+  cssMap: CSSMap;
+
+  /** Hierarchy of modifier */
   modifierMap: ModifierMap;
   theme: Theme;
   preset: Preset[];
@@ -159,8 +162,8 @@ export type PreProcessor = Labeled & {
 /** User definition of CSS Block Declaration */
 export type BlockDefinition = Record<string, string | number>;
 
-export type IdentifierMap = {
-  [k in string | number]: Identifier | BlockDefinition;
+export type CSSMap = {
+  [k in string | number]: Identifier | BlockDefinition | IdentifierHandler;
 };
 
 export type RecordIdentifier = {

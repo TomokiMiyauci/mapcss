@@ -8,7 +8,7 @@ export function plugin({ css }: PresetOptions = {}): Preset {
     name: "mapcss/preset_typography",
     fn: () => ({
       // Currently, it is not possible to inject context for each preset. This is subject to change in the future.
-      identifierMap: dependency({ css }),
+      cssMap: dependency({ css }),
       theme,
     }),
   };

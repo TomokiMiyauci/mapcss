@@ -31,7 +31,8 @@ For example, the following CSS Statement can be mapped as follows:
 ```
 
 ```ts
-const cssMap = {
+import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+const cssMap: CSSMap = {
   inline: {
     block: { display: "inline" },
   },
@@ -45,11 +46,12 @@ It is also possible to express dynamic identifiers using regular expressions.
 ```
 
 ```ts
+import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 const rePositiveNumber = /^(\d+)$/;
-const cssMap = {
+const cssMap: CSSMap = {
   z: [
     // It actually checks the validity of the numbers
-    [rePositionNumber, ([, number]) => ({ zIndex: Number(number) })],
+    [rePositiveNumber, ([, number]) => ({ zIndex: Number(number) })],
   ],
 };
 ```
@@ -70,7 +72,8 @@ supported.
 ```
 
 ```ts
-const cssMap = {
+import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+const cssMap: CSSMap = {
   // className: .container
   container: (_, { className }) => ({
     type: "css",
