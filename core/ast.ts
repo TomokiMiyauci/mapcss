@@ -1,6 +1,5 @@
 import {
   AtRule,
-  chain,
   ChildNode,
   Declaration,
   Either,
@@ -18,12 +17,9 @@ const IMPORTANT = /\s*!important\s*$/i;
 function hyphenCase(value: string): string {
   return value.replace(/([A-Z])/g, "-$1");
 }
-function hyphenWithMs(value: string): string {
-  return value.replace(/^ms-/, "-ms-");
-}
 
 function dashify(value: string): string {
-  return chain(value).map(hyphenCase).map(hyphenWithMs).unwrap().toLowerCase();
+  return hyphenCase(value).toLocaleLowerCase();
 }
 
 function decl(name: string, value: string): Declaration {
@@ -99,4 +95,52 @@ export function astify(
       ).unwrap();
   }).filter(Boolean) as ChildNode[];
   return new Root({ nodes });
+}
+
+/** postcss AST to JavaScript Object */
+export function objectify(
+  ast: { nodes: ChildNode[] },
+): BinaryTree<string | number> {
+  return ast.nodes.reduce((acc, cur) => {
+    if (cur.type === "atrule") {
+      const withParams = cur.params ? ` ${cur.params}` : "";
+      const atRule = `@${cur.name}${withParams}`;
+      return { ...acc, [atRule]: objectify(cur) };
+    }
+    if (cur.type === "rule") {
+      return { ...acc, [cur.selector]: objectify(cur) };
+    }
+    if (cur.type === "decl") {
+      const prop = propCamelCase(cur.prop);
+      const value = constructProperty(cur.value, cur.important);
+      return { ...acc, [prop]: value };
+    }
+    return acc;
+  }, {});
+}
+
+export function constructProperty(
+  value: string,
+  important: boolean,
+): string | number {
+  if (important) {
+    return `${value} !important`;
+  }
+  // Convert only numbers without a unit to type `number`.
+  if (/^[\d.\s]+$/.test(value)) {
+    const number = Number.parseFloat(value);
+    return Number.isFinite(number) ? number : value;
+  }
+
+  return value;
+}
+
+export function propCamelCase(prop: string): string {
+  // if custom property, just return
+  if (prop.startsWith("--")) return prop;
+
+  return prop.toLowerCase().replace(
+    /-(\w|$)/g,
+    (_, char) => char.toUpperCase(),
+  );
 }
