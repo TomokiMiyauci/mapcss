@@ -1,3 +1,19 @@
+# [1.0.0-beta.19](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2022-02-27)
+
+
+### Bug Fixes
+
+* **core:** merge specifierMap from argument ([dc5f37b](https://github.com/TomokiMiyauci/mapcss/commit/dc5f37b3b862b4e08802e9d72deb572ecad4dd21))
+
+
+### Features
+
+* **core:** add default syntax what handle specifier as is ([d8bfc4e](https://github.com/TomokiMiyauci/mapcss/commit/d8bfc4ec62c75940cd2d010f36138d077cb9a4fe))
+* **core:** add injection raw css as CSS-in-JS ([d3c5fbb](https://github.com/TomokiMiyauci/mapcss/commit/d3c5fbb86285e8e4adcccce6d6c8660f41db1619))
+* **core:** add output format of CSS-in-JS ([bdc48ac](https://github.com/TomokiMiyauci/mapcss/commit/bdc48ac53af03f54de47ccd63406e471d08e25a8))
+* **core:** move to generate file, return generated css with AST ([155c0e4](https://github.com/TomokiMiyauci/mapcss/commit/155c0e41ff7fbdb6f0652c82520a8b5032c5c0f4))
+* **preset_tw:** add preset option for selectable inject variable ([731b3fd](https://github.com/TomokiMiyauci/mapcss/commit/731b3fd8e9ec1f22f611c240d3af4917ed5581f4))
+
 # [1.0.0-beta.18](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2022-02-27)
 
 
