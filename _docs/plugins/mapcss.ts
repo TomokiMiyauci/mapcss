@@ -1,4 +1,4 @@
-import { type Config as MapCSSConfig, generateStyleSheet } from "../../mod.ts";
+import { type Config as MapCSSConfig, generate } from "../../mod.ts";
 import { extractSplit } from "../../core/extractor.ts";
 import type { Plugin } from "aleph/types";
 import { expandGlob, WalkEntry } from "https://deno.land/std@0.125.0/fs/mod.ts";
@@ -16,7 +16,6 @@ export default function mapcssPlugin(
   return {
     name: "mapcss-loader",
     async setup(aleph) {
-      const pattern = RegExp(`\.(${ext.join("|")})$`, "i");
       if (aleph.mode === "development") {
         const baseModule = await aleph.addModule("/style/$map.css", " ");
         const tokens = new Set<string>([]);
@@ -34,14 +33,9 @@ export default function mapcssPlugin(
           _tokens.forEach((token) => {
             tokens.add(token);
           });
-          const { css, unmatched } = generateStyleSheet(rest, tokens);
+          const { css } = generate(rest, tokens);
 
-          if (unmatched.size) {
-            console.warn("unmatched");
-            Array.from(unmatched).filter((v) => /^[a-z]/.test(v)).filter((v) =>
-              /^[^\\\?]+$/.test(v)
-            ).forEach((v) => console.log(v));
-          }
+
 
           const _css = css ? css : " ";
           aleph.addModule("/style/$map.css", _css, true);
@@ -60,7 +54,7 @@ export default function mapcssPlugin(
           Deno.readTextFileSync(path)
         );
         const allCode = texts.reduce((acc, cur) => `${acc}\n${cur}`, "");
-        const { css } = generateStyleSheet(rest, allCode);
+        const { css } = generate(rest, allCode);
         if (!css) return;
 
         aleph.onRender(({ html }) => {
