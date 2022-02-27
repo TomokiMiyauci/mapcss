@@ -1,3 +1,19 @@
+# [1.0.0-beta.18](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2022-02-27)
+
+
+### Bug Fixes
+
+* **core:** check if rest path is exists or not ([c07a05d](https://github.com/TomokiMiyauci/mapcss/commit/c07a05d124987db66e18960a4b2deef4adf838bc))
+* **core:** remove node if specifier definition is empty object ([1df69b5](https://github.com/TomokiMiyauci/mapcss/commit/1df69b5789aed9ebc27f4b3da38acf325af44be6))
+
+
+### Features
+
+* **core:** add objectify function that convert JavaScript Object from postcss AST ([712e347](https://github.com/TomokiMiyauci/mapcss/commit/712e347a152f1088bf9071356c178fdb90a92c32))
+* **core:** astify function become to return root node ([c154bb0](https://github.com/TomokiMiyauci/mapcss/commit/c154bb03e5c4e6e97db607c8cb1d75c23e81ba16))
+* **preset_icon:** add preset for SVG icon as CSS ([669e409](https://github.com/TomokiMiyauci/mapcss/commit/669e409633fb3e457abd2a6b15c48a69701e190e))
+* **preset_typography:** change export name ([997f202](https://github.com/TomokiMiyauci/mapcss/commit/997f2021acd06989a330518648942160896f9051))
+
 # [1.0.0-beta.17](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2022-02-26)
 
 
