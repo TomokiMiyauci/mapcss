@@ -7,11 +7,16 @@ import {
 } from "./resolve.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
-import type { Config, RuntimeContext, StaticContext } from "./types.ts";
+import type { Config, RuntimeContext, StaticContext, Syntax } from "./types.ts";
 
 const SEPARATOR = "-";
 const VARIABLE_PREFIX = "map-";
 const CHAR_MAP = { "_": " " };
+
+const defaultSyntax: Syntax = {
+  name: "mapcss/default-syntax",
+  fn: (specifier) => ({ specifier }),
+};
 
 export type Option = {
   /** Whether or not to compress the Node
@@ -72,8 +77,10 @@ export function generate(
   const unmatched = new Set<string>();
 
   const results = Array.from(tokens).map((token) => {
+    let rootCache: Root | undefined;
     const mappedToken = mapChar(token, charMap);
-    const executeResults = syntax.map(({ fn }) => {
+
+    for (const { fn } of [...syntax, defaultSyntax]) {
       const parseResult = fn(mappedToken, {
         ...staticContext,
         modifierRoots: Object.keys(modifierMap),
@@ -97,8 +104,7 @@ export function generate(
           specifier,
         },
       );
-      if (isUndefined(specifierRoot)) return;
-
+      if (isUndefined(specifierRoot)) continue;
       const results = modifiers.reduce((acc, cur) => {
         if (isUndefined(acc)) return;
 
@@ -109,15 +115,17 @@ export function generate(
         });
       }, specifierRoot as Root | undefined);
 
-      if (!isUndefined(results)) {
+      if (results instanceof Root) {
+        unmatched.delete(token);
         matched.add(token);
-      } else {
-        unmatched.add(token);
+        rootCache = results;
+        break;
       }
-      return results;
-    }).filter(Boolean) as Root[];
-    return executeResults;
-  }).flat();
+
+      unmatched.add(token);
+    }
+    return rootCache;
+  }).filter(Boolean) as Root[];
 
   const rootNode = results.reduce((acc, cur) => {
     acc.append(cur.nodes);
