@@ -1,6 +1,6 @@
 # mapcss
 
-Tiny, composable atomic CSS engine
+Tiny, composable Atomic CSS engine
 
 :construction: This project is currently in beta release. All interfaces are
 subject to change.
@@ -9,23 +9,103 @@ subject to change.
 
 mapcss is an Atomic-oriented CSS generator.
 
-The essence of mapcss is a mapping of CSS to a JavaScript Object (often referred
-to as CSS in JS. We'll call it `JSS` for simplicity).
-
-The mapping can be defined as a hierarchy of Objects, and is a generic data
-structure that allows the use of regular expressions.
-
-If the mapped JSS is hit, the JSS will be converted to CSS AST. Currently,
-conversion to postcss AST is performed.
-
-After that, the free world of AST will expand.
-
 It is strongly influenced by
 [tailwindcss](https://github.com/tailwindlabs/tailwindcss) and
 [unocss](https://github.com/antfu/unocss), but with the following differences.
 
 - Mapping is free. And you can define a very flexible mapping syntax.
 - Deno is fully supported.
+
+### identifier to CSS-in-JS
+
+The essence of mapcss is to map an identifier to a CSS Statement with JavaScript
+Object notation (CSS-in-JS).
+
+A Map is a Plain Object with a hierarchical structure, which can be expressed
+concisely with Object literals.
+
+For example, the following CSS Statement can be mapped as follows:
+
+```css
+.inline-block{display: inline;}
+```
+
+```ts
+const cssMap = {
+  inline: {
+    block: { display: "inline" },
+  },
+};
+```
+
+It is also possible to express dynamic identifiers using regular expressions.
+
+```css
+.z-123{z-index: 123;}
+```
+
+```ts
+const rePositiveNumber = /^(\d+)$/;
+const cssMap = {
+  z: [
+    // It actually checks the validity of the numbers
+    [rePositionNumber, ([, number]) => ({ zIndex: Number(number) })],
+  ],
+};
+```
+
+We support the first class because it is the most frequent mapping to CSS
+declaration block.
+
+For the definition of any CSS Statement, CSS-in-JS representation is also
+supported.
+
+```css
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+.container{width: 100%;}
+```
+
+```ts
+const cssMap = {
+  // className: .container
+  container: (_, { className }) => ({
+    type: "css",
+    value: {
+      "@media (min-width: 640px)": {
+        [className]: {
+          maxWidth: "640px",
+        },
+      },
+      [className]: {
+        width: "100%",
+      },
+    },
+  }),
+};
+```
+
+### The Object search model
+
+Explore the object hierarchy based on identifier. Hierarchy traversal is much
+more performant than flat traversal.
+
+For example, the computational complexity of regular expression matching from a
+flat structure is O(N).
+
+If the search finds CSS-in-JS, it will be converted to AST. The AST currently
+uses the postcss AST.
+
+This will benefit from the postcss ecosystem.
+
+Finally, we show the conversion transition.
+
+```bash
+token -> DeepMap(identifier) -> CSS-in-JS -> AST -> Style Sheet
+```
 
 ## Usage
 
