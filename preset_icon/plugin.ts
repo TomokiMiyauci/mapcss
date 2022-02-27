@@ -1,5 +1,4 @@
 import { recTransform } from "../preset_typography/specifier/prose.ts";
-import { twBasicSyntax } from "../preset_tw/syntax.ts";
 import type { BinaryTree, Preset, SpecifierMap } from "../core/types.ts";
 import { createCSSObject } from "./specifier.ts";
 
@@ -17,7 +16,6 @@ export function preset({ svgMap }: PresetOptions): Preset {
     name: "mapcss/preset-icon",
     fn: () => ({
       specifierMap,
-      syntax: [twBasicSyntax],
     }),
   };
   return preset;
