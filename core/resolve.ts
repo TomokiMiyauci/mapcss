@@ -247,7 +247,7 @@ export function resolveConfig(
     ..._presets.map(({ syntax }) => syntax).flat(),
   );
   const deepMapSpecifier = mergeSpecifierMap(
-    _presets.map(({ specifierMap }) => specifierMap),
+    [..._presets.map(({ specifierMap }) => specifierMap), _specifierMap],
   );
 
   const preProcess = resolvePreProcessor(
