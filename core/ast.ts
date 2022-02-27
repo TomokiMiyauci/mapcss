@@ -1,6 +1,5 @@
 import {
   AtRule,
-  chain,
   ChildNode,
   Declaration,
   Either,
@@ -8,21 +7,19 @@ import {
   isString,
   Left,
   Right,
+  Root,
   Rule,
 } from "../deps.ts";
-import type { Tree } from "./types.ts";
+import type { BinaryTree } from "./types.ts";
 
 const IMPORTANT = /\s*!important\s*$/i;
 
 function hyphenCase(value: string): string {
   return value.replace(/([A-Z])/g, "-$1");
 }
-function hyphenWithMs(value: string): string {
-  return value.replace(/^ms-/, "-ms-");
-}
 
 function dashify(value: string): string {
-  return chain(value).map(hyphenCase).map(hyphenWithMs).unwrap().toLowerCase();
+  return hyphenCase(value).toLocaleLowerCase();
 }
 
 function decl(name: string, value: string): Declaration {
@@ -42,7 +39,7 @@ function decl(name: string, value: string): Declaration {
 
 function atRule(
   name: string,
-  value: Tree<string | number> | string | number,
+  value: BinaryTree<string | number> | string | number,
   params?: string,
 ): AtRule {
   const atRule = new AtRule({ name, params });
@@ -53,10 +50,14 @@ function atRule(
 }
 
 function treatTree(
-  mayBeLeaf: string | number | Tree<string | number>,
-): Either<string | number, Tree<string | number>> {
+  mayBeLeaf: string | number | BinaryTree<string | number>,
+): Either<string | number, BinaryTree<string | number>> {
   if (isString(mayBeLeaf) || isNumber(mayBeLeaf)) return Left(mayBeLeaf);
   return Right(mayBeLeaf);
+}
+
+function isAtRule(value: string): boolean {
+  return value.charAt(0) === "@";
 }
 
 /** JavaScript Object to postcss AST
@@ -72,13 +73,11 @@ function treatTree(
  * astify(css)
  * ```
  */
-export function astify<
-  T extends Tree<string | number> = Tree<string | number>,
->(
-  obj: T,
-): ChildNode[] {
-  return Object.entries(obj).map(([prop, maybeNestedObject]) => {
-    if (prop.charAt(0) === "@") {
+export function astify(
+  object: BinaryTree<string | number>,
+): Root {
+  const nodes = Object.entries(object).map(([prop, maybeNestedObject]) => {
+    if (isAtRule(prop)) {
       const parts = prop.match(/@(\S+)(?:\s+([\W\w]*)\s*)?/);
       if (!parts) return;
       const [_, name, params] = parts;
@@ -91,8 +90,57 @@ export function astify<
       .mapRight((nestedObject) =>
         new Rule({
           selector: prop,
-          nodes: astify(nestedObject),
+          nodes: astify(nestedObject).nodes,
         })
       ).unwrap();
   }).filter(Boolean) as ChildNode[];
+  return new Root({ nodes });
+}
+
+/** postcss AST to JavaScript Object */
+export function objectify(
+  ast: { nodes: ChildNode[] },
+): BinaryTree<string | number> {
+  return ast.nodes.reduce((acc, cur) => {
+    if (cur.type === "atrule") {
+      const withParams = cur.params ? ` ${cur.params}` : "";
+      const atRule = `@${cur.name}${withParams}`;
+      return { ...acc, [atRule]: objectify(cur) };
+    }
+    if (cur.type === "rule") {
+      return { ...acc, [cur.selector]: objectify(cur) };
+    }
+    if (cur.type === "decl") {
+      const prop = propCamelCase(cur.prop);
+      const value = constructProperty(cur.value, cur.important);
+      return { ...acc, [prop]: value };
+    }
+    return acc;
+  }, {});
+}
+
+export function constructProperty(
+  value: string,
+  important: boolean,
+): string | number {
+  if (important) {
+    return `${value} !important`;
+  }
+  // Convert only numbers without a unit to type `number`.
+  if (/^[\d.\s]+$/.test(value)) {
+    const number = Number.parseFloat(value);
+    return Number.isFinite(number) ? number : value;
+  }
+
+  return value;
+}
+
+export function propCamelCase(prop: string): string {
+  // if custom property, just return
+  if (prop.startsWith("--")) return prop;
+
+  return prop.toLowerCase().replace(
+    /-(\w|$)/g,
+    (_, char) => char.toUpperCase(),
+  );
 }

@@ -19,7 +19,7 @@ import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOptions } from "../types.ts";
-import type { EntriesSpecifier, Tree } from "../../core/types.ts";
+import type { BinaryTree, EntriesSpecifier } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string) {
   const varFnProperty = (property: string) =>
@@ -37,50 +37,50 @@ function generateDefault(varPrefix: string) {
   const DEFAULT = {
     "h1, h2": {
       color: varHeadings,
-      "font-weight": 600,
-      "line-height": 1.25,
+      fontWeight: 600,
+      lineHeight: 1.25,
     },
     a: {
       color: varLinks,
-      "text-decoration": "underline",
-      "font-weight": "500",
+      textDecoration: "underline",
+      fontWeight: "500",
     },
     "a code": {
       color: varLinks,
     },
     "p, ul, ol, pre": {
       margin: "1em 0",
-      "line-height": 1.75,
+      lineHeight: 1.75,
     },
     blockquote: {
       margin: "1em 0",
-      "padding-left": "1em",
-      "font-style": "italic",
-      "border-left": `.25em solid ${varBorders}`,
+      paddingLeft: "1em",
+      fontStyle: "italic",
+      borderLeft: `.25em solid ${varBorders}`,
     },
     h3: {
       margin: "1.5em 0 .5em",
-      "font-size": "1.375em",
+      fontSize: "1.375em",
     },
     h4: {
       margin: "1em 0",
-      "font-size": "1.125em",
+      fontSize: "1.125em",
     },
     "img, video": {
-      "max-width": "100%",
+      maxWidth: "100%",
     },
     "figure, picture": {
       margin: "1em 0",
     },
     figcaption: {
       color: varCaptions,
-      "font-size": ".875em",
+      fontSize: ".875em",
     },
     code: {
       color: varCode,
-      "font-size": ".875em",
-      "font-weight": 600,
-      "font-family":
+      fontSize: ".875em",
+      fontWeight: 600,
+      fontFamily:
         "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation-Mono, Courier-New, monospace",
     },
     ":not(pre) > code::before, :not(pre) > code::after": {
@@ -88,30 +88,30 @@ function generateDefault(varPrefix: string) {
     },
     pre: {
       padding: "1.25rem 1.5rem",
-      "overflow-x": "auto",
-      "border-radius": ".375rem",
+      overflowX: "auto",
+      borderRadius: ".375rem",
     },
     "pre, code": {
-      "white-space": "pre",
-      "word-spacing": "normal",
-      "word-break": "normal",
-      "word-wrap": "normal",
+      whiteSpace: "pre",
+      wordSpacing: "normal",
+      wordBreak: "normal",
+      wordWrap: "normal",
+      tabSize: 4,
       "-moz-tab-size": 4,
       "-o-tab-size": 4,
-      "tab-size": 4,
       "-webkit-hyphens": "none",
       "-moz-hyphens": "none",
       hyphens: "none",
       background: "transparent",
     },
     "pre code": {
-      "font-weight": "inherit",
+      fontWeight: "inherit",
     },
     "ol, ul": {
-      "padding-left": "1.25em",
+      paddingLeft: "1.25em",
     },
     ul: {
-      "list-style-type": "disc",
+      listStyleType: "disc",
     },
     "ol > li::marker, ul > li::marker, summary::marker": {
       color: varLists,
@@ -123,8 +123,8 @@ function generateDefault(varPrefix: string) {
     table: {
       display: "block",
       margin: "1em 0",
-      "border-collapse": "collapse",
-      "overflow-x": "auto",
+      borderCollapse: "collapse",
+      overflowX: "auto",
     },
     "tr:nth-child(2n)": {
       background: varBgSoft,
@@ -140,8 +140,8 @@ function generateDefault(varPrefix: string) {
       color: varCode,
       border: "1px solid",
       padding: ".25rem .5rem",
-      "font-size": ".875em",
-      "border-radius": ".25rem",
+      fontSize: ".875em",
+      borderRadius: ".25rem",
     },
     details: {
       margin: "1em 0",
@@ -150,7 +150,7 @@ function generateDefault(varPrefix: string) {
     },
     summary: {
       cursor: "pointer",
-      "font-weight": "600",
+      fontWeight: "600",
     },
   };
   return DEFAULT;
@@ -172,8 +172,8 @@ export function depsProse({ css }: Required<PresetOptions>) {
       const DEFAULT = generateDefault(variablePrefix);
 
       const [_css, disabledMap] = isolateEntries<
-        Tree<string | number>,
-        Tree<false>
+        BinaryTree<string | number>,
+        BinaryTree<false>
       >(
         css,
       );
@@ -293,19 +293,19 @@ export function depsProse({ css }: Required<PresetOptions>) {
 
 export function removeRuleOrDecl(
   root: Root,
-  removeMap: Tree<string>,
+  removeMap: BinaryTree<string>,
 ): Readonly<Root> {
   const newRoot = root.clone();
 
-  const childs = new Root({ nodes: astify(removeMap) });
+  const childRoot = astify(removeMap);
   // lift up for non parent declaration to rule with no nodes
-  childs.walkDecls((node) => {
+  childRoot.walkDecls((node) => {
     if (node.parent?.type !== "rule") {
       node.replaceWith(new Rule({ selector: minifySelector(node.prop) }));
     }
   });
 
-  const targetNodes = splitSelectorList(childs);
+  const targetNodes = splitSelectorList(childRoot);
 
   targetNodes.walkRules((rule) => {
     newRoot.walkRules((node) => {
@@ -314,8 +314,15 @@ export function removeRuleOrDecl(
           node.remove();
         } else {
           rule.walkDecls((decl) => {
-            node.walkDecls(decl.prop, (node) => {
-              node.remove();
+            node.walkDecls(decl.prop, (child) => {
+              // If the declaration block becomes empty, the parent rule is deleted.
+              if (
+                child.parent?.type === "rule" && child.parent.nodes.length === 1
+              ) {
+                child.parent.remove();
+              } else {
+                child.remove();
+              }
             });
           });
         }
@@ -327,13 +334,13 @@ export function removeRuleOrDecl(
 }
 
 export function toAst(
-  css: Tree<string | number>,
-  disableMap: Tree<string | number | false>,
+  css: BinaryTree<string | number>,
+  disableMap: BinaryTree<string | number | false>,
 ): Root {
-  const nodes = astify(css);
+  const root = astify(css);
   const map = recTransform(disableMap, () => "");
 
-  return chain(new Root({ nodes })).map(splitSelectorList).map((
+  return chain(splitSelectorList(root)).map((
     root,
   ) => removeRuleOrDecl(root, map)).map(removeDuplicatedDecl)
     .unwrap();
@@ -414,7 +421,7 @@ export function recTransform<T, U>(
     value: T extends Record<PropertyKey, any> ? T[keyof T]
       : T,
   ) => U,
-): Tree<U, string> {
+): BinaryTree<U, string> {
   return mapEntries(
     object,
     (

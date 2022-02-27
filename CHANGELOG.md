@@ -1,3 +1,43 @@
+# [1.0.0-beta.19](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2022-02-27)
+
+
+### Bug Fixes
+
+* **core:** merge specifierMap from argument ([dc5f37b](https://github.com/TomokiMiyauci/mapcss/commit/dc5f37b3b862b4e08802e9d72deb572ecad4dd21))
+
+
+### Features
+
+* **core:** add default syntax what handle specifier as is ([d8bfc4e](https://github.com/TomokiMiyauci/mapcss/commit/d8bfc4ec62c75940cd2d010f36138d077cb9a4fe))
+* **core:** add injection raw css as CSS-in-JS ([d3c5fbb](https://github.com/TomokiMiyauci/mapcss/commit/d3c5fbb86285e8e4adcccce6d6c8660f41db1619))
+* **core:** add output format of CSS-in-JS ([bdc48ac](https://github.com/TomokiMiyauci/mapcss/commit/bdc48ac53af03f54de47ccd63406e471d08e25a8))
+* **core:** move to generate file, return generated css with AST ([155c0e4](https://github.com/TomokiMiyauci/mapcss/commit/155c0e41ff7fbdb6f0652c82520a8b5032c5c0f4))
+* **preset_tw:** add preset option for selectable inject variable ([731b3fd](https://github.com/TomokiMiyauci/mapcss/commit/731b3fd8e9ec1f22f611c240d3af4917ed5581f4))
+
+# [1.0.0-beta.18](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.17...v1.0.0-beta.18) (2022-02-27)
+
+
+### Bug Fixes
+
+* **core:** check if rest path is exists or not ([c07a05d](https://github.com/TomokiMiyauci/mapcss/commit/c07a05d124987db66e18960a4b2deef4adf838bc))
+* **core:** remove node if specifier definition is empty object ([1df69b5](https://github.com/TomokiMiyauci/mapcss/commit/1df69b5789aed9ebc27f4b3da38acf325af44be6))
+
+
+### Features
+
+* **core:** add objectify function that convert JavaScript Object from postcss AST ([712e347](https://github.com/TomokiMiyauci/mapcss/commit/712e347a152f1088bf9071356c178fdb90a92c32))
+* **core:** astify function become to return root node ([c154bb0](https://github.com/TomokiMiyauci/mapcss/commit/c154bb03e5c4e6e97db607c8cb1d75c23e81ba16))
+* **preset_icon:** add preset for SVG icon as CSS ([669e409](https://github.com/TomokiMiyauci/mapcss/commit/669e409633fb3e457abd2a6b15c48a69701e190e))
+* **preset_typography:** change export name ([997f202](https://github.com/TomokiMiyauci/mapcss/commit/997f2021acd06989a330518648942160896f9051))
+
+# [1.0.0-beta.17](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.16...v1.0.0-beta.17) (2022-02-26)
+
+
+### Features
+
+* **core:** change types of config, pass static context and runtime context ([0e1487c](https://github.com/TomokiMiyauci/mapcss/commit/0e1487ca6d1aa952b90107a40d5759e73c5972e9))
+* **preset_typography:** clean up rule if the declaration block becomes empty ([437ee0a](https://github.com/TomokiMiyauci/mapcss/commit/437ee0aa2bb4adadf87ec37f20f92c0d236a74c2))
+
 # [1.0.0-beta.16](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2022-02-25)
 
 

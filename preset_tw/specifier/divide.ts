@@ -15,15 +15,15 @@ import {
   stringifyCustomProperty,
 } from "../../core/utils/format.ts";
 import type {
+  BinaryTree,
   CSSDefinition,
   EntriesSpecifier,
-  Tree,
 } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
 
 function constructRule(
-  decl: Tree<string | number>,
+  decl: BinaryTree<string | number>,
   className: string,
 ): CSSDefinition {
   return {

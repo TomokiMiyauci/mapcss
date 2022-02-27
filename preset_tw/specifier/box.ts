@@ -1,6 +1,6 @@
-import type { Specifier } from "../../core/types.ts";
+import type { RecordSpecifier } from "../../core/types.ts";
 
-export const box: Specifier = {
+export const box: RecordSpecifier = {
   decoration: {
     clone: { "box-decoration-break": "clone" },
     slice: { "box-decoration-break": "slice" },

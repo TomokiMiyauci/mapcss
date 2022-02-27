@@ -1,4 +1,4 @@
-import { generateStyleSheet, presetTypography } from "../../mod.ts";
+import { generate, presetTypography } from "../../mod.ts";
 import { expect, test } from "../../dev_deps.ts";
 test("generated Style Sheet", () => {
   const table: [string, string][] = [
@@ -23,9 +23,13 @@ test("generated Style Sheet", () => {
 
   table.forEach(([token, result]) =>
     expect(
-      generateStyleSheet({
-        presets: [presetTypography()],
-      }, token).css,
+      generate(
+        {
+          preset: [presetTypography()],
+        },
+        token,
+        { compress: true },
+      ).css,
     ).toBe(result)
   );
 });

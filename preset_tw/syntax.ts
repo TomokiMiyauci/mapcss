@@ -3,7 +3,7 @@ import { Syntax } from "../core/types.ts";
 export const twBasicSyntax: Syntax = {
   name: "tw-basic-syntax",
   fn: (
-    { token },
+    token,
   ) => {
     const regExpExecArray = RegExp(
       `(?:(.+)\:)?(!|-)?(.+)`,
