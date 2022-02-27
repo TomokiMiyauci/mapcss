@@ -34398,7 +34398,7 @@ const expects: [string, string][] = [
   ],
 ];
 
-const config = { preset: [presetTw()] };
+const config = { preset: [presetTw({ injectVariable: false })] };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {

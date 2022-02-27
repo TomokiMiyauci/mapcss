@@ -5,22 +5,33 @@ import { twBasicSyntax } from "./syntax.ts";
 import { twCustomPropertyInjector } from "./processor.ts";
 import type { Preset } from "../core/types.ts";
 
-export interface PresetMiniOptions {
-  /**
-   * @default 'map-'
+export type Option = {
+  /** Inject reset CSS Statement or not.
+   * @default false
    */
-  variablePrefix?: string;
-}
+  preflight: boolean;
 
-export function presetTw(_: PresetMiniOptions = {}): Preset {
+  /** Inject universal custom property(variable) or not.
+   * In default, it inspects the declaration block and automatically injects variable globally.
+   * @default true
+   */
+  injectVariable: boolean;
+};
+
+export function presetTw(
+  { injectVariable = true }: Readonly<Partial<Option>> = {
+    preflight: false,
+    injectVariable: true,
+  },
+): Preset {
   return {
     name: "mapcss/preset_tw",
     fn: () => ({
       specifierMap,
       theme,
       modifierMap,
-      syntaxes: [twBasicSyntax],
-      preProcess: [twCustomPropertyInjector],
+      syntax: [twBasicSyntax],
+      preProcess: injectVariable ? [twCustomPropertyInjector] : [],
     }),
   };
 }
