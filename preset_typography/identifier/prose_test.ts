@@ -1,11 +1,11 @@
 import {
   isolateEntries,
+  mergeAst,
   recTransform,
-  toAst,
   transformSelector,
 } from "./prose.ts";
-import { astify } from "../../core/ast.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
+import { toAST } from "../../deps.ts";
 import type { BinaryTree } from "../../core/types.ts";
 
 test("transformWhere", () => {
@@ -116,247 +116,248 @@ test("isolateEntries", () => {
   );
 });
 
-test("toAst", () => {
-  const table: [...Parameters<typeof toAst>, BinaryTree<string | number>][] = [
-    [{}, {}, {}],
-    [{ a: { color: "red" } }, { a: false }, {}],
-    [{ a: { fontWeight: 600 } }, { a: { fontWeight: false } }, {}],
-    [{ a: {} }, {}, { a: {} }],
-    [{ a: {}, b: {} }, { a: false }, { b: {} }],
-    [{ a: {}, b: {} }, { a: false, b: { empty: false } }, { b: {} }],
-    [{ a: { fontWeight: 600 } }, { a: { "font-weight": false } }, {}],
-    [{ a: { "font-weight": 600 } }, { a: { fontWeight: false } }, {}],
-    [{ a: { "font-weight": 600 } }, { a: { "font-weight": false } }, {}],
-    [{
-      "a:not(h1,h2 ,h3,   h4)": {
-        color: "red",
-      },
-    }, {
-      "a:not(h1,h2,h3,h4)": false,
-    }, {}],
+test("mergeAst", () => {
+  const table: [...Parameters<typeof mergeAst>, BinaryTree<string | number>][] =
     [
-      {
-        a: {
+      [{}, {}, {}],
+      [{ a: { color: "red" } }, { a: false }, {}],
+      [{ a: { fontWeight: 600 } }, { a: { fontWeight: false } }, {}],
+      [{ a: {} }, {}, { a: {} }],
+      [{ a: {}, b: {} }, { a: false }, { b: {} }],
+      [{ a: {}, b: {} }, { a: false, b: { empty: false } }, { b: {} }],
+      [{ a: { fontWeight: 600 } }, { a: { "font-weight": false } }, {}],
+      [{ a: { "font-weight": 600 } }, { a: { fontWeight: false } }, {}],
+      [{ a: { "font-weight": 600 } }, { a: { "font-weight": false } }, {}],
+      [{
+        "a:not(h1,h2 ,h3,   h4)": {
           color: "red",
         },
-      },
-      {
-        a: {
-          color: false,
+      }, {
+        "a:not(h1,h2,h3,h4)": false,
+      }, {}],
+      [
+        {
+          a: {
+            color: "red",
+          },
         },
-      },
-      {},
-    ],
-    [
-      {
-        a: {
-          color: "red",
-          "font-weight": 600,
+        {
+          a: {
+            color: false,
+          },
         },
-      },
-      {
-        a: {
-          "font-weight": false,
+        {},
+      ],
+      [
+        {
+          a: {
+            color: "red",
+            "font-weight": 600,
+          },
         },
-      },
-      {
-        a: {
-          color: "red",
+        {
+          a: {
+            "font-weight": false,
+          },
         },
-      },
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
-          "font-weight": 600,
+        {
+          a: {
+            color: "red",
+          },
         },
-      },
-      {},
-      {
-        h1: {
-          color: "red",
-          "font-weight": 600,
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+            "font-weight": 600,
+          },
         },
-        h2: {
-          color: "red",
-          "font-weight": 600,
+        {},
+        {
+          h1: {
+            color: "red",
+            "font-weight": 600,
+          },
+          h2: {
+            color: "red",
+            "font-weight": 600,
+          },
         },
-      },
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
-          "font-weight": 600,
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+            "font-weight": 600,
+          },
         },
-      },
-      { h1: false },
-      {
-        h2: {
-          color: "red",
-          "font-weight": 600,
+        { h1: false },
+        {
+          h2: {
+            color: "red",
+            "font-weight": 600,
+          },
         },
-      },
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
-          "font-weight": 600,
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+            "font-weight": 600,
+          },
         },
-      },
-      {
-        h1: false,
-        h2: {
-          color: false,
+        {
+          h1: false,
+          h2: {
+            color: false,
+          },
         },
-      },
-      {
-        h2: {
-          "font-weight": 600,
+        {
+          h2: {
+            "font-weight": 600,
+          },
         },
-      },
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
-          "font-weight": 600,
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+            "font-weight": 600,
+          },
+          h1: {
+            display: "block",
+          },
         },
-        h1: {
-          display: "block",
+        {
+          h1: false,
+          h2: {
+            color: false,
+          },
         },
-      },
-      {
-        h1: false,
-        h2: {
-          color: false,
+        {
+          h2: {
+            "font-weight": 600,
+          },
         },
-      },
-      {
-        h2: {
-          "font-weight": 600,
+      ],
+      [
+        {
+          "h1:hover": {
+            color: "red",
+          },
         },
-      },
-    ],
-    [
-      {
-        "h1:hover": {
-          color: "red",
+        {
+          h1: false,
         },
-      },
-      {
-        h1: false,
-      },
-      {
-        "h1:hover": {
-          color: "red",
+        {
+          "h1:hover": {
+            color: "red",
+          },
         },
-      },
-    ],
-    [
-      {
-        "h1:hover": {
-          color: "red",
+      ],
+      [
+        {
+          "h1:hover": {
+            color: "red",
+          },
         },
-      },
-      {
-        "h1:hover": false,
-      },
-      {},
-    ],
-    [
-      {
-        "h1:hover": {
-          color: "red",
+        {
+          "h1:hover": false,
         },
-      },
-      {
-        "h1:hover": {
-          color: false,
+        {},
+      ],
+      [
+        {
+          "h1:hover": {
+            color: "red",
+          },
         },
-      },
-      {},
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
+        {
+          "h1:hover": {
+            color: false,
+          },
         },
-      },
-      {
-        "h1, h2": false,
-      },
-      {},
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
+        {},
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+          },
         },
-        h1: {
-          fontWeight: 600,
+        {
+          "h1, h2": false,
         },
-      },
-      {
-        "h1, h2": false,
-      },
-      {},
-    ],
-    [
-      {
-        ":not(pre) > code::before, :not(pre) > code::after": {
-          content: '"`"',
+        {},
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+          },
+          h1: {
+            fontWeight: 600,
+          },
         },
-      },
-      {
-        ":not(pre) > code::before,:not(pre) > code::after": false,
-      },
-      {},
-    ],
-    [
-      {
-        ":not(pre) > code::before, :not(pre) > code::after": {
-          content: '"`"',
+        {
+          "h1, h2": false,
         },
-      },
-      {
-        ":not(pre)>code::before": {
-          content: false,
+        {},
+      ],
+      [
+        {
+          ":not(pre) > code::before, :not(pre) > code::after": {
+            content: '"`"',
+          },
         },
-      },
-      {
-        ":not(pre) > code::after": {
-          content: '"`"',
+        {
+          ":not(pre) > code::before,:not(pre) > code::after": false,
         },
-      },
-    ],
-    [
-      {
-        "h1, h2": {
-          color: "red",
+        {},
+      ],
+      [
+        {
+          ":not(pre) > code::before, :not(pre) > code::after": {
+            content: '"`"',
+          },
         },
-        h1: {
-          fontWeight: 600,
+        {
+          ":not(pre)>code::before": {
+            content: false,
+          },
         },
-      },
-      {
-        "h1, h2": {
-          color: false,
+        {
+          ":not(pre) > code::after": {
+            content: '"`"',
+          },
         },
-      },
-      {
-        "h1": {
-          fontWeight: 600,
+      ],
+      [
+        {
+          "h1, h2": {
+            color: "red",
+          },
+          h1: {
+            fontWeight: 600,
+          },
         },
-      },
-    ],
-  ];
+        {
+          "h1, h2": {
+            color: false,
+          },
+        },
+        {
+          "h1": {
+            fontWeight: 600,
+          },
+        },
+      ],
+    ];
 
   table.forEach(([css, disableMap, result]) =>
-    expect(toAst(css, disableMap).toString()).toEqual(
-      astify(result).toString(),
+    expect(mergeAst(css, disableMap).toString()).toEqual(
+      toAST(result).toString(),
     )
   );
 });

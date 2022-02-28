@@ -1,5 +1,4 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
-import { astify } from "../../core/ast.ts";
 import {
   chain,
   deepMerge,
@@ -12,6 +11,7 @@ import {
   prop,
   Root,
   Rule,
+  toAST,
 } from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { re$All } from "../../core/utils/regexp.ts";
@@ -178,8 +178,8 @@ export function depsProse({ css }: Required<PresetOptions>) {
         css,
       );
 
-      const root = toAst(deepMerge(_css, DEFAULT), disabledMap);
-      const widthNodes = astify(maxWidth);
+      const root = mergeAst(deepMerge(_css, DEFAULT), disabledMap);
+      const widthNodes = toAST(maxWidth);
 
       root.walkRules((rule) => {
         rule.selector = transformSelector(rule.selector, parentKey);
@@ -297,7 +297,7 @@ export function removeRuleOrDecl(
 ): Readonly<Root> {
   const newRoot = root.clone();
 
-  const childRoot = astify(removeMap);
+  const childRoot = toAST(removeMap);
   // lift up for non parent declaration to rule with no nodes
   childRoot.walkDecls((node) => {
     if (node.parent?.type !== "rule") {
@@ -333,11 +333,11 @@ export function removeRuleOrDecl(
   return newRoot;
 }
 
-export function toAst(
+export function mergeAst(
   css: BinaryTree<string | number>,
   disableMap: BinaryTree<string | number | false>,
 ): Root {
-  const root = astify(css);
+  const root = toAST(css);
   const map = recTransform(disableMap, () => "");
 
   return chain(splitSelectorList(root)).map((

@@ -1,4 +1,11 @@
-import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
+import {
+  isString,
+  isUndefined,
+  postcss,
+  prop,
+  Root,
+  toObject,
+} from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
 import {
   resolveConfig,
@@ -7,7 +14,6 @@ import {
 } from "./resolve.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
-import { objectify } from "./ast.ts";
 import { createInjectCSS } from "./preprocess.ts";
 import type {
   BinaryTree,
@@ -162,7 +168,7 @@ export function generate(
       return ast.toString();
     },
     get js() {
-      return objectify(ast);
+      return toObject(ast);
     },
     matched,
     unmatched,

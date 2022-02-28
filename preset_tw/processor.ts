@@ -1,6 +1,5 @@
 import { customProperty } from "../core/utils/format.ts";
-import { isEmptyObject } from "../deps.ts";
-import { astify } from "../core/ast.ts";
+import { isEmptyObject, toAST } from "../deps.ts";
 import type { PreProcessor } from "../core/types.ts";
 
 export const twCustomPropertyInjector: PreProcessor = {
@@ -64,7 +63,7 @@ export const twCustomPropertyInjector: PreProcessor = {
     );
 
     if (!isEmptyObject(declaration)) {
-      const newRoot = astify({
+      const newRoot = toAST({
         "*, ::before, ::after": declaration,
       });
 

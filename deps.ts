@@ -45,6 +45,10 @@ import AtRule from "https://deno.land/x/postcss@8.4.6/lib/at-rule.js";
 import Root from "https://deno.land/x/postcss@8.4.6/lib/root.js";
 import postcss from "https://deno.land/x/postcss@8.4.6/lib/postcss.js";
 export { AtRule, Declaration, postcss, Root, Rule };
+export {
+  toAST,
+  toObject,
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.1/mod.ts";
 
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);

@@ -16,7 +16,7 @@ import {
   Rule,
   tail,
 } from "../deps.ts";
-import { astify } from "./ast.ts";
+import { toAST } from "../deps.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import type {
   CSSMap,
@@ -126,10 +126,10 @@ function handleCSSObject(cssObject: CSSObject, selector: string): Root {
   if (cssObject instanceof Root) {
     return cssObject;
   } else if (isCSSDefinition(cssObject)) {
-    return astify(cssObject.value);
+    return toAST(cssObject.value);
   } else {
     return new Root({
-      nodes: [new Rule({ selector, nodes: astify(cssObject).nodes })],
+      nodes: [new Rule({ selector, nodes: toAST(cssObject).nodes })],
     });
   }
 }
