@@ -21,18 +21,21 @@ import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOption } from "../types.ts";
 import type { BinaryTree, EntriesIdentifier } from "../../core/types.ts";
 
-function generateDefault(varPrefix: string) {
+function generateDefault(varPrefix: string, prefix: string) {
   const varFnProperty = (property: string) =>
-    varFn(customProperty(property, varPrefix));
+    chain([prefix, property]).map(join).map((v) => customProperty(v, varPrefix))
+      .map(
+        varFn,
+      ).unwrap();
 
-  const varHeadings = varFnProperty("prose-headings");
-  const varLinks = varFnProperty("prose-links");
-  const varBorders = varFnProperty("prose-borders");
-  const varCaptions = varFnProperty("prose-captions");
-  const varCode = varFnProperty("prose-code");
-  const varLists = varFnProperty("prose-lists");
-  const varHr = varFnProperty("prose-hr");
-  const varBgSoft = varFnProperty("prose-bg-soft");
+  const varHeadings = varFnProperty("headings");
+  const varLinks = varFnProperty("links");
+  const varBorders = varFnProperty("borders");
+  const varCaptions = varFnProperty("captions");
+  const varCode = varFnProperty("code");
+  const varLists = varFnProperty("lists");
+  const varHr = varFnProperty("hr");
+  const varBgSoft = varFnProperty("bg-soft");
 
   const DEFAULT = {
     "h1, h2": {
@@ -160,8 +163,14 @@ const join = (value: string[]): string => value.join("-");
 
 export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
   const prose: EntriesIdentifier = [
-    ["DEFAULT", (_, { variablePrefix }) => {
-      const DEFAULT = generateDefault(variablePrefix);
+    ["DEFAULT", (_, { variablePrefix, className }) => {
+      const bodyColor = {
+        [className]: {
+          color: `var(${customProperty(`${prefix}-body`, variablePrefix)})`,
+        },
+      };
+
+      const DEFAULT = generateDefault(variablePrefix, prefix);
 
       const [_css, disabledMap] = isolateEntries<
         BinaryTree<string | number>,
@@ -171,25 +180,26 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       );
 
       const root = mergeAst(deepMerge(_css, DEFAULT), disabledMap);
+      const bodyNodes = toAST(bodyColor);
 
       root.walkRules((rule) => {
         rule.selector = transformSelector(rule.selector, prefix);
       });
+      root.append(bodyNodes);
 
       return root;
     }],
-    ["invert", (_, { parentKey, key, variablePrefix, className }) => {
-      if (isUndefined(parentKey)) return;
-
+    ["invert", (_, { key, variablePrefix, className }) => {
       const varProperty = (property: string): string =>
         customProperty(property, variablePrefix);
       const makeVarFnSet = (
         property: string,
       ): [string, string] => [
-        chain([parentKey, property]).map(join).map(varProperty).unwrap(),
-        chain([parentKey, key, property]).map(join).map(varProperty).map(varFn)
+        chain([prefix, property]).map(join).map(varProperty).unwrap(),
+        chain([prefix, key, property]).map(join).map(varProperty).map(varFn)
           .unwrap(),
       ];
+      const [varBody, varFnBody] = makeVarFnSet("body");
       const [varHeadings, varFnHeadings] = makeVarFnSet("headings");
       const [varLinks, varFnLinks] = makeVarFnSet("links");
       const [varLists, varFnLists] = makeVarFnSet("lists");
@@ -203,6 +213,7 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
         type: "css",
         value: {
           [className]: {
+            [varBody]: varFnBody,
             [varHeadings]: varFnHeadings,
             [varLinks]: varFnLinks,
             [varLists]: varFnLists,
@@ -239,6 +250,7 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
         makeProperty(parentKey, "invert", property),
       ];
 
+      const [varBody, varInvertBody] = makePropertySet("body");
       const [varHeadings, varInvertHeadings] = makePropertySet("headings");
       const [varLinks, varInvertLinks] = makePropertySet("links");
       const [varLists, varInvertLists] = makePropertySet("lists");
@@ -252,6 +264,8 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
         type: "css",
         value: {
           [context.className]: {
+            [varBody]: colorBy(700),
+            [varInvertBody]: colorBy(200),
             [varHeadings]: colorBy(900),
             [varInvertHeadings]: colorBy(100),
             [varLinks]: colorBy(900),
