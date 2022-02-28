@@ -1,10 +1,10 @@
 import { depsProse } from "./prose.ts";
 import type { CSSMap } from "../../core/types.ts";
-import type { PresetOptions } from "../types.ts";
+import type { PresetOption } from "../types.ts";
 
-export function dependency({ css }: PresetOptions): CSSMap {
+export function dependency({ css, className }: PresetOption): CSSMap {
   const cssMap: CSSMap = {
-    prose: depsProse({ css: css ?? {} }),
+    [className]: depsProse({ css, className }),
   };
   return cssMap;
 }
