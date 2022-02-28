@@ -9,7 +9,7 @@ export const twBasicSyntax: Syntax = {
       `(?:(.+)\:)?(!|-)?(.+)`,
     ).exec(token);
     if (!regExpExecArray) return;
-    const [, stmtModifier, declModifier, specifier] = regExpExecArray;
+    const [, stmtModifier, declModifier, identifier] = regExpExecArray;
 
     const _stmtModifier = (stmtModifier as string | undefined)?.split(":") ??
       [];
@@ -18,7 +18,7 @@ export const twBasicSyntax: Syntax = {
       : [];
 
     return {
-      specifier,
+      identifier,
       modifiers: _stmtModifier.concat(_declModifier),
     };
   },

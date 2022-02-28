@@ -1,21 +1,21 @@
-import { recTransform } from "../preset_typography/specifier/prose.ts";
-import type { BinaryTree, Preset, SpecifierMap } from "../core/types.ts";
-import { createCSSObject } from "./specifier.ts";
+import { recTransform } from "../preset_typography/identifier/prose.ts";
+import type { BinaryTree, CSSMap, Preset } from "../core/types.ts";
+import { createCSSObject } from "./identifier.ts";
 
 export type PresetOptions = {
   svgMap: BinaryTree<string>;
 };
 
 export function preset({ svgMap }: PresetOptions): Preset {
-  const specifier = recTransform(
+  const identifier = recTransform(
     svgMap,
     (svg) => createCSSObject(svg as string),
   );
-  const specifierMap: SpecifierMap = { i: specifier };
+  const cssMap: CSSMap = { i: identifier };
   const preset: Preset = {
     name: "mapcss/preset-icon",
     fn: () => ({
-      specifierMap,
+      cssMap,
     }),
   };
   return preset;

@@ -1,8 +1,8 @@
-import { mergeSpecifierMap } from "./resolve.ts";
+import { mergeCSSMap } from "./resolve.ts";
 import { expect, ParamReturn, test } from "../dev_deps.ts";
 
-test("mergeSpecifierMap", () => {
-  const table: ParamReturn<typeof mergeSpecifierMap>[] = [
+test("mergeCSSMap", () => {
+  const table: ParamReturn<typeof mergeCSSMap>[] = [
     [[{}], new Map()],
     [[{ block: { a: "b" } }], new Map([["block", { a: "b" }]])],
     [
@@ -52,7 +52,7 @@ test("mergeSpecifierMap", () => {
     // [[{ block: [] }], new Map([["block", {}]])],
   ];
 
-  table.forEach(([specifierMap, result]) =>
-    expect(mergeSpecifierMap(specifierMap)).toEqual(result)
+  table.forEach(([cssMap, result]) =>
+    expect(mergeCSSMap(cssMap)).toEqual(result)
   );
 });

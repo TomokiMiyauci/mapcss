@@ -16,18 +16,18 @@ import {
   Rule,
   tail,
 } from "../deps.ts";
-import { astify } from "./ast.ts";
+import { toAST } from "../deps.ts";
 import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
 import type {
+  CSSMap,
   CSSObject,
+  Identifier,
+  IdentifierContext,
+  IdentifierHandler,
   ModifierContext,
   ModifierMap,
   PreProcessor,
   Preset,
-  Specifier,
-  SpecifierContext,
-  SpecifierHandler,
-  SpecifierMap,
   StaticConfig,
   StaticContext,
   Syntax,
@@ -66,11 +66,11 @@ class MockRegExpExecArray extends Array<string> {
   }
 }
 
-export function resolveDeepMapSpecifier(
+export function resolveDeepMapIdentifier(
   value: string | string[],
-  deepMapSpecifier: DeepMapSpecifier,
+  deepMapCSS: DeepMapCSS,
   context:
-    & Omit<SpecifierContext, "key" | "parentKey" | "path">
+    & Omit<IdentifierContext, "key" | "parentKey" | "path">
     & { parentKey?: string; key?: string },
 ): Root | undefined {
   const paths = leftSplit(value, context.separator);
@@ -78,45 +78,45 @@ export function resolveDeepMapSpecifier(
     const first = head(path) ?? "DEFAULT";
     const rest = tail(path);
 
-    const specifierContext: SpecifierContext = {
+    const identifierContext: IdentifierContext = {
       ...context,
       parentKey: context.key,
       key: first,
       path,
     };
-    const has = deepMapSpecifier.has(first);
+    const has = deepMapCSS.has(first);
     if (has) {
-      const definition = deepMapSpecifier.get(first)!;
+      const definition = deepMapCSS.get(first)!;
       if (isFunction(definition)) {
         if (!isLength0(rest)) continue;
-        const result = definition(new MockRegExpExecArray(), specifierContext);
+        const result = definition(new MockRegExpExecArray(), identifierContext);
         if (isUndefined(result)) continue;
-        return handleCSSObject(result, specifierContext.className);
+        return handleCSSObject(result, identifierContext.className);
       }
 
       if (definition instanceof Map) {
-        return resolveDeepMapSpecifier(rest, definition, specifierContext);
+        return resolveDeepMapIdentifier(rest, definition, identifierContext);
       }
       if (isEmptyObject(definition)) return;
-      return handleCSSObject(definition, specifierContext.className);
+      return handleCSSObject(definition, identifierContext.className);
     }
 
-    for (const [key, m] of deepMapSpecifier) {
+    for (const [key, m] of deepMapCSS) {
       if (isRegExp(key)) {
         const regExpExecResult = key.exec(first);
         if (!regExpExecResult) continue;
 
         if (isFunction(m)) {
-          const result = m(regExpExecResult, specifierContext);
+          const result = m(regExpExecResult, identifierContext);
           if (isUndefined(result)) continue;
 
-          return handleCSSObject(result, specifierContext.className);
+          return handleCSSObject(result, identifierContext.className);
         }
         if (m instanceof Map) {
-          return resolveDeepMapSpecifier(rest, m, specifierContext);
+          return resolveDeepMapIdentifier(rest, m, identifierContext);
         }
         if (isEmptyObject(m)) return;
-        return handleCSSObject(m, specifierContext.className);
+        return handleCSSObject(m, identifierContext.className);
       }
     }
   }
@@ -126,10 +126,10 @@ function handleCSSObject(cssObject: CSSObject, selector: string): Root {
   if (cssObject instanceof Root) {
     return cssObject;
   } else if (isCSSDefinition(cssObject)) {
-    return astify(cssObject.value);
+    return toAST(cssObject.value);
   } else {
     return new Root({
-      nodes: [new Rule({ selector, nodes: astify(cssObject).nodes })],
+      nodes: [new Rule({ selector, nodes: toAST(cssObject).nodes })],
     });
   }
 }
@@ -198,7 +198,7 @@ export function resolvePreset(
   return distinctBy(preset, pickByName).map(({ fn }) => {
     const {
       syntax = [],
-      specifierMap = {},
+      cssMap = {},
       modifierMap = {},
       theme = {},
       preProcess = [],
@@ -206,7 +206,7 @@ export function resolvePreset(
     } = fn(context);
     return {
       syntax,
-      specifierMap,
+      cssMap,
       modifierMap,
       theme,
       preProcess,
@@ -220,7 +220,7 @@ export function resolveConfig(
   {
     syntax: _syntax = [],
     preset = [],
-    specifierMap: _specifierMap = {},
+    cssMap: _cssMap = {},
     theme: _theme = {},
     preProcess: _postProcess = [],
     modifierMap: _modifierMap = {},
@@ -232,8 +232,8 @@ export function resolveConfig(
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
 ):
-  & Omit<StaticConfig, "specifierMap" | "preset">
-  & { deepMapSpecifier: DeepMapSpecifier } {
+  & Omit<StaticConfig, "cssMap" | "preset">
+  & { deepMapCSS: DeepMapCSS } {
   const _presets = resolvePreset(preset, context);
   const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
     .reduce((acc, cur) => {
@@ -249,8 +249,8 @@ export function resolveConfig(
     ..._syntax,
     ..._presets.map(({ syntax }) => syntax).flat(),
   );
-  const deepMapSpecifier = mergeSpecifierMap(
-    [..._presets.map(({ specifierMap }) => specifierMap), _specifierMap],
+  const deepMapCSS = mergeCSSMap(
+    [..._presets.map(({ cssMap }) => cssMap), _cssMap],
   );
 
   const preProcess = resolvePreProcessor(
@@ -263,7 +263,7 @@ export function resolveConfig(
   );
 
   return {
-    deepMapSpecifier,
+    deepMapCSS,
     theme,
     modifierMap,
     syntax,
@@ -274,16 +274,19 @@ export function resolveConfig(
 
 type TreeMap<Leaf, P> = Map<P, Leaf | TreeMap<Leaf, P>>;
 
-type DeepMapSpecifier = TreeMap<SpecifierHandler | CSSObject, string | RegExp>;
+type DeepMapCSS = TreeMap<
+  IdentifierHandler | CSSObject,
+  string | RegExp
+>;
 
-export function mergeSpecifierMap(
-  specifierMaps: SpecifierMap[],
-): DeepMapSpecifier {
+export function mergeCSSMap(
+  cssMaps: CSSMap[],
+): DeepMapCSS {
   const recursive = (
-    m: Specifier,
+    id: Identifier,
     map: Map<string | RegExp, any>,
-  ): Map<string | RegExp, SpecifierHandler | CSSObject> => {
-    const entries = Array.isArray(m) ? m : Object.entries(m);
+  ): Map<string | RegExp, IdentifierHandler | CSSObject> => {
+    const entries = Array.isArray(id) ? id : Object.entries(id);
 
     entries.forEach(([key, value]) => {
       const _key = isRegExp(key) ? key : String(key);
@@ -294,7 +297,7 @@ export function mergeSpecifierMap(
           _key,
           recursive(
             value,
-            new Map<string | RegExp, SpecifierHandler | CSSObject>(),
+            new Map<string | RegExp, IdentifierHandler | CSSObject>(),
           ),
         );
       }
@@ -302,9 +305,9 @@ export function mergeSpecifierMap(
     return map;
   };
 
-  return specifierMaps.reduce(
+  return cssMaps.reduce(
     (acc, cur) => recursive(cur, acc),
-    new Map<string | RegExp, SpecifierHandler | CSSObject>(),
+    new Map<string | RegExp, IdentifierHandler | CSSObject>(),
   );
 }
 

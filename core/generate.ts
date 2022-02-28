@@ -1,13 +1,19 @@
-import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
+import {
+  isString,
+  isUndefined,
+  postcss,
+  prop,
+  Root,
+  toObject,
+} from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
 import {
   resolveConfig,
-  resolveDeepMapSpecifier,
+  resolveDeepMapIdentifier,
   resolveModifierMap,
 } from "./resolve.ts";
 import { escapeRegExp } from "./utils/escape.ts";
 import { minify, orderProp } from "./postcss/mod.ts";
-import { objectify } from "./ast.ts";
 import { createInjectCSS } from "./preprocess.ts";
 import type {
   BinaryTree,
@@ -23,7 +29,7 @@ const CHAR_MAP = { "_": " " };
 
 const defaultSyntax: Syntax = {
   name: "mapcss/default-syntax",
-  fn: (specifier) => ({ specifier }),
+  fn: (identifier) => ({ identifier }),
 };
 
 export type Option = {
@@ -80,7 +86,7 @@ export function generate(
     syntax,
     modifierMap,
     theme,
-    deepMapSpecifier,
+    deepMapCSS,
     preProcess,
     css,
   } = resolveConfig(staticConfig, ctx);
@@ -100,10 +106,10 @@ export function generate(
       const parseResult = fn(mappedToken, {
         ...staticContext,
         modifierRoots: Object.keys(modifierMap),
-        specifierRoots: Array.from(deepMapSpecifier.keys()) as string[],
+        identifierRoots: Array.from(deepMapCSS.keys()) as string[],
       });
       if (!parseResult) return;
-      const { specifier, modifiers = [] } = parseResult;
+      const { identifier, modifiers = [] } = parseResult;
       const className = `.${escapeRegExp(token)}`;
       const runtimeContext: RuntimeContext = {
         token,
@@ -111,16 +117,16 @@ export function generate(
         className,
       };
 
-      const specifierRoot = resolveDeepMapSpecifier(
-        specifier,
-        deepMapSpecifier,
+      const identifierRoot = resolveDeepMapIdentifier(
+        identifier,
+        deepMapCSS,
         {
           ...staticContext,
           ...runtimeContext,
-          specifier,
+          identifier,
         },
       );
-      if (isUndefined(specifierRoot)) continue;
+      if (isUndefined(identifierRoot)) continue;
       const results = modifiers.reduce((acc, cur) => {
         if (isUndefined(acc)) return;
 
@@ -129,7 +135,7 @@ export function generate(
           ...runtimeContext,
           modifier: cur,
         });
-      }, specifierRoot as Root | undefined);
+      }, identifierRoot as Root | undefined);
 
       if (results instanceof Root) {
         unmatched.delete(token);
@@ -162,7 +168,7 @@ export function generate(
       return ast.toString();
     },
     get js() {
-      return objectify(ast);
+      return toObject(ast);
     },
     matched,
     unmatched,

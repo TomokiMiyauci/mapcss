@@ -1,3 +1,16 @@
+# [1.0.0-beta.20](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2022-02-27)
+
+
+### Bug Fixes
+
+* rename `specifier` to `identifier` whole of project ([f4e1117](https://github.com/TomokiMiyauci/mapcss/commit/f4e11177cb3e0dfa5d4972f0b1c8aaa3a0e1616f))
+* rename to `identifierMap` to `cssMap` ([601024c](https://github.com/TomokiMiyauci/mapcss/commit/601024cf73cee54489820abaa396262a83ea8585))
+
+
+### Features
+
+* **preset_tw:** add preflight object as CSS-in-JS ([b801bf7](https://github.com/TomokiMiyauci/mapcss/commit/b801bf7c7a9041841bf94d6e85257f0587e6f194))
+
 # [1.0.0-beta.19](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.18...v1.0.0-beta.19) (2022-02-27)
 
 
