@@ -5,13 +5,50 @@ Tiny, composable Atomic CSS engine
 :construction: This project is currently in beta release. All interfaces are
 subject to change.
 
+## Usage
+
+mapcss provides several preset.
+
+- [presetTw](./preset_tw/README.md)
+
+  TailwindCSS utility classes and modifier syntax.
+- [presetTypography](./preset_typography/README.md)
+
+  Typography utility like
+  [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
+  or
+  [@unocss/preset-typography](https://github.com/unocss/unocss/tree/main/packages/preset-typography).
+- [presetIcon](./preset_icon/README.md)
+
+  SVG markup as CSS. By using the [iconifyJSON](./preset_icon/convert.ts#L8)
+  converter, you can use `iconify.json` as a pure CSS icon.
+
+For example, using `presetTw`, you can use the utility class of
+[TailwindCSS](https://github.com/tailwindlabs/tailwindcss).
+
+```ts
+import { generate, presetTw } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+
+const code = `<div className="relative flex">
+  <p className="text-red-500/20"></p>  
+</div>
+`;
+const result = generate({ preset: [presetTw()] }, code);
+console.log(result.css);
+/*
+  .relative{position:relative;}
+  .flex{display:flex;}
+  .text-red-500\/20{color:rgb(239 68 68/.2);}
+*/
+```
+
 ## What
 
 mapcss is an Atomic-oriented CSS generator.
 
 It is strongly influenced by
-[tailwindcss](https://github.com/tailwindlabs/tailwindcss) and
-[unocss](https://github.com/antfu/unocss), but with the following differences.
+[TailwindCSS](https://github.com/tailwindlabs/tailwindcss) and
+[UnocCSS](https://github.com/antfu/unocss), but with the following differences.
 
 - Mapping is free. And you can define a very flexible mapping syntax.
 - Deno is fully supported.
@@ -107,29 +144,7 @@ This will benefit from the postcss ecosystem.
 Finally, we show the conversion transition.
 
 ```bash
-token -> DeepMap(identifier) -> CSS-in-JS -> AST -> Style Sheet
-```
-
-## Usage
-
-mapcss provides several preset.
-
-### tailwind classes
-
-```ts
-import { generate, presetTw } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
-
-const code = `<div className="relative flex">
-  <p className="text-red-500/20"></p>  
-</div>
-`;
-const result = generate({ preset: [presetTw()] }, code);
-console.log(result.css);
-/*
-  .relative{position:relative;}
-  .flex{display:flex;}
-  .text-red-500\/20{color:rgb(239 68 68/.2);}
-*/
+token -> DeepMap { identifier -> CSS-in-JS } -> AST -> Style Sheet
 ```
 
 ## License
