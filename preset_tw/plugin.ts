@@ -33,7 +33,7 @@ export function presetTw(
       modifierMap,
       syntax: [twBasicSyntax],
       preProcess: injectVariable ? [twCustomPropertyInjector] : [],
-      postcss: [sortMediaQueries()],
+      postcssPlugin: [sortMediaQueries()],
     }),
   };
 }
