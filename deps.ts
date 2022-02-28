@@ -34,6 +34,7 @@ export {
 } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
 export { isUndefined };
 export type {
+  AcceptedPlugin,
   ChildNode,
   ChildProps,
   DeclarationProps,

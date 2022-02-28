@@ -88,6 +88,7 @@ export function generate(
     theme,
     deepMapCSS,
     preProcess,
+    postcssPlugin,
     css,
   } = resolveConfig(staticConfig, ctx);
   const staticContext: StaticContext = {
@@ -160,7 +161,7 @@ export function generate(
   );
 
   const plugins = compress ? [orderProp(), minify()] : [];
-  const ast = postcss(plugins).process(final).root;
+  const ast = postcss(...plugins, ...postcssPlugin).process(final).root;
 
   const result: Result = {
     ast,
