@@ -1,3 +1,19 @@
+# [1.0.0-beta.21](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2022-02-28)
+
+
+### Bug Fixes
+
+* **preset_tw:** fix postcss plugin field name ([c7b2b93](https://github.com/TomokiMiyauci/mapcss/commit/c7b2b937faa68476a9522a6bd7d678218d12a366))
+* **preset_typography:** remove const class name ([22a2534](https://github.com/TomokiMiyauci/mapcss/commit/22a253486398b7ba81a59282068d851fcbfa366a))
+
+
+### Features
+
+* **core:** accept postcss plugin ([3581a2d](https://github.com/TomokiMiyauci/mapcss/commit/3581a2dc2d0fd09ed97e7b13f948e091ed68c4c5))
+* **preset_tw:** add  sort media queries as postcss plugin ([adc06ce](https://github.com/TomokiMiyauci/mapcss/commit/adc06ce3224d2e9e90b0d6ddfe4aa34e0c105fa0))
+* **preset_typography:** change `className` of identifier root ([e9fde39](https://github.com/TomokiMiyauci/mapcss/commit/e9fde3985fa9b1092a2489585c8b43b56a96d92e))
+* **preset_typography:** remove prose body class because prose target is only children ([523b66c](https://github.com/TomokiMiyauci/mapcss/commit/523b66cd8e726ea1a3551c8135421e35c9d732eb))
+
 # [1.0.0-beta.20](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.19...v1.0.0-beta.20) (2022-02-27)
 
 
