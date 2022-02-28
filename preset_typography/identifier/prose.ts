@@ -18,7 +18,7 @@ import { re$All } from "../../core/utils/regexp.ts";
 import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
-import type { PresetOptions } from "../types.ts";
+import type { PresetOption } from "../types.ts";
 import type { BinaryTree, EntriesIdentifier } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string) {
@@ -158,17 +158,9 @@ function generateDefault(varPrefix: string) {
 
 const join = (value: string[]): string => value.join("-");
 
-export function depsProse({ css }: Required<PresetOptions>) {
+export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
   const prose: EntriesIdentifier = [
-    ["DEFAULT", (_, { variablePrefix, className, parentKey }) => {
-      if (isUndefined(parentKey)) return;
-      const maxWidth = {
-        [className]: {
-          color: customProperty(`${parentKey}-body`, variablePrefix),
-          maxWidth: "65ch",
-        },
-      };
-
+    ["DEFAULT", (_, { variablePrefix }) => {
       const DEFAULT = generateDefault(variablePrefix);
 
       const [_css, disabledMap] = isolateEntries<
@@ -179,12 +171,10 @@ export function depsProse({ css }: Required<PresetOptions>) {
       );
 
       const root = mergeAst(deepMerge(_css, DEFAULT), disabledMap);
-      const widthNodes = toAST(maxWidth);
 
       root.walkRules((rule) => {
-        rule.selector = transformSelector(rule.selector, parentKey);
+        rule.selector = transformSelector(rule.selector, prefix);
       });
-      root.append(widthNodes);
 
       return root;
     }],
@@ -200,7 +190,6 @@ export function depsProse({ css }: Required<PresetOptions>) {
         chain([parentKey, key, property]).map(join).map(varProperty).map(varFn)
           .unwrap(),
       ];
-      const [varBody, varFnBody] = makeVarFnSet("body");
       const [varHeadings, varFnHeadings] = makeVarFnSet("headings");
       const [varLinks, varFnLinks] = makeVarFnSet("links");
       const [varLists, varFnLists] = makeVarFnSet("lists");
@@ -214,7 +203,6 @@ export function depsProse({ css }: Required<PresetOptions>) {
         type: "css",
         value: {
           [className]: {
-            [varBody]: varFnBody,
             [varHeadings]: varFnHeadings,
             [varLinks]: varFnLinks,
             [varLists]: varFnLists,
@@ -251,7 +239,6 @@ export function depsProse({ css }: Required<PresetOptions>) {
         makeProperty(parentKey, "invert", property),
       ];
 
-      const [varBody, varInvertBody] = makePropertySet("body");
       const [varHeadings, varInvertHeadings] = makePropertySet("headings");
       const [varLinks, varInvertLinks] = makePropertySet("links");
       const [varLists, varInvertLists] = makePropertySet("lists");
@@ -265,8 +252,6 @@ export function depsProse({ css }: Required<PresetOptions>) {
         type: "css",
         value: {
           [context.className]: {
-            [varBody]: colorBy(700),
-            [varInvertBody]: colorBy(200),
             [varHeadings]: colorBy(900),
             [varInvertHeadings]: colorBy(100),
             [varLinks]: colorBy(900),
