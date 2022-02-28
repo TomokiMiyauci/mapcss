@@ -64,6 +64,8 @@ console.log(result.css);
 */
 ```
 
+You may need `--unstable` and `--allow-read` flag to Deno.
+
 ## What
 
 mapcss is an Atomic-oriented CSS generator.
