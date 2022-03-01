@@ -29,7 +29,20 @@ subject to change.
 
 ## Features
 
-- 🔝 orderless(experiment)
+- ⚗️ Flexibility
+
+  Mapping is free. And you can define a very flexible mapping syntax.
+
+- 🌐 Universal
+
+  It works with Browser, Deno, and Node.js
+  ([package name wanted](https://github.com/TomokiMiyauci/mapcss/discussions/6))
+  without polyfill.
+
+  The bundle size has been taken into consideration, and the code base is
+  created with pure functions.
+
+- 🔝 Orderless(experiment)
 
   User does not need to care about the order of the CSS Statement at all.
   Therefore, there is no concept of `order` or `layer`.
@@ -83,9 +96,6 @@ mapcss is an Atomic-oriented CSS generator.
 It is strongly influenced by
 [TailwindCSS](https://github.com/tailwindlabs/tailwindcss) and
 [UnocCSS](https://github.com/antfu/unocss), but with the following differences.
-
-- Mapping is free. And you can define a very flexible mapping syntax.
-- Deno is fully supported.
 
 ### identifier to CSS-in-JS
 
