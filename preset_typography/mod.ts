@@ -1,2 +1,2 @@
-export { plugin as presetTypography } from "./plugin.ts";
+export { preset as presetTypography } from "./preset.ts";
 export type { PresetOption as TypographyOption } from "./types.ts";

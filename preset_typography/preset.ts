@@ -5,7 +5,7 @@ import type { PresetOption } from "./types.ts";
 
 const DEFAULT_CLASS_NAME = "prose";
 
-export function plugin(
+export function preset(
   { css = {}, className = DEFAULT_CLASS_NAME }: Readonly<
     Partial<PresetOption>
   > = {
