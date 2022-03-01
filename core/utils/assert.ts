@@ -1,6 +1,5 @@
 import type { BlockDefinition, CSSDefinition, CSSObject } from "./../types.ts";
 import {
-  ChildNode,
   Declaration,
   isNumber,
   isObject,
