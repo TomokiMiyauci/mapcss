@@ -202,6 +202,7 @@ export function resolvePreset(
       modifierMap = {},
       theme = {},
       preProcess = [],
+      postcssPlugin = [],
       css = {},
     } = fn(context);
     return {
@@ -210,6 +211,7 @@ export function resolvePreset(
       modifierMap,
       theme,
       preProcess,
+      postcssPlugin,
       css,
     };
   });
@@ -224,6 +226,7 @@ export function resolveConfig(
     theme: _theme = {},
     preProcess: _postProcess = [],
     modifierMap: _modifierMap = {},
+    postcssPlugin: _postcssPlugin = [],
     css: _css = {},
   }: Readonly<
     Partial<
@@ -261,7 +264,10 @@ export function resolveConfig(
     (acc, cur) => deepMerge(acc, cur),
     {},
   );
-
+  const postcssPlugin = [
+    ..._postcssPlugin,
+    ..._presets.map(({ postcssPlugin }) => postcssPlugin).flat(),
+  ];
   return {
     deepMapCSS,
     theme,
@@ -269,6 +275,7 @@ export function resolveConfig(
     syntax,
     preProcess,
     css,
+    postcssPlugin,
   };
 }
 

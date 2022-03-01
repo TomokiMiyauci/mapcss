@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04, macos-latest, windows-latest]
-        deno: [v1.x, canary]
+        deno: [v1.x, canary, 1.18.0]
 
     steps:
       - name: Checkout
@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-18.04, macos-latest, windows-latest]
-        deno: [v1.x, canary]
+        deno: [v1.x, canary, 1.18.0]
 
     steps:
       - name: Checkout
@@ -45,4 +45,4 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Test
-        run: deno test --unstable --ignore=node_modules,_docs,_examples --import-map=test_import_map.json --doc
+        run: deno test --unstable --allow-read --ignore=node_modules,_docs,_examples --import-map=test_import_map.json --doc

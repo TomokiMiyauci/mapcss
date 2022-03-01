@@ -51,6 +51,10 @@ const config: Partial<Config> = {
 
 ```ts
 export type TypographyOptions = {
+  /** The class name to use the typographic utilities.
+   * @default `prose`
+   */
+  className: string;
   /**
    * Extend or overwrite default style.
    *
@@ -63,6 +67,12 @@ type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | BinaryTree<Leaf>;
 };
 ```
+
+### `options.className`
+
+The class name to use the typographic utilities.
+
+default is `prose`
 
 ### `options.css`
 

@@ -16,6 +16,7 @@ export default function mapcssPlugin(
   return {
     name: "mapcss-loader",
     async setup(aleph) {
+      const isProduction = aleph.mode === "production";
       if (aleph.mode === "development") {
         const baseModule = await aleph.addModule("/style/$map.css", " ");
         const tokens = new Set<string>([]);
@@ -35,8 +36,6 @@ export default function mapcssPlugin(
           });
           const { css } = generate(rest, tokens);
 
-
-
           const _css = css ? css : " ";
           aleph.addModule("/style/$map.css", _css, true);
         });
@@ -54,7 +53,7 @@ export default function mapcssPlugin(
           Deno.readTextFileSync(path)
         );
         const allCode = texts.reduce((acc, cur) => `${acc}\n${cur}`, "");
-        const { css } = generate(rest, allCode);
+        const { css } = generate(rest, allCode, { compress: isProduction });
         if (!css) return;
 
         aleph.onRender(({ html }) => {

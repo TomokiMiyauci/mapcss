@@ -1,4 +1,4 @@
-import type { Root } from "../deps.ts";
+import type { AcceptedPlugin, Root } from "../deps.ts";
 
 export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | BinaryTree<Leaf>;
@@ -72,10 +72,17 @@ export type StaticConfig = {
 
   /** Hierarchy of modifier */
   modifierMap: ModifierMap;
+
   theme: Theme;
+
   preset: Preset[];
+
   syntax: Syntax[];
+
   preProcess: PreProcessor[];
+
+  /** PostCSS plugins  */
+  postcssPlugin: AcceptedPlugin[];
 
   /** Inject raw CSS Statement with CSS-in-JS style */
   css: BinaryTree<string | number>;

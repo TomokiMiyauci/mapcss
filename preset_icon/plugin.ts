@@ -4,12 +4,15 @@ import { createCSSObject } from "./identifier.ts";
 
 export type PresetOptions = {
   svgMap: BinaryTree<string>;
+
+  /** Extend or disable default declaration block */
+  declaration?: Record<string, string | number>;
 };
 
-export function preset({ svgMap }: PresetOptions): Preset {
+export function preset({ svgMap, declaration = {} }: PresetOptions): Preset {
   const identifier = recTransform(
     svgMap,
-    (svg) => createCSSObject(svg as string),
+    (svg) => createCSSObject(svg as string, { declaration }),
   );
   const cssMap: CSSMap = { i: identifier };
   const preset: Preset = {

@@ -3,6 +3,7 @@ import { theme } from "./theme/mod.ts";
 import { modifierMap } from "./modifier/mod.ts";
 import { twBasicSyntax } from "./syntax.ts";
 import { twCustomPropertyInjector } from "./processor.ts";
+import { sortMediaQueries } from "./postcss.ts";
 import type { Preset } from "../core/types.ts";
 
 export type Option = {
@@ -32,6 +33,7 @@ export function presetTw(
       modifierMap,
       syntax: [twBasicSyntax],
       preProcess: injectVariable ? [twCustomPropertyInjector] : [],
+      postcssPlugin: [sortMediaQueries()],
     }),
   };
 }
