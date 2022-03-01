@@ -1,3 +1,11 @@
+# [1.0.0-beta.22](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2022-03-01)
+
+
+### Features
+
+* **core:** add postcss plugin for order statement ([ee0b72b](https://github.com/TomokiMiyauci/mapcss/commit/ee0b72be05150cfee22c63b90cf5d3b4abd324b9))
+* **preset_icon:** add `declaration` property for extend or overwrite defalut style ([4499caf](https://github.com/TomokiMiyauci/mapcss/commit/4499caf5f0b8e38cc6c7ac30fc1f6b78988a6e3b))
+
 # [1.0.0-beta.21](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.20...v1.0.0-beta.21) (2022-02-28)
 
 
