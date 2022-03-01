@@ -1,3 +1,10 @@
+# [1.0.0-beta.23](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2022-03-01)
+
+
+### Bug Fixes
+
+* **core:** fix escape class selector ([768f578](https://github.com/TomokiMiyauci/mapcss/commit/768f578866f5fd7787c5bc762395757bd93bd446))
+
 # [1.0.0-beta.22](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2022-03-01)
 
 
