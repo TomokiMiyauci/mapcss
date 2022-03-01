@@ -4,7 +4,10 @@ import { chain, curry } from "../deps.ts";
 import { stringifyCustomProperty } from "../core/utils/format.ts";
 import type { IdentifierHandler } from "../core/types.ts";
 
-export function createCSSObject(svgMarkup: string): IdentifierHandler {
+export function createCSSObject(
+  svgMarkup: string,
+  { declaration }: { declaration: Record<string, string | number> },
+): IdentifierHandler {
   return (_, { variablePrefix }) => {
     const scale = "1";
     const data = `"data:image/svg+xml;utf8,${encodeSvg(svgMarkup)}"`;
@@ -22,12 +25,13 @@ export function createCSSObject(svgMarkup: string): IdentifierHandler {
     return {
       [varIcon]: url,
       mask,
-      "-webkit-mask": mask,
+      WebkitMask: mask,
       maskSize,
-      "-webkit-mask-size": maskSize,
+      WebkitMaskSize: maskSize,
       backgroundColor: "currentColor",
       height: `${scale}em`,
       width: `${scale}em`,
+      ...declaration,
     };
   };
 }
