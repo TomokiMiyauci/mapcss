@@ -1,5 +1,13 @@
 import type { BlockDefinition, CSSDefinition, CSSObject } from "./../types.ts";
-import { isNumber, isObject, isString, prop } from "../../deps.ts";
+import {
+  ChildNode,
+  Declaration,
+  isNumber,
+  isObject,
+  isString,
+  prop,
+  Rule,
+} from "../../deps.ts";
 
 const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
 export function isValidSelector(selector: string): selector is string {
@@ -21,4 +29,12 @@ export function isCSSDefinition(
 ): value is CSSDefinition {
   return isObject(value) && prop("type", value) === "css" &&
     isObject(prop("value", value));
+}
+
+export function isDeclaration(node: unknown): node is Declaration {
+  return node instanceof Declaration;
+}
+
+export function isRule(node: unknown): node is Rule {
+  return node instanceof Rule;
 }

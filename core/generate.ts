@@ -13,7 +13,7 @@ import {
   resolveModifierMap,
 } from "./resolve.ts";
 import { escapeRegExp } from "./utils/escape.ts";
-import { minify, orderProp } from "./postcss/mod.ts";
+import { minify, orderProp, orderStatement } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
 import type {
   BinaryTree,
@@ -160,7 +160,10 @@ export function generate(
     rootNode,
   );
 
-  const plugins = compress ? [orderProp(), minify()] : [];
+  const corePostcssPlugins = [orderStatement(), orderProp()];
+  const plugins = compress
+    ? [...corePostcssPlugins, minify()]
+    : corePostcssPlugins;
   const ast = postcss(...plugins, ...postcssPlugin).process(final).root;
 
   const result: Result = {
