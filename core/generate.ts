@@ -12,7 +12,7 @@ import {
   resolveDeepMapIdentifier,
   resolveModifierMap,
 } from "./resolve.ts";
-import { escapeRegExp } from "./utils/escape.ts";
+import { escapeSelector } from "./utils/escape.ts";
 import { minify, orderProp, orderStatement } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
 import type {
@@ -111,7 +111,7 @@ export function generate(
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
-      const className = `.${escapeRegExp(token)}`;
+      const className = `.${escapeSelector(token)}`;
       const runtimeContext: RuntimeContext = {
         token,
         mappedToken,
