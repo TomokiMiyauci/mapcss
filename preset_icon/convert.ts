@@ -2,13 +2,13 @@ import { IconifyJSON } from "https://esm.sh/@iconify/types/types.ts";
 
 import { parseIconSet } from "https://esm.sh/@iconify/utils/lib/icon-set/parse?dts&pin=v66";
 import { defaults } from "https://esm.sh/@iconify/utils/lib/customisations";
-import { PresetOptions } from "./plugin.ts";
+import { Option } from "./types.ts";
 import { iconToSVG } from "https://esm.sh/@iconify/utils/lib/svg/build";
 
 export function iconifyJSON(
   icon: IconifyJSON,
-): PresetOptions["svgMap"] {
-  const identifier: PresetOptions["svgMap"] = {};
+): Option["svgMap"] {
+  const identifier: Option["svgMap"] = {};
   parseIconSet(icon, (name: string, iconData: string) => {
     if (!iconData) {
       throw Error(iconData);

@@ -3,7 +3,7 @@ const simple: [string, string][] = [
   ["md:block", "@media (min-width:768px){.md\\:block{display:block}}"],
   ["lg:block", "@media (min-width:1024px){.lg\\:block{display:block}}"],
   ["xl:block", "@media (min-width:1280px){.xl\\:block{display:block}}"],
-  ["2xl:block", "@media (min-width:1536px){.2xl\\:block{display:block}}"],
+  ["2xl:block", "@media (min-width:1536px){.\\32 xl\\:block{display:block}}"],
   ["dark:block", ".dark .dark\\:block{display:block}"],
   ["hover:block", ".hover\\:block:hover{display:block}"],
   ["focus:block", ".focus\\:block:focus{display:block}"],
