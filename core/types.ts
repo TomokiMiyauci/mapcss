@@ -136,10 +136,7 @@ export type RuntimeContext = {
 
 export type Config = StaticConfig & StaticContext;
 
-export type ModifierMap = Record<
-  string | number,
-  Modifier | ModifierDefinition
->;
+export type ModifierMap = BinaryTree<ModifierDefinition>;
 
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
