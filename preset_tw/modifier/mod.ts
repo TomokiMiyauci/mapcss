@@ -1,6 +1,11 @@
 import { $2xl, lg, md, sm, xl } from "./breakpoint.ts";
 import { createDark } from "./color_scheme.ts";
-import { pseudo, scrollbar, scrollbarThumb, scrollbarTrack } from "./pseudo.ts";
+import {
+  pseudoHandler,
+  scrollbar,
+  scrollbarThumb,
+  scrollbarTrack,
+} from "./pseudo.ts";
 import { $important } from "./important.ts";
 import { $minus } from "./minus.ts";
 import { group } from "./group.ts";
@@ -15,8 +20,8 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     xl,
     dark: createDark(darkMode),
     "2xl": $2xl,
-    hover: pseudo,
-    focus: pseudo,
+    hover: pseudoHandler,
+    focus: pseudoHandler,
     "!": $important,
     "-": $minus,
     scrollbar,

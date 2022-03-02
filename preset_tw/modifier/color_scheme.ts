@@ -1,13 +1,8 @@
 import { isAtRule, isRule } from "../../core/utils/assert.ts";
-import { AtRule, Rule } from "../../deps.ts";
+import { AtRule } from "../../deps.ts";
+import { isAllowNode } from "./_utils.ts";
 import type { ModifierDefinition } from "./../../core/types.ts";
 import type { Option } from "../types.ts";
-
-function isAllowNode(node: Rule): boolean {
-  if (!isAtRule(node.parent)) return true;
-
-  return ["media", "supports"].includes(node.parent.name);
-}
 
 export function createDark(darkMode: Option["darkMode"]) {
   const dark: ModifierDefinition = (parentNode, { modifier }) => {
