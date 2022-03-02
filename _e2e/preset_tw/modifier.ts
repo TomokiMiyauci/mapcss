@@ -31,8 +31,8 @@ const simple: [string, string][] = [
 
 const complex: [string, string][] = [
   [
-    "sm:block",
-    "@media (prefers-color-scheme:dark){.dark\\:block{display:block}}",
+    "dark:sm:block",
+    "@media (prefers-color-scheme:dark){@media (min-width:640px){.dark\\:sm\\:block{display:block}}}",
   ],
 ];
 

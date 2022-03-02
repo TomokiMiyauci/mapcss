@@ -128,7 +128,7 @@ export function generate(
         },
       );
       if (isUndefined(identifierRoot)) continue;
-      const results = modifiers.reduce((acc, cur) => {
+      const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;
 
         return resolveModifierMap(cur, modifierMap, acc, {
