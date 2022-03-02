@@ -10,6 +10,7 @@ import {
   isString,
   isUndefined,
   last,
+  PartialByKeys,
   prop,
   propPath,
   Root,
@@ -319,24 +320,43 @@ export function mergeCSSMap(
 }
 
 export function resolveModifierMap(
-  modifier: string,
+  modifier: string | string[],
   modifierMap: ModifierMap,
   parentNode: Root,
-  context: Omit<ModifierContext, "path">,
+  context: PartialByKeys<ModifierContext, "path">,
 ): Root | undefined {
   const { separator } = context;
   const paths = leftSplit(modifier, separator);
 
   for (const path of paths) {
-    const ctx = { ...context, path };
-    const [first, second] = path;
-    const modifier = prop(first, modifierMap);
-
-    if (isUndefined(modifier)) continue;
-    if (isFunction(modifier)) {
-      return modifier(parentNode, ctx);
+    const _head = head(path);
+    const first = _head ?? "DEFAULT";
+    if (isUndefined(first)) continue;
+    if (!context.path) {
+      context.path = path;
     }
-    const modifierDefinition = prop(second, modifier);
-    return modifierDefinition?.(parentNode, ctx);
+    const ctx: ModifierContext = context.path
+      ? context as ModifierContext
+      : { ...context, path };
+
+    const modifier = prop(first, modifierMap);
+    if (isUndefined(modifier)) {
+      context.path = undefined;
+      continue;
+    }
+
+    if (isFunction(modifier)) {
+      const maybeRoot = modifier(parentNode, ctx);
+      context.path = undefined;
+      if (isUndefined(maybeRoot)) continue;
+      return maybeRoot;
+    }
+    const rest = tail(path);
+
+    const result = resolveModifierMap(rest, modifier, parentNode, ctx);
+    if (result) {
+      return result;
+    }
+    context.path = undefined;
   }
 }
