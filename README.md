@@ -7,7 +7,7 @@ Tiny, composable Atomic CSS engine
 [![nest.land](https://nest.land/badge.svg)](https://nest.land/package/mapcss)
 
 [![release](https://img.shields.io/github/v/release/TomokiMiyauci/mapcss?sort=semver&color=black&logo=github)](https://github.com/TomokiMiyauci/mapcss/releases)
-[![deno version](https://img.shields.io/badge/deno-^1.18.0-black?logo=deno)](https://github.com/denoland/deno)
+[![deno version](https://img.shields.io/badge/deno-^1.19.0-black?logo=deno)](https://github.com/denoland/deno)
 [![deno doc](https://img.shields.io/badge/deno-doc-black)](https://doc.deno.land/https/deno.land/x/mapcss/mod.ts)
 
 [![test](https://github.com/TomokiMiyauci/mapcss/actions/workflows/test.yaml/badge.svg?branch=beta)](https://github.com/TomokiMiyauci/mapcss/actions/workflows/test.yaml)
