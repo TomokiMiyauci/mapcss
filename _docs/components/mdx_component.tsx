@@ -62,7 +62,7 @@ export const components: MDXComponents = {
     if (isString(rest.children)) {
       return (
         <code
-          className="bg-gray-100 px-1 py-0.5 rounded"
+          className="bg-gray-100 dark:bg-dark-100 px-1 py-0.5 rounded"
           {...rest}
         />
       );
