@@ -58,6 +58,10 @@ const simple: [string, string][] = [
     "before:block",
     ".before\\:block::before{content:var(--map-content);display:block}",
   ],
+  [
+    "after:block",
+    ".after\\:block::after{content:var(--map-content);display:block}",
+  ],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
   ["-w-1", ".-w-1{width:-0.25rem}"],
   ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem}"],
