@@ -1,3 +1,10 @@
+# [1.0.0-beta.26](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2022-03-02)
+
+
+### Features
+
+* **preset_tw:** add modifier of `before` ([567eab6](https://github.com/TomokiMiyauci/mapcss/commit/567eab65515e53211f36414477b4a8b56fed7cbe))
+
 # [1.0.0-beta.25](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2022-03-02)
 
 
