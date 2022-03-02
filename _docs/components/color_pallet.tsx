@@ -9,12 +9,12 @@ type Props = {
   color: Theme;
 };
 
-type ColorParretProps = {
+type ColorPalletProps = {
   prop: string;
   color: string;
 };
 
-function ColorParret({ prop, color }: ColorParretProps) {
+function ColorPallet({ prop, color }: ColorPalletProps) {
   return (
     <>
       <div
@@ -50,7 +50,7 @@ export default function ({ className, color }: Readonly<Props>) {
                     key={key}
                     className="not-prose"
                   >
-                    <ColorParret prop={key} color={String(value)} />
+                    <ColorPallet prop={key} color={String(value)} />
                   </li>
                 );
               })}
