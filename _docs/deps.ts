@@ -4,3 +4,4 @@ export {
   isString,
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
 export { filterValues } from "https://deno.land/std@0.127.0/collections/filter_values.ts";
+export { Switch } from "https://esm.sh/@headlessui/react@1.5.0?pin=v66";
