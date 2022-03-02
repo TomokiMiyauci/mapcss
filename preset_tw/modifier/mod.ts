@@ -6,7 +6,7 @@ import {
   scrollbarThumb,
   scrollbarTrack,
 } from "./pseudo.ts";
-import { before } from "./pseudo_elements.ts";
+import { content } from "./pseudo_elements.ts";
 import { $important } from "./important.ts";
 import { $minus } from "./minus.ts";
 import { group } from "./group.ts";
@@ -74,7 +74,8 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     read: {
       only: pseudoHandler(":read-only"),
     },
-    before,
+    before: content,
+    after: content,
     "!": $important,
     "-": $minus,
     scrollbar,

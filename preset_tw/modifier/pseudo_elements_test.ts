@@ -1,10 +1,11 @@
-import { before } from "./pseudo_elements.ts";
+import { content } from "./pseudo_elements.ts";
 import { createContext, TestCase } from "./_test.ts";
 
-const context = createContext({ modifier: "before" });
+const beforeContext = createContext({ modifier: "before" });
+const afterContext = createContext({ modifier: "after" });
 
 export const pseudoElements: TestCase = [
-  [{}, {}, before, context],
+  [{}, {}, content, beforeContext],
   [
     {
       block: {
@@ -17,8 +18,8 @@ export const pseudoElements: TestCase = [
         content: "var(--map-content)",
       },
     },
-    before,
-    context,
+    content,
+    beforeContext,
   ],
   [
     {
@@ -33,7 +34,22 @@ export const pseudoElements: TestCase = [
         content: "var(--map-content)",
       },
     },
-    before,
-    context,
+    content,
+    beforeContext,
+  ],
+  [
+    {
+      "block::before": {
+        display: "block",
+      },
+    },
+    {
+      "block::before::after": {
+        display: "block",
+        content: "var(--map-content)",
+      },
+    },
+    content,
+    afterContext,
   ],
 ];

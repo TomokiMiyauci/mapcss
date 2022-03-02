@@ -2,7 +2,7 @@ import { Declaration } from "../../deps.ts";
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import type { ModifierDefinition } from "../../core/types.ts";
 
-export const before: ModifierDefinition = (
+export const content: ModifierDefinition = (
   root,
   { variablePrefix, modifier },
 ) => {
