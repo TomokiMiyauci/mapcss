@@ -6,10 +6,13 @@ function sortMediaQueries(): PostcssPlugin {
     postcssPlugin: "postcss-sort-media-queries",
     OnceExit(root) {
       const cache: AtRule[] = [];
-      root.walkAtRules("media", (atRule) => {
-        cache.push(atRule.clone());
 
-        atRule.remove();
+      root.each((node) => {
+        if (node.type === "atrule" && node.name === "media") {
+          cache.push(node.clone());
+
+          node.remove();
+        }
       });
 
       cache.sort((a, b) => mobileOrder(a.params, b.params));
