@@ -162,6 +162,11 @@ export type ReplaceKeys<U, T, Y> = {
     : never;
 };
 
+export type PartialByKeys<T extends {}, U = keyof T> = Omit<
+  Partial<Pick<T, U & keyof T>> & Omit<T, U & keyof T>,
+  never
+>;
+
 interface Chain<T> {
   map<U>(fn: (val: T) => U): Chain<U>;
   unwrap(): T | never;
