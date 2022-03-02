@@ -6,23 +6,25 @@ const context = createContext({
   modifier: "hover",
 });
 
+const hoverModifier = pseudoHandler(":hover");
+
 export const pseudo: TestCase = [
   [
     { block: decl },
     { "block:hover": decl },
-    pseudoHandler,
+    hoverModifier,
     context,
   ],
   [
     decl,
     decl,
-    pseudoHandler,
+    hoverModifier,
     context,
   ],
   [
     { "*, body": decl },
     { "*:hover, body:hover": decl },
-    pseudoHandler,
+    hoverModifier,
     context,
   ],
   [
@@ -36,7 +38,7 @@ export const pseudo: TestCase = [
         ".sm:block:hover": decl,
       },
     },
-    pseudoHandler,
+    hoverModifier,
     context,
   ],
   [
@@ -56,7 +58,7 @@ export const pseudo: TestCase = [
         ".md:block:hover": decl,
       },
     },
-    pseudoHandler,
+    hoverModifier,
     context,
   ],
   [
@@ -74,7 +76,7 @@ export const pseudo: TestCase = [
         },
       },
     },
-    pseudoHandler,
+    hoverModifier,
     context,
   ],
 ];

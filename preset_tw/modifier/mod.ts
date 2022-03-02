@@ -20,8 +20,59 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     xl,
     dark: createDark(darkMode),
     "2xl": $2xl,
-    hover: pseudoHandler,
-    focus: pseudoHandler,
+    hover: pseudoHandler(":hover"),
+    focus: {
+      DEFAULT: pseudoHandler(":focus"),
+      within: pseudoHandler(":focus-within"),
+      visible: pseudoHandler(":focus-visible"),
+    },
+    open: pseudoHandler("[open]"),
+    active: pseudoHandler(":active"),
+    visited: pseudoHandler(":visited"),
+    target: pseudoHandler(":target"),
+    first: {
+      DEFAULT: pseudoHandler(":first-child"),
+      of: {
+        type: pseudoHandler(":first-of-type"),
+      },
+    },
+    last: {
+      DEFAULT: pseudoHandler(":last-child"),
+      of: {
+        type: pseudoHandler(":last-of-type"),
+      },
+    },
+    only: {
+      DEFAULT: pseudoHandler(":only-child"),
+      of: {
+        type: pseudoHandler(":only-of-type"),
+      },
+    },
+    empty: pseudoHandler(":empty"),
+    disabled: pseudoHandler(":disabled"),
+    checked: pseudoHandler(":checked"),
+    odd: pseudoHandler(":nth-child(odd)"),
+    even: pseudoHandler(":nth-child(even)"),
+    indeterminate: pseudoHandler(":indeterminate"),
+    default: pseudoHandler(":default"),
+    required: pseudoHandler(":required"),
+    valid: pseudoHandler(":valid"),
+    invalid: pseudoHandler(":invalid"),
+    in: {
+      range: pseudoHandler(":in-range"),
+    },
+    out: {
+      of: {
+        range: pseudoHandler(":out-of-range"),
+      },
+    },
+    placeholder: {
+      shown: pseudoHandler(":placeholder-shown"),
+    },
+    autofill: pseudoHandler(":autofill"),
+    read: {
+      only: pseudoHandler(":read-only"),
+    },
     "!": $important,
     "-": $minus,
     scrollbar,
