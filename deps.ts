@@ -37,6 +37,7 @@ export type {
   AcceptedPlugin,
   ChildNode,
   ChildProps,
+  Container,
   DeclarationProps,
   Plugin as PostcssPlugin,
 } from "https://deno.land/x/postcss@8.4.6/lib/postcss.d.ts";
@@ -49,7 +50,7 @@ export { AtRule, Declaration, postcss, Root, Rule };
 export {
   toAST,
   toObject,
-} from "https://deno.land/x/postcss_js@v1.0.0-beta.1/mod.ts";
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.2/mod.ts";
 
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
