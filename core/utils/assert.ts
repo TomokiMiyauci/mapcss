@@ -1,5 +1,6 @@
 import type { BlockDefinition, CSSDefinition, CSSObject } from "./../types.ts";
 import {
+  AtRule,
   Declaration,
   isNumber,
   isObject,
@@ -36,4 +37,8 @@ export function isDeclaration(node: unknown): node is Declaration {
 
 export function isRule(node: unknown): node is Rule {
   return node instanceof Rule;
+}
+
+export function isAtRule(node: unknown): node is AtRule {
+  return node instanceof AtRule;
 }

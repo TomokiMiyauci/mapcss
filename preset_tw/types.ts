@@ -1,4 +1,14 @@
 export type Option = {
+  /** Dark mode type
+   *
+   * `media`: use `@media` at-rule with `prefer-color-theme`
+   *
+   * `dark`: add `.dark` classSelector
+   *
+   * @default `media`
+   */
+  darkMode: "media" | "class";
+
   /** Inject reset CSS Statement or not.
    * @default false
    */

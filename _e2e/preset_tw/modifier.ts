@@ -4,7 +4,10 @@ const simple: [string, string][] = [
   ["lg:block", "@media (min-width:1024px){.lg\\:block{display:block}}"],
   ["xl:block", "@media (min-width:1280px){.xl\\:block{display:block}}"],
   ["2xl:block", "@media (min-width:1536px){.\\32 xl\\:block{display:block}}"],
-  ["dark:block", ".dark .dark\\:block{display:block}"],
+  [
+    "dark:block",
+    "@media (prefers-color-scheme:dark){.dark\\:block{display:block}}",
+  ],
   ["hover:block", ".hover\\:block:hover{display:block}"],
   ["focus:block", ".focus\\:block:focus{display:block}"],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
@@ -28,8 +31,8 @@ const simple: [string, string][] = [
 
 const complex: [string, string][] = [
   [
-    "dark:sm:block",
-    "@media (min-width:640px){.dark .dark\\:sm\\:block{display:block}}",
+    "sm:block",
+    "@media (prefers-color-scheme:dark){.dark\\:block{display:block}}",
   ],
 ];
 
