@@ -54,6 +54,10 @@ const simple: [string, string][] = [
   ],
   ["autofill:block", ".autofill\\:block:autofill{display:block}"],
   ["read-only:block", ".read-only\\:block:read-only{display:block}"],
+  [
+    "before:block",
+    ".before\\:block::before{content:var(--map-content);display:block}",
+  ],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
   ["-w-1", ".-w-1{width:-0.25rem}"],
   ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem}"],

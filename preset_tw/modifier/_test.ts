@@ -12,7 +12,7 @@ export type TestCase = [
 ][];
 
 export function createContext(
-  context: Readonly<Partial<ModifierContext>>,
+  context: Readonly<Partial<ModifierContext>> = {},
 ): ModifierContext {
   const defaultContext: ModifierContext = {
     modifier: "",
