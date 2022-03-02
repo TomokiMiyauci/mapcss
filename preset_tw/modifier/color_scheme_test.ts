@@ -1,21 +1,11 @@
 import { createDark } from "./color_scheme.ts";
-import { createContext } from "./mod_test.ts";
-import type {
-  BinaryTree,
-  ModifierContext,
-  ModifierDefinition,
-} from "../../core/types.ts";
+import { createContext, TestCase } from "./_test.ts";
 
 const context = createContext({ modifier: "dark" });
 const classDark = createDark("class");
 const mediaDark = createDark("media");
 
-export const colorScheme: [
-  BinaryTree<string | number>,
-  BinaryTree<string | number>,
-  ModifierDefinition,
-  ModifierContext,
-][] = [
+export const colorScheme: TestCase = [
   [
     {
       "@media (min-width: 640px)": {
