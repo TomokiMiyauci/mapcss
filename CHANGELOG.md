@@ -1,3 +1,18 @@
+# [1.0.0-beta.25](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2022-03-02)
+
+
+### Bug Fixes
+
+* **core:** fix resolve modifier map ([26074de](https://github.com/TomokiMiyauci/mapcss/commit/26074deb0a1183f2f1da0c946877138a36cfa805))
+* **preset_tw:** fix pseudo modifier ([7a61c7e](https://github.com/TomokiMiyauci/mapcss/commit/7a61c7eb3db0a2319f3ece0393c30f15de6f7ac5))
+
+
+### Features
+
+* **core:** add ast utility ([668ee8c](https://github.com/TomokiMiyauci/mapcss/commit/668ee8c0cc0361ad127dcf39ac2250d69a0a1ab4))
+* **core:** change `modifierMap` interface to accept recursive modifier dirinition ([6d71ccb](https://github.com/TomokiMiyauci/mapcss/commit/6d71ccbf45c6736714d374107aff72b262c36df9))
+* **preset_tw:** add some puseudo as modifier ([59a4390](https://github.com/TomokiMiyauci/mapcss/commit/59a4390290ac8c752a889741b582c064cb939586))
+
 # [1.0.0-beta.24](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2022-03-02)
 
 
