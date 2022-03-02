@@ -18,10 +18,10 @@ function ColorParret({ prop, color }: ColorParretProps) {
   return (
     <>
       <div
-        className="h-10 w-full rounded dark:ring-1 dark:ring-inset dark:ring-white/10"
+        className="h-10 w-full rounded ring-1 ring-inset ring-slate-900/10 dark:ring-white/10"
         style={{ backgroundColor: color }}
       />
-      <div className="font-medium text-xs text-slate-900">{prop}</div>
+      <div className="font-medium text-xs text-slate-900 mt-1">{prop}</div>
       <div className="text-slate-500 text-xs font-mono lowercase dark:text-slate-400">
         {color}
       </div>
@@ -43,7 +43,7 @@ export default function ({ className, color }: Readonly<Props>) {
             <span className="font-medium text-slate-900 w-16 text-sm">
               {key}
             </span>
-            <ul className="mt-2 sm:mt-0 min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-3 sm:gap-x-4 gap-y-3 2xl:gap-x-2 not-prose">
+            <ul className="mt-3 sm:mt-0 min-w-0 flex-1 grid grid-cols-5 2xl:grid-cols-10 gap-x-3 sm:gap-x-4 gap-y-3 2xl:gap-x-2 not-prose">
               {Object.entries(value).map(([key, value]) => {
                 return (
                   <li
