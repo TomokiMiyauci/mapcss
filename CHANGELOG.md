@@ -1,3 +1,17 @@
+# [1.0.0-beta.24](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2022-03-02)
+
+
+### Bug Fixes
+
+* **core:** fix to order of modifier applyment is right to left ([1bebcd7](https://github.com/TomokiMiyauci/mapcss/commit/1bebcd7e0349f000b44ec533a6cadbef2d94dd42))
+* **preset_tw:** breakpoint modifier apply at-rule node and rule node only ([4845e9d](https://github.com/TomokiMiyauci/mapcss/commit/4845e9d35eaf92116f71424d3f48e31cc2d1d77d))
+* **preset_tw:** fix ordering target is root child only ([9e2d0d4](https://github.com/TomokiMiyauci/mapcss/commit/9e2d0d407415dbb1edcbdeecdcf3e2ce0b1d8bd2))
+
+
+### Features
+
+* **preset_tw:** add switching dark mode `class` or `media` ([2c8c521](https://github.com/TomokiMiyauci/mapcss/commit/2c8c521977677c8384ca46745ea597162e6c1027))
+
 # [1.0.0-beta.23](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2022-03-01)
 
 
