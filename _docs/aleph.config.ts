@@ -1,5 +1,6 @@
 import mapcssPlugin from "./plugins/mapcss.ts";
 import { iconifyJSON, presetIcon, presetTw, presetTypography } from "../mod.ts";
+
 import remarkFrontmatter from "https://cdn.skypack.dev/remark-frontmatter";
 import { remarkMdxFrontmatter } from "https://esm.sh/remark-mdx-frontmatter";
 import rehypeSlug from "https://esm.sh/rehype-slug@5";
@@ -18,7 +19,9 @@ export default <Config> {
   plugins: [
     mapcssPlugin({
       preset: [
-        presetTw(),
+        presetTw({
+          darkMode: "class",
+        }),
         presetTypography({
           css: {
             h2: {
