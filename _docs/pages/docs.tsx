@@ -63,7 +63,7 @@ export default function Docs({ Page, pageProps }: DocsProps) {
   return (
     <>
       <Header />
-      <div className="container mx-auto">
+      <div className="max-w-8xl lg:px-8 mx-auto">
         <aside className="hidden lg:block float-left h-[calc(100vh_-_3.8125rem)] sticky top-[3.8125rem] w-[19.5rem] pb-10 px-8 overflow-y-auto">
           <nav className="lg:text-sm lg:leading-6 relative">
             <ul>
