@@ -29,9 +29,22 @@ subject to change.
 
 ## Features
 
-- ⚗️ Flexibility
+- 🎓 Hierarchical mapping strategy
 
-  Mapping is free. And you can define a very flexible mapping syntax.
+  Map CSS Statements with hierarchical identifiers. Compared to flat, it is more
+  readable and uses as few regular expressions as possible. In addition, regular
+  expression matching is scoped, improving performance.
+
+- 💅 Flexible
+
+  The CSS Statement is written in CSS-in-JS style. It is a plain JavaScript
+  Object with excellent readability.
+
+- 🌳 AST based
+
+  CSS-in-JS is converted to AST(postcss AST). postcss AST is a widely known
+  standard format that can be freely converted and added to and benefits from a
+  large ecosystem.
 
 - 🌐 Universal
 
@@ -190,6 +203,8 @@ Finally, we show the conversion transition.
 ```bash
 token -> DeepMap { identifier -> CSS-in-JS } -> AST -> Style Sheet
 ```
+
+## Why convert to AST?
 
 ## License
 
