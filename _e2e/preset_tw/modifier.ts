@@ -83,6 +83,23 @@ const simple: [string, string][] = [
     "placeholder:italic",
     ".placeholder\\:italic::placeholder{font-style:italic}",
   ],
+  [
+    "portrait:hidden",
+    "@media (orientation:portrait){.portrait\\:hidden{display:none}}",
+  ],
+  [
+    "landscape:hidden",
+    "@media (orientation:landscape){.landscape\\:hidden{display:none}}",
+  ],
+  [
+    "motion-safe:block",
+    "@media (prefers-reduced-motion:no-preference){.motion-safe\\:block{display:block}}",
+  ],
+  [
+    "motion-reduce:hidden",
+    "@media (prefers-reduced-motion:reduce){.motion-reduce\\:hidden{display:none}}",
+  ],
+  ["print:hidden", "@media print{.print\\:hidden{display:none}}"],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
   ["-w-1", ".-w-1{width:-0.25rem}"],
   ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem}"],

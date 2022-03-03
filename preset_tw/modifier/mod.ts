@@ -6,6 +6,7 @@ import {
   scrollbarThumb,
   scrollbarTrack,
 } from "./pseudo.ts";
+import { createMedia } from "./at_rule.ts";
 import { content } from "./pseudo_elements.ts";
 import { $important } from "./important.ts";
 import { $minus } from "./minus.ts";
@@ -79,6 +80,13 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     },
     before: content,
     after: content,
+    portrait: createMedia("(orientation: portrait)"),
+    landscape: createMedia("(orientation: landscape)"),
+    motion: {
+      safe: createMedia("(prefers-reduced-motion: no-preference)"),
+      reduce: createMedia("(prefers-reduced-motion: reduce)"),
+    },
+    print: createMedia("print"),
 
     // TODO(miyauci): add check the rule-set has valid declaration
     marker: pseudoHandler("::marker"),
