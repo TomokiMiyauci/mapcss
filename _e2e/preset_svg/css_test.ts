@@ -1,9 +1,9 @@
-import { Config, generate, presetIcon } from "../../mod.ts";
+import { Config, generate, presetSvg } from "../../mod.ts";
 import { expect, test } from "../../dev_deps.ts";
 
-test("presetIcon generation test", () => {
+test("presetSvg generation test", () => {
   const config: Partial<Config> = {
-    preset: [presetIcon({
+    preset: [presetSvg({
       svgMap: {
         carbon: {
           "3d-curve-auto-colon":
