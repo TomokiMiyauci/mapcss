@@ -1,3 +1,10 @@
+# [1.0.0-beta.28](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2022-03-03)
+
+
+### Features
+
+* **preset_svg:** rename preset_icon to preset_svg ([256c815](https://github.com/TomokiMiyauci/mapcss/commit/256c81554e28d0355e9ffefe915707cd3b793f24))
+
 # [1.0.0-beta.27](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2022-03-03)
 
 
