@@ -1,5 +1,5 @@
 import mapcssPlugin from "./plugins/mapcss.ts";
-import { iconifyJSON, presetIcon, presetTw, presetTypography } from "../mod.ts";
+import { iconifyJSON, presetSvg, presetTw, presetTypography } from "../mod.ts";
 
 import remarkFrontmatter from "https://cdn.skypack.dev/remark-frontmatter";
 import { remarkMdxFrontmatter } from "https://esm.sh/remark-mdx-frontmatter";
@@ -67,7 +67,7 @@ const base: Partial<MapcssConfig> = {
         ":not(pre) > code::before, :not(pre) > code::after": false,
       },
     }),
-    presetIcon({
+    presetSvg({
       svgMap: {
         mdi: iconifyJSON(mdi),
       },
@@ -88,6 +88,15 @@ const config: Partial<MapcssConfig> = {
       ).map(
         toObject,
       ).unwrap(),
+    },
+  },
+  cssMap: {
+    max: {
+      w: {
+        "8xl": {
+          maxWidth: "90rem",
+        },
+      },
     },
   },
 };
