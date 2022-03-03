@@ -11,6 +11,7 @@ import { content } from "./pseudo_elements.ts";
 import { $important } from "./important.ts";
 import { $minus } from "./minus.ts";
 import { group } from "./group.ts";
+import { selectorTransform } from "./_utils.ts";
 import type { Option } from "../types.ts";
 import type { ModifierMap } from "./../../core/types.ts";
 
@@ -91,6 +92,8 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     // TODO(miyauci): add check the rule-set has valid declaration
     marker: pseudoHandler("::marker"),
     selection: pseudoHandler("::selection"),
+    rtl: selectorTransform((selector) => `[dir="rtl"] ${selector}`),
+    ltr: selectorTransform((selector) => `[dir="ltr"] ${selector}`),
 
     file: pseudoHandler("::file-selector-button"),
     "!": $important,

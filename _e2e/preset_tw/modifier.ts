@@ -100,6 +100,14 @@ const simple: [string, string][] = [
     "@media (prefers-reduced-motion:reduce){.motion-reduce\\:hidden{display:none}}",
   ],
   ["print:hidden", "@media print{.print\\:hidden{display:none}}"],
+  [
+    "rtl:ml-3",
+    '[dir="rtl"] .rtl\\:ml-3{margin-left:0.75rem}',
+  ],
+  [
+    "ltr:md:ml-3",
+    '@media (min-width:768px){[dir="ltr"] .ltr\\:md\\:ml-3{margin-left:0.75rem}}',
+  ],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
   ["-w-1", ".-w-1{width:-0.25rem}"],
   ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem}"],
