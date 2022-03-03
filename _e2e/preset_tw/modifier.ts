@@ -62,6 +62,27 @@ const simple: [string, string][] = [
     "after:block",
     ".after\\:block::after{content:var(--map-content);display:block}",
   ],
+  [
+    "first-letter:uppercase",
+    ".first-letter\\:uppercase::first-letter{text-transform:uppercase}",
+  ],
+  [
+    "first-line:uppercase",
+    ".first-line\\:uppercase::first-line{text-transform:uppercase}",
+  ],
+  [
+    "marker:text-black",
+    ".marker\\:text-black::marker{color:rgb(0 0 0/1)}",
+  ],
+  [
+    "selection:text-black",
+    ".selection\\:text-black::selection{color:rgb(0 0 0/1)}",
+  ],
+  ["file:mr-4", ".file\\:mr-4::file-selector-button{margin-right:1rem}"],
+  [
+    "placeholder:italic",
+    ".placeholder\\:italic::placeholder{font-style:italic}",
+  ],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
   ["-w-1", ".-w-1{width:-0.25rem}"],
   ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem}"],

@@ -36,6 +36,8 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
       of: {
         type: pseudoHandler(":first-of-type"),
       },
+      letter: pseudoHandler("::first-letter"),
+      line: pseudoHandler("::first-line"),
     },
     last: {
       DEFAULT: pseudoHandler(":last-child"),
@@ -68,6 +70,7 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
       },
     },
     placeholder: {
+      DEFAULT: pseudoHandler("::placeholder"),
       shown: pseudoHandler(":placeholder-shown"),
     },
     autofill: pseudoHandler(":autofill"),
@@ -76,6 +79,12 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     },
     before: content,
     after: content,
+
+    // TODO(miyauci): add check the rule-set has valid declaration
+    marker: pseudoHandler("::marker"),
+    selection: pseudoHandler("::selection"),
+
+    file: pseudoHandler("::file-selector-button"),
     "!": $important,
     "-": $minus,
     scrollbar,
