@@ -1,11 +1,6 @@
 import { $2xl, lg, md, sm, xl } from "./breakpoint.ts";
 import { createDark } from "./color_scheme.ts";
-import {
-  pseudoHandler,
-  scrollbar,
-  scrollbarThumb,
-  scrollbarTrack,
-} from "./pseudo.ts";
+import { scrollbar, scrollbarThumb, scrollbarTrack } from "./pseudo.ts";
 import { createMedia } from "./at_rule.ts";
 import { content } from "./pseudo_elements.ts";
 import { $important } from "./important.ts";
@@ -15,6 +10,14 @@ import { selectorTransform } from "./_utils.ts";
 import type { Option } from "../types.ts";
 import type { ModifierMap } from "./../../core/types.ts";
 
+function prefix(prefix: string) {
+  return (value: string): string => `${prefix}${value}`;
+}
+
+function suffix(suffix: string) {
+  return (value: string): string => `${value}${suffix}`;
+}
+
 export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
   const modifierMap: ModifierMap = {
     sm,
@@ -23,61 +26,61 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     xl,
     dark: createDark(darkMode),
     "2xl": $2xl,
-    hover: pseudoHandler(":hover"),
+    hover: selectorTransform(suffix(":hover")),
     focus: {
-      DEFAULT: pseudoHandler(":focus"),
-      within: pseudoHandler(":focus-within"),
-      visible: pseudoHandler(":focus-visible"),
+      DEFAULT: selectorTransform(suffix(":focus")),
+      within: selectorTransform(suffix(":focus-within")),
+      visible: selectorTransform(suffix(":focus-visible")),
     },
-    open: pseudoHandler("[open]"),
-    active: pseudoHandler(":active"),
-    visited: pseudoHandler(":visited"),
-    target: pseudoHandler(":target"),
+    open: selectorTransform(suffix("[open]")),
+    active: selectorTransform(suffix(":active")),
+    visited: selectorTransform(suffix(":visited")),
+    target: selectorTransform(suffix(":target")),
     first: {
-      DEFAULT: pseudoHandler(":first-child"),
+      DEFAULT: selectorTransform(suffix(":first-child")),
       of: {
-        type: pseudoHandler(":first-of-type"),
+        type: selectorTransform(suffix(":first-of-type")),
       },
-      letter: pseudoHandler("::first-letter"),
-      line: pseudoHandler("::first-line"),
+      letter: selectorTransform(suffix("::first-letter")),
+      line: selectorTransform(suffix("::first-line")),
     },
     last: {
-      DEFAULT: pseudoHandler(":last-child"),
+      DEFAULT: selectorTransform(suffix(":last-child")),
       of: {
-        type: pseudoHandler(":last-of-type"),
+        type: selectorTransform(suffix(":last-of-type")),
       },
     },
     only: {
-      DEFAULT: pseudoHandler(":only-child"),
+      DEFAULT: selectorTransform(suffix(":only-child")),
       of: {
-        type: pseudoHandler(":only-of-type"),
+        type: selectorTransform(suffix(":only-of-type")),
       },
     },
-    empty: pseudoHandler(":empty"),
-    disabled: pseudoHandler(":disabled"),
-    checked: pseudoHandler(":checked"),
-    odd: pseudoHandler(":nth-child(odd)"),
-    even: pseudoHandler(":nth-child(even)"),
-    indeterminate: pseudoHandler(":indeterminate"),
-    default: pseudoHandler(":default"),
-    required: pseudoHandler(":required"),
-    valid: pseudoHandler(":valid"),
-    invalid: pseudoHandler(":invalid"),
+    empty: selectorTransform(suffix(":empty")),
+    disabled: selectorTransform(suffix(":disabled")),
+    checked: selectorTransform(suffix(":checked")),
+    odd: selectorTransform(suffix(":nth-child(odd)")),
+    even: selectorTransform(suffix(":nth-child(even)")),
+    indeterminate: selectorTransform(suffix(":indeterminate")),
+    default: selectorTransform(suffix(":default")),
+    required: selectorTransform(suffix(":required")),
+    valid: selectorTransform(suffix(":valid")),
+    invalid: selectorTransform(suffix(":invalid")),
     in: {
-      range: pseudoHandler(":in-range"),
+      range: selectorTransform(suffix(":in-range")),
     },
     out: {
       of: {
-        range: pseudoHandler(":out-of-range"),
+        range: selectorTransform(suffix(":out-of-range")),
       },
     },
     placeholder: {
-      DEFAULT: pseudoHandler("::placeholder"),
-      shown: pseudoHandler(":placeholder-shown"),
+      DEFAULT: selectorTransform(suffix("::placeholder")),
+      shown: selectorTransform(suffix(":placeholder-shown")),
     },
-    autofill: pseudoHandler(":autofill"),
+    autofill: selectorTransform(suffix(":autofill")),
     read: {
-      only: pseudoHandler(":read-only"),
+      only: selectorTransform(suffix(":read-only")),
     },
     before: content,
     after: content,
@@ -90,12 +93,12 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     print: createMedia("print"),
 
     // TODO(miyauci): add check the rule-set has valid declaration
-    marker: pseudoHandler("::marker"),
-    selection: pseudoHandler("::selection"),
-    rtl: selectorTransform((selector) => `[dir="rtl"] ${selector}`),
-    ltr: selectorTransform((selector) => `[dir="ltr"] ${selector}`),
+    marker: selectorTransform(suffix("::marker")),
+    selection: selectorTransform(suffix("::selection")),
+    rtl: selectorTransform(prefix('[dir="rtl"] ')),
+    ltr: selectorTransform(prefix('[dir="ltr"] ')),
 
-    file: pseudoHandler("::file-selector-button"),
+    file: selectorTransform(suffix("::file-selector-button")),
     "!": $important,
     "-": $minus,
     scrollbar,
