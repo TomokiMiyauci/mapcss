@@ -32,10 +32,11 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: npm build & publish
+      - name: build
+        run: deno run --unstable -A ./_tools/build_npm.ts ${{steps.get_tag_version.outputs.TAG_VERSION}}
+
+      - name: publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run:
-         deno run --unstable -A ./_tools/build_npm.ts ${{steps.get_tag_version.outputs.TAG_VERSION}}
-         deno run --unstable -A ./_tools/publish_npm.ts ${{steps.get_tag_version.outputs.TAG_VERSION}}
+        run: deno run --unstable -A ./_tools/publish_npm.ts ${{steps.get_tag_version.outputs.TAG_VERSION}}
 
