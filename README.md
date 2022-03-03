@@ -76,9 +76,9 @@ mapcss provides several preset.
   [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
   or
   [@unocss/preset-typography](https://github.com/unocss/unocss/tree/main/packages/preset-typography).
-- [presetIcon](./preset_icon/README.md)
+- [presetSvg](./preset_svg/README.md)
 
-  SVG markup as CSS. By using the [iconifyJSON](./preset_icon/convert.ts#L8)
+  SVG markup as CSS. By using the [iconifyJSON](./preset_svg/convert.ts#L8)
   converter, you can use `iconify.json` as a pure CSS icon.
 
 For example, using `presetTw`, you can use the utility class of
