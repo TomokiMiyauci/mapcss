@@ -125,6 +125,95 @@ const simple: [string, string][] = [
   ],
   ["group:block", ""],
   ["group-hover:block", ".group:hover .group-hover\\:block{display:block}"],
+  ["group-focus:block", ".group:focus .group-focus\\:block{display:block}"],
+  [
+    "group-focus-within:block",
+    ".group:focus-within .group-focus-within\\:block{display:block}",
+  ],
+  [
+    "group-focus-visible:block",
+    ".group:focus-visible .group-focus-visible\\:block{display:block}",
+  ],
+  ["group-active:block", ".group:active .group-active\\:block{display:block}"],
+  [
+    "group-visited:block",
+    ".group:visited .group-visited\\:block{display:block}",
+  ],
+  ["group-target:block", ".group:target .group-target\\:block{display:block}"],
+  [
+    "group-first:block",
+    ".group:first-child .group-first\\:block{display:block}",
+  ],
+  [
+    "group-first-of-type:block",
+    ".group:first-of-type .group-first-of-type\\:block{display:block}",
+  ],
+  [
+    "group-last:block",
+    ".group:last-child .group-last\\:block{display:block}",
+  ],
+  [
+    "group-last-of-type:block",
+    ".group:last-of-type .group-last-of-type\\:block{display:block}",
+  ],
+  ["group-empty:block", ".group:empty .group-empty\\:block{display:block}"],
+  [
+    "group-disabled:block",
+    ".group:disabled .group-disabled\\:block{display:block}",
+  ],
+  [
+    "group-checked:block",
+    ".group:checked .group-checked\\:block{display:block}",
+  ],
+  [
+    "group-indeterminate:block",
+    ".group:indeterminate .group-indeterminate\\:block{display:block}",
+  ],
+  [
+    "group-default:block",
+    ".group:default .group-default\\:block{display:block}",
+  ],
+  [
+    "group-required:block",
+    ".group:required .group-required\\:block{display:block}",
+  ],
+  ["group-valid:block", ".group:valid .group-valid\\:block{display:block}"],
+  [
+    "group-invalid:block",
+    ".group:invalid .group-invalid\\:block{display:block}",
+  ],
+  [
+    "group-in-range:block",
+    ".group:in-range .group-in-range\\:block{display:block}",
+  ],
+  [
+    "group-out-of-range:block",
+    ".group:out-of-range .group-out-of-range\\:block{display:block}",
+  ],
+  [
+    "group-placeholder-shown:block",
+    ".group:placeholder-shown .group-placeholder-shown\\:block{display:block}",
+  ],
+  [
+    "group-autofill:block",
+    ".group:autofill .group-autofill\\:block{display:block}",
+  ],
+  [
+    "group-read-only:block",
+    ".group:read-only .group-read-only\\:block{display:block}",
+  ],
+  [
+    "group-open:block",
+    ".group[open] .group-open\\:block{display:block}",
+  ],
+  [
+    "group-odd:block",
+    ".group:nth-child(odd) .group-odd\\:block{display:block}",
+  ],
+  [
+    "group-even:block",
+    ".group:nth-child(even) .group-even\\:block{display:block}",
+  ],
 ];
 
 const complex: [string, string][] = [
