@@ -24,14 +24,14 @@ export { sortBy } from "https://deno.land/std@0.125.0/collections/sort_by.ts";
 export { curry } from "https://deno.land/x/curry@v1.0.0/mod.ts";
 export {
   None,
-  type Option,
   Some,
 } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
+export type { Option } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
 export {
-  type Either,
   Left,
   Right,
 } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
+export type { Either } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
 export { isUndefined };
 export type {
   AcceptedPlugin,
@@ -51,11 +51,11 @@ export { AtRule, Declaration, postcss, Root, Rule };
 export {
   toAST,
   toObject,
-} from "https://deno.land/x/postcss_js@v1.0.0-beta.2/mod.ts";
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.3/mod.ts";
 export {
   default as parseSelector,
-  type Node as SelectorNode,
-} from "https://esm.sh/postcss-selector-parser";
+} from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
+export type { Node as SelectorNode } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
 }
