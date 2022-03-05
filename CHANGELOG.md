@@ -1,3 +1,10 @@
+# [1.0.0-beta.30](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2022-03-05)
+
+
+### Bug Fixes
+
+* quit named types export ([e2c928a](https://github.com/TomokiMiyauci/mapcss/commit/e2c928a9cbf6d0814b036d6c73bb86e06d233b0c)), closes [#12](https://github.com/TomokiMiyauci/mapcss/issues/12)
+
 # [1.0.0-beta.29](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2022-03-05)
 
 
