@@ -8,14 +8,15 @@ import {
   isString,
   isUndefined,
   mapEntries,
+  parseSelector,
   prop,
   Root,
   Rule,
+  SelectorNode,
   toAST,
 } from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { re$All } from "../../core/utils/regexp.ts";
-import parse, { Node } from "https://esm.sh/postcss-selector-parser";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOption } from "../types.ts";
@@ -366,32 +367,37 @@ export function isolateEntries<
   }, [{}, {}] as [U, K]);
 }
 
-function isWhereableNode(node: Node): boolean {
+function isWhereableNode(node: SelectorNode): boolean {
   return node.type !== "pseudo" ||
     node.type === "pseudo" && node.value === ":not";
 }
 
 export function transformSelector(selector: string, className: string): string {
-  const result = parse((root) => {
+  const result = parseSelector((root) => {
     root.nodes.forEach((selector) => {
       const pseudos = selector.filter((v) => !isWhereableNode(v));
 
-      const where = parse.pseudo({
+      const where = parseSelector.pseudo({
         "value": ":where",
         nodes: [
-          parse.selector({
+          parseSelector.selector({
             value: "",
             nodes: selector.filter(isWhereableNode),
           }),
         ],
       });
 
-      const classNameNode = parse.className({ value: className });
-      const combinator = parse.combinator({ value: " " });
+      const classNameNode = parseSelector.className({ value: className });
+      const combinator = parseSelector.combinator({ value: " " });
       const NOT = "not";
-      const notClassName = parse.className({ value: `${NOT}-${className}` });
-      const not = parse.pseudo({ value: ":not", nodes: [notClassName] });
-      const newSelector = parse.selector({
+      const notClassName = parseSelector.className({
+        value: `${NOT}-${className}`,
+      });
+      const not = parseSelector.pseudo({
+        value: ":not",
+        nodes: [notClassName],
+      });
+      const newSelector = parseSelector.selector({
         value: "",
         nodes: [classNameNode, combinator, where, not, ...pseudos],
       });
