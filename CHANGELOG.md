@@ -1,3 +1,15 @@
+# [1.0.0-beta.29](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2022-03-05)
+
+
+### Bug Fixes
+
+* **core:** change assert logic with type checking ([d3f9b17](https://github.com/TomokiMiyauci/mapcss/commit/d3f9b1782069d899c91c7d8b57cbaf62bdf2fbe3)), closes [#10](https://github.com/TomokiMiyauci/mapcss/issues/10)
+
+
+### Features
+
+* **preset_tw:** add group-{modifier} ([7f1da38](https://github.com/TomokiMiyauci/mapcss/commit/7f1da38e7a0a5a66dbb48267530df978987044a5))
+
 # [1.0.0-beta.28](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2022-03-03)
 
 
