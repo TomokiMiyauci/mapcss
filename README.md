@@ -204,8 +204,6 @@ Finally, we show the conversion transition.
 token -> DeepMap { identifier -> CSS-in-JS } -> AST -> Style Sheet
 ```
 
-## Why convert to AST?
-
 ## License
 
 Copyright © 2021-present [TomokiMiyauci](https://github.com/TomokiMiyauci).
