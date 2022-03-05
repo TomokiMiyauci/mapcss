@@ -1,8 +1,9 @@
-import { Rule } from "../../deps.ts";
+import { Node } from "../../deps.ts";
 import type { ModifierContext, ModifierDefinition } from "../../core/types.ts";
 import { isAtRule } from "../../core/utils/assert.ts";
 
-export function isAllowNode(node: Rule): boolean {
+export function isAllowNode(node: Node): boolean {
+  if (!node.parent) return false;
   if (!isAtRule(node.parent)) return true;
 
   return ["media", "supports"].includes(node.parent.name);

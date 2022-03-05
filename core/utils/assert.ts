@@ -5,6 +5,7 @@ import {
   isNumber,
   isObject,
   isString,
+  Node,
   prop,
   Rule,
 } from "../../deps.ts";
@@ -31,14 +32,14 @@ export function isCSSDefinition(
     isObject(prop("value", value));
 }
 
-export function isDeclaration(node: unknown): node is Declaration {
-  return node instanceof Declaration;
+export function isDeclaration(node: Node): node is Declaration {
+  return node.type === "decl";
 }
 
-export function isRule(node: unknown): node is Rule {
-  return node instanceof Rule;
+export function isRule(node: Node): node is Rule {
+  return node.type === "rule";
 }
 
-export function isAtRule(node: unknown): node is AtRule {
-  return node instanceof AtRule;
+export function isAtRule(node: Node): node is AtRule {
+  return node.type === "atrule";
 }
