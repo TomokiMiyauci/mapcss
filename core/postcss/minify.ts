@@ -1,8 +1,7 @@
-import selectorParser from "https://esm.sh/postcss-selector-parser";
 import valueParser from "https://esm.sh/postcss-value-parser";
-import type { PostcssPlugin } from "../../deps.ts";
+import { parseSelector, type PostcssPlugin } from "../../deps.ts";
 
-const selectorProcessor = selectorParser((selectors) => {
+const selectorProcessor = parseSelector((selectors) => {
   selectors.walk((selector) => {
     selector.spaces = { before: "", after: "" };
   });

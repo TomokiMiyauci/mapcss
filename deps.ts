@@ -37,7 +37,9 @@ export type {
   AcceptedPlugin,
   ChildNode,
   ChildProps,
+  Container,
   DeclarationProps,
+  Node,
   Plugin as PostcssPlugin,
 } from "https://deno.land/x/postcss@8.4.6/lib/postcss.d.ts";
 import Rule from "https://deno.land/x/postcss@8.4.6/lib/rule.js";
@@ -49,8 +51,11 @@ export { AtRule, Declaration, postcss, Root, Rule };
 export {
   toAST,
   toObject,
-} from "https://deno.land/x/postcss_js@v1.0.0-beta.1/mod.ts";
-
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.2/mod.ts";
+export {
+  default as parseSelector,
+  type Node as SelectorNode,
+} from "https://esm.sh/postcss-selector-parser";
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
 }
@@ -160,6 +165,11 @@ export type ReplaceKeys<U, T, Y> = {
     : k extends Exclude<keyof U, T> ? U[k]
     : never;
 };
+
+export type PartialByKeys<T extends {}, U = keyof T> = Omit<
+  Partial<Pick<T, U & keyof T>> & Omit<T, U & keyof T>,
+  never
+>;
 
 interface Chain<T> {
   map<U>(fn: (val: T) => U): Chain<U>;

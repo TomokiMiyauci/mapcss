@@ -1,3 +1,74 @@
+# [1.0.0-beta.29](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2022-03-05)
+
+
+### Bug Fixes
+
+* **core:** change assert logic with type checking ([d3f9b17](https://github.com/TomokiMiyauci/mapcss/commit/d3f9b1782069d899c91c7d8b57cbaf62bdf2fbe3)), closes [#10](https://github.com/TomokiMiyauci/mapcss/issues/10)
+
+
+### Features
+
+* **preset_tw:** add group-{modifier} ([7f1da38](https://github.com/TomokiMiyauci/mapcss/commit/7f1da38e7a0a5a66dbb48267530df978987044a5))
+
+# [1.0.0-beta.28](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.27...v1.0.0-beta.28) (2022-03-03)
+
+
+### Features
+
+* **preset_svg:** rename preset_icon to preset_svg ([256c815](https://github.com/TomokiMiyauci/mapcss/commit/256c81554e28d0355e9ffefe915707cd3b793f24))
+
+# [1.0.0-beta.27](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.26...v1.0.0-beta.27) (2022-03-03)
+
+
+### Features
+
+* **preset_tw:** add modifier for [@media](https://github.com/media) at-rule ([56531b6](https://github.com/TomokiMiyauci/mapcss/commit/56531b60f06aad24f4510f9ea1f3397ce3149b93))
+* **preset_tw:** add modifier for pseudo-elements ([cc1c32f](https://github.com/TomokiMiyauci/mapcss/commit/cc1c32fe89033f25b8489214e21c0375e22f5b8c))
+* **preset_tw:** add modifier of `rtl` and `ltr` ([d3f5113](https://github.com/TomokiMiyauci/mapcss/commit/d3f5113f156f99eebda1dc78dd023e97bcd7e030))
+
+# [1.0.0-beta.26](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.25...v1.0.0-beta.26) (2022-03-02)
+
+
+### Features
+
+* **preset_tw:** add modifier of `before` ([567eab6](https://github.com/TomokiMiyauci/mapcss/commit/567eab65515e53211f36414477b4a8b56fed7cbe))
+
+# [1.0.0-beta.25](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.24...v1.0.0-beta.25) (2022-03-02)
+
+
+### Bug Fixes
+
+* **core:** fix resolve modifier map ([26074de](https://github.com/TomokiMiyauci/mapcss/commit/26074deb0a1183f2f1da0c946877138a36cfa805))
+* **preset_tw:** fix pseudo modifier ([7a61c7e](https://github.com/TomokiMiyauci/mapcss/commit/7a61c7eb3db0a2319f3ece0393c30f15de6f7ac5))
+
+
+### Features
+
+* **core:** add ast utility ([668ee8c](https://github.com/TomokiMiyauci/mapcss/commit/668ee8c0cc0361ad127dcf39ac2250d69a0a1ab4))
+* **core:** change `modifierMap` interface to accept recursive modifier dirinition ([6d71ccb](https://github.com/TomokiMiyauci/mapcss/commit/6d71ccbf45c6736714d374107aff72b262c36df9))
+* **preset_tw:** add some puseudo as modifier ([59a4390](https://github.com/TomokiMiyauci/mapcss/commit/59a4390290ac8c752a889741b582c064cb939586))
+
+# [1.0.0-beta.24](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.23...v1.0.0-beta.24) (2022-03-02)
+
+
+### Bug Fixes
+
+* **core:** fix to order of modifier applyment is right to left ([1bebcd7](https://github.com/TomokiMiyauci/mapcss/commit/1bebcd7e0349f000b44ec533a6cadbef2d94dd42))
+* **preset_tw:** breakpoint modifier apply at-rule node and rule node only ([4845e9d](https://github.com/TomokiMiyauci/mapcss/commit/4845e9d35eaf92116f71424d3f48e31cc2d1d77d))
+* **preset_tw:** fix ordering target is root child only ([9e2d0d4](https://github.com/TomokiMiyauci/mapcss/commit/9e2d0d407415dbb1edcbdeecdcf3e2ce0b1d8bd2))
+
+
+### Features
+
+* **preset_tw:** add switching dark mode `class` or `media` ([2c8c521](https://github.com/TomokiMiyauci/mapcss/commit/2c8c521977677c8384ca46745ea597162e6c1027))
+
+# [1.0.0-beta.23](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.22...v1.0.0-beta.23) (2022-03-01)
+
+
+### Bug Fixes
+
+* **core:** fix escape class selector ([768f578](https://github.com/TomokiMiyauci/mapcss/commit/768f578866f5fd7787c5bc762395757bd93bd446))
+
 # [1.0.0-beta.22](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.21...v1.0.0-beta.22) (2022-03-01)
 
 

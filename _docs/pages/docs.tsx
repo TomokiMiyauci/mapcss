@@ -63,7 +63,7 @@ export default function Docs({ Page, pageProps }: DocsProps) {
   return (
     <>
       <Header />
-      <div className="container mx-auto">
+      <div className="max-w-8xl lg:px-8 mx-auto">
         <aside className="hidden lg:block float-left h-[calc(100vh_-_3.8125rem)] sticky top-[3.8125rem] w-[19.5rem] pb-10 px-8 overflow-y-auto">
           <nav className="lg:text-sm lg:leading-6 relative">
             <ul>
@@ -102,8 +102,8 @@ export default function Docs({ Page, pageProps }: DocsProps) {
           <Toc tableOfContents={pageProps.tableOfContents} />
         </aside>
         <div className="lg:ml-80 xl:mr-80">
-          <main className="max-w-3xl mx-auto pt-10 xl:max-w-none xl:ml-0 xl:pr-16">
-            <article className="prose prose-slate">
+          <main className="max-w-3xl mx-auto mx-4 pt-10 xl:max-w-none xl:ml-0 xl:px-8">
+            <article className="prose">
               <p className="mb-2 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
                 {category}
               </p>
@@ -121,15 +121,26 @@ export default function Docs({ Page, pageProps }: DocsProps) {
             </article>
             <aside className="my-10">
               <nav>
-                <ul className="flex justify-between">
+                <ul className="flex mb-10 text-slate-700 text-sm font-semibold flex items-center dark:text-slate-200 justify-between">
                   {prev && (
                     <li className="justify-self-start">
-                      <a href={prev.href}>{prev.title}</a>
+                      <a className="group space-x-2" href={prev.href}>
+                        <span className="h-5 w-5 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 i-mdi-arrow-left" />
+                        <span>{prev.title}</span>
+                      </a>
                     </li>
                   )}
                   {next && (
                     <li className="justify-self-end">
-                      <a href={next.href}>{next.title}</a>
+                      <a
+                        className="group space-x-2 flex items-center"
+                        href={next.href}
+                      >
+                        <span>
+                          {next.title}
+                        </span>
+                        <span className="h-5 w-5 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 i-mdi-arrow-right" />
+                      </a>
                     </li>
                   )}
                 </ul>

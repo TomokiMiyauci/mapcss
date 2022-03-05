@@ -1,5 +1,6 @@
 import mapcssPlugin from "./plugins/mapcss.ts";
-import { iconifyJSON, presetIcon, presetTw, presetTypography } from "../mod.ts";
+import { iconifyJSON, presetSvg, presetTw, presetTypography } from "../mod.ts";
+
 import remarkFrontmatter from "https://cdn.skypack.dev/remark-frontmatter";
 import { remarkMdxFrontmatter } from "https://esm.sh/remark-mdx-frontmatter";
 import rehypeSlug from "https://esm.sh/rehype-slug@5";
@@ -12,40 +13,98 @@ import {
 import mdi from "https://esm.sh/@iconify-json/mdi/icons.json" assert {
   type: "json",
 };
+import {
+  Config as MapcssConfig,
+  filterDeclaration,
+  generate,
+  ModifierDefinition,
+} from "@mapcss/mod.ts";
+import { AtRule, chain, toObject } from "@mapcss/deps.ts";
+import { isAtRule, isRule } from "@mapcss/core/utils/assert.ts";
 import type { Config } from "aleph/types";
+
+const supportBackdropBlur: ModifierDefinition = (root) => {
+  root.walk((node) => {
+    if (isAtRule(node) || isRule(node)) {
+      const atRule = new AtRule({
+        name: "supports",
+        params:
+          "(backdrop-filter: blur(0)) or (-webkit-backdrop-filter: blur(0))",
+        nodes: [node],
+      });
+      node.replaceWith(atRule);
+    }
+  });
+  return root;
+};
+
+const base: Partial<MapcssConfig> = {
+  modifierMap: {
+    supports: {
+      backdrop: {
+        blur: supportBackdropBlur,
+      },
+    },
+  },
+  preset: [
+    presetTw({
+      darkMode: "class",
+    }),
+    presetTypography({
+      css: {
+        h2: {
+          lineHeight: false,
+        },
+        pre: {
+          padding: false,
+        },
+        "code, pre": {
+          background: false,
+        },
+        code: {
+          color: false,
+        },
+        ":not(pre) > code::before, :not(pre) > code::after": false,
+      },
+    }),
+    presetSvg({
+      svgMap: {
+        mdi: iconifyJSON(mdi),
+      },
+      declaration: {
+        display: "inline-block",
+        verticalAlign: "middle",
+      },
+    }),
+  ],
+};
+
+const config: Partial<MapcssConfig> = {
+  ...base,
+  css: {
+    ".dark": {
+      ...chain(generate(base, "bg-dark-900 text-slate-50").ast).map(
+        filterDeclaration,
+      ).map(
+        toObject,
+      ).unwrap(),
+    },
+  },
+  cssMap: {
+    max: {
+      w: {
+        "8xl": {
+          maxWidth: "90rem",
+        },
+      },
+    },
+  },
+};
 
 export default <Config> {
   plugins: [
     mapcssPlugin({
-      preset: [
-        presetTw(),
-        presetTypography({
-          css: {
-            h2: {
-              lineHeight: false,
-            },
-            pre: {
-              padding: false,
-            },
-            "code, pre": {
-              background: false,
-            },
-            code: {
-              color: false,
-            },
-            ":not(pre) > code::before, :not(pre) > code::after": false,
-          },
-        }),
-        presetIcon({
-          svgMap: {
-            mdi: iconifyJSON(mdi),
-          },
-          declaration: {
-            display: "inline-block",
-            verticalAlign: "middle",
-          },
-        }),
-      ],
+      ...config,
       ext: ["tsx", "mdx"],
     }),
     mdx({

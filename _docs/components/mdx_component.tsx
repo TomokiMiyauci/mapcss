@@ -62,7 +62,7 @@ export const components: MDXComponents = {
     if (isString(rest.children)) {
       return (
         <code
-          className="bg-gray-100 px-1 py-0.5 rounded"
+          className="bg-gray-100 dark:bg-dark-100 px-1 py-0.5 rounded"
           {...rest}
         />
       );
@@ -70,7 +70,7 @@ export const components: MDXComponents = {
     return (
       <code
         className={clsx(
-          `sm:rounded-xl text-sm sm:shadow-xl font-[Fira_Code_VF,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation_Mono,Courier_New,monospace]`,
+          `sm:rounded-xl shadow-sm text-sm font-[Fira_Code_VF,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation_Mono,Courier_New,monospace] ring-1 ring-inset ring-white/10`,
           className,
         )}
         {...rest}

@@ -7,7 +7,7 @@ Tiny, composable Atomic CSS engine
 [![nest.land](https://nest.land/badge.svg)](https://nest.land/package/mapcss)
 
 [![release](https://img.shields.io/github/v/release/TomokiMiyauci/mapcss?sort=semver&color=black&logo=github)](https://github.com/TomokiMiyauci/mapcss/releases)
-[![deno version](https://img.shields.io/badge/deno-^1.18.0-black?logo=deno)](https://github.com/denoland/deno)
+[![deno version](https://img.shields.io/badge/deno-^1.19.0-black?logo=deno)](https://github.com/denoland/deno)
 [![deno doc](https://img.shields.io/badge/deno-doc-black)](https://doc.deno.land/https/deno.land/x/mapcss/mod.ts)
 
 [![test](https://github.com/TomokiMiyauci/mapcss/actions/workflows/test.yaml/badge.svg?branch=beta)](https://github.com/TomokiMiyauci/mapcss/actions/workflows/test.yaml)
@@ -29,9 +29,22 @@ subject to change.
 
 ## Features
 
-- ⚗️ Flexibility
+- 🎓 Hierarchical mapping strategy
 
-  Mapping is free. And you can define a very flexible mapping syntax.
+  Map CSS Statements with hierarchical identifiers. Compared to flat, it is more
+  readable and uses as few regular expressions as possible. In addition, regular
+  expression matching is scoped, improving performance.
+
+- 💅 Flexible
+
+  The CSS Statement is written in CSS-in-JS style. It is a plain JavaScript
+  Object with excellent readability.
+
+- 🌳 AST based
+
+  CSS-in-JS is converted to AST(postcss AST). postcss AST is a widely known
+  standard format that can be freely converted and added to and benefits from a
+  large ecosystem.
 
 - 🌐 Universal
 
@@ -63,9 +76,9 @@ mapcss provides several preset.
   [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
   or
   [@unocss/preset-typography](https://github.com/unocss/unocss/tree/main/packages/preset-typography).
-- [presetIcon](./preset_icon/README.md)
+- [presetSvg](./preset_svg/README.md)
 
-  SVG markup as CSS. By using the [iconifyJSON](./preset_icon/convert.ts#L8)
+  SVG markup as CSS. By using the [iconifyJSON](./preset_svg/convert.ts#L8)
   converter, you can use `iconify.json` as a pure CSS icon.
 
 For example, using `presetTw`, you can use the utility class of

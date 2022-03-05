@@ -1,14 +1,5 @@
 import type { ModifierDefinition } from "./../../core/types.ts";
 
-export const pseudo: ModifierDefinition = (root, { modifier }) => {
-  root.each((childNode) => {
-    if (childNode.type === "rule") {
-      childNode.selector = `${childNode.selector}:${modifier}`;
-    }
-  });
-
-  return root;
-};
 export const scrollbar: ModifierDefinition = (parent) => {
   parent.walkRules((rule) => {
     rule.selector = `${rule.selector}::-webkit-scrollbar`;

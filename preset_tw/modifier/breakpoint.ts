@@ -1,4 +1,5 @@
 import { resolveTheme } from "../../core/resolve.ts";
+import { isAtRule, isRule } from "../../core/utils/assert.ts";
 
 import { AtRule, Root, Some } from "../../deps.ts";
 import type {
@@ -18,13 +19,18 @@ function breakPointHandler(
     minWidthMediaQuery,
   ).match({
     some: (rule) => {
-      parentNode.nodes = parentNode.nodes.map((childNode) =>
-        new AtRule({
-          name: "media",
-          params: rule,
-          nodes: [childNode],
-        })
-      );
+      parentNode.each((node) => {
+        if (isAtRule(node) || isRule(node)) {
+          const atRule = new AtRule({
+            name: "media",
+            params: rule,
+            nodes: [node],
+          });
+
+          node.replaceWith(atRule);
+        }
+      });
+
       return parentNode;
     },
     none: undefined,

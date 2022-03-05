@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        deno: [v1.x, canary]
+        deno: [1.19.0]
 
     steps:
       - name: Checkout
@@ -35,7 +35,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        deno: [v1.x, canary]
+        deno: [1.19.0]
 
     steps:
       - name: Checkout

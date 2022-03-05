@@ -1,4 +1,5 @@
 import { reBracket_$ } from "../../core/utils/regexp.ts";
+import { customPropertySet } from "./_utils.ts";
 import type { EntriesIdentifier } from "../../core/types.ts";
 export const content: EntriesIdentifier = [
   ["none", { content: "none" }],
@@ -8,5 +9,11 @@ export const content: EntriesIdentifier = [
   ["between", { "align-content": "space-between" }],
   ["around", { "align-content": "space-around" }],
   ["evenly", { "align-content": "space-evenly" }],
-  [reBracket_$, ([, content]) => ({ content })],
+  [reBracket_$, ([, body], { variablePrefix }) => {
+    const [varContent, varFnContent] = customPropertySet(
+      "content",
+      variablePrefix,
+    );
+    return { [varContent]: body, content: varFnContent };
+  }],
 ];

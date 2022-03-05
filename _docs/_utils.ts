@@ -65,6 +65,13 @@ export async function getNavMenu() {
     ),
   };
 
+  const theme: NavMenu = {
+    name: "Theme",
+    items: fronts.filter(({ category }) => category === "Theme").map(
+      pickField,
+    ),
+  };
+
   const layout = {
     name: "Layout",
     items: fronts.filter(({ category }) => category === "Layout").map(
@@ -174,6 +181,7 @@ export async function getNavMenu() {
 
   const navMenu: NavMenu[] = [
     gettingStarted,
+    theme,
     layout,
     flexGrid,
     spacing,

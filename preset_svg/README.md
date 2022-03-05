@@ -1,4 +1,4 @@
-# preset-icon
+# preset-svg
 
 > SVG icon for mapcss
 
@@ -9,14 +9,14 @@ import {
   type Config,
   generate,
   iconifyJSON,
-  presetIcon,
+  presetSvg,
 } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 import carbon from "https://esm.sh/@iconify-json/carbon/icons.json" assert {
   type: "json",
 };
 
 const config: Partial<Config> = {
-  preset: [presetIcon({
+  preset: [presetSvg({
     svgMap: {
       carbon: iconifyJSON(carbon),
       bitcoin: "<svg ...</svg>",

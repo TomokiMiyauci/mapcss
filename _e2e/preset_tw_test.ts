@@ -5423,7 +5423,7 @@ const expects: [string, string][] = [
   ["content-none", ".content-none{content:none}"],
   [
     `content-['Hello_World']`,
-    `.content-\\[\\'Hello_World\\'\\]{content:'Hello World'}`,
+    `.content-\\[\\'Hello_World\\'\\]{--map-content:'Hello World';content:var(--map-content)}`,
   ],
   ["rounded", ".rounded{border-radius:0.25rem}"],
   ["rounded-none", ".rounded-none{border-radius:0px}"],
