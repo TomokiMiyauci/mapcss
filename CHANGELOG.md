@@ -1,3 +1,10 @@
+# [1.0.0-beta.31](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2022-03-06)
+
+
+### Bug Fixes
+
+* change dependency version or import source for capability of low deno version ([2650b0e](https://github.com/TomokiMiyauci/mapcss/commit/2650b0e9277fa879ec5ad17eb3871aa4b6672784))
+
 # [1.0.0-beta.30](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2022-03-05)
 
 
