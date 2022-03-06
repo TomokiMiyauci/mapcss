@@ -1,3 +1,12 @@
+# [1.0.0-beta.32](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2022-03-06)
+
+
+### Bug Fixes
+
+* **preset_svg:** fix external import specifier ([31fced2](https://github.com/TomokiMiyauci/mapcss/commit/31fced2e057661d33634ef5013f2e6e2e64ee47e))
+* **preset_svg:** fix types of convert args ([d8b2df3](https://github.com/TomokiMiyauci/mapcss/commit/d8b2df3ce976ae481c76e444daffd47b6981c65e))
+* **preset_tw:** remove external ordering media query because the module deps is invalid ([4a691e1](https://github.com/TomokiMiyauci/mapcss/commit/4a691e1d4a5abdea3562b669546d09600039ecf6))
+
 # [1.0.0-beta.31](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2022-03-06)
 
 
