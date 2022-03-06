@@ -52,10 +52,17 @@ export {
   toAST,
   toObject,
 } from "https://deno.land/x/postcss_js@v1.0.0-beta.3/mod.ts";
+export { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
 export {
-  default as parseSelector,
+  className as classNameNode,
+  combinator as combinatorNode,
+  pseudo as pseudoNode,
+  selector as selectorNode,
+} from "https://deno.land/x/postcss_selector_parser@v6.0.2/src/selectors/index.js";
+export type {
+  Node as SelectorNode,
+  SyncProcessor,
 } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
-export type { Node as SelectorNode } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
 }

@@ -1,6 +1,8 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import {
   chain,
+  classNameNode,
+  combinatorNode,
   deepMerge,
   isEmptyObject,
   isLength0,
@@ -10,9 +12,12 @@ import {
   mapEntries,
   parseSelector,
   prop,
+  pseudoNode,
   Root,
   Rule,
   SelectorNode,
+  selectorNode,
+  SyncProcessor,
   toAST,
 } from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
@@ -373,38 +378,41 @@ function isWhereableNode(node: SelectorNode): boolean {
 }
 
 export function transformSelector(selector: string, className: string): string {
-  const result = parseSelector((root) => {
+  const processor: SyncProcessor = (root) => {
     root.nodes.forEach((selector) => {
       const pseudos = selector.filter((v) => !isWhereableNode(v));
 
-      const where = parseSelector.pseudo({
+      const where = pseudoNode({
         "value": ":where",
         nodes: [
-          parseSelector.selector({
+          selectorNode({
             value: "",
             nodes: selector.filter(isWhereableNode),
           }),
         ],
       });
 
-      const classNameNode = parseSelector.className({ value: className });
-      const combinator = parseSelector.combinator({ value: " " });
+      const _classNameNode = classNameNode({ value: className });
+      const _combinatorNode = combinatorNode({ value: " " });
       const NOT = "not";
-      const notClassName = parseSelector.className({
+      const notClassName = classNameNode({
         value: `${NOT}-${className}`,
       });
-      const not = parseSelector.pseudo({
+      const not = pseudoNode({
         value: ":not",
         nodes: [notClassName],
       });
-      const newSelector = parseSelector.selector({
+      const newSelector = selectorNode({
         value: "",
-        nodes: [classNameNode, combinator, where, not, ...pseudos],
+        nodes: [_classNameNode, _combinatorNode, where, not, ...pseudos],
       });
 
-      selector.replaceWith(newSelector);
+      selector.replaceWith(newSelector as never);
     });
-  }).processSync(selector, { lossless: false });
+  };
+  const result = parseSelector(processor).processSync(selector, {
+    lossless: false,
+  });
   return result;
 }
 

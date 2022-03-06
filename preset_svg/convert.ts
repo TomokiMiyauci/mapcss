@@ -1,4 +1,4 @@
-import { IconifyJSON } from "https://esm.sh/@iconify/types/types.ts";
+import type { IconifyJSON } from "https://cdn.esm.sh/v66/@iconify/types@1.0.12/types.ts~.d.ts";
 
 import { parseIconSet } from "https://esm.sh/@iconify/utils/lib/icon-set/parse?dts&pin=v66";
 import { defaults } from "https://esm.sh/@iconify/utils/lib/customisations";

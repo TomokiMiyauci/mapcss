@@ -1,5 +1,5 @@
-import { None, type Option, Some } from "../../deps.ts";
-import { hex2RGBA, type RGBA } from "./parse.ts";
+import { None, Option, Some } from "../../deps.ts";
+import { hex2RGBA, RGBA } from "./parse.ts";
 
 export function parseNumeric(value: string): Option<number> {
   const number = Number(value);
