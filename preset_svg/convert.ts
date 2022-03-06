@@ -1,4 +1,4 @@
-import { IconifyIcon } from "https://cdn.esm.sh/@iconify/types@1.0.12/types.ts";
+import { IconifyJSON } from "https://cdn.esm.sh/@iconify/types@1.0.12/types.ts";
 
 import { parseIconSet } from "https://esm.sh/@iconify/utils/lib/icon-set/parse?dts&pin=v66";
 import { defaults } from "https://esm.sh/@iconify/utils/lib/customisations";
@@ -6,7 +6,7 @@ import { Option } from "./types.ts";
 import { iconToSVG } from "https://esm.sh/@iconify/utils/lib/svg/build";
 
 export function iconifyJSON(
-  icon: IconifyIcon,
+  icon: IconifyJSON,
 ): Option["svgMap"] {
   const identifier: Option["svgMap"] = {};
   parseIconSet(icon, (name: string, iconData: string) => {
