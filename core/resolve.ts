@@ -1,4 +1,5 @@
 import {
+  Arrayable,
   deepMerge,
   distinctBy,
   head,
@@ -13,13 +14,9 @@ import {
   Root,
   tail,
   toAST,
+  wrap,
 } from "../deps.ts";
-import {
-  isBlockDefinition,
-  isCSSDefinition,
-  isCSSObject,
-  isRoot,
-} from "./utils/assert.ts";
+import { isBlockDefinition, isCSSDefinition, isRoot } from "./utils/assert.ts";
 import type {
   CSSMap,
   IdentifierContext,
@@ -46,7 +43,10 @@ function firstSplit(
   return rest;
 }
 
-function leftSplit(value: string[] | string, separator: string): string[][] {
+function leftSplit(
+  value: Arrayable<string>,
+  separator: string,
+): string[][] {
   const _value = isString(value) ? [value] : value;
 
   const _last = last(_value);
@@ -59,46 +59,48 @@ function leftSplit(value: string[] | string, separator: string): string[][] {
 }
 
 export function resolveCSSMap(
-  value: string | string[],
-  cssMap: CSSMap,
+  value: Arrayable<string>,
+  cssMap: Arrayable<Readonly<CSSMap>>,
   context:
     & Omit<IdentifierContext, "key" | "parentKey" | "path">
     & { parentKey?: string; key?: string },
 ): Root | undefined {
-  const paths = leftSplit(value, context.separator);
-  for (const path of paths) {
-    const first = head(path) ?? "";
-    const rest = tail(path);
+  for (const map of wrap(cssMap)) {
+    const paths = leftSplit(value, context.separator);
+    for (const path of paths) {
+      const first = head(path) ?? "";
+      const rest = tail(path);
 
-    const cssMapContext = makeCSSContext(context, { key: first, path });
+      const cssMapContext = makeCSSContext(context, { key: first, path });
 
-    const maybeDefinition = prop(first, cssMap) as
-      | IdentifierDefinition
-      | undefined ?? prop("*", cssMap);
+      const maybeDefinition = prop(first, map) as
+        | IdentifierDefinition
+        | undefined ?? prop("*", map);
 
-    const resolve = (
-      value: IdentifierDefinition | undefined,
-    ): Root | undefined => {
-      if (isUndefined(value)) return;
+      const resolve = (
+        value: IdentifierDefinition | undefined,
+      ): Root | undefined => {
+        if (isUndefined(value)) return;
 
-      if (isFunction(value)) {
-        return resolve(value(cssMapContext.key, cssMapContext));
-      } else if (isCSSDefinition(value)) {
-        return toAST(value.value);
-      } else if (isRoot(value)) {
-        return value;
-      } else if (isBlockDefinition(value)) {
-        return toAST({
-          [context.className]: value,
-        });
-      } else {
-        return resolveCSSMap(rest, value, cssMapContext);
-      }
-    };
+        if (isFunction(value)) {
+          return resolve(value(cssMapContext.key, cssMapContext));
+        } else if (isCSSDefinition(value)) {
+          return toAST(value.value);
+        } else if (isRoot(value)) {
+          return value;
+        } else if (isBlockDefinition(value)) {
+          return toAST({
+            [context.className]: value,
+          });
+        } else {
+          return resolveCSSMap(rest, value, cssMapContext);
+        }
+      };
 
-    const result = resolve(maybeDefinition);
-    if (isUndefined(result)) continue;
-    return result;
+      const result = resolve(maybeDefinition);
+      if (isUndefined(result)) continue;
+      return result;
+    }
   }
 }
 
@@ -111,7 +113,7 @@ function makeCSSContext(
   const _key = key ? key : baseContext.key ?? "";
   return {
     ...baseContext,
-    parentKey: "",
+    parentKey: baseContext.key,
     key: _key,
     path,
   };
@@ -217,7 +219,7 @@ export function resolveConfig(
     >
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
-): Omit<StaticConfig, "preset"> {
+): Omit<StaticConfig, "preset" | "cssMap"> & { cssMaps: CSSMap[] } {
   const _presets = resolvePreset(preset, context);
   const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
     .reduce((acc, cur) => {
@@ -233,9 +235,7 @@ export function resolveConfig(
     ..._syntax,
     ..._presets.map(({ syntax }) => syntax).flat(),
   );
-  const cssMap = mergeCSSMap(
-    [..._presets.map(({ cssMap }) => cssMap), _cssMap],
-  );
+  const cssMaps = [..._presets.map(({ cssMap }) => cssMap), _cssMap];
 
   const preProcess = resolvePreProcessor(
     ..._postProcess,
@@ -250,7 +250,7 @@ export function resolveConfig(
     ..._presets.map(({ postcssPlugin }) => postcssPlugin).flat(),
   ];
   return {
-    cssMap,
+    cssMaps,
     theme,
     modifierMap,
     syntax,
@@ -300,27 +300,4 @@ export function resolveModifierMap(
     }
     context.path = undefined;
   }
-}
-
-export function mergeCSSMap(cssMap: CSSMap[]): CSSMap {
-  return cssMap.reduce((acc, cur) => {
-    return deepMerge(acc, cur);
-  }, {});
-}
-
-export function defaultify(cssMap: CSSMap): CSSMap {
-  return Object.entries(cssMap).reduce((acc, [key, value]) => {
-    const result = isFunction(value) || isCSSObject(value)
-      ? (() => {
-        const map = { "": value };
-        if (key) {
-          return { [key]: map };
-        } else {
-          return map;
-        }
-      })()
-      : { [key]: defaultify(value) };
-
-    return deepMerge(acc, result);
-  }, {});
 }

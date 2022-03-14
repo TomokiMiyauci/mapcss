@@ -1,69 +1,10 @@
-import { expect, ParamReturn, test } from "../dev_deps.ts";
-import { defaultify, mergeCSSMap, resolveCSSMap } from "./resolve.ts";
+import { expect, test } from "../dev_deps.ts";
+import { resolveCSSMap } from "./resolve.ts";
 import { Root } from "../deps.ts";
 import type { BinaryTree, CSSMap, IdentifierContext } from "./types.ts";
 
 const block = { display: "block" };
 const inlineBlock = { display: "inline-block" };
-test("mergeCSSMap", () => {
-  const table: ParamReturn<typeof mergeCSSMap>[] = [
-    [[{}], {}],
-    [[{ block }], { block: { "": block } }],
-    [[{ block }, {
-      inline: { block: inlineBlock },
-    }], {
-      block: { "": block },
-      inline: {
-        block: { "": inlineBlock },
-      },
-    }],
-    [[{ block }, { block: { "": block } }], { block: { "": block } }],
-    [[{ block }, { block: { display: "inline-block" } }], {
-      block: { "": { display: "inline-block" } },
-    }],
-    [[{ block }, { block: { "": { display: "inline-block" } } }], {
-      block: { "": { display: "inline-block" } },
-    }],
-  ];
-
-  table.forEach(([cssMap, result]) =>
-    expect(mergeCSSMap(cssMap)).toEqual(result)
-  );
-});
-
-test("defaultify", () => {
-  const table: ParamReturn<typeof defaultify>[] = [
-    [{}, {}],
-    [{ block }, { block: { "": block } }],
-    [{ block: { "": block } }, { block: { "": block } }],
-    [{ block: { "": block }, inline: { block: { display: "inline-block" } } }, {
-      block: { "": block },
-      inline: { block: { "": { display: "inline-block" } } },
-    }],
-    [{ block, flex: { display: "flex" } }, {
-      block: { "": block },
-      flex: { "": { display: "flex" } },
-    }],
-    [
-      {
-        block: { "": { display: "block" } },
-        flex: { "": { display: "flex" } },
-      },
-      {
-        block: { "": { display: "block" } },
-        flex: { "": { display: "flex" } },
-      },
-    ],
-    [{ block: { "$DEFAULT": {} } }, { block: { "$DEFAULT": { "": {} } } }],
-    [{ block: { "": {}, "$DEFAULT": {} } }, {
-      block: { "": {}, "$DEFAULT": { "": {} } },
-    }],
-  ];
-
-  table.forEach(([cssMap, result]) =>
-    expect(defaultify(cssMap)).toEqual(result)
-  );
-});
 
 function createCSSMapContext(
   context: Partial<IdentifierContext> = {},

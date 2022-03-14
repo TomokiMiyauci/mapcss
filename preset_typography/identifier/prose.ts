@@ -194,7 +194,7 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
 
       return root;
     },
-    invert: (_, { key, variablePrefix, className }) => {
+    invert: (key, { variablePrefix, className }) => {
       const varProperty = (property: string): string =>
         customProperty(property, variablePrefix);
       const makeVarFnSet = (

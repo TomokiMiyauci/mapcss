@@ -82,7 +82,7 @@ export function generate(
     syntax,
     modifierMap,
     theme,
-    cssMap,
+    cssMaps,
     preProcess,
     postcssPlugin,
     css,
@@ -103,7 +103,12 @@ export function generate(
       const parseResult = fn(mappedToken, {
         ...staticContext,
         modifierRoots: Object.keys(modifierMap),
-        identifierRoots: Object.keys(cssMap),
+        identifierRoots: Array.from(cssMaps.reduceRight((acc, cur) => {
+          Object.keys(cur).forEach((key) => {
+            acc.add(key);
+          });
+          return acc;
+        }, new Set<string>())),
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
@@ -116,13 +121,14 @@ export function generate(
 
       const identifierRoot = resolveCSSMap(
         identifier,
-        cssMap,
+        cssMaps.reverse(),
         {
           ...staticContext,
           ...runtimeContext,
           identifier,
         },
       );
+
       if (isUndefined(identifierRoot)) continue;
       const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;

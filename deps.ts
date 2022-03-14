@@ -189,3 +189,7 @@ export function chain<T>(val: T): Chain<T> {
     unwrap: (): T => val,
   };
 }
+
+export function wrap<T>(val: T): T extends any[] ? T : T[] {
+  return Array.isArray(val) ? val as never : [val] as never;
+}
