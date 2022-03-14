@@ -1,4 +1,4 @@
-import { re$PositiveNumber } from "../../core/utils/regexp.ts";
+import { execMatch, re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { transformValue } from "./_utils.ts";
 import {
@@ -7,7 +7,7 @@ import {
   shortDecimal,
 } from "../../core/utils/format.ts";
 import { associateWith } from "../../deps.ts";
-import type { BlockDefinition, EntriesIdentifier } from "../../core/types.ts";
+import type { BlockDefinition, CSSMap } from "../../core/types.ts";
 
 function handleScale(
   properties: string[],
@@ -26,24 +26,31 @@ function handleScale(
   });
 }
 
-export const scale: EntriesIdentifier = [
-  ["x", [
-    [
-      re$PositiveNumber,
-      ([, pNumber], { variablePrefix }) =>
-        handleScale(["scale-x"], pNumber, variablePrefix),
-    ],
-  ]],
-  ["y", [
-    [
-      re$PositiveNumber,
-      ([, pNumber], { variablePrefix }) =>
-        handleScale(["scale-y"], pNumber, variablePrefix),
-    ],
-  ]],
-  [
-    re$PositiveNumber,
-    ([, pNumber], { variablePrefix }) =>
-      handleScale(["scale-x", "scale-y"], pNumber, variablePrefix),
-  ],
-];
+export const scale: CSSMap = {
+  x: {
+    "*": (match, { variablePrefix }) =>
+      execMatch(match, [
+        [
+          re$PositiveNumber,
+          ([, pNumber]) => handleScale(["scale-x"], pNumber, variablePrefix),
+        ],
+      ]),
+  },
+  y: {
+    "*": (match, { variablePrefix }) =>
+      execMatch(match, [
+        [
+          re$PositiveNumber,
+          ([, pNumber]) => handleScale(["scale-y"], pNumber, variablePrefix),
+        ],
+      ]),
+  },
+  "*": (match, { variablePrefix }) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          handleScale(["scale-x", "scale-y"], pNumber, variablePrefix),
+      ],
+    ]),
+};

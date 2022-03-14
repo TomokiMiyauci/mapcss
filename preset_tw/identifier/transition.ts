@@ -1,36 +1,36 @@
-import type { EntriesIdentifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
 const transitionBase = {
-  "transition-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)",
-  "transition-duration": "150ms",
+  transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+  transitionDuration: "150ms",
 };
 
-export const transition: EntriesIdentifier = [
-  ["DEFAULT", {
-    "transition-property":
+export const transition: CSSMap = {
+  "": {
+    transitionProperty:
       "color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter",
     ...transitionBase,
-  }],
-  ["none", { "transition-property": "none" }],
-  ["all", {
-    "transition-property": "all",
+  },
+  none: { transitionProperty: "none" },
+  all: {
+    transitionProperty: "all",
     ...transitionBase,
-  }],
-  ["colors", {
-    "transition-property":
+  },
+  colors: {
+    transitionProperty:
       "color, background-color, border-color, text-decoration-color, fill, stroke",
     ...transitionBase,
-  }],
-  ["opacity", {
-    "transition-property": "opacity",
+  },
+  opacity: {
+    transitionProperty: "opacity",
     ...transitionBase,
-  }],
-  ["shadow", {
-    "transition-property": "box-shadow",
+  },
+  shadow: {
+    transitionProperty: "box-shadow",
     ...transitionBase,
-  }],
-  ["transform", {
-    "transition-property": "transform",
+  },
+  transform: {
+    transitionProperty: "transform",
     ...transitionBase,
-  }],
-];
+  },
+};

@@ -1,50 +1,56 @@
-import { re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
+import { execMatch, re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { matcher, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
-import type { RecordIdentifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const max: RecordIdentifier = {
-  w: [
-    [0, { "max-width": "0rem" }],
-    ["none", { "max-width": "none" }],
-    ["xs", { "max-width": "20rem" }],
-    ["sm", { "max-width": "24rem" }],
-    ["md", { "max-width": "28rem" }],
-    ["lg", { "max-width": "32rem" }],
-    ["xl", { "max-width": "36rem" }],
-    ["2xl", { "max-width": "42rem" }],
-    ["3xl", { "max-width": "48rem" }],
-    ["4xl", { "max-width": "56rem" }],
-    ["5xl", { "max-width": "64rem" }],
-    ["6xl", { "max-width": "72rem" }],
-    ["7xl", { "max-width": "80rem" }],
-    ["full", { "max-width": "100%" }],
-    ["min", { "max-width": "min-content" }],
-    ["max", { "max-width": "max-content" }],
-    ["fit", { "max-width": "fit-content" }],
-    ["prose", { "max-width": "65ch" }],
-    ["screen", {
-      sm: { "max-width": "640px" },
-      md: { "max-width": "768px" },
-      lg: { "max-width": "1024px" },
-      xl: { "max-width": "1280px" },
-      "2xl": { "max-width": "1536px" },
-    }],
-    [reBracket_$, ([, arbitrary]) => ({ "max-width": arbitrary })],
-  ],
-  h: [
-    [
-      re$Numeric,
-      ([, numeric]) =>
-        parseNumeric(numeric).andThen(remify).match(matcher("max-height")),
-    ],
-    [reBracket_$, ([, arbitrary]) => ({ "max-height": arbitrary })],
-    [0, { "max-height": "0px" }],
-    ["px", { "max-height": "1px" }],
-    ["full", { "max-height": "100%" }],
-    ["screen", { "max-height": "100vh" }],
-    ["min", { "max-height": "min-content" }],
-    ["max", { "max-height": "max-content" }],
-    ["fit", { "max-height": "fit-content" }],
-  ],
+export const max: CSSMap = {
+  w: {
+    0: { maxWidth: "0rem" },
+    none: { maxWidth: "none" },
+    xs: { maxWidth: "20rem" },
+    sm: { maxWidth: "24rem" },
+    md: { maxWidth: "28rem" },
+    lg: { maxWidth: "32rem" },
+    xl: { maxWidth: "36rem" },
+    "2xl": { maxWidth: "42rem" },
+    "3xl": { maxWidth: "48rem" },
+    "4xl": { maxWidth: "56rem" },
+    "5xl": { maxWidth: "64rem" },
+    "6xl": { maxWidth: "72rem" },
+    "7xl": { maxWidth: "80rem" },
+    full: { maxWidth: "100%" },
+    min: { maxWidth: "min-content" },
+    max: { maxWidth: "max-content" },
+    fit: { maxWidth: "fit-content" },
+    prose: { maxWidth: "65ch" },
+    screen: {
+      sm: { maxWidth: "640px" },
+      md: { maxWidth: "768px" },
+      lg: { maxWidth: "1024px" },
+      xl: { maxWidth: "1280px" },
+      "2xl": { maxWidth: "1536px" },
+    },
+    "*": (match) =>
+      execMatch(match, [
+        [reBracket_$, ([, arbitrary]) => ({ maxWidth: arbitrary })],
+      ]),
+  },
+  h: {
+    0: { maxHeight: "0px" },
+    px: { maxHeight: "1px" },
+    full: { maxHeight: "100%" },
+    screen: { maxHeight: "100vh" },
+    min: { maxHeight: "min-content" },
+    max: { maxHeight: "max-content" },
+    fit: { maxHeight: "fit-content" },
+    "*": (match) =>
+      execMatch(match, [
+        [
+          re$Numeric,
+          ([, numeric]) =>
+            parseNumeric(numeric).andThen(remify).match(matcher("max-height")),
+        ],
+        [reBracket_$, ([, arbitrary]) => ({ maxHeight: arbitrary })],
+      ]),
+  },
 };

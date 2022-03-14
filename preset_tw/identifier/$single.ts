@@ -13,12 +13,7 @@ import {
   shortDecimal,
   unit,
 } from "../../core/utils/format.ts";
-import type {
-  BlockDefinition,
-  EntriesIdentifier,
-  Identifier,
-  RecordIdentifier,
-} from "../../core/types.ts";
+import type { BlockDefinition, CSSMap } from "../../core/types.ts";
 import {
   customPropertySet,
   handleTransform,
@@ -30,6 +25,7 @@ import {
 import { resolveTheme } from "../../core/resolve.ts";
 import { associateWith, isUndefined } from "../../deps.ts";
 import {
+  execMatch,
   re$All,
   re$AllPer$PositiveNumber,
   re$AllPerBracket_$,
@@ -38,77 +34,75 @@ import {
   re$PositiveNumberPer$PositiveNumber,
   reBracket_$,
 } from "../../core/utils/regexp.ts";
-import { AUTO } from "../../constants.ts";
 
-const VERTICAL_ALIGN = "vertical-align";
+export const align: CSSMap = {
+  baseline: { verticalAlign: "baseline" },
+  top: { verticalAlign: "top" },
+  middle: { verticalAlign: "middle" },
+  bottom: { verticalAlign: "bottom" },
+  text: {
+    top: { verticalAlign: "text-top" },
+    bottom: { verticalAlign: "text-bottom" },
+  },
+  sub: { verticalAlign: "sub" },
+  super: { verticalAlign: "super" },
+};
 
-export const align: EntriesIdentifier = [
-  ["baseline", { [VERTICAL_ALIGN]: "baseline" }],
-  ["top", { [VERTICAL_ALIGN]: "top" }],
-  ["middle", { [VERTICAL_ALIGN]: "middle" }],
-  ["bottom", { [VERTICAL_ALIGN]: "bottom" }],
-  ["text", {
-    top: { [VERTICAL_ALIGN]: "text-top" },
-    bottom: { [VERTICAL_ALIGN]: "text-bottom" },
-  }],
-  ["sub", { [VERTICAL_ALIGN]: "sub" }],
-  ["super", { [VERTICAL_ALIGN]: "super" }],
-];
-const ASPECT_RATIO = "aspect-ratio";
-export const aspect: EntriesIdentifier = [
-  ["auto", { [ASPECT_RATIO]: AUTO }],
-  ["square", { [ASPECT_RATIO]: "1/1" }],
-  ["video", { [ASPECT_RATIO]: "16/9" }],
-  [reBracket_$, ([, arbitrary]) => ({ [ASPECT_RATIO]: arbitrary })],
-];
-export const basis: EntriesIdentifier = [
-  [0, { "flex-basis": "0px" }],
-  ["px", { "flex-basis": "1px" }],
-  ["auto", { "flex-basis": "auto" }],
-  ["full", {
-    "flex-basis": "100%",
-  }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("flex-basis")),
-  ],
-  [
-    re$AllPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize).match(
-        matcher(["flex-basis"]),
-      ),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })],
-];
+export const aspect: CSSMap = {
+  auto: { aspectRatio: "auto" },
+  square: { aspectRatio: "1 / 1" },
+  video: { aspectRatio: "16 / 9" },
+  "*": (match) =>
+    execMatch(match, [
+      [reBracket_$, ([, body]) => ({ aspectRatio: body })],
+    ]),
+};
+
+export const basis: CSSMap = {
+  0: { flexBasis: "0px" },
+  px: { flexBasis: "1px" },
+  auto: { flexBasis: "auto" },
+  full: { flexBasis: "100%" },
+  "*": (key) =>
+    execMatch(key, [[
+      re$Numeric,
+      ([, numeric]) =>
+        parseNumeric(numeric).andThen(remify).match(matcher("flex-basis")),
+    ], [
+      re$AllPer$PositiveNumber,
+      ([, numerator, denominator]) =>
+        parseFraction(numerator, denominator).map(percentize).match(
+          matcher(["flex-basis"]),
+        ),
+    ], [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })]]),
+};
+
 export const block: BlockDefinition = { display: "block" };
-export const bottom: EntriesIdentifier = [
-  [0, { bottom: "0px" }],
-  ["px", { bottom: "1px" }],
-  ["auto", { bottom: "auto" }],
-  ["full", { bottom: "100%" }],
-  ["f", { "$css": { "ff": "ff" } }],
-  [
-    re$PositiveNumberPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize).match(
-        matcher(["bottom"]),
-      ),
-  ],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher(["bottom"])),
-  ],
-  [
-    reBracket_$,
-    ([, attr]) => ({ bottom: attr }),
-  ],
-];
 
-export const container: EntriesIdentifier = [
-  ["DEFAULT", (_, context) => {
+export const bottom: CSSMap = {
+  0: { bottom: "0px" },
+  px: { bottom: "1px" },
+  auto: { bottom: "auto" },
+  full: { bottom: "100%" },
+  "*": (key) =>
+    execMatch(key, [[
+      re$PositiveNumberPer$PositiveNumber,
+      ([, numerator, denominator]) =>
+        parseFraction(numerator, denominator).map(percentize).match(
+          matcher(["bottom"]),
+        ),
+    ], [
+      re$Numeric,
+      ([, numeric]) =>
+        parseNumeric(numeric).andThen(remify).match(matcher(["bottom"])),
+    ], [
+      reBracket_$,
+      ([, attr]) => ({ bottom: attr }),
+    ]]),
+};
+
+export const container: CSSMap = {
+  "": (_, context) => {
     const SCREEN = "screen";
     const sm = resolveTheme("sm", SCREEN, context);
     const md = resolveTheme("md", SCREEN, context);
@@ -117,7 +111,6 @@ export const container: EntriesIdentifier = [
     const $2xl = resolveTheme("2xl", SCREEN, context);
 
     const { className } = context;
-
     const media = (size: string) => ({
       [`@media (min-width: ${size})`]: { [className]: { "max-width": size } },
     });
@@ -137,539 +130,622 @@ export const container: EntriesIdentifier = [
         },
       };
     }
-  }],
-];
-export const clear: RecordIdentifier = {
+  },
+};
+
+export const clear: CSSMap = {
   right: { clear: "right" },
   left: { clear: "left" },
   both: { clear: "both" },
   none: { clear: "none" },
 };
-export const columns: EntriesIdentifier = [
-  ["auto", { columns: "auto" }],
-  ["3xs", { columns: "16rem" }],
-  ["2xs", { columns: "18rem" }],
-  ["xs", { columns: "20rem" }],
-  ["sm", { columns: "24rem" }],
-  ["md", { columns: "28rem" }],
-  ["lg", { columns: "32rem" }],
-  ["xl", { columns: "36rem" }],
-  ["2xl", { columns: "42rem" }],
-  ["3xl", { columns: "48rem" }],
-  ["4xl", { columns: "56rem" }],
-  ["5xl", { columns: "64rem" }],
-  ["6xl", { columns: "72rem" }],
-  ["7xl", { columns: "80rem" }],
-  [re$PositiveNumber, ([, n]) => parseNumeric(n).match(matcher("columns"))],
-  [reBracket_$, ([, arbitrary]) => ({ "columns": arbitrary })],
-];
-export const float: Identifier = {
+export const columns: CSSMap = {
+  auto: { columns: "auto" },
+  "3xs": { columns: "16rem" },
+  "2xs": { columns: "18rem" },
+  xs: { columns: "20rem" },
+  sm: { columns: "24rem" },
+  md: { columns: "28rem" },
+  lg: { columns: "32rem" },
+  xl: { columns: "36rem" },
+  "2xl": { columns: "42rem" },
+  "3xl": { columns: "48rem" },
+  "4xl": { columns: "56rem" },
+  "5xl": { columns: "64rem" },
+  "6xl": { columns: "72rem" },
+  "7xl": { columns: "80rem" },
+  "*": (match) =>
+    execMatch(match, [[
+      re$PositiveNumber,
+      ([, n]) => parseNumeric(n).match(matcher("columns")),
+    ], [reBracket_$, ([, arbitrary]) => ({ "columns": arbitrary })]]),
+};
+
+export const float: CSSMap = {
   right: { float: "right" },
   left: { float: "left" },
   none: { float: "none" },
 };
-export const grow: EntriesIdentifier = [
-  ["DEFAULT", { "flex-grow": 1 }],
-  [
-    re$PositiveNumber,
-    ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-grow")),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ "flex-grow": arbitrary })],
-];
-export const h: Identifier = [
-  [0, { height: "0px" }],
-  ["px", { height: "1px" }],
-  ["auto", { height: "auto" }],
-  ["full", { height: "100%" }],
-  ["screen", { height: "100vh" }],
-  ["min", { height: "min-content" }],
-  ["max", { height: "max-content" }],
-  ["fit", { height: "fit-content" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify)
-        .match(
-          matcher(["height"]),
-        ),
-  ],
-  [
-    re$PositiveNumberPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize)
-        .match(matcher(["height"])),
-  ],
-  [reBracket_$, ([, body]) => ({ height: body })],
-];
-export const indent: EntriesIdentifier = [
-  [0, { "text-indent": "0px" }],
-  ["px", { "text-indent": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("text-indent")),
-  ],
-  [reBracket_$, ([, attr]) => ({ "text-indent": attr })],
-];
-export const inline: Identifier = {
-  DEFAULT: { display: "inline" },
+
+export const grow: CSSMap = {
+  "": { flexGrow: 1 },
+  "*": (match) =>
+    execMatch(match, [[
+      re$PositiveNumber,
+      ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-grow")),
+    ], [reBracket_$, ([, arbitrary]) => ({ flexGrow: arbitrary })]]),
+};
+
+export const h: CSSMap = {
+  0: { height: "0px" },
+  px: { height: "1px" },
+  auto: { height: "auto" },
+  full: { height: "100%" },
+  screen: { height: "100vh" },
+  min: { height: "min-content" },
+  max: { height: "max-content" },
+  fit: { height: "fit-content" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify)
+            .match(
+              matcher(["height"]),
+            ),
+      ],
+      [
+        re$PositiveNumberPer$PositiveNumber,
+        ([, numerator, denominator]) =>
+          parseFraction(numerator, denominator).map(percentize)
+            .match(matcher(["height"])),
+      ],
+      [reBracket_$, ([, body]) => ({ height: body })],
+    ]),
+};
+
+export const indent: CSSMap = {
+  0: { textIndent: "0px" },
+  px: { textIndent: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("text-indent")),
+      ],
+      [reBracket_$, ([, attr]) => ({ textIndent: attr })],
+    ]),
+};
+
+export const inline: CSSMap = {
+  "": { display: "inline" },
   block: { display: "inline-block" },
   flex: { display: "inline-flex" },
   table: { display: "inline-table" },
   grid: { display: "inline-grid" },
 };
 export const isolate: BlockDefinition = { isolation: "isolate" };
-export const isolation: Identifier = {
-  auto: {
-    isolation: "auto",
-  },
+export const isolation: CSSMap = {
+  auto: { isolation: "auto" },
 };
-export const items: Identifier = {
-  center: { "align-items": "center" },
-  start: { "align-items": "flex-start" },
-  end: { "align-items": "flex-end" },
-  baseline: { "align-items": "baseline" },
-  stretch: { "align-items": "stretch" },
+export const items: CSSMap = {
+  center: { alignItems: "center" },
+  start: { alignItems: "flex-start" },
+  end: { alignItems: "flex-end" },
+  baseline: { alignItems: "baseline" },
+  stretch: { alignItems: "stretch" },
 };
-export const leading: Identifier = [
-  ["none", { "line-height": 1 }],
-  ["tight", { "line-height": 1.25 }],
-  ["snug", { "line-height": 1.375 }],
-  ["normal", { "line-height": 1.5 }],
-  ["relaxed", { "line-height": 1.625 }],
-  ["loose", { "line-height": 2 }],
-  [
-    re$PositiveNumber,
-    ([, number]) =>
-      parseNumeric(number).andThen(remify).match(matcher("line-height")),
-  ],
-  [reBracket_$, ([, attr]) => ({ "line-height": attr })],
-];
-export const left: EntriesIdentifier = [
-  [0, { left: "0px" }],
-  ["px", { left: "1px" }],
-  ["auto", { left: "auto" }],
-  ["full", { left: "100%" }],
+export const leading: CSSMap = {
+  none: { lineHeight: 1 },
+  tight: { lineHeight: 1.25 },
+  snug: { lineHeight: 1.375 },
+  normal: { lineHeight: 1.5 },
+  relaxed: { lineHeight: 1.625 },
+  loose: { lineHeight: 2 },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, number]) =>
+          parseNumeric(number).andThen(remify).match(matcher("line-height")),
+      ],
+      [reBracket_$, ([, attr]) => ({ lineHeight: attr })],
+    ]),
+};
 
-  [
-    re$PositiveNumberPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize).match(
-        matcher("left"),
-      ),
-  ],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("left")),
-  ],
-  [reBracket_$, ([, attr]) => ({ left: attr })],
-];
-export const m: Identifier = [
-  ["0", { margin: "0px" }],
-  ["auto", { margin: "auto" }],
-  ["px", { margin: "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("margin")),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ margin: arbitrary })],
-];
-export const mb: Identifier = [
-  ["0", { "margin-bottom": "0px" }],
-  ["auto", { "margin-bottom": "auto" }],
-  ["px", { "margin-bottom": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("margin-bottom")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "margin-bottom": arbitrary }),
-  ],
-];
-export const mix: EntriesIdentifier = [
-  ["blend", {
-    normal: { "mix-blend-mode": "normal" },
-    multiply: { "mix-blend-mode": "multiply" },
-    screen: { "mix-blend-mode": "screen" },
-    overlay: { "mix-blend-mode": "overlay" },
-    darken: { "mix-blend-mode": "darken" },
-    lighten: { "mix-blend-mode": "lighten" },
-    hue: { "mix-blend-mode": "hue" },
-    saturation: { "mix-blend-mode": "saturation" },
-    luminosity: { "mix-blend-mode": "luminosity" },
-    difference: { "mix-blend-mode": "difference" },
-    exclusion: { "mix-blend-mode": "exclusion" },
+export const left: CSSMap = {
+  0: { left: "0px" },
+  px: { left: "1px" },
+  auto: { left: "auto" },
+  full: { left: "100%" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumberPer$PositiveNumber,
+        ([, numerator, denominator]) =>
+          parseFraction(numerator, denominator).map(percentize).match(
+            matcher("left"),
+          ),
+      ],
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("left")),
+      ],
+      [reBracket_$, ([, attr]) => ({ left: attr })],
+    ]),
+};
+
+export const m: CSSMap = {
+  0: { margin: "0px" },
+  auto: { margin: "auto" },
+  px: { margin: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("margin")),
+      ],
+      [reBracket_$, ([, arbitrary]) => ({ margin: arbitrary })],
+    ]),
+};
+
+export const mb: CSSMap = {
+  0: { marginBottom: "0px" },
+  auto: { marginBottom: "auto" },
+  px: { marginBottom: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("margin-bottom")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ marginBottom: arbitrary }),
+      ],
+    ]),
+};
+
+export const mix: CSSMap = {
+  blend: {
+    normal: { mixBlendMode: "normal" },
+    multiply: { mixBlendMode: "multiply" },
+    screen: { mixBlendMode: "screen" },
+    overlay: { mixBlendMode: "overlay" },
+    darken: { mixBlendMode: "darken" },
+    lighten: { mixBlendMode: "lighten" },
+    hue: { mixBlendMode: "hue" },
+    saturation: { mixBlendMode: "saturation" },
+    luminosity: { mixBlendMode: "luminosity" },
+    difference: { mixBlendMode: "difference" },
+    exclusion: { mixBlendMode: "exclusion" },
     color: {
-      DEFAULT: { "mix-blend-mode": "color" },
-      dodge: { "mix-blend-mode": "color-dodge" },
-      burn: { "mix-blend-mode": "color-burn" },
+      "": { mixBlendMode: "color" },
+      dodge: { mixBlendMode: "color-dodge" },
+      burn: { mixBlendMode: "color-burn" },
     },
     hard: {
-      light: { "mix-blend-mode": "hard-light" },
+      light: { mixBlendMode: "hard-light" },
     },
     soft: {
-      light: { "mix-blend-mode": "soft-light" },
+      light: { mixBlendMode: "soft-light" },
     },
-  }],
-];
-export const ml: Identifier = [
-  ["0", { "margin-left": "0px" }],
-  ["auto", { "margin-left": "auto" }],
-  ["px", { "margin-left": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("margin-left")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "margin-left": arbitrary }),
-  ],
-];
-export const mr: Identifier = [
-  ["0", { "margin-right": "0px" }],
-  ["auto", { "margin-right": "auto" }],
-  ["px", { "margin-right": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("margin-right")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "margin-right": arbitrary }),
-  ],
-];
-export const mt: Identifier = [
-  ["0", { "margin-top": "0px" }],
-  ["auto", { "margin-top": "auto" }],
-  ["px", { "margin-top": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("margin-top")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "margin-top": arbitrary }),
-  ],
-];
-export const mx: Identifier = [
-  ["0", { "margin-left": "0px", "margin-right": "0px" }],
-  ["auto", { "margin-left": "auto", "margin-right": "auto" }],
-  ["px", { "margin-left": "1px", "margin-right": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(
-        matcher(["margin-left", "margin-right"]),
-      ),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) =>
-      associateWith(["margin-left", "margin-right"], () => arbitrary),
-  ],
-];
-export const my: Identifier = [
-  ["0", { "margin-top": "0px", "margin-bottom": "0px" }],
-  ["auto", { "margin-top": "auto", "margin-bottom": "auto" }],
-  ["px", { "margin-top": "1px", "margin-bottom": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(
-        matcher(["margin-top", "margin-bottom"]),
-      ),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) =>
-      associateWith(["margin-top", "margin-bottom"], () => arbitrary),
-  ],
-];
-export const opacity: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber]) =>
-      parseNumeric(pNumber).andThen(per(100)).map(shortDecimal).match(
-        matcher("opacity"),
-      ),
-  ],
-];
-export const order: EntriesIdentifier = [
-  ["first", { order: -9999 }],
-  ["last", { order: 9999 }],
-  ["none", { order: 0 }],
-  [
-    re$PositiveNumber,
-    ([, pNumber]) => parseNumeric(pNumber).match(matcher("order")),
-  ],
-  [reBracket_$, ([, order]) => ({ order })],
-];
-export const p: Identifier = [
-  ["0", { padding: "0px" }],
-  ["auto", { padding: "auto" }],
-  ["px", { padding: "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("padding")),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ padding: arbitrary })],
-];
-export const pb: Identifier = [
-  ["0", { "padding-bottom": "0px" }],
-  ["auto", { "padding-bottom": "auto" }],
-  ["px", { "padding-bottom": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("padding-bottom")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "padding-bottom": arbitrary }),
-  ],
-];
-export const pl: Identifier = [
-  ["0", { "padding-left": "0px" }],
-  ["auto", { "padding-left": "auto" }],
-  ["px", { "padding-left": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("padding-left")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "padding-left": arbitrary }),
-  ],
-];
-export const pr: Identifier = [
-  ["0", { "padding-right": "0px" }],
-  ["auto", { "padding-right": "auto" }],
-  ["px", { "padding-right": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("padding-right")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "padding-right": arbitrary }),
-  ],
-];
-export const pt: Identifier = [
-  ["0", { "padding-top": "0px" }],
-  ["auto", { "padding-top": "auto" }],
-  ["px", { "padding-top": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("padding-top")),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) => ({ "padding-top": arbitrary }),
-  ],
-];
-export const px: Identifier = [
-  ["0", { "padding-left": "0px", "padding-right": "0px" }],
-  ["auto", { "padding-left": "auto", "padding-right": "auto" }],
-  ["px", { "padding-left": "1px", "padding-right": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(
-        matcher(["padding-left", "padding-right"]),
-      ),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) =>
-      associateWith(["padding-left", "padding-right"], () => arbitrary),
-  ],
-];
-export const py: Identifier = [
-  ["0", { "padding-top": "0px", "padding-bottom": "0px" }],
-  ["auto", { "padding-top": "auto", "padding-bottom": "auto" }],
-  ["px", { "padding-top": "1px", "padding-bottom": "1px" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(
-        matcher(["padding-top", "padding-bottom"]),
-      ),
-  ],
-  [
-    reBracket_$,
-    ([, arbitrary]) =>
-      associateWith(["padding-top", "padding-bottom"], () => arbitrary),
-  ],
-];
-
-export const right: EntriesIdentifier = [
-  [0, { right: "0px" }],
-  ["px", { right: "1px" }],
-  ["auto", { right: "auto" }],
-  ["full", { right: "100%" }],
-
-  [
-    re$PositiveNumberPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize).match(
-        matcher(["right"]),
-      ),
-  ],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("right")),
-  ],
-  [
-    reBracket_$,
-    ([, attr]) => ({ right: attr }),
-  ],
-];
-export const shrink: EntriesIdentifier = [
-  ["DEFAULT", { "flex-shrink": 1 }],
-  [
-    re$PositiveNumber,
-    ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-shrink")),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ "flex-shrink": arbitrary })],
-];
-export const top: EntriesIdentifier = [
-  [0, { top: "0px" }],
-  ["px", { top: "1px" }],
-  ["auto", { top: "auto" }],
-  ["full", { top: "100%" }],
-
-  [
-    re$PositiveNumberPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize).match(
-        matcher(["top"]),
-      ),
-  ],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("top")),
-  ],
-  [reBracket_$, ([, attr]) => ({ "top": attr })],
-];
-const LETTER_SPACING = "letter-spacing";
-
-export const tracking: Identifier = [
-  ["tighter", { [LETTER_SPACING]: "-0.05em" }],
-  ["tight", { [LETTER_SPACING]: "-0.025em" }],
-  ["normal", { [LETTER_SPACING]: "0em" }],
-  ["wide", { [LETTER_SPACING]: "0.025em" }],
-  ["wider", { [LETTER_SPACING]: "0.05em" }],
-  ["widest", { [LETTER_SPACING]: "0.1em" }],
-  [reBracket_$, ([, attr]) => ({ [LETTER_SPACING]: attr })],
-];
-export const w: Identifier = [
-  [0, { width: "0px" }],
-  ["px", { width: "1px" }],
-  ["full", { width: "100%" }],
-  ["auto", { width: "auto" }],
-  ["screen", { width: "100vw" }],
-  ["min", { width: "min-content" }],
-  ["max", { width: "max-content" }],
-  ["fit", { width: "fit-content" }],
-  [
-    re$Numeric,
-    ([, numeric]) =>
-      parseNumeric(numeric).andThen(remify).match(matcher("width")),
-  ],
-  [
-    re$PositiveNumberPer$PositiveNumber,
-    ([, numerator, denominator]) =>
-      parseFraction(numerator, denominator).map(percentize).match(
-        matcher(["width"]),
-      ),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ width: arbitrary })],
-];
-const WHITE_SPACE = "white-space";
-
-export const whitespace: Identifier = [
-  ["normal", { [WHITE_SPACE]: "normal" }],
-  ["nowrap", { [WHITE_SPACE]: "nowrap" }],
-  ["pre", {
-    DEFAULT: { [WHITE_SPACE]: "pre" },
-    line: { [WHITE_SPACE]: "pre-line" },
-    wrap: { [WHITE_SPACE]: "pre-wrap" },
-  }],
-];
-export const z: Identifier = [
-  ["auto", {
-    "z-index": "auto",
-  }],
-  [
-    re$PositiveNumber,
-    ([, positiveNumber]) =>
-      parseNumeric(positiveNumber).match(matcher("z-index")),
-  ],
-  [reBracket_$, ([, arbitrary]) => ({ "z-index": arbitrary })],
-];
-export const $static: BlockDefinition = {
-  position: "static",
-};
-export const fixed: BlockDefinition = {
-  position: "fixed",
-};
-export const absolute: BlockDefinition = {
-  position: "absolute",
-};
-export const relative: BlockDefinition = {
-  position: "relative",
-};
-export const sticky: BlockDefinition = {
-  position: "sticky",
-};
-export const visible: BlockDefinition = {
-  visibility: "visible",
-};
-export const invisible: BlockDefinition = {
-  visibility: "hidden",
-};
-export const antialiased: BlockDefinition = {
-  "-webkit-font-smoothing": "antialiased",
-  "-moz-osx-font-smoothing": "grayscale",
-};
-export const subpixel: Identifier = {
-  antialiased: {
-    "-webkit-font-smoothing": "auto",
-    "-moz-osx-font-smoothing": "auto",
   },
 };
-export const italic: BlockDefinition = {
-  "font-style": "italic",
+
+export const ml: CSSMap = {
+  0: { marginLeft: "0px" },
+  auto: { marginLeft: "auto" },
+  px: { marginLeft: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("margin-left")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ marginLeft: arbitrary }),
+      ],
+    ]),
 };
-export const contents: BlockDefinition = {
-  display: "contents",
+
+export const mr: CSSMap = {
+  0: { marginRight: "0px" },
+  auto: { marginRight: "auto" },
+  px: { marginRight: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("margin-right")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ marginRight: arbitrary }),
+      ],
+    ]),
 };
-export const hidden: BlockDefinition = {
-  display: "none",
+
+export const mt: CSSMap = {
+  0: { marginTop: "0px" },
+  auto: { marginTop: "auto" },
+  px: { marginTop: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("margin-top")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ marginTop: arbitrary }),
+      ],
+    ]),
 };
-export const overline: BlockDefinition = {
-  "text-decoration-line": "overline",
+
+export const mx: CSSMap = {
+  0: { marginLeft: "0px", marginRight: "0px" },
+  auto: { marginLeft: "auto", marginRight: "auto" },
+  px: { marginLeft: "1px", marginRight: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(
+            matcher(["margin-left", "margin-right"]),
+          ),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) =>
+          associateWith(["margin-left", "margin-right"], () => arbitrary),
+      ],
+    ]),
 };
-export const line: Identifier = {
-  through: { "text-decoration-line": "line-through" },
+
+export const my: CSSMap = {
+  0: { marginTop: "0px", marginBottom: "0px" },
+  auto: { marginTop: "auto", marginBottom: "auto" },
+  px: { marginTop: "1px", marginBottom: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(
+            matcher(["margin-top", "margin-bottom"]),
+          ),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) =>
+          associateWith(["margin-top", "margin-bottom"], () => arbitrary),
+      ],
+    ]),
 };
-export const no: Identifier = {
-  underline: { "text-decoration-line": "none" },
+
+export const opacity: CSSMap = {
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          parseNumeric(pNumber).andThen(per(100)).map(shortDecimal).match(
+            matcher("opacity"),
+          ),
+      ],
+    ]),
 };
-export const sr: Identifier = {
+
+export const order: CSSMap = {
+  first: { order: -9999 },
+  last: { order: 9999 },
+  none: { order: 0 },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) => parseNumeric(pNumber).match(matcher("order")),
+      ],
+      [reBracket_$, ([, order]) => ({ order })],
+    ]),
+};
+
+export const p: CSSMap = {
+  0: { padding: "0px" },
+  auto: { padding: "auto" },
+  px: { padding: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("padding")),
+      ],
+      [reBracket_$, ([, arbitrary]) => ({ padding: arbitrary })],
+    ]),
+};
+
+export const pb: CSSMap = {
+  0: { paddingBottom: "0px" },
+  auto: { paddingBottom: "auto" },
+  px: { paddingBottom: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(
+            matcher("padding-bottom"),
+          ),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ paddingBottom: arbitrary }),
+      ],
+    ]),
+};
+
+export const pl: CSSMap = {
+  0: { paddingLeft: "0px" },
+  auto: { paddingLeft: "auto" },
+  px: { paddingLeft: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("padding-left")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ paddingLeft: arbitrary }),
+      ],
+    ]),
+};
+
+export const pr: CSSMap = {
+  0: { paddingRight: "0px" },
+  auto: { paddingRight: "auto" },
+  px: { paddingRight: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("padding-right")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ paddingRight: arbitrary }),
+      ],
+    ]),
+};
+
+export const pt: CSSMap = {
+  0: { paddingTop: "0px" },
+  auto: { paddingTop: "auto" },
+  px: { paddingTop: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("padding-top")),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) => ({ paddingTop: arbitrary }),
+      ],
+    ]),
+};
+
+export const px: CSSMap = {
+  0: { paddingLeft: "0px", paddingRight: "0px" },
+  auto: { paddingLeft: "auto", paddingRight: "auto" },
+  px: { paddingLeft: "1px", paddingRight: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(
+            matcher(["padding-left", "padding-right"]),
+          ),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) =>
+          associateWith(["padding-left", "padding-right"], () => arbitrary),
+      ],
+    ]),
+};
+
+export const py: CSSMap = {
+  0: { paddingTop: "0px", paddingBottom: "0px" },
+  auto: { paddingTop: "auto", paddingBottom: "auto" },
+  px: { paddingTop: "1px", paddingBottom: "1px" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(
+            matcher(["padding-top", "padding-bottom"]),
+          ),
+      ],
+      [
+        reBracket_$,
+        ([, arbitrary]) =>
+          associateWith(["padding-top", "padding-bottom"], () => arbitrary),
+      ],
+    ]),
+};
+
+export const right: CSSMap = {
+  0: { right: "0px" },
+  px: { right: "1px" },
+  auto: { right: "auto" },
+  full: { right: "100%" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumberPer$PositiveNumber,
+        ([, numerator, denominator]) =>
+          parseFraction(numerator, denominator).map(percentize).match(
+            matcher(["right"]),
+          ),
+      ],
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("right")),
+      ],
+      [
+        reBracket_$,
+        ([, attr]) => ({ right: attr }),
+      ],
+    ]),
+};
+
+export const shrink: CSSMap = {
+  "": { flexShrink: 1 },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-shrink")),
+      ],
+      [reBracket_$, ([, arbitrary]) => ({ flexShrink: arbitrary })],
+    ]),
+};
+
+export const top: CSSMap = {
+  0: { top: "0px" },
+  px: { top: "1px" },
+  auto: { top: "auto" },
+  full: { top: "100%" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumberPer$PositiveNumber,
+        ([, numerator, denominator]) =>
+          parseFraction(numerator, denominator).map(percentize).match(
+            matcher(["top"]),
+          ),
+      ],
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("top")),
+      ],
+      [reBracket_$, ([, attr]) => ({ top: attr })],
+    ]),
+};
+
+const LETTER_SPACING = "letterSpacing";
+
+export const tracking: CSSMap = {
+  tighter: { [LETTER_SPACING]: "-0.05em" },
+  tight: { [LETTER_SPACING]: "-0.025em" },
+  normal: { [LETTER_SPACING]: "0em" },
+  wide: { [LETTER_SPACING]: "0.025em" },
+  wider: { [LETTER_SPACING]: "0.05em" },
+  widest: { [LETTER_SPACING]: "0.1em" },
+  "*": (match) =>
+    execMatch(match, [
+      [reBracket_$, ([, attr]) => ({ [LETTER_SPACING]: attr })],
+    ]),
+};
+
+export const w: CSSMap = {
+  0: { width: "0px" },
+  px: { width: "1px" },
+  full: { width: "100%" },
+  auto: { width: "auto" },
+  screen: { width: "100vw" },
+  min: { width: "min-content" },
+  max: { width: "max-content" },
+  fit: { width: "fit-content" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).andThen(remify).match(matcher("width")),
+      ],
+      [
+        re$PositiveNumberPer$PositiveNumber,
+        ([, numerator, denominator]) =>
+          parseFraction(numerator, denominator).map(percentize).match(
+            matcher(["width"]),
+          ),
+      ],
+      [reBracket_$, ([, arbitrary]) => ({ width: arbitrary })],
+    ]),
+};
+
+const WHITE_SPACE = "whiteSpace";
+
+export const whitespace: CSSMap = {
+  normal: { [WHITE_SPACE]: "normal" },
+  nowrap: { [WHITE_SPACE]: "nowrap" },
+  pre: {
+    "": { [WHITE_SPACE]: "pre" },
+    line: { [WHITE_SPACE]: "pre-line" },
+    wrap: { [WHITE_SPACE]: "pre-wrap" },
+  },
+};
+export const z: CSSMap = {
+  auto: { zIndex: "auto" },
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, positiveNumber]) =>
+          parseNumeric(positiveNumber).match(matcher("z-index")),
+      ],
+      [reBracket_$, ([, arbitrary]) => ({ zIndex: arbitrary })],
+    ]),
+};
+export const $static: BlockDefinition = { position: "static" };
+export const fixed: BlockDefinition = { position: "fixed" };
+export const absolute: BlockDefinition = { position: "absolute" };
+export const relative: BlockDefinition = { position: "relative" };
+export const sticky: BlockDefinition = { position: "sticky" };
+export const visible: BlockDefinition = { visibility: "visible" };
+export const invisible: BlockDefinition = { visibility: "hidden" };
+export const antialiased: BlockDefinition = {
+  WebkitFontSmoothing: "antialiased",
+  MozOsxFontSmoothing: "grayscale",
+};
+export const subpixel: CSSMap = {
+  antialiased: {
+    WebkitFontSmoothing: "auto",
+    MozOsxFontSmoothing: "auto",
+  },
+};
+export const italic: BlockDefinition = { fontStyle: "italic" };
+export const contents: BlockDefinition = { display: "contents" };
+export const hidden: BlockDefinition = { display: "none" };
+export const overline: BlockDefinition = { textDecorationLine: "overline" };
+export const line: CSSMap = {
+  through: { textDecorationLine: "line-through" },
+};
+export const no: CSSMap = {
+  underline: { textDecorationLine: "none" },
+};
+export const sr: CSSMap = {
   only: {
     position: "absolute",
     width: "1px",
@@ -678,59 +754,65 @@ export const sr: Identifier = {
     margin: "-1px",
     overflow: "hidden",
     clip: "rect(0, 0, 0, 0)",
-    "white-space": "nowrap",
-    "border-width": 0,
+    whiteSpace: "nowrap",
+    borderWidth: 0,
   },
 };
-export const ordinal: BlockDefinition = { "font-variant-numeric": "ordinal" };
-export const slashed: RecordIdentifier = {
-  zero: { "font-variant-numeric": "slashed-zero" },
+export const ordinal: BlockDefinition = { fontVariantNumeric: "ordinal" };
+export const slashed: CSSMap = {
+  zero: { fontVariantNumeric: "slashed-zero" },
 };
-export const lining: RecordIdentifier = {
-  nums: { "font-variant-numeric": "lining-nums" },
+export const lining: CSSMap = {
+  nums: { fontVariantNumeric: "lining-nums" },
 };
-export const oldstyle: RecordIdentifier = {
-  nums: { "font-variant-numeric": "oldstyle-nums" },
+export const oldstyle: CSSMap = {
+  nums: { fontVariantNumeric: "oldstyle-nums" },
 };
-export const proportional: RecordIdentifier = {
-  nums: { "font-variant-numeric": "proportional-nums" },
+export const proportional: CSSMap = {
+  nums: { fontVariantNumeric: "proportional-nums" },
 };
-export const tabular: RecordIdentifier = {
-  nums: { "font-variant-numeric": "tabular-nums" },
+export const tabular: CSSMap = {
+  nums: { fontVariantNumeric: "tabular-nums" },
 };
-export const diagonal: RecordIdentifier = {
-  fractions: { "font-variant-numeric": "diagonal-fractions" },
+export const diagonal: CSSMap = {
+  fractions: { fontVariantNumeric: "diagonal-fractions" },
 };
-export const stacked: RecordIdentifier = {
-  fractions: { "font-variant-numeric": "stacked-fractions" },
+export const stacked: CSSMap = {
+  fractions: { fontVariantNumeric: "stacked-fractions" },
 };
-export const uppercase: BlockDefinition = { "text-transform": "uppercase" };
-export const lowercase: BlockDefinition = { "text-transform": "lowercase" };
-export const capitalize: BlockDefinition = { "text-transform": "capitalize" };
+export const uppercase: BlockDefinition = { textTransform: "uppercase" };
+export const lowercase: BlockDefinition = { textTransform: "lowercase" };
+export const capitalize: BlockDefinition = { textTransform: "capitalize" };
 export const truncate: BlockDefinition = {
   overflow: "hidden",
-  "text-overflow": "ellipsis",
-  "white-space": "nowrap",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 };
-export const brightness: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber], { variablePrefix }) =>
-      parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
-        some: (value) =>
-          handleSingleFilter("brightness", value, variablePrefix),
-        none: undefined,
-      }),
-  ],
-];
 
-export const contrast: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber], { variablePrefix }) =>
-      handleFilter("contrast", pNumber, variablePrefix),
-  ],
-];
+export const brightness: CSSMap = {
+  "*": (match, { variablePrefix }) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+            some: (value) =>
+              handleSingleFilter("brightness", value, variablePrefix),
+            none: undefined,
+          }),
+      ],
+    ]),
+};
+
+export const contrast: CSSMap = {
+  "*": (match, { variablePrefix }) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) => handleFilter("contrast", pNumber, variablePrefix),
+      ],
+    ]),
+};
 
 function handleDrop(value: string, varPrefix: string): BlockDefinition {
   return {
@@ -739,9 +821,9 @@ function handleDrop(value: string, varPrefix: string): BlockDefinition {
   };
 }
 
-export const drop: RecordIdentifier = {
+export const drop: CSSMap = {
   shadow: {
-    DEFAULT: (_, { variablePrefix }) =>
+    "": (_, { variablePrefix }) =>
       handleDrop(
         "drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06))",
         variablePrefix,
@@ -775,22 +857,16 @@ export const drop: RecordIdentifier = {
       ),
   },
 };
-export const flow: RecordIdentifier = {
+export const flow: CSSMap = {
   root: { display: "flow-root" },
 };
 
-export const grayscale: EntriesIdentifier = [
-  [
-    "DEFAULT",
-    (_, { variablePrefix }) =>
-      handleSingleFilter("grayscale", "100%", variablePrefix),
-  ],
-  [
-    0,
-    (_, { variablePrefix }) =>
-      handleSingleFilter("grayscale", 0, variablePrefix),
-  ],
-];
+export const grayscale: CSSMap = {
+  "": (_, { variablePrefix }) =>
+    handleSingleFilter("grayscale", "100%", variablePrefix),
+  0: (_, { variablePrefix }) =>
+    handleSingleFilter("grayscale", 0, variablePrefix),
+};
 
 function handleSingleFilter(
   propertyName: string,
@@ -803,186 +879,203 @@ function handleSingleFilter(
   };
 }
 
-export const hue: RecordIdentifier = {
-  rotate: [
-    [
-      re$PositiveNumber,
-      ([, pNumber], { variablePrefix }) =>
-        parseNumeric(pNumber).map(unit("deg")).match({
-          some: (deg) => handleSingleFilter("hue-rotate", deg, variablePrefix),
-          none: undefined,
-        }),
-    ],
-  ],
-};
-
-export const invert: EntriesIdentifier = [
-  [
-    "DEFAULT",
-    (_, { variablePrefix }) =>
-      handleSingleFilter("invert", "100%", variablePrefix),
-  ],
-  [
-    0,
-    (_, { variablePrefix }) => handleSingleFilter("invert", 0, variablePrefix),
-  ],
-];
-
-export const saturate: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber], { variablePrefix }) =>
-      parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
-        some: (saturate) =>
-          handleSingleFilter("saturate", saturate, variablePrefix),
-        none: undefined,
-      }),
-  ],
-];
-
-export const sepia: EntriesIdentifier = [
-  [
-    "DEFAULT",
-    (_, { variablePrefix }) =>
-      handleSingleFilter("sepia", "100%", variablePrefix),
-  ],
-  [
-    0,
-    (_, { variablePrefix }) => handleSingleFilter("sepia", 0, variablePrefix),
-  ],
-];
-
-export const duration: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber]) =>
-      parseNumeric(pNumber).map(unit("ms")).match({
-        some: (ms) => ({ "transition-duration": ms }),
-        none: undefined,
-      }),
-  ],
-];
-
-export const ease: RecordIdentifier = {
-  linear: { "transition-timing-function": "linear" },
-  in: {
-    DEFAULT: { "transition-timing-function": "cubic-bezier(0.4, 0, 1, 1)" },
-    out: { "transition-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)" },
+export const hue: CSSMap = {
+  rotate: {
+    "*": (match, { variablePrefix }) =>
+      execMatch(match, [
+        [
+          re$PositiveNumber,
+          ([, pNumber]) =>
+            parseNumeric(pNumber).map(unit("deg")).match({
+              some: (deg) =>
+                handleSingleFilter("hue-rotate", deg, variablePrefix),
+              none: undefined,
+            }),
+        ],
+      ]),
   },
-  out: { "transition-timing-function": "cubic-bezier(0, 0, 0.2, 1)" },
 };
 
-export const delay: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber]) =>
-      parseNumeric(pNumber).map(unit("ms")).match({
-        some: (ms) => ({ "transition-delay": ms }),
-        none: undefined,
-      }),
-  ],
-];
-
-export const rotate: EntriesIdentifier = [
-  [
-    re$PositiveNumber,
-    ([, pNumber], { variablePrefix }) =>
-      parseNumeric(pNumber).map(unit("deg")).match({
-        some: (deg) => ({
-          [customProperty("rotate", variablePrefix)]: deg,
-          transform: transformValue(variablePrefix),
-        }),
-        none: undefined,
-      }),
-  ],
-];
-
-export const skew: RecordIdentifier = {
-  x: [
-    [
-      re$PositiveNumber,
-      ([, pNumber], { variablePrefix }) =>
-        parseNumeric(pNumber).map(unit("deg")).match({
-          some: (deg) => handleTransform(["skew-x"], deg, variablePrefix),
-          none: undefined,
-        }),
-    ],
-  ],
-  y: [
-    [
-      re$PositiveNumber,
-      ([, pNumber], { variablePrefix }) =>
-        parseNumeric(pNumber).map(unit("deg")).match({
-          some: (deg) => handleTransform(["skew-y"], deg, variablePrefix),
-          none: undefined,
-        }),
-    ],
-  ],
+export const invert: CSSMap = {
+  "": (_, { variablePrefix }) =>
+    handleSingleFilter("invert", "100%", variablePrefix),
+  0: (_, { variablePrefix }) => handleSingleFilter("invert", 0, variablePrefix),
 };
 
-export const origin: RecordIdentifier = {
-  center: { "transform-origin": "center" },
-  left: { "transform-origin": "left" },
-  right: { "transform-origin": "right" },
+export const saturate: CSSMap = {
+  "*": (match, { variablePrefix }) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          parseNumeric(pNumber).map(ratio).map(shortDecimal).match({
+            some: (saturate) =>
+              handleSingleFilter("saturate", saturate, variablePrefix),
+            none: undefined,
+          }),
+      ],
+    ]),
+};
+
+export const sepia: CSSMap = {
+  "": (_, { variablePrefix }) =>
+    handleSingleFilter("sepia", "100%", variablePrefix),
+  0: (_, { variablePrefix }) => handleSingleFilter("sepia", 0, variablePrefix),
+};
+
+export const duration: CSSMap = {
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          parseNumeric(pNumber).map(unit("ms")).match({
+            some: (ms) => ({ transitionDuration: ms }),
+            none: undefined,
+          }),
+      ],
+    ]),
+};
+
+export const ease: CSSMap = {
+  linear: { transitionTimingFunction: "linear" },
+  in: {
+    "": { transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)" },
+    out: { transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)" },
+  },
+  out: { transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)" },
+};
+
+export const delay: CSSMap = {
+  "*": (match) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          parseNumeric(pNumber).map(unit("ms")).match({
+            some: (ms) => ({ transitionDelay: ms }),
+            none: undefined,
+          }),
+      ],
+    ]),
+};
+
+export const rotate: CSSMap = {
+  "*": (match, { variablePrefix }) =>
+    execMatch(match, [
+      [
+        re$PositiveNumber,
+        ([, pNumber]) =>
+          parseNumeric(pNumber).map(unit("deg")).match({
+            some: (deg) => ({
+              [customProperty("rotate", variablePrefix)]: deg,
+              transform: transformValue(variablePrefix),
+            }),
+            none: undefined,
+          }),
+      ],
+    ]),
+};
+
+export const skew: CSSMap = {
+  x: {
+    "*": (match, { variablePrefix }) =>
+      execMatch(match, [
+        [
+          re$PositiveNumber,
+          ([, pNumber]) =>
+            parseNumeric(pNumber).map(unit("deg")).match({
+              some: (deg) => handleTransform(["skew-x"], deg, variablePrefix),
+              none: undefined,
+            }),
+        ],
+      ]),
+  },
+  y: {
+    "*": (match, { variablePrefix }) =>
+      execMatch(match, [
+        [
+          re$PositiveNumber,
+          ([, pNumber]) =>
+            parseNumeric(pNumber).map(unit("deg")).match({
+              some: (deg) => handleTransform(["skew-y"], deg, variablePrefix),
+              none: undefined,
+            }),
+        ],
+      ]),
+  },
+};
+
+export const origin: CSSMap = {
+  center: { transformOrigin: "center" },
+  left: { transformOrigin: "left" },
+  right: { transformOrigin: "right" },
   top: {
-    DEFAULT: { "transform-origin": "top" },
-    right: { "transform-origin": "top right" },
-    left: { "transform-origin": "top left" },
+    "": { transformOrigin: "top" },
+    right: { transformOrigin: "top right" },
+    left: { transformOrigin: "top left" },
   },
   bottom: {
-    DEFAULT: { "transform-origin": "bottom" },
-    right: { "transform-origin": "bottom right" },
-    left: { "transform-origin": "bottom left" },
+    "": { transformOrigin: "bottom" },
+    right: { transformOrigin: "bottom right" },
+    left: { transformOrigin: "bottom left" },
   },
 };
 
-function toAccentColor(color: string): { "accent-color": string } {
-  return { "accent-color": color };
+function toAccentColor(color: string): { accentColor: string } {
+  return { accentColor: color };
 }
-export const accent: EntriesIdentifier = [
-  ["auto", { "accent-color": "auto" }],
-  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
 
-    return parseNumeric(numeric).match({
-      some: (number) =>
-        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
-          some: toAccentColor,
+export const accent: CSSMap = {
+  auto: { accentColor: "auto" },
+  "*": (match, context) =>
+    execMatch(match, [
+      [re$AllPer$PositiveNumber, ([, body, numeric]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+
+        return parseNumeric(numeric).match({
+          some: (number) =>
+            parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn)
+              .match({
+                some: toAccentColor,
+                none: undefined,
+              }),
           none: undefined,
-        }),
-      none: undefined,
-    });
-  }],
-  [re$AllPerBracket_$, ([, body, alpha], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
-    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
-      rgbFn,
-    ).match({
-      some: toAccentColor,
-      none: undefined,
-    });
-  }],
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
-
-      return parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: toAccentColor,
-          none: () => toAccentColor(color),
         });
-    },
-  ],
-];
-export const appearance: RecordIdentifier = {
+      }],
+      [re$AllPerBracket_$, ([, body, alpha]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+        return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+          .map(
+            rgbFn,
+          ).match({
+            some: toAccentColor,
+            none: undefined,
+          });
+      }],
+      [
+        re$All,
+        ([body]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
+
+          return parseColor(color).map(completionRGBA(1, true))
+            .map(rgbFn)
+            .match({
+              some: toAccentColor,
+              none: () => toAccentColor(color),
+            });
+        },
+      ],
+    ]),
+};
+
+export const appearance: CSSMap = {
   none: { appearance: "none" },
 };
-export const cursor: RecordIdentifier = {
+export const cursor: CSSMap = {
   auto: { cursor: "auto" },
   default: { cursor: "default" },
   pointer: { cursor: "pointer" },
@@ -1061,132 +1154,144 @@ export const cursor: RecordIdentifier = {
   },
 };
 function toCaretColor(color: string) {
-  return { "caret-color": color };
+  return { caretColor: color };
 }
-export const caret: EntriesIdentifier = [
-  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
 
-    return parseNumeric(numeric).match({
-      some: (number) =>
-        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
-          some: toCaretColor,
+export const caret: CSSMap = {
+  "*": (match, context) =>
+    execMatch(match, [
+      [re$AllPer$PositiveNumber, ([, body, numeric]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+
+        return parseNumeric(numeric).match({
+          some: (number) =>
+            parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn)
+              .match({
+                some: toCaretColor,
+                none: undefined,
+              }),
           none: undefined,
-        }),
-      none: undefined,
-    });
-  }],
-  [re$AllPerBracket_$, ([, body, alpha], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
-    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
-      rgbFn,
-    ).match({
-      some: toCaretColor,
-      none: undefined,
-    });
-  }],
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
-
-      return parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: toCaretColor,
-          none: () => toCaretColor(color),
         });
-    },
-  ],
-];
-export const pointer: RecordIdentifier = {
+      }],
+      [re$AllPerBracket_$, ([, body, alpha]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+        return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+          .map(
+            rgbFn,
+          ).match({
+            some: toCaretColor,
+            none: undefined,
+          });
+      }],
+      [
+        re$All,
+        ([body]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
+
+          return parseColor(color).map(completionRGBA(1, true))
+            .map(rgbFn)
+            .match({
+              some: toCaretColor,
+              none: () => toCaretColor(color),
+            });
+        },
+      ],
+    ]),
+};
+export const pointer: CSSMap = {
   events: {
-    none: { "pointer-events": "none" },
-    auto: { "pointer-events": "auto" },
+    none: { pointerEvents: "none" },
+    auto: { pointerEvents: "auto" },
   },
 };
-export const resize: RecordIdentifier = {
-  DEFAULT: { resize: "both" },
+export const resize: CSSMap = {
+  "": { resize: "both" },
   none: { resize: "none" },
   x: { resize: "horizontal" },
   y: { resize: "vertical" },
 };
-export const touch: RecordIdentifier = {
-  auto: { "touch-action": "auto" },
-  none: { "touch-action": "none" },
-  manipulation: { "touch-action": "manipulation" },
+export const touch: CSSMap = {
+  auto: { touchAction: "auto" },
+  none: { touchAction: "none" },
+  manipulation: { touchAction: "manipulation" },
   pan: {
-    x: { "touch-action": "pan-x" },
-    y: { "touch-action": "pan-y" },
-    left: { "touch-action": "pan-left" },
-    right: { "touch-action": "pan-right" },
-    up: { "touch-action": "pan-up" },
-    down: { "touch-action": "pan-down" },
+    x: { touchAction: "pan-x" },
+    y: { touchAction: "pan-y" },
+    left: { touchAction: "pan-left" },
+    right: { touchAction: "pan-right" },
+    up: { touchAction: "pan-up" },
+    down: { touchAction: "pan-down" },
   },
   pinch: {
-    zoom: { "touch-action": "pinch-zoom" },
+    zoom: { touchAction: "pinch-zoom" },
   },
 };
 
-export const select: RecordIdentifier = {
-  none: { "user-select": "none" },
-  text: { "user-select": "text" },
-  all: { "user-select": "all" },
-  auto: { "user-select": "auto" },
+export const select: CSSMap = {
+  none: { userSelect: "none" },
+  text: { userSelect: "text" },
+  all: { userSelect: "all" },
+  auto: { userSelect: "auto" },
 };
-export const will: RecordIdentifier = {
+export const will: CSSMap = {
   change: {
-    auto: { "will-change": "auto" },
-    scroll: { "will-change": "scroll-position" },
-    contents: { "will-change": "contents" },
-    transform: { "will-change": "transform" },
+    auto: { willChange: "auto" },
+    scroll: { willChange: "scroll-position" },
+    contents: { willChange: "contents" },
+    transform: { willChange: "transform" },
   },
 };
 function toFill(color: string) {
   return { fill: color };
 }
-export const fill: EntriesIdentifier = [
-  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
 
-    return parseNumeric(numeric).match({
-      some: (number) =>
-        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
-          some: toFill,
+export const fill: CSSMap = {
+  "*": (match, context) =>
+    execMatch(match, [
+      [re$AllPer$PositiveNumber, ([, body, numeric]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+
+        return parseNumeric(numeric).match({
+          some: (number) =>
+            parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn)
+              .match({
+                some: toFill,
+                none: undefined,
+              }),
           none: undefined,
-        }),
-      none: undefined,
-    });
-  }],
-  [re$AllPerBracket_$, ([, body, alpha], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
-    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
-      rgbFn,
-    ).match({
-      some: toFill,
-      none: undefined,
-    });
-  }],
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
-
-      return parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: toFill,
-          none: () => toFill(color),
         });
-    },
-  ],
-];
+      }],
+      [re$AllPerBracket_$, ([, body, alpha]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+        return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+          .map(
+            rgbFn,
+          ).match({
+            some: toFill,
+            none: undefined,
+          });
+      }],
+      [
+        re$All,
+        ([body]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
+
+          return parseColor(color).map(completionRGBA(1, true))
+            .map(rgbFn)
+            .match({
+              some: toFill,
+              none: () => toFill(color),
+            });
+        },
+      ],
+    ]),
+};
 
 function varGradient(varPrefix: string) {
   const [varGradientFrom, varFnGradientFrom] = customPropertySet(
@@ -1217,84 +1322,77 @@ function defaultGradientColor(isRGB: boolean, color: string): string {
     : "rgb(255 255 255/0)";
 }
 
-export const from: EntriesIdentifier = [
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
+export const from: CSSMap = {
+  "*": (match, context) => {
+    const color = resolveTheme(match, "color", context);
+    if (isUndefined(color)) return;
 
-      const _color = parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: (color) => [true, color] as [boolean, string],
-          none: [false, color] as [boolean, string],
-        });
+    const _color = parseColor(color).map(completionRGBA(1, true))
+      .map(rgbFn)
+      .match({
+        some: (color) => [true, color] as [boolean, string],
+        none: [false, color] as [boolean, string],
+      });
 
-      const defaultColor = defaultGradientColor(_color[0], _color[1]);
+    const defaultColor = defaultGradientColor(_color[0], _color[1]);
 
-      const {
-        varFnGradientFrom,
-        varGradientFrom,
-        varGradientStops,
-        varGradientTo,
-      } = varGradient(context.variablePrefix);
+    const {
+      varFnGradientFrom,
+      varGradientFrom,
+      varGradientStops,
+      varGradientTo,
+    } = varGradient(context.variablePrefix);
 
-      return {
-        [varGradientFrom]: _color[1],
-        [varGradientStops]:
-          `${varFnGradientFrom}, var(${varGradientTo}, ${defaultColor})`,
-      };
-    },
-  ],
-];
-export const via: EntriesIdentifier = [
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
+    return {
+      [varGradientFrom]: _color[1],
+      [varGradientStops]:
+        `${varFnGradientFrom}, var(${varGradientTo}, ${defaultColor})`,
+    };
+  },
+};
 
-      const _color = parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: (color) => [true, color] as [boolean, string],
-          none: [false, color] as [boolean, string],
-        });
+export const via: CSSMap = {
+  "*": (match, context) => {
+    const color = resolveTheme(match, "color", context);
+    if (isUndefined(color)) return;
 
-      const defaultColor = defaultGradientColor(_color[0], _color[1]);
+    const _color = parseColor(color).map(completionRGBA(1, true))
+      .map(rgbFn)
+      .match({
+        some: (color) => [true, color] as [boolean, string],
+        none: [false, color] as [boolean, string],
+      });
 
-      const {
-        varFnGradientFrom,
-        varGradientStops,
-        varGradientTo,
-      } = varGradient(context.variablePrefix);
+    const defaultColor = defaultGradientColor(_color[0], _color[1]);
 
-      return {
-        [varGradientStops]: `${varFnGradientFrom}, ${
-          _color[1]
-        }, var(${varGradientTo}, ${defaultColor})`,
-      };
-    },
-  ],
-];
-export const to: EntriesIdentifier = [
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
+    const {
+      varFnGradientFrom,
+      varGradientStops,
+      varGradientTo,
+    } = varGradient(context.variablePrefix);
 
-      const _color = parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: (color) => color,
-          none: color,
-        });
-      const { varGradientTo } = varGradient(context.variablePrefix);
-      return {
-        [varGradientTo]: _color,
-      };
-    },
-  ],
-];
+    return {
+      [varGradientStops]: `${varFnGradientFrom}, ${
+        _color[1]
+      }, var(${varGradientTo}, ${defaultColor})`,
+    };
+  },
+};
+
+export const to: CSSMap = {
+  "*": (match, context) => {
+    const color = resolveTheme(match, "color", context);
+    if (isUndefined(color)) return;
+
+    const _color = parseColor(color).map(completionRGBA(1, true))
+      .map(rgbFn)
+      .match({
+        some: (color) => color,
+        none: color,
+      });
+    const { varGradientTo } = varGradient(context.variablePrefix);
+    return {
+      [varGradientTo]: _color,
+    };
+  },
+};

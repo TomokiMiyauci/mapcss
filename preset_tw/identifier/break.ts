@@ -1,39 +1,39 @@
-import type { Identifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const $break: Identifier = {
+export const $break: CSSMap = {
   after: {
-    auto: { "break-after": "auto" },
+    auto: { breakAfter: "auto" },
     avoid: {
-      DEFAULT: { "break-after": "avoid" },
-      page: { "break-after": "avoid-page" },
+      "": { breakAfter: "avoid" },
+      page: { breakAfter: "avoid-page" },
     },
-    all: { "break-after": "all" },
-    page: { "break-after": "page" },
-    left: { "break-after": "left" },
-    right: { "break-after": "right" },
-    column: { "break-after": "column" },
+    all: { breakAfter: "all" },
+    page: { breakAfter: "page" },
+    left: { breakAfter: "left" },
+    right: { breakAfter: "right" },
+    column: { breakAfter: "column" },
   },
   before: {
-    auto: { "break-before": "auto" },
+    auto: { breakBefore: "auto" },
     avoid: {
-      DEFAULT: { "break-before": "avoid" },
-      page: { "break-before": "avoid-page" },
+      "": { breakBefore: "avoid" },
+      page: { breakBefore: "avoid-page" },
     },
-    all: { "break-before": "all" },
-    page: { "break-before": "page" },
-    left: { "break-before": "left" },
-    right: { "break-before": "right" },
-    column: { "break-before": "column" },
+    all: { breakBefore: "all" },
+    page: { breakBefore: "page" },
+    left: { breakBefore: "left" },
+    right: { breakBefore: "right" },
+    column: { breakBefore: "column" },
   },
   inside: {
-    auto: { "break-inside": "auto" },
+    auto: { breakInside: "auto" },
     avoid: {
-      DEFAULT: { "break-inside": "avoid" },
-      page: { "break-inside": "avoid-page" },
-      column: { "break-inside": "avoid-column" },
+      "": { breakInside: "avoid" },
+      page: { breakInside: "avoid-page" },
+      column: { breakInside: "avoid-column" },
     },
   },
-  normal: { "word-break": "normal", "overflow-wrap": "normal" },
-  words: { "overflow-wrap": "break-word" },
-  all: { "word-break": "break-all" },
+  normal: { wordBreak: "normal", overflowWrap: "normal" },
+  words: { overflowWrap: "break-word" },
+  all: { wordBreak: "break-all" },
 };

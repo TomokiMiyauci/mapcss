@@ -1,26 +1,26 @@
-import type { EntriesIdentifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const place: EntriesIdentifier = [
-  ["content", {
-    center: { ["place-content"]: "center" },
-    start: { ["place-content"]: "start" },
-    end: { ["place-content"]: "end" },
-    between: { ["place-content"]: "space-between" },
-    around: { ["place-content"]: "space-around" },
-    evenly: { ["place-content"]: "space-evenly" },
-    stretch: { ["place-content"]: "stretch" },
-  }],
-  ["items", {
-    start: { ["place-items"]: "start" },
-    end: { ["place-items"]: "end" },
-    center: { ["place-items"]: "center" },
-    stretch: { ["place-items"]: "stretch" },
-  }],
-  ["self", {
-    auto: { ["place-self"]: "auto" },
-    start: { ["place-self"]: "start" },
-    end: { ["place-self"]: "end" },
-    center: { ["place-self"]: "center" },
-    stretch: { ["place-self"]: "stretch" },
-  }],
-];
+export const place: CSSMap = {
+  content: {
+    center: { placeContent: "center" },
+    start: { placeContent: "start" },
+    end: { placeContent: "end" },
+    between: { placeContent: "space-between" },
+    around: { placeContent: "space-around" },
+    evenly: { placeContent: "space-evenly" },
+    stretch: { placeContent: "stretch" },
+  },
+  items: {
+    start: { placeItems: "start" },
+    end: { placeItems: "end" },
+    center: { placeItems: "center" },
+    stretch: { placeItems: "stretch" },
+  },
+  self: {
+    auto: { placeSelf: "auto" },
+    start: { placeSelf: "start" },
+    end: { placeSelf: "end" },
+    center: { placeSelf: "center" },
+    stretch: { placeSelf: "stretch" },
+  },
+};

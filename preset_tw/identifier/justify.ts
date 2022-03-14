@@ -1,17 +1,17 @@
-import type { Identifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const justify: Identifier = {
-  start: { "justify-content": "flex-start" },
-  end: { "justify-content": "flex-end" },
-  center: { "justify-content": "center" },
-  between: { "justify-content": "space-between" },
-  around: { "justify-content": "space-around" },
-  evenly: { "justify-content": "space-evenly" },
+export const justify: CSSMap = {
+  start: { justifyContent: "flex-start" },
+  end: { justifyContent: "flex-end" },
+  center: { justifyContent: "center" },
+  between: { justifyContent: "space-between" },
+  around: { justifyContent: "space-around" },
+  evenly: { justifyContent: "space-evenly" },
   self: {
-    auto: { "justify-self": "auto" },
-    start: { "justify-self": "start" },
-    end: { "justify-self": "end" },
-    center: { "justify-self": "center" },
-    stretch: { "justify-self": "stretch" },
+    auto: { justifySelf: "auto" },
+    start: { justifySelf: "start" },
+    end: { justifySelf: "end" },
+    center: { justifySelf: "center" },
+    stretch: { justifySelf: "stretch" },
   },
 };

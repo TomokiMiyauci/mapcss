@@ -1,6 +1,6 @@
-import type { RecordIdentifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const normal: RecordIdentifier = {
-  nums: { "font-variant-numeric": "normal" },
-  case: { "text-transform": "none" },
+export const normal: CSSMap = {
+  nums: { fontVariantNumeric: "normal" },
+  case: { textTransform: "none" },
 };

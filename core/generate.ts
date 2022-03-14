@@ -7,11 +7,7 @@ import {
   toObject,
 } from "../deps.ts";
 import { extractSplit } from "./extractor.ts";
-import {
-  resolveConfig,
-  resolveDeepMapIdentifier,
-  resolveModifierMap,
-} from "./resolve.ts";
+import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
 import { minify, orderProp, orderStatement } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
@@ -86,7 +82,7 @@ export function generate(
     syntax,
     modifierMap,
     theme,
-    deepMapCSS,
+    cssMap,
     preProcess,
     postcssPlugin,
     css,
@@ -107,7 +103,7 @@ export function generate(
       const parseResult = fn(mappedToken, {
         ...staticContext,
         modifierRoots: Object.keys(modifierMap),
-        identifierRoots: Array.from(deepMapCSS.keys()) as string[],
+        identifierRoots: Object.keys(cssMap),
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
@@ -118,9 +114,9 @@ export function generate(
         className,
       };
 
-      const identifierRoot = resolveDeepMapIdentifier(
+      const identifierRoot = resolveCSSMap(
         identifier,
-        deepMapCSS,
+        cssMap,
         {
           ...staticContext,
           ...runtimeContext,

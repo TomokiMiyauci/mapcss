@@ -21,11 +21,10 @@ import {
   toAST,
 } from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
-import { re$All } from "../../core/utils/regexp.ts";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOption } from "../types.ts";
-import type { BinaryTree, EntriesIdentifier } from "../../core/types.ts";
+import type { BinaryTree, CSSMap } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string, prefix: string) {
   const varFnProperty = (property: string) =>
@@ -168,8 +167,8 @@ function generateDefault(varPrefix: string, prefix: string) {
 const join = (value: string[]): string => value.join("-");
 
 export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
-  const prose: EntriesIdentifier = [
-    ["DEFAULT", (_, { variablePrefix, className }) => {
+  const prose: CSSMap = {
+    "": (_, { variablePrefix, className }) => {
       const bodyColor = {
         [className]: {
           color: `var(${customProperty(`${prefix}-body`, variablePrefix)})`,
@@ -194,8 +193,8 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       root.append(bodyNodes);
 
       return root;
-    }],
-    ["invert", (_, { key, variablePrefix, className }) => {
+    },
+    invert: (_, { key, variablePrefix, className }) => {
       const varProperty = (property: string): string =>
         customProperty(property, variablePrefix);
       const makeVarFnSet = (
@@ -231,9 +230,9 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
           },
         },
       };
-    }],
-    [re$All, ([, body], context) => {
-      const maybeColor = $resolveTheme(body, "color", context);
+    },
+    "*": (match, context) => {
+      const maybeColor = $resolveTheme(match, "color", context);
       const { parentKey, variablePrefix } = context;
       if (isUndefined(parentKey) || isUndefined(maybeColor)) return;
       const _isString = isString(maybeColor);
@@ -291,8 +290,9 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
           },
         },
       };
-    }],
-  ];
+    },
+  };
+
   return prose;
 }
 

@@ -2,12 +2,12 @@ import { encodeSvg } from "./_utils.ts";
 import { cssFn } from "../core/utils/format.ts";
 import { chain, curry } from "../deps.ts";
 import { stringifyCustomProperty } from "../core/utils/format.ts";
-import type { IdentifierHandler } from "../core/types.ts";
+import type { DynamicCSS } from "../core/types.ts";
 
 export function createCSSObject(
   svgMarkup: string,
   { declaration }: { declaration: Record<string, string | number> },
-): IdentifierHandler {
+): DynamicCSS {
   return (_, { variablePrefix }) => {
     const scale = "1";
     const data = `"data:image/svg+xml;utf8,${encodeSvg(svgMarkup)}"`;

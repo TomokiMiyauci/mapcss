@@ -1,28 +1,28 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
-import type { RecordIdentifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const snap: RecordIdentifier = {
-  start: { "scroll-snap-align": "start" },
-  end: { "scroll-snap-align": "end" },
-  center: { "scroll-snap-align": "center" },
+export const snap: CSSMap = {
+  start: { scrollSnapAlign: "start" },
+  end: { scrollSnapAlign: "end" },
+  center: { scrollSnapAlign: "center" },
   align: {
-    none: { "scroll-snap-align": "none" },
+    none: { scrollSnapAlign: "none" },
   },
-  normal: { "scroll-snap-stop": "normal" },
-  always: { "scroll-snap-stop": "always" },
-  none: { "scroll-snap-type": "none" },
+  normal: { scrollSnapStop: "normal" },
+  always: { scrollSnapStop: "always" },
+  none: { scrollSnapType: "none" },
   x: (_, { variablePrefix }) => ({
-    "scroll-snap-type": `x ${
+    scrollSnapType: `x ${
       varFn(customProperty("scroll-snap-strictness", variablePrefix))
     }`,
   }),
   y: (_, { variablePrefix }) => ({
-    "scroll-snap-type": `y ${
+    scrollSnapType: `y ${
       varFn(customProperty("scroll-snap-strictness", variablePrefix))
     }`,
   }),
   both: (_, { variablePrefix }) => ({
-    "scroll-snap-type": `both ${
+    scrollSnapType: `both ${
       varFn(customProperty("scroll-snap-strictness", variablePrefix))
     }`,
   }),

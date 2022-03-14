@@ -1,8 +1,8 @@
-import type { Identifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const not: Identifier = {
+export const not: CSSMap = {
   italic: {
-    "font-style": "normal",
+    fontStyle: "normal",
   },
   sr: {
     only: {
@@ -13,7 +13,7 @@ export const not: Identifier = {
       margin: 0,
       overflow: "visible",
       clip: "auto",
-      "white-space": "normal",
+      whiteSpace: "normal",
     },
   },
 };

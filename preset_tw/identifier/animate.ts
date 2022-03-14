@@ -1,9 +1,9 @@
-import { reBracket_$ } from "../../core/utils/regexp.ts";
-import type { CSSDefinition, EntriesIdentifier } from "../../core/types.ts";
+import { execMatch, reBracket_$ } from "../../core/utils/regexp.ts";
+import type { CSSDefinition, CSSMap } from "../../core/types.ts";
 
-export const animate: EntriesIdentifier = [
-  ["none", { animation: "none" }],
-  ["spin", (_, { className, key }) => {
+export const animate: CSSMap = {
+  none: { animation: "none" },
+  spin: (_, { className, key }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
@@ -18,8 +18,8 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  ["ping", (_, { className, key }) => {
+  },
+  ping: (_, { className, key }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
@@ -35,8 +35,8 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  ["pulse", (_, { className, key }) => {
+  },
+  pulse: (_, { className, key }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
@@ -51,8 +51,8 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  ["bounce", (_, { className, key }) => {
+  },
+  bounce: (_, { className, key }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
@@ -72,6 +72,9 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  [reBracket_$, ([, arbitrary]) => ({ animation: arbitrary })],
-];
+  },
+  "*": (match) =>
+    execMatch(match, [
+      [reBracket_$, ([, arbitrary]) => ({ animation: arbitrary })],
+    ]),
+};

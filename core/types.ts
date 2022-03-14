@@ -166,22 +166,21 @@ export type PreProcessor = Labeled & {
 /** User definition of CSS Block Declaration */
 export type BlockDefinition = Record<string, string | number>;
 
-export type CSSMap = {
-  [k in string | number]: Identifier | BlockDefinition | IdentifierHandler;
-};
+export type DynamicCSS = ((
+  match: string,
+  context: IdentifierContext,
+) => CSSMap | CSSObject | undefined);
 
-export type RecordIdentifier = {
-  [k: string | number]: BlockDefinition | IdentifierHandler | Identifier;
-};
-
-export type EntriesIdentifier = [
-  string | number | RegExp,
+export type IdentifierDefinition =
   | CSSObject
-  | IdentifierHandler
-  | Identifier,
-][];
+  | DynamicCSS
+  | CSSMap;
 
-export type Identifier = RecordIdentifier | EntriesIdentifier;
+export type CSSMap =
+  | {
+    [k in string | number]: IdentifierDefinition;
+  }
+  | { [k in "*"]: IdentifierDefinition };
 
 export type EntriesModifier = [
   RegExp,
@@ -201,10 +200,3 @@ export type ModifierDefinition = (
   parentNode: Root,
   context: ModifierContext,
 ) => Root | undefined;
-
-export type IdentifierHandler = (
-  regExpExecArray: RegExpExecArray,
-  context: IdentifierContext,
-) =>
-  | CSSObject
-  | undefined;

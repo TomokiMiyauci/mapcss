@@ -3,6 +3,7 @@ import { re$Numeric } from "../../core/utils/regexp.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
+  execMatch,
   re$All,
   re$AllPer$PositiveNumber,
   re$AllPerBracket_$,
@@ -14,7 +15,7 @@ import {
   ratio,
   rgbFn,
 } from "../../core/utils/format.ts";
-import type { BlockDefinition, EntriesIdentifier } from "../../core/types.ts";
+import type { BlockDefinition, CSSMap } from "../../core/types.ts";
 
 function toRingColor(varPrefix: string) {
   return (value: string): BlockDefinition => ({
@@ -66,112 +67,118 @@ function handleRingWidth(
   };
 }
 
-export const ring: EntriesIdentifier = [
-  [
-    "DEFAULT",
-    (_, { variablePrefix }) => handleRingWidth("3px", variablePrefix),
-  ],
-  ["inset", (_, { variablePrefix }) => {
+export const ring: CSSMap = {
+  "": (_, { variablePrefix }) => handleRingWidth("3px", variablePrefix),
+  inset: (_, { variablePrefix }) => {
     const [varRingInset] = customPropertySet("ring-inset", variablePrefix);
     return {
       [varRingInset]: "inset",
     };
-  }],
-  ["offset", [
-    [re$Numeric, ([, numeric], { variablePrefix }) => {
-      const [varRingOffsetWidth] = customPropertySet(
-        "ring-offset-width",
-        variablePrefix,
-      );
-      return parseNumeric(numeric).map(pxify).match(
-        matcher(varRingOffsetWidth),
-      );
-    }],
+  },
+  offset: {
+    "*": (match, context) =>
+      execMatch(match, [
+        [re$Numeric, ([, numeric]) => {
+          const [varRingOffsetWidth] = customPropertySet(
+            "ring-offset-width",
+            context.variablePrefix,
+          );
+          return parseNumeric(numeric).map(pxify).match(
+            matcher(varRingOffsetWidth),
+          );
+        }],
 
-    [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
+        [re$AllPer$PositiveNumber, ([, body, numeric]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
 
-      return parseNumeric(numeric).match({
-        some: (number) =>
-          parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match(
-            {
+          return parseNumeric(numeric).match({
+            some: (number) =>
+              parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn)
+                .match(
+                  {
+                    some: toRingOffsetColor(context.variablePrefix),
+                    none: undefined,
+                  },
+                ),
+            none: undefined,
+          });
+        }],
+        [re$AllPerBracket_$, ([, body, alpha]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
+          return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+            .map(
+              rgbFn,
+            ).match({
               some: toRingOffsetColor(context.variablePrefix),
               none: undefined,
-            },
-          ),
-        none: undefined,
-      });
-    }],
-    [re$AllPerBracket_$, ([, body, alpha], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
-      return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
-        .map(
-          rgbFn,
-        ).match({
-          some: toRingOffsetColor(context.variablePrefix),
-          none: undefined,
-        });
-    }],
-    [
-      re$All,
-      ([body], context) => {
+            });
+        }],
+        [
+          re$All,
+          ([body]) => {
+            const color = resolveTheme(body, "color", context);
+            if (isUndefined(color)) return;
+
+            return parseColor(color).map(completionRGBA(1, true))
+              .map(rgbFn)
+              .match({
+                some: toRingOffsetColor(context.variablePrefix),
+                none: () => toRingOffsetColor(context.variablePrefix)(color),
+              });
+          },
+        ],
+      ]),
+  },
+  "*": (match, context) =>
+    execMatch(match, [
+      [
+        re$Numeric,
+        ([, numeric]) =>
+          parseNumeric(numeric).map(pxify).match({
+            some: (px) => handleRingWidth(px, context.variablePrefix),
+            none: undefined,
+          }),
+      ],
+      [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
 
-        return parseColor(color).map(completionRGBA(1, true))
-          .map(rgbFn)
-          .match({
-            some: toRingOffsetColor(context.variablePrefix),
-            none: () => toRingOffsetColor(context.variablePrefix)(color),
-          });
-      },
-    ],
-  ]],
-  [
-    re$Numeric,
-    ([, numeric], { variablePrefix }) =>
-      parseNumeric(numeric).map(pxify).match({
-        some: (px) => handleRingWidth(px, variablePrefix),
-        none: undefined,
-      }),
-  ],
-  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
-
-    return parseNumeric(numeric).match({
-      some: (number) =>
-        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
-          some: toRingColor(context.variablePrefix),
+        return parseNumeric(numeric).match({
+          some: (number) =>
+            parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn)
+              .match({
+                some: toRingColor(context.variablePrefix),
+                none: undefined,
+              }),
           none: undefined,
-        }),
-      none: undefined,
-    });
-  }],
-  [re$AllPerBracket_$, ([, body, alpha], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
-    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
-      rgbFn,
-    ).match({
-      some: toRingColor(context.variablePrefix),
-      none: undefined,
-    });
-  }],
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
-
-      return parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: toRingColor(context.variablePrefix),
-          none: () => toRingColor(context.variablePrefix)(color),
         });
-    },
-  ],
-];
+      }],
+      [re$AllPerBracket_$, ([, body, alpha]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+        return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+          .map(
+            rgbFn,
+          ).match({
+            some: toRingColor(context.variablePrefix),
+            none: undefined,
+          });
+      }],
+      [
+        re$All,
+        ([body]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
+
+          return parseColor(color).map(completionRGBA(1, true))
+            .map(rgbFn)
+            .match({
+              some: toRingColor(context.variablePrefix),
+              none: () => toRingColor(context.variablePrefix)(color),
+            });
+        },
+      ],
+    ]),
+};

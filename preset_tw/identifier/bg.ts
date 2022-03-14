@@ -2,16 +2,17 @@ import { customPropertySet } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../../deps.ts";
 import {
+  execMatch,
   re$All,
   re$AllPer$PositiveNumber,
   re$AllPerBracket_$,
 } from "../../core/utils/regexp.ts";
 import { parseColor, parseNumeric } from "../../core/utils/monad.ts";
 import { completionRGBA, ratio, rgbFn } from "../../core/utils/format.ts";
-import type { Identifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-function toBackgroundColor(color: string): { "background-color": string } {
-  return { "background-color": color };
+function toBackgroundColor(color: string): { backgroundColor: string } {
+  return { backgroundColor: color };
 }
 
 function varFnGradientStops(variablePrefix: string): string {
@@ -19,152 +20,157 @@ function varFnGradientStops(variablePrefix: string): string {
   return varFn;
 }
 
-export const bg: Identifier = [
-  ["fixed", { "background-attachment": "fixed" }],
-  ["local", { "background-attachment": "local" }],
-  ["scroll", { "background-attachment": "scroll" }],
-  ["clip", {
-    border: { "background-clip": "border-box" },
-    padding: { "background-clip": "padding-box" },
-    content: { "background-clip": "content-box" },
-    text: { "background-clip": "text" },
-  }],
-  ["origin", {
-    border: { "background-origin": "border-box" },
-    padding: { "background-origin": "padding-box" },
-    content: { "background-origin": "content-box" },
-  }],
-  ["top", { "background-position": "top" }],
-  ["bottom", { "background-position": "bottom" }],
-  ["center", { "background-position": "center" }],
-  ["left", {
-    DEFAULT: { "background-position": "left" },
-    top: { "background-position": "left top" },
-    bottom: { "background-position": "left bottom" },
-  }],
-  ["right", {
-    DEFAULT: { "background-position": "right" },
-    top: { "background-position": "right top" },
-    bottom: { "background-position": "right bottom" },
-  }],
-  ["repeat", {
-    DEFAULT: { "background-repeat": "repeat" },
-    x: { "background-repeat": "repeat-x" },
-    y: { "background-repeat": "repeat-y" },
-    round: { "background-repeat": "round" },
-    space: { "background-repeat": "space" },
-  }],
-  ["no", {
-    repeat: { "background-repeat": "no-repeat" },
-  }],
-  ["auto", { "background-size": "auto" }],
-  ["cover", { "background-size": "cover" }],
-  ["contain", { "background-size": "contain" }],
-  ["none", { "background-image": "none" }],
-  ["blend", {
-    normal: { "background-blend-mode": "normal" },
-    multiply: { "background-blend-mode": "multiply" },
-    screen: { "background-blend-mode": "screen" },
-    overlay: { "background-blend-mode": "overlay" },
-    darken: { "background-blend-mode": "darken" },
-    lighten: { "background-blend-mode": "lighten" },
-    difference: { "background-blend-mode": "difference" },
-    exclusion: { "background-blend-mode": "exclusion" },
-    hue: { "background-blend-mode": "hue" },
-    saturation: { "background-blend-mode": "saturation" },
-    luminosity: { "background-blend-mode": "luminosity" },
+export const bg: CSSMap = {
+  fixed: { backgroundAttachment: "fixed" },
+  local: { backgroundAttachment: "local" },
+  scroll: { backgroundAttachment: "scroll" },
+  clip: {
+    border: { backgroundClip: "border-box" },
+    padding: { backgroundClip: "padding-box" },
+    content: { backgroundClip: "content-box" },
+    text: { backgroundClip: "text" },
+  },
+  origin: {
+    border: { backgroundOrigin: "border-box" },
+    padding: { backgroundOrigin: "padding-box" },
+    content: { backgroundOrigin: "content-box" },
+  },
+  top: { backgroundPosition: "top" },
+  bottom: { backgroundPosition: "bottom" },
+  center: { backgroundPosition: "center" },
+  left: {
+    "": { backgroundPosition: "left" },
+    top: { backgroundPosition: "left top" },
+    bottom: { backgroundPosition: "left bottom" },
+  },
+  right: {
+    "": { backgroundPosition: "right" },
+    top: { backgroundPosition: "right top" },
+    bottom: { backgroundPosition: "right bottom" },
+  },
+  repeat: {
+    "": { backgroundRepeat: "repeat" },
+    x: { backgroundRepeat: "repeat-x" },
+    y: { backgroundRepeat: "repeat-y" },
+    round: { backgroundRepeat: "round" },
+    space: { backgroundRepeat: "space" },
+  },
+  no: {
+    repeat: { backgroundRepeat: "no-repeat" },
+  },
+  auto: { backgroundSize: "auto" },
+  cover: { backgroundSize: "cover" },
+  contain: { backgroundSize: "contain" },
+  none: { backgroundImage: "none" },
+  blend: {
+    normal: { backgroundBlendMode: "normal" },
+    multiply: { backgroundBlendMode: "multiply" },
+    screen: { backgroundBlendMode: "screen" },
+    overlay: { backgroundBlendMode: "overlay" },
+    darken: { backgroundBlendMode: "darken" },
+    lighten: { backgroundBlendMode: "lighten" },
+    difference: { backgroundBlendMode: "difference" },
+    exclusion: { backgroundBlendMode: "exclusion" },
+    hue: { backgroundBlendMode: "hue" },
+    saturation: { backgroundBlendMode: "saturation" },
+    luminosity: { backgroundBlendMode: "luminosity" },
     color: {
-      DEFAULT: { "background-blend-mode": "color" },
-      dodge: { "background-blend-mode": "color-dodge" },
-      burn: { "background-blend-mode": "color-burn" },
+      "": { backgroundBlendMode: "color" },
+      dodge: { backgroundBlendMode: "color-dodge" },
+      burn: { backgroundBlendMode: "color-burn" },
     },
     hard: {
-      light: { "background-blend-mode": "hard-light" },
+      light: { backgroundBlendMode: "hard-light" },
     },
     soft: {
-      light: { "background-blend-mode": "soft-light" },
+      light: { backgroundBlendMode: "soft-light" },
     },
-  }],
-  ["gradient", {
+  },
+  gradient: {
     to: {
       t: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to top, ${
+        backgroundImage: `linear-gradient(to top, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       tr: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to top right, ${
+        backgroundImage: `linear-gradient(to top right, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       r: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to right, ${
+        backgroundImage: `linear-gradient(to right, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       br: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to bottom right, ${
+        backgroundImage: `linear-gradient(to bottom right, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       b: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to bottom, ${
+        backgroundImage: `linear-gradient(to bottom, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       bl: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to bottom left, ${
+        backgroundImage: `linear-gradient(to bottom left, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       l: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to left, ${
+        backgroundImage: `linear-gradient(to left, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
       tl: (_, { variablePrefix }) => ({
-        "background-image": `linear-gradient(to top left, ${
+        backgroundImage: `linear-gradient(to top left, ${
           varFnGradientStops(variablePrefix)
         })`,
       }),
     },
-  }],
+  },
 
-  [re$AllPer$PositiveNumber, ([, body, numeric], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
+  "*": (match, context) =>
+    execMatch(match, [
+      [re$AllPer$PositiveNumber, ([, body, numeric]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
 
-    return parseNumeric(numeric).match({
-      some: (number) =>
-        parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn).match({
-          some: toBackgroundColor,
+        return parseNumeric(numeric).match({
+          some: (number) =>
+            parseColor(color).map(completionRGBA(ratio(number))).map(rgbFn)
+              .match({
+                some: toBackgroundColor,
+                none: undefined,
+              }),
           none: undefined,
-        }),
-      none: undefined,
-    });
-  }],
-  [re$AllPerBracket_$, ([, body, alpha], context) => {
-    const color = resolveTheme(body, "color", context);
-    if (isUndefined(color)) return;
-    return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha })).map(
-      rgbFn,
-    ).match({
-      some: toBackgroundColor,
-      none: undefined,
-    });
-  }],
-  [
-    re$All,
-    ([body], context) => {
-      const color = resolveTheme(body, "color", context);
-      if (isUndefined(color)) return;
-
-      return parseColor(color).map(completionRGBA(1, true))
-        .map(rgbFn)
-        .match({
-          some: toBackgroundColor,
-          none: () => ({ "background-color": color }),
         });
-    },
-  ],
-];
+      }],
+      [re$AllPerBracket_$, ([, body, alpha]) => {
+        const color = resolveTheme(body, "color", context);
+        if (isUndefined(color)) return;
+        return parseColor(color).map(({ r, g, b }) => ({ r, g, b, a: alpha }))
+          .map(
+            rgbFn,
+          ).match({
+            some: toBackgroundColor,
+            none: undefined,
+          });
+      }],
+      [
+        re$All,
+        ([body]) => {
+          const color = resolveTheme(body, "color", context);
+          if (isUndefined(color)) return;
+
+          return parseColor(color).map(completionRGBA(1, true))
+            .map(rgbFn)
+            .match({
+              some: toBackgroundColor,
+              none: () => ({ backgroundColor: color }),
+            });
+        },
+      ],
+    ]),
+};

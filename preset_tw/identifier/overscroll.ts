@@ -1,35 +1,17 @@
-import type { Identifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const overscroll: Identifier = {
-  auto: {
-    "overscroll-behavior": "auto",
-  },
-  contain: {
-    "overscroll-behavior": "contain",
-  },
-  none: {
-    "overscroll-behavior": "none",
-  },
+export const overscroll: CSSMap = {
+  auto: { overscrollBehavior: "auto" },
+  contain: { overscrollBehavior: "contain" },
+  none: { overscrollBehavior: "none" },
   x: {
-    auto: {
-      "overscroll-behavior-x": "auto",
-    },
-    contain: {
-      "overscroll-behavior-x": "contain",
-    },
-    none: {
-      "overscroll-behavior-x": "none",
-    },
+    auto: { overscrollBehaviorX: "auto" },
+    contain: { overscrollBehaviorX: "contain" },
+    none: { overscrollBehaviorX: "none" },
   },
   y: {
-    auto: {
-      "overscroll-behavior-y": "auto",
-    },
-    contain: {
-      "overscroll-behavior-y": "contain",
-    },
-    none: {
-      "overscroll-behavior-y": "none",
-    },
+    auto: { overscrollBehaviorY: "auto" },
+    contain: { overscrollBehaviorY: "contain" },
+    none: { overscrollBehaviorY: "none" },
   },
 };

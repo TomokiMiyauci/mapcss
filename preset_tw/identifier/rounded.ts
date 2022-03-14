@@ -1,4 +1,4 @@
-import type { Identifier } from "../../core/types.ts";
+import type { CSSMap } from "../../core/types.ts";
 
 const roundedMap = {
   DEFAULT: "0.25rem",
@@ -17,18 +17,19 @@ const BORDER_TOP_LEFT_RADIUS = "border-top-left-radius";
 const BORDER_TOP_RIGHT_RADIUS = "border-top-right-radius";
 const BORDER_BOTTOM_RIGHT_RADIUS = "border-bottom-right-radius";
 const BORDER_BOTTOM_LEFT_RADIUS = "border-bottom-left-radius";
-export const rounded: Identifier = [
-  ["DEFAULT", { [BORDER_RADIUS]: roundedMap["DEFAULT"] }],
-  ["none", { [BORDER_RADIUS]: roundedMap["none"] }],
-  ["sm", { [BORDER_RADIUS]: roundedMap["sm"] }],
-  ["md", { [BORDER_RADIUS]: roundedMap["md"] }],
-  ["lg", { [BORDER_RADIUS]: roundedMap["lg"] }],
-  ["xl", { [BORDER_RADIUS]: roundedMap["xl"] }],
-  ["2xl", { [BORDER_RADIUS]: roundedMap["2xl"] }],
-  ["3xl", { [BORDER_RADIUS]: roundedMap["3xl"] }],
-  ["full", { [BORDER_RADIUS]: roundedMap["full"] }],
-  ["t", {
-    DEFAULT: {
+
+export const rounded: CSSMap = {
+  "": { [BORDER_RADIUS]: roundedMap["DEFAULT"] },
+  none: { [BORDER_RADIUS]: roundedMap["none"] },
+  sm: { [BORDER_RADIUS]: roundedMap["sm"] },
+  md: { [BORDER_RADIUS]: roundedMap["md"] },
+  lg: { [BORDER_RADIUS]: roundedMap["lg"] },
+  xl: { [BORDER_RADIUS]: roundedMap["xl"] },
+  "2xl": { [BORDER_RADIUS]: roundedMap["2xl"] },
+  "3xl": { [BORDER_RADIUS]: roundedMap["3xl"] },
+  full: { [BORDER_RADIUS]: roundedMap["full"] },
+  t: {
+    "": {
       [BORDER_TOP_LEFT_RADIUS]: roundedMap["DEFAULT"],
       [BORDER_TOP_RIGHT_RADIUS]: roundedMap["DEFAULT"],
     },
@@ -64,9 +65,9 @@ export const rounded: Identifier = [
       [BORDER_TOP_LEFT_RADIUS]: roundedMap["full"],
       [BORDER_TOP_RIGHT_RADIUS]: roundedMap["full"],
     },
-  }],
-  ["r", {
-    DEFAULT: {
+  },
+  r: {
+    "": {
       [BORDER_TOP_RIGHT_RADIUS]: roundedMap["DEFAULT"],
       [BORDER_BOTTOM_RIGHT_RADIUS]: roundedMap["DEFAULT"],
     },
@@ -102,9 +103,9 @@ export const rounded: Identifier = [
       [BORDER_TOP_RIGHT_RADIUS]: roundedMap["full"],
       [BORDER_BOTTOM_RIGHT_RADIUS]: roundedMap["full"],
     },
-  }],
-  ["b", {
-    DEFAULT: {
+  },
+  b: {
+    "": {
       [BORDER_BOTTOM_RIGHT_RADIUS]: roundedMap["DEFAULT"],
       [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["DEFAULT"],
     },
@@ -140,9 +141,9 @@ export const rounded: Identifier = [
       [BORDER_BOTTOM_RIGHT_RADIUS]: roundedMap["full"],
       [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["full"],
     },
-  }],
-  ["l", {
-    DEFAULT: {
+  },
+  l: {
+    "": {
       [BORDER_TOP_LEFT_RADIUS]: roundedMap["DEFAULT"],
       [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["DEFAULT"],
     },
@@ -178,9 +179,9 @@ export const rounded: Identifier = [
       [BORDER_TOP_LEFT_RADIUS]: roundedMap["full"],
       [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["full"],
     },
-  }],
-  ["tl", {
-    DEFAULT: {
+  },
+  tl: {
+    "": {
       [BORDER_TOP_LEFT_RADIUS]: roundedMap["DEFAULT"],
     },
     none: {
@@ -207,9 +208,9 @@ export const rounded: Identifier = [
     full: {
       [BORDER_TOP_LEFT_RADIUS]: roundedMap["full"],
     },
-  }],
-  ["tr", {
-    DEFAULT: { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["DEFAULT"] },
+  },
+  tr: {
+    "": { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["DEFAULT"] },
     none: { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["none"] },
     sm: { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["sm"] },
     md: { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["md"] },
@@ -218,37 +219,34 @@ export const rounded: Identifier = [
     "2xl": { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["2xl"] },
     "3xl": { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["3xl"] },
     full: { [BORDER_TOP_RIGHT_RADIUS]: roundedMap["full"] },
-  }],
-  [
-    "bl",
-    {
-      DEFAULT: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["DEFAULT"],
-      },
-      none: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["none"],
-      },
-      sm: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["sm"],
-      },
-      md: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["md"],
-      },
-      lg: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["lg"],
-      },
-      xl: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["xl"],
-      },
-      "2xl": { [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["2xl"] },
-      "3xl": { [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["3xl"] },
-      full: {
-        [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["full"],
-      },
+  },
+  bl: {
+    "": {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["DEFAULT"],
     },
-  ],
-  ["br", {
-    DEFAULT: {
+    none: {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["none"],
+    },
+    sm: {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["sm"],
+    },
+    md: {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["md"],
+    },
+    lg: {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["lg"],
+    },
+    xl: {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["xl"],
+    },
+    "2xl": { [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["2xl"] },
+    "3xl": { [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["3xl"] },
+    full: {
+      [BORDER_BOTTOM_LEFT_RADIUS]: roundedMap["full"],
+    },
+  },
+  br: {
+    "": {
       [BORDER_BOTTOM_RIGHT_RADIUS]: roundedMap["DEFAULT"],
     },
     none: {
@@ -275,5 +273,5 @@ export const rounded: Identifier = [
     full: {
       [BORDER_BOTTOM_RIGHT_RADIUS]: roundedMap["full"],
     },
-  }],
-];
+  },
+};
