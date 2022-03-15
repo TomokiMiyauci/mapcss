@@ -180,7 +180,13 @@ export type CSSMap =
   | {
     [k in string | number]: IdentifierDefinition;
   }
-  | { [k in "*"]: IdentifierDefinition };
+  | {
+    /** Default accessor */
+    "": IdentifierDefinition;
+
+    /** Catch all property accessor */
+    "*": IdentifierDefinition;
+  };
 
 export type EntriesModifier = [
   RegExp,
