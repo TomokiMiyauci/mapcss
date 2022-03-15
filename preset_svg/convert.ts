@@ -5,7 +5,7 @@ export function iconifyJSON(
   icon: IconifyJSON,
 ): Option["svgMap"] {
   const identifier: Option["svgMap"] = {};
-  parseIconSet(icon, (name: string, iconData: string) => {
+  parseIconSet(icon, (name: any, iconData: any) => {
     if (!iconData) {
       throw Error(iconData);
     }

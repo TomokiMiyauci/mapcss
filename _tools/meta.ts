@@ -67,6 +67,15 @@ const meta: DefineMeta[] = [
         "svg",
         "icon",
       ],
+      dependencies: {
+        "@iconify/utils": "1.0.24",
+      },
+    },
+    mappings: {
+      "https://cdn.skypack.dev/@iconify/utils@1.0.24": {
+        name: "@iconify/utils",
+        version: "1.0.24",
+      },
     },
   },
 ];
