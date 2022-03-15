@@ -58,6 +58,17 @@ export type Result = {
   unmatched: Set<string>;
 };
 
+function rootKeys(
+  value: Readonly<Readonly<Record<PropertyKey, unknown>>[]>,
+): string[] {
+  return Array.from(value.reduceRight((acc, cur) => {
+    Object.keys(cur).forEach((key) => {
+      acc.add(key);
+    });
+    return acc;
+  }, new Set<string>()));
+}
+
 /** Generate result of CSS Style Sheet */
 export function generate(
   {
@@ -80,7 +91,7 @@ export function generate(
   };
   const {
     syntax,
-    modifierMap,
+    modifierMaps,
     theme,
     cssMaps,
     preProcess,
@@ -102,13 +113,8 @@ export function generate(
     for (const { fn } of [...syntax, defaultSyntax]) {
       const parseResult = fn(mappedToken, {
         ...staticContext,
-        modifierRoots: Object.keys(modifierMap),
-        identifierRoots: Array.from(cssMaps.reduceRight((acc, cur) => {
-          Object.keys(cur).forEach((key) => {
-            acc.add(key);
-          });
-          return acc;
-        }, new Set<string>())),
+        modifierRoots: rootKeys(modifierMaps),
+        identifierRoots: rootKeys(cssMaps),
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
@@ -133,7 +139,7 @@ export function generate(
       const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;
 
-        return resolveModifierMap(cur, modifierMap, acc, {
+        return resolveModifierMap(cur, modifierMaps, acc, {
           ...staticContext,
           ...runtimeContext,
           modifier: cur,

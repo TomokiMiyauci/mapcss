@@ -18,7 +18,6 @@ function createCSSMapContext(
     mappedToken: "class-name",
     theme: {},
     variablePrefix: "map-",
-    key: "",
     parentKey: "",
     path: [],
     ...context,

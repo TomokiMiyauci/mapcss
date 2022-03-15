@@ -60,7 +60,7 @@ test("selectorTransform", () => {
   ];
 
   table.forEach(([css, transform, result, context]) =>
-    expect(selectorTransform(transform)(toAST(css), context)).toEqualJSCSS(
+    expect(selectorTransform(transform)(toAST(css), "", context)).toEqualJSCSS(
       result,
     )
   );

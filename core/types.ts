@@ -130,8 +130,6 @@ export type RuntimeContext = {
 
 export type Config = StaticConfig & StaticContext;
 
-export type ModifierMap = BinaryTree<ModifierDefinition>;
-
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
   identifierRoots: string[];
@@ -166,7 +164,7 @@ export type DynamicCSS = ((
    * example: text-`red`-500 -> `red`
    */
   match: string,
-  context: IdentifierContext,
+  context: Readonly<IdentifierContext>,
 ) => CSSMap | CSSObject | undefined);
 
 export type IdentifierDefinition =
@@ -186,21 +184,22 @@ export type CSSMap =
     "*": IdentifierDefinition;
   };
 
-export type EntriesModifier = [
-  RegExp,
-  (
-    regExpExecArray: RegExpExecArray,
-    parentNode: Root,
-    context: ModifierContext,
-  ) => Root | undefined,
-][];
+export type ModifierMap =
+  | {
+    [k in string | number]: ModifierDefinition;
+  }
+  | {
+    /** Default accessor */
+    "": IdentifierDefinition;
 
-export type RecordModifier = {
-  [k: string]: ModifierDefinition;
-};
+    /** Catch all property accessor */
+    "*": ModifierDefinition;
+  };
 
-export type Modifier = RecordModifier;
-export type ModifierDefinition = (
-  parentNode: Root,
-  context: ModifierContext,
+export type Modifier = (
+  parentNode: Readonly<Root>,
+  match: string,
+  context: Readonly<ModifierContext>,
 ) => Root | undefined;
+
+export type ModifierDefinition = Modifier | ModifierMap;

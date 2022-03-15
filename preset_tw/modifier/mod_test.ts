@@ -12,6 +12,6 @@ test("modifier should return new root node", () => {
     ...atRules,
   ];
   table.forEach(([css, result, modifier, context]) =>
-    expect(modifier(toAST(css), context)).toEqualJSCSS(result)
+    expect(modifier(toAST(css), "", context)).toEqualJSCSS(result)
   );
 });

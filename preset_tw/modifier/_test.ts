@@ -1,13 +1,13 @@
 import type {
   BinaryTree,
+  Modifier,
   ModifierContext,
-  ModifierDefinition,
 } from "../../core/types.ts";
 
 export type TestCase = [
   BinaryTree<string | number>,
   BinaryTree<string | number>,
-  ModifierDefinition,
+  Modifier,
   ModifierContext,
 ][];
 

@@ -22,6 +22,7 @@ import type {
   IdentifierContext,
   IdentifierDefinition,
   ModifierContext,
+  ModifierDefinition,
   ModifierMap,
   PreProcessor,
   Preset,
@@ -61,7 +62,7 @@ function leftSplit(
 export function resolveCSSMap(
   value: Arrayable<string>,
   cssMap: Arrayable<Readonly<CSSMap>>,
-  context: Omit<IdentifierContext, "parentKey" | "path">,
+  context: Readonly<Omit<IdentifierContext, "parentKey" | "path">>,
 ): Root | undefined {
   for (const map of wrap(cssMap)) {
     const paths = leftSplit(value, context.separator);
@@ -102,15 +103,18 @@ export function resolveCSSMap(
 }
 
 function makeCSSContext(
-  baseContext:
-    & Omit<IdentifierContext, "parentKey" | "path">
-    & { parentKey?: string },
-  { key, path }: { key?: string; path: string[] },
+  baseContext: Readonly<
+    (
+      & Omit<IdentifierContext, "parentKey" | "path">
+      & { parentKey?: string; path?: string[] }
+    )
+  >,
+  { key, path }: Readonly<{ key?: string; path: string[] }>,
 ): IdentifierContext {
   return {
     ...baseContext,
     parentKey: baseContext.parentKey ?? key,
-    path,
+    path: baseContext.path?.length ? baseContext.path : path,
   };
 }
 
@@ -214,12 +218,15 @@ export function resolveConfig(
     >
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
-): Omit<StaticConfig, "preset" | "cssMap"> & { cssMaps: CSSMap[] } {
+): Omit<StaticConfig, "preset" | "cssMap" | "modifierMap"> & {
+  cssMaps: CSSMap[];
+  modifierMaps: ModifierMap[];
+} {
   const _presets = resolvePreset(preset, context);
-  const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
-    .reduce((acc, cur) => {
-      return deepMerge(acc, cur);
-    }, _modifierMap);
+  const modifierMaps = [
+    ..._presets.map(({ modifierMap }) => modifierMap),
+    _modifierMap,
+  ];
   const theme = _presets.map(({ theme }) => theme).reduce(
     (acc, cur) => {
       return deepMerge(acc as any, cur as any) as Theme;
@@ -247,7 +254,7 @@ export function resolveConfig(
   return {
     cssMaps,
     theme,
-    modifierMap,
+    modifierMaps,
     syntax,
     preProcess,
     css,
@@ -256,43 +263,44 @@ export function resolveConfig(
 }
 
 export function resolveModifierMap(
-  modifier: string | string[],
-  modifierMap: ModifierMap,
-  parentNode: Root,
-  context: PartialByKeys<ModifierContext, "path">,
+  modifier: Arrayable<string>,
+  modifierMap: Arrayable<Readonly<ModifierMap>>,
+  parentNode: Readonly<Root>,
+  context: Readonly<PartialByKeys<ModifierContext, "path">>,
 ): Root | undefined {
-  const { separator } = context;
-  const paths = leftSplit(modifier, separator);
+  for (const map of wrap(modifierMap)) {
+    const paths = leftSplit(modifier, context.separator);
 
-  for (const path of paths) {
-    const _head = head(path);
-    const first = _head ?? "DEFAULT";
-    if (isUndefined(first)) continue;
-    if (!context.path) {
-      context.path = path;
-    }
-    const ctx: ModifierContext = context.path
-      ? context as ModifierContext
-      : { ...context, path };
+    for (const path of paths) {
+      const _head = head(path);
+      const ctx = makeModifierContext(context, { path });
 
-    const modifier = prop(first, modifierMap);
-    if (isUndefined(modifier)) {
-      context.path = undefined;
-      continue;
-    }
+      const modifier = prop(_head ?? "", map) as
+        | ModifierDefinition
+        | undefined;
+      if (isUndefined(modifier)) continue;
 
-    if (isFunction(modifier)) {
-      const maybeRoot = modifier(parentNode, ctx);
-      context.path = undefined;
-      if (isUndefined(maybeRoot)) continue;
-      return maybeRoot;
-    }
-    const rest = tail(path);
+      if (isFunction(modifier)) {
+        const maybeRoot = modifier(parentNode, _head ?? "", ctx);
+        if (isUndefined(maybeRoot)) continue;
+        return maybeRoot;
+      }
+      const rest = tail(path);
 
-    const result = resolveModifierMap(rest, modifier, parentNode, ctx);
-    if (result) {
-      return result;
+      const result = resolveModifierMap(rest, modifier, parentNode, ctx);
+      if (result) {
+        return result;
+      }
     }
-    context.path = undefined;
   }
+}
+
+function makeModifierContext(
+  baseContext: Readonly<PartialByKeys<ModifierContext, "path">>,
+  { path }: Readonly<{ key?: string; path: string[] }>,
+): ModifierContext {
+  return {
+    ...baseContext,
+    path: baseContext.path?.length ? baseContext.path : path,
+  };
 }

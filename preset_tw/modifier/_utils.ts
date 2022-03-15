@@ -1,5 +1,5 @@
 import { Node } from "../../deps.ts";
-import type { ModifierContext, ModifierDefinition } from "../../core/types.ts";
+import type { Modifier, ModifierContext } from "../../core/types.ts";
 import { isAtRule } from "../../core/utils/assert.ts";
 
 export function isAllowNode(node: Node): boolean {
@@ -11,8 +11,8 @@ export function isAllowNode(node: Node): boolean {
 
 export function selectorTransform(
   transform: (selector: string, context: ModifierContext) => string,
-): ModifierDefinition {
-  return (root, context) => {
+): Modifier {
+  return (root, _, context) => {
     root.walkRules((rule) => {
       if (isAllowNode(rule)) {
         rule.selectors = rule.selectors.map((selector) =>

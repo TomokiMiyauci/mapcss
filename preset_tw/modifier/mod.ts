@@ -28,7 +28,7 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     "2xl": $2xl,
     hover: selectorTransform(suffix(":hover")),
     focus: {
-      DEFAULT: selectorTransform(suffix(":focus")),
+      "": selectorTransform(suffix(":focus")),
       within: selectorTransform(suffix(":focus-within")),
       visible: selectorTransform(suffix(":focus-visible")),
     },
@@ -37,7 +37,7 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
     visited: selectorTransform(suffix(":visited")),
     target: selectorTransform(suffix(":target")),
     first: {
-      DEFAULT: selectorTransform(suffix(":first-child")),
+      "": selectorTransform(suffix(":first-child")),
       of: {
         type: selectorTransform(suffix(":first-of-type")),
       },
@@ -45,13 +45,13 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
       line: selectorTransform(suffix("::first-line")),
     },
     last: {
-      DEFAULT: selectorTransform(suffix(":last-child")),
+      "": selectorTransform(suffix(":last-child")),
       of: {
         type: selectorTransform(suffix(":last-of-type")),
       },
     },
     only: {
-      DEFAULT: selectorTransform(suffix(":only-child")),
+      "": selectorTransform(suffix(":only-child")),
       of: {
         type: selectorTransform(suffix(":only-of-type")),
       },
@@ -75,7 +75,7 @@ export function createModifierMap(darkMode: Option["darkMode"]): ModifierMap {
       },
     },
     placeholder: {
-      DEFAULT: selectorTransform(suffix("::placeholder")),
+      "": selectorTransform(suffix("::placeholder")),
       shown: selectorTransform(suffix(":placeholder-shown")),
     },
     autofill: selectorTransform(suffix(":autofill")),

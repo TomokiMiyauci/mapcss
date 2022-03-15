@@ -1,6 +1,6 @@
-import type { ModifierDefinition } from "../../core/types.ts";
+import type { Modifier } from "../../core/types.ts";
 
-export const $important: ModifierDefinition = (parentNode) => {
+export const $important: Modifier = (parentNode) => {
   parentNode.walkDecls((decl) => {
     decl.important = true;
   });

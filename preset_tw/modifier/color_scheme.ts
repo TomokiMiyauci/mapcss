@@ -1,11 +1,11 @@
 import { isAtRule, isRule } from "../../core/utils/assert.ts";
 import { AtRule } from "../../deps.ts";
 import { isAllowNode } from "./_utils.ts";
-import type { ModifierDefinition } from "./../../core/types.ts";
+import type { Modifier } from "./../../core/types.ts";
 import type { Option } from "../types.ts";
 
 export function createDark(darkMode: Option["darkMode"]) {
-  const dark: ModifierDefinition = (parentNode, { modifier }) => {
+  const dark: Modifier = (parentNode, _, { modifier }) => {
     if (darkMode === "media") {
       parentNode.each((node) => {
         if (isAtRule(node) || isRule(node)) {

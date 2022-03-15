@@ -1,9 +1,10 @@
 import { Declaration } from "../../deps.ts";
 import { customProperty, varFn } from "../../core/utils/format.ts";
-import type { ModifierDefinition } from "../../core/types.ts";
+import type { Modifier } from "../../core/types.ts";
 
-export const content: ModifierDefinition = (
+export const content: Modifier = (
   root,
+  _,
   { variablePrefix, modifier },
 ) => {
   const CONTENT = "content";
