@@ -61,19 +61,15 @@ function leftSplit(
 export function resolveCSSMap(
   value: Arrayable<string>,
   cssMap: Arrayable<Readonly<CSSMap>>,
-  context:
-    & Omit<IdentifierContext, "key" | "parentKey" | "path">
-    & { parentKey?: string; key?: string },
+  context: Omit<IdentifierContext, "parentKey" | "path">,
 ): Root | undefined {
   for (const map of wrap(cssMap)) {
     const paths = leftSplit(value, context.separator);
     for (const path of paths) {
-      const first = head(path) ?? "";
-      const rest = tail(path);
-
+      const first = head(path);
       const cssMapContext = makeCSSContext(context, { key: first, path });
 
-      const maybeDefinition = prop(first, map) as
+      const maybeDefinition = prop(first ?? "", map) as
         | IdentifierDefinition
         | undefined ?? prop("*", map);
 
@@ -83,7 +79,7 @@ export function resolveCSSMap(
         if (isUndefined(value)) return;
 
         if (isFunction(value)) {
-          return resolve(value(cssMapContext.key, cssMapContext));
+          return resolve(value(first ?? "", cssMapContext));
         } else if (isCSSDefinition(value)) {
           return toAST(value.value);
         } else if (isRoot(value)) {
@@ -93,6 +89,7 @@ export function resolveCSSMap(
             [context.className]: value,
           });
         } else {
+          const rest = tail(path);
           return resolveCSSMap(rest, value, cssMapContext);
         }
       };
@@ -106,15 +103,13 @@ export function resolveCSSMap(
 
 function makeCSSContext(
   baseContext:
-    & Omit<IdentifierContext, "key" | "parentKey" | "path">
-    & { parentKey?: string; key?: string },
+    & Omit<IdentifierContext, "parentKey" | "path">
+    & { parentKey?: string },
   { key, path }: { key?: string; path: string[] },
 ): IdentifierContext {
-  const _key = key ? key : baseContext.key ?? "";
   return {
     ...baseContext,
-    parentKey: baseContext.key,
-    key: _key,
+    parentKey: baseContext.parentKey ?? key,
     path,
   };
 }

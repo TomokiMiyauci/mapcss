@@ -21,12 +21,6 @@ export type IdentifierContext =
     /** Full identifier */
     identifier: string;
 
-    /** The matched object key
-     *
-     * example: text-`red`-500 -> `red`
-     */
-    key: string;
-
     /** The matched parent key
      *
      * example: text-`red`-500 -> `text`
@@ -167,6 +161,10 @@ export type PreProcessor = Labeled & {
 export type BlockDefinition = Record<string, string | number>;
 
 export type DynamicCSS = ((
+  /** Matched property key
+   *
+   * example: text-`red`-500 -> `red`
+   */
   match: string,
   context: IdentifierContext,
 ) => CSSMap | CSSObject | undefined);
