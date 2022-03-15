@@ -1,14 +1,16 @@
 import valueParser from "https://esm.sh/postcss-value-parser";
-import { parseSelector, type PostcssPlugin } from "../../deps.ts";
+import { parseSelector, PostcssPlugin, SyncProcessor } from "../../deps.ts";
 
-const selectorProcessor = parseSelector((selectors) => {
+const processor: SyncProcessor = (selectors) => {
   selectors.walk((selector) => {
     selector.spaces = { before: "", after: "" };
   });
-});
+};
 
 export function minifySelector(value: string): string {
-  return selectorProcessor.processSync(value);
+  const selectorProcessor = parseSelector(processor);
+
+  return selectorProcessor.processSync(value, {});
 }
 
 function minifyValue(value: string): string {

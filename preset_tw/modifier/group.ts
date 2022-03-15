@@ -8,7 +8,7 @@ function createGroup(value: string): ModifierDefinition {
 export const group: ModifierMap = {
   hover: createGroup(":hover"),
   focus: {
-    DEFAULT: createGroup(":focus"),
+    "": createGroup(":focus"),
     within: createGroup(":focus-within"),
     visible: createGroup(":focus-visible"),
   },
@@ -16,13 +16,13 @@ export const group: ModifierMap = {
   visited: createGroup(":visited"),
   target: createGroup(":target"),
   first: {
-    DEFAULT: createGroup(":first-child"),
+    "": createGroup(":first-child"),
     of: {
       type: createGroup(":first-of-type"),
     },
   },
   last: {
-    DEFAULT: createGroup(":last-child"),
+    "": createGroup(":last-child"),
     of: {
       type: createGroup(":last-of-type"),
     },

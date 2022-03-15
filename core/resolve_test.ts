@@ -1,58 +1,117 @@
-import { mergeCSSMap } from "./resolve.ts";
-import { expect, ParamReturn, test } from "../dev_deps.ts";
+import { expect, test } from "../dev_deps.ts";
+import { resolveCSSMap } from "./resolve.ts";
+import { Root } from "../deps.ts";
+import { createContext } from "../utils/context.ts";
+import type {
+  BinaryTree,
+  CSSMap,
+  RuntimeContext,
+  StaticContext,
+} from "./types.ts";
 
-test("mergeCSSMap", () => {
-  const table: ParamReturn<typeof mergeCSSMap>[] = [
-    [[{}], new Map()],
-    [[{ block: { a: "b" } }], new Map([["block", { a: "b" }]])],
+const block = { display: "block" };
+const inlineBlock = { display: "inline-block" };
+
+test("resolveCSSMap", () => {
+  const table: [
+    string,
+    CSSMap,
+    StaticContext & RuntimeContext,
+    BinaryTree<string | number> | undefined,
+  ][] = [
     [
-      [{ block: { a: "b" } }, { inline: { a: "b" } }],
-      new Map([["block", { a: "b" }], ["inline", { a: "b" }]]),
+      "block",
+      { block: block },
+      createContext({ className: ".block" }),
+      {
+        ".block": block,
+      },
     ],
     [
-      [{ block: { a: "b" } }, { block: { a: "b" } }],
-      new Map([["block", { a: "b" }]]),
+      "block",
+      { block: { "": block } },
+      createContext({ className: ".block" }),
+      {
+        ".block": block,
+      },
     ],
     [
-      [{ block: { a: "b" } }, { block: { b: "b" } }],
-      new Map([["block", { b: "b" }]]),
+      "inline-block",
+      {
+        inline: { block: { display: "inline-block" } },
+      },
+      createContext({ className: ".inline-block" }),
+      {
+        ".inline-block": { display: "inline-block" },
+      },
     ],
     [
-      [{ inline: { block: { a: "b" } } }],
-      new Map([["inline", new Map([["block", { a: "b" }]])]]),
+      "inline-block",
+      {
+        inline: { block: { "": inlineBlock } },
+      },
+      createContext({ className: ".inline-block" }),
+      {
+        ".inline-block": inlineBlock,
+      },
     ],
     [
-      [{ inline: { block: { 300: { a: "b" } } } }],
-      new Map([[
-        "inline",
-        new Map([["block", new Map([["300", { a: "b" }]])]]),
-      ]]),
+      "inline",
+      {
+        inline: { block: inlineBlock },
+      },
+      createContext({ className: ".inline-block" }),
+      undefined,
     ],
     [
-      [{ block: [["a", { b: "c" }]] }],
-      new Map([["block", new Map([["a", { b: "c" }]])]]),
+      "block",
+      { block: { type: "css", value: { ".block": block } } },
+      createContext(),
+      { ".block": block },
     ],
     [
-      [{ block: [["a", { b: "c" }]], inline: { block: { "a": "b" } } }],
-      new Map([
-        [
-          "block",
-          new Map(
-            [["a", { b: "c" } as {}]],
-          ),
-        ],
-        [
-          "inline",
-          new Map(
-            [["block", { a: "b" } as {}]],
-          ),
-        ],
-      ]),
+      "block",
+      {
+        block: {
+          "": { type: "css", value: { ".block": block } },
+        },
+      },
+      createContext(),
+      { ".block": block },
     ],
-    // [[{ block: [] }], new Map([["block", {}]])],
+    ["block", { block: new Root({ nodes: [] }) }, createContext(), {}],
+    [
+      "block",
+      { block: () => block },
+      createContext({ className: ".test" }),
+      { ".test": block },
+    ],
+    [
+      "block",
+      { block: { "": () => block } },
+      createContext({ className: ".test" }),
+      { ".test": block },
+    ],
+    [
+      "block",
+      {
+        block: {
+          "": (_, { variablePrefix }) => ({
+            [`--${variablePrefix}test`]: "test",
+          }),
+        },
+      },
+      createContext({ className: ".test" }),
+      { ".test": { "--map-test": "test" } },
+    ],
   ];
 
-  table.forEach(([cssMap, result]) =>
-    expect(mergeCSSMap(cssMap)).toEqual(result)
-  );
+  table.forEach(([value, cssMap, context, result]) => {
+    const maybeRoot = resolveCSSMap(value, cssMap, context);
+    if (maybeRoot && result) {
+      expect(maybeRoot).toEqualJSCSS(result);
+    } else {
+      expect(maybeRoot).toBe(result);
+    }
+  });
 });

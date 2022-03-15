@@ -7,6 +7,7 @@ import {
   isString,
   Node,
   prop,
+  Root,
   Rule,
 } from "../../deps.ts";
 
@@ -42,4 +43,8 @@ export function isRule(node: Node): node is Rule {
 
 export function isAtRule(node: Node): node is AtRule {
   return node.type === "atrule";
+}
+
+export function isRoot(node: unknown): node is Root {
+  return isObject(node) && prop("type", node) === "root";
 }

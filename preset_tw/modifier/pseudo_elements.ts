@@ -1,16 +1,15 @@
 import { Declaration } from "../../deps.ts";
 import { customProperty, varFn } from "../../core/utils/format.ts";
-import type { ModifierDefinition } from "../../core/types.ts";
+import type { Modifier } from "../../core/types.ts";
 
-export const content: ModifierDefinition = (
+export const content: Modifier = (
   root,
-  { variablePrefix, modifier },
+  { id },
+  { variablePrefix },
 ) => {
   const CONTENT = "content";
   root.walkRules((node) => {
-    node.selectors = node.selectors.map((selector) =>
-      `${selector}::${modifier}`
-    );
+    node.selectors = node.selectors.map((selector) => `${selector}::${id}`);
     node.walkDecls(CONTENT, (child) => {
       child.remove();
     });

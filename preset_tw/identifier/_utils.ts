@@ -1,9 +1,4 @@
-import {
-  type Arrayable,
-  associateWith,
-  isNumber,
-  type Option,
-} from "../../deps.ts";
+import { Arrayable, associateWith, isNumber, Option } from "../../deps.ts";
 import {
   customProperty,
   multiple,

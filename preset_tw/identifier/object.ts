@@ -1,26 +1,29 @@
-import { reBracket_$ } from "../../core/utils/regexp.ts";
-import type { EntriesIdentifier } from "../../core/types.ts";
+import { execMatch, reBracket_$ } from "../../core/utils/regexp.ts";
+import type { CSSMap } from "../../core/types.ts";
 
-export const object: EntriesIdentifier = [
-  ["contain", { "object-fit": "contain" }],
-  ["cover", { "object-fit": "cover" }],
-  ["fill", { "object-fit": "fill" }],
-  ["none", { "object-fit": "none" }],
-  ["scale", {
-    down: { "object-fit": "scale-down" },
-  }],
-  ["top", { "object-position": "top" }],
-  ["bottom", { "object-position": "bottom" }],
-  ["center", { "object-position": "center" }],
-  ["left", {
-    DEFAULT: { "object-position": "left" },
-    bottom: { "object-position": "left bottom" },
-    top: { "object-position": "left top" },
-  }],
-  ["right", {
-    DEFAULT: { "object-position": "right" },
-    bottom: { "object-position": "right bottom" },
-    top: { "object-position": "right top" },
-  }],
-  [reBracket_$, ([, arbitrary]) => ({ "object-position": arbitrary })],
-];
+export const object: CSSMap = {
+  contain: { objectFit: "contain" },
+  cover: { objectFit: "cover" },
+  fill: { objectFit: "fill" },
+  none: { objectFit: "none" },
+  scale: {
+    down: { objectFit: "scale-down" },
+  },
+  top: { objectPosition: "top" },
+  bottom: { objectPosition: "bottom" },
+  center: { objectPosition: "center" },
+  left: {
+    "": { objectPosition: "left" },
+    bottom: { objectPosition: "left bottom" },
+    top: { objectPosition: "left top" },
+  },
+  right: {
+    "": { objectPosition: "right" },
+    bottom: { objectPosition: "right bottom" },
+    top: { objectPosition: "right top" },
+  },
+  "*": ({ id }) =>
+    execMatch(id, [
+      [reBracket_$, ([, arbitrary]) => ({ objectPosition: arbitrary })],
+    ]),
+};

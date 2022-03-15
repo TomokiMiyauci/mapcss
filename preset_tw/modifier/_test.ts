@@ -1,32 +1,15 @@
 import type {
   BinaryTree,
-  ModifierContext,
-  ModifierDefinition,
+  MatchInfo,
+  Modifier,
+  RuntimeContext,
+  StaticContext,
 } from "../../core/types.ts";
 
 export type TestCase = [
   BinaryTree<string | number>,
   BinaryTree<string | number>,
-  ModifierDefinition,
-  ModifierContext,
+  Modifier,
+  MatchInfo,
+  StaticContext & RuntimeContext,
 ][];
-
-export function createContext(
-  context: Readonly<Partial<ModifierContext>> = {},
-): ModifierContext {
-  const defaultContext: ModifierContext = {
-    modifier: "",
-    charMap: {},
-    className: ".",
-    mappedToken: "",
-    token: "",
-    separator: "-",
-    theme: {},
-    variablePrefix: "map-",
-    path: [],
-  };
-  return {
-    ...defaultContext,
-    ...context,
-  };
-}

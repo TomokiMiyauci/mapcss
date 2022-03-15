@@ -1,8 +1,8 @@
-import { re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
+import { execMatch, re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
-import type { CSSDefinition, EntriesIdentifier } from "../../core/types.ts";
+import type { CSSDefinition, CSSMap } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
 const SPACE_X_REVERSE = "space-x-reverse";
@@ -48,75 +48,67 @@ function handleSpaceY(
   };
 }
 
-export const space: EntriesIdentifier = [
-  ["x", [
-    [
-      0,
-      (_, { variablePrefix, className }) =>
-        handleSpaceX(variablePrefix, "0px", combine(className)),
-    ],
-    [
-      "px",
-      (_, { variablePrefix, className }) =>
-        handleSpaceX(variablePrefix, "1px", combine(className)),
-    ],
-    ["reverse", (_, { variablePrefix, className }) => {
-      return {
-        type: "css",
-        value: {
-          [combine(className)]: {
-            [stringifyCustomProperty(SPACE_X_REVERSE, variablePrefix)]: 1,
-          },
+export const space: CSSMap = {
+  x: {
+    0: (_, { variablePrefix, className }) =>
+      handleSpaceX(variablePrefix, "0px", combine(className)),
+    px: (_, { variablePrefix, className }) =>
+      handleSpaceX(variablePrefix, "1px", combine(className)),
+    reverse: (_, { variablePrefix, className }) => ({
+      type: "css",
+      value: {
+        [combine(className)]: {
+          [stringifyCustomProperty(SPACE_X_REVERSE, variablePrefix)]: 1,
         },
-      };
-    }],
-    [
-      re$Numeric,
-      ([, numeric], { variablePrefix, className }) =>
-        parseNumeric(numeric).andThen(remify).match({
-          some: (rem) => handleSpaceX(variablePrefix, rem, combine(className)),
-          none: undefined,
-        }),
-    ],
-    [
-      reBracket_$,
-      ([, arbitrary], { variablePrefix, className }) =>
-        handleSpaceX(variablePrefix, arbitrary, combine(className)),
-    ],
-  ]],
-  ["y", [
-    [
-      0,
-      (_, { variablePrefix, className }) =>
-        handleSpaceY(variablePrefix, "0px", combine(className)),
-    ],
-    [
-      "px",
-      (_, { variablePrefix, className }) =>
-        handleSpaceY(variablePrefix, "1px", combine(className)),
-    ],
-    ["reverse", (_, { variablePrefix, className }) => {
-      return {
-        type: "css",
-        value: {
-          [combine(className)]: {
-            [stringifyCustomProperty(SPACE_Y_REVERSE, variablePrefix)]: 1,
-          },
+      },
+    }),
+    "*": ({ id }, { variablePrefix, className }) =>
+      execMatch(id, [
+        [
+          re$Numeric,
+          ([, numeric]) =>
+            parseNumeric(numeric).andThen(remify).match({
+              some: (rem) =>
+                handleSpaceX(variablePrefix, rem, combine(className)),
+              none: undefined,
+            }),
+        ],
+        [
+          reBracket_$,
+          ([, arbitrary]) =>
+            handleSpaceX(variablePrefix, arbitrary, combine(className)),
+        ],
+      ]),
+  },
+  y: {
+    0: (_, { variablePrefix, className }) =>
+      handleSpaceY(variablePrefix, "0px", combine(className)),
+    px: (_, { variablePrefix, className }) =>
+      handleSpaceY(variablePrefix, "1px", combine(className)),
+    reverse: (_, { variablePrefix, className }) => ({
+      type: "css",
+      value: {
+        [combine(className)]: {
+          [stringifyCustomProperty(SPACE_Y_REVERSE, variablePrefix)]: 1,
         },
-      };
-    }],
-    [
-      re$Numeric,
-      ([, numeric], { variablePrefix, className }) =>
-        parseNumeric(numeric).andThen(remify).match({
-          some: (rem) => handleSpaceY(variablePrefix, rem, combine(className)),
-          none: undefined,
-        }),
-    ],
-    [
-      reBracket_$,
-      ([, arbitrary], { variablePrefix, className }) =>
-        handleSpaceY(variablePrefix, arbitrary, combine(className)),
-    ],
-  ]],
-];
+      },
+    }),
+    "*": ({ id }, { variablePrefix, className }) =>
+      execMatch(id, [
+        [
+          re$Numeric,
+          ([, numeric]) =>
+            parseNumeric(numeric).andThen(remify).match({
+              some: (rem) =>
+                handleSpaceY(variablePrefix, rem, combine(className)),
+              none: undefined,
+            }),
+        ],
+        [
+          reBracket_$,
+          ([, arbitrary]) =>
+            handleSpaceY(variablePrefix, arbitrary, combine(className)),
+        ],
+      ]),
+  },
+};

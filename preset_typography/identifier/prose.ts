@@ -1,6 +1,8 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import {
   chain,
+  classNameNode,
+  combinatorNode,
   deepMerge,
   isEmptyObject,
   isLength0,
@@ -10,17 +12,19 @@ import {
   mapEntries,
   parseSelector,
   prop,
+  pseudoNode,
   Root,
   Rule,
   SelectorNode,
+  selectorNode,
+  SyncProcessor,
   toAST,
 } from "../../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
-import { re$All } from "../../core/utils/regexp.ts";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
 import type { PresetOption } from "../types.ts";
-import type { BinaryTree, EntriesIdentifier } from "../../core/types.ts";
+import type { BinaryTree, CSSMap } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string, prefix: string) {
   const varFnProperty = (property: string) =>
@@ -163,8 +167,8 @@ function generateDefault(varPrefix: string, prefix: string) {
 const join = (value: string[]): string => value.join("-");
 
 export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
-  const prose: EntriesIdentifier = [
-    ["DEFAULT", (_, { variablePrefix, className }) => {
+  const prose: CSSMap = {
+    "": (_, { variablePrefix, className }) => {
       const bodyColor = {
         [className]: {
           color: `var(${customProperty(`${prefix}-body`, variablePrefix)})`,
@@ -189,15 +193,15 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       root.append(bodyNodes);
 
       return root;
-    }],
-    ["invert", (_, { key, variablePrefix, className }) => {
+    },
+    invert: ({ id }, { variablePrefix, className }) => {
       const varProperty = (property: string): string =>
         customProperty(property, variablePrefix);
       const makeVarFnSet = (
         property: string,
       ): [string, string] => [
         chain([prefix, property]).map(join).map(varProperty).unwrap(),
-        chain([prefix, key, property]).map(join).map(varProperty).map(varFn)
+        chain([prefix, id, property]).map(join).map(varProperty).map(varFn)
           .unwrap(),
       ];
       const [varBody, varFnBody] = makeVarFnSet("body");
@@ -226,11 +230,11 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
           },
         },
       };
-    }],
-    [re$All, ([, body], context) => {
-      const maybeColor = $resolveTheme(body, "color", context);
-      const { parentKey, variablePrefix } = context;
-      if (isUndefined(parentKey) || isUndefined(maybeColor)) return;
+    },
+    "*": ({ id }, context) => {
+      const maybeColor = $resolveTheme(id, "color", context);
+      const { variablePrefix } = context;
+      if (isUndefined(maybeColor)) return;
       const _isString = isString(maybeColor);
       const colorBy = (colorWeight: number): string =>
         _isString ? maybeColor : (() => {
@@ -247,8 +251,8 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       const makePropertySet = (
         property: string,
       ): [string, string] => [
-        makeProperty(parentKey, property),
-        makeProperty(parentKey, "invert", property),
+        makeProperty(prefix, property),
+        makeProperty(prefix, "invert", property),
       ];
 
       const [varBody, varInvertBody] = makePropertySet("body");
@@ -286,8 +290,9 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
           },
         },
       };
-    }],
-  ];
+    },
+  };
+
   return prose;
 }
 
@@ -373,38 +378,41 @@ function isWhereableNode(node: SelectorNode): boolean {
 }
 
 export function transformSelector(selector: string, className: string): string {
-  const result = parseSelector((root) => {
+  const processor: SyncProcessor = (root) => {
     root.nodes.forEach((selector) => {
       const pseudos = selector.filter((v) => !isWhereableNode(v));
 
-      const where = parseSelector.pseudo({
+      const where = pseudoNode({
         "value": ":where",
         nodes: [
-          parseSelector.selector({
+          selectorNode({
             value: "",
             nodes: selector.filter(isWhereableNode),
           }),
         ],
       });
 
-      const classNameNode = parseSelector.className({ value: className });
-      const combinator = parseSelector.combinator({ value: " " });
+      const _classNameNode = classNameNode({ value: className });
+      const _combinatorNode = combinatorNode({ value: " " });
       const NOT = "not";
-      const notClassName = parseSelector.className({
+      const notClassName = classNameNode({
         value: `${NOT}-${className}`,
       });
-      const not = parseSelector.pseudo({
+      const not = pseudoNode({
         value: ":not",
         nodes: [notClassName],
       });
-      const newSelector = parseSelector.selector({
+      const newSelector = selectorNode({
         value: "",
-        nodes: [classNameNode, combinator, where, not, ...pseudos],
+        nodes: [_classNameNode, _combinatorNode, where, not, ...pseudos],
       });
 
-      selector.replaceWith(newSelector);
+      selector.replaceWith(newSelector as never);
     });
-  }).processSync(selector, { lossless: false });
+  };
+  const result = parseSelector(processor).processSync(selector, {
+    lossless: false,
+  });
   return result;
 }
 

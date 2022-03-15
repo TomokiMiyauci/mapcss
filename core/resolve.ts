@@ -1,34 +1,30 @@
 import {
+  Arrayable,
   deepMerge,
   distinctBy,
   head,
   init,
-  isEmptyObject,
   isFunction,
-  isLength0,
-  isRegExp,
   isString,
   isUndefined,
   last,
-  PartialByKeys,
   prop,
   propPath,
   Root,
-  Rule,
   tail,
+  toAST,
+  wrap,
 } from "../deps.ts";
-import { toAST } from "../deps.ts";
-import { isCSSDefinition, isCSSObject } from "./utils/assert.ts";
+import { isBlockDefinition, isCSSDefinition, isRoot } from "./utils/assert.ts";
 import type {
   CSSMap,
-  CSSObject,
-  Identifier,
-  IdentifierContext,
-  IdentifierHandler,
-  ModifierContext,
+  IdentifierDefinition,
+  MatchInfo,
+  ModifierDefinition,
   ModifierMap,
   PreProcessor,
   Preset,
+  RuntimeContext,
   StaticConfig,
   StaticContext,
   Syntax,
@@ -47,7 +43,10 @@ function firstSplit(
   return rest;
 }
 
-function leftSplit(value: string[] | string, separator: string): string[][] {
+function leftSplit(
+  value: Arrayable<string>,
+  separator: string,
+): string[][] {
   const _value = isString(value) ? [value] : value;
 
   const _last = last(_value);
@@ -59,80 +58,59 @@ function leftSplit(value: string[] | string, separator: string): string[][] {
   return [_value, ...leftSplit([...init(_value), ...result], separator)];
 }
 
-class MockRegExpExecArray extends Array<string> {
-  index = 0;
-
-  constructor(public input: string = "") {
-    super();
-  }
-}
-
-export function resolveDeepMapIdentifier(
-  value: string | string[],
-  deepMapCSS: DeepMapCSS,
-  context:
-    & Omit<IdentifierContext, "key" | "parentKey" | "path">
-    & { parentKey?: string; key?: string },
+export function resolveCSSMap(
+  value: string,
+  cssMap: Arrayable<Readonly<CSSMap>>,
+  context: Readonly<StaticContext & RuntimeContext>,
 ): Root | undefined {
-  const paths = leftSplit(value, context.separator);
-  for (const path of paths) {
-    const first = head(path) ?? "DEFAULT";
-    const rest = tail(path);
+  const _resolve = (
+    path: Arrayable<string>,
+    cssMap: Arrayable<Readonly<CSSMap>>,
+  ): Root | undefined => {
+    for (const map of wrap(cssMap)) {
+      const paths = leftSplit(path, context.separator);
+      for (const path of paths) {
+        const first = head(path);
+        const matchInfo: MatchInfo = {
+          fullPath: value,
+          path,
+          id: first ?? "",
+          parentId: first,
+        };
 
-    const identifierContext: IdentifierContext = {
-      ...context,
-      parentKey: context.key,
-      key: first,
-      path,
-    };
-    const has = deepMapCSS.has(first);
-    if (has) {
-      const definition = deepMapCSS.get(first)!;
-      if (isFunction(definition)) {
-        if (!isLength0(rest)) continue;
-        const result = definition(new MockRegExpExecArray(), identifierContext);
+        const maybeDefinition = prop(first ?? "", map) as
+          | IdentifierDefinition
+          | undefined ?? prop("*", map);
+
+        const resolve = (
+          value: IdentifierDefinition | undefined,
+        ): Root | undefined => {
+          if (isUndefined(value)) return;
+
+          if (isFunction(value)) {
+            return resolve(value(matchInfo, context));
+          } else if (isCSSDefinition(value)) {
+            return toAST(value.value);
+          } else if (isRoot(value)) {
+            return value;
+          } else if (isBlockDefinition(value)) {
+            return toAST({
+              [context.className]: value,
+            });
+          } else {
+            const rest = tail(path);
+            return _resolve(rest, value);
+          }
+        };
+
+        const result = resolve(maybeDefinition);
         if (isUndefined(result)) continue;
-        return handleCSSObject(result, identifierContext.className);
-      }
-
-      if (definition instanceof Map) {
-        return resolveDeepMapIdentifier(rest, definition, identifierContext);
-      }
-      if (isEmptyObject(definition)) return;
-      return handleCSSObject(definition, identifierContext.className);
-    }
-
-    for (const [key, m] of deepMapCSS) {
-      if (isRegExp(key)) {
-        const regExpExecResult = key.exec(first);
-        if (!regExpExecResult) continue;
-
-        if (isFunction(m)) {
-          const result = m(regExpExecResult, identifierContext);
-          if (isUndefined(result)) continue;
-
-          return handleCSSObject(result, identifierContext.className);
-        }
-        if (m instanceof Map) {
-          return resolveDeepMapIdentifier(rest, m, identifierContext);
-        }
-        if (isEmptyObject(m)) return;
-        return handleCSSObject(m, identifierContext.className);
+        return result;
       }
     }
-  }
-}
+  };
 
-function handleCSSObject(cssObject: CSSObject, selector: string): Root {
-  if (cssObject instanceof Root) {
-    return cssObject;
-  } else if (isCSSDefinition(cssObject)) {
-    return toAST(cssObject.value);
-  } else {
-    return new Root({
-      nodes: [new Rule({ selector, nodes: toAST(cssObject).nodes })],
-    });
-  }
+  return _resolve(value, cssMap);
 }
 
 /** resolve theme via propPath safety */
@@ -235,14 +213,15 @@ export function resolveConfig(
     >
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
-):
-  & Omit<StaticConfig, "cssMap" | "preset">
-  & { deepMapCSS: DeepMapCSS } {
+): Omit<StaticConfig, "preset" | "cssMap" | "modifierMap"> & {
+  cssMaps: CSSMap[];
+  modifierMaps: ModifierMap[];
+} {
   const _presets = resolvePreset(preset, context);
-  const modifierMap = _presets.map(({ modifierMap }) => modifierMap)
-    .reduce((acc, cur) => {
-      return deepMerge(acc, cur);
-    }, _modifierMap);
+  const modifierMaps = [
+    ..._presets.map(({ modifierMap }) => modifierMap),
+    _modifierMap,
+  ];
   const theme = _presets.map(({ theme }) => theme).reduce(
     (acc, cur) => {
       return deepMerge(acc as any, cur as any) as Theme;
@@ -253,9 +232,7 @@ export function resolveConfig(
     ..._syntax,
     ..._presets.map(({ syntax }) => syntax).flat(),
   );
-  const deepMapCSS = mergeCSSMap(
-    [..._presets.map(({ cssMap }) => cssMap), _cssMap],
-  );
+  const cssMaps = [..._presets.map(({ cssMap }) => cssMap), _cssMap];
 
   const preProcess = resolvePreProcessor(
     ..._postProcess,
@@ -270,9 +247,9 @@ export function resolveConfig(
     ..._presets.map(({ postcssPlugin }) => postcssPlugin).flat(),
   ];
   return {
-    deepMapCSS,
+    cssMaps,
     theme,
-    modifierMap,
+    modifierMaps,
     syntax,
     preProcess,
     css,
@@ -280,83 +257,46 @@ export function resolveConfig(
   };
 }
 
-type TreeMap<Leaf, P> = Map<P, Leaf | TreeMap<Leaf, P>>;
-
-type DeepMapCSS = TreeMap<
-  IdentifierHandler | CSSObject,
-  string | RegExp
->;
-
-export function mergeCSSMap(
-  cssMaps: CSSMap[],
-): DeepMapCSS {
-  const recursive = (
-    id: Identifier,
-    map: Map<string | RegExp, any>,
-  ): Map<string | RegExp, IdentifierHandler | CSSObject> => {
-    const entries = Array.isArray(id) ? id : Object.entries(id);
-
-    entries.forEach(([key, value]) => {
-      const _key = isRegExp(key) ? key : String(key);
-      if (isFunction(value) || isCSSObject(value)) {
-        map.set(_key, value);
-      } else {
-        map.set(
-          _key,
-          recursive(
-            value,
-            new Map<string | RegExp, IdentifierHandler | CSSObject>(),
-          ),
-        );
-      }
-    });
-    return map;
-  };
-
-  return cssMaps.reduce(
-    (acc, cur) => recursive(cur, acc),
-    new Map<string | RegExp, IdentifierHandler | CSSObject>(),
-  );
-}
-
 export function resolveModifierMap(
-  modifier: string | string[],
-  modifierMap: ModifierMap,
-  parentNode: Root,
-  context: PartialByKeys<ModifierContext, "path">,
+  fullPath: string,
+  modifierMap: Arrayable<Readonly<ModifierMap>>,
+  parentNode: Readonly<Root>,
+  context: Readonly<StaticContext & RuntimeContext>,
 ): Root | undefined {
-  const { separator } = context;
-  const paths = leftSplit(modifier, separator);
+  const _resolve = (
+    path: Arrayable<string>,
+    modifierMap: Arrayable<Readonly<ModifierMap>>,
+  ): Root | undefined => {
+    for (const map of wrap(modifierMap)) {
+      const paths = leftSplit(path, context.separator);
 
-  for (const path of paths) {
-    const _head = head(path);
-    const first = _head ?? "DEFAULT";
-    if (isUndefined(first)) continue;
-    if (!context.path) {
-      context.path = path;
-    }
-    const ctx: ModifierContext = context.path
-      ? context as ModifierContext
-      : { ...context, path };
+      for (const path of paths) {
+        const _head = head(path);
+        const matchInfo: MatchInfo = {
+          id: _head ?? "",
+          parentId: _head,
+          fullPath,
+          path,
+        };
 
-    const modifier = prop(first, modifierMap);
-    if (isUndefined(modifier)) {
-      context.path = undefined;
-      continue;
-    }
+        const modifier = prop(_head ?? "", map) as
+          | ModifierDefinition
+          | undefined;
+        if (isUndefined(modifier)) continue;
 
-    if (isFunction(modifier)) {
-      const maybeRoot = modifier(parentNode, ctx);
-      context.path = undefined;
-      if (isUndefined(maybeRoot)) continue;
-      return maybeRoot;
-    }
-    const rest = tail(path);
+        if (isFunction(modifier)) {
+          const maybeRoot = modifier(parentNode, matchInfo, context);
+          if (isUndefined(maybeRoot)) continue;
+          return maybeRoot;
+        }
+        const rest = tail(path);
 
-    const result = resolveModifierMap(rest, modifier, parentNode, ctx);
-    if (result) {
-      return result;
+        const result = _resolve(rest, modifier);
+        if (result) {
+          return result;
+        }
+      }
     }
-    context.path = undefined;
-  }
+  };
+  return _resolve(fullPath, modifierMap);
 }

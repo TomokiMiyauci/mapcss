@@ -1,6 +1,6 @@
-import type { ModifierDefinition } from "../../core/types.ts";
+import type { Modifier } from "../../core/types.ts";
 
-export const $minus: ModifierDefinition = (parentNode) => {
+export const $minus: Modifier = (parentNode) => {
   parentNode.walkDecls((decl) => {
     decl.value = `-${decl.value}`;
   });

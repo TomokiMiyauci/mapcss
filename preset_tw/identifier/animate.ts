@@ -1,16 +1,16 @@
-import { reBracket_$ } from "../../core/utils/regexp.ts";
-import type { CSSDefinition, EntriesIdentifier } from "../../core/types.ts";
+import { execMatch, reBracket_$ } from "../../core/utils/regexp.ts";
+import type { CSSDefinition, CSSMap } from "../../core/types.ts";
 
-export const animate: EntriesIdentifier = [
-  ["none", { animation: "none" }],
-  ["spin", (_, { className, key }) => {
+export const animate: CSSMap = {
+  none: { animation: "none" },
+  spin: ({ id }, { className }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
         [className]: {
-          animation: `${key} 1s linear infinite`,
+          animation: `${id} 1s linear infinite`,
         },
-        [`@keyframes ${key}`]: {
+        [`@keyframes ${id}`]: {
           to: {
             transform: "rotate(360deg)",
           },
@@ -18,15 +18,15 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  ["ping", (_, { className, key }) => {
+  },
+  ping: ({ id }, { className }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
         [className]: {
-          animation: `${key} 1s cubic-bezier(0, 0, 0.2, 1) infinite`,
+          animation: `${id} 1s cubic-bezier(0, 0, 0.2, 1) infinite`,
         },
-        [`@keyframes ${key}`]: {
+        [`@keyframes ${id}`]: {
           "75%, 100%": {
             transform: "scale(2)",
             opacity: 0,
@@ -35,15 +35,15 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  ["pulse", (_, { className, key }) => {
+  },
+  pulse: ({ id }, { className }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
         [className]: {
-          animation: `${key} 2s cubic-bezier(0.4,0,0.6,1) infinite`,
+          animation: `${id} 2s cubic-bezier(0.4,0,0.6,1) infinite`,
         },
-        [`@keyframes ${key}`]: {
+        [`@keyframes ${id}`]: {
           "50%": {
             opacity: .5,
           },
@@ -51,15 +51,15 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  ["bounce", (_, { className, key }) => {
+  },
+  bounce: ({ id }, { className }) => {
     const value: CSSDefinition = {
       type: "css",
       value: {
         [className]: {
-          animation: `${key} 1s infinite`,
+          animation: `${id} 1s infinite`,
         },
-        [`@keyframes ${key}`]: {
+        [`@keyframes ${id}`]: {
           "0%, 100%": {
             transform: "translateY(-25%)",
             "animation-timing-function": "cubic-bezier(0.8,0,1,1)",
@@ -72,6 +72,9 @@ export const animate: EntriesIdentifier = [
       },
     };
     return value;
-  }],
-  [reBracket_$, ([, arbitrary]) => ({ animation: arbitrary })],
-];
+  },
+  "*": ({ id }) =>
+    execMatch(id, [
+      [reBracket_$, ([, arbitrary]) => ({ animation: arbitrary })],
+    ]),
+};

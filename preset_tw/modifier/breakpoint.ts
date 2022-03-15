@@ -1,21 +1,19 @@
 import { resolveTheme } from "../../core/resolve.ts";
 import { isAtRule, isRule } from "../../core/utils/assert.ts";
 
-import { AtRule, Root, Some } from "../../deps.ts";
-import type {
-  ModifierContext,
-  ModifierDefinition,
-} from "./../../core/types.ts";
+import { AtRule, Some } from "../../deps.ts";
+import type { Modifier, ModifierDefinition } from "./../../core/types.ts";
 
 export function minWidthMediaQuery(value: string): string {
   return `(min-width: ${value})`;
 }
 
-function breakPointHandler(
-  parentNode: Root,
-  context: ModifierContext,
-): Root | undefined {
-  return Some(resolveTheme(context.modifier, "screen", context)).map(
+const breakPointHandler: Modifier = (
+  parentNode,
+  { id },
+  context,
+) => {
+  return Some(resolveTheme(id, "screen", context)).map(
     minWidthMediaQuery,
   ).match({
     some: (rule) => {
@@ -35,19 +33,19 @@ function breakPointHandler(
     },
     none: undefined,
   });
-}
+};
 
-export const sm: ModifierDefinition = (childNodes, context) =>
-  breakPointHandler(childNodes, context);
+export const sm: ModifierDefinition = (childNodes, _, context) =>
+  breakPointHandler(childNodes, _, context);
 
-export const md: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, context);
+export const md: ModifierDefinition = (cssStatement, _, context) =>
+  breakPointHandler(cssStatement, _, context);
 
-export const lg: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, context);
+export const lg: ModifierDefinition = (cssStatement, _, context) =>
+  breakPointHandler(cssStatement, _, context);
 
-export const xl: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, context);
+export const xl: ModifierDefinition = (cssStatement, _, context) =>
+  breakPointHandler(cssStatement, _, context);
 
-export const $2xl: ModifierDefinition = (cssStatement, context) =>
-  breakPointHandler(cssStatement, context);
+export const $2xl: ModifierDefinition = (cssStatement, _, context) =>
+  breakPointHandler(cssStatement, _, context);

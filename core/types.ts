@@ -14,54 +14,10 @@ export type CSSObject =
   | Root
   | BlockDefinition;
 
-export type IdentifierContext =
-  & StaticContext
-  & RuntimeContext
-  & {
-    /** Full identifier */
-    identifier: string;
-
-    /** The matched object key
-     *
-     * example: text-`red`-500 -> `red`
-     */
-    key: string;
-
-    /** The matched parent key
-     *
-     * example: text-`red`-500 -> `text`
-     */
-    parentKey: string | undefined;
-
-    /** Current search path
-     *
-     * example: `text-red-500`
-     *
-     * 1st: `["text-red-500"]`
-     * 2nd: `["text-red", "500"]`
-     * 3rd: `["text", "red", "500"]`
-     */
-    path: string[];
-  };
-
 export type Preset = Labeled & {
   fn: (
     context: Readonly<Omit<StaticContext, "theme">>,
   ) => Partial<Omit<StaticConfig, "preset">>;
-};
-
-export type ModifierContext = StaticContext & RuntimeContext & {
-  /** Full modifier */
-  modifier: string;
-
-  /** Current search path
-   *
-   * example: `group-hover`
-   *
-   * 1st: `["group-hover"]`
-   * 2nd: `["group", "hover"]`
-   */
-  path: Readonly<string[]>;
 };
 
 export type Theme = BinaryTree<string>;
@@ -136,8 +92,6 @@ export type RuntimeContext = {
 
 export type Config = StaticConfig & StaticContext;
 
-export type ModifierMap = BinaryTree<ModifierDefinition>;
-
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
   identifierRoots: string[];
@@ -166,45 +120,77 @@ export type PreProcessor = Labeled & {
 /** User definition of CSS Block Declaration */
 export type BlockDefinition = Record<string, string | number>;
 
-export type CSSMap = {
-  [k in string | number]: Identifier | BlockDefinition | IdentifierHandler;
-};
+export type DynamicCSS = (
+  /** Match info */
+  matchInfo: MatchInfo,
+  context: Readonly<
+    & StaticContext
+    & RuntimeContext
+  >,
+) => CSSMap | CSSObject | undefined;
 
-export type RecordIdentifier = {
-  [k: string | number]: BlockDefinition | IdentifierHandler | Identifier;
-};
-
-export type EntriesIdentifier = [
-  string | number | RegExp,
+export type IdentifierDefinition =
   | CSSObject
-  | IdentifierHandler
-  | Identifier,
-][];
+  | DynamicCSS
+  | CSSMap;
 
-export type Identifier = RecordIdentifier | EntriesIdentifier;
+export type CSSMap =
+  | {
+    [k in string | number]: IdentifierDefinition;
+  }
+  | {
+    /** Default accessor */
+    "": IdentifierDefinition;
 
-export type EntriesModifier = [
-  RegExp,
-  (
-    regExpExecArray: RegExpExecArray,
-    parentNode: Root,
-    context: ModifierContext,
-  ) => Root | undefined,
-][];
+    /** Catch all property accessor */
+    "*": IdentifierDefinition;
+  };
 
-export type RecordModifier = {
-  [k: string]: ModifierDefinition;
-};
+export type ModifierMap =
+  | {
+    [k in string | number]: ModifierDefinition;
+  }
+  | {
+    /** Default accessor */
+    "": IdentifierDefinition;
 
-export type Modifier = RecordModifier;
-export type ModifierDefinition = (
-  parentNode: Root,
-  context: ModifierContext,
+    /** Catch all property accessor */
+    "*": ModifierDefinition;
+  };
+
+export type Modifier = (
+  parentNode: Readonly<Root>,
+  matchInfo: MatchInfo,
+  context: Readonly<StaticContext & RuntimeContext>,
 ) => Root | undefined;
 
-export type IdentifierHandler = (
-  regExpExecArray: RegExpExecArray,
-  context: IdentifierContext,
-) =>
-  | CSSObject
-  | undefined;
+export type ModifierDefinition = Modifier | ModifierMap;
+
+export type MatchInfo = {
+  /** Matched property key
+   *
+   * example: text-`red`-500 -> `red`
+   */
+  id: string;
+
+  /** The matched parent property key
+   *
+   * example: text-`red`-500 -> `text`
+   */
+  parentId?: string;
+
+  /** Full path */
+  fullPath: string;
+
+  /** Current search path
+   *
+   * example: `text-red-500`
+   *
+   * 1st: `["text-red-500"]`
+   *
+   * 2nd: `["text-red", "500"]`
+   *
+   * 3rd: `["text", "red", "500"]`
+   */
+  path: string[];
+};

@@ -1,3 +1,53 @@
+# [1.0.0-beta.34](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2022-03-15)
+
+
+### Features
+
+* change modifier map to accept empty key and asta key ([8b5012b](https://github.com/TomokiMiyauci/mapcss/commit/8b5012b61713078f0094579019ee3ad09ac23ec1))
+* **core:** remove key property from css map context ([da60198](https://github.com/TomokiMiyauci/mapcss/commit/da601986f6b6993a2593f27e2aa59c33e2eeb0ce))
+* split match info and context interface ([4b0f3b1](https://github.com/TomokiMiyauci/mapcss/commit/4b0f3b1b9a2f1fa7850e527d254af2f031a87754))
+* **utils:** add utility for mapcss ([12516ca](https://github.com/TomokiMiyauci/mapcss/commit/12516ca139cebd3b2d7363cb17b871290e6f04b6))
+
+# [1.0.0-beta.33](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2022-03-15)
+
+
+### Bug Fixes
+
+* **preset_svg:** change import source ([35ab084](https://github.com/TomokiMiyauci/mapcss/commit/35ab0844bbc4797dd5b3e569016bfa465a6b1ab4))
+
+
+### Features
+
+* change `cssMap` interface ([834fe0a](https://github.com/TomokiMiyauci/mapcss/commit/834fe0a8fed7ad26dc5ba75dd8adef480876d47a)), closes [#15](https://github.com/TomokiMiyauci/mapcss/issues/15)
+
+
+### Performance Improvements
+
+* **core:** change pre merge css map algolism ([c90eae9](https://github.com/TomokiMiyauci/mapcss/commit/c90eae9f8c9c43f685c70027f6b639bd07d90b98))
+
+# [1.0.0-beta.32](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2022-03-06)
+
+
+### Bug Fixes
+
+* **preset_svg:** fix external import specifier ([31fced2](https://github.com/TomokiMiyauci/mapcss/commit/31fced2e057661d33634ef5013f2e6e2e64ee47e))
+* **preset_svg:** fix types of convert args ([d8b2df3](https://github.com/TomokiMiyauci/mapcss/commit/d8b2df3ce976ae481c76e444daffd47b6981c65e))
+* **preset_tw:** remove external ordering media query because the module deps is invalid ([4a691e1](https://github.com/TomokiMiyauci/mapcss/commit/4a691e1d4a5abdea3562b669546d09600039ecf6))
+
+# [1.0.0-beta.31](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.30...v1.0.0-beta.31) (2022-03-06)
+
+
+### Bug Fixes
+
+* change dependency version or import source for capability of low deno version ([2650b0e](https://github.com/TomokiMiyauci/mapcss/commit/2650b0e9277fa879ec5ad17eb3871aa4b6672784))
+
+# [1.0.0-beta.30](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.29...v1.0.0-beta.30) (2022-03-05)
+
+
+### Bug Fixes
+
+* quit named types export ([e2c928a](https://github.com/TomokiMiyauci/mapcss/commit/e2c928a9cbf6d0814b036d6c73bb86e06d233b0c)), closes [#12](https://github.com/TomokiMiyauci/mapcss/issues/12)
+
 # [1.0.0-beta.29](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.28...v1.0.0-beta.29) (2022-03-05)
 
 

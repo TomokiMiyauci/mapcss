@@ -24,14 +24,14 @@ export { sortBy } from "https://deno.land/std@0.125.0/collections/sort_by.ts";
 export { curry } from "https://deno.land/x/curry@v1.0.0/mod.ts";
 export {
   None,
-  type Option,
   Some,
 } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
+export type { Option } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
 export {
-  type Either,
   Left,
   Right,
 } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
+export type { Either } from "https://deno.land/x/monads@v0.5.10/either/either.ts";
 export { isUndefined };
 export type {
   AcceptedPlugin,
@@ -51,11 +51,18 @@ export { AtRule, Declaration, postcss, Root, Rule };
 export {
   toAST,
   toObject,
-} from "https://deno.land/x/postcss_js@v1.0.0-beta.2/mod.ts";
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.3/mod.ts";
+export { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
 export {
-  default as parseSelector,
-  type Node as SelectorNode,
-} from "https://esm.sh/postcss-selector-parser";
+  className as classNameNode,
+  combinator as combinatorNode,
+  pseudo as pseudoNode,
+  selector as selectorNode,
+} from "https://deno.land/x/postcss_selector_parser@v6.0.2/src/selectors/index.js";
+export type {
+  Node as SelectorNode,
+  SyncProcessor,
+} from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
 export function isStringOrNumber(value: unknown): value is string | number {
   return isString(value) || isNumber(value);
 }
@@ -181,4 +188,8 @@ export function chain<T>(val: T): Chain<T> {
     map: <U>(fn: (val: T) => U) => chain(fn(val)),
     unwrap: (): T => val,
   };
+}
+
+export function wrap<T>(val: T): T extends any[] ? T : T[] {
+  return Array.isArray(val) ? val as never : [val] as never;
 }

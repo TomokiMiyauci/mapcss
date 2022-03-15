@@ -1,5 +1,5 @@
 import type { AtRule, PostcssPlugin } from "../deps.ts";
-import mobileOrder from "https://esm.sh/sort-css-media-queries@2.0.4?pin=v66";
+import { orderMediaQuery } from "./deps.ts";
 
 function sortMediaQueries(): PostcssPlugin {
   return {
@@ -15,7 +15,7 @@ function sortMediaQueries(): PostcssPlugin {
         }
       });
 
-      cache.sort((a, b) => mobileOrder(a.params, b.params));
+      cache.sort((a, b) => orderMediaQuery(a.params, b.params));
       cache.forEach((atRule) => {
         root.append(atRule);
       });
