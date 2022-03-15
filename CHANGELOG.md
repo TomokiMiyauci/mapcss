@@ -1,3 +1,20 @@
+# [1.0.0-beta.33](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2022-03-15)
+
+
+### Bug Fixes
+
+* **preset_svg:** change import source ([35ab084](https://github.com/TomokiMiyauci/mapcss/commit/35ab0844bbc4797dd5b3e569016bfa465a6b1ab4))
+
+
+### Features
+
+* change `cssMap` interface ([834fe0a](https://github.com/TomokiMiyauci/mapcss/commit/834fe0a8fed7ad26dc5ba75dd8adef480876d47a)), closes [#15](https://github.com/TomokiMiyauci/mapcss/issues/15)
+
+
+### Performance Improvements
+
+* **core:** change pre merge css map algolism ([c90eae9](https://github.com/TomokiMiyauci/mapcss/commit/c90eae9f8c9c43f685c70027f6b639bd07d90b98))
+
 # [1.0.0-beta.32](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.31...v1.0.0-beta.32) (2022-03-06)
 
 
