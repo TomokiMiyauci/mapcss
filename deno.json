@@ -9,7 +9,7 @@
   },
   "fmt": {
     "files": {
-      "exclude": ["node_modules", "_docs", "CHANGELOG.md"]
+      "exclude": ["node_modules", "_docs", "CHANGELOG.md", "webpack"]
     }
   }
 }

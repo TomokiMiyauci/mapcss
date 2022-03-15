@@ -143,10 +143,15 @@ It is also possible to express dynamic identifiers using regular expressions.
 import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 const rePositiveNumber = /^(\d+)$/;
 const cssMap: CSSMap = {
-  z: [
-    // It actually checks the validity of the numbers
-    [rePositiveNumber, ([, number]) => ({ zIndex: Number(number) })],
-  ],
+  z: {
+    "*": (match) => {
+      // It actually checks the validity of the numbers
+      const regExpExecResult = rePositiveNumber.exec(match);
+      if (regExpExecResult) {
+        return { zIndex: Number(regExpExecResult[1]) };
+      }
+    },
+  },
 };
 ```
 
