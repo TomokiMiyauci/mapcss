@@ -1,3 +1,13 @@
+# [1.0.0-beta.34](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2022-03-15)
+
+
+### Features
+
+* change modifier map to accept empty key and asta key ([8b5012b](https://github.com/TomokiMiyauci/mapcss/commit/8b5012b61713078f0094579019ee3ad09ac23ec1))
+* **core:** remove key property from css map context ([da60198](https://github.com/TomokiMiyauci/mapcss/commit/da601986f6b6993a2593f27e2aa59c33e2eeb0ce))
+* split match info and context interface ([4b0f3b1](https://github.com/TomokiMiyauci/mapcss/commit/4b0f3b1b9a2f1fa7850e527d254af2f031a87754))
+* **utils:** add utility for mapcss ([12516ca](https://github.com/TomokiMiyauci/mapcss/commit/12516ca139cebd3b2d7363cb17b871290e6f04b6))
+
 # [1.0.0-beta.33](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.32...v1.0.0-beta.33) (2022-03-15)
 
 
