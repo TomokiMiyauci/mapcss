@@ -1,39 +1,28 @@
 import { expect, test } from "../dev_deps.ts";
 import { resolveCSSMap } from "./resolve.ts";
 import { Root } from "../deps.ts";
-import type { BinaryTree, CSSMap, IdentifierContext } from "./types.ts";
+import { createContext } from "../utils/context.ts";
+import type {
+  BinaryTree,
+  CSSMap,
+  RuntimeContext,
+  StaticContext,
+} from "./types.ts";
 
 const block = { display: "block" };
 const inlineBlock = { display: "inline-block" };
 
-function createCSSMapContext(
-  context: Partial<IdentifierContext> = {},
-): IdentifierContext {
-  return {
-    separator: "-",
-    charMap: {},
-    token: "class-name",
-    className: ".class-name",
-    identifier: "class-name",
-    mappedToken: "class-name",
-    theme: {},
-    variablePrefix: "map-",
-    parentKey: "",
-    path: [],
-    ...context,
-  };
-}
 test("resolveCSSMap", () => {
   const table: [
     string,
     CSSMap,
-    IdentifierContext,
+    StaticContext & RuntimeContext,
     BinaryTree<string | number> | undefined,
   ][] = [
     [
       "block",
       { block: block },
-      createCSSMapContext({ className: ".block" }),
+      createContext({ className: ".block" }),
       {
         ".block": block,
       },
@@ -41,7 +30,7 @@ test("resolveCSSMap", () => {
     [
       "block",
       { block: { "": block } },
-      createCSSMapContext({ className: ".block" }),
+      createContext({ className: ".block" }),
       {
         ".block": block,
       },
@@ -51,7 +40,7 @@ test("resolveCSSMap", () => {
       {
         inline: { block: { display: "inline-block" } },
       },
-      createCSSMapContext({ className: ".inline-block" }),
+      createContext({ className: ".inline-block" }),
       {
         ".inline-block": { display: "inline-block" },
       },
@@ -61,7 +50,7 @@ test("resolveCSSMap", () => {
       {
         inline: { block: { "": inlineBlock } },
       },
-      createCSSMapContext({ className: ".inline-block" }),
+      createContext({ className: ".inline-block" }),
       {
         ".inline-block": inlineBlock,
       },
@@ -71,13 +60,13 @@ test("resolveCSSMap", () => {
       {
         inline: { block: inlineBlock },
       },
-      createCSSMapContext({ className: ".inline-block" }),
+      createContext({ className: ".inline-block" }),
       undefined,
     ],
     [
       "block",
       { block: { type: "css", value: { ".block": block } } },
-      createCSSMapContext(),
+      createContext(),
       { ".block": block },
     ],
     [
@@ -87,20 +76,20 @@ test("resolveCSSMap", () => {
           "": { type: "css", value: { ".block": block } },
         },
       },
-      createCSSMapContext(),
+      createContext(),
       { ".block": block },
     ],
-    ["block", { block: new Root({ nodes: [] }) }, createCSSMapContext(), {}],
+    ["block", { block: new Root({ nodes: [] }) }, createContext(), {}],
     [
       "block",
       { block: () => block },
-      createCSSMapContext({ className: ".test" }),
+      createContext({ className: ".test" }),
       { ".test": block },
     ],
     [
       "block",
       { block: { "": () => block } },
-      createCSSMapContext({ className: ".test" }),
+      createContext({ className: ".test" }),
       { ".test": block },
     ],
     [
@@ -112,7 +101,7 @@ test("resolveCSSMap", () => {
           }),
         },
       },
-      createCSSMapContext({ className: ".test" }),
+      createContext({ className: ".test" }),
       { ".test": { "--map-test": "test" } },
     ],
   ];

@@ -131,7 +131,6 @@ export function generate(
         {
           ...staticContext,
           ...runtimeContext,
-          identifier,
         },
       );
 
@@ -142,7 +141,6 @@ export function generate(
         return resolveModifierMap(cur, modifierMaps, acc, {
           ...staticContext,
           ...runtimeContext,
-          modifier: cur,
         });
       }, identifierRoot as Root | undefined);
 

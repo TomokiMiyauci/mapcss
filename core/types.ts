@@ -14,48 +14,10 @@ export type CSSObject =
   | Root
   | BlockDefinition;
 
-export type IdentifierContext =
-  & StaticContext
-  & RuntimeContext
-  & {
-    /** Full identifier */
-    identifier: string;
-
-    /** The matched parent key
-     *
-     * example: text-`red`-500 -> `text`
-     */
-    parentKey: string | undefined;
-
-    /** Current search path
-     *
-     * example: `text-red-500`
-     *
-     * 1st: `["text-red-500"]`
-     * 2nd: `["text-red", "500"]`
-     * 3rd: `["text", "red", "500"]`
-     */
-    path: string[];
-  };
-
 export type Preset = Labeled & {
   fn: (
     context: Readonly<Omit<StaticContext, "theme">>,
   ) => Partial<Omit<StaticConfig, "preset">>;
-};
-
-export type ModifierContext = StaticContext & RuntimeContext & {
-  /** Full modifier */
-  modifier: string;
-
-  /** Current search path
-   *
-   * example: `group-hover`
-   *
-   * 1st: `["group-hover"]`
-   * 2nd: `["group", "hover"]`
-   */
-  path: Readonly<string[]>;
 };
 
 export type Theme = BinaryTree<string>;
@@ -158,14 +120,14 @@ export type PreProcessor = Labeled & {
 /** User definition of CSS Block Declaration */
 export type BlockDefinition = Record<string, string | number>;
 
-export type DynamicCSS = ((
-  /** Matched property key
-   *
-   * example: text-`red`-500 -> `red`
-   */
-  match: string,
-  context: Readonly<IdentifierContext>,
-) => CSSMap | CSSObject | undefined);
+export type DynamicCSS = (
+  /** Match info */
+  matchInfo: MatchInfo,
+  context: Readonly<
+    & StaticContext
+    & RuntimeContext
+  >,
+) => CSSMap | CSSObject | undefined;
 
 export type IdentifierDefinition =
   | CSSObject
@@ -198,8 +160,37 @@ export type ModifierMap =
 
 export type Modifier = (
   parentNode: Readonly<Root>,
-  match: string,
-  context: Readonly<ModifierContext>,
+  matchInfo: MatchInfo,
+  context: Readonly<StaticContext & RuntimeContext>,
 ) => Root | undefined;
 
 export type ModifierDefinition = Modifier | ModifierMap;
+
+export type MatchInfo = {
+  /** Matched property key
+   *
+   * example: text-`red`-500 -> `red`
+   */
+  id: string;
+
+  /** The matched parent property key
+   *
+   * example: text-`red`-500 -> `text`
+   */
+  parentId?: string;
+
+  /** Full path */
+  fullPath: string;
+
+  /** Current search path
+   *
+   * example: `text-red-500`
+   *
+   * 1st: `["text-red-500"]`
+   *
+   * 2nd: `["text-red", "500"]`
+   *
+   * 3rd: `["text", "red", "500"]`
+   */
+  path: string[];
+};

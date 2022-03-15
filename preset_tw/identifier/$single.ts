@@ -52,8 +52,8 @@ export const aspect: CSSMap = {
   auto: { aspectRatio: "auto" },
   square: { aspectRatio: "1 / 1" },
   video: { aspectRatio: "16 / 9" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, body]) => ({ aspectRatio: body })],
     ]),
 };
@@ -63,8 +63,8 @@ export const basis: CSSMap = {
   px: { flexBasis: "1px" },
   auto: { flexBasis: "auto" },
   full: { flexBasis: "100%" },
-  "*": (key) =>
-    execMatch(key, [[
+  "*": ({ id }) =>
+    execMatch(id, [[
       re$Numeric,
       ([, numeric]) =>
         parseNumeric(numeric).andThen(remify).match(matcher("flex-basis")),
@@ -84,8 +84,8 @@ export const bottom: CSSMap = {
   px: { bottom: "1px" },
   auto: { bottom: "auto" },
   full: { bottom: "100%" },
-  "*": (key) =>
-    execMatch(key, [[
+  "*": ({ id }) =>
+    execMatch(id, [[
       re$PositiveNumberPer$PositiveNumber,
       ([, numerator, denominator]) =>
         parseFraction(numerator, denominator).map(percentize).match(
@@ -154,8 +154,8 @@ export const columns: CSSMap = {
   "5xl": { columns: "64rem" },
   "6xl": { columns: "72rem" },
   "7xl": { columns: "80rem" },
-  "*": (match) =>
-    execMatch(match, [[
+  "*": ({ id }) =>
+    execMatch(id, [[
       re$PositiveNumber,
       ([, n]) => parseNumeric(n).match(matcher("columns")),
     ], [reBracket_$, ([, arbitrary]) => ({ "columns": arbitrary })]]),
@@ -169,8 +169,8 @@ export const float: CSSMap = {
 
 export const grow: CSSMap = {
   "": { flexGrow: 1 },
-  "*": (match) =>
-    execMatch(match, [[
+  "*": ({ id }) =>
+    execMatch(id, [[
       re$PositiveNumber,
       ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-grow")),
     ], [reBracket_$, ([, arbitrary]) => ({ flexGrow: arbitrary })]]),
@@ -185,8 +185,8 @@ export const h: CSSMap = {
   min: { height: "min-content" },
   max: { height: "max-content" },
   fit: { height: "fit-content" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -208,8 +208,8 @@ export const h: CSSMap = {
 export const indent: CSSMap = {
   0: { textIndent: "0px" },
   px: { textIndent: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -244,8 +244,8 @@ export const leading: CSSMap = {
   normal: { lineHeight: 1.5 },
   relaxed: { lineHeight: 1.625 },
   loose: { lineHeight: 2 },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, number]) =>
@@ -260,8 +260,8 @@ export const left: CSSMap = {
   px: { left: "1px" },
   auto: { left: "auto" },
   full: { left: "100%" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumberPer$PositiveNumber,
         ([, numerator, denominator]) =>
@@ -282,8 +282,8 @@ export const m: CSSMap = {
   0: { margin: "0px" },
   auto: { margin: "auto" },
   px: { margin: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -297,8 +297,8 @@ export const mb: CSSMap = {
   0: { marginBottom: "0px" },
   auto: { marginBottom: "auto" },
   px: { marginBottom: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -342,8 +342,8 @@ export const ml: CSSMap = {
   0: { marginLeft: "0px" },
   auto: { marginLeft: "auto" },
   px: { marginLeft: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -360,8 +360,8 @@ export const mr: CSSMap = {
   0: { marginRight: "0px" },
   auto: { marginRight: "auto" },
   px: { marginRight: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -378,8 +378,8 @@ export const mt: CSSMap = {
   0: { marginTop: "0px" },
   auto: { marginTop: "auto" },
   px: { marginTop: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -396,8 +396,8 @@ export const mx: CSSMap = {
   0: { marginLeft: "0px", marginRight: "0px" },
   auto: { marginLeft: "auto", marginRight: "auto" },
   px: { marginLeft: "1px", marginRight: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -417,8 +417,8 @@ export const my: CSSMap = {
   0: { marginTop: "0px", marginBottom: "0px" },
   auto: { marginTop: "auto", marginBottom: "auto" },
   px: { marginTop: "1px", marginBottom: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -435,8 +435,8 @@ export const my: CSSMap = {
 };
 
 export const opacity: CSSMap = {
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>
@@ -451,8 +451,8 @@ export const order: CSSMap = {
   first: { order: -9999 },
   last: { order: 9999 },
   none: { order: 0 },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) => parseNumeric(pNumber).match(matcher("order")),
@@ -465,8 +465,8 @@ export const p: CSSMap = {
   0: { padding: "0px" },
   auto: { padding: "auto" },
   px: { padding: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -480,8 +480,8 @@ export const pb: CSSMap = {
   0: { paddingBottom: "0px" },
   auto: { paddingBottom: "auto" },
   px: { paddingBottom: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -500,8 +500,8 @@ export const pl: CSSMap = {
   0: { paddingLeft: "0px" },
   auto: { paddingLeft: "auto" },
   px: { paddingLeft: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -518,8 +518,8 @@ export const pr: CSSMap = {
   0: { paddingRight: "0px" },
   auto: { paddingRight: "auto" },
   px: { paddingRight: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -536,8 +536,8 @@ export const pt: CSSMap = {
   0: { paddingTop: "0px" },
   auto: { paddingTop: "auto" },
   px: { paddingTop: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -554,8 +554,8 @@ export const px: CSSMap = {
   0: { paddingLeft: "0px", paddingRight: "0px" },
   auto: { paddingLeft: "auto", paddingRight: "auto" },
   px: { paddingLeft: "1px", paddingRight: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -575,8 +575,8 @@ export const py: CSSMap = {
   0: { paddingTop: "0px", paddingBottom: "0px" },
   auto: { paddingTop: "auto", paddingBottom: "auto" },
   px: { paddingTop: "1px", paddingBottom: "1px" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -597,8 +597,8 @@ export const right: CSSMap = {
   px: { right: "1px" },
   auto: { right: "auto" },
   full: { right: "100%" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumberPer$PositiveNumber,
         ([, numerator, denominator]) =>
@@ -620,8 +620,8 @@ export const right: CSSMap = {
 
 export const shrink: CSSMap = {
   "": { flexShrink: 1 },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) => parseNumeric(pNumber).match(matcher("flex-shrink")),
@@ -635,8 +635,8 @@ export const top: CSSMap = {
   px: { top: "1px" },
   auto: { top: "auto" },
   full: { top: "100%" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumberPer$PositiveNumber,
         ([, numerator, denominator]) =>
@@ -662,8 +662,8 @@ export const tracking: CSSMap = {
   wide: { [LETTER_SPACING]: "0.025em" },
   wider: { [LETTER_SPACING]: "0.05em" },
   widest: { [LETTER_SPACING]: "0.1em" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, attr]) => ({ [LETTER_SPACING]: attr })],
     ]),
 };
@@ -677,8 +677,8 @@ export const w: CSSMap = {
   min: { width: "min-content" },
   max: { width: "max-content" },
   fit: { width: "fit-content" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
@@ -708,8 +708,8 @@ export const whitespace: CSSMap = {
 };
 export const z: CSSMap = {
   auto: { zIndex: "auto" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, positiveNumber]) =>
@@ -790,8 +790,8 @@ export const truncate: BlockDefinition = {
 };
 
 export const brightness: CSSMap = {
-  "*": (match, { variablePrefix }) =>
-    execMatch(match, [
+  "*": ({ id }, { variablePrefix }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>
@@ -805,8 +805,8 @@ export const brightness: CSSMap = {
 };
 
 export const contrast: CSSMap = {
-  "*": (match, { variablePrefix }) =>
-    execMatch(match, [
+  "*": ({ id }, { variablePrefix }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) => handleFilter("contrast", pNumber, variablePrefix),
@@ -881,8 +881,8 @@ function handleSingleFilter(
 
 export const hue: CSSMap = {
   rotate: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -903,8 +903,8 @@ export const invert: CSSMap = {
 };
 
 export const saturate: CSSMap = {
-  "*": (match, { variablePrefix }) =>
-    execMatch(match, [
+  "*": ({ id }, { variablePrefix }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>
@@ -924,8 +924,8 @@ export const sepia: CSSMap = {
 };
 
 export const duration: CSSMap = {
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>
@@ -947,8 +947,8 @@ export const ease: CSSMap = {
 };
 
 export const delay: CSSMap = {
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>
@@ -961,8 +961,8 @@ export const delay: CSSMap = {
 };
 
 export const rotate: CSSMap = {
-  "*": (match, { variablePrefix }) =>
-    execMatch(match, [
+  "*": ({ id }, { variablePrefix }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>
@@ -979,8 +979,8 @@ export const rotate: CSSMap = {
 
 export const skew: CSSMap = {
   x: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -992,8 +992,8 @@ export const skew: CSSMap = {
       ]),
   },
   y: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -1028,8 +1028,8 @@ function toAccentColor(color: string): { accentColor: string } {
 
 export const accent: CSSMap = {
   auto: { accentColor: "auto" },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -1158,8 +1158,8 @@ function toCaretColor(color: string) {
 }
 
 export const caret: CSSMap = {
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -1249,8 +1249,8 @@ function toFill(color: string) {
 }
 
 export const fill: CSSMap = {
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;
@@ -1323,8 +1323,8 @@ function defaultGradientColor(isRGB: boolean, color: string): string {
 }
 
 export const from: CSSMap = {
-  "*": (match, context) => {
-    const color = resolveTheme(match, "color", context);
+  "*": ({ id }, context) => {
+    const color = resolveTheme(id, "color", context);
     if (isUndefined(color)) return;
 
     const _color = parseColor(color).map(completionRGBA(1, true))
@@ -1352,8 +1352,8 @@ export const from: CSSMap = {
 };
 
 export const via: CSSMap = {
-  "*": (match, context) => {
-    const color = resolveTheme(match, "color", context);
+  "*": ({ id }, context) => {
+    const color = resolveTheme(id, "color", context);
     if (isUndefined(color)) return;
 
     const _color = parseColor(color).map(completionRGBA(1, true))
@@ -1380,8 +1380,8 @@ export const via: CSSMap = {
 };
 
 export const to: CSSMap = {
-  "*": (match, context) => {
-    const color = resolveTheme(match, "color", context);
+  "*": ({ id }, context) => {
+    const color = resolveTheme(id, "color", context);
     if (isUndefined(color)) return;
 
     const _color = parseColor(color).map(completionRGBA(1, true))

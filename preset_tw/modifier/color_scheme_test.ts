@@ -1,7 +1,9 @@
 import { createDark } from "./color_scheme.ts";
-import { createContext, TestCase } from "./_test.ts";
+import { TestCase } from "./_test.ts";
+import { createContext } from "../../utils/context.ts";
+import { createMatchInfo } from "../../utils/context.ts";
 
-const context = createContext({ modifier: "dark" });
+const context = createContext();
 const classDark = createDark("class");
 const mediaDark = createDark("media");
 
@@ -22,6 +24,7 @@ export const colorScheme: TestCase = [
       },
     },
     classDark,
+    createMatchInfo({ id: "dark" }),
     context,
   ],
   [
@@ -42,6 +45,7 @@ export const colorScheme: TestCase = [
       },
     },
     classDark,
+    createMatchInfo({ id: "dark" }),
     context,
   ],
   [
@@ -66,6 +70,7 @@ export const colorScheme: TestCase = [
       },
     },
     classDark,
+    createMatchInfo(),
     context,
   ],
   [
@@ -98,6 +103,7 @@ export const colorScheme: TestCase = [
       },
     },
     mediaDark,
+    createMatchInfo(),
     context,
   ],
   [
@@ -108,6 +114,7 @@ export const colorScheme: TestCase = [
       animation: "spin 1s linear infinite",
     },
     mediaDark,
+    createMatchInfo(),
     context,
   ],
 ];

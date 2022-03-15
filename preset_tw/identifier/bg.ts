@@ -131,8 +131,8 @@ export const bg: CSSMap = {
     },
   },
 
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;

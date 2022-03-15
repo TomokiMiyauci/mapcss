@@ -5,7 +5,7 @@ import type { Modifier } from "./../../core/types.ts";
 import type { Option } from "../types.ts";
 
 export function createDark(darkMode: Option["darkMode"]) {
-  const dark: Modifier = (parentNode, _, { modifier }) => {
+  const dark: Modifier = (parentNode) => {
     if (darkMode === "media") {
       parentNode.each((node) => {
         if (isAtRule(node) || isRule(node)) {
@@ -24,7 +24,7 @@ export function createDark(darkMode: Option["darkMode"]) {
       parentNode.walkRules((node) => {
         if (isAllowNode(node)) {
           node.selectors = node.selectors.map((selector) =>
-            `.${modifier} ${selector}`
+            `.dark ${selector}`
           );
         }
       });

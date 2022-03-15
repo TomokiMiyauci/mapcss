@@ -16,8 +16,8 @@ function toStroke(color: string) {
 }
 
 export const stroke: CSSMap = {
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$PositiveNumber, ([, pNumber]) =>
         parseNumeric(pNumber).match({
           some: (number) => ({ strokeWidth: number }),

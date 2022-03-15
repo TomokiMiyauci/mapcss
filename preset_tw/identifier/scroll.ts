@@ -21,8 +21,8 @@ export const scroll: CSSMap = {
   m: {
     0: { [SCROLL_MARGIN]: "0px" },
     px: { [SCROLL_MARGIN]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -36,8 +36,8 @@ export const scroll: CSSMap = {
   mx: {
     0: { [SCROLL_MARGIN_LEFT]: "0px", [SCROLL_MARGIN_RIGHT]: "0px" },
     px: { [SCROLL_MARGIN_LEFT]: "1px", [SCROLL_MARGIN_RIGHT]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -55,8 +55,8 @@ export const scroll: CSSMap = {
   my: {
     0: { [SCROLL_MARGIN_TOP]: "0px", [SCROLL_MARGIN_BOTTOM]: "0px" },
     px: { [SCROLL_MARGIN_TOP]: "1px", [SCROLL_MARGIN_BOTTOM]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -74,8 +74,8 @@ export const scroll: CSSMap = {
   mt: {
     0: { [SCROLL_MARGIN_TOP]: "0px" },
     px: { [SCROLL_MARGIN_TOP]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -89,8 +89,8 @@ export const scroll: CSSMap = {
   mr: {
     0: { [SCROLL_MARGIN_RIGHT]: "0px" },
     px: { [SCROLL_MARGIN_RIGHT]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -104,8 +104,8 @@ export const scroll: CSSMap = {
   mb: {
     0: { [SCROLL_MARGIN_BOTTOM]: "0px" },
     px: { [SCROLL_MARGIN_BOTTOM]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -119,8 +119,8 @@ export const scroll: CSSMap = {
   ml: {
     0: { [SCROLL_MARGIN_LEFT]: "0px" },
     px: { [SCROLL_MARGIN_LEFT]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -134,8 +134,8 @@ export const scroll: CSSMap = {
   p: {
     0: { [SCROLL_PADDING]: "0px" },
     px: { [SCROLL_PADDING]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -149,8 +149,8 @@ export const scroll: CSSMap = {
   px: {
     0: { [SCROLL_PADDING_LEFT]: "0px", [SCROLL_PADDING_RIGHT]: "0px" },
     px: { [SCROLL_PADDING_LEFT]: "1px", [SCROLL_PADDING_RIGHT]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -168,8 +168,8 @@ export const scroll: CSSMap = {
   py: {
     0: { [SCROLL_PADDING_TOP]: "0px", [SCROLL_PADDING_BOTTOM]: "0px" },
     px: { [SCROLL_PADDING_TOP]: "1px", [SCROLL_PADDING_BOTTOM]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -187,8 +187,8 @@ export const scroll: CSSMap = {
   pt: {
     0: { [SCROLL_PADDING_TOP]: "0px" },
     px: { [SCROLL_PADDING_TOP]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -202,8 +202,8 @@ export const scroll: CSSMap = {
   pr: {
     0: { [SCROLL_PADDING_RIGHT]: "0px" },
     px: { [SCROLL_PADDING_RIGHT]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -217,8 +217,8 @@ export const scroll: CSSMap = {
   pb: {
     0: { [SCROLL_PADDING_BOTTOM]: "0px" },
     px: { [SCROLL_PADDING_BOTTOM]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -232,8 +232,8 @@ export const scroll: CSSMap = {
   pl: {
     0: { [SCROLL_PADDING_LEFT]: "0px" },
     px: { [SCROLL_PADDING_LEFT]: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>

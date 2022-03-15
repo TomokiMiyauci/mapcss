@@ -194,14 +194,14 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
 
       return root;
     },
-    invert: (key, { variablePrefix, className }) => {
+    invert: ({ id }, { variablePrefix, className }) => {
       const varProperty = (property: string): string =>
         customProperty(property, variablePrefix);
       const makeVarFnSet = (
         property: string,
       ): [string, string] => [
         chain([prefix, property]).map(join).map(varProperty).unwrap(),
-        chain([prefix, key, property]).map(join).map(varProperty).map(varFn)
+        chain([prefix, id, property]).map(join).map(varProperty).map(varFn)
           .unwrap(),
       ];
       const [varBody, varFnBody] = makeVarFnSet("body");
@@ -231,10 +231,10 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
         },
       };
     },
-    "*": (match, context) => {
-      const maybeColor = $resolveTheme(match, "color", context);
-      const { parentKey, variablePrefix } = context;
-      if (isUndefined(parentKey) || isUndefined(maybeColor)) return;
+    "*": ({ id }, context) => {
+      const maybeColor = $resolveTheme(id, "color", context);
+      const { variablePrefix } = context;
+      if (isUndefined(maybeColor)) return;
       const _isString = isString(maybeColor);
       const colorBy = (colorWeight: number): string =>
         _isString ? maybeColor : (() => {
@@ -251,8 +251,8 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       const makePropertySet = (
         property: string,
       ): [string, string] => [
-        makeProperty(parentKey, property),
-        makeProperty(parentKey, "invert", property),
+        makeProperty(prefix, property),
+        makeProperty(prefix, "invert", property),
       ];
 
       const [varBody, varInvertBody] = makePropertySet("body");

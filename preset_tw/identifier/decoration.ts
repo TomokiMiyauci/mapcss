@@ -27,8 +27,8 @@ export const decoration: CSSMap = {
   from: {
     font: { textDecorationThickness: "from-font" },
   },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>

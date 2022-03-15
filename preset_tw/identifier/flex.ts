@@ -20,8 +20,8 @@ export const flex: CSSMap = {
     reverse: { flexWrap: "wrap-reverse" },
   },
   nowrap: { flexWrap: "nowrap" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, arbitrary]) => ({ flex: arbitrary })],
     ]),
 };

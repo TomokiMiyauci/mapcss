@@ -40,8 +40,8 @@ export const inset: CSSMap = {
     px: { right: "1px", left: "1px" },
     auto: { left: "auto", right: "auto" },
     full: { right: "100%", left: "100%" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -67,8 +67,8 @@ export const inset: CSSMap = {
     px: { top: "1px", bottom: "1px" },
     auto: { top: "auto", bottom: "auto" },
     full: { top: "100%", bottom: "100%" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [re$Numeric, ([, numeric]) =>
           parseNumeric(numeric).andThen(remify).match(
             matcher(["top", "bottom"]),
@@ -86,8 +86,8 @@ export const inset: CSSMap = {
         ],
       ]),
   },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>

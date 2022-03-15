@@ -144,9 +144,9 @@ import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 const rePositiveNumber = /^(\d+)$/;
 const cssMap: CSSMap = {
   z: {
-    "*": (match) => {
+    "*": ({ id }) => {
       // It actually checks the validity of the numbers
-      const regExpExecResult = rePositiveNumber.exec(match);
+      const regExpExecResult = rePositiveNumber.exec(id);
       if (regExpExecResult) {
         return { zIndex: Number(regExpExecResult[1]) };
       }

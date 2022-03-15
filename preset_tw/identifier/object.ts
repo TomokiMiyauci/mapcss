@@ -22,8 +22,8 @@ export const object: CSSMap = {
     bottom: { objectPosition: "right bottom" },
     top: { objectPosition: "right top" },
   },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, arbitrary]) => ({ objectPosition: arbitrary })],
     ]),
 };

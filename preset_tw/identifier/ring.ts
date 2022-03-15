@@ -76,8 +76,8 @@ export const ring: CSSMap = {
     };
   },
   offset: {
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [re$Numeric, ([, numeric]) => {
           const [varRingOffsetWidth] = customPropertySet(
             "ring-offset-width",
@@ -131,8 +131,8 @@ export const ring: CSSMap = {
         ],
       ]),
   },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>

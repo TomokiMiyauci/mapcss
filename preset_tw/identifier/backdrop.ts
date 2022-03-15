@@ -73,8 +73,8 @@ export const backdrop: CSSMap = {
       handleFilter(BACKDROP_BLUR, "blur(64px)", variablePrefix),
   },
   brightness: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -91,8 +91,8 @@ export const backdrop: CSSMap = {
       ]),
   },
   contrast: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -116,8 +116,8 @@ export const backdrop: CSSMap = {
   },
   hue: {
     rotate: {
-      "*": (match, { variablePrefix }) =>
-        execMatch(match, [
+      "*": ({ id }, { variablePrefix }) =>
+        execMatch(id, [
           [
             re$PositiveNumber,
             ([, pNumber]) =>
@@ -141,8 +141,8 @@ export const backdrop: CSSMap = {
       handleFilter("backdrop-invert", "invert(0)", variablePrefix),
   },
   opacity: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -159,8 +159,8 @@ export const backdrop: CSSMap = {
       ]),
   },
   saturate: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>

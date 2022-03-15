@@ -8,8 +8,8 @@ export const min: CSSMap = {
     min: { minWidth: "min-content" },
     max: { minWidth: "max-content" },
     fit: { minWidth: "fit-content" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [reBracket_$, ([, arbitrary]) => ({ minWidth: arbitrary })],
       ]),
   },
@@ -20,8 +20,8 @@ export const min: CSSMap = {
     min: { minHeight: "min-content" },
     max: { minHeight: "max-content" },
     fit: { minHeight: "fit-content" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [reBracket_$, ([, arbitrary]) => ({ minHeight: arbitrary })],
       ]),
   },

@@ -30,8 +30,8 @@ export const max: CSSMap = {
       xl: { maxWidth: "1280px" },
       "2xl": { maxWidth: "1536px" },
     },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [reBracket_$, ([, arbitrary]) => ({ maxWidth: arbitrary })],
       ]),
   },
@@ -43,8 +43,8 @@ export const max: CSSMap = {
     min: { maxHeight: "min-content" },
     max: { maxHeight: "max-content" },
     fit: { maxHeight: "fit-content" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>

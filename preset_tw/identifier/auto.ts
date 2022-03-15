@@ -7,8 +7,8 @@ export const auto: CSSMap = {
     min: { gridAutoColumns: "min-content" },
     max: { gridAutoColumns: "max-content" },
     fr: { gridAutoColumns: "minmax(0, 1fr)" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [reBracket_$, ([, arbitrary]) => ({ gridAutoColumns: arbitrary })],
       ]),
   },
@@ -17,8 +17,8 @@ export const auto: CSSMap = {
     min: { gridAutoRows: "min-content" },
     max: { gridAutoRows: "max-content" },
     fr: { gridAutoRows: "minmax(0, 1fr)" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [reBracket_$, ([, arbitrary]) => ({ gridAutoRows: arbitrary })],
       ]),
   },

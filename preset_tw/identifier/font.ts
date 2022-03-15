@@ -22,8 +22,8 @@ export const font: CSSMap = {
     fontFamily:
       `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace`,
   },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, arbitrary]) => ({ fontFamily: arbitrary })],
     ]),
 };

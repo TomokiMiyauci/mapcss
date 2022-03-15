@@ -62,8 +62,8 @@ export const space: CSSMap = {
         },
       },
     }),
-    "*": (match, { variablePrefix, className }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix, className }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -93,8 +93,8 @@ export const space: CSSMap = {
         },
       },
     }),
-    "*": (match, { variablePrefix, className }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix, className }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>

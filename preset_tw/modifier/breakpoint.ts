@@ -10,10 +10,10 @@ export function minWidthMediaQuery(value: string): string {
 
 const breakPointHandler: Modifier = (
   parentNode,
-  _,
+  { id },
   context,
 ) => {
-  return Some(resolveTheme(context.modifier, "screen", context)).map(
+  return Some(resolveTheme(id, "screen", context)).map(
     minWidthMediaQuery,
   ).match({
     some: (rule) => {

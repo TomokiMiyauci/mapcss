@@ -10,8 +10,8 @@ export const content: CSSMap = {
   between: { alignContent: "space-between" },
   around: { alignContent: "space-around" },
   evenly: { alignContent: "space-evenly" },
-  "*": (match, { variablePrefix }) =>
-    execMatch(match, [
+  "*": ({ id }, { variablePrefix }) =>
+    execMatch(id, [
       [reBracket_$, ([, body]) => {
         const [varContent, varFnContent] = customPropertySet(
           "content",

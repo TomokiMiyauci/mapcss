@@ -8,8 +8,8 @@ export const list: CSSMap = {
   decimal: { listStyleType: "decimal" },
   inside: { listStylePosition: "inside" },
   outside: { listStylePosition: "outside" },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, attr]) => ({ listStylePosition: attr })],
     ]),
 };

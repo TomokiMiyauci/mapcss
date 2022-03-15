@@ -28,8 +28,8 @@ function handleScale(
 
 export const scale: CSSMap = {
   x: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) => handleScale(["scale-x"], pNumber, variablePrefix),
@@ -37,16 +37,16 @@ export const scale: CSSMap = {
       ]),
   },
   y: {
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) => handleScale(["scale-y"], pNumber, variablePrefix),
         ],
       ]),
   },
-  "*": (match, { variablePrefix }) =>
-    execMatch(match, [
+  "*": ({ id }, { variablePrefix }) =>
+    execMatch(id, [
       [
         re$PositiveNumber,
         ([, pNumber]) =>

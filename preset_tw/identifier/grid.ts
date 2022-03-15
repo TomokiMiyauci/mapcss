@@ -21,8 +21,8 @@ export const grid: CSSMap = {
   },
   cols: {
     none: { gridTemplateColumns: "none" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -38,8 +38,8 @@ export const grid: CSSMap = {
   },
   rows: {
     none: { gridTemplateRows: "none" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>

@@ -24,8 +24,8 @@ export const outline: CSSMap = {
   double: { outlineStyle: "double" },
   hidden: { outlineStyle: "hidden" },
   offset: {
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -33,8 +33,8 @@ export const outline: CSSMap = {
         ],
       ]),
   },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>

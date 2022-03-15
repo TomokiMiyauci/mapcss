@@ -1,5 +1,9 @@
 import { Node } from "../../deps.ts";
-import type { Modifier, ModifierContext } from "../../core/types.ts";
+import type {
+  Modifier,
+  RuntimeContext,
+  StaticContext,
+} from "../../core/types.ts";
 import { isAtRule } from "../../core/utils/assert.ts";
 
 export function isAllowNode(node: Node): boolean {
@@ -10,7 +14,10 @@ export function isAllowNode(node: Node): boolean {
 }
 
 export function selectorTransform(
-  transform: (selector: string, context: ModifierContext) => string,
+  transform: (
+    selector: string,
+    context: Readonly<StaticContext & RuntimeContext>,
+  ) => string,
 ): Modifier {
   return (root, _, context) => {
     root.walkRules((rule) => {

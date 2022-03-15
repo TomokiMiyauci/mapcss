@@ -11,8 +11,8 @@ export const row: CSSMap = {
   auto: { gridRow: "auto" },
   span: {
     full: { gridRow: "1/-1" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -25,8 +25,8 @@ export const row: CSSMap = {
   },
   start: {
     auto: { gridRowStart: "auto" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -37,8 +37,8 @@ export const row: CSSMap = {
   },
   end: {
     auto: { gridRowEnd: "auto" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) => parseNumeric(pNumber).match(matcher("grid-row-end")),
@@ -46,8 +46,8 @@ export const row: CSSMap = {
         [reBracket_$, ([, arbitrary]) => ({ gridRowEnd: arbitrary })],
       ]),
   },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [reBracket_$, ([, arbitrary]) => ({ gridRow: arbitrary })],
     ]),
 };

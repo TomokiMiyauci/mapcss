@@ -7,8 +7,8 @@ export const underline: CSSMap = {
   "": { textDecorationLine: "underline" },
   offset: {
     auto: { textUnderlineOffset: "auto" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>

@@ -73,8 +73,8 @@ export const text: CSSMap = {
   justify: { textAlign: "justify" },
   ellipsis: { textOverflow: "ellipsis" },
   clip: { textOverflow: "clip" },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;

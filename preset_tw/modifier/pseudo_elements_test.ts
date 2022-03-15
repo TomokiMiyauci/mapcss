@@ -1,11 +1,12 @@
 import { content } from "./pseudo_elements.ts";
-import { createContext, TestCase } from "./_test.ts";
+import { TestCase } from "./_test.ts";
+import { createContext, createMatchInfo } from "../../utils/context.ts";
 
-const beforeContext = createContext({ modifier: "before" });
-const afterContext = createContext({ modifier: "after" });
+const beforeMatchInfo = createMatchInfo({ id: "before" });
+const afterMatchInfo = createMatchInfo({ id: "after" });
 
 export const pseudoElements: TestCase = [
-  [{}, {}, content, beforeContext],
+  [{}, {}, content, beforeMatchInfo, createContext()],
   [
     {
       block: {
@@ -19,7 +20,8 @@ export const pseudoElements: TestCase = [
       },
     },
     content,
-    beforeContext,
+    beforeMatchInfo,
+    createContext(),
   ],
   [
     {
@@ -35,7 +37,8 @@ export const pseudoElements: TestCase = [
       },
     },
     content,
-    beforeContext,
+    beforeMatchInfo,
+    createContext(),
   ],
   [
     {
@@ -50,6 +53,7 @@ export const pseudoElements: TestCase = [
       },
     },
     content,
-    afterContext,
+    afterMatchInfo,
+    createContext(),
   ],
 ];

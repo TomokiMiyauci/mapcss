@@ -62,8 +62,8 @@ export const divide: CSSMap = {
       constructRule({
         [stringifyCustomProperty("divide-x-reverse", variablePrefix)]: 1,
       }, className),
-    "*": (match, { variablePrefix, className }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix, className }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -101,8 +101,8 @@ export const divide: CSSMap = {
       constructRule({
         [stringifyCustomProperty("divide-y-reverse", variablePrefix)]: 1,
       }, className),
-    "*": (match, { variablePrefix, className }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix, className }) =>
+      execMatch(id, [
         [
           re$PositiveNumber,
           ([, pNumber]) =>
@@ -123,8 +123,8 @@ export const divide: CSSMap = {
         ],
       ]),
   },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
         const color = resolveTheme(body, "color", context);
         if (isUndefined(color)) return;

@@ -9,8 +9,8 @@ export const gap: CSSMap = {
   x: {
     0: { columnGap: "0px" },
     px: { columnGap: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -22,8 +22,8 @@ export const gap: CSSMap = {
   y: {
     0: { rowGap: "0px" },
     px: { rowGap: "1px" },
-    "*": (match) =>
-      execMatch(match, [
+    "*": ({ id }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -32,8 +32,8 @@ export const gap: CSSMap = {
         [reBracket_$, ([, arbitrary]) => ({ rowGap: arbitrary })],
       ]),
   },
-  "*": (match) =>
-    execMatch(match, [
+  "*": ({ id }) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>

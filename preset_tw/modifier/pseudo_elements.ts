@@ -4,14 +4,12 @@ import type { Modifier } from "../../core/types.ts";
 
 export const content: Modifier = (
   root,
-  _,
-  { variablePrefix, modifier },
+  { id },
+  { variablePrefix },
 ) => {
   const CONTENT = "content";
   root.walkRules((node) => {
-    node.selectors = node.selectors.map((selector) =>
-      `${selector}::${modifier}`
-    );
+    node.selectors = node.selectors.map((selector) => `${selector}::${id}`);
     node.walkDecls(CONTENT, (child) => {
       child.remove();
     });

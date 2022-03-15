@@ -22,8 +22,8 @@ export const translate: CSSMap = {
       handleTransform(["translate-x"], "1px", variablePrefix),
     full: (_, { variablePrefix }) =>
       handleTransform(["translate-x"], "100%", variablePrefix),
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, pNumber]) =>
@@ -55,8 +55,8 @@ export const translate: CSSMap = {
       handleTransform(["translate-y"], "1px", variablePrefix),
     full: (_, { variablePrefix }) =>
       handleTransform(["translate-y"], "100%", variablePrefix),
-    "*": (match, { variablePrefix }) =>
-      execMatch(match, [
+    "*": ({ id }, { variablePrefix }) =>
+      execMatch(id, [
         [
           re$AllPer$PositiveNumber,
           ([, numerator, denominator]) =>

@@ -35,8 +35,8 @@ export const border: CSSMap = {
       borderLeftWidth: "1px",
       borderRightWidth: "1px",
     },
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -108,8 +108,8 @@ export const border: CSSMap = {
       borderTopWidth: "1px",
       borderBottomWidth: "1px",
     },
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [re$AllPer$PositiveNumber, ([, body, alpha]) => {
           const color = resolveTheme(body, "color", context);
           if (isUndefined(color)) return;
@@ -198,8 +198,8 @@ export const border: CSSMap = {
   },
   t: {
     "": { borderTopWidth: "1px" },
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -250,8 +250,8 @@ export const border: CSSMap = {
   },
   r: {
     "": { borderRightWidth: "1px" },
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -304,8 +304,8 @@ export const border: CSSMap = {
   },
   b: {
     "": { borderBottomWidth: "1px" },
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -358,8 +358,8 @@ export const border: CSSMap = {
   },
   l: {
     "": { borderLeftWidth: "1px" },
-    "*": (match, context) =>
-      execMatch(match, [
+    "*": ({ id }, context) =>
+      execMatch(id, [
         [
           re$Numeric,
           ([, numeric]) =>
@@ -410,8 +410,8 @@ export const border: CSSMap = {
         ],
       ]),
   },
-  "*": (match, context) =>
-    execMatch(match, [
+  "*": ({ id }, context) =>
+    execMatch(id, [
       [
         re$Numeric,
         ([, numeric]) =>
