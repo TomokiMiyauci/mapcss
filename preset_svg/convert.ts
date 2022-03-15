@@ -1,9 +1,5 @@
-import { IconifyJSON } from "https://cdn.esm.sh/@iconify/types@1.0.12/types.ts";
-
-import { parseIconSet } from "https://esm.sh/@iconify/utils/lib/icon-set/parse?dts&pin=v66";
-import { defaults } from "https://esm.sh/@iconify/utils/lib/customisations";
-import { Option } from "./types.ts";
-import { iconToSVG } from "https://esm.sh/@iconify/utils/lib/svg/build";
+import { defaults, IconifyJSON, iconToSVG, parseIconSet } from "./deps.ts";
+import type { Option } from "./types.ts";
 
 export function iconifyJSON(
   icon: IconifyJSON,
