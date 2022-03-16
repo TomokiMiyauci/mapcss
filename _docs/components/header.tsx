@@ -16,6 +16,11 @@ export function Header() {
                     Docs
                   </a>
                 </li>
+                <li>
+                  <a href="/playground">
+                    Playground
+                  </a>
+                </li>
               </ul>
             </nav>
 
