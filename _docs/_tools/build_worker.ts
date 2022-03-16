@@ -8,6 +8,7 @@ await esbuild.build({
   bundle: true,
   define: {
     "Deno.build": `{ "os": "linux" }`,
+    "import.meta.url": `{}`,
   },
   format: "esm",
 });

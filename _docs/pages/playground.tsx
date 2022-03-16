@@ -55,10 +55,17 @@ const code =
 </div>
 `;
 
+const defaultRawConfig = `export default {
+  compress: false
+}
+`;
+
 export default function Playground() {
   const [input, setInput] = useState<string | undefined>(code);
   const [cssSheet, setCSSSheet] = useState("");
-
+  const [rawConfig, setRawConfig] = useState<string | undefined>(
+    defaultRawConfig,
+  );
   const cssStyle = useMemo(() => {
     if (!window.CSSStyleSheet || !cssSheet) return;
     const style = new CSSStyleSheet();
@@ -73,8 +80,8 @@ export default function Playground() {
       setCSSSheet(data);
       ws.terminate();
     };
-    ws.postMessage(input);
-  }, [input]);
+    ws.postMessage({ code: input, rawConfig });
+  }, [input, rawConfig]);
 
   return (
     <>
@@ -96,6 +103,12 @@ export default function Playground() {
                 className={({ selected }) =>
                   clsx({ "text-amber-500": selected })}
               >
+                Config
+              </Tab>
+              <Tab
+                className={({ selected }) =>
+                  clsx({ "text-amber-500": selected })}
+              >
                 CSS
               </Tab>
             </Tab.List>
@@ -112,6 +125,19 @@ export default function Playground() {
                   onChange={setInput}
                   defaultValue={code}
                   value={input}
+                />
+              </Tab.Panel>
+              <Tab.Panel className="h-full">
+                <Editor
+                  options={{
+                    minimap: {
+                      enabled: false,
+                    },
+                  }}
+                  loading={<></>}
+                  defaultLanguage="typescript"
+                  onChange={setRawConfig}
+                  value={rawConfig}
                 />
               </Tab.Panel>
               <Tab.Panel className="h-full">
