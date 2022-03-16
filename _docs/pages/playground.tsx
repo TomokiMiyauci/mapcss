@@ -1,18 +1,20 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Editor from "https://esm.sh/@monaco-editor/react?pin=v65";
 import root from "https://esm.sh/react-shadow";
+import { Header } from "~/components/header.tsx";
+import { clsx, Tab } from "~/deps.ts";
 
 const code =
   `<div class="min-h-screen bg-gray-50 py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
-<div class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-<div class="relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
-  <div class="max-w-md mx-auto">
-    <div class="divide-y divide-gray-300/50">
-      <div class="py-8 text-base leading-7 space-y-6 text-gray-600">
-        <p>An advanced online playground for Tailwind CSS, including support for things like:</p>
-        <ul class="space-y-4">
-          <li class="flex items-center">
-            <svg class="w-6 h-6 flex-none fill-sky-100 stroke-sky-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
+  <div class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <div class="relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
+      <div class="max-w-md mx-auto">
+        <div class="divide-y divide-gray-300/50">
+          <div class="py-8 text-base leading-7 space-y-6 text-gray-600">
+            <p>An advanced online playground for Tailwind CSS, including support for things like:</p>
+            <ul class="space-y-4">
+              <li class="flex items-center">
+                <svg class="w-6 h-6 flex-none fill-sky-100 stroke-sky-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="11" />
               <path d="m8 13 2.165 2.165a1 1 0 0 0 1.521-.126L16 9" fill="none" />
             </svg>
@@ -49,12 +51,12 @@ const code =
       </div>
     </div>
   </div>
-</div>
+  </div>
 </div>
 `;
 
 export default function Playground() {
-  const [input, setInput] = useState(code);
+  const [input, setInput] = useState<string | undefined>(code);
   const [cssSheet, setCSSSheet] = useState("");
 
   const cssStyle = useMemo(() => {
@@ -76,38 +78,64 @@ export default function Playground() {
 
   return (
     <>
-      <div className="grid h-screen grid-cols-2 overflow-hidden">
-        <div>
-          <Editor
-            options={{
-              minimap: {
-                enabled: false,
-              },
-            }}
-            defaultValue={code}
-            defaultLanguage="html"
-            loading={<></>}
-            onChange={(input) => setInput(input ?? "")}
-            height="70%"
-          />
-          <Editor
-            options={{
-              readOnly: true,
-              minimap: {
-                enabled: false,
-              },
-            }}
-            loading={<></>}
-            value={cssSheet}
-            defaultLanguage="css"
-            height="30%"
-          />
+      <style>
+        {`body > #__aleph {height: 100vh}`}
+      </style>
+      <Header />
+      <main className="h-[calc(100%_-_61px)] grid lg:grid-cols-2 overflow-hidden">
+        <div className="h-full flex flex-col">
+          <Tab.Group>
+            <Tab.List className="py-1 px-4 space-x-2 shadow">
+              <Tab
+                className={({ selected }) =>
+                  clsx({ "text-amber-500": selected })}
+              >
+                HTML
+              </Tab>
+              <Tab
+                className={({ selected }) =>
+                  clsx({ "text-amber-500": selected })}
+              >
+                CSS
+              </Tab>
+            </Tab.List>
+            <Tab.Panels className="flex-1">
+              <Tab.Panel className="h-full">
+                <Editor
+                  options={{
+                    minimap: {
+                      enabled: false,
+                    },
+                  }}
+                  loading={<></>}
+                  defaultLanguage="html"
+                  onChange={setInput}
+                  defaultValue={code}
+                  value={input}
+                />
+              </Tab.Panel>
+              <Tab.Panel className="h-full">
+                <Editor
+                  options={{
+                    minimap: {
+                      enabled: false,
+                    },
+                    readOnly: true,
+                  }}
+                  loading={<></>}
+                  defaultLanguage="css"
+                  value={cssSheet}
+                />
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
         </div>
 
-        {cssStyle && (
+        {cssStyle && input && (
           <root.div
             mode="closed"
             styleSheets={[cssStyle]}
+            className="hidden lg:block"
           >
             <div
               className="whitespace-pre antialiased overflow-scroll grid place-content-center"
@@ -116,7 +144,7 @@ export default function Playground() {
             </div>
           </root.div>
         )}
-      </div>
+      </main>
     </>
   );
 }
