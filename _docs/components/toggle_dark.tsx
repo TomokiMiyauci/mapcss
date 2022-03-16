@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { clsx, Switch } from "~/deps.ts";
+import { useUpdateEffect } from "~/hooks/utils.ts";
 
 export default function () {
-  const [enabled, setEnabled] = useState(() => {
-    if (window) {
-      const theme = localStorage.getItem("theme");
-      return theme === "dark";
-    }
-    return false;
-  });
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme) {
+      setEnabled(theme === "dark");
+    }
+  }, []);
+
+  useUpdateEffect(() => {
     if (enabled) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
