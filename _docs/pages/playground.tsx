@@ -1,12 +1,22 @@
 import React, { useEffect, useMemo, useState } from "react";
-import Editor from "https://esm.sh/@monaco-editor/react?pin=v65";
+import Editor from "https://esm.sh/@monaco-editor/react?pin=v69";
 import root from "https://esm.sh/react-shadow";
 import useDebounce from "~/hooks/use_debounce.ts";
+import useColorModeValue from "~/hooks/use_color_mode_value.ts";
 import { Header } from "~/components/header.tsx";
 import { clsx, Tab } from "~/deps.ts";
+import type { editor } from "https://esm.sh/monaco-editor";
+
+export const editorOptions: editor.IStandaloneEditorConstructionOptions = {
+  fontFamily: `Menlo, Monaco, 'Courier New', monospace`,
+  fontLigatures: true,
+  fontSize: 14,
+  minimap: { enabled: false },
+  tabSize: 2,
+};
 
 const code =
-  `<div class="min-h-screen bg-gray-50 py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
+  `<div class="min-h-screen py-6 flex flex-col justify-center relative overflow-hidden sm:py-12">
   <div class="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
     <div class="relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1 ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
       <div class="max-w-md mx-auto">
@@ -71,6 +81,8 @@ export default function Playground() {
   const [rawConfig, setRawConfig] = useState<string | undefined>(
     defaultRawConfig,
   );
+
+  const theme = useColorModeValue("light", "vs-dark");
   const cssStyle = useMemo(() => {
     if (!window.CSSStyleSheet || !cssSheet) return;
     const style = new CSSStyleSheet();
@@ -129,41 +141,36 @@ export default function Playground() {
               <Tab.Panel className="h-full">
                 <Editor
                   options={{
-                    minimap: {
-                      enabled: false,
-                    },
+                    ...editorOptions,
                   }}
                   loading={<></>}
                   defaultLanguage="html"
                   onChange={setInput}
                   defaultValue={code}
                   value={input}
+                  theme={theme}
                 />
               </Tab.Panel>
               <Tab.Panel className="h-full">
                 <Editor
-                  options={{
-                    minimap: {
-                      enabled: false,
-                    },
-                  }}
+                  options={editorOptions}
                   loading={<></>}
                   defaultLanguage="typescript"
                   onChange={setRawConfig}
                   value={rawConfig}
+                  theme={theme}
                 />
               </Tab.Panel>
               <Tab.Panel className="h-full">
                 <Editor
                   options={{
-                    minimap: {
-                      enabled: false,
-                    },
+                    ...editorOptions,
                     readOnly: true,
                   }}
                   loading={<></>}
                   defaultLanguage="css"
                   value={cssSheet}
+                  theme={theme}
                 />
               </Tab.Panel>
             </Tab.Panels>
