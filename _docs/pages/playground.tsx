@@ -4,7 +4,9 @@ import root from "https://esm.sh/react-shadow";
 import useDebounce from "~/hooks/use_debounce.ts";
 import useColorModeValue from "~/hooks/use_color_mode_value.ts";
 import { Header } from "~/components/header.tsx";
-import { clsx, Tab } from "~/deps.ts";
+import { clsx } from "~/deps.ts";
+import { Tab } from "https://esm.sh/@headlessui/react@1.5.0?pin=v69";
+
 import type { editor } from "https://esm.sh/monaco-editor";
 
 export const editorOptions: editor.IStandaloneEditorConstructionOptions = {

@@ -38,7 +38,7 @@ const supportBackdropBlur: ModifierDefinition = (root) => {
   return root;
 };
 
-const base: Partial<MapcssConfig> = {
+const base: MapcssConfig = {
   modifierMap: {
     supports: {
       backdrop: {
@@ -79,11 +79,11 @@ const base: Partial<MapcssConfig> = {
   ],
 };
 
-const config: Partial<MapcssConfig> = {
+const config: MapcssConfig = {
   ...base,
   css: {
     ".dark": {
-      ...chain(generate(base, "bg-dark-900 text-slate-50").ast).map(
+      ...chain(generate("bg-dark-900 text-slate-50", base).ast).map(
         filterDeclaration,
       ).map(
         toObject,
@@ -102,6 +102,9 @@ const config: Partial<MapcssConfig> = {
 };
 
 export default <Config> {
+  ssr: {
+    exclude: [/\/playground/],
+  },
   plugins: [
     mapcssPlugin({
       ...config,
