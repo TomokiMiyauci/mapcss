@@ -1,5 +1,5 @@
 import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
-import { extractSplit } from "./extractor.ts";
+import { extractBySpace } from "./extract.ts";
 import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
 import {
@@ -53,6 +53,7 @@ export function generate(
     variablePrefix = VARIABLE_PREFIX,
     charMap = CHAR_MAP,
     minify = false,
+    extract = extractBySpace,
     ...staticConfig
   }: Readonly<
     Partial<
@@ -66,6 +67,7 @@ export function generate(
     variablePrefix,
     charMap,
     minify,
+    extract,
   };
   const {
     syntax,
@@ -80,7 +82,7 @@ export function generate(
     ...ctx,
     theme,
   };
-  const tokens = isString(input) ? extractSplit(input) : input;
+  const tokens = isString(input) ? extract(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 

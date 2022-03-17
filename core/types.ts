@@ -69,6 +69,11 @@ export type StaticContext = {
    * @default false
    */
   minify: boolean;
+
+  /** Extract token
+   * @default [Function: extractBySpace]
+   */
+  extract: (value: string) => Set<string>;
 };
 
 export type RuntimeContext = {
