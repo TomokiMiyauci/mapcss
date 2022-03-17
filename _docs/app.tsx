@@ -1,27 +1,12 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { DarkModeContext } from "~/contexts/mod.ts";
+import useDarkMode from "~/hooks/use_dark_mode.ts";
 import "mapcss/reset/tw.css";
 
 export default function App(
   { Page, pageProps }: { Page: FC; pageProps: Record<string, unknown> },
 ) {
-  const [isDark, setDark] = useState(false);
-
-  useEffect(() => {
-    const theme = window.localStorage.getItem("theme");
-    const media = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (
-      theme === "dark" ||
-      (theme === null &&
-        media)
-    ) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    setDark(theme === "dark" || media);
-  }, []);
+  const [isDark, setDark] = useDarkMode();
 
   return (
     <>

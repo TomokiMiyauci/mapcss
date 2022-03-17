@@ -73,6 +73,5 @@ export const useUpdateEffect: typeof useEffect = (effect, deps) => {
     if (isFirstMount) return;
 
     return effect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 };
