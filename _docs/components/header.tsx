@@ -1,5 +1,5 @@
 import React from "react";
-import ToggleDark from "~/components/toggle_dark.tsx";
+// import ToggleDark from "~/components/toggle_dark.tsx";
 
 export function Header() {
   return (
@@ -24,7 +24,7 @@ export function Header() {
               </ul>
             </nav>
 
-            <ToggleDark />
+            {/* <ToggleDark /> */}
 
             <a
               href="https://github.com/TomokiMiyauci/mapcss"
