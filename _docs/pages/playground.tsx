@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Editor from "https://esm.sh/@monaco-editor/react?pin=v65";
 import root from "https://esm.sh/react-shadow";
+import useDebounce from "~/hooks/use_debounce.ts";
 import { Header } from "~/components/header.tsx";
 import { clsx, Tab } from "~/deps.ts";
 
@@ -55,8 +56,12 @@ const code =
 </div>
 `;
 
-const defaultRawConfig = `export default {
-  compress: false
+const defaultRawConfig = `// Changes have a debounce of 3000 ms.
+// import { presetTw } from "https://deno.land/x/mapcss/mod.ts"
+
+export default {
+  // preset: [presetTw()]
+  minify: false
 }
 `;
 
@@ -74,14 +79,22 @@ export default function Playground() {
     return style;
   }, [cssSheet]);
 
-  useEffect(() => {
+  const queryWorker = () => {
     const ws = new Worker("./worker.js");
     ws.onmessage = ({ data }) => {
       setCSSSheet(data);
       ws.terminate();
     };
     ws.postMessage({ code: input, rawConfig });
-  }, [input, rawConfig]);
+  };
+
+  useEffect(queryWorker, [input]);
+
+  useDebounce(
+    queryWorker,
+    { delay: 3000 },
+    [rawConfig],
+  );
 
   return (
     <>
