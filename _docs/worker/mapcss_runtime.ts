@@ -2,7 +2,7 @@ import {
   generate,
   preflightCSS,
   presetTw,
-} from "https://deno.land/x/mapcss@v1.0.0-beta.34/mod.ts";
+} from "https://deno.land/x/mapcss@v1.0.0-beta.35/mod.ts";
 
 self.addEventListener(
   "message",
@@ -15,9 +15,8 @@ self.addEventListener(
       `data:text/javascript;base64,${btoa(rawConfig)}`
     ).then((module) => {
       const { css } = generate(
-        { preset: [presetTw()], css: preflightCSS },
         code,
-        module.default ?? {},
+        { preset: [presetTw()], css: preflightCSS, ...module.default ?? {} },
       );
       self.postMessage(css);
     }).catch(() => {});
