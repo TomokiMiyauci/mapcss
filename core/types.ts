@@ -62,6 +62,13 @@ export type StaticContext = {
    * @default charMap: { "_": " " }
    */
   charMap: Readonly<Record<string, string>>;
+
+  /** Whether or not to minify the Node
+   * This will compress AST and outputted Style Sheets, but will reduce performance.
+   * It is recommended to use it in production.
+   * @default false
+   */
+  minify: boolean;
 };
 
 export type RuntimeContext = {

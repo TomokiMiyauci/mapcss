@@ -91,7 +91,7 @@ const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
 </div>
 `;
-const result = generate({ preset: [presetTw()] }, code);
+const result = generate(code, { preset: [presetTw()] });
 console.log(result.css);
 /*
   .relative{position:relative;}
