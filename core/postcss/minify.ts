@@ -44,7 +44,12 @@ function plugin(): PostcssPlugin {
     },
 
     Declaration: (decl) => {
-      decl.raws = { before: "", between: ":", value: decl.raws.value };
+      // If custom variable of declaration value is ` `, keep it
+      decl.raws = {
+        before: "",
+        between: decl.variable && !decl.value ? ": " : ":",
+        value: decl.raws.value,
+      };
       decl.value = minifyValue(decl.value);
     },
 
