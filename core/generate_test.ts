@@ -15,7 +15,7 @@ test("mapChar", () => {
 });
 
 test("generate option of css should generate css statement directory", () => {
-  const table: [Partial<Config>, string, string][] = [
+  const table: [Config, string, string][] = [
     [{}, "", ""],
     [
       {

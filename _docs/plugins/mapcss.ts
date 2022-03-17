@@ -3,7 +3,7 @@ import { extractSplit } from "../../core/extractor.ts";
 import type { Plugin } from "aleph/types";
 import { expandGlob, WalkEntry } from "https://deno.land/std@0.125.0/fs/mod.ts";
 
-export type Config = Partial<MapCSSConfig> & {
+export type Config = MapCSSConfig & {
   /** watch file type
    * @default ['tsx', 'jsx']
    */

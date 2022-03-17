@@ -2,7 +2,7 @@ import { Config, generate, presetSvg } from "../../mod.ts";
 import { expect, test } from "../../dev_deps.ts";
 
 test("presetSvg generation test", () => {
-  const config: Partial<Config> = {
+  const config: Config = {
     preset: [presetSvg({
       svgMap: {
         carbon: {

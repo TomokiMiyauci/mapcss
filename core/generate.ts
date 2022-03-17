@@ -56,9 +56,7 @@ export function generate(
     extract = extractBySpace,
     ...staticConfig
   }: Readonly<
-    Partial<
-      Config
-    >
+    Config
   >,
   {}: Readonly<Partial<Option>> = {},
 ): Result {

@@ -11,7 +11,7 @@ import {
   presetTypography,
 } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
 
-const config: Partial<Config> = {
+const config: Config = {
   preset: [presetTypography()],
 };
 
