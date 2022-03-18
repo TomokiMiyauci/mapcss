@@ -1,12 +1,14 @@
 import React, { FC } from "react";
-import { DarkModeContext } from "~/contexts/mod.ts";
+import { DarkModeContext, OverlayContext } from "~/contexts/mod.ts";
 import useDarkMode from "~/hooks/use_dark_mode.ts";
+import useNode from "~/hooks/use_node.ts";
 import "mapcss/reset/tw.css";
 
 export default function App(
   { Page, pageProps }: { Page: FC; pageProps: Record<string, unknown> },
 ) {
   const [isDark, setDark] = useDarkMode();
+  const [node, setNode] = useNode();
 
   return (
     <>
@@ -23,8 +25,12 @@ export default function App(
       </head>
 
       <DarkModeContext.Provider value={[isDark, setDark]}>
-        <Page {...pageProps} />
+        <OverlayContext.Provider value={[node, setNode]}>
+          <Page {...pageProps} />
+        </OverlayContext.Provider>
       </DarkModeContext.Provider>
+
+      {node}
     </>
   );
 }
