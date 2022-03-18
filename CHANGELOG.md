@@ -1,3 +1,10 @@
+# [1.0.0-beta.36](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2022-03-17)
+
+
+### Bug Fixes
+
+* **core:** fix to treating custom variable of declaration value is empty string ([61f5e4a](https://github.com/TomokiMiyauci/mapcss/commit/61f5e4a5c9390f34989e104d21b379bde6dbbb02)), closes [#16](https://github.com/TomokiMiyauci/mapcss/issues/16)
+
 # [1.0.0-beta.35](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2022-03-17)
 
 
