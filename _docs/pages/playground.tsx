@@ -89,7 +89,7 @@ export default function Playground() {
                   loading={<></>}
                   defaultLanguage="html"
                   onChange={setInput}
-                  defaultValue={code}
+                  defaultValue={CODE}
                   value={input}
                   theme={theme}
                 />
