@@ -1,3 +1,10 @@
+# [1.0.0-beta.37](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2022-03-19)
+
+
+### Features
+
+* use postcss_core instead of postcss because it is browser capable ([1261e68](https://github.com/TomokiMiyauci/mapcss/commit/1261e681f264da2c807e7d78542ddb8a877a8c6f)), closes [#13](https://github.com/TomokiMiyauci/mapcss/issues/13)
+
 # [1.0.0-beta.36](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2022-03-17)
 
 
