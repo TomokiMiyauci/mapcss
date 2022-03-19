@@ -45,4 +45,4 @@ jobs:
           deno-version: ${{ matrix.deno }}
 
       - name: Test
-        run: deno test --unstable --ignore=node_modules,_docs,_examples,tmp --import-map=test_import_map.json --doc
+        run: deno test --ignore=node_modules,_docs,_examples --import-map=test_import_map.json --doc
