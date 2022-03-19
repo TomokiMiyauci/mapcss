@@ -1,3 +1,10 @@
+# [1.0.0-beta.38](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2022-03-19)
+
+
+### Features
+
+* **preset_svg:** add detect svg render mode ([213d553](https://github.com/TomokiMiyauci/mapcss/commit/213d5534264887d2c90081fbf443c6c61bc896fb))
+
 # [1.0.0-beta.37](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2022-03-19)
 
 
