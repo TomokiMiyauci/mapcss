@@ -15,7 +15,7 @@ import carbon from "https://esm.sh/@iconify-json/carbon/icons.json" assert {
   type: "json",
 };
 
-const config: Partial<Config> = {
+const config: Config = {
   preset: [presetSvg({
     svgMap: {
       carbon: iconifyJSON(carbon),

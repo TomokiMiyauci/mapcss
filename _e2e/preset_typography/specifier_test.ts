@@ -24,11 +24,11 @@ test("generated Style Sheet", () => {
   table.forEach(([token, result]) =>
     expect(
       generate(
+        token,
         {
           preset: [presetTypography()],
+          minify: true,
         },
-        token,
-        { compress: true },
       ).css,
     ).toBe(result)
   );

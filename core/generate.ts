@@ -1,41 +1,22 @@
-import {
-  isString,
-  isUndefined,
-  postcss,
-  prop,
-  Root,
-  toObject,
-} from "../deps.ts";
-import { extractSplit } from "./extractor.ts";
+import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
+import { extractBySpace } from "./extract.ts";
 import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
-import { minify, orderProp, orderStatement } from "./postcss/mod.ts";
+import {
+  minify as postcssMinify,
+  orderProp,
+  orderStatement,
+} from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
-import type {
-  BinaryTree,
-  Config,
-  RuntimeContext,
-  StaticContext,
-  Syntax,
-} from "./types.ts";
-
-const SEPARATOR = "-";
-const VARIABLE_PREFIX = "map-";
-const CHAR_MAP = { "_": " " };
+import { CHAR_MAP, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
+import type { Config, RuntimeContext, StaticContext, Syntax } from "./types.ts";
 
 const defaultSyntax: Syntax = {
   name: "mapcss/default-syntax",
   fn: (identifier) => ({ identifier }),
 };
 
-export type Option = {
-  /** Whether or not to compress the Node
-   * This will compress AST and outputted Style Sheets, but will reduce performance.
-   * It is recommended to use it in production.
-   * @default false
-   */
-  compress: boolean;
-};
+export type Option = {};
 
 export type Result = {
   /** The `string` of CSS Style Sheet.
@@ -45,11 +26,6 @@ export type Result = {
 
   /** PostCSS AST */
   ast: Root;
-
-  /** JavaScript Object with CSS-in-JS notation.
-   * The AST is converted to JavaScript Object when the property is accessed.
-   */
-  js: BinaryTree<string | number>;
 
   /** The matched tokens */
   matched: Set<string>;
@@ -71,23 +47,25 @@ function rootKeys(
 
 /** Generate result of CSS Style Sheet */
 export function generate(
+  input: Set<string> | string,
   {
     separator = SEPARATOR,
     variablePrefix = VARIABLE_PREFIX,
     charMap = CHAR_MAP,
+    minify = false,
+    extract = extractBySpace,
     ...staticConfig
   }: Readonly<
-    Partial<
-      Config
-    >
+    Config
   >,
-  input: Set<string> | string,
-  { compress = false }: Readonly<Partial<Option>> = { compress: false },
+  {}: Readonly<Partial<Option>> = {},
 ): Result {
   const ctx = {
     separator,
     variablePrefix,
     charMap,
+    minify,
+    extract,
   };
   const {
     syntax,
@@ -102,7 +80,7 @@ export function generate(
     ...ctx,
     theme,
   };
-  const tokens = isString(input) ? extractSplit(input) : input;
+  const tokens = isString(input) ? extract(input) : input;
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
@@ -167,8 +145,8 @@ export function generate(
   );
 
   const corePostcssPlugins = [orderStatement(), orderProp()];
-  const plugins = compress
-    ? [...corePostcssPlugins, minify()]
+  const plugins = minify
+    ? [...corePostcssPlugins, postcssMinify()]
     : corePostcssPlugins;
   const ast = postcss(...plugins, ...postcssPlugin).process(final).root;
 
@@ -176,9 +154,6 @@ export function generate(
     ast,
     get css(): string {
       return ast.toString();
-    },
-    get js() {
-      return toObject(ast);
     },
     matched,
     unmatched,

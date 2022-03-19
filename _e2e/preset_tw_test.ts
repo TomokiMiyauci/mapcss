@@ -34398,14 +34398,12 @@ const expects: [string, string][] = [
   ],
 ];
 
-const config = { preset: [presetTw({ injectVariable: false })] };
+const config = { preset: [presetTw({ injectVariable: false })], minify: true };
 
 test("presetTw", () => {
   expects.forEach(([className, result]) => {
     expect(
-      generate(config, new Set([className]), {
-        compress: true,
-      }).css,
+      generate(new Set([className]), config).css,
     ).toBe(
       result,
     );

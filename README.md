@@ -48,9 +48,11 @@ subject to change.
 
 - 🌐 Universal
 
-  It works with Browser, Deno, and Node.js
-  ([package name wanted](https://github.com/TomokiMiyauci/mapcss/discussions/6))
-  without polyfill.
+  It works with Browser, Deno, and Node.js without polyfill.
+
+  Internally using the universal version of
+  [postcss](https://github.com/postcss/postcss)
+  [postcss-core](https://github.com/mapcss/postcss-core).
 
   The bundle size has been taken into consideration, and the code base is
   created with pure functions.
@@ -91,7 +93,7 @@ const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
 </div>
 `;
-const result = generate({ preset: [presetTw()] }, code);
+const result = generate(code, { preset: [presetTw()] });
 console.log(result.css);
 /*
   .relative{position:relative;}
@@ -99,8 +101,6 @@ console.log(result.css);
   .text-red-500\/20{color:rgb(239 68 68/.2);}
 */
 ```
-
-You may need `--unstable` and `--allow-read` flag to Deno.
 
 ## What
 

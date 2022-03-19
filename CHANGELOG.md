@@ -1,3 +1,26 @@
+# [1.0.0-beta.37](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2022-03-19)
+
+
+### Features
+
+* use postcss_core instead of postcss because it is browser capable ([1261e68](https://github.com/TomokiMiyauci/mapcss/commit/1261e681f264da2c807e7d78542ddb8a877a8c6f)), closes [#13](https://github.com/TomokiMiyauci/mapcss/issues/13)
+
+# [1.0.0-beta.36](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.35...v1.0.0-beta.36) (2022-03-17)
+
+
+### Bug Fixes
+
+* **core:** fix to treating custom variable of declaration value is empty string ([61f5e4a](https://github.com/TomokiMiyauci/mapcss/commit/61f5e4a5c9390f34989e104d21b379bde6dbbb02)), closes [#16](https://github.com/TomokiMiyauci/mapcss/issues/16)
+
+# [1.0.0-beta.35](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.34...v1.0.0-beta.35) (2022-03-17)
+
+
+### Features
+
+* **core:** selectable extract function ([c68ba46](https://github.com/TomokiMiyauci/mapcss/commit/c68ba46cf8f1e3d351fdd7e84203b3334fb8b2e0)), closes [#19](https://github.com/TomokiMiyauci/mapcss/issues/19)
+* **core:** types of Config should be partial as default ([72b623c](https://github.com/TomokiMiyauci/mapcss/commit/72b623ca211d80464b2161b3981b0dd7f5461dbf)), closes [#20](https://github.com/TomokiMiyauci/mapcss/issues/20)
+* re-design generate function interface ([131f41f](https://github.com/TomokiMiyauci/mapcss/commit/131f41f27a8c5081dd8e23d9da2e58516b9518ce)), closes [#17](https://github.com/TomokiMiyauci/mapcss/issues/17)
+
 # [1.0.0-beta.34](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.33...v1.0.0-beta.34) (2022-03-15)
 
 

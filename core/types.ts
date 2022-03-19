@@ -62,6 +62,18 @@ export type StaticContext = {
    * @default charMap: { "_": " " }
    */
   charMap: Readonly<Record<string, string>>;
+
+  /** Whether or not to minify the Node
+   * This will compress AST and outputted Style Sheets, but will reduce performance.
+   * It is recommended to use it in production.
+   * @default false
+   */
+  minify: boolean;
+
+  /** Extract token
+   * @default [Function: extractBySpace]
+   */
+  extract: (value: string) => Set<string>;
 };
 
 export type RuntimeContext = {
@@ -90,7 +102,7 @@ export type RuntimeContext = {
   className: string;
 };
 
-export type Config = StaticConfig & StaticContext;
+export type Config = Partial<StaticConfig & StaticContext>;
 
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];

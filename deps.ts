@@ -41,17 +41,17 @@ export type {
   DeclarationProps,
   Node,
   Plugin as PostcssPlugin,
-} from "https://deno.land/x/postcss@8.4.6/lib/postcss.d.ts";
-import Rule from "https://deno.land/x/postcss@8.4.6/lib/rule.js";
-import Declaration from "https://deno.land/x/postcss@8.4.6/lib/declaration.js";
-import AtRule from "https://deno.land/x/postcss@8.4.6/lib/at-rule.js";
-import Root from "https://deno.land/x/postcss@8.4.6/lib/root.js";
-import postcss from "https://deno.land/x/postcss@8.4.6/lib/postcss.js";
+} from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/postcss.d.ts";
+import Rule from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/rule.js";
+import Declaration from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/declaration.js";
+import AtRule from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/at-rule.js";
+import Root from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/root.js";
+import postcss from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/postcss.js";
 export { AtRule, Declaration, postcss, Root, Rule };
 export {
   toAST,
   toObject,
-} from "https://deno.land/x/postcss_js@v1.0.0-beta.3/mod.ts";
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
 export { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
 export {
   className as classNameNode,

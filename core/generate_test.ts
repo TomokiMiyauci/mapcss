@@ -15,7 +15,7 @@ test("mapChar", () => {
 });
 
 test("generate option of css should generate css statement directory", () => {
-  const table: [Partial<Config>, string, string][] = [
+  const table: [Config, string, string][] = [
     [{}, "", ""],
     [
       {
@@ -107,6 +107,6 @@ test("generate option of css should generate css statement directory", () => {
     ],
   ];
   table.forEach(([config, input, result]) =>
-    expect(generate(config, input, { compress: true }).css).toBe(result)
+    expect(generate(input, { minify: true, ...config }).css).toBe(result)
   );
 });

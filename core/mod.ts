@@ -3,7 +3,7 @@ export type {
   Option as GenerateOption,
   Result as GenerateResult,
 } from "./generate.ts";
-export * from "./extractor.ts";
+export * from "./extract.ts";
 export * from "./resolve.ts";
 export * from "./types.ts";
 export * from "./ast.ts";
