@@ -1,3 +1,10 @@
+# [1.0.0-beta.39](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2022-03-19)
+
+
+### Bug Fixes
+
+* **core:** fix statement order logic ([6f86977](https://github.com/TomokiMiyauci/mapcss/commit/6f8697727a9e7a6a948d36a6fdc40b5c65298eab))
+
 # [1.0.0-beta.38](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2022-03-19)
 
 
