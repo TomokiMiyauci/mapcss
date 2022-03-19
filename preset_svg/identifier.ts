@@ -19,19 +19,33 @@ export function createCSSObject(
     const varIcon = stringifyCustomProperty("icon", variablePrefix);
     const varFnIcon = varFn(varIcon);
 
-    const mask = `${varFnIcon} no-repeat`;
-    const maskSize = "100% 100%";
+    const mode = svgMarkup.includes("currentColor") ? "mask" : "bg";
 
-    return {
+    const base = {
       [varIcon]: url,
-      mask,
-      WebkitMask: mask,
-      maskSize,
-      WebkitMaskSize: maskSize,
-      backgroundColor: "currentColor",
       height: `${scale}em`,
       width: `${scale}em`,
       ...declaration,
     };
+    const size = "100% 100%";
+    const iconValue = `${varFnIcon} no-repeat`;
+
+    if (mode === "mask") {
+      return {
+        mask: iconValue,
+        WebkitMask: iconValue,
+        maskSize: size,
+        WebkitMaskSize: size,
+        backgroundColor: "currentColor",
+        ...base,
+      };
+    } else {
+      return {
+        background: iconValue,
+        backgroundSize: size,
+        backgroundColor: "transparent",
+        ...base,
+      };
+    }
   };
 }
