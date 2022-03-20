@@ -1,4 +1,6 @@
-import { Config, generate, presetSvg } from "../../mod.ts";
+import { Config, generate } from "../../core/mod.ts";
+import { presetSvg } from "../../preset_svg/mod.ts";
+
 import { expect, test } from "../../dev_deps.ts";
 
 test("presetSvg generation test", () => {

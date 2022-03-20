@@ -1,7 +1,7 @@
 {
   "$schema": "https://x.nest.land/eggs@0.3.10/src/schema.json",
   "name": "mapcss",
-  "entry": "./mod.ts",
+  "entry": "./core/mod.ts",
   "description": "Tiny, composable atomic CSS engine",
   "homepage": "https://github.com/TomokiMiyauci/mapcss",
   "files": [
