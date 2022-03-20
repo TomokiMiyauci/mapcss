@@ -1,5 +1,5 @@
 import { isAtRule, isRule } from "../../core/utils/assert.ts";
-import { AtRule } from "../../deps.ts";
+import { AtRule } from "../deps.ts";
 import type { Modifier } from "./../../core/types.ts";
 
 export function createMedia(params: string): Modifier {

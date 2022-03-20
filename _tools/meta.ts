@@ -1,5 +1,5 @@
 import { BuildOptions } from "https://deno.land/x/dnt@0.22.0/mod.ts";
-import { deepMerge } from "../deps.ts";
+import { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
 import type { PackageJsonObject } from "https://deno.land/x/dnt@0.22.0/lib/types.ts";
 
 type DefineMeta = Omit<BuildOptions, "shims" | "package"> & {

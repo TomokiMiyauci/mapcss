@@ -13,7 +13,7 @@ import {
   SelectorNode,
   SyncProcessor,
   toAST,
-} from "../../deps.ts";
+} from "../deps.ts";
 import {
   classNameNode,
   combinatorNode,

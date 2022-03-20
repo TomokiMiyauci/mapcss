@@ -1,4 +1,4 @@
-import { isObject, mapEntries } from "../deps.ts";
+import { isObject, mapEntries } from "./deps.ts";
 import type { BinaryTree } from "../core/types.ts";
 
 export function recTransform<T, U>(

@@ -14,7 +14,7 @@ import {
   tail,
   toAST,
   wrap,
-} from "../deps.ts";
+} from "./deps.ts";
 import { isBlockDefinition, isCSSDefinition, isRoot } from "./utils/assert.ts";
 import type {
   CSSMap,

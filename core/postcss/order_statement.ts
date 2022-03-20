@@ -1,5 +1,5 @@
 import { isAtRule, isDeclaration, isRule } from "../utils/assert.ts";
-import type { PostcssPlugin } from "../../deps.ts";
+import type { PostcssPlugin } from "../deps.ts";
 
 function desc<T extends number | string, U extends T = T>(a: T, b: U): number {
   if (a < b) {

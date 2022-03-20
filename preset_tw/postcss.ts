@@ -1,4 +1,4 @@
-import type { AtRule, PostcssPlugin } from "../deps.ts";
+import type { AtRule, PostcssPlugin } from "./deps.ts";
 import { orderMediaQuery } from "./deps.ts";
 
 function sortMediaQueries(): PostcssPlugin {

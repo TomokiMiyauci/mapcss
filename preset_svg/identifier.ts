@@ -1,6 +1,6 @@
 import { encodeSvg } from "./_utils.ts";
 import { cssFn, stringifyCustomProperty } from "../core/utils/format.ts";
-import { chain, curry } from "../deps.ts";
+import { chain, curry } from "./deps.ts";
 import type { DynamicCSS } from "../core/types.ts";
 
 export function createCSSObject(

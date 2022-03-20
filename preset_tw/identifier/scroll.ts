@@ -2,7 +2,7 @@ import { execMatch, re$Numeric } from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { quoter, unit } from "../../core/utils/format.ts";
 import type { CSSMap } from "../../core/types.ts";
-import { associateWith } from "../../deps.ts";
+import { associateWith } from "../deps.ts";
 
 const SCROLL_MARGIN = "scroll-margin";
 const SCROLL_MARGIN_TOP = "scroll-margin-top";

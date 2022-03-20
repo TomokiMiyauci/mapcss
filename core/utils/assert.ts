@@ -9,7 +9,7 @@ import {
   prop,
   Root,
   Rule,
-} from "../../deps.ts";
+} from "../deps.ts";
 
 const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
 export function isValidSelector(selector: string): selector is string {

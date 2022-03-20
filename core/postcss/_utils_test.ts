@@ -1,7 +1,7 @@
 import { removeDuplicatedDecl } from "./_utils.ts";
 
 import { expect, ParamReturn, test } from "../../dev_deps.ts";
-import { Declaration, Root, Rule } from "../../deps.ts";
+import { Declaration, Root, Rule } from "../deps.ts";
 
 test("removeDuplicatedDecl", () => {
   const table: ParamReturn<typeof removeDuplicatedDecl>[] = [

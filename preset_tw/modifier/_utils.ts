@@ -1,4 +1,4 @@
-import { Node } from "../../deps.ts";
+import { Node } from "../deps.ts";
 import type {
   Modifier,
   RuntimeContext,

@@ -1,6 +1,6 @@
 import { matcher, percentize, remify } from "./_utils.ts";
 import { parseFraction } from "../../core/utils/monad.ts";
-import { associateWith } from "../../deps.ts";
+import { associateWith } from "../deps.ts";
 import {
   execMatch,
   re$Numeric,

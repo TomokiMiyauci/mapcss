@@ -15,7 +15,13 @@ import {
   jestModifierMap,
   MatchResult,
 } from "https://deno.land/x/unitest@v1.0.0-beta.82/mod.ts";
-import { isObject, Root, toAST, toObject } from "./deps.ts";
+import { isObject } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
+import {
+  toAST,
+  toObject,
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
+import { default as Root } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/root.js";
+
 import type { BinaryTree } from "./core/types.ts";
 
 function toEqualJSCSS(

@@ -1,5 +1,5 @@
 import type { BinaryTree, PreProcessor } from "./types.ts";
-import { toAST } from "../deps.ts";
+import { toAST } from "./deps.ts";
 
 export function createInjectCSS(
   css: BinaryTree<string | number>,

@@ -1,6 +1,6 @@
 import { isolateEntries, mergeAst, transformSelector } from "./prose.ts";
 import { expect, type ParamReturn, test } from "../../dev_deps.ts";
-import { toAST } from "../../deps.ts";
+import { toAST } from "../deps.ts";
 import type { BinaryTree } from "../../core/types.ts";
 
 test("transformWhere", () => {

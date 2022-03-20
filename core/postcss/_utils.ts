@@ -1,4 +1,4 @@
-import { Root } from "../../deps.ts";
+import { Root } from "../deps.ts";
 
 /** Removes duplicate `decl` nodes in the same `rule`.
  * The criterion for duplication is that `prop` is equal.

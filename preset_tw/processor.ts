@@ -1,5 +1,5 @@
 import { customProperty } from "../core/utils/format.ts";
-import { isEmptyObject, toAST } from "../deps.ts";
+import { isEmptyObject, toAST } from "./deps.ts";
 import type { PreProcessor } from "../core/types.ts";
 
 export const twCustomPropertyInjector: PreProcessor = {
