@@ -1,3 +1,10 @@
+# [1.0.0-beta.40](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2022-03-20)
+
+
+### Bug Fixes
+
+* **preset_svg:** remove vendor prefix from css definition ([9c118b1](https://github.com/TomokiMiyauci/mapcss/commit/9c118b163a2403294c2c7efb33dafbfbe6ff28eb)), closes [#23](https://github.com/TomokiMiyauci/mapcss/issues/23)
+
 # [1.0.0-beta.39](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2022-03-19)
 
 
