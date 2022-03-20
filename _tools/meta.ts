@@ -1,6 +1,6 @@
-import { BuildOptions } from "https://deno.land/x/dnt@0.21.0/mod.ts";
+import { BuildOptions } from "https://deno.land/x/dnt@0.22.0/mod.ts";
 import { deepMerge } from "../deps.ts";
-import type { PackageJsonObject } from "https://deno.land/x/dnt@0.21.0/lib/types.ts";
+import type { PackageJsonObject } from "https://deno.land/x/dnt@0.22.0/lib/types.ts";
 
 type DefineMeta = Omit<BuildOptions, "shims" | "package"> & {
   root: string;
@@ -57,6 +57,8 @@ const meta: DefineMeta[] = [
   {
     root: "preset_svg",
     entryPoints: ["./preset_svg/mod.ts"],
+    // https://esm.sh/@iconify/utils is invalid types
+    typeCheck: false,
     outDir: "./npm/preset_svg",
     package: {
       name: "@mapcss/preset-svg",
@@ -67,15 +69,6 @@ const meta: DefineMeta[] = [
         "svg",
         "icon",
       ],
-      dependencies: {
-        "@iconify/utils": "1.0.24",
-      },
-    },
-    mappings: {
-      "https://cdn.skypack.dev/@iconify/utils@1.0.24": {
-        name: "@iconify/utils",
-        version: "1.0.24",
-      },
     },
   },
 ];
@@ -112,6 +105,7 @@ export function constructMeta(version: string) {
           access: "public",
         },
       },
+      packageManager: "pnpm",
     };
 
   return meta.map((option) =>

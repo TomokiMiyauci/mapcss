@@ -1,4 +1,4 @@
-import { build, emptyDir } from "https://deno.land/x/dnt@0.21.0/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.22.0/mod.ts";
 import { join } from "https://deno.land/std@0.127.0/path/mod.ts";
 import { cleanVersion, constructMeta } from "./meta.ts";
 
