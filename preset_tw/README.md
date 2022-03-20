@@ -5,7 +5,8 @@
 ## Usage
 
 ```ts
-import { generate, presetTw } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import { generate } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
+import { presetTw } from "https://deno.land/x/mapcss@$VERSION/preset_tw/mod.ts";
 
 const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  

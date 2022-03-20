@@ -6,7 +6,7 @@ import {
   ratio,
   shortDecimal,
 } from "../../core/utils/format.ts";
-import { associateWith } from "../../deps.ts";
+import { associateWith } from "../deps.ts";
 import type { BlockDefinition, CSSMap } from "../../core/types.ts";
 
 function handleScale(

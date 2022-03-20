@@ -1,4 +1,4 @@
-import { recTransform } from "../preset_typography/identifier/prose.ts";
+import { recTransform } from "../utils/recursive.ts";
 import type { CSSMap, Preset } from "../core/types.ts";
 import { createCSSObject } from "./identifier.ts";
 import type { Option } from "./types.ts";

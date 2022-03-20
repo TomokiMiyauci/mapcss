@@ -1,4 +1,5 @@
-import { generate, presetTypography } from "../../mod.ts";
+import { generate } from "../../core/mod.ts";
+import { presetTypography } from "../../preset_typography/mod.ts";
 import { expect, test } from "../../dev_deps.ts";
 test("generated Style Sheet", () => {
   const table: [string, string][] = [

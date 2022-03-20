@@ -1,7 +1,7 @@
 import { resolveTheme } from "../../core/resolve.ts";
 import { isAtRule, isRule } from "../../core/utils/assert.ts";
 
-import { AtRule, Some } from "../../deps.ts";
+import { AtRule, Some } from "../deps.ts";
 import type { Modifier, ModifierDefinition } from "./../../core/types.ts";
 
 export function minWidthMediaQuery(value: string): string {

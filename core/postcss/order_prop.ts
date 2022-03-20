@@ -1,4 +1,4 @@
-import type { PostcssPlugin } from "../../deps.ts";
+import type { PostcssPlugin } from "../deps.ts";
 
 function plugin(): PostcssPlugin {
   return {

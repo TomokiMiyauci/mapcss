@@ -1,28 +1,30 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import {
   chain,
-  classNameNode,
-  combinatorNode,
   deepMerge,
   isEmptyObject,
   isLength0,
   isObject,
   isString,
   isUndefined,
-  mapEntries,
-  parseSelector,
   prop,
-  pseudoNode,
   Root,
   Rule,
   SelectorNode,
-  selectorNode,
   SyncProcessor,
   toAST,
-} from "../../deps.ts";
+} from "../deps.ts";
+import {
+  classNameNode,
+  combinatorNode,
+  parseSelector,
+  pseudoNode,
+  selectorNode,
+} from "../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
+import { recTransform } from "../../utils/recursive.ts";
 import type { PresetOption } from "../types.ts";
 import type { BinaryTree, CSSMap } from "../../core/types.ts";
 
@@ -426,24 +428,4 @@ export function splitSelectorList(root: Readonly<Root>): Root {
     rule.replaceWith(rules);
   });
   return newRoot;
-}
-
-export function recTransform<T, U>(
-  object: Readonly<Record<PropertyKey, T>>,
-  transformer: (
-    value: T extends Record<PropertyKey, any> ? T[keyof T]
-      : T,
-  ) => U,
-): BinaryTree<U, string> {
-  return mapEntries(
-    object,
-    (
-      [key, value],
-    ) => [
-      key,
-      isObject(value)
-        ? recTransform(value as never, transformer)
-        : transformer(value as never),
-    ],
-  );
 }

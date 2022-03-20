@@ -1,7 +1,6 @@
 import { encodeSvg } from "./_utils.ts";
-import { cssFn } from "../core/utils/format.ts";
-import { chain, curry } from "../deps.ts";
-import { stringifyCustomProperty } from "../core/utils/format.ts";
+import { cssFn, stringifyCustomProperty } from "../core/utils/format.ts";
+import { chain, curry } from "./deps.ts";
 import type { DynamicCSS } from "../core/types.ts";
 
 export function createCSSObject(
@@ -19,19 +18,31 @@ export function createCSSObject(
     const varIcon = stringifyCustomProperty("icon", variablePrefix);
     const varFnIcon = varFn(varIcon);
 
-    const mask = `${varFnIcon} no-repeat`;
-    const maskSize = "100% 100%";
+    const mode = svgMarkup.includes("currentColor") ? "mask" : "bg";
 
-    return {
+    const base = {
       [varIcon]: url,
-      mask,
-      WebkitMask: mask,
-      maskSize,
-      WebkitMaskSize: maskSize,
-      backgroundColor: "currentColor",
       height: `${scale}em`,
       width: `${scale}em`,
       ...declaration,
     };
+    const size = "100% 100%";
+    const iconValue = `${varFnIcon} no-repeat`;
+
+    if (mode === "mask") {
+      return {
+        mask: iconValue,
+        maskSize: size,
+        backgroundColor: "currentColor",
+        ...base,
+      };
+    } else {
+      return {
+        background: iconValue,
+        backgroundSize: size,
+        backgroundColor: "transparent",
+        ...base,
+      };
+    }
   };
 }

@@ -1,3 +1,32 @@
+# [1.0.0-beta.41](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2022-03-20)
+
+
+### Bug Fixes
+
+* **preset_svg:** change deps registry for avoid build error ([8e5dbdb](https://github.com/TomokiMiyauci/mapcss/commit/8e5dbdb9b3e3bc11bcb968bb8321d8a5385d3f88))
+* remove `mod.ts` under the project root ([8bad6e4](https://github.com/TomokiMiyauci/mapcss/commit/8bad6e45169ff2b554240ac90b43e035387dd9a3)), closes [#24](https://github.com/TomokiMiyauci/mapcss/issues/24)
+
+# [1.0.0-beta.40](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2022-03-20)
+
+
+### Bug Fixes
+
+* **preset_svg:** remove vendor prefix from css definition ([9c118b1](https://github.com/TomokiMiyauci/mapcss/commit/9c118b163a2403294c2c7efb33dafbfbe6ff28eb)), closes [#23](https://github.com/TomokiMiyauci/mapcss/issues/23)
+
+# [1.0.0-beta.39](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.38...v1.0.0-beta.39) (2022-03-19)
+
+
+### Bug Fixes
+
+* **core:** fix statement order logic ([6f86977](https://github.com/TomokiMiyauci/mapcss/commit/6f8697727a9e7a6a948d36a6fdc40b5c65298eab))
+
+# [1.0.0-beta.38](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.37...v1.0.0-beta.38) (2022-03-19)
+
+
+### Features
+
+* **preset_svg:** add detect svg render mode ([213d553](https://github.com/TomokiMiyauci/mapcss/commit/213d5534264887d2c90081fbf443c6c61bc896fb))
+
 # [1.0.0-beta.37](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.36...v1.0.0-beta.37) (2022-03-19)
 
 

@@ -1,6 +1,6 @@
 import { expect, test } from "../dev_deps.ts";
 import { resolveCSSMap } from "./resolve.ts";
-import { Root } from "../deps.ts";
+import { Root } from "./deps.ts";
 import { createContext } from "../utils/context.ts";
 import type {
   BinaryTree,

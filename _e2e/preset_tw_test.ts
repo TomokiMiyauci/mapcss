@@ -3,7 +3,8 @@ import { min } from "./preset_tw/min.ts";
 import { $single } from "./preset_tw/$single.ts";
 import { modifier } from "./preset_tw/modifier.ts";
 import { animate } from "./preset_tw/animate.ts";
-import { generate, presetTw } from "../mod.ts";
+import { generate } from "../core/mod.ts";
+import { presetTw } from "../preset_tw/mod.ts";
 
 const expects: [string, string][] = [
   ...min,

@@ -1,4 +1,4 @@
-import type { AcceptedPlugin, Root } from "../deps.ts";
+import type { AcceptedPlugin, Root } from "./deps.ts";
 
 export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | BinaryTree<Leaf>;

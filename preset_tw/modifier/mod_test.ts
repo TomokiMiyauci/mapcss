@@ -3,7 +3,7 @@ import { atRules } from "./at_rule_test.ts";
 import { TestCase } from "./_test.ts";
 import { pseudoElements } from "./pseudo_elements_test.ts";
 import { expect, test } from "../../dev_deps.ts";
-import { toAST } from "../../deps.ts";
+import { toAST } from "../deps.ts";
 
 test("modifier should return new root node", () => {
   const table: TestCase = [

@@ -1,6 +1,6 @@
 import { matcher, pxify } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
-import { associateWith, isUndefined } from "../../deps.ts";
+import { associateWith, isUndefined } from "../deps.ts";
 import {
   execMatch,
   re$All,

@@ -8,8 +8,8 @@
 import {
   type Config,
   generate,
-  presetTypography,
-} from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+} from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
+import { presetTypography } from "https://deno.land/x/mapcss@$VERSION/preset_typography/mod.ts";
 
 const config: Config = {
   preset: [presetTypography()],
@@ -107,7 +107,7 @@ a code {
 ```
 
 ```ts
-import { presetTypography } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import { presetTypography } from "https://deno.land/x/mapcss@$VERSION/preset_typography/mod.ts";
 
 presetTypography({
   css: {

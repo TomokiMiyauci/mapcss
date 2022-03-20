@@ -8,7 +8,7 @@ Tiny, composable Atomic CSS engine
 
 [![release](https://img.shields.io/github/v/release/TomokiMiyauci/mapcss?sort=semver&color=black&logo=github)](https://github.com/TomokiMiyauci/mapcss/releases)
 [![deno version](https://img.shields.io/badge/deno-^1.19.0-black?logo=deno)](https://github.com/denoland/deno)
-[![deno doc](https://img.shields.io/badge/deno-doc-black)](https://doc.deno.land/https/deno.land/x/mapcss/mod.ts)
+[![deno doc](https://img.shields.io/badge/deno-doc-black)](https://doc.deno.land/https/deno.land/x/mapcss/core/mod.ts)
 
 [![test](https://github.com/TomokiMiyauci/mapcss/actions/workflows/test.yaml/badge.svg?branch=beta)](https://github.com/TomokiMiyauci/mapcss/actions/workflows/test.yaml)
 [![codecov](https://codecov.io/gh/TomokiMiyauci/mapcss/branch/main/graph/badge.svg?token=nQZ8Nnx3KH)](https://codecov.io/gh/TomokiMiyauci/mapcss)
@@ -87,7 +87,8 @@ For example, using `presetTw`, you can use the utility class of
 [TailwindCSS](https://github.com/tailwindlabs/tailwindcss).
 
 ```ts
-import { generate, presetTw } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import { generate } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
+import { presetTw } from "https://deno.land/x/mapcss@$VERSION/preset_tw/mod.ts";
 
 const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
@@ -125,7 +126,7 @@ For example, the following CSS Statement can be mapped as follows:
 ```
 
 ```ts
-import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 const cssMap: CSSMap = {
   inline: {
     block: { display: "inline" },
@@ -140,7 +141,7 @@ It is also possible to express dynamic identifiers using regular expressions.
 ```
 
 ```ts
-import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 const rePositiveNumber = /^(\d+)$/;
 const cssMap: CSSMap = {
   z: {
@@ -171,7 +172,7 @@ supported.
 ```
 
 ```ts
-import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+import type { CSSMap } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 const cssMap: CSSMap = {
   // className: .container
   container: (_, { className }) => ({

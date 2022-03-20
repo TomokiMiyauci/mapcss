@@ -1,4 +1,4 @@
-import { Declaration, Root } from "../deps.ts";
+import { Declaration, Root } from "./deps.ts";
 
 /** filter `decl` node */
 export function filterDeclaration(root: Readonly<Root>): Root {

@@ -1,5 +1,5 @@
 import { resolveTheme } from "../../core/resolve.ts";
-import { isUndefined } from "../../deps.ts";
+import { isUndefined } from "../deps.ts";
 import {
   execMatch,
   re$All,

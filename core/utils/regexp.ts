@@ -1,4 +1,4 @@
-import { isUndefined } from "../../deps.ts";
+import { isUndefined } from "../deps.ts";
 import type { CSSObject } from "../types.ts";
 
 export const re$Numeric = /^([\d.]+)$/;

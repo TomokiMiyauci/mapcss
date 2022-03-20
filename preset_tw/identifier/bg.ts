@@ -1,6 +1,6 @@
 import { customPropertySet } from "./_utils.ts";
 import { resolveTheme } from "../../core/resolve.ts";
-import { isUndefined } from "../../deps.ts";
+import { isUndefined } from "../deps.ts";
 import {
   execMatch,
   re$All,

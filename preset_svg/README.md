@@ -8,9 +8,11 @@
 import {
   type Config,
   generate,
+} from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
+import {
   iconifyJSON,
   presetSvg,
-} from "https://deno.land/x/mapcss@$VERSION/mod.ts";
+} from "https://deno.land/x/mapcss@$VERSION/preset_svg/mod.ts";
 import carbon from "https://esm.sh/@iconify-json/carbon/icons.json" assert {
   type: "json",
 };
@@ -23,5 +25,5 @@ const config: Config = {
     },
   })],
 };
-// generate(config, "i-bitcoin i-carbon-logo-github").css;
+// generate("i-bitcoin i-carbon-logo-github", config).css;
 ```

@@ -1,4 +1,4 @@
-import { isString, isUndefined, postcss, prop, Root } from "../deps.ts";
+import { isString, isUndefined, postcss, prop, Root } from "./deps.ts";
 import { extractBySpace } from "./extract.ts";
 import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
