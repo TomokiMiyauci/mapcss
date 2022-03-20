@@ -33,9 +33,7 @@ export function createCSSObject(
     if (mode === "mask") {
       return {
         mask: iconValue,
-        WebkitMask: iconValue,
         maskSize: size,
-        WebkitMaskSize: size,
         backgroundColor: "currentColor",
         ...base,
       };
