@@ -52,13 +52,6 @@ export {
   toAST,
   toObject,
 } from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
-export { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
-export {
-  className as classNameNode,
-  combinator as combinatorNode,
-  pseudo as pseudoNode,
-  selector as selectorNode,
-} from "https://deno.land/x/postcss_selector_parser@v6.0.2/src/selectors/index.js";
 export type {
   Node as SelectorNode,
   SyncProcessor,

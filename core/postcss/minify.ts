@@ -1,5 +1,6 @@
 import valueParser from "https://esm.sh/postcss-value-parser";
-import { parseSelector, PostcssPlugin, SyncProcessor } from "../../deps.ts";
+import { PostcssPlugin, SyncProcessor } from "../../deps.ts";
+import { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
 
 const processor: SyncProcessor = (selectors) => {
   selectors.walk((selector) => {

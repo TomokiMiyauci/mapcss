@@ -1,8 +1,6 @@
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import {
   chain,
-  classNameNode,
-  combinatorNode,
   deepMerge,
   isEmptyObject,
   isLength0,
@@ -10,16 +8,20 @@ import {
   isString,
   isUndefined,
   mapEntries,
-  parseSelector,
   prop,
-  pseudoNode,
   Root,
   Rule,
   SelectorNode,
-  selectorNode,
   SyncProcessor,
   toAST,
 } from "../../deps.ts";
+import {
+  classNameNode,
+  combinatorNode,
+  parseSelector,
+  pseudoNode,
+  selectorNode,
+} from "../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
