@@ -7,7 +7,6 @@ import {
   isObject,
   isString,
   isUndefined,
-  mapEntries,
   prop,
   Root,
   Rule,
@@ -25,6 +24,7 @@ import {
 import { $resolveTheme } from "../../core/resolve.ts";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
+import { recTransform } from "../../utils/recursive.ts";
 import type { PresetOption } from "../types.ts";
 import type { BinaryTree, CSSMap } from "../../core/types.ts";
 
@@ -428,24 +428,4 @@ export function splitSelectorList(root: Readonly<Root>): Root {
     rule.replaceWith(rules);
   });
   return newRoot;
-}
-
-export function recTransform<T, U>(
-  object: Readonly<Record<PropertyKey, T>>,
-  transformer: (
-    value: T extends Record<PropertyKey, any> ? T[keyof T]
-      : T,
-  ) => U,
-): BinaryTree<U, string> {
-  return mapEntries(
-    object,
-    (
-      [key, value],
-    ) => [
-      key,
-      isObject(value)
-        ? recTransform(value as never, transformer)
-        : transformer(value as never),
-    ],
-  );
 }
