@@ -1,3 +1,11 @@
+# [1.0.0-beta.41](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2022-03-20)
+
+
+### Bug Fixes
+
+* **preset_svg:** change deps registry for avoid build error ([8e5dbdb](https://github.com/TomokiMiyauci/mapcss/commit/8e5dbdb9b3e3bc11bcb968bb8321d8a5385d3f88))
+* remove `mod.ts` under the project root ([8bad6e4](https://github.com/TomokiMiyauci/mapcss/commit/8bad6e45169ff2b554240ac90b43e035387dd9a3)), closes [#24](https://github.com/TomokiMiyauci/mapcss/issues/24)
+
 # [1.0.0-beta.40](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.39...v1.0.0-beta.40) (2022-03-20)
 
 
