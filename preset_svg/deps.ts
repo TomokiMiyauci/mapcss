@@ -1,6 +1,6 @@
 export {
   iconToSVG,
   parseIconSet,
-} from "https://cdn.skypack.dev/@iconify/utils@1.0.24";
-export { defaults } from "https://cdn.skypack.dev/@iconify/utils@1.0.24/lib/customisations";
-export type { IconifyJSON } from "https://esm.sh/@iconify/types@1.0.12/types.ts?pin=v66";
+} from "https://esm.sh/@iconify/utils@1.0.26?pin=v71";
+export { defaults } from "https://esm.sh/@iconify/utils@1.0.26/lib/customisations?pin=v71";
+export type { IconifyJSON } from "https://esm.sh/@iconify/types@1.0.12/types.ts?pin=v71";
