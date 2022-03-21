@@ -1,3 +1,12 @@
+# [1.0.0-beta.42](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.41...v1.0.0-beta.42) (2022-03-21)
+
+
+### Features
+
+* **preset_svg:** add color mode interface to select output css format ([2412826](https://github.com/TomokiMiyauci/mapcss/commit/24128260d2ca74efe6b2f1f6fa2d43e53b7d07da))
+* **preset_svg:** change `presetSvg` interface that accept first argument as `svgMap` ([e7a284e](https://github.com/TomokiMiyauci/mapcss/commit/e7a284e7866e829e5bbd2311782b8086ac06cb25))
+* **preset_svg:** rename export name `presetSvg` to `presetSVG` ([b044332](https://github.com/TomokiMiyauci/mapcss/commit/b0443323806d15a174385adb2c0428e7f838358c))
+
 # [1.0.0-beta.41](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2022-03-20)
 
 
