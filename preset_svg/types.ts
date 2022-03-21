@@ -1,10 +1,9 @@
 import type { BinaryTree } from "../core/types.ts";
 
+export type SVGMap = BinaryTree<string>;
 export type ColorMode = "static" | "dynamic" | "auto";
 
 export type Option = {
-  svgMap: BinaryTree<string>;
-
   /** Extend or disable default declaration block */
   declaration?: Record<string, string | number>;
 

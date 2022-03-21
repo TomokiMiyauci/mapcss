@@ -19,10 +19,8 @@ import carbon from "https://esm.sh/@iconify-json/carbon/icons.json" assert {
 
 const config: Config = {
   preset: [presetSvg({
-    svgMap: {
-      carbon: iconifyJSON(carbon),
-      bitcoin: "<svg ...</svg>",
-    },
+    carbon: iconifyJSON(carbon),
+    bitcoin: "<svg ...</svg>",
   })],
 };
 // generate("i-bitcoin i-carbon-logo-github", config).css;

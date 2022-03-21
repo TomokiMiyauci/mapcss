@@ -1,10 +1,10 @@
 import { defaults, IconifyJSON, iconToSVG, parseIconSet } from "./deps.ts";
-import type { Option } from "./types.ts";
+import type { SVGMap } from "./types.ts";
 
 export function iconifyJSON(
   icon: IconifyJSON,
-): Option["svgMap"] {
-  const identifier: Option["svgMap"] = {};
+): SVGMap {
+  const identifier: SVGMap = {};
   parseIconSet(icon, (name: any, iconData: any) => {
     if (!iconData) {
       throw Error(iconData);

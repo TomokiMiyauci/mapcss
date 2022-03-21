@@ -7,7 +7,7 @@ import type { ColorMode, Option } from "./types.ts";
 export function createCSSObject(
   svgMarkup: string,
   { declaration, colorMode }: Required<
-    Pick<Option, "colorMode" | "declaration">
+    Option
   >,
 ): DynamicCSS {
   return (_, { variablePrefix }) => {
