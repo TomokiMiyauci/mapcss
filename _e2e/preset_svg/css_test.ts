@@ -1,11 +1,11 @@
 import { Config, generate } from "../../core/mod.ts";
-import { presetSvg } from "../../preset_svg/mod.ts";
+import { presetSVG } from "../../preset_svg/mod.ts";
 
 import { expect, test } from "../../dev_deps.ts";
 
-test("presetSvg generation test", () => {
+test("presetSVG generation test", () => {
   const config: Config = {
-    preset: [presetSvg({
+    preset: [presetSVG({
       carbon: {
         "3d-curve-auto-colon":
           `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M9.5 8h10.6a5 5 0 1 0 0-2H9.5a5.5 5.5 0 0 0 0 11h11a3.5 3.5 0 0 1 0 7h-8.6a5 5 0 1 0 0 2h8.6a5.5 5.5 0 0 0 0-11h-11a3.5 3.5 0 0 1 0-7zM25 4a3 3 0 1 1-3 3a3 3 0 0 1 3-3zM7 28a3 3 0 1 1 3-3a3 3 0 0 1-3 3z" fill="currentColor"/></svg>`,
@@ -30,7 +30,7 @@ test("presetSvg generation test", () => {
 
 test("color mode is static", () => {
   const config: Config = {
-    preset: [presetSvg({
+    preset: [presetSVG({
       carbon: {
         "3d-curve-auto-colon":
           `<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M9.5 8h10.6a5 5 0 1 0 0-2H9.5a5.5 5.5 0 0 0 0 11h11a3.5 3.5 0 0 1 0 7h-8.6a5 5 0 1 0 0 2h8.6a5.5 5.5 0 0 0 0-11h-11a3.5 3.5 0 0 1 0-7zM25 4a3 3 0 1 1-3 3a3 3 0 0 1 3-3zM7 28a3 3 0 1 1 3-3a3 3 0 0 1-3 3z" fill="currentColor"/></svg>`,

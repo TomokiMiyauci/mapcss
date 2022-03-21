@@ -11,14 +11,14 @@ import {
 } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 import {
   iconifyJSON,
-  presetSvg,
+  presetSVG,
 } from "https://deno.land/x/mapcss@$VERSION/preset_svg/mod.ts";
 import carbon from "https://esm.sh/@iconify-json/carbon/icons.json" assert {
   type: "json",
 };
 
 const config: Config = {
-  preset: [presetSvg({
+  preset: [presetSVG({
     carbon: iconifyJSON(carbon),
     bitcoin: "<svg ...</svg>",
   })],
