@@ -113,7 +113,7 @@ export type Syntax = Labeled & {
   ) => ParseResult | undefined;
 };
 
-type Labeled = {
+export type Labeled = {
   /** The name will probably be used to remove duplicates. */
   name: string;
 };
