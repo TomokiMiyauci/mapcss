@@ -1,6 +1,5 @@
-import { generate, mapChar } from "./generate.ts";
+import { Config, generate, mapChar } from "./generate.ts";
 import { expect, test } from "../dev_deps.ts";
-import type { Config } from "./types.ts";
 test("mapChar", () => {
   const table: [
     ...Parameters<typeof mapChar>,

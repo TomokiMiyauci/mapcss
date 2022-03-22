@@ -1,5 +1,6 @@
 export { generate } from "./generate.ts";
 export type {
+  Config as GenerateConfig,
   Option as GenerateOption,
   Result as GenerateResult,
 } from "./generate.ts";

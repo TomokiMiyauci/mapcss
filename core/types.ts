@@ -102,8 +102,6 @@ export type RuntimeContext = {
   className: string;
 };
 
-export type Config = Partial<StaticConfig & StaticContext>;
-
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
   identifierRoots: string[];

@@ -9,12 +9,19 @@ import {
 } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
 import { CHAR_MAP, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
-import type { Config, RuntimeContext, StaticContext, Syntax } from "./types.ts";
+import type {
+  RuntimeContext,
+  StaticConfig,
+  StaticContext,
+  Syntax,
+} from "./types.ts";
 
 const defaultSyntax: Syntax = {
   name: "mapcss/default-syntax",
   fn: (identifier) => ({ identifier }),
 };
+
+export type Config = Partial<StaticConfig & StaticContext>;
 
 export type Option = {};
 

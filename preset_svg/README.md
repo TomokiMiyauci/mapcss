@@ -6,8 +6,8 @@
 
 ```ts
 import {
-  type Config,
   generate,
+  type GenerateConfig,
 } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 import {
   iconifyJSON,
@@ -17,7 +17,7 @@ import carbon from "https://esm.sh/@iconify-json/carbon/icons.json" assert {
   type: "json",
 };
 
-const config: Config = {
+const config: GenerateConfig = {
   preset: [presetSVG({
     carbon: iconifyJSON(carbon),
     bitcoin: "<svg ...</svg>",
