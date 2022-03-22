@@ -87,15 +87,19 @@ For example, using `presetTw`, you can use the utility class of
 [TailwindCSS](https://github.com/tailwindlabs/tailwindcss).
 
 ```ts
-import { generate } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
+import {
+  extractSimple,
+  generate,
+} from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 import { presetTw } from "https://deno.land/x/mapcss@$VERSION/preset_tw/mod.ts";
 
 const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
 </div>
 `;
-const result = generate(code, { preset: [presetTw()] });
-console.log(result.css);
+const tokens = extractSimple(code);
+const output = generate(tokens, { preset: [presetTw()] });
+console.log(output.css);
 /*
   .relative{position:relative;}
   .flex{display:flex;}

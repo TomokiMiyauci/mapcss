@@ -1,4 +1,3 @@
-import { extractBySpace } from "../core/extract.ts";
 import type {
   MatchInfo,
   RuntimeContext,
@@ -17,7 +16,6 @@ export function createContext(
     theme: {},
     variablePrefix: "map-",
     minify: false,
-    extract: extractBySpace,
   };
   return {
     ...defaultContext,
