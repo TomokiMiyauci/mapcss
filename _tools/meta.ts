@@ -27,6 +27,20 @@ const meta: DefineMeta[] = [
     },
   },
   {
+    root: "config",
+    entryPoints: ["./config/mod.ts"],
+    outDir: "./npm/config",
+    package: {
+      name: "@mapcss/config",
+      description: " Definition of MapCSS config, loader",
+      keywords: [
+        "mapcss",
+        "config",
+        "loader",
+      ],
+    },
+  },
+  {
     root: "preset_tw",
     entryPoints: ["./preset_tw/mod.ts"],
     outDir: "./npm/preset_tw",
