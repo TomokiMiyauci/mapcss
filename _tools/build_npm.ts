@@ -10,7 +10,7 @@ async function buildPkg(version: string) {
     await build(pkg);
     await Deno.copyFile("LICENSE", join(pkg.outDir, "LICENSE"));
     await Deno.copyFile(
-     "CHANGELOG.md",
+      "CHANGELOG.md",
       join(pkg.outDir, "CHANGELOG.md"),
     );
     await Deno.copyFile(
