@@ -1,6 +1,9 @@
 <div align="center">
   <h1>mapcss</h1>
 
+[Docs](https://mapcss.miyauchi.dev)
+[Playground](https://mapcss.miyauchi.dev/playground)
+
 Tiny, composable Atomic CSS engine
 
 [![deno land](http://img.shields.io/badge/available%20on-deno.land/x-lightgrey.svg?logo=deno&labelColor=black&color=black)](https://deno.land/x/mapcss)
@@ -78,7 +81,7 @@ mapcss provides several preset.
   [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
   or
   [@unocss/preset-typography](https://github.com/unocss/unocss/tree/main/packages/preset-typography).
-- [presetSvg](./preset_svg/README.md)
+- [presetSVG](./preset_svg/README.md)
 
   SVG markup as CSS. By using the [iconifyJSON](./preset_svg/convert.ts#L8)
   converter, you can use `iconify.json` as a pure CSS icon.
@@ -87,15 +90,19 @@ For example, using `presetTw`, you can use the utility class of
 [TailwindCSS](https://github.com/tailwindlabs/tailwindcss).
 
 ```ts
-import { generate } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
+import {
+  extractSimple,
+  generate,
+} from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 import { presetTw } from "https://deno.land/x/mapcss@$VERSION/preset_tw/mod.ts";
 
 const code = `<div className="relative flex">
   <p className="text-red-500/20"></p>  
 </div>
 `;
-const result = generate(code, { preset: [presetTw()] });
-console.log(result.css);
+const tokens = extractSimple(code);
+const output = generate(tokens, { preset: [presetTw()] });
+console.log(output.css);
 /*
   .relative{position:relative;}
   .flex{display:flex;}

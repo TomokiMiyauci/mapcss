@@ -69,11 +69,6 @@ export type StaticContext = {
    * @default false
    */
   minify: boolean;
-
-  /** Extract token
-   * @default [Function: extractBySpace]
-   */
-  extract: (value: string) => Set<string>;
 };
 
 export type RuntimeContext = {
@@ -102,8 +97,6 @@ export type RuntimeContext = {
   className: string;
 };
 
-export type Config = Partial<StaticConfig & StaticContext>;
-
 export type SyntaxContext = StaticContext & {
   modifierRoots: string[];
   identifierRoots: string[];
@@ -120,7 +113,7 @@ export type Syntax = Labeled & {
   ) => ParseResult | undefined;
 };
 
-type Labeled = {
+export type Labeled = {
   /** The name will probably be used to remove duplicates. */
   name: string;
 };

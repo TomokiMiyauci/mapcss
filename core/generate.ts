@@ -1,5 +1,4 @@
-import { isString, isUndefined, postcss, prop, Root } from "./deps.ts";
-import { extractBySpace } from "./extract.ts";
+import { isString, isUndefined, postcss, prop, Root, wrap } from "./deps.ts";
 import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
 import {
@@ -9,16 +8,25 @@ import {
 } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
 import { CHAR_MAP, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
-import type { Config, RuntimeContext, StaticContext, Syntax } from "./types.ts";
+import type {
+  RuntimeContext,
+  StaticConfig,
+  StaticContext,
+  Syntax,
+} from "./types.ts";
 
 const defaultSyntax: Syntax = {
   name: "mapcss/default-syntax",
   fn: (identifier) => ({ identifier }),
 };
 
+export type Input = Set<string> | string[] | string;
+
+export type Config = Partial<StaticConfig & StaticContext>;
+
 export type Option = {};
 
-export type Result = {
+export type Output = {
   /** The `string` of CSS Style Sheet.
    * The AST is converted to `string` when the property is accessed.
    */
@@ -45,27 +53,26 @@ function rootKeys(
   }, new Set<string>()));
 }
 
-/** Generate result of CSS Style Sheet */
+/** Generate output of CSS Style Sheet */
 export function generate(
-  input: Set<string> | string,
+  /** Input token */
+  input: Input,
   {
     separator = SEPARATOR,
     variablePrefix = VARIABLE_PREFIX,
     charMap = CHAR_MAP,
     minify = false,
-    extract = extractBySpace,
     ...staticConfig
   }: Readonly<
     Config
   >,
   {}: Readonly<Partial<Option>> = {},
-): Result {
+): Output {
   const ctx = {
     separator,
     variablePrefix,
     charMap,
     minify,
-    extract,
   };
   const {
     syntax,
@@ -80,7 +87,7 @@ export function generate(
     ...ctx,
     theme,
   };
-  const tokens = isString(input) ? extract(input) : input;
+  const tokens = isSet(input) ? input : new Set(wrap(input));
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
@@ -150,7 +157,7 @@ export function generate(
     : corePostcssPlugins;
   const ast = postcss(...plugins, ...postcssPlugin).process(final).root;
 
-  const result: Result = {
+  const output: Output = {
     ast,
     get css(): string {
       return ast.toString();
@@ -159,7 +166,7 @@ export function generate(
     unmatched,
   };
 
-  return result;
+  return output;
 }
 
 export function mapChar(
@@ -176,4 +183,8 @@ export function mapChar(
     }
   }
   return value;
+}
+
+function isSet<T>(value: Iterable<T>): value is Set<T> {
+  return value instanceof Set;
 }

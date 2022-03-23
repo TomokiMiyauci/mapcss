@@ -6,16 +6,16 @@
 
 ```ts
 import {
-  type Config,
   generate,
+  type GenerateConfig,
 } from "https://deno.land/x/mapcss@$VERSION/core/mod.ts";
 import { presetTypography } from "https://deno.land/x/mapcss@$VERSION/preset_typography/mod.ts";
 
-const config: Config = {
+const config: GenerateConfig = {
   preset: [presetTypography()],
 };
 
-// generate(config, "prose").css;
+// generate("prose", config).css;
 ```
 
 ## Feature

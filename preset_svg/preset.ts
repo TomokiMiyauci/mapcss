@@ -1,14 +1,16 @@
 import { recTransform } from "../utils/recursive.ts";
 import type { CSSMap, Preset } from "../core/types.ts";
 import { createCSSObject } from "./identifier.ts";
-import type { Option } from "./types.ts";
+import type { Option, SVGMap } from "./types.ts";
 
+/** Preset for MapCSS */
 export function preset(
-  { svgMap, declaration = {} }: Readonly<Option>,
+  svgMap: SVGMap,
+  { declaration = {}, colorMode = "auto" }: Readonly<Option> = {},
 ): Preset {
   const identifier = recTransform(
     svgMap,
-    (svg) => createCSSObject(svg as string, { declaration }),
+    (svg) => createCSSObject(svg as string, { declaration, colorMode }),
   );
   const cssMap: CSSMap = { i: identifier };
   const preset: Preset = {

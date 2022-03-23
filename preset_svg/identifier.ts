@@ -2,10 +2,13 @@ import { encodeSvg } from "./_utils.ts";
 import { cssFn, stringifyCustomProperty } from "../core/utils/format.ts";
 import { chain, curry } from "./deps.ts";
 import type { DynamicCSS } from "../core/types.ts";
+import type { ColorMode, Option } from "./types.ts";
 
 export function createCSSObject(
   svgMarkup: string,
-  { declaration }: { declaration: Record<string, string | number> },
+  { declaration, colorMode }: Required<
+    Option
+  >,
 ): DynamicCSS {
   return (_, { variablePrefix }) => {
     const scale = "1";
@@ -18,7 +21,9 @@ export function createCSSObject(
     const varIcon = stringifyCustomProperty("icon", variablePrefix);
     const varFnIcon = varFn(varIcon);
 
-    const mode = svgMarkup.includes("currentColor") ? "mask" : "bg";
+    const mode: Exclude<ColorMode, "auto"> = colorMode === "auto"
+      ? svgMarkup.includes("currentColor") ? "dynamic" : "static"
+      : colorMode;
 
     const base = {
       [varIcon]: url,
@@ -29,7 +34,7 @@ export function createCSSObject(
     const size = "100% 100%";
     const iconValue = `${varFnIcon} no-repeat`;
 
-    if (mode === "mask") {
+    if (mode === "dynamic") {
       return {
         mask: iconValue,
         maskSize: size,

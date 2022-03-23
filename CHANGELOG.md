@@ -1,3 +1,21 @@
+# [1.0.0-beta.43](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.42...v1.0.0-beta.43) (2022-03-22)
+
+
+### Features
+
+* **config:** add minimum mapcss config definition ([e13067e](https://github.com/TomokiMiyauci/mapcss/commit/e13067e8f4f1bec3ee8fc9986c0770ccf762f2b4))
+* **core:** remove extract feature from `generate` function ([1b2702c](https://github.com/TomokiMiyauci/mapcss/commit/1b2702cb7e2ddb27346964da2a33a37b9717c9a8)), closes [#26](https://github.com/TomokiMiyauci/mapcss/issues/26)
+* **core:** rename types of `Config` to `GenerateConfig` ([9098f79](https://github.com/TomokiMiyauci/mapcss/commit/9098f796a900b087d702d4e811e43d482c1d7e03))
+
+# [1.0.0-beta.42](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.41...v1.0.0-beta.42) (2022-03-21)
+
+
+### Features
+
+* **preset_svg:** add color mode interface to select output css format ([2412826](https://github.com/TomokiMiyauci/mapcss/commit/24128260d2ca74efe6b2f1f6fa2d43e53b7d07da))
+* **preset_svg:** change `presetSvg` interface that accept first argument as `svgMap` ([e7a284e](https://github.com/TomokiMiyauci/mapcss/commit/e7a284e7866e829e5bbd2311782b8086ac06cb25))
+* **preset_svg:** rename export name `presetSvg` to `presetSVG` ([b044332](https://github.com/TomokiMiyauci/mapcss/commit/b0443323806d15a174385adb2c0428e7f838358c))
+
 # [1.0.0-beta.41](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.40...v1.0.0-beta.41) (2022-03-20)
 
 
