@@ -148,13 +148,25 @@ Deno.test("resolveCSSMap", () => {
       {
         min: {
           "*": () => {
-            console.log();
             return { a: "b" };
           },
         },
       },
       createContext({ className: ".min-100" }),
       { ".min-100": { a: "b" } },
+    ],
+    [
+      "min-100",
+      {
+        min: {
+          100: { b: "c" },
+          "*": () => {
+            return { a: "b" };
+          },
+        },
+      },
+      createContext({ className: ".min-100" }),
+      { ".min-100": { b: "c" } },
     ],
   ];
 
