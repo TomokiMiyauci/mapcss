@@ -16,6 +16,7 @@ export {
 export type { Option } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
 export {
   isFunction,
+  isLength0,
   isNumber,
   isObject,
   isString,

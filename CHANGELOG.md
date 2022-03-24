@@ -1,3 +1,10 @@
+# [1.0.0-beta.44](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2022-03-24)
+
+
+### Bug Fixes
+
+* **core:** fix resolve css map algorism ([2e338fd](https://github.com/TomokiMiyauci/mapcss/commit/2e338fdc82106fb95ba4ae2d8d03a62691525ce4)), closes [#28](https://github.com/TomokiMiyauci/mapcss/issues/28)
+
 # [1.0.0-beta.43](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.42...v1.0.0-beta.43) (2022-03-22)
 
 

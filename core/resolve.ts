@@ -5,6 +5,7 @@ import {
   head,
   init,
   isFunction,
+  isLength0,
   isString,
   isUndefined,
   last,
@@ -15,7 +16,12 @@ import {
   toAST,
   wrap,
 } from "./deps.ts";
-import { isBlockDefinition, isCSSDefinition, isRoot } from "./utils/assert.ts";
+import {
+  isBlockDefinition,
+  isCSSDefinition,
+  isCSSObject,
+  isRoot,
+} from "./utils/assert.ts";
 import type {
   CSSMap,
   IdentifierDefinition,
@@ -89,17 +95,24 @@ export function resolveCSSMap(
 
           if (isFunction(value)) {
             return resolve(value(matchInfo, context));
-          } else if (isCSSDefinition(value)) {
-            return toAST(value.value);
-          } else if (isRoot(value)) {
-            return value;
-          } else if (isBlockDefinition(value)) {
-            return toAST({
-              [context.className]: value,
-            });
+          }
+          const rest = tail(path);
+
+          if (isLength0(rest)) {
+            if (isCSSDefinition(value)) {
+              return toAST(value.value);
+            } else if (isRoot(value)) {
+              return value;
+            } else if (isBlockDefinition(value)) {
+              return toAST({
+                [context.className]: value,
+              });
+            }
+            return _resolve("", value);
           } else {
-            const rest = tail(path);
-            return _resolve(rest, value);
+            if (!isCSSObject(value)) {
+              return _resolve(rest, value);
+            }
           }
         };
 
