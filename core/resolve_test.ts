@@ -1,4 +1,4 @@
-import { expect, test } from "../dev_deps.ts";
+import { expect } from "../dev_deps.ts";
 import { resolveCSSMap } from "./resolve.ts";
 import { Root } from "./deps.ts";
 import { createContext } from "../utils/context.ts";
@@ -12,7 +12,7 @@ import type {
 const block = { display: "block" };
 const inlineBlock = { display: "inline-block" };
 
-test("resolveCSSMap", () => {
+Deno.test("resolveCSSMap", () => {
   const table: [
     string,
     CSSMap,
@@ -103,6 +103,58 @@ test("resolveCSSMap", () => {
       },
       createContext({ className: ".test" }),
       { ".test": { "--map-test": "test" } },
+    ],
+    [
+      "i-mdi-check",
+      {
+        i: {
+          mdi: {
+            check: { a: "b" },
+            "check-circle": {},
+          },
+        },
+      },
+      createContext({ className: ".i-mdi-check" }),
+      { ".i-mdi-check": { a: "b" } },
+    ],
+    [
+      "i-mdi-check-circle",
+      {
+        i: {
+          mdi: {
+            check: { a: "b" },
+            "check-circle": { b: "c" },
+          },
+        },
+      },
+      createContext({ className: ".i-mdi-check-circle" }),
+      { ".i-mdi-check-circle": { b: "c" } },
+    ],
+    [
+      "i-mdi-check-circlex",
+      {
+        i: {
+          mdi: {
+            check: { a: "b" },
+            "check-circle": { b: "c" },
+          },
+        },
+      },
+      createContext({ className: ".i-mdi-check-circle" }),
+      undefined,
+    ],
+    [
+      "min-100",
+      {
+        min: {
+          "*": () => {
+            console.log();
+            return { a: "b" };
+          },
+        },
+      },
+      createContext({ className: ".min-100" }),
+      { ".min-100": { a: "b" } },
     ],
   ];
 
