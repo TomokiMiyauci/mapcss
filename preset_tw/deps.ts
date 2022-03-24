@@ -151,6 +151,7 @@ export function orderMediaQuery(a: string, b: string): number {
 export {
   isEmptyObject,
   isNumber,
+  isString,
   isUndefined,
 } from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
 export { associateWith } from "https://deno.land/std@0.123.0/collections/associate_with.ts";
