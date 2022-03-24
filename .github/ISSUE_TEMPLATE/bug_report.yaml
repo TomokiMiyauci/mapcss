@@ -3,16 +3,27 @@ description: Use this when MapCSS is wrong.
 labels: gen-bug
 body:
   - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+    validations:
+      required: true
+  - type: textarea
     id: code
     attributes:
-      label: Input code or token(s)
+      label: Input
+      description: Input code or token(s)
       render: typescript
+    validations:
+      required: false
   - type: textarea
     id: config
     attributes:
       label: Config
       description: Paste your MapCSS config file here.
       render: typescript
+    validations:
+      required: false
   - type: input
     id: play-link
     attributes:
@@ -48,8 +59,18 @@ body:
         - npm
     validations:
       required: false
+  - type: input
+    id: runtime
+    attributes:
+      label: Runtime
+      description:
+        Runtime info. ex) deno x.x.x, node x.x.x, Chrome x.x.x, iOS Safari x.x.x
+    validations:
+      required: false
   - type: textarea
     id: addition
     attributes:
       label: Additional context
       placeholder: Add any other context about the problem here.
+    validations:
+      required: false
