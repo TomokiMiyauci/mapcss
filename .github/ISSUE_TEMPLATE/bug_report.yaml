@@ -1,0 +1,55 @@
+name: Bug Report
+description: Use this when MapCSS is wrong.
+labels: gen-bug
+body:
+  - type: textarea
+    id: code
+    attributes:
+      label: Input code or token(s)
+      render: typescript
+  - type: textarea
+    id: config
+    attributes:
+      label: Config
+      description: Paste your MapCSS config file here.
+      render: typescript
+  - type: input
+    id: play-link
+    attributes:
+      label: Playground link
+      description: You can use [MapCSS playground](https://MapCSS.miyauchi.dev/playground/) to create a reproduction link, then paste the link here.
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expect to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: A clear and concise description of actual behavior.
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Version
+    validations:
+      required: true
+  - type: dropdown
+    id: registry
+    attributes:
+      label: Registry
+      options:
+        - deno.land/x
+        - x.next.land
+        - npm
+    validations:
+      required: false
+  - type: textarea
+    id: addition
+    attributes:
+      label: Additional context
+      placeholder: Add any other context about the problem here.
