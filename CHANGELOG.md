@@ -1,3 +1,10 @@
+# [1.0.0-beta.45](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2022-03-24)
+
+
+### Bug Fixes
+
+* **preset_tw:** fix minus(-) modifier that nagativify number or number with unit only ([9a4e706](https://github.com/TomokiMiyauci/mapcss/commit/9a4e706fed7db138a17550eed696662d55c13e2c)), closes [#30](https://github.com/TomokiMiyauci/mapcss/issues/30)
+
 # [1.0.0-beta.44](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.43...v1.0.0-beta.44) (2022-03-24)
 
 

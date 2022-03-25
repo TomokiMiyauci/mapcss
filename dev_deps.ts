@@ -20,6 +20,8 @@ import {
   toAST,
   toObject,
 } from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
+
+export { toAST };
 import { default as Root } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/root.js";
 
 import type { BinaryTree } from "./core/types.ts";

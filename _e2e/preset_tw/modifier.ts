@@ -110,6 +110,11 @@ const simple: [string, string][] = [
   ],
   ["!w-1", ".\\!w-1{width:0.25rem !important}"],
   ["-w-1", ".-w-1{width:-0.25rem}"],
+  ["-block", ""],
+  [
+    "-translate-x-2",
+    ".-translate-x-2{--map-translate-x:-0.5rem;transform:translate(var(--map-translate-x),var(--map-translate-y)) rotate(var(--map-rotate)) skewX(var(--map-skew-x)) skewY(var(--map-skew-y)) scaleX(var(--map-scale-x)) scaleY(var(--map-scale-y))}",
+  ],
   ["scrollbar:w-1", ".scrollbar\\:w-1::-webkit-scrollbar{width:0.25rem}"],
   [
     "scrollbar:!w-1",

@@ -9,7 +9,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: code
+    id: input
     attributes:
       label: Input
       description: Input code or token(s)
@@ -25,7 +25,7 @@ body:
     validations:
       required: false
   - type: input
-    id: play-link
+    id: playground-link
     attributes:
       label: Playground link
       description: You can use [MapCSS playground](https://MapCSS.miyauchi.dev/playground/) to create a reproduction link, then paste the link here.
