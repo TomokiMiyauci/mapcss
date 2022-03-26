@@ -1,3 +1,3 @@
 # @mapcss/common
 
-> MapCSS common variants
+> Common variables for MapCSS

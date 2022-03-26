@@ -32,11 +32,25 @@ const meta: DefineMeta[] = [
     outDir: "./npm/config",
     package: {
       name: "@mapcss/config",
-      description: " Definition of MapCSS config, loader",
+      description: "Definition of MapCSS config, loader",
       keywords: [
         "mapcss",
         "config",
         "loader",
+      ],
+    },
+  },
+  {
+    root: "common",
+    entryPoints: ["./common/mod.ts"],
+    outDir: "./npm/common",
+    package: {
+      name: "@mapcss/common",
+      description: "Common variables for MapCSS",
+      keywords: [
+        "mapcss",
+        "common",
+        "variable",
       ],
     },
   },
