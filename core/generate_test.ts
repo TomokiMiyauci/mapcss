@@ -109,3 +109,17 @@ test("generate option of css should generate css statement directory", () => {
     expect(generate(input, { minify: true, ...config }).css).toBe(result)
   );
 });
+
+Deno.test("injected CSS should be placed first", () => {
+  expect(
+    generate("block", {
+      cssMap: {
+        block: { display: "block", "--map": "test" },
+      },
+      css: {
+        body: { color: "red" },
+      },
+      minify: true,
+    }).css,
+  ).toBe("body{color:red}.block{--map:test;display:block}");
+});

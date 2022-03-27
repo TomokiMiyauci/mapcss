@@ -145,13 +145,15 @@ export function generate(
     acc.append(cur.nodes);
     return acc;
   }, new Root());
+  const orderedNode = postcss(orderStatement()).process(rootNode).root;
+  const preProcesses = [createInjectCSS(css), ...preProcess];
 
-  const final = [createInjectCSS(css), ...preProcess].reduce(
+  const final = preProcesses.reduce(
     (acc, cur) => cur.fn(acc, staticContext),
-    rootNode,
+    orderedNode,
   );
 
-  const corePostcssPlugins = [orderStatement(), orderProp()];
+  const corePostcssPlugins = [orderProp()];
   const plugins = minify
     ? [...corePostcssPlugins, postcssMinify()]
     : corePostcssPlugins;
