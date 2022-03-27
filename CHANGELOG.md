@@ -1,3 +1,11 @@
+# [1.0.0-beta.47](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2022-03-27)
+
+
+### Bug Fixes
+
+* **config:** change import resource mod to independent file ([cdc0cce](https://github.com/TomokiMiyauci/mapcss/commit/cdc0cceb1c2eb7e10b27f1f5ed5c0bb70a273e17))
+* **config:** fix resolving relative path, export sub module ([48469d1](https://github.com/TomokiMiyauci/mapcss/commit/48469d1cfe0ef16771dcbfbd1aebb698dc5bd622))
+
 # [1.0.0-beta.46](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2022-03-27)
 
 
