@@ -1,3 +1,17 @@
+# [1.0.0-beta.46](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.45...v1.0.0-beta.46) (2022-03-27)
+
+
+### Bug Fixes
+
+* **core:** injected CSS should be placed first ([8834f25](https://github.com/TomokiMiyauci/mapcss/commit/8834f25ee1f20fbc742dffdda89567a5d3a5cd0c)), closes [#32](https://github.com/TomokiMiyauci/mapcss/issues/32)
+
+
+### Features
+
+* **common:** common variables and theme move to common ([42c2c81](https://github.com/TomokiMiyauci/mapcss/commit/42c2c8195bb853887f9fdc1e5d5dbb8597190364))
+* **config:** add config and config file resolve functions ([6f27c28](https://github.com/TomokiMiyauci/mapcss/commit/6f27c281a7a68c50df710e3fe9abea11f6c33d8e))
+* **core:** generate of `css` property accept array ([3abb517](https://github.com/TomokiMiyauci/mapcss/commit/3abb517360cd52acc671ca6e8a4bd9d902dc6be1)), closes [#33](https://github.com/TomokiMiyauci/mapcss/issues/33)
+
 # [1.0.0-beta.45](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.44...v1.0.0-beta.45) (2022-03-24)
 
 
