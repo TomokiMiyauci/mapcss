@@ -1,4 +1,4 @@
-import type { AcceptedPlugin, Root } from "./deps.ts";
+import type { AcceptedPlugin, Arrayable, Root } from "./deps.ts";
 
 export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | BinaryTree<Leaf>;
@@ -41,7 +41,7 @@ export type StaticConfig = {
   postcssPlugin: AcceptedPlugin[];
 
   /** Inject raw CSS Statement with CSS-in-JS style */
-  css: BinaryTree<string | number>;
+  css: Arrayable<BinaryTree<string | number>>;
 };
 
 export type StaticContext = {

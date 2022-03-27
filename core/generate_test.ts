@@ -68,7 +68,7 @@ test("generate option of css should generate css statement directory", () => {
         }],
       },
       "",
-      "body{font-size:4rem}",
+      "body{font-size:2rem}body{font-size:4rem}",
     ],
     [
       {
@@ -92,17 +92,33 @@ test("generate option of css should generate css statement directory", () => {
         }],
       },
       "",
-      "body{color:red;font-size:6rem;font-weight:600}",
+      "body{color:red;font-size:2rem}body{font-size:4rem;font-weight:600}body{font-size:6rem}",
     ],
-    // Duplicate deletion is not performed.
     [
       {
-        css: {
-          body: { "font-size": "6rem", fontSize: "4rem" },
-        },
+        css: [{
+          body: { fontSize: "5" },
+        }, { body: { fontSize: "6" } }],
+        preset: [{
+          name: "test",
+          fn: () => ({
+            css: [{
+              body: { fontSize: "1" },
+            }, { body: { fontSize: "2" } }],
+          }),
+        }, {
+          name: "test2",
+          fn: () => ({
+            css: [{
+              body: { fontSize: "3" },
+            }, {
+              body: { fontSize: "4" },
+            }],
+          }),
+        }],
       },
       "",
-      "body{font-size:6rem;font-size:4rem}",
+      "body{font-size:1}body{font-size:2}body{font-size:3}body{font-size:4}body{font-size:5}body{font-size:6}",
     ],
   ];
   table.forEach(([config, input, result]) =>

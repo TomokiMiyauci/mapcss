@@ -81,7 +81,7 @@ export function generate(
     cssMaps,
     preProcess,
     postcssPlugin,
-    css,
+    cssList,
   } = resolveConfig(staticConfig, ctx);
   const staticContext: StaticContext = {
     ...ctx,
@@ -146,7 +146,11 @@ export function generate(
     return acc;
   }, new Root());
   const orderedNode = postcss(orderStatement()).process(rootNode).root;
-  const preProcesses = [createInjectCSS(css), ...preProcess];
+  const preProcesses = [
+    // default order is left to right
+    ...cssList.reverse().map(createInjectCSS),
+    ...preProcess,
+  ];
 
   const final = preProcesses.reduce(
     (acc, cur) => cur.fn(acc, staticContext),
