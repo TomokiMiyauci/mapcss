@@ -31,7 +31,7 @@ const meta: DefineMeta[] = [
   },
   {
     root: "config",
-    entryPoints: ["./config/mod.ts"],
+    entryPoints: ["./config/mod.ts", "./config/util.ts"],
     shims: {
       deno: true,
     },
