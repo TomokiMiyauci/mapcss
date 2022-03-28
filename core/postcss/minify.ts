@@ -1,6 +1,11 @@
-import valueParser from "https://esm.sh/postcss-value-parser";
-import { PostcssPlugin, SyncProcessor } from "../deps.ts";
-import { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
+// This module is browser compatible.
+
+import {
+  PostcssPlugin,
+  selectorParser,
+  SyncProcessor,
+  valueParser,
+} from "../deps.ts";
 
 const processor: SyncProcessor = (selectors) => {
   selectors.walk((selector) => {
@@ -9,7 +14,7 @@ const processor: SyncProcessor = (selectors) => {
 };
 
 export function minifySelector(value: string): string {
-  const selectorProcessor = parseSelector(processor);
+  const selectorProcessor = selectorParser(processor);
 
   return selectorProcessor.processSync(value, {});
 }

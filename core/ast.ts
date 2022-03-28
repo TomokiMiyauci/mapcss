@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { Declaration, Root } from "./deps.ts";
 
 /** filter `decl` node */

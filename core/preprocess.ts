@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { CSS, PreProcessor } from "./types.ts";
 import { toAST } from "./deps.ts";
 

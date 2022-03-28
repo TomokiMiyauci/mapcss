@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { AcceptedPlugin, Arrayable, Root } from "./deps.ts";
 
 export type Tree<Leaf, P extends PropertyKey = string | number> = {

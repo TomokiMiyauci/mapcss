@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export type {
   AcceptedPlugin,
   Node,
@@ -30,6 +32,8 @@ import {
 export type {
   SyncProcessor,
 } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
+export { default as valueParser } from "https://esm.sh/postcss-value-parser@4.2.0";
+export { default as selectorParser } from "https://esm.sh/postcss-selector-parser@v6.0.9";
 
 /** safe get accessor */
 export function prop<

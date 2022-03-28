@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { isAtRule, isDeclaration, isRule } from "../utils/assert.ts";
 import type { PostcssPlugin } from "../deps.ts";
 

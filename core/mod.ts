@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export { generate } from "./generate.ts";
 export type {
   Config as GenerateConfig,

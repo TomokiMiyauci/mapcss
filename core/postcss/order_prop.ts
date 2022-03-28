@@ -1,3 +1,4 @@
+// This module is browser compatible.
 import type { PostcssPlugin } from "../deps.ts";
 
 function plugin(): PostcssPlugin {

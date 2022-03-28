@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { Root } from "../deps.ts";
 
 /** Removes duplicate `decl` nodes in the same `rule`.
