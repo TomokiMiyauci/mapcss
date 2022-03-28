@@ -1,4 +1,12 @@
-import { isString, isUndefined, postcss, prop, Root, wrap } from "./deps.ts";
+import {
+  isString,
+  isUndefined,
+  postcss,
+  prop,
+  Root,
+  toAST,
+  wrap,
+} from "./deps.ts";
 import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
 import {
@@ -110,7 +118,7 @@ export function generate(
         className,
       };
 
-      const identifierRoot = resolveCSSMap(
+      const maybeCSS = resolveCSSMap(
         identifier,
         cssMaps.reverse(),
         {
@@ -119,7 +127,7 @@ export function generate(
         },
       );
 
-      if (isUndefined(identifierRoot)) continue;
+      if (isUndefined(maybeCSS)) continue;
       const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;
 
@@ -127,7 +135,7 @@ export function generate(
           ...staticContext,
           ...runtimeContext,
         });
-      }, identifierRoot as Root | undefined);
+      }, toAST(maybeCSS) as Root | undefined);
 
       if (results instanceof Root) {
         unmatched.delete(token);

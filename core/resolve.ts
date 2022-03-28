@@ -13,14 +13,12 @@ import {
   propPath,
   Root,
   tail,
-  toAST,
   wrap,
 } from "./deps.ts";
 import {
   isBlockDefinition,
   isCSSDefinition,
   isCSSObject,
-  isRoot,
 } from "./utils/assert.ts";
 import type {
   CSS,
@@ -69,11 +67,11 @@ export function resolveCSSMap(
   value: string,
   cssMap: Arrayable<Readonly<CSSMap>>,
   context: Readonly<StaticContext & RuntimeContext>,
-): Root | undefined {
+): CSS | undefined {
   const _resolve = (
     path: Arrayable<string>,
     cssMap: Arrayable<Readonly<CSSMap>>,
-  ): Root | undefined => {
+  ): CSS | undefined => {
     for (const map of wrap(cssMap)) {
       const paths = leftSplit(path, context.separator);
       for (const path of paths) {
@@ -91,7 +89,7 @@ export function resolveCSSMap(
 
         const resolve = (
           value: IdentifierDefinition | undefined,
-        ): Root | undefined => {
+        ): CSS | undefined => {
           if (isUndefined(value)) return;
 
           if (isFunction(value)) {
@@ -101,13 +99,11 @@ export function resolveCSSMap(
 
           if (isLength0(rest)) {
             if (isCSSDefinition(value)) {
-              return toAST(value.value);
-            } else if (isRoot(value)) {
-              return value;
+              return value.value;
             } else if (isBlockDefinition(value)) {
-              return toAST({
+              return {
                 [context.className]: value,
-              });
+              };
             }
             return _resolve("", value);
           } else {

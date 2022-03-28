@@ -165,10 +165,6 @@ Deno.test("resolveCSSMap", () => {
 
   table.forEach(([value, cssMap, context, result]) => {
     const maybeRoot = resolveCSSMap(value, cssMap, context);
-    if (maybeRoot && result) {
-      expect(maybeRoot).toEqualJSCSS(result);
-    } else {
-      expect(maybeRoot).toBe(result);
-    }
+    expect(maybeRoot).toEqual(result);
   });
 });
