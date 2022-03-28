@@ -1,3 +1,11 @@
+# [1.0.0-beta.48](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2022-03-28)
+
+
+### Features
+
+* **core:** change cssObject types to accept declaration block definition ([74f3281](https://github.com/TomokiMiyauci/mapcss/commit/74f3281f55fe7a1c66b43c2949318fe9c1c8b826))
+* **core:** change cssObject types to remove Root AST ([2306333](https://github.com/TomokiMiyauci/mapcss/commit/2306333db8981f6b0406a2183219f23e25ce0ae3))
+
 # [1.0.0-beta.47](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.46...v1.0.0-beta.47) (2022-03-27)
 
 
