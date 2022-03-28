@@ -1,5 +1,13 @@
+// This module is browser compatible.
+
 import { Config, Importer, IOConfig, Resource } from "./types.ts";
-import { isConfigModule } from "./util.ts";
+import { isObject } from "./deps.ts";
+
+/** Check if the value is config Module or not */
+export function isConfigModule(value: unknown): value is { default: Config } {
+  return isObject(value) &&
+    isObject((value as Record<PropertyKey, unknown>)["default"]);
+}
 
 export async function resolveResource(
   { url, resolve }: Resource,

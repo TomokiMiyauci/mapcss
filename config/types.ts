@@ -1,6 +1,9 @@
-import type { GenerateConfig, Labeled } from "../core/mod.ts";
+// This module is browser compatible.
+
+import type { Labeled } from "../core/types.ts";
+import type { Config as GenerateConfig } from "../core/generate.ts";
 // deno-lint-ignore no-unused-vars
-import type { SimpleExtractor } from "./extractor.ts";
+import type { simpleExtractor } from "./extractor.ts";
 
 export type Extractor = Labeled & {
   fn: (code: string) => Set<string>;
@@ -18,7 +21,7 @@ export type InputConfig = {
   resource?: Resource;
 
   /** Token extractor
-   * @default {@link SimpleExtractor}
+   * @default {@link simpleExtractor}
    */
   extractor?: Extractor;
 };

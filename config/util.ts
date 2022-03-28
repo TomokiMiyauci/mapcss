@@ -1,7 +1,6 @@
 import { expandGlob } from "https://deno.land/std@0.132.0/fs/expand_glob.ts";
 import { resolve, toFileUrl } from "https://deno.land/std@0.132.0/path/mod.ts";
-import { Config, Resource } from "./types.ts";
-import { isObject } from "./deps.ts";
+import { Resource } from "./types.ts";
 
 export function fromFileSystem(
   option: { root: string } = { root: Deno.cwd() },
@@ -19,11 +18,3 @@ export function fromFileSystem(
     },
   };
 }
-
-/** Check if the value is config Module or not */
-export function isConfigModule(value: unknown): value is { default: Config } {
-  return isObject(value) &&
-    isObject((value as Record<PropertyKey, unknown>)["default"]);
-}
-
-fromFileSystem();
