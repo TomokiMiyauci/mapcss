@@ -1,4 +1,4 @@
-import type { BinaryTree } from "../core/types.ts";
+import type { Tree } from "../core/types.ts";
 
 export type PresetOption = {
   /** The class name to use the typographic utilities.
@@ -11,5 +11,5 @@ export type PresetOption = {
    *
    * @default undefined
    */
-  css: BinaryTree<string | number | false>;
+  css: Tree<string | number | false>;
 };

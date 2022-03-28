@@ -1,4 +1,12 @@
-import { isString, isUndefined, postcss, prop, Root, wrap } from "./deps.ts";
+import {
+  isString,
+  isUndefined,
+  postcss,
+  prop,
+  Root,
+  toAST,
+  wrap,
+} from "./deps.ts";
 import { resolveConfig, resolveCSSMap, resolveModifierMap } from "./resolve.ts";
 import { escapeSelector } from "./utils/escape.ts";
 import {
@@ -81,7 +89,7 @@ export function generate(
     cssMaps,
     preProcess,
     postcssPlugin,
-    css,
+    cssList,
   } = resolveConfig(staticConfig, ctx);
   const staticContext: StaticContext = {
     ...ctx,
@@ -110,7 +118,7 @@ export function generate(
         className,
       };
 
-      const identifierRoot = resolveCSSMap(
+      const maybeCSS = resolveCSSMap(
         identifier,
         cssMaps.reverse(),
         {
@@ -119,7 +127,7 @@ export function generate(
         },
       );
 
-      if (isUndefined(identifierRoot)) continue;
+      if (isUndefined(maybeCSS)) continue;
       const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;
 
@@ -127,7 +135,7 @@ export function generate(
           ...staticContext,
           ...runtimeContext,
         });
-      }, identifierRoot as Root | undefined);
+      }, toAST(maybeCSS) as Root | undefined);
 
       if (results instanceof Root) {
         unmatched.delete(token);
@@ -145,13 +153,19 @@ export function generate(
     acc.append(cur.nodes);
     return acc;
   }, new Root());
+  const orderedNode = postcss(orderStatement()).process(rootNode).root;
+  const preProcesses = [
+    // default order is left to right
+    ...cssList.reverse().map(createInjectCSS),
+    ...preProcess,
+  ];
 
-  const final = [createInjectCSS(css), ...preProcess].reduce(
+  const final = preProcesses.reduce(
     (acc, cur) => cur.fn(acc, staticContext),
-    rootNode,
+    orderedNode,
   );
 
-  const corePostcssPlugins = [orderStatement(), orderProp()];
+  const corePostcssPlugins = [orderProp()];
   const plugins = minify
     ? [...corePostcssPlugins, postcssMinify()]
     : corePostcssPlugins;

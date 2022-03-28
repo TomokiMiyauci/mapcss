@@ -6,12 +6,27 @@ export type Extractor = Labeled & {
   fn: (code: string) => Set<string>;
 };
 
-export type Config = {
-  /** Define content source */
-  content: string[];
+export type Resource = {
+  url: string;
+  resolve: (url: string) => undefined | string | Promise<string | undefined>;
+};
+
+export type Importer = (url: string) => Promise<unknown>;
+
+export type InputConfig = {
+  /** Define resource location and how to resolve */
+  resource?: Resource;
 
   /** Token extractor
    * @default {@link SimpleExtractor}
    */
   extractor?: Extractor;
-} & GenerateConfig;
+};
+export type OutputConfig = GenerateConfig;
+
+export type IOConfig = {
+  inputConfig: InputConfig;
+  outputConfig: GenerateConfig;
+};
+
+export type Config = InputConfig & GenerateConfig;

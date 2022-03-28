@@ -4,7 +4,10 @@ import type { PackageJsonObject } from "https://deno.land/x/dnt@0.22.0/lib/types
 
 type DefineMeta = Omit<BuildOptions, "shims" | "package"> & {
   root: string;
-} & { package: Omit<PackageJsonObject, "version"> };
+} & {
+  package: Omit<PackageJsonObject, "version">;
+  shims?: BuildOptions["shims"];
+};
 
 const meta: DefineMeta[] = [
   {
@@ -28,15 +31,32 @@ const meta: DefineMeta[] = [
   },
   {
     root: "config",
-    entryPoints: ["./config/mod.ts"],
+    entryPoints: ["./config/mod.ts", "./config/util.ts"],
+    shims: {
+      deno: true,
+    },
     outDir: "./npm/config",
     package: {
       name: "@mapcss/config",
-      description: " Definition of MapCSS config, loader",
+      description: "Definition of MapCSS config, loader",
       keywords: [
         "mapcss",
         "config",
         "loader",
+      ],
+    },
+  },
+  {
+    root: "common",
+    entryPoints: ["./common/mod.ts"],
+    outDir: "./npm/common",
+    package: {
+      name: "@mapcss/common",
+      description: "Common variables for MapCSS",
+      keywords: [
+        "mapcss",
+        "common",
+        "variable",
       ],
     },
   },

@@ -13,7 +13,7 @@ import {
   shortDecimal,
   unit,
 } from "../../core/utils/format.ts";
-import type { BlockDefinition, CSSMap } from "../../core/types.ts";
+import type { CSSMap, DeclBlock } from "../../core/types.ts";
 import {
   customPropertySet,
   handleTransform,
@@ -77,7 +77,7 @@ export const basis: CSSMap = {
     ], [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })]]),
 };
 
-export const block: BlockDefinition = { display: "block" };
+export const block: DeclBlock = { display: "block" };
 
 export const bottom: CSSMap = {
   0: { bottom: "0px" },
@@ -226,7 +226,7 @@ export const inline: CSSMap = {
   table: { display: "inline-table" },
   grid: { display: "inline-grid" },
 };
-export const isolate: BlockDefinition = { isolation: "isolate" };
+export const isolate: DeclBlock = { isolation: "isolate" };
 export const isolation: CSSMap = {
   auto: { isolation: "auto" },
 };
@@ -718,14 +718,14 @@ export const z: CSSMap = {
       [reBracket_$, ([, arbitrary]) => ({ zIndex: arbitrary })],
     ]),
 };
-export const $static: BlockDefinition = { position: "static" };
-export const fixed: BlockDefinition = { position: "fixed" };
-export const absolute: BlockDefinition = { position: "absolute" };
-export const relative: BlockDefinition = { position: "relative" };
-export const sticky: BlockDefinition = { position: "sticky" };
-export const visible: BlockDefinition = { visibility: "visible" };
-export const invisible: BlockDefinition = { visibility: "hidden" };
-export const antialiased: BlockDefinition = {
+export const $static: DeclBlock = { position: "static" };
+export const fixed: DeclBlock = { position: "fixed" };
+export const absolute: DeclBlock = { position: "absolute" };
+export const relative: DeclBlock = { position: "relative" };
+export const sticky: DeclBlock = { position: "sticky" };
+export const visible: DeclBlock = { visibility: "visible" };
+export const invisible: DeclBlock = { visibility: "hidden" };
+export const antialiased: DeclBlock = {
   WebkitFontSmoothing: "antialiased",
   MozOsxFontSmoothing: "grayscale",
 };
@@ -735,10 +735,10 @@ export const subpixel: CSSMap = {
     MozOsxFontSmoothing: "auto",
   },
 };
-export const italic: BlockDefinition = { fontStyle: "italic" };
-export const contents: BlockDefinition = { display: "contents" };
-export const hidden: BlockDefinition = { display: "none" };
-export const overline: BlockDefinition = { textDecorationLine: "overline" };
+export const italic: DeclBlock = { fontStyle: "italic" };
+export const contents: DeclBlock = { display: "contents" };
+export const hidden: DeclBlock = { display: "none" };
+export const overline: DeclBlock = { textDecorationLine: "overline" };
 export const line: CSSMap = {
   through: { textDecorationLine: "line-through" },
 };
@@ -758,7 +758,7 @@ export const sr: CSSMap = {
     borderWidth: 0,
   },
 };
-export const ordinal: BlockDefinition = { fontVariantNumeric: "ordinal" };
+export const ordinal: DeclBlock = { fontVariantNumeric: "ordinal" };
 export const slashed: CSSMap = {
   zero: { fontVariantNumeric: "slashed-zero" },
 };
@@ -780,10 +780,10 @@ export const diagonal: CSSMap = {
 export const stacked: CSSMap = {
   fractions: { fontVariantNumeric: "stacked-fractions" },
 };
-export const uppercase: BlockDefinition = { textTransform: "uppercase" };
-export const lowercase: BlockDefinition = { textTransform: "lowercase" };
-export const capitalize: BlockDefinition = { textTransform: "capitalize" };
-export const truncate: BlockDefinition = {
+export const uppercase: DeclBlock = { textTransform: "uppercase" };
+export const lowercase: DeclBlock = { textTransform: "lowercase" };
+export const capitalize: DeclBlock = { textTransform: "capitalize" };
+export const truncate: DeclBlock = {
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
@@ -814,7 +814,7 @@ export const contrast: CSSMap = {
     ]),
 };
 
-function handleDrop(value: string, varPrefix: string): BlockDefinition {
+function handleDrop(value: string, varPrefix: string): DeclBlock {
   return {
     [customProperty("drop-shadow", varPrefix)]: value,
     filter: filterValue(varPrefix),
@@ -872,7 +872,7 @@ function handleSingleFilter(
   propertyName: string,
   value: string | number,
   varPrefix: string,
-): BlockDefinition {
+): DeclBlock {
   return {
     [customProperty(propertyName, varPrefix)]: `${propertyName}(${value})`,
     filter: filterValue(varPrefix),

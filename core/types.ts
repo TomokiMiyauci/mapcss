@@ -1,18 +1,27 @@
-import type { AcceptedPlugin, Root } from "./deps.ts";
+import type { AcceptedPlugin, Arrayable, Root } from "./deps.ts";
 
-export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
-  [k in P]: Leaf | BinaryTree<Leaf>;
+export type Tree<Leaf, P extends PropertyKey = string | number> = {
+  [k in P]: Leaf | Tree<Leaf>;
 };
+
+export type CSS = Tree<string | number>;
+
+/** CSS Block Declaration */
+export type DeclBlock = Record<string, string | number>;
 
 export type CSSDefinition = {
   type: "css";
-  value: BinaryTree<string | number>;
+  value: CSS;
+};
+export type DeclBlockDefinition = {
+  type: "decl";
+  value: DeclBlock;
 };
 
 export type CSSObject =
   | CSSDefinition
-  | Root
-  | BlockDefinition;
+  | DeclBlockDefinition
+  | DeclBlock;
 
 export type Preset = Labeled & {
   fn: (
@@ -20,7 +29,7 @@ export type Preset = Labeled & {
   ) => Partial<Omit<StaticConfig, "preset">>;
 };
 
-export type Theme = BinaryTree<string>;
+export type Theme = Tree<string>;
 
 export type StaticConfig = {
   /** Hierarchy of CSS-in-JS  */
@@ -41,7 +50,7 @@ export type StaticConfig = {
   postcssPlugin: AcceptedPlugin[];
 
   /** Inject raw CSS Statement with CSS-in-JS style */
-  css: BinaryTree<string | number>;
+  css: Arrayable<CSS>;
 };
 
 export type StaticContext = {
@@ -121,9 +130,6 @@ export type Labeled = {
 export type PreProcessor = Labeled & {
   fn: (root: Readonly<Root>, context: Readonly<StaticContext>) => Root;
 };
-
-/** User definition of CSS Block Declaration */
-export type BlockDefinition = Record<string, string | number>;
 
 export type DynamicCSS = (
   /** Match info */

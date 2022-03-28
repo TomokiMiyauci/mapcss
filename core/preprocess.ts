@@ -1,8 +1,8 @@
-import type { BinaryTree, PreProcessor } from "./types.ts";
+import type { CSS, PreProcessor } from "./types.ts";
 import { toAST } from "./deps.ts";
 
 export function createInjectCSS(
-  css: BinaryTree<string | number>,
+  css: CSS,
 ): PreProcessor {
   return {
     name: "mapcss/inject-css-statement",

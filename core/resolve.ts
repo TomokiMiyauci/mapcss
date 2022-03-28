@@ -13,17 +13,17 @@ import {
   propPath,
   Root,
   tail,
-  toAST,
   wrap,
 } from "./deps.ts";
 import {
-  isBlockDefinition,
   isCSSDefinition,
   isCSSObject,
-  isRoot,
+  isDeclBlockDefinition,
 } from "./utils/assert.ts";
 import type {
+  CSS,
   CSSMap,
+  CSSObject,
   IdentifierDefinition,
   MatchInfo,
   ModifierDefinition,
@@ -68,11 +68,11 @@ export function resolveCSSMap(
   value: string,
   cssMap: Arrayable<Readonly<CSSMap>>,
   context: Readonly<StaticContext & RuntimeContext>,
-): Root | undefined {
+): CSS | undefined {
   const _resolve = (
     path: Arrayable<string>,
     cssMap: Arrayable<Readonly<CSSMap>>,
-  ): Root | undefined => {
+  ): CSS | undefined => {
     for (const map of wrap(cssMap)) {
       const paths = leftSplit(path, context.separator);
       for (const path of paths) {
@@ -90,7 +90,7 @@ export function resolveCSSMap(
 
         const resolve = (
           value: IdentifierDefinition | undefined,
-        ): Root | undefined => {
+        ): CSS | undefined => {
           if (isUndefined(value)) return;
 
           if (isFunction(value)) {
@@ -99,15 +99,10 @@ export function resolveCSSMap(
           const rest = tail(path);
 
           if (isLength0(rest)) {
-            if (isCSSDefinition(value)) {
-              return toAST(value.value);
-            } else if (isRoot(value)) {
-              return value;
-            } else if (isBlockDefinition(value)) {
-              return toAST({
-                [context.className]: value,
-              });
+            if (isCSSObject(value)) {
+              return constructCSS(value, context.className);
             }
+
             return _resolve("", value);
           } else {
             if (!isCSSObject(value)) {
@@ -226,9 +221,10 @@ export function resolveConfig(
     >
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
-): Omit<StaticConfig, "preset" | "cssMap" | "modifierMap"> & {
+): Omit<StaticConfig, "preset" | "cssMap" | "modifierMap" | "css"> & {
   cssMaps: CSSMap[];
   modifierMaps: ModifierMap[];
+  cssList: CSS[];
 } {
   const _presets = resolvePreset(preset, context);
   const modifierMaps = [
@@ -251,10 +247,10 @@ export function resolveConfig(
     ..._postProcess,
     ..._presets.map(({ preProcess }) => preProcess).flat(),
   );
-  const css = [..._presets.map(({ css }) => css), _css].reduce(
-    (acc, cur) => deepMerge(acc, cur),
-    {},
-  );
+  const cssList = [
+    ..._presets.map(({ css }) => wrap(css)).flat(),
+    ...wrap(_css),
+  ];
   const postcssPlugin = [
     ..._postcssPlugin,
     ..._presets.map(({ postcssPlugin }) => postcssPlugin).flat(),
@@ -265,7 +261,7 @@ export function resolveConfig(
     modifierMaps,
     syntax,
     preProcess,
-    css,
+    cssList,
     postcssPlugin,
   };
 }
@@ -312,4 +308,16 @@ export function resolveModifierMap(
     }
   };
   return _resolve(fullPath, modifierMap);
+}
+
+export function constructCSS(cssObject: CSSObject, className: string): CSS {
+  if (isCSSDefinition(cssObject)) {
+    return cssObject.value;
+  } else if (isDeclBlockDefinition(cssObject)) {
+    return { [className]: cssObject.value };
+  } else {
+    return {
+      [className]: cssObject,
+    };
+  }
 }

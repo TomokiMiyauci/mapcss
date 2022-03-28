@@ -60,11 +60,11 @@ export type TypographyOptions = {
    *
    * @default undefined
    */
-  css?: BinaryTree<string | number | false>;
+  css?: Tree<string | number | false>;
 };
 
-type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
-  [k in P]: Leaf | BinaryTree<Leaf>;
+type Tree<Leaf, P extends PropertyKey = string | number> = {
+  [k in P]: Leaf | Tree<Leaf>;
 };
 ```
 

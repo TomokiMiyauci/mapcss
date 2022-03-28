@@ -1,13 +1,7 @@
-import { expect } from "../dev_deps.ts";
-import { resolveCSSMap } from "./resolve.ts";
-import { Root } from "./deps.ts";
+import { expect, ParamReturn } from "../dev_deps.ts";
+import { constructCSS, resolveCSSMap } from "./resolve.ts";
 import { createContext } from "../utils/context.ts";
-import type {
-  BinaryTree,
-  CSSMap,
-  RuntimeContext,
-  StaticContext,
-} from "./types.ts";
+import type { CSS, CSSMap, RuntimeContext, StaticContext } from "./types.ts";
 
 const block = { display: "block" };
 const inlineBlock = { display: "inline-block" };
@@ -17,7 +11,7 @@ Deno.test("resolveCSSMap", () => {
     string,
     CSSMap,
     StaticContext & RuntimeContext,
-    BinaryTree<string | number> | undefined,
+    CSS | undefined,
   ][] = [
     [
       "block",
@@ -79,7 +73,6 @@ Deno.test("resolveCSSMap", () => {
       createContext(),
       { ".block": block },
     ],
-    ["block", { block: new Root({ nodes: [] }) }, createContext(), {}],
     [
       "block",
       { block: () => block },
@@ -172,10 +165,44 @@ Deno.test("resolveCSSMap", () => {
 
   table.forEach(([value, cssMap, context, result]) => {
     const maybeRoot = resolveCSSMap(value, cssMap, context);
-    if (maybeRoot && result) {
-      expect(maybeRoot).toEqualJSCSS(result);
-    } else {
-      expect(maybeRoot).toBe(result);
-    }
+    expect(maybeRoot).toEqual(result);
   });
+});
+
+Deno.test("constructCSS", () => {
+  const table: ParamReturn<typeof constructCSS>[] = [
+    [{}, "", { "": {} }],
+    [{}, ".test", { ".test": {} }],
+    [{ display: "block" }, ".block", { ".block": { display: "block" } }],
+    [{ paddingLeft: 1 }, ".pl-1", { ".pl-1": { paddingLeft: 1 } }],
+    [{ "padding-left": 1 }, ".pl-1", { ".pl-1": { "padding-left": 1 } }],
+    [{ paddingLeft: 1, paddingRight: 1 }, ".px-1", {
+      ".px-1": { paddingLeft: 1, paddingRight: 1 },
+    }],
+    [{ type: "css", value: {} }, ".test", {}],
+    [
+      { type: "css", value: { "@keyframe spin": { "100%": { rotate: 360 } } } },
+      ".test",
+      { "@keyframe spin": { "100%": { rotate: 360 } } },
+    ],
+    [
+      { type: "css", value: { display: "block" } },
+      ".test",
+      { display: "block" },
+    ],
+    [
+      { type: "css", value: { display: "block" } },
+      ".test",
+      { display: "block" },
+    ],
+    [{ type: "decl", value: {} }, ".block", {
+      ".block": {},
+    }],
+    [{ type: "decl", value: { display: "block" } }, ".block", {
+      ".block": { display: "block" },
+    }],
+  ];
+  table.forEach(([cssObject, className, result]) =>
+    expect(constructCSS(cssObject, className)).toEqual(result)
+  );
 });

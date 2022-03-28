@@ -1,5 +1,5 @@
 import { dependency } from "./identifier/mod.ts";
-import { theme } from "../preset_tw/mod.ts";
+import { color } from "./deps.ts";
 import type { Preset } from "../core/types.ts";
 import type { PresetOption } from "./types.ts";
 
@@ -17,7 +17,9 @@ export function preset(
     fn: () => ({
       // Currently, it is not possible to inject context for each preset. This is subject to change in the future.
       cssMap: dependency({ css, className }),
-      theme,
+      theme: {
+        color,
+      },
     }),
   };
 }

@@ -1,4 +1,4 @@
-import { color } from "./color.ts";
+import { color } from "../../common/mod.ts";
 import { screen } from "./screen.ts";
 
 export const theme = {

@@ -1,7 +1,7 @@
 import { customPropertySet } from "./_utils.ts";
-import type { BlockDefinition, CSSMap } from "../../core/types.ts";
+import type { CSSMap, DeclBlock } from "../../core/types.ts";
 
-function handleBlur(value: string, variablePrefix: string): BlockDefinition {
+function handleBlur(value: string, variablePrefix: string): DeclBlock {
   const [varBlur, varFnBlur] = customPropertySet("blur", variablePrefix);
   const [, varFnBrightness] = customPropertySet("brightness", variablePrefix);
   const [, varFnContract] = customPropertySet("contrast", variablePrefix);
