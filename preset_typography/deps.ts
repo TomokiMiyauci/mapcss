@@ -19,7 +19,10 @@ export type {
   Node as SelectorNode,
   SyncProcessor,
 } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
-export { toAST } from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
+export {
+  toAST,
+  toObject,
+} from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
 export { color } from "../common/mod.ts";
 
 interface Chain<T> {

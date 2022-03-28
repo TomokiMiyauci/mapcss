@@ -20,6 +20,7 @@ import {
   parseSelector,
   pseudoNode,
   selectorNode,
+  toObject,
 } from "../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
 import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
@@ -194,7 +195,10 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       });
       root.append(bodyNodes);
 
-      return root;
+      return {
+        type: "css",
+        value: toObject(root),
+      };
     },
     invert: ({ id }, { variablePrefix, className }) => {
       const varProperty = (property: string): string =>

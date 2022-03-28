@@ -1,6 +1,5 @@
 import { expect } from "../dev_deps.ts";
 import { resolveCSSMap } from "./resolve.ts";
-import { Root } from "./deps.ts";
 import { createContext } from "../utils/context.ts";
 import type { CSS, CSSMap, RuntimeContext, StaticContext } from "./types.ts";
 
@@ -74,7 +73,6 @@ Deno.test("resolveCSSMap", () => {
       createContext(),
       { ".block": block },
     ],
-    ["block", { block: new Root({ nodes: [] }) }, createContext(), {}],
     [
       "block",
       { block: () => block },

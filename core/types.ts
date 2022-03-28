@@ -11,9 +11,11 @@ export type CSSDefinition = {
   value: CSS;
 };
 
+/** User definition of CSS Block Declaration */
+export type BlockDefinition = Record<string, string | number>;
+
 export type CSSObject =
   | CSSDefinition
-  | Root
   | BlockDefinition;
 
 export type Preset = Labeled & {
@@ -123,9 +125,6 @@ export type Labeled = {
 export type PreProcessor = Labeled & {
   fn: (root: Readonly<Root>, context: Readonly<StaticContext>) => Root;
 };
-
-/** User definition of CSS Block Declaration */
-export type BlockDefinition = Record<string, string | number>;
 
 export type DynamicCSS = (
   /** Match info */
