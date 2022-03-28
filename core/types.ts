@@ -1,10 +1,10 @@
 import type { AcceptedPlugin, Arrayable, Root } from "./deps.ts";
 
-export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
-  [k in P]: Leaf | BinaryTree<Leaf>;
+export type Tree<Leaf, P extends PropertyKey = string | number> = {
+  [k in P]: Leaf | Tree<Leaf>;
 };
 
-export type CSS = BinaryTree<string | number>;
+export type CSS = Tree<string | number>;
 
 export type CSSDefinition = {
   type: "css";
@@ -22,7 +22,7 @@ export type Preset = Labeled & {
   ) => Partial<Omit<StaticConfig, "preset">>;
 };
 
-export type Theme = BinaryTree<string>;
+export type Theme = Tree<string>;
 
 export type StaticConfig = {
   /** Hierarchy of CSS-in-JS  */

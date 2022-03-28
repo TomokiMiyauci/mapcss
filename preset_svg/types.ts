@@ -1,6 +1,6 @@
-import type { BinaryTree } from "../core/types.ts";
+import type { Tree } from "../core/types.ts";
 
-export type SVGMap = BinaryTree<string>;
+export type SVGMap = Tree<string>;
 export type ColorMode = "static" | "dynamic" | "auto";
 
 export type Option = {

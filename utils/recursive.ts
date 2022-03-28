@@ -1,5 +1,5 @@
 import { isObject, mapEntries } from "./deps.ts";
-import type { BinaryTree } from "../core/types.ts";
+import type { Tree } from "../core/types.ts";
 
 export function recTransform<T, U>(
   object: Readonly<Record<PropertyKey, T>>,
@@ -7,7 +7,7 @@ export function recTransform<T, U>(
     value: T extends Record<PropertyKey, any> ? T[keyof T]
       : T,
   ) => U,
-): BinaryTree<U, string> {
+): Tree<U, string> {
   return mapEntries(
     object,
     (
