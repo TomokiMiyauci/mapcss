@@ -1,8 +1,7 @@
 <div align="center">
   <h1>mapcss</h1>
 
-[Docs](https://mapcss.miyauchi.dev)
-[Playground](https://mapcss.miyauchi.dev/playground)
+<img width="160px" hight="160px" src="https://mapcss.miyauchi.dev/favicon.svg" />
 
 Tiny, composable Atomic CSS engine
 
