@@ -15,12 +15,12 @@ import {
   rgbFn,
   stringifyCustomProperty,
 } from "../../core/utils/format.ts";
-import type { BinaryTree, CSSDefinition, CSSMap } from "../../core/types.ts";
+import type { CSS, CSSDefinition, CSSMap } from "../../core/types.ts";
 
 const combinator = ">:not([hidden])~:not([hidden])";
 
 function constructRule(
-  decl: BinaryTree<string | number>,
+  decl: CSS,
   className: string,
 ): CSSDefinition {
   return {

@@ -4,9 +4,11 @@ export type BinaryTree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | BinaryTree<Leaf>;
 };
 
+export type CSS = BinaryTree<string | number>;
+
 export type CSSDefinition = {
   type: "css";
-  value: BinaryTree<string | number>;
+  value: CSS;
 };
 
 export type CSSObject =
@@ -41,7 +43,7 @@ export type StaticConfig = {
   postcssPlugin: AcceptedPlugin[];
 
   /** Inject raw CSS Statement with CSS-in-JS style */
-  css: Arrayable<BinaryTree<string | number>>;
+  css: Arrayable<CSS>;
 };
 
 export type StaticContext = {

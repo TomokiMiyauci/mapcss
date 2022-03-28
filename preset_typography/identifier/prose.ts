@@ -26,7 +26,7 @@ import { removeDuplicatedDecl } from "../../core/postcss/_utils.ts";
 import { minifySelector } from "../../core/postcss/minify.ts";
 import { recTransform } from "../../utils/recursive.ts";
 import type { PresetOption } from "../types.ts";
-import type { BinaryTree, CSSMap } from "../../core/types.ts";
+import type { BinaryTree, CSS, CSSMap } from "../../core/types.ts";
 
 function generateDefault(varPrefix: string, prefix: string) {
   const varFnProperty = (property: string) =>
@@ -180,7 +180,7 @@ export function depsProse({ css, className: prefix }: Readonly<PresetOption>) {
       const DEFAULT = generateDefault(variablePrefix, prefix);
 
       const [_css, disabledMap] = isolateEntries<
-        BinaryTree<string | number>,
+        CSS,
         BinaryTree<false>
       >(
         css,
@@ -341,7 +341,7 @@ export function removeRuleOrDecl(
 }
 
 export function mergeAst(
-  css: BinaryTree<string | number>,
+  css: CSS,
   disableMap: BinaryTree<string | number | false>,
 ): Root {
   const root = toAST(css);

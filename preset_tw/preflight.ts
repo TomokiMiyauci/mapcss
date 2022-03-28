@@ -1,7 +1,7 @@
-import type { BinaryTree } from "../core/types.ts";
+import type { CSS } from "../core/types.ts";
 
 /** TailwindCSS style normalize CSS as CSS-in-JS */
-export const preflight: BinaryTree<string | number> = {
+export const preflight: CSS = {
   "*, ::before, ::after": {
     boxSizing: "border-box",
     borderWidth: 0,

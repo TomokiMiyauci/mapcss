@@ -24,11 +24,11 @@ import {
 export { toAST };
 import { default as Root } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/root.js";
 
-import type { BinaryTree } from "./core/types.ts";
+import type { CSS } from "./core/types.ts";
 
 function toEqualJSCSS(
   actual: unknown,
-  expect: BinaryTree<string | number>,
+  expect: CSS,
 ): MatchResult {
   if (!(actual instanceof Root) && !isObject(actual)) {
     return {

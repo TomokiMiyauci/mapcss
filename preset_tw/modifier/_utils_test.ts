@@ -3,7 +3,7 @@ import { expect, test } from "../../dev_deps.ts";
 import { toAST } from "../deps.ts";
 import { createContext, createMatchInfo } from "../../utils/context.ts";
 import type {
-  BinaryTree,
+  CSS,
   MatchInfo,
   RuntimeContext,
   StaticContext,
@@ -15,9 +15,9 @@ const block = { display: "block" };
 
 test("selectorTransform", () => {
   const table: [
-    BinaryTree<string | number>,
+    CSS,
     ...Parameters<typeof selectorTransform>,
-    BinaryTree<string | number>,
+    CSS,
     MatchInfo,
     StaticContext & RuntimeContext,
   ][] = [

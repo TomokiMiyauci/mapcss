@@ -1,5 +1,5 @@
 import type {
-  BinaryTree,
+  CSS,
   MatchInfo,
   Modifier,
   RuntimeContext,
@@ -7,8 +7,8 @@ import type {
 } from "../../core/types.ts";
 
 export type TestCase = [
-  BinaryTree<string | number>,
-  BinaryTree<string | number>,
+  CSS,
+  CSS,
   Modifier,
   MatchInfo,
   StaticContext & RuntimeContext,

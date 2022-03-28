@@ -23,7 +23,7 @@ import {
   isRoot,
 } from "./utils/assert.ts";
 import type {
-  BinaryTree,
+  CSS,
   CSSMap,
   IdentifierDefinition,
   MatchInfo,
@@ -230,7 +230,7 @@ export function resolveConfig(
 ): Omit<StaticConfig, "preset" | "cssMap" | "modifierMap" | "css"> & {
   cssMaps: CSSMap[];
   modifierMaps: ModifierMap[];
-  cssList: BinaryTree<string | number>[];
+  cssList: CSS[];
 } {
   const _presets = resolvePreset(preset, context);
   const modifierMaps = [
