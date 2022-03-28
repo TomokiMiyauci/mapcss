@@ -15,15 +15,15 @@ import {
   ratio,
   rgbFn,
 } from "../../core/utils/format.ts";
-import type { BlockDefinition, CSSMap } from "../../core/types.ts";
+import type { CSSMap, DeclBlock } from "../../core/types.ts";
 
 function toRingColor(varPrefix: string) {
-  return (value: string): BlockDefinition => ({
+  return (value: string): DeclBlock => ({
     [customProperty("ring-color", varPrefix)]: value,
   });
 }
 function toRingOffsetColor(varPrefix: string) {
-  return (value: string): BlockDefinition => ({
+  return (value: string): DeclBlock => ({
     [customProperty("ring-offset-color", varPrefix)]: value,
   });
 }
@@ -31,7 +31,7 @@ function toRingOffsetColor(varPrefix: string) {
 function handleRingWidth(
   value: string,
   variablePrefix: string,
-): BlockDefinition {
+): DeclBlock {
   const [varRingOffsetShadow, varFnRingOffsetShadow] = customPropertySet(
     "ring-offset-shadow",
     variablePrefix,

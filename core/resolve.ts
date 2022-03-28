@@ -16,13 +16,14 @@ import {
   wrap,
 } from "./deps.ts";
 import {
-  isBlockDefinition,
   isCSSDefinition,
   isCSSObject,
+  isDeclBlockDefinition,
 } from "./utils/assert.ts";
 import type {
   CSS,
   CSSMap,
+  CSSObject,
   IdentifierDefinition,
   MatchInfo,
   ModifierDefinition,
@@ -98,13 +99,10 @@ export function resolveCSSMap(
           const rest = tail(path);
 
           if (isLength0(rest)) {
-            if (isCSSDefinition(value)) {
-              return value.value;
-            } else if (isBlockDefinition(value)) {
-              return {
-                [context.className]: value,
-              };
+            if (isCSSObject(value)) {
+              return constructCSS(value, context.className);
             }
+
             return _resolve("", value);
           } else {
             if (!isCSSObject(value)) {
@@ -310,4 +308,16 @@ export function resolveModifierMap(
     }
   };
   return _resolve(fullPath, modifierMap);
+}
+
+export function constructCSS(cssObject: CSSObject, className: string): CSS {
+  if (isCSSDefinition(cssObject)) {
+    return cssObject.value;
+  } else if (isDeclBlockDefinition(cssObject)) {
+    return { [className]: cssObject.value };
+  } else {
+    return {
+      [className]: cssObject,
+    };
+  }
 }

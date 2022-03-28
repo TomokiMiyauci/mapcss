@@ -1,5 +1,5 @@
-import { expect } from "../dev_deps.ts";
-import { resolveCSSMap } from "./resolve.ts";
+import { expect, ParamReturn } from "../dev_deps.ts";
+import { constructCSS, resolveCSSMap } from "./resolve.ts";
 import { createContext } from "../utils/context.ts";
 import type { CSS, CSSMap, RuntimeContext, StaticContext } from "./types.ts";
 
@@ -167,4 +167,42 @@ Deno.test("resolveCSSMap", () => {
     const maybeRoot = resolveCSSMap(value, cssMap, context);
     expect(maybeRoot).toEqual(result);
   });
+});
+
+Deno.test("constructCSS", () => {
+  const table: ParamReturn<typeof constructCSS>[] = [
+    [{}, "", { "": {} }],
+    [{}, ".test", { ".test": {} }],
+    [{ display: "block" }, ".block", { ".block": { display: "block" } }],
+    [{ paddingLeft: 1 }, ".pl-1", { ".pl-1": { paddingLeft: 1 } }],
+    [{ "padding-left": 1 }, ".pl-1", { ".pl-1": { "padding-left": 1 } }],
+    [{ paddingLeft: 1, paddingRight: 1 }, ".px-1", {
+      ".px-1": { paddingLeft: 1, paddingRight: 1 },
+    }],
+    [{ type: "css", value: {} }, ".test", {}],
+    [
+      { type: "css", value: { "@keyframe spin": { "100%": { rotate: 360 } } } },
+      ".test",
+      { "@keyframe spin": { "100%": { rotate: 360 } } },
+    ],
+    [
+      { type: "css", value: { display: "block" } },
+      ".test",
+      { display: "block" },
+    ],
+    [
+      { type: "css", value: { display: "block" } },
+      ".test",
+      { display: "block" },
+    ],
+    [{ type: "decl", value: {} }, ".block", {
+      ".block": {},
+    }],
+    [{ type: "decl", value: { display: "block" } }, ".block", {
+      ".block": { display: "block" },
+    }],
+  ];
+  table.forEach(([cssObject, className, result]) =>
+    expect(constructCSS(cssObject, className)).toEqual(result)
+  );
 });

@@ -6,17 +6,22 @@ export type Tree<Leaf, P extends PropertyKey = string | number> = {
 
 export type CSS = Tree<string | number>;
 
+/** CSS Block Declaration */
+export type DeclBlock = Record<string, string | number>;
+
 export type CSSDefinition = {
   type: "css";
   value: CSS;
 };
-
-/** User definition of CSS Block Declaration */
-export type BlockDefinition = Record<string, string | number>;
+export type DeclBlockDefinition = {
+  type: "decl";
+  value: DeclBlock;
+};
 
 export type CSSObject =
   | CSSDefinition
-  | BlockDefinition;
+  | DeclBlockDefinition
+  | DeclBlock;
 
 export type Preset = Labeled & {
   fn: (

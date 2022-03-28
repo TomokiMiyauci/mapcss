@@ -3,7 +3,7 @@ import { parseNumeric } from "../../core/utils/monad.ts";
 import { ratio, shortDecimal, unit } from "../../core/utils/format.ts";
 import { execMatch, re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { customProperty } from "../../core/utils/format.ts";
-import type { BlockDefinition, CSSMap } from "../../core/types.ts";
+import type { CSSMap, DeclBlock } from "../../core/types.ts";
 
 const BACKDROP_BLUR = "backdrop-blur";
 
@@ -46,7 +46,7 @@ function handleFilter(
   property: string,
   value: string | number,
   varPrefix: string,
-): BlockDefinition {
+): DeclBlock {
   return {
     [customProperty(property, varPrefix)]: value,
     "backdrop-filter": backdropFilterValue(varPrefix),

@@ -7,13 +7,13 @@ import {
   shortDecimal,
 } from "../../core/utils/format.ts";
 import { associateWith } from "../deps.ts";
-import type { BlockDefinition, CSSMap } from "../../core/types.ts";
+import type { CSSMap, DeclBlock } from "../../core/types.ts";
 
 function handleScale(
   properties: string[],
   value: string,
   varPrefix: string,
-): BlockDefinition | undefined {
+): DeclBlock | undefined {
   return parseNumeric(value).map(ratio).map(shortDecimal).match({
     some: (v) => ({
       ...associateWith(

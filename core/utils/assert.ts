@@ -1,4 +1,9 @@
-import type { BlockDefinition, CSSDefinition, CSSObject } from "./../types.ts";
+import type {
+  CSSDefinition,
+  CSSObject,
+  DeclBlock,
+  DeclBlockDefinition,
+} from "./../types.ts";
 import {
   AtRule,
   Declaration,
@@ -16,20 +21,27 @@ export function isValidSelector(selector: string): selector is string {
   return reValidSelector.test(selector);
 }
 
-export function isBlockDefinition(value: unknown): value is BlockDefinition {
+export function isDeclBlock(value: unknown): value is DeclBlock {
   if (!isObject(value)) return false;
 
   return Object.values(value).every((v) => isString(v) || isNumber(v));
 }
 
 export function isCSSObject(value: unknown): value is CSSObject {
-  return isCSSDefinition(value) || isBlockDefinition(value);
+  return isCSSDefinition(value) || isDeclBlockDefinition(value) ||
+    isDeclBlock(value);
 }
 
 export function isCSSDefinition(
   value: unknown,
 ): value is CSSDefinition {
   return isObject(value) && prop("type", value) === "css" &&
+    isObject(prop("value", value));
+}
+export function isDeclBlockDefinition(
+  value: unknown,
+): value is DeclBlockDefinition {
+  return isObject(value) && prop("type", value) === "decl" &&
     isObject(prop("value", value));
 }
 
