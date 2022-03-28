@@ -16,11 +16,6 @@ import {
   Rule,
 } from "../deps.ts";
 
-const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
-export function isValidSelector(selector: string): selector is string {
-  return reValidSelector.test(selector);
-}
-
 export function isDeclBlock(value: unknown): value is DeclBlock {
   if (!isObject(value)) return false;
 

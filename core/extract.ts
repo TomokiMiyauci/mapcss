@@ -1,4 +1,9 @@
-import { isValidSelector } from "./utils/assert.ts";
+// This module is browser compatible.
+
+const reValidSelector = /(?!\d|-{2}|-\d)[a-zA-Z0-9\u00A0-\uFFFF-_:%-?]/;
+export function isValidSelector(selector: string): selector is string {
+  return reValidSelector.test(selector);
+}
 
 /**
  * @see https://github.com/antfu/unocss/blob/main/packages/core/src/extractors/split.ts
