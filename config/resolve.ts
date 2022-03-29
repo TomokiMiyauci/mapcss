@@ -9,19 +9,12 @@ export function isConfigModule(value: unknown): value is { default: Config } {
     isObject((value as Record<PropertyKey, unknown>)["default"]);
 }
 
-export async function resolveResource(
-  { url, resolve }: Resource,
-): Promise<string | undefined> {
-  return await resolve(url);
-}
-
 /** Resolve Config module, return input and output config  */
 export function resolveConfig(
-  { resource, extractor, ...rest }: Config,
+  { extractor, ...rest }: Config,
 ): IOConfig {
   return {
     inputConfig: {
-      resource,
       extractor,
     },
     outputConfig: rest,

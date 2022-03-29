@@ -18,9 +18,6 @@ export type Resource = {
 export type Importer = (url: string) => Promise<unknown>;
 
 export type InputConfig = {
-  /** Define resource location and how to resolve */
-  resource?: Resource;
-
   /** Token extractor
    * @default {@link simpleExtractor}
    */
