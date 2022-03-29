@@ -12,6 +12,6 @@ export const list: CSSMap = {
   outside: { listStylePosition: "outside" },
   "*": ({ id }) =>
     execMatch(id, [
-      [reBracket_$, ([, attr]) => ({ listStylePosition: attr })],
+      [reBracket_$, ([, attr]) => ({ listStyleType: attr })],
     ]),
 };

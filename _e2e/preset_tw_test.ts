@@ -21663,7 +21663,7 @@ const expects: [string, string][] = [
   ["list-outside", ".list-outside{list-style-position:outside}"],
   [
     "list-[upper-roman]",
-    ".list-\\[upper-roman\\]{list-style-position:upper-roman}",
+    ".list-\\[upper-roman\\]{list-style-type:upper-roman}",
   ],
   ["decoration-solid", ".decoration-solid{text-decoration-style:solid}"],
   ["decoration-double", ".decoration-double{text-decoration-style:double}"],
