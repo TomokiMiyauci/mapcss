@@ -436,6 +436,14 @@ const expects: [string, string][] = [
   ["content-between", ".content-between{align-content:space-between}"],
   ["content-around", ".content-around{align-content:space-around}"],
   ["content-evenly", ".content-evenly{align-content:space-evenly}"],
+  [
+    "content-[hello]",
+    ".content-\\[hello\\]{--map-content:hello;content:var(--map-content)}",
+  ],
+  [
+    "content-['']",
+    ".content-\\[\\'\\'\\]{--map-content:'';content:var(--map-content)}",
+  ],
   ["place-content-center", ".place-content-center{place-content:center}"],
   ["place-content-start", ".place-content-start{place-content:start}"],
   ["place-content-end", ".place-content-end{place-content:end}"],
