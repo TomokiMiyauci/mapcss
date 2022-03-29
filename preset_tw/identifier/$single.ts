@@ -36,24 +36,130 @@ import {
   re$PositiveNumberPer$PositiveNumber,
   reBracket_$,
 } from "../../core/utils/regexp.ts";
+import {
+  alignItemsBaseline,
+  alignItemsCenter,
+  alignItemsFlexEnd,
+  alignItemsFlexStart,
+  alignItemsStretch,
+  aspectRatioAuto,
+  aspectRatioSquare,
+  aspectRatioVideo,
+  bottom0px,
+  bottom100pct,
+  bottom1px,
+  bottomAuto,
+  clearBoth,
+  clearLeft,
+  clearNone,
+  clearRight,
+  columns16rem,
+  columns18rem,
+  columns20rem,
+  columns24rem,
+  columns28rem,
+  columns32rem,
+  columns36rem,
+  columns42rem,
+  columns48rem,
+  columns56rem,
+  columns64rem,
+  columns72rem,
+  columns80rem,
+  columnsAuto,
+  displayBlock,
+  displayInline,
+  displayInlineBlock,
+  displayInlineFlex,
+  displayInlineGrid,
+  displayInlineTable,
+  flexBasis0px,
+  flexBasis100Pct,
+  flexBasis1Px,
+  flexBasisAuto,
+  floatLeft,
+  floatNone,
+  floatRight,
+  height0px,
+  height100pct,
+  height100vh,
+  height1px,
+  heightAuto,
+  heightFitContent,
+  heightMaxContent,
+  heightMinContent,
+  isolationAuto,
+  isolationIsolate,
+  left0px,
+  left100pct,
+  left1px,
+  leftAuto,
+  lineHeight1,
+  lineHeightLoose,
+  lineHeightNormal,
+  lineHeightRelaxed,
+  lineHeightSnug,
+  lineHeightTight,
+  margin0px,
+  margin1px,
+  marginAuto,
+  marginBottom0px,
+  marginBottom1px,
+  marginBottomAuto,
+  marginLeft0px,
+  marginLeft1px,
+  marginLeftAuto,
+  marginRight0px,
+  marginRight1px,
+  marginRightAuto,
+  marginTop0px,
+  marginTop1px,
+  marginTopAuto,
+  mixBlendModeColor,
+  mixBlendModeColorBurn,
+  mixBlendModeColorDodge,
+  mixBlendModeDarken,
+  mixBlendModeDifference,
+  mixBlendModeExclusion,
+  mixBlendModeHardLight,
+  mixBlendModeHue,
+  mixBlendModeLighten,
+  mixBlendModeLuminosity,
+  mixBlendModeMultiply,
+  mixBlendModeNormal,
+  mixBlendModeOverlay,
+  mixBlendModeSaturation,
+  mixBlendModeScreen,
+  mixBlendModeSoftLight,
+  textIndent0px,
+  textIndent1px,
+  verticalAlginSub,
+  verticalAlginSuper,
+  verticalAlginTextBottom,
+  verticalAlignBaseline,
+  verticalAlignBottom,
+  verticalAlignMiddle,
+  verticalAlignTextTop,
+  verticalAlignTop,
+} from "../css/mod.ts";
 
 export const align: CSSMap = {
-  baseline: { verticalAlign: "baseline" },
-  top: { verticalAlign: "top" },
-  middle: { verticalAlign: "middle" },
-  bottom: { verticalAlign: "bottom" },
+  baseline: verticalAlignBaseline,
+  top: verticalAlignTop,
+  middle: verticalAlignMiddle,
+  bottom: verticalAlignBottom,
   text: {
-    top: { verticalAlign: "text-top" },
-    bottom: { verticalAlign: "text-bottom" },
+    top: verticalAlignTextTop,
+    bottom: verticalAlginTextBottom,
   },
-  sub: { verticalAlign: "sub" },
-  super: { verticalAlign: "super" },
+  sub: verticalAlginSub,
+  super: verticalAlginSuper,
 };
 
 export const aspect: CSSMap = {
-  auto: { aspectRatio: "auto" },
-  square: { aspectRatio: "1 / 1" },
-  video: { aspectRatio: "16 / 9" },
+  auto: aspectRatioAuto,
+  square: aspectRatioSquare,
+  video: aspectRatioVideo,
   "*": ({ id }) =>
     execMatch(id, [
       [reBracket_$, ([, body]) => ({ aspectRatio: body })],
@@ -61,10 +167,10 @@ export const aspect: CSSMap = {
 };
 
 export const basis: CSSMap = {
-  0: { flexBasis: "0px" },
-  px: { flexBasis: "1px" },
-  auto: { flexBasis: "auto" },
-  full: { flexBasis: "100%" },
+  0: flexBasis0px,
+  px: flexBasis1Px,
+  auto: flexBasisAuto,
+  full: flexBasis100Pct,
   "*": ({ id }) =>
     execMatch(id, [[
       re$Numeric,
@@ -79,13 +185,13 @@ export const basis: CSSMap = {
     ], [reBracket_$, ([, arbitrary]) => ({ "flex-basis": arbitrary })]]),
 };
 
-export const block: DeclBlock = { display: "block" };
+export const block = displayBlock;
 
 export const bottom: CSSMap = {
-  0: { bottom: "0px" },
-  px: { bottom: "1px" },
-  auto: { bottom: "auto" },
-  full: { bottom: "100%" },
+  0: bottom0px,
+  px: bottom1px,
+  auto: bottomAuto,
+  full: bottom100pct,
   "*": ({ id }) =>
     execMatch(id, [[
       re$PositiveNumberPer$PositiveNumber,
@@ -136,26 +242,27 @@ export const container: CSSMap = {
 };
 
 export const clear: CSSMap = {
-  right: { clear: "right" },
-  left: { clear: "left" },
-  both: { clear: "both" },
-  none: { clear: "none" },
+  right: clearRight,
+  left: clearLeft,
+  both: clearBoth,
+  none: clearNone,
 };
+
 export const columns: CSSMap = {
-  auto: { columns: "auto" },
-  "3xs": { columns: "16rem" },
-  "2xs": { columns: "18rem" },
-  xs: { columns: "20rem" },
-  sm: { columns: "24rem" },
-  md: { columns: "28rem" },
-  lg: { columns: "32rem" },
-  xl: { columns: "36rem" },
-  "2xl": { columns: "42rem" },
-  "3xl": { columns: "48rem" },
-  "4xl": { columns: "56rem" },
-  "5xl": { columns: "64rem" },
-  "6xl": { columns: "72rem" },
-  "7xl": { columns: "80rem" },
+  auto: columnsAuto,
+  "3xs": columns16rem,
+  "2xs": columns18rem,
+  xs: columns20rem,
+  sm: columns24rem,
+  md: columns28rem,
+  lg: columns32rem,
+  xl: columns36rem,
+  "2xl": columns42rem,
+  "3xl": columns48rem,
+  "4xl": columns56rem,
+  "5xl": columns64rem,
+  "6xl": columns72rem,
+  "7xl": columns80rem,
   "*": ({ id }) =>
     execMatch(id, [[
       re$PositiveNumber,
@@ -164,9 +271,9 @@ export const columns: CSSMap = {
 };
 
 export const float: CSSMap = {
-  right: { float: "right" },
-  left: { float: "left" },
-  none: { float: "none" },
+  right: floatRight,
+  left: floatLeft,
+  none: floatNone,
 };
 
 export const grow: CSSMap = {
@@ -179,14 +286,14 @@ export const grow: CSSMap = {
 };
 
 export const h: CSSMap = {
-  0: { height: "0px" },
-  px: { height: "1px" },
-  auto: { height: "auto" },
-  full: { height: "100%" },
-  screen: { height: "100vh" },
-  min: { height: "min-content" },
-  max: { height: "max-content" },
-  fit: { height: "fit-content" },
+  0: height0px,
+  px: height1px,
+  auto: heightAuto,
+  full: height100pct,
+  screen: height100vh,
+  min: heightMinContent,
+  max: heightMaxContent,
+  fit: heightFitContent,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -208,8 +315,8 @@ export const h: CSSMap = {
 };
 
 export const indent: CSSMap = {
-  0: { textIndent: "0px" },
-  px: { textIndent: "1px" },
+  0: textIndent0px,
+  px: textIndent1px,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -222,30 +329,29 @@ export const indent: CSSMap = {
 };
 
 export const inline: CSSMap = {
-  "": { display: "inline" },
-  block: { display: "inline-block" },
-  flex: { display: "inline-flex" },
-  table: { display: "inline-table" },
-  grid: { display: "inline-grid" },
+  "": displayInline,
+  block: displayInlineBlock,
+  flex: displayInlineFlex,
+  table: displayInlineTable,
+  grid: displayInlineGrid,
 };
-export const isolate: DeclBlock = { isolation: "isolate" };
-export const isolation: CSSMap = {
-  auto: { isolation: "auto" },
-};
+export const isolate = isolationIsolate;
+export const isolation: CSSMap = { auto: isolationAuto };
+
 export const items: CSSMap = {
-  center: { alignItems: "center" },
-  start: { alignItems: "flex-start" },
-  end: { alignItems: "flex-end" },
-  baseline: { alignItems: "baseline" },
-  stretch: { alignItems: "stretch" },
+  center: alignItemsCenter,
+  start: alignItemsFlexStart,
+  end: alignItemsFlexEnd,
+  baseline: alignItemsBaseline,
+  stretch: alignItemsStretch,
 };
 export const leading: CSSMap = {
-  none: { lineHeight: 1 },
-  tight: { lineHeight: 1.25 },
-  snug: { lineHeight: 1.375 },
-  normal: { lineHeight: 1.5 },
-  relaxed: { lineHeight: 1.625 },
-  loose: { lineHeight: 2 },
+  none: lineHeight1,
+  tight: lineHeightTight,
+  snug: lineHeightSnug,
+  normal: lineHeightNormal,
+  relaxed: lineHeightRelaxed,
+  loose: lineHeightLoose,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -258,10 +364,10 @@ export const leading: CSSMap = {
 };
 
 export const left: CSSMap = {
-  0: { left: "0px" },
-  px: { left: "1px" },
-  auto: { left: "auto" },
-  full: { left: "100%" },
+  0: left0px,
+  px: left1px,
+  auto: leftAuto,
+  full: left100pct,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -281,9 +387,9 @@ export const left: CSSMap = {
 };
 
 export const m: CSSMap = {
-  0: { margin: "0px" },
-  auto: { margin: "auto" },
-  px: { margin: "1px" },
+  0: margin0px,
+  px: margin1px,
+  auto: marginAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -296,9 +402,9 @@ export const m: CSSMap = {
 };
 
 export const mb: CSSMap = {
-  0: { marginBottom: "0px" },
-  auto: { marginBottom: "auto" },
-  px: { marginBottom: "1px" },
+  0: marginBottom0px,
+  px: marginBottom1px,
+  auto: marginBottomAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -315,35 +421,35 @@ export const mb: CSSMap = {
 
 export const mix: CSSMap = {
   blend: {
-    normal: { mixBlendMode: "normal" },
-    multiply: { mixBlendMode: "multiply" },
-    screen: { mixBlendMode: "screen" },
-    overlay: { mixBlendMode: "overlay" },
-    darken: { mixBlendMode: "darken" },
-    lighten: { mixBlendMode: "lighten" },
-    hue: { mixBlendMode: "hue" },
-    saturation: { mixBlendMode: "saturation" },
-    luminosity: { mixBlendMode: "luminosity" },
-    difference: { mixBlendMode: "difference" },
-    exclusion: { mixBlendMode: "exclusion" },
+    normal: mixBlendModeNormal,
+    multiply: mixBlendModeMultiply,
+    screen: mixBlendModeScreen,
+    overlay: mixBlendModeOverlay,
+    darken: mixBlendModeDarken,
+    lighten: mixBlendModeLighten,
+    hue: mixBlendModeHue,
+    saturation: mixBlendModeSaturation,
+    luminosity: mixBlendModeLuminosity,
+    difference: mixBlendModeDifference,
+    exclusion: mixBlendModeExclusion,
     color: {
-      "": { mixBlendMode: "color" },
-      dodge: { mixBlendMode: "color-dodge" },
-      burn: { mixBlendMode: "color-burn" },
+      "": mixBlendModeColor,
+      dodge: mixBlendModeColorDodge,
+      burn: mixBlendModeColorBurn,
     },
     hard: {
-      light: { mixBlendMode: "hard-light" },
+      light: mixBlendModeHardLight,
     },
     soft: {
-      light: { mixBlendMode: "soft-light" },
+      light: mixBlendModeSoftLight,
     },
   },
 };
 
 export const ml: CSSMap = {
-  0: { marginLeft: "0px" },
-  auto: { marginLeft: "auto" },
-  px: { marginLeft: "1px" },
+  0: marginLeft0px,
+  px: marginLeft1px,
+  auto: marginLeftAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -359,9 +465,9 @@ export const ml: CSSMap = {
 };
 
 export const mr: CSSMap = {
-  0: { marginRight: "0px" },
-  auto: { marginRight: "auto" },
-  px: { marginRight: "1px" },
+  0: marginRight0px,
+  px: marginRight1px,
+  auto: marginRightAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -377,9 +483,9 @@ export const mr: CSSMap = {
 };
 
 export const mt: CSSMap = {
-  0: { marginTop: "0px" },
-  auto: { marginTop: "auto" },
-  px: { marginTop: "1px" },
+  0: marginTop0px,
+  px: marginTop1px,
+  auto: marginTopAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
