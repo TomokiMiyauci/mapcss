@@ -1,3 +1,15 @@
+# [1.0.0-beta.52](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2022-03-29)
+
+
+### Bug Fixes
+
+* **preset_tw:** fix list-* output css ([f268b43](https://github.com/TomokiMiyauci/mapcss/commit/f268b43e19456e7450bd64836584151d187f73da))
+
+
+### Features
+
+* **core:** add css property key types to `DeclBlock` types ([e55911e](https://github.com/TomokiMiyauci/mapcss/commit/e55911e364f1b05f3538471d2d00e61c75bfeff1))
+
 # [1.0.0-beta.51](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.50...v1.0.0-beta.51) (2022-03-29)
 
 
