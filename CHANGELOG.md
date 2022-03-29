@@ -1,3 +1,10 @@
+# [1.0.0-beta.50](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2022-03-29)
+
+
+### Bug Fixes
+
+* **preset_typography:** ensure browser compatibility for module entry point ([b089b45](https://github.com/TomokiMiyauci/mapcss/commit/b089b45d7ff5dc3d878fdb12881bb080d479183b))
+
 # [1.0.0-beta.49](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2022-03-28)
 
 
