@@ -1,3 +1,10 @@
+# [1.0.0-beta.49](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2022-03-28)
+
+
+### Bug Fixes
+
+* **core:** replace selector parser, the all module to be browser capatible ([6c41e53](https://github.com/TomokiMiyauci/mapcss/commit/6c41e53294102df3a4a7a36c91f38311f8972fce))
+
 # [1.0.0-beta.48](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2022-03-28)
 
 
