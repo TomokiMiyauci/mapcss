@@ -28,6 +28,12 @@ const meta: DefineMeta[] = [
         "ast",
       ],
     },
+    mappings: {
+      "https://esm.sh/csstype@3.0.11/index.d.ts?pin=v74": {
+        name: "csstype",
+        version: "3.0.11",
+      },
+    },
   },
   {
     root: "config",

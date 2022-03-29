@@ -1,6 +1,6 @@
 // This module is browser compatible.
 
-import type { AcceptedPlugin, Arrayable, Root } from "./deps.ts";
+import type { AcceptedPlugin, Arrayable, CSSProperties, Root } from "./deps.ts";
 
 export type Tree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | Tree<Leaf>;
@@ -9,7 +9,9 @@ export type Tree<Leaf, P extends PropertyKey = string | number> = {
 export type CSS = Tree<string | number>;
 
 /** CSS Block Declaration */
-export type DeclBlock = Record<string, string | number>;
+export type DeclBlock =
+  | Record<keyof CSSProperties, string | number>
+  | Record<string, string | number>;
 
 export type CSSDefinition = {
   type: "css";

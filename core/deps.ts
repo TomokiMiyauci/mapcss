@@ -34,6 +34,9 @@ export type {
 } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
 export { default as valueParser } from "https://esm.sh/postcss-value-parser@4.2.0";
 export { default as selectorParser } from "https://esm.sh/postcss-selector-parser@v6.0.9";
+export type {
+  Properties as CSSProperties,
+} from "https://esm.sh/csstype@3.0.11/index.d.ts?pin=v74";
 
 /** safe get accessor */
 export function prop<
