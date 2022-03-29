@@ -2,6 +2,7 @@
 
 import type { Labeled } from "../core/types.ts";
 import type { Config as GenerateConfig } from "../core/generate.ts";
+import type { Arrayable } from "./deps.ts";
 // deno-lint-ignore no-unused-vars
 import type { simpleExtractor } from "./extractor.ts";
 
@@ -23,7 +24,7 @@ export type InputConfig = {
   /** Token extractor
    * @default {@link simpleExtractor}
    */
-  extractor?: Extractor;
+  extractor?: Arrayable<Extractor>;
 };
 export type OutputConfig = GenerateConfig;
 
