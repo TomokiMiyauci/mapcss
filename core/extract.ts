@@ -15,7 +15,7 @@ export const splitSimple = (code: string): string[] =>
 
 export const splitBracket = (code: string): string[] => {
   const re = new RegExp(
-    `[${separator}]*([^${separator}]*?\\[.+?\\])[${separator}]+`,
+    `[${separator}]*([^${separator}]*?\\[.+?\\])[${separator}]*`,
     "g",
   );
   return code.split(re).filter(

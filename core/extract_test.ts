@@ -43,7 +43,8 @@ Deno.test("splitBracket", () => {
     [`class='content-["_"] content[" a "][position:static]'`, [
       `class`,
       `content-["_"]`,
-      `content[" a "][position:static]`,
+      `content[" a "]`,
+      `[position:static]`,
     ]],
     [`class='content-["_"] content[" a "] [position:static]'`, [
       `class`,
@@ -54,9 +55,9 @@ Deno.test("splitBracket", () => {
     [`[]`, []],
     [`"[]"`, []],
     [`"[][]"`, []],
-    [`"[a][]"`, ["[a][]"]],
-    [`[a][]`, ["[a][]"]],
-    [`"[a][b]"`, ["[a][b]"]],
+    [`"[a][]"`, ["[a]"]],
+    [`[a][]`, ["[a]"]],
+    [`"[a][b]"`, ["[a]", "[b]"]],
     [`\`[a] [b] content-[" "]\``, ["[a]", "[b]", `content-[" "]`]],
     [`\`[a]    [b]    content-[" "]   \``, ["[a]", "[b]", `content-[" "]`]],
   ];
