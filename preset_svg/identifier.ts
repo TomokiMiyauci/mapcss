@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { encodeSvg } from "./_utils.ts";
 import { cssFn, stringifyCustomProperty } from "../core/utils/format.ts";
 import { chain, curry } from "./deps.ts";

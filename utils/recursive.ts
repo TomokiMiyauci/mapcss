@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { isObject, mapEntries } from "./deps.ts";
 import type { Tree } from "../core/types.ts";
 

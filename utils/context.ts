@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type {
   MatchInfo,
   RuntimeContext,

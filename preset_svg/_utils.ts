@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 /** Safe encode svg tag for BaseURI
  * @see https://bl.ocks.org/jennyknuth/222825e315d45a738ed9d6e04c7a88d0#encodeSvg.js
  */

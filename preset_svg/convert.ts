@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { defaults, IconifyJSON, iconToSVG, parseIconSet } from "./deps.ts";
 import type { SVGMap } from "./types.ts";
 

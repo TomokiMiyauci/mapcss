@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export const AUTO = "auto";
 export const NONE = "none";
 export const BOTH = "both";
