@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { CURRENT_COLOR, INHERIT } from "./constant.ts";
 import type { Theme } from "../core/types.ts";
 
