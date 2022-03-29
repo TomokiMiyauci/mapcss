@@ -1,3 +1,17 @@
+# [1.0.0-beta.51](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.50...v1.0.0-beta.51) (2022-03-29)
+
+
+### Bug Fixes
+
+* **config:** remove resource proerpty from `Config` types ([f4652dd](https://github.com/TomokiMiyauci/mapcss/commit/f4652ddea2be2057bdfc87cb0e0a377a0d03f8ac))
+* **core:** fix bracket extract function ([4b4cd31](https://github.com/TomokiMiyauci/mapcss/commit/4b4cd31b87e8b3e54316648f5a5d0dd5f6eaf659))
+
+
+### Features
+
+* **config:** add `applyExtractor` function, extractor property accept array ([d034045](https://github.com/TomokiMiyauci/mapcss/commit/d034045d760f6fbcdd873b4c2ef8bc856cab9784))
+* **core:** add bracket extract function ([0a52563](https://github.com/TomokiMiyauci/mapcss/commit/0a525630ae0f9417fe5af413489885e087d03c1b))
+
 # [1.0.0-beta.50](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2022-03-29)
 
 
