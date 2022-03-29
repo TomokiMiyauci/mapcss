@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { Declaration } from "../deps.ts";
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import type { Modifier } from "../../core/types.ts";

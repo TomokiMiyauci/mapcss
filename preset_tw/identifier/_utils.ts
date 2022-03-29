@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { Arrayable, associateWith, isNumber, Option } from "../deps.ts";
 import {
   customProperty,

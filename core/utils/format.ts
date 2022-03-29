@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { FilledRGBA, RGBA } from "./parse.ts";
 
 /** format numeric to `#.##`

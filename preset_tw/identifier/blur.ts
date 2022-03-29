@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { customPropertySet } from "./_utils.ts";
 import type { CSSMap, DeclBlock } from "../../core/types.ts";
 

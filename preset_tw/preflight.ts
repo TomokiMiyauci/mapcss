@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { CSS } from "../core/types.ts";
 
 /** TailwindCSS style normalize CSS as CSS-in-JS */

@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { Node } from "../deps.ts";
 import type {
   Modifier,

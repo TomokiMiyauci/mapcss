@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { isUndefined } from "../deps.ts";
 import type { CSSObject } from "../types.ts";
 

@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { $2xl, lg, md, sm, xl } from "./breakpoint.ts";
 import { createDark } from "./color_scheme.ts";
 import { scrollbar, scrollbarThumb, scrollbarTrack } from "./pseudo.ts";

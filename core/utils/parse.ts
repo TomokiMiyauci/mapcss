@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export type RGBA = {
   r: number;
   g: number;

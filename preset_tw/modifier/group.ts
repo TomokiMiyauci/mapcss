@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { selectorTransform } from "./_utils.ts";
 import type { ModifierDefinition, ModifierMap } from "../../core/types.ts";
 

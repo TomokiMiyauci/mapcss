@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { Syntax } from "../core/types.ts";
 
 export const twBasicSyntax: Syntax = {

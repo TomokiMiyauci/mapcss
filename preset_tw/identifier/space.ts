@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { execMatch, re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { stringifyCustomProperty } from "../../core/utils/format.ts";
 import { customPropertySet, remify } from "./_utils.ts";

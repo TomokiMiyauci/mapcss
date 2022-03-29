@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { isString } from "../deps.ts";
 import type { Modifier } from "../../core/types.ts";
 

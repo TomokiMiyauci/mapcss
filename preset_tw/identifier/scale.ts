@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { execMatch, re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { transformValue } from "./_utils.ts";

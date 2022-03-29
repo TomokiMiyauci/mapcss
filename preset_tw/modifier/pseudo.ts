@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { Modifier } from "./../../core/types.ts";
 
 export const scrollbar: Modifier = (parent) => {

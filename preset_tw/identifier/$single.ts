@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { filterValue, handleFilter } from "./_filter_utils.ts";
 import {
   parseColor,

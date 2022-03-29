@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export { preset as presetTw } from "./preset.ts";
 export { preflight as preflightCSS } from "./preflight.ts";
 export * from "./identifier/mod.ts";

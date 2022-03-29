@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { execMatch, re$Numeric, reBracket_$ } from "../../core/utils/regexp.ts";
 import { matcher, pxify } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
