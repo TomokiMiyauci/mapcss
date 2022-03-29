@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import {
   chain,
@@ -11,15 +13,9 @@ import {
   Root,
   Rule,
   SelectorNode,
+  selectorParser,
   SyncProcessor,
   toAST,
-} from "../deps.ts";
-import {
-  classNameNode,
-  combinatorNode,
-  parseSelector,
-  pseudoNode,
-  selectorNode,
   toObject,
 } from "../deps.ts";
 import { $resolveTheme } from "../../core/resolve.ts";
@@ -388,27 +384,27 @@ export function transformSelector(selector: string, className: string): string {
     root.nodes.forEach((selector) => {
       const pseudos = selector.filter((v) => !isWhereableNode(v));
 
-      const where = pseudoNode({
+      const where = selectorParser.pseudo({
         "value": ":where",
         nodes: [
-          selectorNode({
+          selectorParser.selector({
             value: "",
             nodes: selector.filter(isWhereableNode),
           }),
         ],
       });
 
-      const _classNameNode = classNameNode({ value: className });
-      const _combinatorNode = combinatorNode({ value: " " });
+      const _classNameNode = selectorParser.className({ value: className });
+      const _combinatorNode = selectorParser.combinator({ value: " " });
       const NOT = "not";
-      const notClassName = classNameNode({
+      const notClassName = selectorParser.className({
         value: `${NOT}-${className}`,
       });
-      const not = pseudoNode({
+      const not = selectorParser.pseudo({
         value: ":not",
         nodes: [notClassName],
       });
-      const newSelector = selectorNode({
+      const newSelector = selectorParser.selector({
         value: "",
         nodes: [_classNameNode, _combinatorNode, where, not, ...pseudos],
       });
@@ -416,7 +412,7 @@ export function transformSelector(selector: string, className: string): string {
       selector.replaceWith(newSelector as never);
     });
   };
-  const result = parseSelector(processor).processSync(selector, {
+  const result = selectorParser(processor).processSync(selector, {
     lossless: false,
   });
   return result;
