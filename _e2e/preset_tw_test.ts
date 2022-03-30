@@ -1,4 +1,4 @@
-import { expect, test } from "../dev_deps.ts";
+import { expect, objectContaining, test } from "../dev_deps.ts";
 import { min } from "./preset_tw/min.ts";
 import { $single } from "./preset_tw/$single.ts";
 import { modifier } from "./preset_tw/modifier.ts";
@@ -34409,12 +34409,14 @@ const expects: [string, string][] = [
 
 const config = { preset: [presetTw({ injectVariable: false })], minify: true };
 
-test("presetTw", () => {
-  expects.forEach(([className, result]) => {
+test("presetTw", async () => {
+  await Promise.all(expects.map(([className, result]) => {
     expect(
-      generate(new Set([className]), config).css,
-    ).toBe(
-      result,
+      generate(new Set([className]), config),
+    ).resolves.toEqual(
+      objectContaining({
+        css: result,
+      }),
     );
-  });
+  }));
 });

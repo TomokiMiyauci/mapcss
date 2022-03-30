@@ -1,11 +1,14 @@
 // This module is browser compatible.
 
-import { postcss, Root } from "./deps.ts";
+import { AtRule, postcss, Root } from "./deps.ts";
 import { generate } from "./generate.ts";
 import { applyExtractor } from "./extract.ts";
 import type { Config, Output } from "./types.ts";
 
-export function transform(input: string, config: Readonly<Config>): Output {
+export function transform(
+  input: string,
+  config: Readonly<Config>,
+): Promise<Output> {
   const ast = postcss().process(input).root;
 
   return applyDirective(ast.clone(), (input) => {
@@ -14,16 +17,26 @@ export function transform(input: string, config: Readonly<Config>): Output {
   });
 }
 
-export function applyDirective(
+export async function applyDirective(
   ast: Root,
-  map: (input: string) => Output,
-): Output {
+  map: (input: string) => Promise<Output>,
+): Promise<Output> {
   let matched = new Set<string>();
   let unmatched = new Set<string>();
-  ast.walkAtRules("apply", (root) => {
-    const { ast, matched: _matched, unmatched: _unmatched } = map(root.params);
-    matched = _matched;
-    unmatched = _unmatched;
+
+  const atRules: AtRule[] = [];
+
+  // collect @apply atRule because walk traverser is sync only
+  ast.walkAtRules("apply", (atRule) => {
+    atRules.push(atRule);
+  });
+
+  await Promise.all(atRules.map(async (root) => {
+    const { ast, matched: _matched, unmatched: _unmatched } = await map(
+      root.params,
+    );
+    matched = mergeSet(matched, _matched);
+    unmatched = mergeSet(unmatched, _unmatched);
 
     if (root.parent?.type === "rule") {
       const visit = new Root();
@@ -35,7 +48,7 @@ export function applyDirective(
     }
 
     root.remove();
-  });
+  }));
 
   return {
     ast,
@@ -45,4 +58,11 @@ export function applyDirective(
     matched,
     unmatched,
   };
+}
+
+function mergeSet<T>(a: Set<T>, b: Set<T>): Set<T> {
+  b.forEach((value) => {
+    a.add(value);
+  });
+  return a;
 }

@@ -1,7 +1,7 @@
 import { generate } from "../../core/mod.ts";
 import { presetTypography } from "../../preset_typography/mod.ts";
-import { expect, test } from "../../dev_deps.ts";
-test("generated Style Sheet", () => {
+import { expect, objectContaining, test } from "../../dev_deps.ts";
+test("generated Style Sheet", async () => {
   const table: [string, string][] = [
     [
       "prose",
@@ -22,7 +22,7 @@ test("generated Style Sheet", () => {
     ["prose-unknown", ""],
   ];
 
-  table.forEach(([token, result]) =>
+  await Promise.all(table.map(([token, result]) =>
     expect(
       generate(
         token,
@@ -30,7 +30,7 @@ test("generated Style Sheet", () => {
           preset: [presetTypography()],
           minify: true,
         },
-      ).css,
-    ).toBe(result)
-  );
+      ),
+    ).resolves.toEqual(objectContaining({ css: result }))
+  ));
 });

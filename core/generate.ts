@@ -47,7 +47,7 @@ function rootKeys(
 }
 
 /** Generate output of CSS Style Sheet */
-export function generate(
+export async function generate(
   /** Input token */
   input: Input,
   {
@@ -60,7 +60,7 @@ export function generate(
     Config
   >,
   {}: Readonly<Partial<Option>> = {},
-): Output {
+): Promise<Output> {
   const ctx = {
     separator,
     variablePrefix,
@@ -154,12 +154,14 @@ export function generate(
   const plugins = minify
     ? [...corePostcssPlugins, postcssMinify()]
     : corePostcssPlugins;
-  const ast = postcss(...plugins, ...postcssPlugin).process(final).root;
+  const result = await postcss(...plugins, ...postcssPlugin).process(final);
 
   const output: Output = {
-    ast,
+    get ast(): Root {
+      return result.root.root();
+    },
     get css(): string {
-      return ast.toString();
+      return result.toString();
     },
     matched,
     unmatched,
