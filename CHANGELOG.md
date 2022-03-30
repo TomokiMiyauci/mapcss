@@ -1,3 +1,10 @@
+# [1.0.0-beta.55](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2022-03-30)
+
+
+### Bug Fixes
+
+* **config:** resolved config file path must be file scheme ([e28f9f9](https://github.com/TomokiMiyauci/mapcss/commit/e28f9f962486b4f6044ccdcce2b80f00e6a17054))
+
 # [1.0.0-beta.54](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2022-03-30)
 
 
