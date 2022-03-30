@@ -209,3 +209,30 @@ export type MatchInfo = {
    */
   path: string[];
 };
+
+export type Extractor = Labeled & {
+  fn: (code: string) => Set<string>;
+};
+
+export type Config = {
+  /** Token extractor
+   * @default {@link simpleExtractor}
+   */
+  readonly extractor?: Arrayable<Extractor>;
+} & Partial<StaticConfig & StaticContext>;
+
+export type Output = {
+  /** The `string` of CSS Style Sheet.
+   * The AST is converted to `string` when the property is accessed.
+   */
+  css: string;
+
+  /** PostCSS AST */
+  ast: Root;
+
+  /** The matched tokens */
+  matched: Set<string>;
+
+  /** The unmatched tokens */
+  unmatched: Set<string>;
+};
