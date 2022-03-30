@@ -1,3 +1,10 @@
+# [1.0.0-beta.54](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2022-03-30)
+
+
+### Bug Fixes
+
+* **config:** fix refer to absolute path, typo ([bf3a6ae](https://github.com/TomokiMiyauci/mapcss/commit/bf3a6ae413cb3cbf9c1d2c4e7f0d0a3ce6faa133))
+
 # [1.0.0-beta.53](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2022-03-30)
 
 
