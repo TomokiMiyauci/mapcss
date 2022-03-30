@@ -1,17 +1,16 @@
 // This module is browser compatible.
 
 import { postcss, Root } from "./deps.ts";
-import { generate, Output } from "./generate.ts";
-import type { StaticConfig, StaticContext } from "./types.ts";
+import { generate } from "./generate.ts";
+import { applyExtractor } from "./extract.ts";
+import type { Config, Output } from "./types.ts";
 
-// TODO(miyauci): define generic config types
-type Config = Partial<StaticConfig & StaticContext>;
-
-export function transform(input: string, config: Readonly<Config>) {
+export function transform(input: string, config: Readonly<Config>): Output {
   const ast = postcss().process(input).root;
 
   return applyDirective(ast.clone(), (input) => {
-    return generate(input.split(" "), config);
+    const tokens = applyExtractor(input, config.extractor);
+    return generate(tokens, config);
   });
 }
 
