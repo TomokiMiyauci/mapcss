@@ -1,3 +1,12 @@
+# [1.0.0-beta.53](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2022-03-30)
+
+
+### Features
+
+* **core:** add basic transform function that apply `[@apply](https://github.com/apply)` directive ([669641e](https://github.com/TomokiMiyauci/mapcss/commit/669641eca513d19e80318b0f0d554a32afc04046))
+* **core:** apply extract before process [@apply](https://github.com/apply) ([1acd773](https://github.com/TomokiMiyauci/mapcss/commit/1acd7733e1c4e6c3799e7f5feec43c91d1a981ab))
+* **core:** move `Config` types to core module ([1f505a5](https://github.com/TomokiMiyauci/mapcss/commit/1f505a5f1f9d0be23b425d0f7f6d3c41a86bb710))
+
 # [1.0.0-beta.52](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2022-03-29)
 
 
