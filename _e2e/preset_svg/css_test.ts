@@ -1,10 +1,10 @@
-import { generate, GenerateConfig } from "../../core/mod.ts";
+import { Config, generate } from "../../core/mod.ts";
 import { presetSVG } from "../../preset_svg/mod.ts";
 
 import { expect, test } from "../../dev_deps.ts";
 
 test("presetSVG generation test", () => {
-  const config: GenerateConfig = {
+  const config: Config = {
     preset: [presetSVG({
       carbon: {
         "3d-curve-auto-colon":
@@ -29,7 +29,7 @@ test("presetSVG generation test", () => {
 });
 
 test("color mode is static", () => {
-  const config: GenerateConfig = {
+  const config: Config = {
     preset: [presetSVG({
       carbon: {
         "3d-curve-auto-colon":
