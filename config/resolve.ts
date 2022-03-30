@@ -10,6 +10,12 @@ export function isConfigModule(value: unknown): value is { default: Config } {
     isObject((value as Record<PropertyKey, unknown>)["default"]);
 }
 
+export async function resolveResource(
+  { url, resolve }: Resource,
+): Promise<string | undefined> {
+  return await resolve(url);
+}
+
 export async function resolveConfigFile(
   url: string,
   importer: Importer = (url: string) => import(url),
@@ -24,5 +30,5 @@ export async function resolveConfigFile(
 export function resolveConfigFilePath(
   resource: Resource,
 ): Promise<string | undefined> {
-  return resolveConfigFilePath(resource);
+  return resolveResource(resource);
 }
