@@ -1,3 +1,10 @@
+# [1.0.0-beta.56](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2022-03-30)
+
+
+### Features
+
+* change core module to asynchronous ([97ce7f6](https://github.com/TomokiMiyauci/mapcss/commit/97ce7f67722043c8b0c51be65168024160ce6268)), closes [#36](https://github.com/TomokiMiyauci/mapcss/issues/36)
+
 # [1.0.0-beta.55](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2022-03-30)
 
 
