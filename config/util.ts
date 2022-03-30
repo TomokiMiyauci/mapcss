@@ -1,5 +1,5 @@
 import { expandGlob } from "https://deno.land/std@0.132.0/fs/expand_glob.ts";
-import { resolve } from "https://deno.land/std@0.132.0/path/mod.ts";
+import { resolve, toFileUrl } from "https://deno.land/std@0.132.0/path/mod.ts";
 import { Resource } from "./types.ts";
 
 export function fromFileSystem(
@@ -11,7 +11,7 @@ export function fromFileSystem(
     resolve: async (url) => {
       for await (const { isFile, path } of expandGlob(url)) {
         if (isFile) {
-          return path;
+          return toFileUrl(path).toString();
         }
       }
     },
