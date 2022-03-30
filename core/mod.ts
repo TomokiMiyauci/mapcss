@@ -11,3 +11,4 @@ export * from "./extract.ts";
 export * from "./resolve.ts";
 export * from "./types.ts";
 export * from "./ast.ts";
+export * from "./transform.ts";
