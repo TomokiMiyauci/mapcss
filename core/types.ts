@@ -1,6 +1,8 @@
 // This module is browser compatible.
 
 import type { AcceptedPlugin, Arrayable, CSSProperties, Root } from "./deps.ts";
+// deno-lint-ignore no-unused-vars
+import { simpleExtractor } from "./extract.ts";
 
 export type Tree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | Tree<Leaf>;

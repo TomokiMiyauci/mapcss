@@ -19,8 +19,9 @@ import {
 import { createInjectCSS } from "./preprocess.ts";
 import { CHAR_MAP, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
 import type {
+  Config,
+  Output,
   RuntimeContext,
-  StaticConfig,
   StaticContext,
   Syntax,
 } from "./types.ts";
@@ -32,25 +33,7 @@ const defaultSyntax: Syntax = {
 
 export type Input = Set<string> | string[] | string;
 
-export type Config = Partial<StaticConfig & StaticContext>;
-
 export type Option = {};
-
-export type Output = {
-  /** The `string` of CSS Style Sheet.
-   * The AST is converted to `string` when the property is accessed.
-   */
-  css: string;
-
-  /** PostCSS AST */
-  ast: Root;
-
-  /** The matched tokens */
-  matched: Set<string>;
-
-  /** The unmatched tokens */
-  unmatched: Set<string>;
-};
 
 function rootKeys(
   value: Readonly<Readonly<Record<PropertyKey, unknown>>[]>,
