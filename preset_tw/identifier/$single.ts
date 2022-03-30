@@ -37,11 +37,13 @@ import {
   reBracket_$,
 } from "../../core/utils/regexp.ts";
 import {
+  accentColorAuto,
   alignItemsBaseline,
   alignItemsCenter,
   alignItemsFlexEnd,
   alignItemsFlexStart,
   alignItemsStretch,
+  appearanceNone,
   aspectRatioAuto,
   aspectRatioSquare,
   aspectRatioVideo,
@@ -67,19 +69,68 @@ import {
   columns72rem,
   columns80rem,
   columnsAuto,
+  cursorAlias,
+  cursorAllScroll,
+  cursorAuto,
+  cursorCell,
+  cursorColResize,
+  cursorContentMenu,
+  cursorCopy,
+  cursorCrosshair,
+  cursorDefault,
+  cursorEResize,
+  cursorEwResize,
+  cursorGrab,
+  cursorGrabbing,
+  cursorHelp,
+  cursorMove,
+  cursorNeResize,
+  cursorNeswResize,
+  cursorNoDrop,
+  cursorNone,
+  cursorNotAllowed,
+  cursorNResize,
+  cursorNsResize,
+  cursorNwResize,
+  cursorNwseResize,
+  cursorPointer,
+  cursorProgress,
+  cursorRowResize,
+  cursorSeResize,
+  cursorSResize,
+  cursorSwResize,
+  cursorText,
+  cursorVerticalText,
+  cursorWait,
+  cursorWResize,
+  cursorZoomIn,
+  cursorZoomOut,
   displayBlock,
+  displayContents,
+  displayFlowRoot,
   displayInline,
   displayInlineBlock,
   displayInlineFlex,
   displayInlineGrid,
   displayInlineTable,
+  displayNone,
   flexBasis0px,
   flexBasis100Pct,
   flexBasis1Px,
   flexBasisAuto,
+  flexShrink1,
   floatLeft,
   floatNone,
   floatRight,
+  fontStyleItalic,
+  fontVariantNumericDiagonalFractions,
+  fontVariantNumericLiningNums,
+  fontVariantNumericOldstyleNums,
+  fontVariantNumericOrdinal,
+  fontVariantNumericProportionalNums,
+  fontVariantNumericSlashedZero,
+  fontVariantNumericStackedFractions,
+  fontVariantNumericTabularNums,
   height0px,
   height100pct,
   height100vh,
@@ -94,6 +145,12 @@ import {
   left100pct,
   left1px,
   leftAuto,
+  letterSpacingNormal,
+  letterSpacingTight,
+  letterSpacingTighter,
+  letterSpacingWide,
+  letterSpacingWider,
+  letterSpacingWidest,
   lineHeight1,
   lineHeightLoose,
   lineHeightNormal,
@@ -102,6 +159,7 @@ import {
   lineHeightTight,
   margin0px,
   margin1px,
+  margin_1px,
   marginAuto,
   marginBottom0px,
   marginBottom1px,
@@ -131,8 +189,59 @@ import {
   mixBlendModeSaturation,
   mixBlendModeScreen,
   mixBlendModeSoftLight,
+  MozOsxFontSmoothingAuto,
+  MozOsxFontSmoothingGrayscale,
+  order0,
+  orderFirst,
+  orderLast,
+  overflowHidden,
+  padding0,
+  padding0px,
+  padding1px,
+  paddingAuto,
+  paddingBottom0px,
+  paddingBottom1px,
+  paddingBottomAuto,
+  paddingLeft0px,
+  paddingLeft1px,
+  paddingLeftAuto,
+  paddingRight0px,
+  paddingRight1px,
+  paddingRightAuto,
+  paddingTop0px,
+  paddingTop1px,
+  paddingTopAuto,
+  positionAbsolute,
+  positionFixed,
+  positionRelative,
+  positionStatic,
+  positionSticky,
+  right0px,
+  right100pct,
+  right1px,
+  rightAuto,
+  textDecorationLineLineThrough,
+  textDecorationLineNone,
+  textDecorationLineOverline,
   textIndent0px,
   textIndent1px,
+  textTransformCapitalize,
+  textTransformLowercase,
+  textTransformUppercase,
+  top0px,
+  top100pct,
+  top1px,
+  topAuto,
+  transformOriginBottom,
+  transformOriginBottomLeft,
+  transformOriginBottomRight,
+  transformOriginCenter,
+  transformOriginLeft,
+  transformOriginRight,
+  transformOriginTop,
+  transformOriginTopLeft,
+  transformOriginTopRight,
+  transitionTimingFunctionLinear,
   verticalAlginSub,
   verticalAlginSuper,
   verticalAlginTextBottom,
@@ -141,6 +250,24 @@ import {
   verticalAlignMiddle,
   verticalAlignTextTop,
   verticalAlignTop,
+  visibilityHidden,
+  visibilityVisible,
+  WebkitFontSmoothingAntialiased,
+  WebkitFontSmoothingAuto,
+  whiteSpaceNormal,
+  whiteSpaceNowrap,
+  whiteSpacePre,
+  whiteSpacePreLine,
+  whiteSpacePreWrap,
+  width0px,
+  width100pec,
+  width100vw,
+  width1px,
+  widthAuto,
+  widthFitContent,
+  widthMaxContent,
+  widthMinContent,
+  zIndexAuto,
 } from "../css/mod.ts";
 
 export const align: CSSMap = {
@@ -501,9 +628,9 @@ export const mt: CSSMap = {
 };
 
 export const mx: CSSMap = {
-  0: { marginLeft: "0px", marginRight: "0px" },
-  auto: { marginLeft: "auto", marginRight: "auto" },
-  px: { marginLeft: "1px", marginRight: "1px" },
+  0: { ...marginLeft0px, ...marginRight0px },
+  px: { ...marginLeft1px, ...marginRight1px },
+  auto: { ...marginLeftAuto, ...marginRightAuto },
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -522,9 +649,9 @@ export const mx: CSSMap = {
 };
 
 export const my: CSSMap = {
-  0: { marginTop: "0px", marginBottom: "0px" },
-  auto: { marginTop: "auto", marginBottom: "auto" },
-  px: { marginTop: "1px", marginBottom: "1px" },
+  0: { ...marginTop0px, ...marginBottom0px },
+  px: { ...marginTop1px, ...marginBottom1px },
+  auto: { ...marginTopAuto, ...marginBottomAuto },
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -556,9 +683,9 @@ export const opacity: CSSMap = {
 };
 
 export const order: CSSMap = {
-  first: { order: -9999 },
-  last: { order: 9999 },
-  none: { order: 0 },
+  first: orderFirst,
+  last: orderLast,
+  none: order0,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -570,9 +697,9 @@ export const order: CSSMap = {
 };
 
 export const p: CSSMap = {
-  0: { padding: "0px" },
-  auto: { padding: "auto" },
-  px: { padding: "1px" },
+  0: padding0px,
+  px: padding1px,
+  auto: paddingAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -585,9 +712,9 @@ export const p: CSSMap = {
 };
 
 export const pb: CSSMap = {
-  0: { paddingBottom: "0px" },
-  auto: { paddingBottom: "auto" },
-  px: { paddingBottom: "1px" },
+  0: paddingBottom0px,
+  px: paddingBottom1px,
+  auto: paddingBottomAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -605,9 +732,9 @@ export const pb: CSSMap = {
 };
 
 export const pl: CSSMap = {
-  0: { paddingLeft: "0px" },
-  auto: { paddingLeft: "auto" },
-  px: { paddingLeft: "1px" },
+  0: paddingLeft0px,
+  px: paddingLeft1px,
+  auto: paddingLeftAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -623,9 +750,9 @@ export const pl: CSSMap = {
 };
 
 export const pr: CSSMap = {
-  0: { paddingRight: "0px" },
-  auto: { paddingRight: "auto" },
-  px: { paddingRight: "1px" },
+  0: paddingRight0px,
+  px: paddingRight1px,
+  auto: paddingRightAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -641,9 +768,9 @@ export const pr: CSSMap = {
 };
 
 export const pt: CSSMap = {
-  0: { paddingTop: "0px" },
-  auto: { paddingTop: "auto" },
-  px: { paddingTop: "1px" },
+  0: paddingTop0px,
+  px: paddingTop1px,
+  auto: paddingTopAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -659,9 +786,9 @@ export const pt: CSSMap = {
 };
 
 export const px: CSSMap = {
-  0: { paddingLeft: "0px", paddingRight: "0px" },
-  auto: { paddingLeft: "auto", paddingRight: "auto" },
-  px: { paddingLeft: "1px", paddingRight: "1px" },
+  0: { ...paddingLeft0px, ...paddingRight0px },
+  px: { ...paddingLeft1px, ...paddingRight1px },
+  auto: { ...paddingLeftAuto, ...paddingRightAuto },
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -680,9 +807,9 @@ export const px: CSSMap = {
 };
 
 export const py: CSSMap = {
-  0: { paddingTop: "0px", paddingBottom: "0px" },
-  auto: { paddingTop: "auto", paddingBottom: "auto" },
-  px: { paddingTop: "1px", paddingBottom: "1px" },
+  0: { ...paddingTop0px, ...paddingBottom0px },
+  px: { ...paddingTop1px, ...paddingBottom1px },
+  auto: { ...paddingTopAuto, ...paddingBottomAuto },
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -701,10 +828,10 @@ export const py: CSSMap = {
 };
 
 export const right: CSSMap = {
-  0: { right: "0px" },
-  px: { right: "1px" },
-  auto: { right: "auto" },
-  full: { right: "100%" },
+  0: right0px,
+  px: right1px,
+  auto: rightAuto,
+  full: right100pct,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -727,7 +854,7 @@ export const right: CSSMap = {
 };
 
 export const shrink: CSSMap = {
-  "": { flexShrink: 1 },
+  "": flexShrink1,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -739,10 +866,10 @@ export const shrink: CSSMap = {
 };
 
 export const top: CSSMap = {
-  0: { top: "0px" },
-  px: { top: "1px" },
-  auto: { top: "auto" },
-  full: { top: "100%" },
+  0: top0px,
+  px: top1px,
+  auto: topAuto,
+  full: top100pct,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -762,14 +889,13 @@ export const top: CSSMap = {
 };
 
 const LETTER_SPACING = "letterSpacing";
-
 export const tracking: CSSMap = {
-  tighter: { [LETTER_SPACING]: "-0.05em" },
-  tight: { [LETTER_SPACING]: "-0.025em" },
-  normal: { [LETTER_SPACING]: "0em" },
-  wide: { [LETTER_SPACING]: "0.025em" },
-  wider: { [LETTER_SPACING]: "0.05em" },
-  widest: { [LETTER_SPACING]: "0.1em" },
+  tighter: letterSpacingTighter,
+  tight: letterSpacingTight,
+  normal: letterSpacingNormal,
+  wide: letterSpacingWide,
+  wider: letterSpacingWider,
+  widest: letterSpacingWidest,
   "*": ({ id }) =>
     execMatch(id, [
       [reBracket_$, ([, attr]) => ({ [LETTER_SPACING]: attr })],
@@ -777,14 +903,14 @@ export const tracking: CSSMap = {
 };
 
 export const w: CSSMap = {
-  0: { width: "0px" },
-  px: { width: "1px" },
-  full: { width: "100%" },
-  auto: { width: "auto" },
-  screen: { width: "100vw" },
-  min: { width: "min-content" },
-  max: { width: "max-content" },
-  fit: { width: "fit-content" },
+  0: width0px,
+  px: width1px,
+  full: width100pec,
+  auto: widthAuto,
+  screen: width100vw,
+  min: widthMinContent,
+  max: widthMaxContent,
+  fit: widthFitContent,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -803,19 +929,17 @@ export const w: CSSMap = {
     ]),
 };
 
-const WHITE_SPACE = "whiteSpace";
-
 export const whitespace: CSSMap = {
-  normal: { [WHITE_SPACE]: "normal" },
-  nowrap: { [WHITE_SPACE]: "nowrap" },
+  normal: whiteSpaceNormal,
+  nowrap: whiteSpaceNowrap,
   pre: {
-    "": { [WHITE_SPACE]: "pre" },
-    line: { [WHITE_SPACE]: "pre-line" },
-    wrap: { [WHITE_SPACE]: "pre-wrap" },
+    "": whiteSpacePre,
+    line: whiteSpacePreLine,
+    wrap: whiteSpacePreWrap,
   },
 };
 export const z: CSSMap = {
-  auto: { zIndex: "auto" },
+  auto: zIndexAuto,
   "*": ({ id }) =>
     execMatch(id, [
       [
@@ -826,75 +950,78 @@ export const z: CSSMap = {
       [reBracket_$, ([, arbitrary]) => ({ zIndex: arbitrary })],
     ]),
 };
-export const $static: DeclBlock = { position: "static" };
-export const fixed: DeclBlock = { position: "fixed" };
-export const absolute: DeclBlock = { position: "absolute" };
-export const relative: DeclBlock = { position: "relative" };
-export const sticky: DeclBlock = { position: "sticky" };
-export const visible: DeclBlock = { visibility: "visible" };
-export const invisible: DeclBlock = { visibility: "hidden" };
+
+export const $static = positionStatic;
+export const fixed = positionFixed;
+export const absolute = positionAbsolute;
+export const relative = positionRelative;
+export const sticky = positionSticky;
+export const visible = visibilityVisible;
+export const invisible = visibilityHidden;
 export const antialiased: DeclBlock = {
-  WebkitFontSmoothing: "antialiased",
-  MozOsxFontSmoothing: "grayscale",
+  ...WebkitFontSmoothingAntialiased,
+  ...MozOsxFontSmoothingGrayscale,
 };
 export const subpixel: CSSMap = {
   antialiased: {
-    WebkitFontSmoothing: "auto",
-    MozOsxFontSmoothing: "auto",
+    ...WebkitFontSmoothingAuto,
+    ...MozOsxFontSmoothingAuto,
   },
 };
-export const italic: DeclBlock = { fontStyle: "italic" };
-export const contents: DeclBlock = { display: "contents" };
-export const hidden: DeclBlock = { display: "none" };
-export const overline: DeclBlock = { textDecorationLine: "overline" };
+export const italic = fontStyleItalic;
+export const contents = displayContents;
+export const hidden = displayNone;
+export const overline = textDecorationLineOverline;
 export const line: CSSMap = {
-  through: { textDecorationLine: "line-through" },
+  through: textDecorationLineLineThrough,
 };
+
 export const no: CSSMap = {
-  underline: { textDecorationLine: "none" },
+  underline: textDecorationLineNone,
 };
 export const sr: CSSMap = {
   only: {
-    position: "absolute",
-    width: "1px",
-    height: "1px",
-    padding: 0,
-    margin: "-1px",
-    overflow: "hidden",
+    ...positionAbsolute,
+    ...width1px,
+    ...height1px,
+    ...padding0,
+    ...margin_1px,
+    ...whiteSpaceNowrap,
+    ...overflowHidden,
     clip: "rect(0, 0, 0, 0)",
-    whiteSpace: "nowrap",
     borderWidth: 0,
   },
 };
-export const ordinal: DeclBlock = { fontVariantNumeric: "ordinal" };
+export const ordinal = fontVariantNumericOrdinal;
 export const slashed: CSSMap = {
-  zero: { fontVariantNumeric: "slashed-zero" },
+  zero: fontVariantNumericSlashedZero,
 };
 export const lining: CSSMap = {
-  nums: { fontVariantNumeric: "lining-nums" },
+  nums: fontVariantNumericLiningNums,
 };
 export const oldstyle: CSSMap = {
-  nums: { fontVariantNumeric: "oldstyle-nums" },
+  nums: fontVariantNumericOldstyleNums,
 };
 export const proportional: CSSMap = {
-  nums: { fontVariantNumeric: "proportional-nums" },
+  nums: fontVariantNumericProportionalNums,
 };
+
 export const tabular: CSSMap = {
-  nums: { fontVariantNumeric: "tabular-nums" },
+  nums: fontVariantNumericTabularNums,
 };
 export const diagonal: CSSMap = {
-  fractions: { fontVariantNumeric: "diagonal-fractions" },
+  fractions: fontVariantNumericDiagonalFractions,
 };
 export const stacked: CSSMap = {
-  fractions: { fontVariantNumeric: "stacked-fractions" },
+  fractions: fontVariantNumericStackedFractions,
 };
-export const uppercase: DeclBlock = { textTransform: "uppercase" };
-export const lowercase: DeclBlock = { textTransform: "lowercase" };
-export const capitalize: DeclBlock = { textTransform: "capitalize" };
+export const uppercase = textTransformUppercase;
+export const lowercase = textTransformLowercase;
+export const capitalize = textTransformCapitalize;
 export const truncate: DeclBlock = {
-  overflow: "hidden",
+  ...whiteSpaceNowrap,
+  ...overflowHidden,
   textOverflow: "ellipsis",
-  whiteSpace: "nowrap",
 };
 
 export const brightness: CSSMap = {
@@ -966,7 +1093,7 @@ export const drop: CSSMap = {
   },
 };
 export const flow: CSSMap = {
-  root: { display: "flow-root" },
+  root: displayFlowRoot,
 };
 
 export const grayscale: CSSMap = {
@@ -1046,7 +1173,7 @@ export const duration: CSSMap = {
 };
 
 export const ease: CSSMap = {
-  linear: { transitionTimingFunction: "linear" },
+  linear: transitionTimingFunctionLinear,
   in: {
     "": { transitionTimingFunction: "cubic-bezier(0.4, 0, 1, 1)" },
     out: { transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)" },
@@ -1115,18 +1242,18 @@ export const skew: CSSMap = {
 };
 
 export const origin: CSSMap = {
-  center: { transformOrigin: "center" },
-  left: { transformOrigin: "left" },
-  right: { transformOrigin: "right" },
+  center: transformOriginCenter,
+  left: transformOriginLeft,
+  right: transformOriginRight,
   top: {
-    "": { transformOrigin: "top" },
-    right: { transformOrigin: "top right" },
-    left: { transformOrigin: "top left" },
+    "": transformOriginTop,
+    right: transformOriginTopRight,
+    left: transformOriginTopLeft,
   },
   bottom: {
-    "": { transformOrigin: "bottom" },
-    right: { transformOrigin: "bottom right" },
-    left: { transformOrigin: "bottom left" },
+    "": transformOriginBottom,
+    right: transformOriginBottomRight,
+    left: transformOriginBottomLeft,
   },
 };
 
@@ -1135,7 +1262,7 @@ function toAccentColor(color: string): { accentColor: string } {
 }
 
 export const accent: CSSMap = {
-  auto: { accentColor: "auto" },
+  auto: accentColorAuto,
   "*": ({ id }, context) =>
     execMatch(id, [
       [re$AllPer$PositiveNumber, ([, body, numeric]) => {
@@ -1181,84 +1308,85 @@ export const accent: CSSMap = {
 };
 
 export const appearance: CSSMap = {
-  none: { appearance: "none" },
+  none: appearanceNone,
 };
+
 export const cursor: CSSMap = {
-  auto: { cursor: "auto" },
-  default: { cursor: "default" },
-  pointer: { cursor: "pointer" },
-  wait: { cursor: "wait" },
-  text: { cursor: "text" },
-  move: { cursor: "move" },
-  help: { cursor: "help" },
-  none: { cursor: "none" },
-  progress: { cursor: "progress" },
-  cell: { cursor: "cell" },
-  crosshair: { cursor: "crosshair" },
+  auto: cursorAuto,
+  default: cursorDefault,
+  pointer: cursorPointer,
+  wait: cursorWait,
+  text: cursorText,
+  move: cursorMove,
+  help: cursorHelp,
+  none: cursorNone,
+  progress: cursorProgress,
+  cell: cursorCell,
+  crosshair: cursorCrosshair,
   vertical: {
-    text: { cursor: "vertical-text" },
+    text: cursorVerticalText,
   },
-  alias: { cursor: "alias" },
-  copy: { cursor: "copy" },
+  alias: cursorAlias,
+  copy: cursorCopy,
   no: {
-    drop: { cursor: "no-drop" },
+    drop: cursorNoDrop,
   },
   context: {
-    menu: { cursor: "context-menu" },
+    menu: cursorContentMenu,
   },
-  grab: { cursor: "grab" },
-  grabbing: { cursor: "grabbing" },
+  grab: cursorGrab,
+  grabbing: cursorGrabbing,
   all: {
-    scroll: { cursor: "all-scroll" },
+    scroll: cursorAllScroll,
   },
   col: {
-    resize: { cursor: "col-resize" },
+    resize: cursorColResize,
   },
   row: {
-    resize: { cursor: "row-resize" },
+    resize: cursorRowResize,
   },
   n: {
-    resize: { cursor: "n-resize" },
+    resize: cursorNResize,
   },
   e: {
-    resize: { cursor: "e-resize" },
+    resize: cursorEResize,
   },
   s: {
-    resize: { cursor: "s-resize" },
+    resize: cursorSResize,
   },
   w: {
-    resize: { cursor: "w-resize" },
+    resize: cursorWResize,
   },
   ne: {
-    resize: { cursor: "ne-resize" },
+    resize: cursorNeResize,
   },
   nw: {
-    resize: { cursor: "nw-resize" },
+    resize: cursorNwResize,
   },
   se: {
-    resize: { cursor: "se-resize" },
+    resize: cursorSeResize,
   },
   sw: {
-    resize: { cursor: "sw-resize" },
+    resize: cursorSwResize,
   },
   ew: {
-    resize: { cursor: "ew-resize" },
+    resize: cursorEwResize,
   },
   ns: {
-    resize: { cursor: "ns-resize" },
+    resize: cursorNsResize,
   },
   nesw: {
-    resize: { cursor: "nesw-resize" },
+    resize: cursorNeswResize,
   },
   nwse: {
-    resize: { cursor: "nwse-resize" },
+    resize: cursorNwseResize,
   },
   zoom: {
-    in: { cursor: "zoom-in" },
-    out: { cursor: "zoom-out" },
+    in: cursorZoomIn,
+    out: cursorZoomOut,
   },
   not: {
-    allowed: { cursor: "not-allowed" },
+    allowed: cursorNotAllowed,
   },
 };
 function toCaretColor(color: string) {
