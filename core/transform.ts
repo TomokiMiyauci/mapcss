@@ -3,17 +3,20 @@
 import { AtRule, postcss, Root } from "./deps.ts";
 import { generate } from "./generate.ts";
 import { applyExtractor } from "./extract.ts";
-import type { Config, Output } from "./types.ts";
+import { OPTION } from "./constant.ts";
+import type { Config, Option, Output } from "./types.ts";
 
+/** Transform input of CSS using MapCSS */
 export function transform(
   input: string,
   config: Readonly<Config>,
+  option: Readonly<Option> = OPTION,
 ): Promise<Output> {
   const ast = postcss().process(input).root;
 
   return applyDirective(ast.clone(), (input) => {
     const tokens = applyExtractor(input, config.extractor);
-    return generate(tokens, config);
+    return generate(tokens, config, option);
   });
 }
 
