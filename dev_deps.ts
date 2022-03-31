@@ -2,6 +2,7 @@ export {
   any,
   anyArray,
   anyBoolean,
+  anyFunction,
   anyNumber,
   anyOf,
   anyString,
