@@ -1,3 +1,17 @@
+# [1.0.0-beta.57](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.56...1.0.0-beta.57) (2022-03-31)
+
+
+### Bug Fixes
+
+* invalid release version ([eb1a3d4](https://github.com/TomokiMiyauci/mapcss/commit/eb1a3d465d8a75f0602c79e3c9ac11f2984cd1d1)), closes [#37](https://github.com/TomokiMiyauci/mapcss/issues/37)
+
+
+### Features
+
+* **core:** add disabled CSS injection flag ([f35a545](https://github.com/TomokiMiyauci/mapcss/commit/f35a54575a4ca052f38967b3ff2ecfa302e945fe))
+* **core:** add selectable inject CSS option ([bd39058](https://github.com/TomokiMiyauci/mapcss/commit/bd390589e755e8e0e4cb6e16827496e7ba48a4fd))
+* **core:** add utility for merge config function ([920edd7](https://github.com/TomokiMiyauci/mapcss/commit/920edd7a80a6bda0ef7fa74bda30c469e7bb9e60))
+
 # [1.0.0-beta.56](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2022-03-30)
 
 
