@@ -66,15 +66,16 @@ export async function generate(
     charMap,
     minify,
   };
+  const config = resolveConfig(staticConfig, ctx);
   const {
     syntax,
-    modifierMaps,
+    modifierMap,
     theme,
-    cssMaps,
+    cssMap,
     preProcess,
     postcssPlugin,
-    cssList,
-  } = resolveConfig(staticConfig, ctx);
+    css,
+  } = config;
   const staticContext: StaticContext = {
     ...ctx,
     theme,
@@ -90,8 +91,8 @@ export async function generate(
     for (const { fn } of [...syntax, defaultSyntax]) {
       const parseResult = fn(mappedToken, {
         ...staticContext,
-        modifierRoots: rootKeys(modifierMaps),
-        identifierRoots: rootKeys(cssMaps),
+        modifierRoots: rootKeys(modifierMap),
+        identifierRoots: rootKeys(cssMap),
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
@@ -104,7 +105,7 @@ export async function generate(
 
       const maybeCSS = resolveCSSMap(
         identifier,
-        cssMaps.reverse(),
+        cssMap.reverse(),
         {
           ...staticContext,
           ...runtimeContext,
@@ -115,7 +116,7 @@ export async function generate(
       const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;
 
-        return resolveModifierMap(cur, modifierMaps, acc, {
+        return resolveModifierMap(cur, modifierMap, acc, {
           ...staticContext,
           ...runtimeContext,
         });
@@ -140,7 +141,7 @@ export async function generate(
   const orderedNode = postcss(orderStatement()).process(rootNode).root;
   const preProcesses = [
     // default order is left to right
-    ...option.injectCSS ? cssList.reverse().map(createInjectCSS) : [],
+    ...option.injectCSS ? css.reverse().map(createInjectCSS) : [],
     ...preProcess,
   ];
 
