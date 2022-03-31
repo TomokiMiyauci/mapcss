@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { recTransform } from "../utils/recursive.ts";
 import type { CSSMap, Preset } from "../core/types.ts";
 import { createCSSObject } from "./identifier.ts";

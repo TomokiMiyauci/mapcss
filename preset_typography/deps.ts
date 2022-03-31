@@ -1,10 +1,12 @@
+// This module is browser compatible.
+
 export {
-  className as classNameNode,
-  combinator as combinatorNode,
-  pseudo as pseudoNode,
-  selector as selectorNode,
-} from "https://deno.land/x/postcss_selector_parser@v6.0.2/src/selectors/index.js";
-export { default as parseSelector } from "https://deno.land/x/postcss_selector_parser@v6.0.2/mod.js";
+  default as selectorParser,
+} from "https://esm.sh/postcss-selector-parser@v6.0.9?pin=v74";
+export type {
+  Node as SelectorNode,
+  SyncProcessor,
+} from "https://esm.sh/postcss-selector-parser@v6.0.9";
 export {
   isEmptyObject,
   isLength0,
@@ -15,15 +17,11 @@ export {
 export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
 export { default as Root } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/root.js";
 export { default as Rule } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/rule.js";
-export type {
-  Node as SelectorNode,
-  SyncProcessor,
-} from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
 export {
   toAST,
   toObject,
 } from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
-export { color } from "../common/mod.ts";
+export { color } from "../common/theme.ts";
 
 interface Chain<T> {
   map<U>(fn: (val: T) => U): Chain<U>;

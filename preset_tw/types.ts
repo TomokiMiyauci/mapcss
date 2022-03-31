@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export type Option = {
   /** Dark mode type
    *

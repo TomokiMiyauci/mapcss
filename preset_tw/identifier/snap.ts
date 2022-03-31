@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { customProperty, varFn } from "../../core/utils/format.ts";
 import type { CSSMap } from "../../core/types.ts";
 

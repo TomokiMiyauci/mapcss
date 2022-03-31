@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { execMatch, reBracket_$ } from "../../core/utils/regexp.ts";
 import type { CSSDefinition, CSSMap } from "../../core/types.ts";
 

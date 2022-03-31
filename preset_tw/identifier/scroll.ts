@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { execMatch, re$Numeric } from "../../core/utils/regexp.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { quoter, unit } from "../../core/utils/format.ts";

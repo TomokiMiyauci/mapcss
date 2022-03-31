@@ -1,5 +1,6 @@
-import { Config, generate, mapChar } from "./generate.ts";
-import { expect, test } from "../dev_deps.ts";
+import { generate, mapChar } from "./generate.ts";
+import { Config } from "./types.ts";
+import { expect, objectContaining, test } from "../dev_deps.ts";
 test("mapChar", () => {
   const table: [
     ...Parameters<typeof mapChar>,
@@ -13,7 +14,7 @@ test("mapChar", () => {
   );
 });
 
-test("generate option of css should generate css statement directory", () => {
+test("generate option of css should generate css statement directory", async () => {
   const table: [Config, string, string][] = [
     [{}, "", ""],
     [
@@ -121,13 +122,20 @@ test("generate option of css should generate css statement directory", () => {
       "body{font-size:1}body{font-size:2}body{font-size:3}body{font-size:4}body{font-size:5}body{font-size:6}",
     ],
   ];
-  table.forEach(([config, input, result]) =>
-    expect(generate(input, { minify: true, ...config }).css).toBe(result)
+  await Promise.all(
+    table.map(([config, input, result]) =>
+      expect(generate(input, { minify: true, ...config })).resolves
+        .toEqual(
+          objectContaining({
+            css: result,
+          }),
+        )
+    ),
   );
 });
 
-Deno.test("injected CSS should be placed first", () => {
-  expect(
+Deno.test("injected CSS should be placed first", async () => {
+  await expect(
     generate("block", {
       cssMap: {
         block: { display: "block", "--map": "test" },
@@ -136,6 +144,28 @@ Deno.test("injected CSS should be placed first", () => {
         body: { color: "red" },
       },
       minify: true,
-    }).css,
-  ).toBe("body{color:red}.block{--map:test;display:block}");
+    }),
+  ).resolves.toEqual(
+    objectContaining({
+      css: "body{color:red}.block{--map:test;display:block}",
+    }),
+  );
+});
+
+Deno.test("disabled injecting CSS", async () => {
+  await expect(
+    generate("block", {
+      cssMap: {
+        block: { display: "block", "--map": "test" },
+      },
+      css: {
+        body: { color: "red" },
+      },
+      minify: true,
+    }, { injectCSS: false }),
+  ).resolves.toEqual(
+    objectContaining({
+      css: ".block{--map:test;display:block}",
+    }),
+  );
 });

@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { Tree } from "../core/types.ts";
 
 export type SVGMap = Tree<string>;

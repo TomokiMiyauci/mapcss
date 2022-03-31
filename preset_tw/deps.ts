@@ -1,3 +1,23 @@
+// This module is browser compatible.
+
+export {
+  isEmptyObject,
+  isNumber,
+  isString,
+  isUndefined,
+} from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
+export { associateWith } from "https://deno.land/std@0.123.0/collections/associate_with.ts";
+export { default as AtRule } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/at-rule.js";
+export { default as Declaration } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/declaration.js";
+export { toAST } from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
+export { Some } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
+export type { Option } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
+export type Arrayable<T> = T | T[];
+export type {
+  Node,
+  Plugin as PostcssPlugin,
+} from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/postcss.d.ts";
+
 const minMaxWidth =
   /(!?\(\s*min(-device-)?-width)(.|\n)+\(\s*max(-device)?-width/i;
 const minWidth = /\(\s*min(-device)?-width/i;
@@ -147,21 +167,3 @@ export function orderMediaQuery(a: string, b: string): number {
 
   return a.localeCompare(b);
 }
-
-export {
-  isEmptyObject,
-  isNumber,
-  isString,
-  isUndefined,
-} from "https://deno.land/x/isx@v1.0.0-beta.17/mod.ts";
-export { associateWith } from "https://deno.land/std@0.123.0/collections/associate_with.ts";
-export type { Option } from "https://deno.land/x/monads@v0.5.10/option/option.ts";
-export type Arrayable<T> = T | T[];
-export type {
-  Node,
-  Plugin as PostcssPlugin,
-} from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/postcss.d.ts";
-export { default as AtRule } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/at-rule.js";
-export { default as Declaration } from "https://deno.land/x/postcss_core@v1.0.0-beta.1/lib/declaration.js";
-export { toAST } from "https://deno.land/x/postcss_js@v1.0.0-beta.4/mod.ts";
-export { Some } from "https://deno.land/x/monads@v0.5.10/option/option.ts";

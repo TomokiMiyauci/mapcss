@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../deps.ts";
 import {

@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { depsProse } from "./prose.ts";
 import type { CSSMap } from "../../core/types.ts";
 import type { PresetOption } from "../types.ts";

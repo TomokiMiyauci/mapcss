@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { customPropertySet, matcher, pxify } from "./_utils.ts";
 import { re$Numeric } from "../../core/utils/regexp.ts";
 import { resolveTheme } from "../../core/resolve.ts";

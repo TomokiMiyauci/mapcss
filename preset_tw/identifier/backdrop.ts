@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { customPropertySet } from "./_utils.ts";
 import { parseNumeric } from "../../core/utils/monad.ts";
 import { ratio, shortDecimal, unit } from "../../core/utils/format.ts";

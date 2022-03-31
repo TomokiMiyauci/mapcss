@@ -1,4 +1,4 @@
-import { expect, test } from "../dev_deps.ts";
+import { expect, objectContaining, test } from "../dev_deps.ts";
 import { min } from "./preset_tw/min.ts";
 import { $single } from "./preset_tw/$single.ts";
 import { modifier } from "./preset_tw/modifier.ts";
@@ -436,6 +436,14 @@ const expects: [string, string][] = [
   ["content-between", ".content-between{align-content:space-between}"],
   ["content-around", ".content-around{align-content:space-around}"],
   ["content-evenly", ".content-evenly{align-content:space-evenly}"],
+  [
+    "content-[hello]",
+    ".content-\\[hello\\]{--map-content:hello;content:var(--map-content)}",
+  ],
+  [
+    "content-['']",
+    ".content-\\[\\'\\'\\]{--map-content:'';content:var(--map-content)}",
+  ],
   ["place-content-center", ".place-content-center{place-content:center}"],
   ["place-content-start", ".place-content-start{place-content:start}"],
   ["place-content-end", ".place-content-end{place-content:end}"],
@@ -21655,7 +21663,7 @@ const expects: [string, string][] = [
   ["list-outside", ".list-outside{list-style-position:outside}"],
   [
     "list-[upper-roman]",
-    ".list-\\[upper-roman\\]{list-style-position:upper-roman}",
+    ".list-\\[upper-roman\\]{list-style-type:upper-roman}",
   ],
   ["decoration-solid", ".decoration-solid{text-decoration-style:solid}"],
   ["decoration-double", ".decoration-double{text-decoration-style:double}"],
@@ -34401,12 +34409,14 @@ const expects: [string, string][] = [
 
 const config = { preset: [presetTw({ injectVariable: false })], minify: true };
 
-test("presetTw", () => {
-  expects.forEach(([className, result]) => {
+test("presetTw", async () => {
+  await Promise.all(expects.map(([className, result]) => {
     expect(
-      generate(new Set([className]), config).css,
-    ).toBe(
-      result,
+      generate(new Set([className]), config),
+    ).resolves.toEqual(
+      objectContaining({
+        css: result,
+      }),
     );
-  });
+  }));
 });

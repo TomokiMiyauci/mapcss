@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { None, Option, Some } from "../deps.ts";
 import { hex2RGBA, RGBA } from "./parse.ts";
 

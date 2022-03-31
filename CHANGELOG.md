@@ -1,3 +1,87 @@
+# [1.0.0-beta.57](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.56...1.0.0-beta.57) (2022-03-31)
+
+
+### Bug Fixes
+
+* invalid release version ([eb1a3d4](https://github.com/TomokiMiyauci/mapcss/commit/eb1a3d465d8a75f0602c79e3c9ac11f2984cd1d1)), closes [#37](https://github.com/TomokiMiyauci/mapcss/issues/37)
+
+
+### Features
+
+* **core:** add disabled CSS injection flag ([f35a545](https://github.com/TomokiMiyauci/mapcss/commit/f35a54575a4ca052f38967b3ff2ecfa302e945fe))
+* **core:** add selectable inject CSS option ([bd39058](https://github.com/TomokiMiyauci/mapcss/commit/bd390589e755e8e0e4cb6e16827496e7ba48a4fd))
+* **core:** add utility for merge config function ([920edd7](https://github.com/TomokiMiyauci/mapcss/commit/920edd7a80a6bda0ef7fa74bda30c469e7bb9e60))
+
+# [1.0.0-beta.56](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.55...v1.0.0-beta.56) (2022-03-30)
+
+
+### Features
+
+* change core module to asynchronous ([97ce7f6](https://github.com/TomokiMiyauci/mapcss/commit/97ce7f67722043c8b0c51be65168024160ce6268)), closes [#36](https://github.com/TomokiMiyauci/mapcss/issues/36)
+
+# [1.0.0-beta.55](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.54...v1.0.0-beta.55) (2022-03-30)
+
+
+### Bug Fixes
+
+* **config:** resolved config file path must be file scheme ([e28f9f9](https://github.com/TomokiMiyauci/mapcss/commit/e28f9f962486b4f6044ccdcce2b80f00e6a17054))
+
+# [1.0.0-beta.54](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.53...v1.0.0-beta.54) (2022-03-30)
+
+
+### Bug Fixes
+
+* **config:** fix refer to absolute path, typo ([bf3a6ae](https://github.com/TomokiMiyauci/mapcss/commit/bf3a6ae413cb3cbf9c1d2c4e7f0d0a3ce6faa133))
+
+# [1.0.0-beta.53](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.52...v1.0.0-beta.53) (2022-03-30)
+
+
+### Features
+
+* **core:** add basic transform function that apply `[@apply](https://github.com/apply)` directive ([669641e](https://github.com/TomokiMiyauci/mapcss/commit/669641eca513d19e80318b0f0d554a32afc04046))
+* **core:** apply extract before process [@apply](https://github.com/apply) ([1acd773](https://github.com/TomokiMiyauci/mapcss/commit/1acd7733e1c4e6c3799e7f5feec43c91d1a981ab))
+* **core:** move `Config` types to core module ([1f505a5](https://github.com/TomokiMiyauci/mapcss/commit/1f505a5f1f9d0be23b425d0f7f6d3c41a86bb710))
+
+# [1.0.0-beta.52](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.51...v1.0.0-beta.52) (2022-03-29)
+
+
+### Bug Fixes
+
+* **preset_tw:** fix list-* output css ([f268b43](https://github.com/TomokiMiyauci/mapcss/commit/f268b43e19456e7450bd64836584151d187f73da))
+
+
+### Features
+
+* **core:** add css property key types to `DeclBlock` types ([e55911e](https://github.com/TomokiMiyauci/mapcss/commit/e55911e364f1b05f3538471d2d00e61c75bfeff1))
+
+# [1.0.0-beta.51](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.50...v1.0.0-beta.51) (2022-03-29)
+
+
+### Bug Fixes
+
+* **config:** remove resource proerpty from `Config` types ([f4652dd](https://github.com/TomokiMiyauci/mapcss/commit/f4652ddea2be2057bdfc87cb0e0a377a0d03f8ac))
+* **core:** fix bracket extract function ([4b4cd31](https://github.com/TomokiMiyauci/mapcss/commit/4b4cd31b87e8b3e54316648f5a5d0dd5f6eaf659))
+
+
+### Features
+
+* **config:** add `applyExtractor` function, extractor property accept array ([d034045](https://github.com/TomokiMiyauci/mapcss/commit/d034045d760f6fbcdd873b4c2ef8bc856cab9784))
+* **core:** add bracket extract function ([0a52563](https://github.com/TomokiMiyauci/mapcss/commit/0a525630ae0f9417fe5af413489885e087d03c1b))
+
+# [1.0.0-beta.50](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.49...v1.0.0-beta.50) (2022-03-29)
+
+
+### Bug Fixes
+
+* **preset_typography:** ensure browser compatibility for module entry point ([b089b45](https://github.com/TomokiMiyauci/mapcss/commit/b089b45d7ff5dc3d878fdb12881bb080d479183b))
+
+# [1.0.0-beta.49](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.48...v1.0.0-beta.49) (2022-03-28)
+
+
+### Bug Fixes
+
+* **core:** replace selector parser, the all module to be browser capatible ([6c41e53](https://github.com/TomokiMiyauci/mapcss/commit/6c41e53294102df3a4a7a36c91f38311f8972fce))
+
 # [1.0.0-beta.48](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.47...v1.0.0-beta.48) (2022-03-28)
 
 

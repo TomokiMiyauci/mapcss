@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { dependency } from "./identifier/mod.ts";
 import { color } from "./deps.ts";
 import type { Preset } from "../core/types.ts";

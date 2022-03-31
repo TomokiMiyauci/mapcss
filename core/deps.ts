@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 export type {
   AcceptedPlugin,
   Node,
@@ -30,6 +32,11 @@ import {
 export type {
   SyncProcessor,
 } from "https://esm.sh/postcss-selector-parser@6.0.9?pin=v66";
+export { default as valueParser } from "https://esm.sh/postcss-value-parser@4.2.0";
+export { default as selectorParser } from "https://esm.sh/postcss-selector-parser@v6.0.9";
+export type {
+  Properties as CSSProperties,
+} from "https://esm.sh/csstype@3.0.11/index.d.ts?pin=v74";
 
 /** safe get accessor */
 export function prop<
@@ -44,6 +51,7 @@ export function prop<
 export type Arrayable<T> = T | T[];
 export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
 export { distinctBy } from "https://deno.land/std@0.125.0/collections/distinct_by.ts";
+export { mapEntries } from "https://deno.land/std@0.125.0/collections/map_entries.ts";
 export function wrap<T>(val: T): T extends any[] ? T : T[] {
   return Array.isArray(val) ? val as never : [val] as never;
 }

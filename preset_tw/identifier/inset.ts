@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { matcher, percentize, remify } from "./_utils.ts";
 import { parseFraction } from "../../core/utils/monad.ts";
 import { associateWith } from "../deps.ts";

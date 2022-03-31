@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { re$PositiveNumber } from "../../core/utils/regexp.ts";
 import { resolveTheme } from "../../core/resolve.ts";
 import { isUndefined } from "../deps.ts";

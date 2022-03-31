@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { customPropertySet } from "./_utils.ts";
 import { stringifyVarFunction } from "../../core/utils/format.ts";
 import type { CSSMap } from "../../core/types.ts";

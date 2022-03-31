@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import type { Theme } from "../../core/types.ts";
 
 export const screen: Theme = {

@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { isAtRule, isRule } from "../../core/utils/assert.ts";
 import { AtRule } from "../deps.ts";
 import { isAllowNode } from "./_utils.ts";

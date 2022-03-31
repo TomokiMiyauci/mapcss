@@ -1,29 +1,19 @@
 import { expandGlob } from "https://deno.land/std@0.132.0/fs/expand_glob.ts";
 import { resolve, toFileUrl } from "https://deno.land/std@0.132.0/path/mod.ts";
-import { Config, Resource } from "./types.ts";
-import { isObject } from "./deps.ts";
+import { Resource } from "./types.ts";
 
 export function fromFileSystem(
   option: { root: string } = { root: Deno.cwd() },
 ): Resource {
   const url = resolve(option.root, "./**/mapcss.config.ts");
-  const filePath = toFileUrl(url).toString();
   return {
     url,
-    resolve: async () => {
-      for await (const { isFile, path } of expandGlob(filePath)) {
+    resolve: async (url) => {
+      for await (const { isFile, path } of expandGlob(url)) {
         if (isFile) {
-          return path;
+          return toFileUrl(path).toString();
         }
       }
     },
   };
 }
-
-/** Check if the value is config Module or not */
-export function isConfigModule(value: unknown): value is { default: Config } {
-  return isObject(value) &&
-    isObject((value as Record<PropertyKey, unknown>)["default"]);
-}
-
-fromFileSystem();

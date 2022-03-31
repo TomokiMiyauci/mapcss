@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import {
   Arrayable,
   deepMerge,
@@ -222,12 +224,12 @@ export function resolveConfig(
   >,
   context: Readonly<Omit<StaticContext, "theme">>,
 ): Omit<StaticConfig, "preset" | "cssMap" | "modifierMap" | "css"> & {
-  cssMaps: CSSMap[];
-  modifierMaps: ModifierMap[];
-  cssList: CSS[];
+  cssMap: CSSMap[];
+  modifierMap: ModifierMap[];
+  css: CSS[];
 } {
   const _presets = resolvePreset(preset, context);
-  const modifierMaps = [
+  const modifierMap = [
     ..._presets.map(({ modifierMap }) => modifierMap),
     _modifierMap,
   ];
@@ -241,13 +243,13 @@ export function resolveConfig(
     ..._syntax,
     ..._presets.map(({ syntax }) => syntax).flat(),
   );
-  const cssMaps = [..._presets.map(({ cssMap }) => cssMap), _cssMap];
+  const cssMap = [..._presets.map(({ cssMap }) => cssMap), _cssMap];
 
   const preProcess = resolvePreProcessor(
     ..._postProcess,
     ..._presets.map(({ preProcess }) => preProcess).flat(),
   );
-  const cssList = [
+  const css = [
     ..._presets.map(({ css }) => wrap(css)).flat(),
     ...wrap(_css),
   ];
@@ -256,12 +258,12 @@ export function resolveConfig(
     ..._presets.map(({ postcssPlugin }) => postcssPlugin).flat(),
   ];
   return {
-    cssMaps,
+    cssMap,
     theme,
-    modifierMaps,
+    modifierMap,
     syntax,
     preProcess,
-    cssList,
+    css,
     postcssPlugin,
   };
 }

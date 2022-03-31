@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import { execMatch, reBracket_$ } from "../../core/utils/regexp.ts";
 import type { CSSMap } from "../../core/types.ts";
 
@@ -10,6 +12,6 @@ export const list: CSSMap = {
   outside: { listStylePosition: "outside" },
   "*": ({ id }) =>
     execMatch(id, [
-      [reBracket_$, ([, attr]) => ({ listStylePosition: attr })],
+      [reBracket_$, ([, attr]) => ({ listStyleType: attr })],
     ]),
 };

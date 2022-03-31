@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import {
   execMatch,
   re$PositiveNumber,

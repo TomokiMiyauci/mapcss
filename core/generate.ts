@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 import {
   isString,
   isUndefined,
@@ -15,10 +17,12 @@ import {
   orderStatement,
 } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
-import { CHAR_MAP, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
+import { CHAR_MAP, OPTION, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
 import type {
+  Config,
+  Option,
+  Output,
   RuntimeContext,
-  StaticConfig,
   StaticContext,
   Syntax,
 } from "./types.ts";
@@ -29,26 +33,6 @@ const defaultSyntax: Syntax = {
 };
 
 export type Input = Set<string> | string[] | string;
-
-export type Config = Partial<StaticConfig & StaticContext>;
-
-export type Option = {};
-
-export type Output = {
-  /** The `string` of CSS Style Sheet.
-   * The AST is converted to `string` when the property is accessed.
-   */
-  css: string;
-
-  /** PostCSS AST */
-  ast: Root;
-
-  /** The matched tokens */
-  matched: Set<string>;
-
-  /** The unmatched tokens */
-  unmatched: Set<string>;
-};
 
 function rootKeys(
   value: Readonly<Readonly<Record<PropertyKey, unknown>>[]>,
@@ -62,7 +46,7 @@ function rootKeys(
 }
 
 /** Generate output of CSS Style Sheet */
-export function generate(
+export async function generate(
   /** Input token */
   input: Input,
   {
@@ -74,28 +58,29 @@ export function generate(
   }: Readonly<
     Config
   >,
-  {}: Readonly<Partial<Option>> = {},
-): Output {
+  option: Readonly<Option> = OPTION,
+): Promise<Output> {
   const ctx = {
     separator,
     variablePrefix,
     charMap,
     minify,
   };
+  const config = resolveConfig(staticConfig, ctx);
   const {
     syntax,
-    modifierMaps,
+    modifierMap,
     theme,
-    cssMaps,
+    cssMap,
     preProcess,
     postcssPlugin,
-    cssList,
-  } = resolveConfig(staticConfig, ctx);
+    css,
+  } = config;
   const staticContext: StaticContext = {
     ...ctx,
     theme,
   };
-  const tokens = isSet(input) ? input : new Set(wrap(input));
+  const tokens = toTokens(input);
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
@@ -106,8 +91,8 @@ export function generate(
     for (const { fn } of [...syntax, defaultSyntax]) {
       const parseResult = fn(mappedToken, {
         ...staticContext,
-        modifierRoots: rootKeys(modifierMaps),
-        identifierRoots: rootKeys(cssMaps),
+        modifierRoots: rootKeys(modifierMap),
+        identifierRoots: rootKeys(cssMap),
       });
       if (!parseResult) return;
       const { identifier, modifiers = [] } = parseResult;
@@ -120,7 +105,7 @@ export function generate(
 
       const maybeCSS = resolveCSSMap(
         identifier,
-        cssMaps.reverse(),
+        cssMap.reverse(),
         {
           ...staticContext,
           ...runtimeContext,
@@ -131,7 +116,7 @@ export function generate(
       const results = modifiers.reduceRight((acc, cur) => {
         if (isUndefined(acc)) return;
 
-        return resolveModifierMap(cur, modifierMaps, acc, {
+        return resolveModifierMap(cur, modifierMap, acc, {
           ...staticContext,
           ...runtimeContext,
         });
@@ -156,7 +141,7 @@ export function generate(
   const orderedNode = postcss(orderStatement()).process(rootNode).root;
   const preProcesses = [
     // default order is left to right
-    ...cssList.reverse().map(createInjectCSS),
+    ...option.injectCSS ? css.reverse().map(createInjectCSS) : [],
     ...preProcess,
   ];
 
@@ -169,12 +154,14 @@ export function generate(
   const plugins = minify
     ? [...corePostcssPlugins, postcssMinify()]
     : corePostcssPlugins;
-  const ast = postcss(...plugins, ...postcssPlugin).process(final).root;
+  const result = await postcss(...plugins, ...postcssPlugin).process(final);
 
   const output: Output = {
-    ast,
+    get ast(): Root {
+      return result.root.root();
+    },
     get css(): string {
-      return ast.toString();
+      return result.toString();
     },
     matched,
     unmatched,
@@ -201,4 +188,8 @@ export function mapChar(
 
 function isSet<T>(value: Iterable<T>): value is Set<T> {
   return value instanceof Set;
+}
+
+function toTokens(input: Input): Set<string> {
+  return isSet(input) ? input : new Set(wrap(input));
 }

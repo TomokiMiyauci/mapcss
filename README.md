@@ -103,7 +103,7 @@ const code = `<div className="relative flex">
 </div>
 `;
 const tokens = extractSimple(code);
-const output = generate(tokens, { preset: [presetTw()] });
+const output = await generate(tokens, { preset: [presetTw()] });
 console.log(output.css);
 /*
   .relative{position:relative;}

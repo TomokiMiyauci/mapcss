@@ -1,3 +1,4 @@
+// This module is browser compatible.
 import type { CSSMap } from "../../core/types.ts";
 
 export const place: CSSMap = {

@@ -1,4 +1,8 @@
-import type { AcceptedPlugin, Arrayable, Root } from "./deps.ts";
+// This module is browser compatible.
+
+import type { AcceptedPlugin, Arrayable, CSSProperties, Root } from "./deps.ts";
+// deno-lint-ignore no-unused-vars
+import { simpleExtractor } from "./extract.ts";
 
 export type Tree<Leaf, P extends PropertyKey = string | number> = {
   [k in P]: Leaf | Tree<Leaf>;
@@ -7,7 +11,9 @@ export type Tree<Leaf, P extends PropertyKey = string | number> = {
 export type CSS = Tree<string | number>;
 
 /** CSS Block Declaration */
-export type DeclBlock = Record<string, string | number>;
+export type DeclBlock =
+  | Record<keyof CSSProperties, string | number>
+  | Record<string, string | number>;
 
 export type CSSDefinition = {
   type: "css";
@@ -204,4 +210,38 @@ export type MatchInfo = {
    * 3rd: `["text", "red", "500"]`
    */
   path: string[];
+};
+
+export type Extractor = Labeled & {
+  fn: (code: string) => Set<string>;
+};
+
+export type Config = {
+  /** Token extractor
+   * @default {@link simpleExtractor}
+   */
+  readonly extractor?: Arrayable<Extractor>;
+} & Partial<StaticConfig & StaticContext>;
+
+export type Option = Partial<{
+  /** Whether to inject with `css` or not.
+   * @default true
+   */
+  injectCSS: boolean;
+}>;
+
+export type Output = {
+  /** The `string` of CSS Style Sheet.
+   * The AST is converted to `string` when the property is accessed.
+   */
+  css: string;
+
+  /** PostCSS AST */
+  ast: Root;
+
+  /** The matched tokens */
+  matched: Set<string>;
+
+  /** The unmatched tokens */
+  unmatched: Set<string>;
 };

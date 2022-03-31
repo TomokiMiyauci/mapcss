@@ -1,3 +1,5 @@
+// This module is browser compatible.
+
 /** Escape CSS selector
  * @see https://github.com/mathiasbynens/CSS.escape/blob/master/css.escape.js
  */
