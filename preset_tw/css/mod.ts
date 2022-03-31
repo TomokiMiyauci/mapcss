@@ -52,7 +52,29 @@ const RESIZE = "resize";
 const TOUCH_ACTION = "touchAction";
 const USER_SELECT = "userSelect";
 const WILL_CHANGE = "willChange";
+const GRID_AUTO_COLUMNS = "gridAutoColumns";
+const GRID_AUTO_ROWS = "gridAutoRows";
+const ANIMATION = "animation";
 
+export const gridAutoColumnsAuto: DeclBlock = { [GRID_AUTO_COLUMNS]: "auto" };
+export const gridAutoColumnsMinContent: DeclBlock = {
+  [GRID_AUTO_COLUMNS]: "min-content",
+};
+export const gridAutoColumnsMaxContent: DeclBlock = {
+  [GRID_AUTO_COLUMNS]: "max-content",
+};
+export const gridAutoColumnsFr: DeclBlock = {
+  [GRID_AUTO_COLUMNS]: "minmax(0, 1fr)",
+};
+export const gridAutoRowsAuto: DeclBlock = { [GRID_AUTO_ROWS]: "auto" };
+export const gridAutoRowsMinContent: DeclBlock = {
+  [GRID_AUTO_ROWS]: "min-content",
+};
+export const gridAutoRowsMaxContent: DeclBlock = {
+  [GRID_AUTO_ROWS]: "max-content",
+};
+export const gridAutoRowsFr: DeclBlock = { [GRID_AUTO_ROWS]: "minmax(0, 1fr)" };
+export const animationNone: DeclBlock = { [ANIMATION]: "none" };
 export const verticalAlignBaseline: DeclBlock = {
   [VERTICAL_ALGIN]: "baseline",
 };
