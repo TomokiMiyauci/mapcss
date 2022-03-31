@@ -10,3 +10,4 @@ export * from "./resolve.ts";
 export * from "./types.ts";
 export * from "./ast.ts";
 export * from "./transform.ts";
+export * from "./util.ts";

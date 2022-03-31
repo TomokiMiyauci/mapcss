@@ -51,6 +51,7 @@ export function prop<
 export type Arrayable<T> = T | T[];
 export { deepMerge } from "https://deno.land/std@0.122.0/collections/deep_merge.ts";
 export { distinctBy } from "https://deno.land/std@0.125.0/collections/distinct_by.ts";
+export { mapEntries } from "https://deno.land/std@0.125.0/collections/map_entries.ts";
 export function wrap<T>(val: T): T extends any[] ? T : T[] {
   return Array.isArray(val) ? val as never : [val] as never;
 }
