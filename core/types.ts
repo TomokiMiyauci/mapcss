@@ -223,6 +223,13 @@ export type Config = {
   readonly extractor?: Arrayable<Extractor>;
 } & Partial<StaticConfig & StaticContext>;
 
+export type Option = Partial<{
+  /** Whether to inject with `css` or not.
+   * @default true
+   */
+  injectCSS: boolean;
+}>;
+
 export type Output = {
   /** The `string` of CSS Style Sheet.
    * The AST is converted to `string` when the property is accessed.

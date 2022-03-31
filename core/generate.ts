@@ -17,9 +17,10 @@ import {
   orderStatement,
 } from "./postcss/mod.ts";
 import { createInjectCSS } from "./preprocess.ts";
-import { CHAR_MAP, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
+import { CHAR_MAP, OPTION, SEPARATOR, VARIABLE_PREFIX } from "./constant.ts";
 import type {
   Config,
+  Option,
   Output,
   RuntimeContext,
   StaticContext,
@@ -32,8 +33,6 @@ const defaultSyntax: Syntax = {
 };
 
 export type Input = Set<string> | string[] | string;
-
-export type Option = {};
 
 function rootKeys(
   value: Readonly<Readonly<Record<PropertyKey, unknown>>[]>,
@@ -59,7 +58,7 @@ export async function generate(
   }: Readonly<
     Config
   >,
-  {}: Readonly<Partial<Option>> = {},
+  option: Readonly<Option> = OPTION,
 ): Promise<Output> {
   const ctx = {
     separator,
@@ -80,7 +79,7 @@ export async function generate(
     ...ctx,
     theme,
   };
-  const tokens = isSet(input) ? input : new Set(wrap(input));
+  const tokens = toTokens(input);
   const matched = new Set<string>();
   const unmatched = new Set<string>();
 
@@ -141,7 +140,7 @@ export async function generate(
   const orderedNode = postcss(orderStatement()).process(rootNode).root;
   const preProcesses = [
     // default order is left to right
-    ...cssList.reverse().map(createInjectCSS),
+    ...option.injectCSS ? cssList.reverse().map(createInjectCSS) : [],
     ...preProcess,
   ];
 
@@ -188,4 +187,8 @@ export function mapChar(
 
 function isSet<T>(value: Iterable<T>): value is Set<T> {
   return value instanceof Set;
+}
+
+function toTokens(input: Input): Set<string> {
+  return isSet(input) ? input : new Set(wrap(input));
 }

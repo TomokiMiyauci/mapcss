@@ -151,3 +151,21 @@ Deno.test("injected CSS should be placed first", async () => {
     }),
   );
 });
+
+Deno.test("disabled injecting CSS", async () => {
+  await expect(
+    generate("block", {
+      cssMap: {
+        block: { display: "block", "--map": "test" },
+      },
+      css: {
+        body: { color: "red" },
+      },
+      minify: true,
+    }, { injectCSS: false }),
+  ).resolves.toEqual(
+    objectContaining({
+      css: ".block{--map:test;display:block}",
+    }),
+  );
+});
