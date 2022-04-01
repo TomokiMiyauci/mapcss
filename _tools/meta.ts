@@ -110,6 +110,12 @@ const meta: DefineMeta[] = [
         "icon",
       ],
     },
+    mappings: {
+      "https://esm.sh/mini-svg-data-uri@1.4.4?pin=v74": {
+        name: "mini-svg-data-uri",
+        version: "^1.4.4",
+      },
+    },
   },
 ];
 
