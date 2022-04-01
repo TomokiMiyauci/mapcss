@@ -51,7 +51,7 @@ function handleFilter(
 ): DeclBlock {
   return {
     [customProperty(property, varPrefix)]: value,
-    "backdrop-filter": backdropFilterValue(varPrefix),
+    backdropFilter: backdropFilterValue(varPrefix),
   };
 }
 

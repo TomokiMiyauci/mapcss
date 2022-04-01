@@ -1,10 +1,11 @@
 // This module is browser compatible.
 
 import { execMatch, reBracket_$ } from "../../core/utils/regexp.ts";
+import { animationNone } from "../css/mod.ts";
 import type { CSSDefinition, CSSMap } from "../../core/types.ts";
 
 export const animate: CSSMap = {
-  none: { animation: "none" },
+  none: animationNone,
   spin: ({ id }, { className }) => {
     const value: CSSDefinition = {
       type: "css",

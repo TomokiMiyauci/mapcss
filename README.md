@@ -29,6 +29,9 @@ Tiny, composable Atomic CSS engine
 
 ---
 
+:truck: This repository will be transferred to
+[mapcss](https://github.com/mapcss) shortly.
+
 :construction: This project is currently in beta release. All interfaces are
 subject to change.
 

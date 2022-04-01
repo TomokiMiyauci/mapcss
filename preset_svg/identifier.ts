@@ -1,8 +1,7 @@
 // This module is browser compatible.
 
-import { encodeSvg } from "./_utils.ts";
 import { cssFn, stringifyCustomProperty } from "../core/utils/format.ts";
-import { chain, curry } from "./deps.ts";
+import { chain, curry, svg2DataURL } from "./deps.ts";
 import type { DynamicCSS } from "../core/types.ts";
 import type { ColorMode, Option } from "./types.ts";
 
@@ -14,8 +13,7 @@ export function createCSSObject(
 ): DynamicCSS {
   return (_, { variablePrefix }) => {
     const scale = "1";
-    const data = `"data:image/svg+xml;utf8,${encodeSvg(svgMarkup)}"`;
-
+    const data = JSON.stringify(svg2DataURL(svgMarkup));
     const $cssFn = curry(cssFn);
     const urlFn = $cssFn("url");
     const varFn = $cssFn("var");

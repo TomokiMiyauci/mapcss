@@ -1,3 +1,10 @@
+# [1.0.0-beta.58](https://github.com/TomokiMiyauci/mapcss/compare/1.0.0-beta.57...1.0.0-beta.58) (2022-04-01)
+
+
+### Features
+
+* **preset_svg:** improve SVG Data URL output size ([5c00bc1](https://github.com/TomokiMiyauci/mapcss/commit/5c00bc109cd61f0ff349ff033bd8c1acbba4dcf5)), closes [#39](https://github.com/TomokiMiyauci/mapcss/issues/39)
+
 # [1.0.0-beta.57](https://github.com/TomokiMiyauci/mapcss/compare/v1.0.0-beta.56...1.0.0-beta.57) (2022-03-31)
 
 

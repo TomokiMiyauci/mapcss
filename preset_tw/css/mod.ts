@@ -47,7 +47,34 @@ const ACCENT_COLOR = "accentColor";
 const APPEARANCE = "appearance";
 const CURSOR = "cursor";
 const TRANSFORM_ORIGIN = "transformOrigin";
+const POINTER_EVENTS = "pointerEvents";
+const RESIZE = "resize";
+const TOUCH_ACTION = "touchAction";
+const USER_SELECT = "userSelect";
+const WILL_CHANGE = "willChange";
+const GRID_AUTO_COLUMNS = "gridAutoColumns";
+const GRID_AUTO_ROWS = "gridAutoRows";
+const ANIMATION = "animation";
 
+export const gridAutoColumnsAuto: DeclBlock = { [GRID_AUTO_COLUMNS]: "auto" };
+export const gridAutoColumnsMinContent: DeclBlock = {
+  [GRID_AUTO_COLUMNS]: "min-content",
+};
+export const gridAutoColumnsMaxContent: DeclBlock = {
+  [GRID_AUTO_COLUMNS]: "max-content",
+};
+export const gridAutoColumnsFr: DeclBlock = {
+  [GRID_AUTO_COLUMNS]: "minmax(0, 1fr)",
+};
+export const gridAutoRowsAuto: DeclBlock = { [GRID_AUTO_ROWS]: "auto" };
+export const gridAutoRowsMinContent: DeclBlock = {
+  [GRID_AUTO_ROWS]: "min-content",
+};
+export const gridAutoRowsMaxContent: DeclBlock = {
+  [GRID_AUTO_ROWS]: "max-content",
+};
+export const gridAutoRowsFr: DeclBlock = { [GRID_AUTO_ROWS]: "minmax(0, 1fr)" };
+export const animationNone: DeclBlock = { [ANIMATION]: "none" };
 export const verticalAlignBaseline: DeclBlock = {
   [VERTICAL_ALGIN]: "baseline",
 };
@@ -362,3 +389,31 @@ export const cursorNwseResize: DeclBlock = { [CURSOR]: "nwse-resize" };
 export const cursorZoomIn: DeclBlock = { [CURSOR]: "zoom-in" };
 export const cursorZoomOut: DeclBlock = { [CURSOR]: "zoom-out" };
 export const cursorNotAllowed: DeclBlock = { [CURSOR]: "not-allowed" };
+export const pointerEventsNone: DeclBlock = { [POINTER_EVENTS]: "none" };
+export const pointerEventsAuto: DeclBlock = { [POINTER_EVENTS]: "auto" };
+export const resizeBoth: DeclBlock = { [RESIZE]: "both" };
+export const resizeNone: DeclBlock = { [RESIZE]: "none" };
+export const resizeHorizontal: DeclBlock = { [RESIZE]: "horizontal" };
+export const resizeVertical: DeclBlock = { [RESIZE]: "vertical" };
+export const touchActionAuto: DeclBlock = { [TOUCH_ACTION]: "auto" };
+export const touchActionNone: DeclBlock = { [TOUCH_ACTION]: "none" };
+export const touchActionManipulation: DeclBlock = {
+  [TOUCH_ACTION]: "manipulation",
+};
+export const touchActionPanX: DeclBlock = { [TOUCH_ACTION]: "pan-x" };
+export const touchActionPanY: DeclBlock = { [TOUCH_ACTION]: "pan-y" };
+export const touchActionPanLeft: DeclBlock = { [TOUCH_ACTION]: "pan-left" };
+export const touchActionPanRight: DeclBlock = { [TOUCH_ACTION]: "pan-right" };
+export const touchActionPanUp: DeclBlock = { [TOUCH_ACTION]: "pan-up" };
+export const touchActionPanDown: DeclBlock = { [TOUCH_ACTION]: "pan-down" };
+export const touchActionPinchZoom: DeclBlock = { [TOUCH_ACTION]: "pinch-zoom" };
+export const userSelectNone: DeclBlock = { [USER_SELECT]: "none" };
+export const userSelectText: DeclBlock = { [USER_SELECT]: "text" };
+export const userSelectAll: DeclBlock = { [USER_SELECT]: "all" };
+export const userSelectAuto: DeclBlock = { [USER_SELECT]: "auto" };
+export const willChangeAuto: DeclBlock = { [WILL_CHANGE]: "auto" };
+export const willChangeScrollPosition: DeclBlock = {
+  [WILL_CHANGE]: "scroll-position",
+};
+export const willChangeContents: DeclBlock = { [WILL_CHANGE]: "contents" };
+export const willChangeTransform: DeclBlock = { [WILL_CHANGE]: "transform" };

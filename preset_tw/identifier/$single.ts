@@ -211,11 +211,17 @@ import {
   paddingTop0px,
   paddingTop1px,
   paddingTopAuto,
+  pointerEventsAuto,
+  pointerEventsNone,
   positionAbsolute,
   positionFixed,
   positionRelative,
   positionStatic,
   positionSticky,
+  resizeBoth,
+  resizeHorizontal,
+  resizeNone,
+  resizeVertical,
   right0px,
   right100pct,
   right1px,
@@ -232,6 +238,16 @@ import {
   top100pct,
   top1px,
   topAuto,
+  touchActionAuto,
+  touchActionManipulation,
+  touchActionNone,
+  touchActionPanDown,
+  touchActionPanLeft,
+  touchActionPanRight,
+  touchActionPanUp,
+  touchActionPanX,
+  touchActionPanY,
+  touchActionPinchZoom,
   transformOriginBottom,
   transformOriginBottomLeft,
   transformOriginBottomRight,
@@ -242,6 +258,10 @@ import {
   transformOriginTopLeft,
   transformOriginTopRight,
   transitionTimingFunctionLinear,
+  userSelectAll,
+  userSelectAuto,
+  userSelectNone,
+  userSelectText,
   verticalAlginSub,
   verticalAlginSuper,
   verticalAlginTextBottom,
@@ -267,9 +287,12 @@ import {
   widthFitContent,
   widthMaxContent,
   widthMinContent,
+  willChangeAuto,
+  willChangeContents,
+  willChangeScrollPosition,
+  willChangeTransform,
   zIndexAuto,
 } from "../css/mod.ts";
-
 export const align: CSSMap = {
   baseline: verticalAlignBaseline,
   top: verticalAlignTop,
@@ -1439,45 +1462,46 @@ export const caret: CSSMap = {
 };
 export const pointer: CSSMap = {
   events: {
-    none: { pointerEvents: "none" },
-    auto: { pointerEvents: "auto" },
+    none: pointerEventsNone,
+    auto: pointerEventsAuto,
   },
 };
+
 export const resize: CSSMap = {
-  "": { resize: "both" },
-  none: { resize: "none" },
-  x: { resize: "horizontal" },
-  y: { resize: "vertical" },
+  "": resizeBoth,
+  none: resizeNone,
+  x: resizeHorizontal,
+  y: resizeVertical,
 };
 export const touch: CSSMap = {
-  auto: { touchAction: "auto" },
-  none: { touchAction: "none" },
-  manipulation: { touchAction: "manipulation" },
+  auto: touchActionAuto,
+  none: touchActionNone,
+  manipulation: touchActionManipulation,
   pan: {
-    x: { touchAction: "pan-x" },
-    y: { touchAction: "pan-y" },
-    left: { touchAction: "pan-left" },
-    right: { touchAction: "pan-right" },
-    up: { touchAction: "pan-up" },
-    down: { touchAction: "pan-down" },
+    x: touchActionPanX,
+    y: touchActionPanY,
+    left: touchActionPanLeft,
+    right: touchActionPanRight,
+    up: touchActionPanUp,
+    down: touchActionPanDown,
   },
   pinch: {
-    zoom: { touchAction: "pinch-zoom" },
+    zoom: touchActionPinchZoom,
   },
 };
 
 export const select: CSSMap = {
-  none: { userSelect: "none" },
-  text: { userSelect: "text" },
-  all: { userSelect: "all" },
-  auto: { userSelect: "auto" },
+  none: userSelectNone,
+  text: userSelectText,
+  all: userSelectAll,
+  auto: userSelectAuto,
 };
 export const will: CSSMap = {
   change: {
-    auto: { willChange: "auto" },
-    scroll: { willChange: "scroll-position" },
-    contents: { willChange: "contents" },
-    transform: { willChange: "transform" },
+    auto: willChangeAuto,
+    scroll: willChangeScrollPosition,
+    contents: willChangeContents,
+    transform: willChangeTransform,
   },
 };
 function toFill(color: string) {
